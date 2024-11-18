@@ -103,11 +103,17 @@ return {
 	{ -- Command line (wilder.nvim).
 		-- https://github.com/gelguy/wilder.nvim
 		"gelguy/wilder.nvim",
+		keys = {
+			":",
+			"/",
+			"?",
+		},
 		config = function()
 			local wilder = require("wilder")
 			wilder.setup({
 				modes = { ":", "/", "?" },
 			})
+
 			wilder.set_option(
 				"renderer",
 				wilder.popupmenu_renderer(wilder.popupmenu_palette_theme({
@@ -120,8 +126,6 @@ return {
 				}))
 			)
 		end,
-
-		event = { "VeryLazy" },
 	},
 
 	{ -- Workspaces (workspaces.nvim).
