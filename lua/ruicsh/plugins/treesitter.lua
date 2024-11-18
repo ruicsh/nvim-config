@@ -115,7 +115,7 @@ return {
 		},
 
 		main = "nvim-treesitter.configs", -- Sets main module to use for opts.
-		ft = g.CodeFiletypes,
+		ft = g.SourceCodeFiletypes,
 		build = ":TSUpdate",
 		dependencies = {
 			{ -- Syntax aware text objects.
@@ -163,7 +163,7 @@ return {
 			end
 		end,
 
-		ft = g.CodeFiletypes,
+		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Jump to tag (jump-tag).

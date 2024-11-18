@@ -56,7 +56,7 @@ return {
 
 		cmd = { "Barbecue" },
 		event = { "BufReadPost", "BufNewFile" },
-		ft = g.CodeFiletypes,
+		ft = g.SourceCodeFiletypes,
 		dependencies = {
 			"SmiteshP/nvim-navic",
 			"nvim-tree/nvim-web-devicons",
@@ -232,7 +232,7 @@ return {
 		},
 
 		main = "ibl",
-		ft = g.CodeFiletypes,
+		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Folds (nvim-ufo).
@@ -244,7 +244,7 @@ return {
 			end,
 		},
 
-		ft = g.CodeFiletypes,
+		ft = g.SourceCodeFiletypes,
 		dependencies = {
 			"kevinhwang91/promise-async",
 		},

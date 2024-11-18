@@ -52,7 +52,7 @@ return {
 			vim.g.format_on_save = true
 		end,
 
-		ft = g.CodingFiletypes,
+		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Log statements (debugprint.nvim).
@@ -97,7 +97,7 @@ return {
 			})
 		end,
 
-		ft = g.CodingFiletypes,
+		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Autopairs (nvim-autopairs).
@@ -107,7 +107,7 @@ return {
 			check_ts = true,
 		},
 
-		ft = g.CodingFiletypes,
+		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Autocomplete (nvim-cmp).
@@ -152,7 +152,7 @@ return {
 			})
 		end,
 
-		ft = g.CodingFiletypes,
+		ft = g.SourceCodeFiletypes,
 		dependencies = {
 			{ "hrsh7th/nvim-cmp", ft = g.CodingFiletypes, event = { "InsertEnter" } },
 			{ "hrsh7th/cmp-nvim-lsp", ft = g.CodingFiletypes, event = { "InsertEnter" } },
@@ -165,7 +165,7 @@ return {
 		-- https://github.com/RRethy/vim-illuminate
 		"rrethy/vim-illuminate",
 
-		ft = g.CodingFiletypes,
+		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- GitHub Copilot (copilot.lua).
@@ -182,6 +182,6 @@ return {
 		},
 
 		cmd = "Copilot",
-		ft = g.CodingFiletypes,
+		ft = g.SourceCodeFiletypes,
 	},
 }

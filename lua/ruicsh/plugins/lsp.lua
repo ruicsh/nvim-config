@@ -104,7 +104,7 @@ return {
 			conf_lsp_servers()
 		end,
 
-		ft = g.CodingFiletypes,
+		ft = g.SourceCodeFiletypes,
 		dependencies = {
 			{ "williamboman/mason.nvim", ft = g.CodingFiletypes },
 			{ "williamboman/mason-lspconfig.nvim", ft = g.CodingFiletypes },
@@ -125,7 +125,7 @@ return {
 		},
 
 		event = { "BufReadPost", "BufNewFile" },
-		ft = g.CodingFiletypes,
+		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Signature hints (lsp_signature.nvim).
@@ -140,7 +140,7 @@ return {
 		},
 
 		event = { "InsertEnter" },
-		ft = g.CodingFiletypes,
+		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Diagnostics (trouble.nvim).
@@ -173,7 +173,7 @@ return {
 		},
 
 		cmd = "Trouble",
-		ft = g.CodingFiletypes,
+		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Neovim apis lsp (lazydev.nvim).
