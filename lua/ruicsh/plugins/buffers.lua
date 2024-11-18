@@ -13,7 +13,6 @@ return {
 	{ -- Tab scoping (scope.nvim).
 		-- https://github.com/tiagovla/scope.nvim
 		"tiagovla/scope.nvim",
-		opts = {},
 
 		event = { "VimEnter" },
 	},
@@ -90,7 +89,7 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 	},
-
+	--
 	{ -- Maximize/restore windows (windows.nvim).
 		-- https://github.com/anuvyklack/windows.nvim
 		"anuvyklack/windows.nvim",
