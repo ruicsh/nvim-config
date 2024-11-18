@@ -27,6 +27,7 @@ return {
 				javascript = { "prettier" },
 				json = { "prettier" },
 				lua = { "stylua" },
+				markdown = { "prettierd" },
 				scss = { "prettier" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
