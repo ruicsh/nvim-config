@@ -2,8 +2,6 @@
 -- LSP
 --
 
-local g = require("ruicsh/plugins/globals")
-
 -- Set keymaps for LSP commands.
 local function set_keymaps(event)
 	local map = function(keys, func, desc, mode)
@@ -104,14 +102,13 @@ return {
 			conf_lsp_servers()
 		end,
 
-		ft = g.SourceCodeFiletypes,
 		dependencies = {
-			{ "williamboman/mason.nvim", ft = g.CodingFiletypes },
-			{ "williamboman/mason-lspconfig.nvim", ft = g.CodingFiletypes },
-			{ "WhoIsSethDaniel/mason-tool-installer.nvim", ft = g.CodingFiletypes },
-			{ "pmizio/typescript-tools.nvim", opts = {}, ft = { "typescript", "typescriptreact" } },
-			{ "onsails/lspkind.nvim", ft = g.CodingFiletypes },
-			{ "nvim-telescope/telescope.nvim", ft = g.CodingFiletypes },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
+			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
+			{ "pmizio/typescript-tools.nvim", opts = {} },
+			{ "onsails/lspkind.nvim" },
+			{ "nvim-telescope/telescope.nvim" },
 		},
 	},
 
@@ -125,7 +122,6 @@ return {
 		},
 
 		event = { "BufReadPost", "BufNewFile" },
-		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Signature hints (lsp_signature.nvim).
@@ -140,7 +136,6 @@ return {
 		},
 
 		event = { "InsertEnter" },
-		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Diagnostics (trouble.nvim).
@@ -173,7 +168,6 @@ return {
 		},
 
 		cmd = "Trouble",
-		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- Neovim apis lsp (lazydev.nvim).

@@ -2,8 +2,6 @@
 -- Code writing
 --
 
-local g = require("ruicsh/plugins/globals")
-
 return {
 	{ -- Formatter (conform.nvim).
 		-- https://github.com/stevearc/conform.nvim
@@ -52,7 +50,7 @@ return {
 			vim.g.format_on_save = true
 		end,
 
-		ft = g.SourceCodeFiletypes,
+		event = { "BufWritePre" },
 	},
 
 	{ -- Log statements (debugprint.nvim).
@@ -97,7 +95,7 @@ return {
 			})
 		end,
 
-		ft = g.SourceCodeFiletypes,
+		event = { "VeryLazy" },
 	},
 
 	{ -- Autopairs (nvim-autopairs).
@@ -107,7 +105,7 @@ return {
 			check_ts = true,
 		},
 
-		ft = g.SourceCodeFiletypes,
+		event = { "InsertEnter" },
 	},
 
 	{ -- Autocomplete (nvim-cmp).
@@ -152,20 +150,18 @@ return {
 			})
 		end,
 
-		ft = g.SourceCodeFiletypes,
+		event = { "VeryLazy" },
 		dependencies = {
-			{ "hrsh7th/nvim-cmp", ft = g.CodingFiletypes, event = { "InsertEnter" } },
-			{ "hrsh7th/cmp-nvim-lsp", ft = g.CodingFiletypes, event = { "InsertEnter" } },
-			{ "hrsh7th/cmp-path", ft = g.CodingFiletypes, event = { "InsertEnter" } },
-			{ "onsails/lspkind.nvim", ft = g.CodingFiletypes },
+			{ "hrsh7th/nvim-cmp", event = { "InsertEnter" } },
+			{ "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
+			{ "hrsh7th/cmp-path", event = { "InsertEnter" } },
+			{ "onsails/lspkind.nvim" },
 		},
 	},
 
 	{ -- Highlight matching words under cursor (vim-illuminate).
 		-- https://github.com/RRethy/vim-illuminate
 		"rrethy/vim-illuminate",
-
-		ft = g.SourceCodeFiletypes,
 	},
 
 	{ -- GitHub Copilot (copilot.lua).
@@ -182,6 +178,5 @@ return {
 		},
 
 		cmd = "Copilot",
-		ft = g.SourceCodeFiletypes,
 	},
 }

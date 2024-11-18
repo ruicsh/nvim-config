@@ -2,8 +2,6 @@
 -- User interface
 --
 
-local g = require("ruicsh/plugins/globals")
-
 return {
 	{ -- load env variables from a .env file (dotenv)
 		-- https://github.com/ellisonleao/dotenv.nvim
@@ -56,7 +54,6 @@ return {
 
 		cmd = { "Barbecue" },
 		event = { "BufReadPost", "BufNewFile" },
-		ft = g.SourceCodeFiletypes,
 		dependencies = {
 			"SmiteshP/nvim-navic",
 			"nvim-tree/nvim-web-devicons",
@@ -232,7 +229,7 @@ return {
 		},
 
 		main = "ibl",
-		ft = g.SourceCodeFiletypes,
+		event = { "BufReadPost", "BufNewFile" },
 	},
 
 	{ -- Folds (nvim-ufo).
@@ -244,7 +241,7 @@ return {
 			end,
 		},
 
-		ft = g.SourceCodeFiletypes,
+		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"kevinhwang91/promise-async",
 		},

@@ -2,8 +2,6 @@
 -- Treesitter
 --
 
-local g = require("ruicsh/plugins/globals")
-
 return {
 	{ -- Code parser (nvim-treesitter).
 		-- https://github.com/nvim-treesitter/nvim-treesitter
@@ -115,7 +113,7 @@ return {
 		},
 
 		main = "nvim-treesitter.configs", -- Sets main module to use for opts.
-		ft = g.SourceCodeFiletypes,
+		event = { "VeryLazy" },
 		build = ":TSUpdate",
 		dependencies = {
 			{ -- Syntax aware text objects.
@@ -163,7 +161,7 @@ return {
 			end
 		end,
 
-		ft = g.SourceCodeFiletypes,
+		event = { "VeryLazy" },
 	},
 
 	{ -- Jump to tag (jump-tag).
