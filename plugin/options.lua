@@ -16,13 +16,15 @@ vim.opt.termguicolors = true -- Enable true colors.
 
 -- Editor
 vim.opt.cursorline = true -- Highlight current line.
-vim.opt.fillchars:append({ diff = "╱" }) -- Diffview deleted lines marker.
-vim.opt.fillchars:append({ eob = " " }) -- End of buffer marker.
 vim.opt.scrolloff = 8 -- Number of lines to keep above and below the cursor.
 vim.opt.showmatch = false -- Do not show matching brackets.
 vim.opt.showtabline = 2 -- Always show tabline.
 vim.opt.updatetime = 250 -- Time in milliseconds to wait for CursorHold event.
 vim.opt.wrap = false -- Do not automatically wrap texts.
+vim.opt.fillchars = {
+	eob = " ", -- End of buffer marker.
+	diff = "╱", -- Diffview deleted lines marker.
+}
 
 -- Indents/tabstops
 vim.opt.expandtab = true -- In insert mode, use the correct number of spaces to insert a tab.
