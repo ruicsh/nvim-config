@@ -110,6 +110,7 @@ return {
 		},
 		config = function()
 			local wilder = require("wilder")
+
 			wilder.setup({
 				modes = { ":", "/", "?" },
 			})
@@ -198,11 +199,32 @@ return {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { workspaces.name },
-					lualine_c = { "diagnostics", "filename", { "filetype", icon_only = true } },
+					lualine_c = {
+						{
+							"diagnostics",
+							symbols = {
+								error = ThisNvimConfig.icons.diagnostics.Error,
+								warn = ThisNvimConfig.icons.diagnostics.Warn,
+								info = ThisNvimConfig.icons.diagnostics.Info,
+								hint = ThisNvimConfig.icons.diagnostics.Hint,
+							},
+						},
+						"filename",
+						{ "filetype", icon_only = true },
+					},
 					lualine_x = {
 						{ git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available },
 					},
-					lualine_y = { "diff" },
+					lualine_y = {
+						{
+							"diff",
+							symbols = {
+								added = ThisNvimConfig.icons.git.added,
+								modified = ThisNvimConfig.icons.git.modified,
+								removed = ThisNvimConfig.icons.git.removed,
+							},
+						},
+					},
 					lualine_z = { "branch" },
 				},
 				inactive_sections = {

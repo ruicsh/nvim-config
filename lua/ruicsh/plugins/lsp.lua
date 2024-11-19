@@ -87,11 +87,24 @@ local function conf_lsp_servers()
 	})
 end
 
+local function set_lsp_diagnostics_icons()
+	for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
+		vim.fn.sign_define("DiagnosticSign" .. diag, {
+			text = ThisNvimConfig.icons.diagnostics[diag],
+			texthl = "DiagnosticSign" .. diag,
+			linehl = "",
+			numhl = "DiagnosticSign" .. diag,
+		})
+	end
+end
+
 return {
 	{ -- Config (nvim-lspconfig).
 		-- https://github.com/neovim/nvim-lspconfig
 		"neovim/nvim-lspconfig",
 		config = function()
+			set_lsp_diagnostics_icons()
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
 				callback = function(event)
