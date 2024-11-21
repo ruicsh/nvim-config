@@ -164,17 +164,17 @@ return {
 		event = { "VeryLazy" },
 	},
 
-	{ -- Jump to tag (jump-tag).
-		-- https://github.com/harrisoncramer/jump-tag
-		-- "harrisoncramer/jump-tag",
-		"ruicsh/jump-tag",
-		keys = {
-			{ "[t", "<cmd>lua require('jump-tag').jumpPrevSibling()<cr>", desc = "Jump to previous sibling tag" },
-			{ "]t", "<cmd>lua require('jump-tag').jumpNextSibling()<cr>", desc = "Jump to next sibling tag" },
-			{ "[T", "<cmd>lua require('jump-tag').jumpParent()<cr>", desc = "Jump to parent" },
-			{ "]T", "<cmd>lua require('jump-tag').jumpChild()<cr>", desc = "Jump to child" },
-		},
-
-		ft = { "html", "htmlangular", "typescript", "typescriptreact", "vue" },
+	{ -- node navigation (tree-climber.nvim)
+		-- https://github.com/drybalka/tree-climber.nvim
+		"drybalka/tree-climber.nvim",
+		keys = function()
+			local tc = require("tree-climber")
+			return {
+				{ "[T", tc.goto_parent, mode = { "n", "v", "o" } },
+				{ "]T", tc.goto_child, mode = { "n", "v", "o" } },
+				{ "]t", tc.goto_next, mode = { "n", "v", "o" } },
+				{ "[t", tc.goto_prev, mode = { "n", "v", "o" } },
+			}
+		end,
 	},
 }
