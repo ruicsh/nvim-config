@@ -37,21 +37,28 @@ return {
 		"sindrets/diffview.nvim",
 		keys = {
 			{ "<leader>hg", "<cmd>DiffviewOpen<cr>", { desc = "Git: Open diffview" } },
+			{ "<leader>hj", "<cmd>DiffviewFileHistory<cr>", { desc = "Git: Log" } },
 		},
 		config = function()
 			local diffview = require("diffview")
 			local actions = require("diffview.actions")
+
 			diffview.setup({
 				enhanced_diff_hl = true,
 				keymaps = {
 					file_panel = {
 						{ "n", "<cr>", actions.focus_entry, { desc = "Open and focus the diff" } },
-						{ "n", "<down>", actions.select_next_entry, { desc = "Open the diff for the next file" } },
-						{ "n", "<up>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
-						{ "n", "j", actions.select_next_entry, { desc = "Open the diff for the next file" } },
-						{ "n", "k", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
 						{ "n", "}", actions.select_next_entry, { desc = "Open the diff for the next file" } },
 						{ "n", "{", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
+						-- need to redefine this bc of debugprint overriding g?
+						{ "n", "g?", actions.help("file_panel") },
+					},
+					file_history_panel = {
+						{ "n", "}", actions.select_next_entry, { desc = "Open the log for the next file" } },
+						{ "n", "{", actions.select_prev_entry, { desc = "Open the log for the previous file" } },
+					},
+					help_panel = {
+						{ "n", "<c-]>", actions.close },
 					},
 				},
 				hooks = {

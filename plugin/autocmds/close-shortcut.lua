@@ -68,6 +68,14 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = close_shortcut_group,
+	pattern = { "DiffviewFileHistory" },
+	callback = function(args)
+		vim.keymap.set("n", CloseShortcut, "<cmd>:tabclose<cr>", { buffer = args.buf })
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = close_shortcut_group,
 	pattern = { "fugitive" },
 	callback = function(args)
 		vim.keymap.set("n", CloseShortcut, "<plug>fugitive:gq", { noremap = true, buffer = args.buf })
