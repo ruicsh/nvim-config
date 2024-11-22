@@ -112,7 +112,7 @@ return {
 		-- https://github.com/tadaa/vimade
 		"tadaa/vimade",
 		opts = {
-			fadelevel = 0.4,
+			fadelevel = 0.6,
 		},
 
 		event = { "VeryLazy" },
