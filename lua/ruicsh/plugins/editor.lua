@@ -87,6 +87,10 @@ return {
 		opts = {
 			useDefaultKeymaps = true,
 		},
+		config = function()
+			vim.keymap.set({ "o", "x" }, "ab", "<cmd>lua require('various-textobjs').anyBracket('outer')<cr>")
+			vim.keymap.set({ "o", "x" }, "ib", "<cmd>lua require('various-textobjs').anyBracket('inner')<cr>")
+		end,
 
 		event = { "BufReadPost", "BufNewFile" },
 	},
