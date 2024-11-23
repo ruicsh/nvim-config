@@ -83,7 +83,7 @@ loadColorSet({
 	DiffAdd = { bg = c.nord0 },
 	DiffChange = { bg = c.nord0 },
 	DiffDelete = { bg = c.nord11_900 },
-	DiffText = { bg = c.nord0, style = "underline" },
+	DiffText = { bg = c.nord3 },
 	Directory = { fg = c.nord4, bg = "NONE" },
 	EndOfBuffer = { fg = c.nord1 },
 	ErrorMsg = { fg = "NONE" },
