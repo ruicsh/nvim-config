@@ -73,8 +73,13 @@ return {
 				mapping = cmp.mapping.preset.insert({
 					["<c-b>"] = cmp.mapping.scroll_docs(-4),
 					["<c-f>"] = cmp.mapping.scroll_docs(4),
-					["<c-space>"] = cmp.mapping.complete({ mode = cmp.TriggerEvent.Insert }),
-					["<c-y>"] = cmp.mapping.confirm({ select = true }),
+					["<c-y>"] = cmp.mapping(
+						cmp.mapping.confirm({
+							behavior = cmp.ConfirmBehavior.Insert,
+							select = true,
+						}),
+						{ "i", "c" }
+					),
 					["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 					["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 					["<c-e>"] = cmp.mapping.abort(),
@@ -83,11 +88,12 @@ return {
 				}),
 				preselect = "item",
 				completion = {
-					completeopt = "menu,menuone,noinsert",
+					completeopt = "menu,menuone,noselect",
 				},
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "path" },
+					{ name = "buffer" },
 				}),
 				window = {
 					completion = cmp.config.window.bordered(),
