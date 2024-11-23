@@ -112,7 +112,7 @@ return {
 			},
 		},
 
-		main = "nvim-treesitter.configs", -- Sets main module to use for opts.
+		main = "nvim-treesitter.configs",
 		event = { "VeryLazy" },
 		build = ":TSUpdate",
 		dependencies = {
@@ -126,16 +126,15 @@ return {
 	{ -- Auto-close/rename html tags (nvim-ts-autotag).
 		-- https://github.com/windwp/nvim-ts-autotag
 		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-ts-autotag").setup({
-				opts = {
-					enable_close = true, -- Auto close tags.
-					enable_rename = true, -- Auto rename pairs of tags.
-					enable_close_on_slash = true, -- Auto close on trailing </.
-				},
-			})
-		end,
+		options = {
+			opts = {
+				enable_close = true, -- Auto close tags.
+				enable_rename = true, -- Auto rename pairs of tags.
+				enable_close_on_slash = true, -- Auto close on trailing </.
+			},
+		},
 
+		main = "nvim-ts-autotag",
 		ft = { "html", "htmlangular", "typescript", "typescriptreact", "vue" },
 	},
 

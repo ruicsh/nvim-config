@@ -2,7 +2,7 @@
 -- Finder (files, words, commands)
 --
 
-local function display_parent_basename(opts, filepath)
+local function display_parent_basename(_, filepath)
 	-- Display the parent directory name and basename.
 	local path = vim.fn.fnamemodify(filepath, ":p:h")
 	local parent = vim.fn.fnamemodify(path, ":t")

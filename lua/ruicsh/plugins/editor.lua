@@ -76,38 +76,15 @@ return {
 	{ -- Various text objects (nvim-various-textobjs).
 		-- https://github.com/chrisgrieser/nvim-various-textobjs
 		"chrisgrieser/nvim-various-textobjs",
+		keys = {
+			{ "ab", "<cmd>lua require('various-textobjs').anyBracket('outer')<cr>", mode = { "o", "x" } },
+			{ "ib", "<cmd>lua require('various-textobjs').anyBracket('inner')<cr>", mode = { "o", "x" } },
+		},
 		opts = {
 			useDefaultKeymaps = true,
 		},
-		config = function()
-			vim.keymap.set({ "o", "x" }, "ab", "<cmd>lua require('various-textobjs').anyBracket('outer')<cr>")
-			vim.keymap.set({ "o", "x" }, "ib", "<cmd>lua require('various-textobjs').anyBracket('inner')<cr>")
-		end,
 
-		event = { "BufReadPost", "BufNewFile" },
-	},
-
-	{ -- Yank history (yanky.nvim).
-		-- https://github.com/gbprod/yanky.nvim
-		"gbprod/yanky.nvim",
-		keys = {
-			{ "p", "<Plug>(YankyPutAfter)", { mode = { "n", "x" } } },
-			{ "P", "<Plug>(YankyPutBefore)", { mode = { "n", "x" } } },
-			{ "gp", "<Plug>(YankyGPutAfter)", { mode = { "n", "x" } } },
-			{ "gP", "<Plug>(YankyGPutBefore)", { mode = { "n", "x" } } },
-			{ "P", "<Plug>(YankyPutBefore)", { mode = { "n", "x" } } },
-			{ "]p", "<Plug>(YankyPutIndentAfterLinewise)", { mode = "n" } },
-			{ "[p", "<Plug>(YankyPutIndentBeforeLinewise)", { mode = "n" } },
-
-			{ "<c-p>", "<Plug>(YankyPreviousEntry)", { mode = "n" } },
-			{ "<c-n>", "<Plug>(YankyNextEntry)", { mode = "n" } },
-		},
-		opts = {
-			highlight = {
-				timer = 200,
-			},
-		},
-
+		main = "various-textobjs",
 		event = { "BufReadPost", "BufNewFile" },
 	},
 }

@@ -6,16 +6,6 @@ return {
 	{ -- Formatter (conform.nvim).
 		-- https://github.com/stevearc/conform.nvim
 		"stevearc/conform.nvim",
-		keys = {
-			{
-				"<leader>=",
-				function()
-					require("conform").format({ async = true, lsp_format = "fallback" })
-				end,
-				mode = "",
-				desc = "[F]ormat buffer",
-			},
-		},
 		opts = {
 			notify_on_error = false,
 			formatters_by_ft = {
