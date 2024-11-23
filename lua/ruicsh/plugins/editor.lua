@@ -73,14 +73,6 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 	},
 
-	{ -- Use jj to escape (better-escape.nvim).
-		-- https://github.com/max397574/better-escape.nvim
-		"max397574/better-escape.nvim",
-		config = true,
-
-		event = { "VimEnter" },
-	},
-
 	{ -- Various text objects (nvim-various-textobjs).
 		-- https://github.com/chrisgrieser/nvim-various-textobjs
 		"chrisgrieser/nvim-various-textobjs",

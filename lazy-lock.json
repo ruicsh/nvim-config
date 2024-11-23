@@ -1,6 +1,5 @@
 {
   "barbecue": { "branch": "main", "commit": "3e31404f0b93a2c30d151abf0648650ac811c664" },
-  "better-escape.nvim": { "branch": "master", "commit": "199dcc2643dec5d8dbdab4ec672cf405224dcb3b" },
   "buffer_manager.nvim": { "branch": "main", "commit": "f196217f7c1ddae74ed51dfc2c3befe6d62b26d1" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "39e2eda76828d88b773cc27a3f61d2ad782c922d" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
