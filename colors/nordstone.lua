@@ -63,6 +63,10 @@ NordStoneColors = {
 	nord15 = "#b48eaD",
 	neutral_900 = "#171717",
 	neutral_800 = "#262626",
+	neutral_700 = "#404040",
+	neutral_600 = "#525252",
+	neutral_500 = "#71717a",
+	neutral_400 = "#a1a1aa",
 }
 
 local c = NordStoneColors
@@ -106,7 +110,6 @@ loadColorSet({
 	PmenuSel = { fg = c.nord4, bg = c.nord10 },
 	PmenuThumb = { fg = c.nord4, bg = c.nord4 },
 	Question = { fg = c.nord14 },
-	QuickFixLine = { fg = c.nord4, bg = "NONE", style = "reverse" },
 	ReplacelMode = { fg = c.nord11, bg = "NONE", style = "reverse" },
 	Search = { fg = c.nord1, bg = c.nord8 },
 	SignColumn = { fg = c.nord4, bg = "NONE" },
@@ -138,7 +141,12 @@ loadColorSet({
 	healthError = { fg = c.nord11 },
 	healthSuccess = { fg = c.nord14 },
 	healthWarning = { fg = c.nord15 },
-	qfLineNr = { fg = c.nord4, bg = "NONE", style = "reverse" },
+
+	-- quickfix
+	QuickFixLine = { link = "IncSearch" },
+	qfFileName = { fg = c.nord9 },
+	qfLineNr = { fg = c.neutral_400 },
+	qfSeparator = { fg = c.neutral_900 },
 })
 
 ----
@@ -307,12 +315,6 @@ loadColorSet({
 	BarbecueSeparator = { fg = c.nord4_900 },
 	BarbecueBasename = { fg = c.nord4 },
 	BarbecueDirname = { fg = c.nord4_900 },
-})
-
--- yanky.nvim
-loadColorSet({
-	YankyPut = { link = "IncSearch" },
-	YankyYanked = { link = "IncSearch" },
 })
 
 -- nvim-dap

@@ -272,4 +272,12 @@ return {
 			"kevinhwang91/promise-async",
 		},
 	},
+
+	{ -- Better quickfix (nvim-bqf).
+		-- https://github.com/kevinhwang91/nvim-bqf
+		"kevinhwang91/nvim-bqf",
+		config = true,
+
+		event = { "VimEnter" },
+	},
 }
