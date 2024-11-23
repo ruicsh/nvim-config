@@ -92,6 +92,7 @@ return {
 				},
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
 					{ name = "path" },
 					{ name = "buffer" },
 				}),
@@ -108,15 +109,27 @@ return {
 					}),
 					expandable_indicator = true,
 				},
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
 			})
 		end,
 
 		event = { "VeryLazy" },
 		dependencies = {
-			{ "hrsh7th/nvim-cmp", event = { "InsertEnter" } },
-			{ "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
-			{ "hrsh7th/cmp-path", event = { "InsertEnter" } },
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-path" },
 			{ "onsails/lspkind.nvim" },
+			{
+				"L3MON4D3/LuaSnip",
+				dependencies = {
+					"saadparwaiz1/cmp_luasnip",
+					"rafamadriz/friendly-snippets",
+				},
+			},
 		},
 	},
 
