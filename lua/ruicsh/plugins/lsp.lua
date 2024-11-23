@@ -45,6 +45,7 @@ local function conf_lsp_servers()
 		},
 		cssls = {},
 		cssmodules_ls = {},
+		eslint = {},
 		html = {},
 		jsonls = {},
 		lua_ls = {
@@ -151,11 +152,6 @@ return {
 				"<leader>xL",
 				"<cmd>Trouble loclist toggle<cr>",
 				desc = "Trouble: Location List",
-			},
-			{
-				"<leader>xQ",
-				"<cmd>Trouble qflist toggle<cr>",
-				desc = "Trouble: Quickfix List",
 			},
 		},
 		opts = {
