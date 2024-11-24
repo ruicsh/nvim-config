@@ -59,23 +59,6 @@ k("n", "<leader>s{", "vi{<esc><cmd>Sort<cr>", { desc = "[S]ort: Inside [{]" })
 k("n", "<leader>s}", "V}k<esc><cmd>Sort<cr>}", { desc = "[S]ort: Paragrah" })
 k("n", '<leader>s"', 'vi"<esc><cmd>Sort<cr>', { desc = '[So]rt: Inside ["]' })
 
--- Center screen when moving
-k("n", "<c-b>", "<c-b>zz")
-k("n", "<c-d>", "<c-d>zz")
-k("n", "<c-f>", "<c-f>zz")
-k("n", "<c-u>", "<c-u>zz")
-k("n", "<c-d>", "<c-d>zz")
-k("n", "<c-i>", "<c-i>zz")
-k("n", "<c-o>", "<c-o>zz")
-k("n", "N", "Nzz")
-k("n", "n", "nzz")
-k("n", "G", "Gzz")
-k("n", "gg", "ggzz")
-k("n", "gd", "gdzz")
-k("n", "%", "%zz")
-k("n", "*", "*zz")
-k("n", "#", "#zz")
-
 -- Don't include small jumps.
 k("n", "{", "<cmd>keepj normal!{zz<cr>")
 k("n", "}", "<cmd>keepj normal!}zz<cr>")

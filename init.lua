@@ -1,9 +1,10 @@
 vim.loader.enable()
 
--- colorscheme
+-- Colorscheme
 vim.cmd.colorscheme("nordstone")
 
--- leader key
+-- Leader key
+-- needs to be set before lazy.nvim
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 

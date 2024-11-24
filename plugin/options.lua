@@ -1,107 +1,116 @@
--- Leader key
-vim.g.mapleader = " " -- Set leader key to space.
-vim.g.maplocalleader = " " -- Set local leader key to space.
+--
+-- Options organized by sections on :options
+--
 
--- App
-vim.opt.backup = false -- Do not create backup files.
-vim.opt.swapfile = false -- Stop creating swp files.
+local o = vim.opt
 
--- GUI
-vim.opt.guifont = "JetBrainsMono Nerd Font:h12" -- Font family and size.
-vim.opt.linespace = 0 -- Line height.
-vim.opt.mouse = "a" -- Enable mouse support.
-vim.opt.splitbelow = true -- Open a new horizontal split below.
-vim.opt.splitright = true -- Open a new vertical split to the right.
-vim.opt.termguicolors = true -- Enable true colors.
+-- 2 moving around, searching and patterns
+o.ignorecase = true -- Ignore case on search patterns.
+o.inccommand = "nosplit" -- Show live preview of substitution.
+o.smartcase = true -- Use case sensitive if keyword contains capital letters.
 
--- Editor
-vim.opt.cursorline = true -- Highlight current line.
-vim.opt.scrolloff = 8 -- Number of lines to keep above and below the cursor.
-vim.opt.showmatch = false -- Do not show matching brackets.
-vim.opt.showtabline = 2 -- Always show tabline.
-vim.opt.updatetime = 250 -- Time in milliseconds to wait for CursorHold event.
-vim.opt.wrap = false -- Do not automatically wrap texts.
-vim.opt.fillchars = {
+-- 4 displaying text
+o.fillchars = {
 	eob = " ", -- End of buffer marker.
 	diff = "╱", -- Diffview deleted lines marker.
 }
+o.number = true -- Show line numbers.
+o.numberwidth = 5 -- More space on the gutter column.
+o.relativenumber = true -- Show relative line numbers.
+o.scrolloff = 99 -- While scrolling, keep the cursror in the middle.
+o.wrap = false -- Do not automatically wrap texts.
 
--- Indents/tabstops
-vim.opt.expandtab = true -- In insert mode, use the correct number of spaces to insert a tab.
-vim.opt.shiftwidth = 2 -- Number of spaces to use for each step of (auto)indent.
-vim.opt.smartindent = true -- Smart indent.
-vim.opt.softtabstop = 2 -- Number of spaces that a <Tab> key in the file counts for.
-vim.opt.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for.
+-- 5 syntax, highlighting and spelling
+o.cursorline = true -- Highlight current line.
+o.termguicolors = true -- Enable true colors.
 
--- Search
-vim.opt.ignorecase = true -- Ignore case on search patterns.
-vim.opt.inccommand = "nosplit" -- Show live preview of substitution.
-vim.opt.smartcase = true -- Use case sensitive if keyword contains capital letters.
+-- 6 multiple windows
+o.laststatus = 3 -- Always show global statusline.
+o.splitbelow = true -- Open a new horizontal split below.
+o.splitright = true -- Open a new vertical split to the right.
 
--- Gutter column
-vim.opt.number = true -- Show line numbers.
-vim.opt.numberwidth = 5 -- More space on the gutter column.
-vim.opt.relativenumber = true -- Show relative line numbers.
-vim.opt.signcolumn = "yes" -- Always showe to prevent the screen from jumping.
+-- 7 multiple tab pages
+o.showtabline = 2 -- Always show tabline.
 
--- Cleaner statusline
-vim.opt.laststatus = 3 -- Always show global statusline.
-vim.opt.ruler = false -- Do not show the line and column number of the cursor position.
-vim.opt.shortmess = "AIWcCsSF" -- Don't show messages.
-vim.opt.showcmd = false -- Do not show command on last line.
-vim.opt.showmode = false -- Do not show mode on last line.
+-- 8 terminal
+o.title = true -- Show title on window.
 
--- Folds
--- see: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-vim.opt.foldcolumn = "0"
-vim.opt.foldnestmax = 5
-vim.opt.foldtext = ""
+-- 9 using the mouse
+o.mouse = "nic" -- Don't enable mouse on Visual mode.
+o.mousescroll = "ver:1,hor:0" -- Disable horizonal scroll.
 
--- Disable netrw in favor of neo-tree/oil.
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- 10 messages and info
+o.belloff = "all" -- Do not ring the bell for any event.
+o.report = 9999 -- Don't report number of changed lines.
+o.ruler = false -- Do not show the line and column number of the cursor position.
+o.shortmess:append({ -- Don't show messages:
+	A = true, -- When a swap file is found.
+	C = true, -- When scanning for ins-completion items.
+	F = true, -- File info when editing a file.
+	I = true, -- Intro message when starting.
+	S = true, -- Search messages, using nvim-hlslens instead.
+	W = true, -- When writing a file.
+	a = true, -- use abbreviations
+	c = true, -- ins-completion-menu messages.
+	s = true, -- Search hit BOTTOM/TOP messages.
+})
+o.shortmess = "AIWcCsSF" -- Don't show messages.
+o.showcmd = false -- Do not show command on last line.
+o.showmode = false -- Do not show mode on last line.
 
--- Clipboard (so that yank goes to OS clipboard)
--- Schedule the setting after `UiEnter` because it can increase startup-time.
-vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
-end)
+-- 11 selecting text
+o.clipboard = "unnamedplus" -- Use system clipboard.
 
--- [[ VSCODE ]]
-if vim.g.vscode then
-	-- https://stackoverflow.com/questions/78611905/turn-off-neovim-messages-in-vscode
-	vim.opt.cmdheight = 1
-end
+-- 12 editing text
+o.complete:append({ -- Keyword completion in insert mode
+	".", -- Scan the current buffer.
+	"w", -- Scan buffers from other windows.
+	"b", -- Scan other loaded buffers.
+	"u", -- Scan unloaded buffers.
+})
+o.completeopt:append({
+	"menuone", -- Use popup menu even when there is only one entry.
+	"noselect", -- Do not auto-select a match in the menu.
+	"noinsert", -- Do not insert text until selected.
+})
+o.pumblend = 5 -- Transparent completion menu background.
+o.pumheight = 15 -- Maximum height of popup menu.
+o.showmatch = false -- Do not jump to matching brackets.
+o.undofile = true -- Automatically save and restore undo history.
 
--- [[ WINDOWS ]]
-local OS = vim.uv.os_uname().sysname
-if OS:find("Windows") then
-	-- https://github.com/akinsho/toggleterm.nvim/wiki/Tips-and-Tricks#windows
-	local powershell_options = {
-		shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
-		shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
-		shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
-		shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode",
-		shellquote = "",
-		shellxquote = "",
-	}
+-- 13 tabs and editing
+o.expandtab = true -- In insert mode, use the correct number of spaces to insert a tab.
+o.shiftwidth = 2 -- Number of spaces to use for each step of (auto)indent.
+o.smartindent = true -- Smart indent.
+o.softtabstop = 2 -- Number of spaces that a <Tab> key in the file counts for.
+o.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for.
 
-	for option, value in pairs(powershell_options) do
-		vim.opt[option] = value
-	end
-end
+-- 14 folding
+o.foldcolumn = "0"
+o.foldenable = true
+o.foldlevel = 99
+o.foldlevelstart = 99
+o.foldtext = ""
 
--- [[ NEOVIDE ]]
-if vim.g.neovide then
-	-- Turn off all animations.
-	vim.g.neovide_cursor_animate_command_line = false
-	vim.g.neovide_cursor_animate_in_insert_mode = false
-	vim.g.neovide_cursor_animation_length = 0.00
-	vim.g.neovide_cursor_trail_size = 0
-	vim.g.neovide_position_animation_length = 0
-	vim.g.neovide_scroll_animation_far_lines = 0
-	vim.g.neovide_scroll_animation_length = 0.00
-end
+-- 17 reading and writing files
+o.backup = false -- Do not create backup files.
+
+-- 18 the swap file
+o.swapfile = false -- Stop creating swp files.
+o.updatetime = 250 -- Time in milliseconds to wait for CursorHold event.
+
+-- 19 command line editing
+o.wildignore:append({ -- Ignore on file name completion.
+	".DS_store",
+	"**/node_modules/**",
+})
+
+-- 24 various
+o.gdefault = true -- Use g flag for ":substitute".
+o.signcolumn = "yes" -- Always showe to prevent the screen from jumping.
+o.shada = {
+	"'10", -- Remember marks for the last 10 edited files.
+	"<0", -- Max 10 lines saved for each register.
+	"s10", -- Max size of an item contents in KiB.
+	"h", -- Disable the effect of hlsearch when loading the shada file.
+}
