@@ -3,26 +3,6 @@
 --
 
 return {
-	{ -- load env variables from a .env file (dotenv)
-		-- https://github.com/ellisonleao/dotenv.nvim
-		"ellisonleao/dotenv.nvim",
-		config = function()
-			local dotenv = require("dotenv")
-			dotenv.setup()
-
-			local init = vim.fn.expand(vim.env.MYVIMRC)
-			local path = vim.uv.fs_realpath(init)
-			local dir = vim.fs.dirname(path)
-			local file = vim.fs.joinpath(dir, ".env")
-
-			if vim.fn.filereadable(file) then
-				vim.cmd(":Dotenv " .. file)
-			end
-		end,
-
-		event = { "VimEnter" },
-	},
-
 	{ -- notifications (fidget.nvim)
 		-- https://github.com/j-hui/fidget.nvim
 		"j-hui/fidget.nvim",
