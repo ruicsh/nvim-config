@@ -126,6 +126,8 @@ return {
 	{ -- Highlight matching words under cursor (vim-illuminate).
 		-- https://github.com/RRethy/vim-illuminate
 		"rrethy/vim-illuminate",
+
+		event = { "BufReadPost", "BufNewFile" },
 	},
 
 	{ -- GitHub Copilot (copilot.lua).

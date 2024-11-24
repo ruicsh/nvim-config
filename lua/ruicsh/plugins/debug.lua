@@ -105,6 +105,7 @@ return {
 			set_dap_configs(dap)
 		end,
 
+		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			{ -- JS debugger (vscode-js-debug)
 				-- https://github.com/microsoft/vscode-js-debug

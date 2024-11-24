@@ -112,6 +112,7 @@ return {
 			conf_lsp_servers()
 		end,
 
+		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
