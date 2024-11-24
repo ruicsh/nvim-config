@@ -87,4 +87,11 @@ return {
 		main = "various-textobjs",
 		event = { "BufReadPost", "BufNewFile" },
 	},
+
+	{ -- Multiple cursors (vim-visual-multi).
+		-- https://github.com/mg979/vim-visual-multi
+		"https://github.com/mg979/vim-visual-multi",
+
+		event = { "BufReadPost", "BufNewFile" },
+	},
 }
