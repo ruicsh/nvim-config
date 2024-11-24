@@ -4,7 +4,7 @@
 
 -- Set keymaps for LSP commands.
 local function set_keymaps(event)
-	local map = function(keys, func, desc, mode)
+	local k = function(keys, func, desc, mode)
 		mode = mode or "n"
 		vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 	end
@@ -19,6 +19,7 @@ local function set_keymaps(event)
 	local function lsp_workspace_symbols()
 		telescope.lsp_workspace_symbols({ symbols = lsp_symbols })
 	end
+
 	local function lsp_references()
 		telescope.lsp_references({
 			include_declaration = false,
@@ -26,14 +27,15 @@ local function set_keymaps(event)
 		})
 	end
 
-	map("K", "<cmd>lua vim.lsp.buf.hover()<cr>", "LSP: Display hover for symbol")
-	map("gd", telescope.lsp_definitions, "LSP: Jump to [d]efinition")
-	map("gi", telescope.lsp_implementations, "LSP: Jump to [i]mplementation")
-	map("go", telescope.lsp_type_definitions, "LSP: Jump to type definition")
-	map("gr", lsp_references, "LSP: List [r]eferences")
-	map("gy", lsp_document_symbols, "LSP: Document s[y]mbols")
-	map("gY", lsp_workspace_symbols, "LSP: Workspace s[Y]mbols")
-	map("<f2>", vim.lsp.buf.rename, "LSP: Rename symbol")
+	k("K", "<cmd>lua vim.lsp.buf.hover()<cr>", "Display hover for symbol")
+	k("<c-K>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Display signature help", "i")
+	k("gd", telescope.lsp_definitions, "Jump to [d]efinition")
+	k("gi", telescope.lsp_implementations, "Jump to [i]mplementation")
+	k("go", telescope.lsp_type_definitions, "Jump to type definition")
+	k("gr", lsp_references, "List [r]eferences")
+	k("gy", lsp_document_symbols, "Document s[y]mbols")
+	k("gY", lsp_workspace_symbols, "Workspace s[Y]mbols")
+	k("<f2>", vim.lsp.buf.rename, "Rename symbol")
 end
 
 -- Install and configure lsp servers.
@@ -80,6 +82,16 @@ local function conf_lsp_servers()
 
 				local conf = vim.tbl_deep_extend("force", server, {
 					capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
+					handlers = {
+						-- <s-k> float window
+						["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+							border = "rounded",
+						}),
+						-- i_<c-k> float window
+						["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+							border = "rounded",
+						}),
+					},
 					on_attach = function(client, bufnr)
 						if client.server_capabilities["documentSymbolProvider"] then
 							-- Add navic to barbecue

@@ -151,6 +151,9 @@ return {
 			{ -- snippet engine (luasnip)
 				-- https://github.com/L3MON4D3/LuaSnip
 				"L3MON4D3/LuaSnip",
+				config = function()
+					require("luasnip/loaders/from_vscode").lazy_load()
+				end,
 				build = "make install_jsregexp",
 				dependencies = {
 					"saadparwaiz1/cmp_luasnip",

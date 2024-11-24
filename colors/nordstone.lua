@@ -198,6 +198,7 @@ loadColorSet({
 	LspReferenceText = { fg = c.nord4, bg = c.nord1 },
 	LspReferenceRead = { fg = c.nord4, bg = c.nord1 },
 	LspReferenceWrite = { fg = c.nord4, bg = c.nord1 },
+	LspSignatureActiveParameter = { fg = c.nord4, bg = c.nord1 },
 
 	DiagnosticError = { link = "LspDiagnosticsDefaultError" },
 	DiagnosticFloatingError = { link = "LspDiagnosticsFloatingError" },
