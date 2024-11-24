@@ -13,6 +13,7 @@ return {
 	{ -- Tab scoping (scope.nvim).
 		-- https://github.com/tiagovla/scope.nvim
 		"tiagovla/scope.nvim",
+		config = true,
 
 		event = { "VimEnter" },
 	},
