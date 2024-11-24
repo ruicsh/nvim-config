@@ -21,7 +21,7 @@ return {
 			ignored_filetypes = { "term" },
 		},
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
 	{ -- Merge conflicts (git-conflict.nvim).
@@ -29,7 +29,7 @@ return {
 		"akinsho/git-conflict.nvim",
 		config = true,
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
 	{ -- Diffview (diffview.nvim).
@@ -158,7 +158,7 @@ return {
 			end,
 		},
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
 	{ -- Shareable file links (gitlinker.nvim).
@@ -193,6 +193,6 @@ return {
 			})
 		end,
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 }

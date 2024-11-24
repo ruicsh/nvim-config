@@ -12,14 +12,6 @@ local function set_keymaps(event)
 	local telescope = require("telescope.builtin")
 
 	-- When displaying the document/worspace symbols, only show these.
-	local lsp_symbols = { "method", "function", "class" }
-	local function lsp_document_symbols()
-		telescope.lsp_document_symbols({ symbols = lsp_symbols })
-	end
-	local function lsp_workspace_symbols()
-		telescope.lsp_workspace_symbols({ symbols = lsp_symbols })
-	end
-
 	local function lsp_references()
 		telescope.lsp_references({
 			include_declaration = false,
@@ -33,8 +25,8 @@ local function set_keymaps(event)
 	k("gi", telescope.lsp_implementations, "Jump to [i]mplementation")
 	k("go", telescope.lsp_type_definitions, "Jump to type definition")
 	k("gr", lsp_references, "List [r]eferences")
-	k("gy", lsp_document_symbols, "Document s[y]mbols")
-	k("gY", lsp_workspace_symbols, "Workspace s[Y]mbols")
+	k("gy", telescope.lsp_document_symbols, "Document s[y]mbols")
+	k("gY", telescope.lsp_workspace_symbols, "Workspace s[Y]mbols")
 	k("<f2>", vim.lsp.buf.rename, "Rename symbol")
 end
 
@@ -166,7 +158,7 @@ return {
 			},
 		},
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
 	{ -- Diagnostics (trouble.nvim).

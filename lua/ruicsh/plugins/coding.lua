@@ -175,7 +175,7 @@ return {
 		-- https://github.com/RRethy/vim-illuminate
 		"rrethy/vim-illuminate",
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
 	{ -- Markdown preview (markdown-preview.nvim)

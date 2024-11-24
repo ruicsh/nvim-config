@@ -105,7 +105,29 @@ return {
 			set_dap_configs(dap)
 		end,
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
+	},
+
+	{ -- adapter for vscode-js-debug
+		-- https://github.com/mxsdev/nvim-dap-vscode-js
+		"mxsdev/nvim-dap-vscode-js",
+		config = function()
+			require("dap-vscode-js").setup({
+				-- Path to vscode-js-debug installation.
+				debugger_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/lazy/vscode-js-debug"),
+				-- which adapters to register in nvim-dap
+				adapters = {
+					"chrome",
+					"pwa-node",
+					"pwa-chrome",
+					"pwa-msedge",
+					"pwa-extensionHost",
+					"node-terminal",
+				},
+			})
+		end,
+
+		event = { "BufEnter" },
 		dependencies = {
 			{ -- JS debugger (vscode-js-debug)
 				-- https://github.com/microsoft/vscode-js-debug
@@ -113,27 +135,6 @@ return {
 				build = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out",
 				version = "1.*",
 			},
-			{ -- adapter for vscode-js-debug
-				-- https://github.com/mxsdev/nvim-dap-vscode-js
-				"mxsdev/nvim-dap-vscode-js",
-				config = function()
-					require("dap-vscode-js").setup({
-						-- Path to vscode-js-debug installation.
-						debugger_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/lazy/vscode-js-debug"),
-						-- which adapters to register in nvim-dap
-						adapters = {
-							"chrome",
-							"pwa-node",
-							"pwa-chrome",
-							"pwa-msedge",
-							"pwa-extensionHost",
-							"node-terminal",
-						},
-					})
-				end,
-			},
-			"rcarriga/nvim-dap-ui",
-			"theHamsta/nvim-dap-virtual-text",
 		},
 	},
 
@@ -164,6 +165,7 @@ return {
 			end
 		end,
 
+		event = { "BufEnter" },
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 		},
@@ -174,9 +176,7 @@ return {
 		"theHamsta/nvim-dap-virtual-text",
 		opts = {},
 
-		dependencies = {
-			"mfussenegger/nvim-dap",
-		},
+		event = { "BufEnter" },
 	},
 
 	{ -- Log statements (debugprint.nvim).
@@ -215,6 +215,6 @@ return {
 		},
 
 		main = "debugprint",
-		event = { "VeryLazy" },
+		event = { "BufEnter" },
 	},
 }

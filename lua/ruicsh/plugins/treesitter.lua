@@ -175,5 +175,7 @@ return {
 				{ "[t", tc.goto_prev, mode = { "n", "v", "o" } },
 			}
 		end,
+
+		event = { "BufEnter" },
 	},
 }

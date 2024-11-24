@@ -84,7 +84,7 @@ return {
 			vim.keymap.set("n", "§", bmui.toggle_quick_menu, { noremap = true, silent = true })
 		end,
 
-		event = { "VimEnter" },
+		event = { "BufEnter" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},

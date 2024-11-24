@@ -18,14 +18,14 @@ return {
 			},
 		},
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
 	{ -- Repeat plugin keymaps (vim-repeat).
 		-- https://github.com/tpope/vim-repeat
 		"tpope/vim-repeat",
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
 	{ -- Insert mode navigation (vim-rsi).
@@ -57,7 +57,7 @@ return {
 		"kylechui/nvim-surround",
 		config = true,
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
 	{ -- Move by subwords in camelCase (nvim-spider).
@@ -70,7 +70,7 @@ return {
 			{ "ge", "<cmd>lua require('spider').motion('ge')<cr>" },
 		},
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
 	{ -- Various text objects (nvim-various-textobjs).
@@ -85,13 +85,13 @@ return {
 		},
 
 		main = "various-textobjs",
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
 	{ -- Multiple cursors (vim-visual-multi).
 		-- https://github.com/mg979/vim-visual-multi
 		"https://github.com/mg979/vim-visual-multi",
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 }

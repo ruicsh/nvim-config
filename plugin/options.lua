@@ -47,14 +47,12 @@ o.shortmess:append({ -- Don't show messages:
 	A = true, -- When a swap file is found.
 	C = true, -- When scanning for ins-completion items.
 	F = true, -- File info when editing a file.
-	I = true, -- Intro message when starting.
 	S = true, -- Search messages, using nvim-hlslens instead.
 	W = true, -- When writing a file.
 	a = true, -- use abbreviations
 	c = true, -- ins-completion-menu messages.
 	s = true, -- Search hit BOTTOM/TOP messages.
 })
-o.shortmess = "AIWcCsSF" -- Don't show messages.
 o.showcmd = false -- Do not show command on last line.
 o.showmode = false -- Do not show mode on last line.
 

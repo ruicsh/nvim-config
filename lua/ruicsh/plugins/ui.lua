@@ -119,9 +119,6 @@ return {
 		opts = {
 			cd_type = "tab",
 			auto_open = true,
-			hooks = {
-				open = { "Telescope find_files" },
-			},
 		},
 
 		event = { "VeryLazy" },
