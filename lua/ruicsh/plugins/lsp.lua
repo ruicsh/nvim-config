@@ -66,6 +66,12 @@ local function conf_lsp_servers()
 	capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+	-- https://github.com/kevinhwang91/nvim-ufo?tab=readme-ov-file#quickstart
+	capabilities.textDocument.foldingRange = {
+		dynamicRegistration = false,
+		lineFoldingOnly = true,
+	}
+
 	require("mason").setup()
 
 	local ensure_installed = vim.tbl_keys(servers or {})

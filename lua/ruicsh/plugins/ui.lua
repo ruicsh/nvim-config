@@ -239,21 +239,6 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 	},
 
-	{ -- Folds (nvim-ufo).
-		-- https://github.com/kevinhwang91/nvim-ufo
-		"kevinhwang91/nvim-ufo",
-		opts = {
-			provider_selector = function()
-				return { "treesitter", "indent" }
-			end,
-		},
-
-		event = { "BufReadPost", "BufNewFile" },
-		dependencies = {
-			"kevinhwang91/promise-async",
-		},
-	},
-
 	{ -- Better quickfix (nvim-bqf).
 		-- https://github.com/kevinhwang91/nvim-bqf
 		"kevinhwang91/nvim-bqf",

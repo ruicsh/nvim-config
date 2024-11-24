@@ -93,7 +93,7 @@ loadColorSet({
 	ErrorMsg = { fg = "NONE" },
 	FloatBorder = { fg = c.nord4, bg = "NONE" },
 	FoldColumn = { fg = c.nord7 },
-	Folded = { fg = c.nord3_500, bg = "NONE", style = "italic" },
+	Folded = { fg = c.nord3_500, style = "italic" },
 	Function = { fg = c.nord8 },
 	IncSearch = { fg = c.nord1, bg = c.nord8 },
 	InsertMode = { fg = c.nord14, bg = "NONE", style = "reverse" },
