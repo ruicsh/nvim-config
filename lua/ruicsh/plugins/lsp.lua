@@ -77,8 +77,18 @@ local function conf_lsp_servers()
 		handlers = {
 			function(server_name)
 				local server = servers[server_name] or {}
-				server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-				require("lspconfig")[server_name].setup(server)
+
+				local conf = vim.tbl_deep_extend("force", server, {
+					capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
+					on_attach = function(client, bufnr)
+						if client.server_capabilities["documentSymbolProvider"] then
+							-- Add navic to barbecue
+							require("nvim-navic").attach(client, bufnr)
+						end
+					end,
+				})
+
+				require("lspconfig")[server_name].setup(conf)
 			end,
 		},
 	})
@@ -114,8 +124,14 @@ return {
 
 		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
+			{ -- LSP package manager
+				-- https://github.com/williamboman/mason.nvim
+				"williamboman/mason.nvim",
+			},
+			{ -- easier to use lspconfig with mason
+				-- https://github.com/williamboman/mason-lspconfig.nvim
+				"williamboman/mason-lspconfig.nvim",
+			},
 			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 			{ "pmizio/typescript-tools.nvim", opts = {} },
 			{ "onsails/lspkind.nvim" },

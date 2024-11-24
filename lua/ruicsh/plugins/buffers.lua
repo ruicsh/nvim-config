@@ -89,7 +89,7 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 	},
-	--
+
 	{ -- Maximize/restore windows (windows.nvim).
 		-- https://github.com/anuvyklack/windows.nvim
 		"anuvyklack/windows.nvim",

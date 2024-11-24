@@ -296,11 +296,6 @@ loadColorSet({
 	HlSearchLens = { fg = c.nord3_500, bg = "NONE" },
 })
 
--- avante
-loadColorSet({
-	AvanteInlineHint = { fg = c.nord3 },
-})
-
 -- vim-iluminate
 loadColorSet({
 	IlluminatedWordText = { bg = c.nord2 },

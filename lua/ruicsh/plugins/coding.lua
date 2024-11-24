@@ -57,12 +57,48 @@ return {
 		-- https://github.com/hrsh7th/nvim-cmp
 		"hrsh7th/nvim-cmp",
 		config = function()
-			local cmp = require("cmp")
+			local luasnip = require("luasnip")
+			local lspkind = require("lspkind")
 
+			-- copilot suggestions
+			require("copilot_cmp").setup()
+			lspkind.init({
+				symbol_map = {
+					Copilot = "",
+				},
+			})
+
+			-- item's kind formatting
+			local kind_formatter = lspkind.cmp_format({
+				mode = "symbol",
+				show_labelDetails = true,
+				maxwidth = 50, -- Prevent the popup from showing more than provided characters.
+				ellipsis_char = "...", -- When popup menu exceed maxwidth, the truncated part would show ellipsis_char instead.
+				menu = {
+					copilot = "[ghc]",
+					buffer = "[buf]",
+					nvim_lsp = "[lsp]",
+					nvim_lua = "[api]",
+					path = "[path]",
+					luasnip = "[snip]",
+				},
+			})
+
+			local cmp = require("cmp")
 			cmp.setup({
-				mapping = cmp.mapping.preset.insert({
-					["<c-b>"] = cmp.mapping.scroll_docs(-4),
-					["<c-f>"] = cmp.mapping.scroll_docs(4),
+				completion = {
+					completeopt = "menu,menuone,noselect",
+				},
+				formatting = {
+					fields = { "kind", "abbr", "menu" },
+					format = kind_formatter,
+					expandable_indicator = true,
+				},
+				mapping = {
+					["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 					["<c-y>"] = cmp.mapping(
 						cmp.mapping.confirm({
 							behavior = cmp.ConfirmBehavior.Insert,
@@ -70,39 +106,33 @@ return {
 						}),
 						{ "i", "c" }
 					),
-					["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-					["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 					["<c-e>"] = cmp.mapping.abort(),
 					-- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 					["<cr>"] = cmp.mapping.confirm({ select = true }),
-				}),
-				preselect = "item",
-				completion = {
-					completeopt = "menu,menuone,noselect",
+					["<tab>"] = cmp.mapping.confirm({ select = true }),
+				},
+				snippet = {
+					expand = function(args)
+						luasnip.lsp_expand(args.body)
+					end,
 				},
 				sources = cmp.config.sources({
+					{ name = "lazydev", group_index = 0 },
+					{ name = "copilot" },
 					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
 					{ name = "path" },
 					{ name = "buffer" },
+					{
+						name = "luasnip",
+						option = {
+							use_show_condition = false,
+							show_autosnippets = true,
+						},
+					},
 				}),
 				window = {
 					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
-				},
-				formatting = {
-					fields = { "abbr", "kind", "menu" },
-					format = require("lspkind").cmp_format({
-						mode = "symbol", -- Show only symbol annotations.
-						maxwidth = 50, -- Prevent the popup from showing more than provided characters.
-						ellipsis_char = "...", -- When popup menu exceed maxwidth, the truncated part would show ellipsis_char instead.
-					}),
-					expandable_indicator = true,
-				},
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
 				},
 			})
 		end,
@@ -112,12 +142,27 @@ return {
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-path" },
-			{ "onsails/lspkind.nvim" },
-			{
+			{ "hrsh7th/cmp-buffer" },
+			{ "zbirenbaum/copilot-cmp" },
+			{ -- Pictograms for completion items (lspkind.nvim).
+				-- https://github.com/onsails/lspkind.nvim
+				"onsails/lspkind.nvim",
+			},
+			{ -- snippet engine (luasnip)
+				-- https://github.com/L3MON4D3/LuaSnip
 				"L3MON4D3/LuaSnip",
+				build = "make install_jsregexp",
 				dependencies = {
 					"saadparwaiz1/cmp_luasnip",
 					"rafamadriz/friendly-snippets",
+				},
+			},
+			{ -- GitHub Copilot (copilot.lua).
+				-- https://github.com/zbirenbaum/copilot.lua
+				"zbirenbaum/copilot.lua",
+				opts = {
+					suggestion = { enabled = false },
+					panel = { enabled = false },
 				},
 			},
 		},
@@ -128,21 +173,5 @@ return {
 		"rrethy/vim-illuminate",
 
 		event = { "BufReadPost", "BufNewFile" },
-	},
-
-	{ -- GitHub Copilot (copilot.lua).
-		-- https://github.com/zbirenbaum/copilot.lua
-		"zbirenbaum/copilot.lua",
-		opts = {
-			suggestion = {
-				auto_trigger = true,
-				keymap = {
-					accept = "<tab>",
-					next = "<c-j>",
-				},
-			},
-		},
-
-		cmd = "Copilot",
 	},
 }

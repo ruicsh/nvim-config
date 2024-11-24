@@ -3,7 +3,7 @@
 --
 
 return {
-	{ -- notifications (fidget.nvim)
+	{ -- Notifications (fidget.nvim)
 		-- https://github.com/j-hui/fidget.nvim
 		"j-hui/fidget.nvim",
 		opts = {
@@ -23,6 +23,7 @@ return {
 		"utilyre/barbecue.nvim",
 		name = "barbecue",
 		opts = {
+			attach_navic = false,
 			theme = {
 				normal = { link = "BarbecueNormal" },
 				ellipsis = { link = "BarbecueEllipsis" },
