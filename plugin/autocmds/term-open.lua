@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 			vim.opt_local.number = false
 			vim.opt_local.relativenumber = false
 			-- Start on insert mode.
-			vim.cmd(":startinsert")
+			vim.cmd("startinsert")
 		end
 	end,
 })
