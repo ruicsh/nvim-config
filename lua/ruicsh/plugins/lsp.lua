@@ -30,6 +30,7 @@ local function set_keymaps(event)
 	k("<f2>", vim.lsp.buf.rename, "Rename symbol")
 	k("[d", vim.diagnostic.goto_prev, "Jump to previous [d]iagnostic")
 	k("]d", vim.diagnostic.goto_next, "Jump to next [d]iagnostic")
+	k("<leader>ca", vim.lsp.buf.code_action, "Code actions")
 end
 
 -- Install and configure lsp servers.
@@ -59,12 +60,6 @@ local function conf_lsp_servers()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-	-- https://github.com/kevinhwang91/nvim-ufo?tab=readme-ov-file#quickstart
-	capabilities.textDocument.foldingRange = {
-		dynamicRegistration = false,
-		lineFoldingOnly = true,
-	}
 
 	require("mason").setup()
 

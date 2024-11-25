@@ -1,3 +1,4 @@
+---@diagnostic disable: unused-local
 --
 -- Finder (files, words, commands)
 --
@@ -123,7 +124,10 @@ return {
 					return vim.fn.executable("make") == 1
 				end,
 			},
-			{ "nvim-telescope/telescope-ui-select.nvim" },
+			{ -- Sets vim.ui.select to telescope
+				-- https://github.com/nvim-telescope/telescope-ui-select.nvim
+				"nvim-telescope/telescope-ui-select.nvim",
+			},
 			{ "nvim-tree/nvim-web-devicons" },
 			"natecraddock/workspaces.nvim",
 		},
