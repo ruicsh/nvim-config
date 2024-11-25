@@ -177,16 +177,4 @@ return {
 
 		event = { "BufEnter" },
 	},
-
-	{ -- Markdown preview (markdown-preview.nvim)
-		-- https://github.com/iamcco/markdown-preview.nvim
-		"iamcco/markdown-preview.nvim",
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		build = "cd app && npm install",
-		ft = { "markdown" },
-	},
 }
