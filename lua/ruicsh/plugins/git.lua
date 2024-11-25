@@ -7,6 +7,7 @@ return {
 		-- https://github.com/tpope/vim-fugitive
 		"tpope/vim-fugitive",
 
+		lazy = true,
 		cmd = "Git",
 	},
 
@@ -104,20 +105,20 @@ return {
 		"lewis6991/gitsigns.nvim",
 		opts = {
 			signs = {
-				add = { text = "┃" },
-				change = { text = "┃" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-				untracked = { text = "┆" },
+				add = { text = ThisNvimConfig.icons.git.Add },
+				change = { text = ThisNvimConfig.icons.git.Change },
+				delete = { text = ThisNvimConfig.icons.git.Delete },
+				topdelete = { text = ThisNvimConfig.icons.git.TopDelete },
+				changedelete = { text = ThisNvimConfig.icons.git.ChangeDelete },
+				untracked = { text = ThisNvimConfig.icons.git.Untracked },
 			},
 			signs_staged = {
-				add = { text = "┃" },
-				change = { text = "┃" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-				untracked = { text = "┆" },
+				add = { text = ThisNvimConfig.icons.git.Add },
+				change = { text = ThisNvimConfig.icons.git.Change },
+				delete = { text = ThisNvimConfig.icons.git.Delete },
+				topdelete = { text = ThisNvimConfig.icons.git.TopDelete },
+				changedelete = { text = ThisNvimConfig.icons.git.ChangeDelete },
+				untracked = { text = ThisNvimConfig.icons.git.Untracked },
 			},
 			on_attach = function(bufnr)
 				local gitsigns = require("gitsigns")

@@ -17,6 +17,12 @@ ThisNvimConfig = {
 			added = " ",
 			modified = " ",
 			removed = " ",
+			Add = "┃",
+			Change = "┋",
+			Delete = "",
+			TopDelete = "",
+			ChangeDelete = "┃",
+			Untracked = "┃",
 		},
 	},
 }
