@@ -25,8 +25,6 @@ local function set_keymaps(event)
 	k("gi", telescope.lsp_implementations, "Jump to [i]mplementation")
 	k("go", telescope.lsp_type_definitions, "Jump to type definition")
 	k("gr", lsp_references, "List [r]eferences")
-	k("gy", telescope.lsp_document_symbols, "Document s[y]mbols")
-	k("gY", telescope.lsp_workspace_symbols, "Workspace s[Y]mbols")
 	k("<f2>", vim.lsp.buf.rename, "Rename symbol")
 	k("[d", vim.diagnostic.goto_prev, "Jump to previous [d]iagnostic")
 	k("]d", vim.diagnostic.goto_next, "Jump to next [d]iagnostic")
@@ -129,13 +127,13 @@ return {
 			conf_lsp_servers()
 		end,
 
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 		dependencies = {
 			{ -- LSP package manager
 				-- https://github.com/williamboman/mason.nvim
 				"williamboman/mason.nvim",
 			},
-			{ -- easier to use lspconfig with mason
+			{ -- Easier to use lspconfig with mason
 				-- https://github.com/williamboman/mason-lspconfig.nvim
 				"williamboman/mason-lspconfig.nvim",
 			},
@@ -143,6 +141,31 @@ return {
 			{ "pmizio/typescript-tools.nvim", opts = {} },
 			{ "onsails/lspkind.nvim" },
 			{ "nvim-telescope/telescope.nvim" },
+		},
+	},
+
+	{ -- LSP symbols
+		-- https://github.com/hedyhli/outline.nvim
+		"hedyhli/outline.nvim",
+		keys = {
+			{ "gy", "<cmd>Outline<cr>", desc = "LSP: symbols" },
+		},
+		opts = {
+			outline_items = {
+				show_symbol_lineno = true,
+			},
+			outline_window = {
+				auto_jump = true,
+			},
+			symbols = {
+				icon_source = "lspkind",
+			},
+		},
+
+		lazy = true,
+		cmd = { "Outline", "OutlineOpen" },
+		requirements = {
+			{ "onsails/lspkind.nvim" },
 		},
 	},
 
@@ -177,7 +200,8 @@ return {
 			focus = true,
 		},
 
-		cmd = "Trouble",
+		lazy = true,
+		cmd = { "Trouble" },
 	},
 
 	{ -- Neovim apis lsp (lazydev.nvim).

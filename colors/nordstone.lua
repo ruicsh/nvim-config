@@ -365,6 +365,15 @@ loadColorSet({
 	SpectreSearchHl = { fg = c.nord0, bg = c.nord13 },
 })
 
+-- outline.nvim
+loadColorSet({
+	OutlineCurrent = { fg = c.nord8 },
+	OutlineGuides = { fg = c.nord3 },
+	OutlineFoldMarker = { fg = c.nord3 },
+	OutlineDetails = { fg = c.nord3_500 },
+	OutlineLineno = { fg = c.nord3 },
+})
+
 ----
 -- Syntax
 ----
