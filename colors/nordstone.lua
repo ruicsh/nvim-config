@@ -374,6 +374,11 @@ loadColorSet({
 	OutlineLineno = { fg = c.nord3 },
 })
 
+-- lightbulb.nvim
+loadColorSet({
+	LightBulbVirtualText = { fg = c.nord13 },
+})
+
 ----
 -- Syntax
 ----
