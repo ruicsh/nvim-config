@@ -19,15 +19,12 @@ local function set_keymaps(event)
 		})
 	end
 
-	k("K", "<cmd>lua vim.lsp.buf.hover()<cr>", "Display hover for symbol")
-	k("<c-K>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Display signature help", "i")
+	k("<c-K>", vim.lsp.buf.signature_help, "Display signature help", "i")
 	k("gd", telescope.lsp_definitions, "Jump to [d]efinition")
 	k("gi", telescope.lsp_implementations, "Jump to [i]mplementation")
 	k("go", telescope.lsp_type_definitions, "Jump to type definition")
 	k("gr", lsp_references, "List [r]eferences")
 	k("<f2>", vim.lsp.buf.rename, "Rename symbol")
-	k("[d", vim.diagnostic.goto_prev, "Jump to previous [d]iagnostic")
-	k("]d", vim.diagnostic.goto_next, "Jump to next [d]iagnostic")
 	k("<leader>ca", vim.lsp.buf.code_action, "Code actions")
 end
 
@@ -79,10 +76,14 @@ local function conf_lsp_servers()
 						-- <s-k> float window
 						["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 							border = "rounded",
+							focusable = false,
+							focus = false,
 						}),
 						-- i_<c-k> float window
 						["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 							border = "rounded",
+							focusable = false,
+							focus = false,
 						}),
 					},
 					on_attach = function(client, bufnr)
@@ -99,15 +100,46 @@ local function conf_lsp_servers()
 	})
 end
 
-local function set_lsp_diagnostics_icons()
-	for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
-		vim.fn.sign_define("DiagnosticSign" .. diag, {
-			text = ThisNvimConfig.icons.diagnostics[diag],
-			texthl = "DiagnosticSign" .. diag,
-			linehl = "",
-			numhl = "DiagnosticSign" .. diag,
-		})
-	end
+local function conf_diagnostics()
+	vim.diagnostic.config({
+		float = {
+			border = "rounded",
+			prefix = function(diagnostic)
+				local icons = {
+					ThisNvimConfig.icons.diagnostics.Error,
+					ThisNvimConfig.icons.diagnostics.Warn,
+					ThisNvimConfig.icons.diagnostics.Info,
+					ThisNvimConfig.icons.diagnostics.Hint,
+				}
+				local hl = {
+					"DiagnosticSignError",
+					"DiagnosticSignWarn",
+					"DiagnosticSignInfo",
+					"DiagnosticSignHint",
+				}
+				return icons[diagnostic.severity], hl[diagnostic.severity]
+			end,
+		},
+		severity_sort = true,
+		signs = {
+			text = {
+				[vim.diagnostic.severity.ERROR] = ThisNvimConfig.icons.diagnostics.Error,
+				[vim.diagnostic.severity.WARN] = ThisNvimConfig.icons.diagnostics.Warn,
+				[vim.diagnostic.severity.INFO] = ThisNvimConfig.icons.diagnostics.Info,
+				[vim.diagnostic.severity.HINT] = ThisNvimConfig.icons.diagnostics.Hint,
+			},
+			numhl = {
+				[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+				[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+				[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+				[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+			},
+		},
+		virtual_text = {
+			prefix = "",
+			severity = vim.diagnostic.severity.ERROR,
+		},
+	})
 end
 
 return {
@@ -115,10 +147,10 @@ return {
 		-- https://github.com/neovim/nvim-lspconfig
 		"neovim/nvim-lspconfig",
 		config = function()
-			set_lsp_diagnostics_icons()
+			conf_diagnostics()
 
 			vim.api.nvim_create_autocmd("LspAttach", {
-				desc = "LSP actions",
+				group = vim.api.nvim_create_augroup("ruicsh/LSP", { clear = true }),
 				callback = function(event)
 					set_keymaps(event)
 				end,
