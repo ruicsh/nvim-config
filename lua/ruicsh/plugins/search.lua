@@ -135,6 +135,12 @@ return {
 		keys = {
 			{ "<leader>r", "<cmd>Spectre %<cr>", { desc = "[r]eplace" } },
 		},
+		opts = {
+			highlight = {
+				search = "SpectreSearchHl",
+				replace = "SpectreReplaceHl",
+			},
+		},
 
 		cmd = "Spectre",
 	},

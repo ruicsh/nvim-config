@@ -359,6 +359,12 @@ loadColorSet({
 	DapUIWinSelect = { fg = c.nord8, style = "bold" },
 })
 
+-- nvim-spectre
+loadColorSet({
+	SpectreReplaceHl = { fg = c.nord0, bg = c.nord14 },
+	SpectreSearchHl = { fg = c.nord0, bg = c.nord13 },
+})
+
 ----
 -- Syntax
 ----
