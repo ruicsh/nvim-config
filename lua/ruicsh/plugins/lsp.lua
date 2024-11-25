@@ -28,6 +28,8 @@ local function set_keymaps(event)
 	k("gy", telescope.lsp_document_symbols, "Document s[y]mbols")
 	k("gY", telescope.lsp_workspace_symbols, "Workspace s[Y]mbols")
 	k("<f2>", vim.lsp.buf.rename, "Rename symbol")
+	k("[d", vim.diagnostic.goto_prev, "Jump to previous [d]iagnostic")
+	k("]d", vim.diagnostic.goto_next, "Jump to next [d]iagnostic")
 end
 
 -- Install and configure lsp servers.
@@ -116,7 +118,7 @@ local function set_lsp_diagnostics_icons()
 end
 
 return {
-	{ -- Config (nvim-lspconfig).
+	{ -- LSP config (nvim-lspconfig).
 		-- https://github.com/neovim/nvim-lspconfig
 		"neovim/nvim-lspconfig",
 		config = function()
@@ -167,18 +169,13 @@ return {
 		keys = {
 			{
 				"<leader>xx",
-				"<cmd>Trouble diagnostics toggle<cr>",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 				desc = "Trouble: Diagnostics",
 			},
 			{
 				"<leader>xX",
-				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				desc = "Buffer Diagnostics",
-			},
-			{
-				"<leader>xL",
-				"<cmd>Trouble loclist toggle<cr>",
-				desc = "Trouble: Location List",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Trouble: Workspace diagnostics",
 			},
 		},
 		opts = {

@@ -91,22 +91,18 @@ return {
 					goto_previous_start = {
 						["[f"] = { query = "@function.outer", desc = "Syntax: Previous [f]unction" },
 						["[a"] = { query = "@parameter.inner", desc = "Syntax: Previous [a]rgument" },
-						["[d"] = { query = "@block.inner", desc = "Syntax: Previous block" },
 					},
 					goto_previous_end = {
 						["[F"] = { query = "@function.outer", desc = "Syntax: Previous [f]unction" },
 						["[A"] = { query = "@parameter.inner", desc = "Syntax: Previous [a]rgument" },
-						["[D"] = { query = "@block.inner", desc = "Syntax: Previous block" },
 					},
 					goto_next_start = {
 						["]f"] = { query = "@function.outer", desc = "Syntax: Next [f]unction" },
 						["]a"] = { query = "@parameter.inner", desc = "Syntax: Next [a]rgument" },
-						["]d"] = { query = "@block.inner", desc = "Syntax: Next block" },
 					},
 					goto_next_end = {
 						["]F"] = { query = "@function.outer", desc = "Syntax: Next [f]unction" },
 						["]A"] = { query = "@parameter.inner", desc = "Syntax: Next [a]rgument" },
-						["]D"] = { query = "@block.inner", desc = "Syntax: Next block" },
 					},
 				},
 			},
