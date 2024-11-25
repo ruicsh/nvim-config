@@ -1,4 +1,3 @@
----@diagnostic disable: unused-local
 --
 -- Finder (files, words, commands)
 --
@@ -42,18 +41,6 @@ return {
 				},
 				pickers = {
 					live_grep = {
-						path_display = display_parent_basename,
-					},
-					lsp_definitions = {
-						path_display = display_parent_basename,
-					},
-					lsp_implementations = {
-						path_display = display_parent_basename,
-					},
-					lsp_type_definitions = {
-						path_display = display_parent_basename,
-					},
-					lsp_references = {
 						path_display = display_parent_basename,
 					},
 				},

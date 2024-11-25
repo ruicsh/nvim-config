@@ -64,6 +64,8 @@ return {
 					{ mode = "n", keys = "<C-w>" },
 					{ mode = "n", keys = "z" },
 					{ mode = "x", keys = "z" },
+					{ mode = "n", keys = "[" },
+					{ mode = "n", keys = "]" },
 				},
 
 				clues = {

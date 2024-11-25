@@ -4,28 +4,32 @@
 
 -- Set keymaps for LSP commands.
 local function set_keymaps(event)
+	local client = vim.lsp.get_client_by_id(event.data.client_id)
+	if not client then
+		return
+	end
+
 	local k = function(keys, func, desc, mode)
 		mode = mode or "n"
 		vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 	end
 
-	local telescope = require("telescope.builtin")
-
-	-- When displaying the document/worspace symbols, only show these.
-	local function lsp_references()
-		telescope.lsp_references({
-			include_declaration = false,
-			show_line = false,
-		})
+	local function document_symbol()
+		vim.cmd("Outline")
 	end
 
-	k("<c-K>", vim.lsp.buf.signature_help, "Display signature help", "i")
-	k("gd", telescope.lsp_definitions, "Jump to [d]efinition")
-	k("gi", telescope.lsp_implementations, "Jump to [i]mplementation")
-	k("go", telescope.lsp_type_definitions, "Jump to type definition")
-	k("gr", lsp_references, "List [r]eferences")
-	k("<f2>", vim.lsp.buf.rename, "Rename symbol")
-	k("<leader>ca", vim.lsp.buf.code_action, "Code actions")
+	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
+	k("gd", vim.lsp.buf.definition, "Jump to [d]efinition")
+	k("gD", vim.lsp.buf.declaration, "Jump to [D]eclaration")
+	k("gO", document_symbol, "Document Symbol")
+	k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" })
+	k("grd", vim.lsp.buf.type_definition, "Jump to type definition")
+	k("gri", vim.lsp.buf.implementation, "List [i]mplementations")
+	k("grj", vim.lsp.buf.incoming_calls, "Incoming calls")
+	k("grk", vim.lsp.buf.outgoing_calls, "Outgoing calls")
+	k("grn", vim.lsp.buf.rename, "Rename symbol")
+	k("grr", vim.lsp.buf.references, "List [r]eferences")
+	k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "n", "i" })
 end
 
 -- Install and configure lsp servers.
@@ -172,16 +176,12 @@ return {
 			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 			{ "pmizio/typescript-tools.nvim", opts = {} },
 			{ "onsails/lspkind.nvim" },
-			{ "nvim-telescope/telescope.nvim" },
 		},
 	},
 
 	{ -- LSP symbols
 		-- https://github.com/hedyhli/outline.nvim
 		"hedyhli/outline.nvim",
-		keys = {
-			{ "gy", "<cmd>Outline<cr>", desc = "LSP: symbols" },
-		},
 		opts = {
 			outline_items = {
 				show_symbol_lineno = true,
