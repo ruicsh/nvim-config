@@ -56,10 +56,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "[n",
-					node_incremental = "[n",
+					init_selection = "+",
+					node_incremental = "+",
 					scope_incremental = false,
-					node_decremental = "]n",
+					node_decremental = "_",
 				},
 			},
 			textobjects = {
