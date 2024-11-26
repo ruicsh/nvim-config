@@ -3,7 +3,7 @@
 --
 
 return {
-	{ -- Move line/selection up/down (mini.move.nvim).
+	{ -- Move line/selection up/down
 		-- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-move.md
 		"echasnovski/mini.move",
 		opts = {
@@ -21,21 +21,21 @@ return {
 		event = { "BufEnter" },
 	},
 
-	{ -- Repeat plugin keymaps (vim-repeat).
+	{ -- Repeat plugin keymaps
 		-- https://github.com/tpope/vim-repeat
 		"tpope/vim-repeat",
 
 		event = { "BufEnter" },
 	},
 
-	{ -- Insert mode navigation (vim-rsi).
+	{ -- Insert mode navigation
 		-- https://github.com/tpope/vim-rsi
 		"tpope/vim-rsi",
 
 		event = { "InsertEnter" },
 	},
 
-	{ -- Sort selection (sort.nvim).
+	{ -- Sort selection
 		-- https://github.com/sQVe/sort.nvim
 		"sQVe/sort.nvim",
 		opts = {
@@ -52,7 +52,7 @@ return {
 		cmd = { "Sort" },
 	},
 
-	{ -- Surrounding delimiter pairs (nvim-surround).
+	{ -- Surrounding delimiter pairs
 		-- https://github.com/kylechui/nvim-surround
 		"kylechui/nvim-surround",
 		config = true,
@@ -60,7 +60,7 @@ return {
 		event = { "BufEnter" },
 	},
 
-	{ -- Move by subwords in camelCase (nvim-spider).
+	{ -- Move by subwords in camelCase
 		-- https://github.com/chrisgrieser/nvim-spider
 		"chrisgrieser/nvim-spider",
 		keys = {
@@ -73,7 +73,7 @@ return {
 		event = { "BufEnter" },
 	},
 
-	{ -- Various text objects (nvim-various-textobjs).
+	{ -- Various text objects
 		-- https://github.com/chrisgrieser/nvim-various-textobjs
 		"chrisgrieser/nvim-various-textobjs",
 		keys = {

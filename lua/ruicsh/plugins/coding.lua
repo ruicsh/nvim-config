@@ -3,7 +3,7 @@
 --
 
 return {
-	{ -- Formatter (conform.nvim).
+	{ -- Formatter
 		-- https://github.com/stevearc/conform.nvim
 		"stevearc/conform.nvim",
 		opts = {
@@ -43,7 +43,7 @@ return {
 		event = { "BufWritePre" },
 	},
 
-	{ -- Autopairs (nvim-autopairs).
+	{ -- Autopairs
 		-- https://github.com/windwp/nvim-autopairs
 		"windwp/nvim-autopairs",
 		opts = {
@@ -53,7 +53,7 @@ return {
 		event = { "InsertEnter" },
 	},
 
-	{ -- Autocomplete (nvim-cmp).
+	{ -- Autocomplete
 		-- https://github.com/hrsh7th/nvim-cmp
 		"hrsh7th/nvim-cmp",
 		config = function()
@@ -171,7 +171,7 @@ return {
 		},
 	},
 
-	{ -- Highlight matching words under cursor (vim-illuminate).
+	{ -- Highlight matching words under cursor
 		-- https://github.com/RRethy/vim-illuminate
 		"rrethy/vim-illuminate",
 

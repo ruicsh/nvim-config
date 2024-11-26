@@ -150,7 +150,7 @@ local function conf_diagnostics()
 end
 
 return {
-	{ -- LSP config (nvim-lspconfig).
+	{ -- LSP config
 		-- https://github.com/neovim/nvim-lspconfig
 		"neovim/nvim-lspconfig",
 		config = function()
@@ -225,7 +225,7 @@ return {
 		},
 	},
 
-	{ -- Jump to reference (refjump.nvim).
+	{ -- Jump to reference
 		-- https://github.com/mawkler/refjump.nvim
 		"mawkler/refjump.nvim",
 		opts = {
@@ -237,7 +237,7 @@ return {
 		event = { "BufEnter" },
 	},
 
-	{ -- Neovim apis lsp (lazydev.nvim).
+	{ -- Neovim apis lsp
 		-- Used for completion, annotations and signatures of Neovim APIs.
 		-- https://github.com/folke/lazydev.nvim
 		"folke/lazydev.nvim",

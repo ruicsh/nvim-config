@@ -14,7 +14,7 @@ local function display_parent_basename(_, filepath)
 end
 
 return {
-	{ -- Fuzzy finder.
+	{ -- Fuzzy finder
 		-- https://github.com/nvim-telescope/telescope.nvim
 		"nvim-telescope/telescope.nvim",
 		config = function()
@@ -119,7 +119,7 @@ return {
 		},
 	},
 
-	{ -- Search/replace (nvim-spectre).
+	{ -- Search/replace
 		-- https://github.com/nvim-pack/nvim-spectre
 		"nvim-pack/nvim-spectre",
 		keys = {
@@ -135,7 +135,7 @@ return {
 		cmd = "Spectre",
 	},
 
-	{ -- Search results labels (nvim-hlslens).
+	{ -- Search results labels
 		-- https://github.com/kevinhwang91/nvim-hlslens
 		"kevinhwang91/nvim-hlslens",
 		config = function()

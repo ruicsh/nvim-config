@@ -3,7 +3,7 @@
 --
 
 return {
-	{ -- Code parser (nvim-treesitter).
+	{ -- Code parser
 		-- https://github.com/nvim-treesitter/nvim-treesitter
 		"nvim-treesitter/nvim-treesitter",
 		opts = {
@@ -116,7 +116,7 @@ return {
 		},
 	},
 
-	{ -- Auto-close/rename html tags (nvim-ts-autotag).
+	{ -- Auto-close/rename html tags
 		-- https://github.com/windwp/nvim-ts-autotag
 		"windwp/nvim-ts-autotag",
 		options = {
@@ -131,7 +131,7 @@ return {
 		ft = { "html", "htmlangular", "typescript", "typescriptreact", "vue" },
 	},
 
-	{ -- Comments on embbeded languages (ex: html inside ts, css inside html) (nvim-ts-context-commentstring).
+	{ -- Comments on embbeded languages (ex: html inside ts, css inside html)
 		-- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		config = function()
@@ -156,7 +156,7 @@ return {
 		event = { "VeryLazy" },
 	},
 
-	{ -- node navigation (tree-climber.nvim)
+	{ -- node navigation
 		-- https://github.com/drybalka/tree-climber.nvim
 		"drybalka/tree-climber.nvim",
 		keys = function()

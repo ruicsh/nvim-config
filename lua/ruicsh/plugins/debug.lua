@@ -62,7 +62,7 @@ local function set_dap_configs(dap)
 end
 
 return {
-	{ -- DAP client implementation (nvim-dap)
+	{ -- DAP client implementation
 		-- https://github.com/mfussenegger/nvim-dap
 		"mfussenegger/nvim-dap",
 		keys = function()
@@ -129,7 +129,7 @@ return {
 
 		event = { "BufEnter" },
 		dependencies = {
-			{ -- JS debugger (vscode-js-debug)
+			{ -- JS debugger
 				-- https://github.com/microsoft/vscode-js-debug
 				"microsoft/vscode-js-debug",
 				build = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out",
@@ -138,7 +138,7 @@ return {
 		},
 	},
 
-	{ -- User interface (nvim-dap-ui).
+	{ -- User interface
 		-- https://github.com/rcarriga/nvim-dap-ui
 		"rcarriga/nvim-dap-ui",
 		config = function()
@@ -171,7 +171,7 @@ return {
 		},
 	},
 
-	{ -- Virtual text (nvim-dap-virtual-text).
+	{ -- Virtual text
 		-- https://github.com/theHamsta/nvim-dap-virtual-text
 		"theHamsta/nvim-dap-virtual-text",
 		opts = {},
@@ -179,7 +179,7 @@ return {
 		event = { "BufEnter" },
 	},
 
-	{ -- Log statements (debugprint.nvim).
+	{ -- Log statements
 		-- https://github.com/andrewferrier/debugprint.nvim
 		"andrewferrier/debugprint.nvim",
 		opts = {

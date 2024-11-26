@@ -3,14 +3,14 @@
 --
 
 return {
-	{ -- Delete buffer (vim-bbye).
+	{ -- Delete buffer
 		-- https://github.com/moll/vim-bbye
 		"moll/vim-bbye",
 
 		cmd = { "Bdelete" },
 	},
 
-	{ -- Tab scoping (scope.nvim).
+	{ -- Tab scoping
 		-- https://github.com/tiagovla/scope.nvim
 		"tiagovla/scope.nvim",
 		config = true,
@@ -18,7 +18,7 @@ return {
 		event = { "VimEnter" },
 	},
 
-	{ -- Tabs (tabby.nvim).
+	{ -- Tabs
 		-- https://github.com/nanozuki/tabby.nvim
 		"nanozuki/tabby.nvim",
 		config = function()
@@ -61,7 +61,7 @@ return {
 		},
 	},
 
-	{ -- Buffer picker (buffer_manager.nvim).
+	{ -- Buffer picker
 		-- https://github.com/j-morano/buffer_manager.nvim
 		"j-morano/buffer_manager.nvim",
 		config = function()
@@ -91,7 +91,7 @@ return {
 		},
 	},
 
-	{ -- Maximize/restore windows (windows.nvim).
+	{ -- Maximize/restore windows
 		-- https://github.com/anuvyklack/windows.nvim
 		"anuvyklack/windows.nvim",
 		keys = {
@@ -109,7 +109,7 @@ return {
 		},
 	},
 
-	{ -- Dim inactive windows (vimade).
+	{ -- Dim inactive windows
 		-- https://github.com/tadaa/vimade
 		"tadaa/vimade",
 		opts = {

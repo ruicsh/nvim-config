@@ -3,7 +3,7 @@
 --
 
 return {
-	{ -- Git client (vim-fugitive).
+	{ -- Git client
 		-- https://github.com/tpope/vim-fugitive
 		"tpope/vim-fugitive",
 
@@ -25,7 +25,7 @@ return {
 		event = { "BufEnter" },
 	},
 
-	{ -- Merge conflicts (git-conflict.nvim).
+	{ -- Merge conflicts
 		-- https://github.com/akinsho/git-conflict.nvim
 		"akinsho/git-conflict.nvim",
 		config = true,
@@ -33,7 +33,7 @@ return {
 		event = { "BufEnter" },
 	},
 
-	{ -- Diffview (diffview.nvim).
+	{ -- Diffview
 		-- https://github.com/sindrets/diffview.nvim
 		"sindrets/diffview.nvim",
 		keys = {
@@ -100,7 +100,7 @@ return {
 		cmd = { "DiffviewOpen" },
 	},
 
-	{ -- Buffer integration (gitsigns.nvim).
+	{ -- Buffer integration
 		-- https://github.com/lewis6991/gitsigns.nvim
 		"lewis6991/gitsigns.nvim",
 		opts = {
@@ -162,7 +162,7 @@ return {
 		event = { "BufEnter" },
 	},
 
-	{ -- Shareable file links (gitlinker.nvim).
+	{ -- Shareable file links
 		-- https://github.com/ruifm/gitlinker.nvim
 		"ruifm/gitlinker.nvim",
 		config = function()

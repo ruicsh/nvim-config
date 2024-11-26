@@ -3,7 +3,7 @@
 --
 
 return {
-	{ -- Notifications (fidget.nvim)
+	{ -- Notifications
 		-- https://github.com/j-hui/fidget.nvim
 		"j-hui/fidget.nvim",
 		opts = {
@@ -18,7 +18,7 @@ return {
 		event = { "VeryLazy" },
 	},
 
-	{ -- Breadcrumbs (barbecue.nvim)
+	{ -- Breadcrumbs
 		-- https://github.com/utilyre/barbecue.nvim
 		"utilyre/barbecue.nvim",
 		name = "barbecue",
@@ -41,7 +41,7 @@ return {
 		},
 	},
 
-	{ -- Key clues (mini.clue).
+	{ -- Key clues
 		-- https://github.com/echasnovski/mini.clue
 		"echasnovski/mini.clue",
 		config = function()
@@ -83,7 +83,7 @@ return {
 		event = { "VeryLazy" },
 	},
 
-	{ -- Command line (wilder.nvim).
+	{ -- Command line
 		-- https://github.com/gelguy/wilder.nvim
 		"gelguy/wilder.nvim",
 		keys = {
@@ -112,7 +112,7 @@ return {
 		end,
 	},
 
-	{ -- Workspaces (workspaces.nvim).
+	{ -- Workspaces
 		-- https://github.com/natecraddock/workspaces.nvim
 		"natecraddock/workspaces.nvim",
 		keys = {
@@ -126,7 +126,7 @@ return {
 		event = { "VeryLazy" },
 	},
 
-	{ -- Terminal (toggleterm.nvim).
+	{ -- Terminal
 		-- https://github.com/akinsho/toggleterm.nvim
 		"akinsho/toggleterm.nvim",
 		opts = {
@@ -137,7 +137,7 @@ return {
 		event = { "VeryLazy" },
 	},
 
-	{ -- Status line (lualine.nvim).
+	{ -- Status line
 		-- https://github.com/nvim-lualine/lualine.nvim
 		"nvim-lualine/lualine.nvim",
 		config = function()
@@ -224,7 +224,7 @@ return {
 		},
 	},
 
-	{ -- Indent guides (indent-blankline.nvim).
+	{ -- Indent guides
 		-- https://github.com/lukas-reineke/indent-blankline.nvim
 		"lukas-reineke/indent-blankline.nvim",
 		opts = {
@@ -238,7 +238,7 @@ return {
 		event = { "BufEnter" },
 	},
 
-	{ -- Better quickfix.
+	{ -- Better quickfix
 		-- https://github.com/kevinhwang91/nvim-bqf
 		"kevinhwang91/nvim-bqf",
 		opts = {
@@ -261,7 +261,7 @@ return {
 		},
 	},
 
-	{ -- Quickfix/location list formatter.
+	{ -- Quickfix/location list formatter
 		-- https://github.com/stevearc/quicker.nvim
 		"stevearc/quicker.nvim",
 		opts = {

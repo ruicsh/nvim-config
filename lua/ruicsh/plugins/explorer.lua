@@ -3,7 +3,7 @@
 --
 
 return {
-	{ -- File tree explorer (nveo-tree.nvim).
+	{ -- File tree explorer
 		-- https://github.com/nvim-neo-tree/neo-tree.nvim
 		"nvim-neo-tree/neo-tree.nvim",
 		keys = {
@@ -58,7 +58,7 @@ return {
 		},
 	},
 
-	{ -- Directory editor (oil.nvim).
+	{ -- Directory editor
 		-- https://github.com/stevearc/oil.nvim
 		"stevearc/oil.nvim",
 		keys = {
