@@ -235,14 +235,70 @@ return {
 		},
 
 		main = "ibl",
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 
-	{ -- Better quickfix (nvim-bqf).
+	{ -- Better quickfix.
 		-- https://github.com/kevinhwang91/nvim-bqf
 		"kevinhwang91/nvim-bqf",
-		config = true,
+		opts = {
+			auto_enable = true,
+			auto_resize_height = false,
+			func_map = {
+				drop = "o",
+				openc = "O",
+				split = "<C-s>",
+				tabdrop = "<C-t>",
+				tabc = "",
+				ptogglemode = "z,",
+			},
+		},
 
-		event = { "VimEnter" },
+		main = "bqf",
+		ft = { "qf" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+
+	{ -- Quickfix/location list formatter.
+		-- https://github.com/stevearc/quicker.nvim
+		"stevearc/quicker.nvim",
+		opts = {
+			opts = {
+				buflisted = false,
+				number = true,
+				relativenumber = true,
+				signcolumn = "yes",
+				winfixheight = true,
+				wrap = true,
+			},
+			use_default_opts = false,
+			type_icons = {
+				E = ThisNvimConfig.icons.diagnostics.Error,
+				W = ThisNvimConfig.icons.diagnostics.Warn,
+				I = ThisNvimConfig.icons.diagnostics.Info,
+				N = ThisNvimConfig.icons.diagnostics.Hint,
+				H = ThisNvimConfig.icons.diagnostics.Hint,
+			},
+			max_filename_width = function()
+				return math.floor(math.min(95, vim.o.columns / 3))
+			end,
+			constrain_cursor = false,
+		},
+		keys = function()
+			local quicker = require("quicker")
+
+			local function toggle_loclist()
+				quicker.toggle({ loclist = true })
+			end
+
+			return {
+				{ "<leader>qq", quicker.toggle, desc = "Toggle quickfix" },
+				{ "<leader>ll", toggle_loclist, desc = "Toggle locklist" },
+			}
+		end,
+
+		ft = { "qf" },
 	},
 }

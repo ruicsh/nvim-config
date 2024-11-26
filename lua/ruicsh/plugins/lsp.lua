@@ -30,6 +30,7 @@ local function set_keymaps(event)
 	k("grn", vim.lsp.buf.rename, "Rename symbol")
 	k("grr", vim.lsp.buf.references, "List [r]eferences")
 	k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "n", "i" })
+	k("<leader>dd", vim.diagnostic.setqflist, "Add diagnostics to quickfix")
 end
 
 -- Install and configure lsp servers.
@@ -131,12 +132,14 @@ local function conf_diagnostics()
 				[vim.diagnostic.severity.WARN] = ThisNvimConfig.icons.diagnostics.Warn,
 				[vim.diagnostic.severity.INFO] = ThisNvimConfig.icons.diagnostics.Info,
 				[vim.diagnostic.severity.HINT] = ThisNvimConfig.icons.diagnostics.Hint,
+				[vim.diagnostic.severity.N] = ThisNvimConfig.icons.diagnostics.Hint,
 			},
 			numhl = {
 				[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
 				[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
 				[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
 				[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+				[vim.diagnostic.severity.N] = "DiagnosticSignInfo",
 			},
 		},
 		virtual_text = {
@@ -232,29 +235,6 @@ return {
 		},
 
 		event = { "BufEnter" },
-	},
-
-	{ -- Diagnostics (trouble.nvim).
-		-- https://github.com/folke/trouble.nvim
-		"folke/trouble.nvim",
-		keys = {
-			{
-				"<leader>xx",
-				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				desc = "Trouble: Diagnostics",
-			},
-			{
-				"<leader>xX",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Trouble: Workspace diagnostics",
-			},
-		},
-		opts = {
-			focus = true,
-		},
-
-		lazy = true,
-		cmd = { "Trouble" },
 	},
 
 	{ -- Neovim apis lsp (lazydev.nvim).

@@ -14,7 +14,7 @@ local function display_parent_basename(_, filepath)
 end
 
 return {
-	{ -- Picker (telescope.nvim).
+	{ -- Fuzzy finder.
 		-- https://github.com/nvim-telescope/telescope.nvim
 		"nvim-telescope/telescope.nvim",
 		config = function()
@@ -100,7 +100,6 @@ return {
 		end,
 
 		event = { "VimEnter" },
-		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{ -- If encountering errors, see telescope-fzf-native README for installation instructions.

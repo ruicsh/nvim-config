@@ -32,8 +32,6 @@ k("n", "<leader>bo", "<cmd>bufdo bd<cr>", { desc = "Buffers: Close all other" })
 k("n", "<leader>bx", "<cmd>Bdelete!<cr>", { desc = "Buffers: Exit" })
 
 -- Quickfix
-k("n", "<leader>qq", "<cmd>copen<cr>", { desc = "Quickfix: Show" })
-k("n", "<leader>qQ", "<cmd>cclose<cr>", { desc = "Quickfix: Show" })
 k("n", "[q", "<cmd>cprev<cr>", { desc = "Quickfix: Previous" })
 k("n", "]q", "<cmd>cnext<cr>", { desc = "Quickfix: Next" })
 k("n", "[Q", "<cmd>cfirst<cr>", { desc = "Quickfix: First" })

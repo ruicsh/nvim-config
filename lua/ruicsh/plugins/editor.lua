@@ -49,7 +49,7 @@ return {
 			},
 		},
 
-		cmd = "Sort",
+		cmd = { "Sort" },
 	},
 
 	{ -- Surrounding delimiter pairs (nvim-surround).

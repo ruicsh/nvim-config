@@ -110,6 +110,7 @@ loadColorSet({
 	PmenuSel = { fg = c.nord4, bg = c.nord10 },
 	PmenuThumb = { fg = c.nord4, bg = c.nord4 },
 	Question = { fg = c.nord14 },
+	QuickFixLine = { link = "IncSearch" },
 	ReplacelMode = { fg = c.nord11, bg = "NONE", style = "reverse" },
 	Search = { fg = c.nord1, bg = c.nord8 },
 	SignColumn = { fg = c.nord4, bg = "NONE" },
@@ -141,12 +142,6 @@ loadColorSet({
 	healthError = { fg = c.nord11 },
 	healthSuccess = { fg = c.nord14 },
 	healthWarning = { fg = c.nord15 },
-
-	-- quickfix
-	QuickFixLine = { link = "IncSearch" },
-	qfFileName = { fg = c.nord9 },
-	qfLineNr = { fg = c.neutral_400 },
-	qfSeparator = { fg = c.neutral_900 },
 })
 
 ----
@@ -377,6 +372,12 @@ loadColorSet({
 -- lightbulb.nvim
 loadColorSet({
 	LightBulbVirtualText = { fg = c.nord13 },
+})
+
+-- quicker.nvim
+loadColorSet({
+	Delimiter = { fg = c.neutral_800 },
+	QuickFixFilename = { fg = c.nord9 },
 })
 
 ----
