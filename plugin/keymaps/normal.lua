@@ -13,13 +13,15 @@ k("n", "]p", "<cmd>pu<cr>==", { desc = "Paste on new line below" })
 k("n", "U", "<C-r>", { desc = "Redo" })
 
 -- Tabs
-k("n", "<leader>ta", "<cmd>$tabnew<cr>", { desc = "Tabs: New" })
-k("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Tabs: Close" })
+k("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Tabs: Close" })
+k("n", "<leader>th", "<cmd>tabfirst<cr>", { desc = "Tabs: Jump to first" })
+k("n", "<leader>tj", "<cmd>tabprev<cr>", { desc = "Tabs: Jump to previous" })
+k("n", "<leader>tk", "<cmd>tabnext<cr>", { desc = "Tabs: Jump to next" })
+k("n", "<leader>tl", "<cmd>tablast<cr>", { desc = "Tabs: Jump to last" })
+k("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "Tabs: New" })
 k("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Tabs: Close all other" })
-k("n", "<leader>tn", "<cmd>tabn<cr>", { desc = "Tabs: Jump to previous" })
-k("n", "<leader>tp", "<cmd>tabp<cr>", { desc = "Tabs: Jump to next" })
-k("n", "<leader>tmp", "<cmd>-tabmove<cr>", { desc = "Tabs: Move current tab to before" })
-k("n", "<leader>tmn", "<cmd>+tabmove<cr>", { desc = "Tabs: Move current tab to after" })
+k("n", "<leader>tH", "<cmd>-tabmove<cr>", { desc = "Tabs: Move current tab to before" })
+k("n", "<leader>tL", "<cmd>+tabmove<cr>", { desc = "Tabs: Move current tab to after" })
 
 -- Buffers
 k("n", "[b", "<cmd>bprev<cr>", { desc = "Buffers: Go to previous" })
@@ -43,11 +45,11 @@ k("n", "]<c-q>", "<cmd>cnfile<cr>", { desc = "Quickfix: Next file" })
 k("n", "<leader>hh", "<cmd>vertical Git<cr>", { desc = "Git: Status" })
 
 -- LSP - TypeScript
-k("n", "<leader>to", "<cmd>TSToolsOrganizeImports<cr>", { desc = "[T]ypeScript: [o]rganize imports" })
-k("n", "<leader>ts", "<cmd>TSToolsSortImports<cr>", { desc = "[T]ypeScript: [s]ort imports" })
-k("n", "<leader>tu", "<cmd>TSToolsRemoveUnusedImports<cr>", { desc = "[T]ypeScript: Remove [u]nused imports" })
-k("n", "<leader>td", "<cmd>TSToolsGoToSourceDefinition<cr>", { desc = "[T]ypeScript: Go to source [d]efinition" })
-k("n", "<leader>tr", "<cmd>TSToolsRenameFile<cr>", { desc = "[T]ypeScript: [r]ename [f]ile" })
+k("n", "<leader>tso", "<cmd>TSToolsOrganizeImports<cr>", { desc = "[T]ypeScript: [o]rganize imports" })
+k("n", "<leader>tss", "<cmd>TSToolsSortImports<cr>", { desc = "[T]ypeScript: [s]ort imports" })
+k("n", "<leader>tsu", "<cmd>TSToolsRemoveUnusedImports<cr>", { desc = "[T]ypeScript: Remove [u]nused imports" })
+k("n", "<leader>tsd", "<cmd>TSToolsGoToSourceDefinition<cr>", { desc = "[T]ypeScript: Go to source [d]efinition" })
+k("n", "<leader>tsr", "<cmd>TSToolsRenameFile<cr>", { desc = "[T]ypeScript: [r]ename [f]ile" })
 
 -- Sort
 k("n", "<leader>s'", "vi'<esc><cmd>Sort<cr>", { desc = "[S]ort: Inside [']" })

@@ -177,7 +177,11 @@ return {
 				"williamboman/mason-lspconfig.nvim",
 			},
 			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
-			{ "pmizio/typescript-tools.nvim", opts = {} },
+			{ -- TypeScript integration
+				-- https://github.com/pmizio/typescript-tools.nvim
+				"pmizio/typescript-tools.nvim",
+				opts = {},
+			},
 			{ "onsails/lspkind.nvim" },
 		},
 	},
