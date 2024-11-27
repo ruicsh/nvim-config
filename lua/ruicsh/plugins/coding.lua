@@ -33,7 +33,7 @@ return {
 				}
 			end,
 		},
-		config = function()
+		init = function()
 			-- Use conform for gq.
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 			-- Start auto-formatting by default (and disable with my ToggleFormat command).
