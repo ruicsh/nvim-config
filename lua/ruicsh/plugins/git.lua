@@ -22,7 +22,7 @@ return {
 			ignored_filetypes = { "term" },
 		},
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Merge conflicts
@@ -30,7 +30,7 @@ return {
 		"akinsho/git-conflict.nvim",
 		config = true,
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Diffview
@@ -159,7 +159,7 @@ return {
 			end,
 		},
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Shareable file links
@@ -194,6 +194,6 @@ return {
 			})
 		end,
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 }

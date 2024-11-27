@@ -153,6 +153,6 @@ return {
 			k("n", "g#", [[g#<cmd>lua require('hlslens').start()<cr>]], kopts)
 		end,
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 }

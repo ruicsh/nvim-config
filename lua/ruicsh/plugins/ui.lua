@@ -235,7 +235,7 @@ return {
 		},
 
 		main = "ibl",
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Better quickfix

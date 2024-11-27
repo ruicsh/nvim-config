@@ -166,7 +166,7 @@ return {
 			conf_lsp_servers()
 		end,
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 		dependencies = {
 			{ -- LSP package manager
 				-- https://github.com/williamboman/mason.nvim
@@ -223,6 +223,8 @@ return {
 				pos = 0,
 			},
 		},
+
+		event = { "VeryLazy" },
 	},
 
 	{ -- Jump to reference
@@ -234,7 +236,7 @@ return {
 			},
 		},
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Neovim apis lsp

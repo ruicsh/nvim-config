@@ -18,14 +18,14 @@ return {
 			},
 		},
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Repeat plugin keymaps
 		-- https://github.com/tpope/vim-repeat
 		"tpope/vim-repeat",
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Insert mode navigation
@@ -57,7 +57,7 @@ return {
 		"kylechui/nvim-surround",
 		config = true,
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Move by subwords in camelCase
@@ -70,7 +70,7 @@ return {
 			{ "ge", "<cmd>lua require('spider').motion('ge')<cr>" },
 		},
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Various text objects
@@ -85,7 +85,7 @@ return {
 		},
 
 		main = "various-textobjs",
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Jump with search labels

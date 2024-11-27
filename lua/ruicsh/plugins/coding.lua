@@ -33,7 +33,7 @@ return {
 				}
 			end,
 		},
-		init = function()
+		config = function()
 			-- Use conform for gq.
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 			-- Start auto-formatting by default (and disable with my ToggleFormat command).
@@ -175,6 +175,6 @@ return {
 		-- https://github.com/RRethy/vim-illuminate
 		"rrethy/vim-illuminate",
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 }

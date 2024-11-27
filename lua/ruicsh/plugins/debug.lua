@@ -105,7 +105,7 @@ return {
 			set_dap_configs(dap)
 		end,
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- adapter for vscode-js-debug
@@ -127,7 +127,7 @@ return {
 			})
 		end,
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 		dependencies = {
 			{ -- JS debugger
 				-- https://github.com/microsoft/vscode-js-debug
@@ -165,7 +165,7 @@ return {
 			end
 		end,
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 		},
@@ -176,7 +176,7 @@ return {
 		"theHamsta/nvim-dap-virtual-text",
 		opts = {},
 
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 
 	{ -- Log statements
@@ -215,6 +215,6 @@ return {
 		},
 
 		main = "debugprint",
-		event = { "BufEnter" },
+		event = { "VeryLazy" },
 	},
 }
