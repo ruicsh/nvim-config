@@ -17,7 +17,6 @@ o.fillchars = {
 o.number = true -- Show line numbers.
 o.numberwidth = 5 -- More space on the gutter column.
 o.relativenumber = true -- Show relative line numbers.
-o.scrolloff = 99 -- While scrolling, keep the cursror in the middle.
 o.wrap = false -- Do not automatically wrap texts.
 
 -- 5 syntax, highlighting and spelling
