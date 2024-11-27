@@ -190,11 +190,9 @@ return {
 		-- https://github.com/hedyhli/outline.nvim
 		"hedyhli/outline.nvim",
 		opts = {
-			outline_items = {
-				show_symbol_lineno = true,
-			},
 			outline_window = {
 				auto_jump = true,
+				show_relative_numbers = true,
 			},
 			symbols = {
 				icon_source = "lspkind",
