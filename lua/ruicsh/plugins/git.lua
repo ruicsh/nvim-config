@@ -55,6 +55,7 @@ return {
 						{ "n", "g?", actions.help("file_panel") },
 					},
 					file_history_panel = {
+						{ "n", "<cr>", actions.focus_entry, { desc = "Open and focus the diff" } },
 						{ "n", "}", actions.select_next_entry, { desc = "Open the log for the next file" } },
 						{ "n", "{", actions.select_prev_entry, { desc = "Open the log for the previous file" } },
 					},
@@ -97,7 +98,7 @@ return {
 			})
 		end,
 
-		cmd = { "DiffviewOpen" },
+		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 	},
 
 	{ -- Buffer integration
