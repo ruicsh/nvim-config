@@ -31,9 +31,6 @@ o.splitright = true -- Open a new vertical split to the right.
 -- 7 multiple tab pages
 o.showtabline = 2 -- Always show tabline.
 
--- 8 terminal
-o.title = true -- Show title on window.
-
 -- 9 using the mouse
 o.mouse = "nic" -- Don't enable mouse on Visual mode.
 o.mousescroll = "ver:1,hor:0" -- Disable horizonal scroll.

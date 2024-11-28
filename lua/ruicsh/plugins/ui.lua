@@ -221,13 +221,8 @@ return {
 		opts = {
 			auto_enable = true,
 			auto_resize_height = false,
-			func_map = {
-				drop = "o",
-				openc = "O",
-				split = "<C-s>",
-				tabdrop = "<C-t>",
-				tabc = "",
-				ptogglemode = "z,",
+			preview = {
+				win_height = 30,
 			},
 		},
 
