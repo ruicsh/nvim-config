@@ -8,8 +8,6 @@ vim.cmd.colorscheme("nordstone")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-require("ruicsh.globals")
-
 -- Load lazy package manager.
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -42,15 +40,18 @@ require("lazy").setup({
 	},
 	change_detection = { notify = false },
 	spec = {
-		{ import = "ruicsh.plugins.buffers", cond = not vim.g.vscode },
-		{ import = "ruicsh.plugins.coding", cond = not vim.g.vscode },
-		{ import = "ruicsh.plugins.debug", cond = not vim.g.vscode },
-		{ import = "ruicsh.plugins.editor" },
-		{ import = "ruicsh.plugins.explorer", cond = not vim.g.vscode },
-		{ import = "ruicsh.plugins.git", cond = not vim.g.vscode },
-		{ import = "ruicsh.plugins.lsp", cond = not vim.g.vscode },
-		{ import = "ruicsh.plugins.search", cond = not vim.g.vscode },
-		{ import = "ruicsh.plugins.treesitter", cond = not vim.g.vscode },
-		{ import = "ruicsh.plugins.ui", cond = not vim.g.vscode },
+		{ import = "ruicsh/plugins" },
 	},
+	-- spec = {
+	-- 	{ import = "ruicsh.plugins.buffers", cond = not vim.g.vscode },
+	-- 	{ import = "ruicsh.plugins.coding", cond = not vim.g.vscode },
+	-- 	{ import = "ruicsh.plugins.debug", cond = not vim.g.vscode },
+	-- 	{ import = "ruicsh.plugins.editor" },
+	-- 	{ import = "ruicsh.plugins.explorer", cond = not vim.g.vscode },
+	-- 	{ import = "ruicsh.plugins.git", cond = not vim.g.vscode },
+	-- 	{ import = "ruicsh.plugins.lsp", cond = not vim.g.vscode },
+	-- 	{ import = "ruicsh.plugins.search", cond = not vim.g.vscode },
+	-- 	{ import = "ruicsh.plugins.treesitter", cond = not vim.g.vscode },
+	-- 	{ import = "ruicsh.plugins.ui", cond = not vim.g.vscode },
+	-- },
 })
