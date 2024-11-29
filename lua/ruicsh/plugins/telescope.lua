@@ -1,14 +1,3 @@
-local function display_parent_basename(_, filepath)
-	-- Display the parent directory name and basename.
-	local path = vim.fn.fnamemodify(filepath, ":p:h")
-	local parent = vim.fn.fnamemodify(path, ":t")
-	local basename = vim.fn.fnamemodify(filepath, ":t")
-	if parent == "." then
-		return basename
-	end
-	return parent .. "/" .. basename
-end
-
 -- Fuzzy finder
 -- https://github.com/nvim-telescope/telescope.nvim
 
@@ -17,6 +6,11 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
+
+		-- Enable Telescope extensions if they are installed.
+		pcall(telescope.load_extension, "fzf")
+		pcall(telescope.load_extension, "ui-select")
+		pcall(telescope.load_extension, "workspaces")
 
 		telescope.setup({
 			defaults = {
@@ -38,7 +32,16 @@ return {
 			},
 			pickers = {
 				live_grep = {
-					path_display = display_parent_basename,
+					path_display = function(_, filepath)
+						-- Display the parent directory name and basename.
+						local path = vim.fn.fnamemodify(filepath, ":p:h")
+						local parent = vim.fn.fnamemodify(path, ":t")
+						local basename = vim.fn.fnamemodify(filepath, ":t")
+						if parent == "." then
+							return basename
+						end
+						return parent .. "/" .. basename
+					end,
 				},
 			},
 			extensions = {
@@ -47,11 +50,6 @@ return {
 				},
 			},
 		})
-
-		-- Enable Telescope extensions if they are installed.
-		pcall(telescope.load_extension, "fzf")
-		pcall(telescope.load_extension, "ui-select")
-		pcall(telescope.load_extension, "workspaces")
 
 		-- See `:help telescope.builtin`.
 		local k = vim.keymap
