@@ -103,7 +103,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - GitHub Copilot
 - [debugprint.nvim](https://github.com/andrewferrier/debugprint.nvim) - Debug statements
-- [illuminate.vim](https://github.com/RRethy/vim-illuminate) - Highlight symbol under cursor
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Autopairs (`()`, `[]`, `{}`)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Completions
 

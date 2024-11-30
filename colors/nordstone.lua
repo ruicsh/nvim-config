@@ -190,9 +190,9 @@ loadColorSet({
 	LspDiagnosticsFloatingHint = { fg = c.nord9 },
 	LspDiagnosticsVirtualTextHint = { fg = c.nord9 },
 	LspDiagnosticsUnderlineHint = { style = "undercurl", sp = c.nord10 },
-	LspReferenceText = { fg = c.nord4, bg = c.nord1 },
-	LspReferenceRead = { fg = c.nord4, bg = c.nord1 },
-	LspReferenceWrite = { fg = c.nord4, bg = c.nord1 },
+	LspReferenceText = { bg = c.nord2 },
+	LspReferenceRead = { bg = c.nord2 },
+	LspReferenceWrite = { bg = c.nord2 },
 	LspSignatureActiveParameter = { fg = c.nord4, bg = c.nord1 },
 
 	DiagnosticError = { link = "LspDiagnosticsDefaultError" },
@@ -290,13 +290,6 @@ loadColorSet({
 loadColorSet({
 	HlSearchLensNear = { fg = c.nord3_500, bg = "NONE" },
 	HlSearchLens = { fg = c.nord3_500, bg = "NONE" },
-})
-
--- vim-iluminate
-loadColorSet({
-	IlluminatedWordText = { bg = c.nord2 },
-	IlluminatedWordRead = { bg = c.nord2 },
-	IlluminatedWordWrite = { bg = c.nord2 },
 })
 
 -- barbecue.nvim

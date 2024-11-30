@@ -85,9 +85,33 @@ return {
 							}),
 						},
 						on_attach = function(client, bufnr)
-							if client.server_capabilities["documentSymbolProvider"] then
+							if client.server_capabilities.documentSymbolProvider then
 								-- Add navic to barbecue
 								require("nvim-navic").attach(client, bufnr)
+							end
+
+							-- Highlight all references to symbol under cursor
+							if client.server_capabilities.documentHighlightProvider then
+								local group =
+									vim.api.nvim_create_augroup("ruicsh/lsp_document_highlight", { clear = true })
+								vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+
+								vim.api.nvim_create_autocmd("CursorHold", {
+									callback = vim.lsp.buf.document_highlight,
+									buffer = bufnr,
+									group = group,
+									desc = "Document highlight",
+								})
+
+								vim.api.nvim_create_autocmd("CursorMoved", {
+									callback = vim.lsp.buf.clear_references,
+									buffer = bufnr,
+									group = group,
+									desc = "Clear all reference highlights",
+								})
+								-- vim.api.nvim_command("highlight LspReferenceText cterm=underline gui=underline")
+								-- vim.api.nvim_command("highlight LspReferenceRead cterm=underline gui=underline")
+								-- vim.api.nvim_command("highlight LspReferenceWrite cterm=underline gui=underline")
 							end
 						end,
 					})
@@ -97,10 +121,10 @@ return {
 			},
 		})
 
+		-- Keymaps
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("ruicsh/LSP", { clear = true }),
+			group = vim.api.nvim_create_augroup("ruicsh/lsp_keymaps", { clear = true }),
 			callback = function(event)
-				-- keymaps
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				if not client then
 					return
