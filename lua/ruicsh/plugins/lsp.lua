@@ -34,18 +34,18 @@ local function lsp_on_attach(client, bufnr)
 		local group = vim.api.nvim_create_augroup("ruicsh/lsp_document_highlight", { clear = true })
 		vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
 
-		vim.api.nvim_create_autocmd("CursorHold", {
+		vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
 			callback = vim.lsp.buf.document_highlight,
 			buffer = bufnr,
 			group = group,
-			desc = "Document highlight",
+			desc = "Highlight references under the cursor",
 		})
 
-		vim.api.nvim_create_autocmd("CursorMoved", {
+		vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
 			callback = vim.lsp.buf.clear_references,
 			buffer = bufnr,
 			group = group,
-			desc = "Clear all reference highlights",
+			desc = "Clear highlight references",
 		})
 	end
 
