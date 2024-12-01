@@ -109,9 +109,6 @@ return {
 									group = group,
 									desc = "Clear all reference highlights",
 								})
-								-- vim.api.nvim_command("highlight LspReferenceText cterm=underline gui=underline")
-								-- vim.api.nvim_command("highlight LspReferenceRead cterm=underline gui=underline")
-								-- vim.api.nvim_command("highlight LspReferenceWrite cterm=underline gui=underline")
 							end
 						end,
 					})
@@ -135,15 +132,26 @@ return {
 					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
+				local function jump_to_definition()
+					vim.lsp.buf.definition()
+					vim.cmd.normal("zz")
+				end
+
+				local function jump_to_type_definition()
+					vim.lsp.buf.type_definition()
+					vim.cmd.normal("zz")
+				end
+
 				local function document_symbol()
 					vim.cmd("Outline")
 				end
 
-				k("gd", vim.lsp.buf.definition, "Jump to [d]efinition")
+				-- https://neovim.io/doc/user/lsp.html#lsp-defaults
+				k("gd", jump_to_definition, "Jump to [d]efinition")
 				k("gD", vim.lsp.buf.declaration, "Jump to [D]eclaration")
 				k("gO", document_symbol, "Document Symbol")
 				k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" })
-				k("grd", vim.lsp.buf.type_definition, "Jump to type definition")
+				k("grt", jump_to_type_definition, "Jump to type definition")
 				k("gri", vim.lsp.buf.implementation, "List [i]mplementations")
 				k("grj", vim.lsp.buf.incoming_calls, "Incoming calls")
 				k("grk", vim.lsp.buf.outgoing_calls, "Outgoing calls")

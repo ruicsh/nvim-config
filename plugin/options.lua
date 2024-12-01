@@ -29,7 +29,7 @@ o.splitbelow = true -- Open a new horizontal split below.
 o.splitright = true -- Open a new vertical split to the right.
 
 -- 7 multiple tab pages
-o.showtabline = 2 -- Always show tabline.
+o.showtabline = 2 -- Always show tabline (tabby)
 
 -- 9 using the mouse
 o.mouse = "nic" -- Don't enable mouse on Visual mode.

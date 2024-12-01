@@ -174,7 +174,7 @@
 - `gd` jump to definition
 - `go` jump to type definition
 - `gra` code actions
-- `grd` jump to type definition
+- `grt` jump to type definition
 - `gri` jump to implementation
 - `grj` incoming calls
 - `grk` outgoing calls
