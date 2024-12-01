@@ -19,6 +19,11 @@ local lsp_handlers = {
 }
 
 local function lsp_on_attach(client, bufnr)
+	local k = function(keys, func, desc, mode)
+		mode = mode or "n"
+		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+	end
+
 	if client.server_capabilities.documentSymbolProvider then
 		-- Add navic to barbecue
 		require("nvim-navic").attach(client, bufnr)
@@ -46,15 +51,26 @@ local function lsp_on_attach(client, bufnr)
 
 	-- Inlay hints
 	if client.server_capabilities.inlayHintProvider then
+		local function toggle_hint()
+			local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+			vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
+
+			if not enabled then
+				vim.api.nvim_create_autocmd("InsertEnter", {
+					buffer = bufnr,
+					once = true,
+					callback = function()
+						vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
+					end,
+				})
+			end
+		end
+
+		k("grI", toggle_hint, "Toggle inlay hints")
 		vim.lsp.inlay_hint.enable(true)
 	end
 
 	-- Keymaps
-	local k = function(keys, func, desc, mode)
-		mode = mode or "n"
-		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
-	end
-
 	local function jump_to_definition()
 		vim.lsp.buf.definition()
 		vim.cmd.normal("zz")
@@ -189,7 +205,7 @@ return {
 						includeInlayEnumMemberValueHints = true,
 						includeInlayFunctionLikeReturnTypeHints = true,
 						includeInlayFunctionParameterTypeHints = true,
-						includeInlayParameterNameHints = "literals",
+						includeInlayParameterNameHints = "all",
 						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
 						includeInlayPropertyDeclarationTypeHints = true,
 						includeInlayVariableTypeHints = true,

@@ -169,7 +169,6 @@
 
 - `<c-s>` display signature help
 - `K` display hover information for symbol
-- `gD` jump to declaration
 - `gO` list symbols in document
 - `gd` jump to definition
 - `go` jump to type definition
@@ -180,6 +179,8 @@
 - `grk` outgoing calls
 - `grn` rename symbol
 - `grr` list references
+- `grI` toggle inlay hints
+- `gD` jump to declaration
 
 #### TypeScript
 
