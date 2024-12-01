@@ -11,6 +11,8 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - **Search** - fuzzy find anything, file and workspace scoped search and replace
 - **Application** - files and directory explorer, workspaces, notifications, command palette
 
+<sub>Working on Neovim v0.10.2</sub>
+
 ## Screenshots
 
 <table width="100%">
