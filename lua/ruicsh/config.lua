@@ -47,7 +47,6 @@ M.lsp = {
 				},
 			},
 		},
-		ts_ls = {},
 		vuels = {},
 	},
 	tools = {

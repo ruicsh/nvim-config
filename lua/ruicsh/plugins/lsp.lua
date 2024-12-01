@@ -3,6 +3,87 @@
 
 local config = require("ruicsh/config")
 
+local lsp_handlers = {
+	-- <s-k> float window
+	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+		border = "rounded",
+		focusable = false,
+		focus = false,
+	}),
+	-- i_<c-k> float window
+	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+		border = "rounded",
+		focusable = false,
+		focus = false,
+	}),
+}
+
+local function lsp_on_attach(client, bufnr)
+	if client.server_capabilities.documentSymbolProvider then
+		-- Add navic to barbecue
+		require("nvim-navic").attach(client, bufnr)
+	end
+
+	-- Highlight all references to symbol under cursor
+	if client.server_capabilities.documentHighlightProvider then
+		local group = vim.api.nvim_create_augroup("ruicsh/lsp_document_highlight", { clear = true })
+		vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+
+		vim.api.nvim_create_autocmd("CursorHold", {
+			callback = vim.lsp.buf.document_highlight,
+			buffer = bufnr,
+			group = group,
+			desc = "Document highlight",
+		})
+
+		vim.api.nvim_create_autocmd("CursorMoved", {
+			callback = vim.lsp.buf.clear_references,
+			buffer = bufnr,
+			group = group,
+			desc = "Clear all reference highlights",
+		})
+	end
+
+	-- Inlay hints
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint.enable(true)
+	end
+
+	-- Keymaps
+	local k = function(keys, func, desc, mode)
+		mode = mode or "n"
+		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+	end
+
+	local function jump_to_definition()
+		vim.lsp.buf.definition()
+		vim.cmd.normal("zz")
+	end
+
+	local function jump_to_type_definition()
+		vim.lsp.buf.type_definition()
+		vim.cmd.normal("zz")
+	end
+
+	local function document_symbol()
+		vim.cmd("Outline")
+	end
+
+	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
+	k("gd", jump_to_definition, "Jump to [d]efinition")
+	k("gD", vim.lsp.buf.declaration, "Jump to [D]eclaration")
+	k("gO", document_symbol, "Document Symbol")
+	k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" })
+	k("grt", jump_to_type_definition, "Jump to type definition")
+	k("gri", vim.lsp.buf.implementation, "List [i]mplementations")
+	k("grj", vim.lsp.buf.incoming_calls, "Incoming calls")
+	k("grk", vim.lsp.buf.outgoing_calls, "Outgoing calls")
+	k("grn", vim.lsp.buf.rename, "Rename symbol")
+	k("grr", vim.lsp.buf.references, "List [r]eferences")
+	k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "n", "i" })
+	k("<leader>xx", vim.diagnostic.setqflist, "Diagnostics")
+end
+
 return {
 	"neovim/nvim-lspconfig",
 	config = function()
@@ -63,103 +144,24 @@ return {
 
 		require("mason-lspconfig").setup({
 			ensure_installed = vim.tbl_keys(config.lsp.servers or {}),
-			automatic_installation = true,
 			handlers = {
 				function(server_name)
+					-- Don't setup ts_ls, we're using tsserer from typescript-tools
+					if server_name == "ts_ls" then
+						return
+					end
+
 					local server = config.lsp.servers[server_name] or {}
 
 					local conf = vim.tbl_deep_extend("force", server, {
 						capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
-						handlers = {
-							-- <s-k> float window
-							["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-								border = "rounded",
-								focusable = false,
-								focus = false,
-							}),
-							-- i_<c-k> float window
-							["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-								border = "rounded",
-								focusable = false,
-								focus = false,
-							}),
-						},
-						on_attach = function(client, bufnr)
-							if client.server_capabilities.documentSymbolProvider then
-								-- Add navic to barbecue
-								require("nvim-navic").attach(client, bufnr)
-							end
-
-							-- Highlight all references to symbol under cursor
-							if client.server_capabilities.documentHighlightProvider then
-								local group =
-									vim.api.nvim_create_augroup("ruicsh/lsp_document_highlight", { clear = true })
-								vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
-
-								vim.api.nvim_create_autocmd("CursorHold", {
-									callback = vim.lsp.buf.document_highlight,
-									buffer = bufnr,
-									group = group,
-									desc = "Document highlight",
-								})
-
-								vim.api.nvim_create_autocmd("CursorMoved", {
-									callback = vim.lsp.buf.clear_references,
-									buffer = bufnr,
-									group = group,
-									desc = "Clear all reference highlights",
-								})
-							end
-						end,
+						handlers = lsp_handlers,
+						on_attach = lsp_on_attach,
 					})
 
 					require("lspconfig")[server_name].setup(conf)
 				end,
 			},
-		})
-
-		-- Keymaps
-		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("ruicsh/lsp_keymaps", { clear = true }),
-			callback = function(event)
-				local client = vim.lsp.get_client_by_id(event.data.client_id)
-				if not client then
-					return
-				end
-
-				local k = function(keys, func, desc, mode)
-					mode = mode or "n"
-					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-				end
-
-				local function jump_to_definition()
-					vim.lsp.buf.definition()
-					vim.cmd.normal("zz")
-				end
-
-				local function jump_to_type_definition()
-					vim.lsp.buf.type_definition()
-					vim.cmd.normal("zz")
-				end
-
-				local function document_symbol()
-					vim.cmd("Outline")
-				end
-
-				-- https://neovim.io/doc/user/lsp.html#lsp-defaults
-				k("gd", jump_to_definition, "Jump to [d]efinition")
-				k("gD", vim.lsp.buf.declaration, "Jump to [D]eclaration")
-				k("gO", document_symbol, "Document Symbol")
-				k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" })
-				k("grt", jump_to_type_definition, "Jump to type definition")
-				k("gri", vim.lsp.buf.implementation, "List [i]mplementations")
-				k("grj", vim.lsp.buf.incoming_calls, "Incoming calls")
-				k("grk", vim.lsp.buf.outgoing_calls, "Outgoing calls")
-				k("grn", vim.lsp.buf.rename, "Rename symbol")
-				k("grr", vim.lsp.buf.references, "List [r]eferences")
-				k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "n", "i" })
-				k("<leader>xx", vim.diagnostic.setqflist, "Diagnostics")
-			end,
 		})
 	end,
 
@@ -176,12 +178,30 @@ return {
 			-- https://github.com/williamboman/mason-lspconfig.nvim
 			"williamboman/mason-lspconfig.nvim",
 		},
-		{ -- TypeScript integration
+		{ -- TypeScript LSP (tsserver)
 			-- https://github.com/pmizio/typescript-tools.nvim
 			"pmizio/typescript-tools.nvim",
-			opts = {},
+			opts = {
+				handlers = lsp_handlers,
+				on_attach = lsp_on_attach,
+				settings = {
+					tsserver_file_preferences = {
+						includeInlayEnumMemberValueHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayParameterNameHints = "literals",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+					},
+				},
+			},
 		},
-		{ "onsails/lspkind.nvim" },
+		{ -- Pictograms for completion items (lspkind.nvim).
+			-- https://github.com/onsails/lspkind.nvim
+			"onsails/lspkind.nvim",
+		},
 		{ "hrsh7th/cmp-nvim-lsp" },
 	},
 }
