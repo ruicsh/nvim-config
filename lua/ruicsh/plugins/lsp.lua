@@ -67,7 +67,9 @@ local function lsp_on_attach(client, bufnr)
 		end
 
 		k("grI", toggle_hint, "Toggle inlay hints")
-		vim.lsp.inlay_hint.enable(true)
+
+		-- Disable inlay hints by default
+		vim.lsp.inlay_hint.enable(false)
 	end
 
 	-- Keymaps
