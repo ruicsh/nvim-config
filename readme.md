@@ -107,6 +107,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [debugprint.nvim](https://github.com/andrewferrier/debugprint.nvim) - Debug statements
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Autopairs (`()`, `[]`, `{}`)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Completions
+- [nvim-highlight-colors](https://github.com/brenoprata10/nvim-highlight-colors) - Highlight CSS colors
 
 #### LSP
 

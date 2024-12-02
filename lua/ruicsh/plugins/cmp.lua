@@ -15,22 +15,6 @@ return {
 			},
 		})
 
-		-- item's kind formatting
-		local kind_formatter = lspkind.cmp_format({
-			mode = "symbol",
-			show_labelDetails = true,
-			maxwidth = 50, -- Prevent the popup from showing more than provided characters.
-			ellipsis_char = "...", -- When popup menu exceed maxwidth, the truncated part would show ellipsis_char instead.
-			menu = {
-				copilot = "[ghc]",
-				buffer = "[buf]",
-				nvim_lsp = "[lsp]",
-				nvim_lua = "[api]",
-				path = "[path]",
-				luasnip = "[snip]",
-			},
-		})
-
 		local cmp = require("cmp")
 		cmp.setup({
 			completion = {
@@ -38,7 +22,31 @@ return {
 			},
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
-				format = kind_formatter,
+				format = function(entry, item)
+					local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
+
+					item = require("lspkind").cmp_format({
+						mode = "symbol",
+						show_labelDetails = true,
+						maxwidth = 50,
+						ellipsis_char = "...",
+						menu = {
+							copilot = "[ghc]",
+							buffer = "[buf]",
+							nvim_lsp = "[lsp]",
+							nvim_lua = "[api]",
+							path = "[path]",
+							luasnip = "[snip]",
+						},
+					})(entry, item)
+
+					if color_item.abbr_hl_group then
+						item.kind_hl_group = color_item.abbr_hl_group
+						item.kind = color_item.abbr
+					end
+
+					return item
+				end,
 				expandable_indicator = true,
 			},
 			mapping = {
