@@ -23,8 +23,6 @@ return {
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
 				format = function(entry, item)
-					local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
-
 					item = require("lspkind").cmp_format({
 						mode = "symbol",
 						show_labelDetails = true,
@@ -39,11 +37,6 @@ return {
 							luasnip = "[snip]",
 						},
 					})(entry, item)
-
-					if color_item.abbr_hl_group then
-						item.kind_hl_group = color_item.abbr_hl_group
-						item.kind = color_item.abbr
-					end
 
 					return item
 				end,

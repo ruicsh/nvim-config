@@ -102,12 +102,12 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### Coding
 
+- [colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua) - CSS Colors
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - GitHub Copilot
 - [debugprint.nvim](https://github.com/andrewferrier/debugprint.nvim) - Debug statements
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs) - Autopairs (`()`, `[]`, `{}`)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Completions
-- [nvim-highlight-colors](https://github.com/brenoprata10/nvim-highlight-colors) - Highlight CSS colors
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Display code context
 
 #### LSP
