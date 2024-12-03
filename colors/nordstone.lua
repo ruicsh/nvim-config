@@ -374,6 +374,11 @@ loadColorSet({
 	QuickFixFilename = { fg = c.nord9 },
 })
 
+-- nvim-treesitter-context
+loadColorSet({
+	TreesitterContextSeparator = { fg = c.neutral_800 },
+})
+
 ----
 -- Syntax
 ----
