@@ -292,15 +292,6 @@ loadColorSet({
 	HlSearchLens = { fg = c.nord3_500, bg = "NONE" },
 })
 
--- barbecue.nvim
-loadColorSet({
-	BarbecueNormal = { fg = c.nord4_900 },
-	BarbecueEllipsis = { fg = c.nord4_900 },
-	BarbecueSeparator = { fg = c.nord4_900 },
-	BarbecueBasename = { fg = c.nord4 },
-	BarbecueDirname = { fg = c.nord4_900 },
-})
-
 -- nvim-dap
 loadColorSet({
 	DapBreakpoint = { fg = c.nord14 },

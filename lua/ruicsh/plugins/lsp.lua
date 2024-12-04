@@ -24,11 +24,6 @@ local function lsp_on_attach(client, bufnr)
 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
 	end
 
-	if client.server_capabilities.documentSymbolProvider then
-		-- Add navic to barbecue
-		require("nvim-navic").attach(client, bufnr)
-	end
-
 	-- Highlight all references to symbol under cursor
 	if client.server_capabilities.documentHighlightProvider then
 		local group = vim.api.nvim_create_augroup("ruicsh/lsp_document_highlight", { clear = true })

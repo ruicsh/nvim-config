@@ -39,22 +39,14 @@ return {
 				diff_buf_win_enter = function()
 					vim.wo.cursorline = false -- Disable cursorline.
 					vim.opt_local.foldenable = false -- Disable folding.
-				end,
-				diff_buf_win_leave = function()
-					vim.wo.cursorline = true -- Enable cursorline.
-					vim.opt_local.foldenable = true -- Enable folding.
+					vim.wo.winbar = "" -- Hide breadcrumbs.
+					vim.cmd("VimadeWinDisable") -- Disable window tint.
 				end,
 				view_enter = function(view)
-					vim.cmd(":VimadeDisable") -- Disable dimming windows.
-					vim.cmd(":Barbecue hide") -- Hide breadcrumbs.
-
+					vim.cmd("VimadeWinDisable") -- Disable window tint.
 					local bufnr = view.buffer
 					-- Use cc to commit.
 					vim.keymap.set("n", "cc", "<cmd>DiffviewClose<cr><cmd>vertical Git commit<cr>", { buffer = bufnr })
-				end,
-				view_leave = function()
-					vim.cmd(":VimadeEnable") -- Reenable dimming windows.
-					vim.cmd(":Barbecue show") -- Show breadcrumbs.
 				end,
 			},
 		})
