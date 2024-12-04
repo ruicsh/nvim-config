@@ -61,7 +61,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - [Fidget](https://github.com/j-hui/fidget.nvim) - Notifications
 - [Indent Blankline](https://github.com/nvim-lualine/lualine.nvim) - Indent guides
-- [dropbar.nvim](https://github.com/Bekaboo/dropbar.nvim) - Breadcrumbs
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) - Statusline
 - [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix
 - [quicker.nvim](https://github.com/stevearc/quicker.nvim) - Quickfix/location list formatter

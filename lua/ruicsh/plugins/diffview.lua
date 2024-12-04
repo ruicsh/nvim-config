@@ -39,7 +39,6 @@ return {
 				diff_buf_win_enter = function()
 					vim.wo.cursorline = false -- Disable cursorline.
 					vim.opt_local.foldenable = false -- Disable folding.
-					vim.wo.winbar = "" -- Hide breadcrumbs.
 					vim.cmd("VimadeWinDisable") -- Disable window tint.
 				end,
 				view_enter = function(view)
