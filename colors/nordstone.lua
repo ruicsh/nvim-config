@@ -376,7 +376,7 @@ loadColorSet({
 
 -- nvim-treesitter-context
 loadColorSet({
-	TreesitterContextSeparator = { fg = c.neutral_800 },
+	TreesitterContextSeparator = { fg = c.neutral_600 },
 })
 
 ----

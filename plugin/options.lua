@@ -7,6 +7,7 @@ local o = vim.opt
 -- 2 moving around, searching and patterns
 o.ignorecase = true -- Ignore case on search patterns.
 o.inccommand = "nosplit" -- Show live preview of substitution.
+o.path:append("**") -- Enable searching for files on subdirectories.
 o.smartcase = true -- Use case sensitive if keyword contains capital letters.
 
 -- 4 displaying text
