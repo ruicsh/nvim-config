@@ -42,7 +42,8 @@ return {
 				end,
 				expandable_indicator = true,
 			},
-			mapping = {
+
+			mapping = cmp.mapping.preset.insert({
 				["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 				["<down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 				["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -55,10 +56,9 @@ return {
 					{ "i", "c" }
 				),
 				["<c-e>"] = cmp.mapping.abort(),
-				-- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 				["<cr>"] = cmp.mapping.confirm({ select = false }),
 				["<tab>"] = cmp.mapping.confirm({ select = true }),
-			},
+			}),
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
@@ -103,7 +103,7 @@ return {
 		})
 	end,
 
-	event = { "VeryLazy" },
+	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
 		{ "hrsh7th/nvim-cmp" },
 		{ "hrsh7th/cmp-nvim-lsp" },
