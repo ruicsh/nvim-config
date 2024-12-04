@@ -9,6 +9,7 @@ return {
 		local git_blame = require("gitblame")
 		vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text.
 
+		local lualine = require("lualine")
 		local workspaces = require("workspaces")
 
 		local c = NordStoneColors
@@ -35,14 +36,20 @@ return {
 			},
 		}
 
-		local lualine = require("lualine")
 		lualine.setup({
 			options = {
 				theme = theme,
 				component_separators = "",
 			},
 			sections = {
-				lualine_a = { "mode" },
+				lualine_a = {
+					{
+						"mode",
+						fmt = function(str)
+							return " " .. str
+						end,
+					},
+				},
 				lualine_b = { workspaces.name },
 				lualine_c = {
 					{
