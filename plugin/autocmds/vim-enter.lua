@@ -1,6 +1,6 @@
 -- Loaded on VimEnter
 vim.api.nvim_create_autocmd("VimEnter", {
-	group = vim.api.nvim_create_augroup("ruicsh/VimEnter", { clear = true }),
+	group = vim.api.nvim_create_augroup("ruicsh/vim_enter", { clear = true }),
 	callback = function()
 		-- If neovim is opened with a directory as argument open oil-filemanager.
 		local first_arg = vim.v.argv[3]

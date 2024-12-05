@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd("BufReadPost", {
-	group = vim.api.nvim_create_augroup("ruicsh/BufReadPost", { clear = true }),
+	group = vim.api.nvim_create_augroup("ruicsh/buf_read_post", { clear = true }),
 	callback = function(args)
 		-- Go to last location when opening a file.
 		local mark = vim.api.nvim_buf_get_mark(args.buf, '"')

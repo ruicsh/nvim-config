@@ -2,11 +2,11 @@
 -- Use the same shortcut to close different panels
 ----
 
-local CloseShortcut = "<c-]>"
+local closeShortcut = "<c-]>"
 
-local close_shortcut_group = vim.api.nvim_create_augroup("ruicsh/CloseShortcut", { clear = true })
+local close_shortcut_group = vim.api.nvim_create_augroup("ruicsh/close_shortcut", { clear = true })
 
-vim.keymap.set("n", CloseShortcut, "<c-w>q", { desc = "Close split" })
+vim.keymap.set("n", closeShortcut, "<c-w>q", { desc = "Close split" })
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = close_shortcut_group,
@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		"scratch",
 	},
 	callback = function(args)
-		vim.keymap.set("n", CloseShortcut, "<cmd>quit<cr>", { buffer = args.buf })
+		vim.keymap.set("n", closeShortcut, "<cmd>quit<cr>", { buffer = args.buf })
 	end,
 })
 
@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = close_shortcut_group,
 	pattern = { "neo-tree" },
 	callback = function(args)
-		vim.keymap.set("n", CloseShortcut, "<cmd>Neotree action=close<cr>", { buffer = args.buf })
+		vim.keymap.set("n", closeShortcut, "<cmd>Neotree action=close<cr>", { buffer = args.buf })
 	end,
 })
 
@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function(args)
 		vim.keymap.set(
 			"n",
-			CloseShortcut,
+			closeShortcut,
 			"<cmd>lua require('oil.actions').close.callback()<cr>",
 			{ buffer = args.buf }
 		)
@@ -54,7 +54,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			actions.close(bufnr)
 		end
 
-		vim.keymap.set({ "i", "n" }, CloseShortcut, close_telescope, { buffer = args.buf })
+		vim.keymap.set({ "i", "n" }, closeShortcut, close_telescope, { buffer = args.buf })
 	end,
 })
 
@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = close_shortcut_group,
 	pattern = { "DiffviewFiles" },
 	callback = function(args)
-		vim.keymap.set("n", CloseShortcut, "<cmd>DiffviewClose<cr>", { buffer = args.buf })
+		vim.keymap.set("n", closeShortcut, "<cmd>DiffviewClose<cr>", { buffer = args.buf })
 	end,
 })
 
@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = close_shortcut_group,
 	pattern = { "DiffviewFileHistory" },
 	callback = function(args)
-		vim.keymap.set("n", CloseShortcut, "<cmd>:tabclose<cr>", { buffer = args.buf })
+		vim.keymap.set("n", closeShortcut, "<cmd>:tabclose<cr>", { buffer = args.buf })
 	end,
 })
 
@@ -78,7 +78,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = close_shortcut_group,
 	pattern = { "fugitive" },
 	callback = function(args)
-		vim.keymap.set("n", CloseShortcut, "<plug>fugitive:gq", { noremap = true, buffer = args.buf })
+		vim.keymap.set("n", closeShortcut, "<plug>fugitive:gq", { noremap = true, buffer = args.buf })
 	end,
 })
 
@@ -86,7 +86,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = close_shortcut_group,
 	pattern = { "gitcommit" },
 	callback = function(args)
-		vim.keymap.set({ "n", "i" }, CloseShortcut, "<cmd>q!<cr>", { noremap = true, buffer = args.buf })
+		vim.keymap.set({ "n", "i" }, closeShortcut, "<cmd>q!<cr>", { noremap = true, buffer = args.buf })
 	end,
 })
 
@@ -96,7 +96,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function(args)
 		vim.keymap.set(
 			{ "n", "i" },
-			CloseShortcut,
+			closeShortcut,
 			"<esc><cmd>lua require('spectre').toggle()<cr>",
 			{ noremap = true, buffer = args.buf }
 		)

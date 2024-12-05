@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd("User", {
-	group = vim.api.nvim_create_augroup("ruicsh/User", { clear = true }),
+	group = vim.api.nvim_create_augroup("ruicsh/user", { clear = true }),
 	pattern = "TelescopePreviewerLoaded",
 	callback = function()
 		-- Enable line number in telescope preview.
