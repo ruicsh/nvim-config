@@ -14,10 +14,6 @@ k("n", "U", "<C-r>", { desc = "Redo" })
 
 -- Tabs
 k("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Tabs: Close" })
-k("n", "<leader>th", "<cmd>tabfirst<cr>", { desc = "Tabs: Jump to first" })
-k("n", "<leader>tj", "<cmd>tabprev<cr>", { desc = "Tabs: Jump to previous" })
-k("n", "<leader>tk", "<cmd>tabnext<cr>", { desc = "Tabs: Jump to next" })
-k("n", "<leader>tl", "<cmd>tablast<cr>", { desc = "Tabs: Jump to last" })
 k("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "Tabs: New" })
 k("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Tabs: Close all other" })
 k("n", "<leader>tH", "<cmd>-tabmove<cr>", { desc = "Tabs: Move current tab to before" })
@@ -59,7 +55,7 @@ k("n", "<leader>s{", "vi{<esc><cmd>Sort<cr>", { desc = "[S]ort: Inside [{]" })
 k("n", "<leader>s}", "V}k<esc><cmd>Sort<cr>}", { desc = "[S]ort: Paragrah" })
 k("n", '<leader>s"', 'vi"<esc><cmd>Sort<cr>', { desc = '[So]rt: Inside ["]' })
 
--- Don't include small jumps.
+-- Don't include small jumps on jumplist.
 k("n", "{", "<cmd>keepj normal!{zz<cr>")
 k("n", "}", "<cmd>keepj normal!}zz<cr>")
 k("n", "k", "(v:count > 5 ? \"m'\" .. v:count : '') .. 'k'", { expr = true, noremap = true })

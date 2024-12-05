@@ -61,11 +61,8 @@
 
 - `gt` jump to next tab
 - `gT` jump to previous tab
+- `{number}gt` jump to tab {number}
 - `<leader>td` close tab
-- `<leader>th` jump to first
-- `<leader>tj` jump to previous
-- `<leader>tk` jump to next
-- `<leader>tl` jump to last
 - `<leader>tn` new tab
 - `<leader>to` close all other
 - `<leader>tH` move current tab to before
