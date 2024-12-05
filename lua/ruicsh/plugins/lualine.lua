@@ -53,6 +53,15 @@ return {
 				lualine_b = { workspaces.name },
 				lualine_c = {
 					{
+						"filename",
+						path = 4,
+					},
+					{
+						"filetype",
+						icon_only = true,
+						icon = { align = "right" },
+					},
+					{
 						"diagnostics",
 						symbols = {
 							error = config.icons.diagnostics.Error,
@@ -61,11 +70,12 @@ return {
 							hint = config.icons.diagnostics.Hint,
 						},
 					},
-					"filename",
-					{ "filetype", icon_only = true },
 				},
 				lualine_x = {
-					{ git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available },
+					{
+						git_blame.get_current_blame_text,
+						cond = git_blame.is_blame_text_available,
+					},
 				},
 				lualine_y = {
 					{
@@ -77,7 +87,9 @@ return {
 						},
 					},
 				},
-				lualine_z = { "branch" },
+				lualine_z = {
+					"branch",
+				},
 			},
 			inactive_sections = {
 				lualine_a = {},
