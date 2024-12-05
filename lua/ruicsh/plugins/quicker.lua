@@ -30,12 +30,16 @@ return {
 	keys = function()
 		local quicker = require("quicker")
 
+		local function toggle_quickfix()
+			quicker.toggle({ focus = true })
+		end
+
 		local function toggle_loclist()
 			quicker.toggle({ loclist = true })
 		end
 
 		return {
-			{ "<leader>qq", quicker.toggle, desc = "Toggle quickfix" },
+			{ "<leader>qq", toggle_quickfix, desc = "Toggle quickfix" },
 			{ "<leader>ll", toggle_loclist, desc = "Toggle locklist" },
 		}
 	end,
