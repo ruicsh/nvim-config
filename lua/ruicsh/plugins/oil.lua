@@ -3,13 +3,25 @@
 
 return {
 	"stevearc/oil.nvim",
-	keys = {
-		{ "-", "<cmd>Oil<cr>", desc = "Oil: Open parent directory" },
-	},
+	keys = function()
+		local oil = require("oil")
+
+		local function open_cwd()
+			oil.open(vim.fn.getcwd())
+		end
+
+		return {
+			{ "-", "<cmd>Oil<cr>", desc = "Oil: Open parent directory" },
+			{ "_", open_cwd, desc = "Oil: Open cwd" },
+		}
+	end,
 	opts = {
 		buf_options = {
 			buflisted = false,
 			bufhidden = "hide",
+		},
+		columns = {
+			"icon",
 		},
 		default_file_explorer = true,
 		delete_to_trash = true,
