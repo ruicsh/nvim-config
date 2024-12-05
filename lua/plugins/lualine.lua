@@ -1,7 +1,7 @@
 -- Status line
 -- https://github.com/nvim-lualine/lualine.nvim
 
-local config = require("ruicsh/config")
+local config = require("ruicsh")
 
 return {
 	"nvim-lualine/lualine.nvim",

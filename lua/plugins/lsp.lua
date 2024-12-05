@@ -1,7 +1,7 @@
 -- LSP config
 -- https://github.com/neovim/nvim-lspconfig
 
-local config = require("ruicsh/config")
+local config = require("ruicsh")
 
 local lsp_handlers = {
 	-- <s-k> float window

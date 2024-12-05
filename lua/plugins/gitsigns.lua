@@ -1,7 +1,7 @@
 -- Buffer integration
 -- https://github.com/lewis6991/gitsigns.nvim
 
-local config = require("ruicsh/config")
+local config = require("ruicsh")
 
 return {
 	"lewis6991/gitsigns.nvim",

@@ -1,7 +1,7 @@
 -- DAP client implementation
 -- https://github.com/mfussenegger/nvim-dap
 
-local config = require("ruicsh/config")
+local config = require("ruicsh")
 
 return {
 	"mfussenegger/nvim-dap",

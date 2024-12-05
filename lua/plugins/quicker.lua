@@ -1,7 +1,7 @@
 -- Quickfix/location list formatter
 -- https://github.com/stevearc/quicker.nvim
 
-local config = require("ruicsh/config")
+local config = require("ruicsh")
 
 return {
 	"stevearc/quicker.nvim",
