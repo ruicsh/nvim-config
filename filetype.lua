@@ -2,10 +2,14 @@ vim.filetype.add({
 	extension = {
 		conf = "config",
 		env = "config",
+		zsh = "sh",
 	},
 	filename = {
 		[".env"] = "config",
 		["tsconfig.json"] = "jsonc",
+		[".zshrc"] = "sh",
+		[".zshenv"] = "sh",
+		[".zprofile"] = "sh",
 	},
 	pattern = {
 		["%.env%.[%w_.-]+"] = "config",
