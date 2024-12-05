@@ -5,10 +5,12 @@
 local o = vim.opt
 
 -- 2 moving around, searching and patterns
+o.jumpoptions = { "stack" } -- https://www.reddit.com/r/neovim/comments/16nead7/comment/k1e1nj5/?context=3
 o.ignorecase = true -- Ignore case on search patterns.
 o.inccommand = "nosplit" -- Show live preview of substitution.
 o.path:append("**") -- Enable searching for files on subdirectories.
 o.smartcase = true -- Use case sensitive if keyword contains capital letters.
+o.startofline = true -- Move cursor to the first non-blank character.
 
 -- 4 displaying text
 o.fillchars = {
