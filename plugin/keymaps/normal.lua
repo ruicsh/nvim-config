@@ -84,6 +84,12 @@ k("n", "cc", '"_cc')
 k("n", "x", '"_x')
 k("n", "X", '"_X')
 
+-- Don't store empty lines in register.
+-- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
+k("n", "dd", function()
+	return vim.fn.getline(".") == "" and '"_dd' or "dd"
+end, { expr = true })
+
 -- Folds
 k("n", "zk", "zk%^") -- Jump to start of previous fold.
 
