@@ -7,6 +7,10 @@ return {
 		{ "-", "<cmd>Oil<cr>", desc = "Oil: Open parent directory" },
 	},
 	opts = {
+		buf_options = {
+			buflisted = false,
+			bufhidden = "hide",
+		},
 		default_file_explorer = true,
 		delete_to_trash = true,
 		skip_confirm_for_simple_edits = true,
@@ -18,7 +22,7 @@ return {
 				opts = { vertical = true },
 				desc = "Oil: Open the entry in a vertical split",
 			},
-			["<c-o>"] = {
+			["<c-s>"] = {
 				"actions.select",
 				opts = { horizontal = true },
 				desc = "Oil: Open the entry in a horizontal split",

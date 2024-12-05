@@ -42,16 +42,4 @@ require("lazy").setup({
 	spec = {
 		{ import = "ruicsh/plugins" },
 	},
-	-- spec = {
-	-- 	{ import = "ruicsh.plugins.buffers", cond = not vim.g.vscode },
-	-- 	{ import = "ruicsh.plugins.coding", cond = not vim.g.vscode },
-	-- 	{ import = "ruicsh.plugins.debug", cond = not vim.g.vscode },
-	-- 	{ import = "ruicsh.plugins.editor" },
-	-- 	{ import = "ruicsh.plugins.explorer", cond = not vim.g.vscode },
-	-- 	{ import = "ruicsh.plugins.git", cond = not vim.g.vscode },
-	-- 	{ import = "ruicsh.plugins.lsp", cond = not vim.g.vscode },
-	-- 	{ import = "ruicsh.plugins.search", cond = not vim.g.vscode },
-	-- 	{ import = "ruicsh.plugins.treesitter", cond = not vim.g.vscode },
-	-- 	{ import = "ruicsh.plugins.ui", cond = not vim.g.vscode },
-	-- },
 })
