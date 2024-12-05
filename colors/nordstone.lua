@@ -47,6 +47,7 @@ NordStoneColors = {
 	nord2 = "#434c5e",
 	nord3 = "#4c566a",
 	nord3_500 = "#616e88",
+	nord3_900 = "#b7becb",
 	nord4 = "#d8dee9",
 	nord4_900 = "#b7c2d7",
 	nord5 = "#e5e9f0",
@@ -241,6 +242,7 @@ loadColorSet({
 	fugitiveMergedHeading = { fg = c.nord8 },
 	fugitiveIgnoredHeading = { fg = c.nord3 },
 	fugitiveUnstagedHeading = { fg = c.nord13 },
+	fugitiveHunk = { fg = c.nord3_900 },
 })
 
 -- Telescope
@@ -267,13 +269,14 @@ loadColorSet({
 -- Diff
 loadColorSet({
 	diffAdded = { fg = c.nord14 },
-	diffRemoved = { fg = c.nord11 },
 	diffChanged = { fg = c.nord15 },
-	diffOldFile = { fg = c.nord13 },
-	diffNewFile = { fg = c.nord12 },
 	diffFile = { fg = c.nord7 },
-	diffLine = { fg = c.nord3 },
 	diffIndexLine = { fg = c.nord9 },
+	diffLine = { fg = c.nord3 },
+	diffNewFile = { fg = c.nord12 },
+	diffOldFile = { fg = c.nord13 },
+	diffRemoved = { fg = c.nord11 },
+	diffSubname = { fg = c.nord3_900, style = "bold" },
 })
 
 -- NeoTree
