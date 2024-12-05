@@ -93,6 +93,5 @@ end, { expr = true })
 -- Folds
 k("n", "zk", "zk%^") -- Jump to start of previous fold.
 
--- This remap also removes the default behavior of going down a line with <cr>.
-k("n", "<cr>", "<cmd>noh<cr>", { silent = true }) -- Remove search highlighting.
+k("n", "<esc>", "<cmd>nohl<cr><cmd>echo<cr>", { silent = true }) -- Remove search highlighting.
 k("n", "<c-\\>", "<cmd>terminal<cr>", { desc = "Open classic terminal" }) -- Instead of using ToggleTerm.
