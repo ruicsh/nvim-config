@@ -1,5 +1,20 @@
 local k = vim.keymap.set
 
+-- HJKL as amplified versions of hjkl
+-- https://nanotipsforvim.prose.sh/motion-setup--hjkl-as-amplified-hjkl
+k("n", "J", "<cmd>keepjumps normal!6j<cr>")
+k("n", "K", "<cmd>keepjumps normal!6k<cr>")
+k("n", "H", "0^")
+k("n", "L", "$")
+
+-- Don't include small jumps on jumplist.
+k("n", "{", "<cmd>keepj normal!{<cr>")
+k("n", "}", "<cmd>keepj normal!}<cr>")
+k("n", "k", "(v:count > 10 ? \"m'\" .. v:count : '') .. 'k'", { expr = true, noremap = true })
+k("n", "j", "(v:count > 10 ? \"m'\" .. v:count : '') .. 'j'", { expr = true, noremap = true })
+
+k("n", "M", "mzJ`z") -- Keep cursor in place when joining lines
+
 -- Save changes
 k("n", "<leader>w", "<cmd>silent! write<cr>", { desc = "Save file" })
 k({ "s", "i", "n", "v" }, "<c-s>", "<esc>:w<cr>", { desc = "Exit insert mode and save changes." })
@@ -55,12 +70,6 @@ k("n", "<leader>s{", "vi{<esc><cmd>Sort<cr>", { desc = "[S]ort: Inside [{]" })
 k("n", "<leader>s}", "V}k<esc><cmd>Sort<cr>}", { desc = "[S]ort: Paragrah" })
 k("n", '<leader>s"', 'vi"<esc><cmd>Sort<cr>', { desc = '[So]rt: Inside ["]' })
 
--- Don't include small jumps on jumplist.
-k("n", "{", "<cmd>keepj normal!{zz<cr>")
-k("n", "}", "<cmd>keepj normal!}zz<cr>")
-k("n", "k", "(v:count > 5 ? \"m'\" .. v:count : '') .. 'k'", { expr = true, noremap = true })
-k("n", "j", "(v:count > 5 ? \"m'\" .. v:count : '') .. 'j'", { expr = true, noremap = true })
-
 -- Splits
 k("n", "|", "<c-w>w", { desc = "Splits: Switch" })
 k("n", "<c-w>v", "<cmd>SmartVerticalSplit<cr>", { desc = "Splits: Open vertical" })
@@ -80,5 +89,4 @@ k("n", "zk", "zk%^") -- Jump to start of previous fold.
 
 -- This remap also removes the default behavior of going down a line with <cr>.
 k("n", "<cr>", "<cmd>noh<cr>", { silent = true }) -- Remove search highlighting.
-k("n", "J", "mzJ`z") -- Keep cursor in place when joining lines.
 k("n", "<c-\\>", "<cmd>terminal<cr>", { desc = "Open classic terminal" }) -- Instead of using ToggleTerm.

@@ -70,17 +70,22 @@
 
 ### Editor
 
+- `H` jump to first non-empty character in line
+- `J` jump down 6 lines
+- `K` jump up 6 lines
+- `L` jump to end of line
+- `M` join lines
+- `U` redo
 - `[<space>` add blank line above cursor
 - `]<space>` add blank line below cursor
 - `[e` move line/selection above
 - `]e` move line/selection below
 - `[p` paste to new line above
 - `]p` paste to new line below
+- `S{char}` surround selection (visual mode)
 - `cs{target}{replacement}` change surrounding character
 - `ds{char}` delete surrounding character
 - `ys{motion}{char}` insert surrounding character
-- `S{char}` surround selection (visual mode)
-- `U` redo
 
 #### Insert mode navigation
 
@@ -165,7 +170,7 @@
 #### LSP
 
 - `<c-s>` display signature help
-- `K` display hover information for symbol
+- `<leader>k` display hover information for symbol
 - `gO` list symbols in document
 - `gd` jump to definition
 - `go` jump to type definition
@@ -201,7 +206,7 @@
 - `<c-->` step into
 - `<c-s-->` step out
 - `<c-0>` step over
-- `<c-k><c-i>` hover
+- `<leader>ki` hover
 - `<leader>dB` set breakpoint condition
 - `<leader>dC` run to cursor
 - `<leader>da` run with args

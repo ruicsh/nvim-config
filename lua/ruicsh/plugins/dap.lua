@@ -25,7 +25,7 @@ return {
 			{ "<c-->", dap.step_into, desc = "Step Into" },
 			{ "<c-s-->", dap.step_out, desc = "Step Out" },
 			{ "<c-0>", dap.step_over, desc = "Step Over" },
-			{ "<c-k><c-i>", widgets.hover, desc = "Widgets" },
+			{ "<leader>ki", widgets.hover, desc = "Widgets" },
 
 			{ "<leader>dB", set_breakpoint_condition, desc = "Debug: Breakpoint Condition" },
 			{ "<leader>dC", dap.run_to_cursor, desc = "Debug: Run to Cursor" },

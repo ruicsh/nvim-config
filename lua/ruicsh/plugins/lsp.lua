@@ -83,6 +83,7 @@ local function lsp_on_attach(client, bufnr)
 	end
 
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
+	k("<c-k>", vim.lsp.buf.hover, "Hover")
 	k("gd", jump_to_definition, "Jump to [d]efinition")
 	k("gD", vim.lsp.buf.declaration, "Jump to [D]eclaration")
 	k("gO", document_symbol, "Document Symbol")
