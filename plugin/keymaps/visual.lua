@@ -1,21 +1,27 @@
 local k = vim.keymap.set
 
 -- Sort
-k("v", "<leader>so", "<esc><cmd>Sort<cr>", { desc = "[S]ort" })
+k("x", "<leader>so", "<esc><cmd>Sort<cr>", { desc = "[S]ort" })
 
 -- Search and replace
 k("x", "<leader>r", ":s/", { desc = "Replace within selection" })
 
 -- Keep visual selection after indenting.
-k("v", "<<", "<gv")
-k("v", ">>", ">gv")
+k("x", "<<", "<gv")
+k("x", ">>", ">gv")
 
 -- Paste over currently selected text without yanking it.
-k("v", "P", '"_dP')
-k("v", "X", '"_X')
-k("v", "c", '"_c')
-k("v", "p", '"_dp')
-k("v", "x", '"_x')
+k("x", "P", '"_dP')
+k("x", "X", '"_X')
+k("x", "c", '"_c')
+k("x", "p", '"_dp')
+k("x", "x", '"_x')
 
 -- Remove search highlighting.
-k("v", "<cr>", "<cmd>noh<cr>")
+k("x", "<esc>", "<cmd>noh<cr>")
+
+-- Augmented HJKL
+k("x", "J", "6j")
+k("x", "K", "6k")
+k("x", "H", "0^")
+k("x", "L", "$")
