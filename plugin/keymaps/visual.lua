@@ -25,3 +25,8 @@ k("x", "J", "6j")
 k("x", "K", "6k")
 k("x", "H", "0^")
 k("x", "L", "$")
+
+-- Maintain the cursor position when yanking a visual selection.
+-- https://ddrscott.github.io/blog/2016/yank-without-jank/
+k("x", "y", "myy`y")
+k("x", "Y", "myY`y")
