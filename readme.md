@@ -11,44 +11,11 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - **Search** - fuzzy find anything, file and workspace scoped search and replace
 - **Application** - files and directory explorer, workspaces, notifications, command palette
 
-<sub>Working on Neovim v0.10.2</sub>
+<sub>Works on Neovim v0.10.2</sub>
 
 ## Screenshots
 
-<table width="100%">
-  <tr>
-    <th><sub>Editor</sub></th>
-    <th><sub>Telescope</sub></th>
-    <th><sub>Git</sub></th>
-  </tr>
-  <tr>
-    <td width="33%">
-      <img src="https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/assets/nvim-editor.png" />
-    </td>
-    <td width="33%">
-      <img src="https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/assets/nvim-telescope.png" />
-    </td>
-    <td width="33%">
-      <img src="https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/assets/nvim-git.png" />
-    </td>
-  </tr>
-  <tr>
-    <th><sub>LSP</sub></th>
-    <th><sub>Diagnostics</sub></th>
-    <th><sub>Debugger</sub></th>
-  </tr>
-  <tr>
-    <td width="33%">
-      <img src="https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/assets/nvim-lsp.png" />
-    </td>
-    <td width="33%">
-      <img src="https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/assets/nvim-diagnostics.png" />
-    </td>
-    <td width="33%">
-      <img src="https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/assets/nvim-debugger.png" />
-    </td>
-  </tr>
-</table>
+![screenshot](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/assets/screenshot.png)
 
 ## Theme
 
