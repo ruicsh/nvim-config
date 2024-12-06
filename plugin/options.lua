@@ -39,7 +39,7 @@ o.showtabline = 2 -- Always show tabline (tabby)
 -- 8 terminal
 o.title = true -- Show info in the window title
 o.titlelen = 0 -- No limit on title length
-o.titlestring = '%{expand("%:p")} - nvim' -- Show full file path
+o.titlestring = "%f // nvim" -- Show relative path in terminal title
 
 -- 9 using the mouse
 o.mouse = "nic" -- Don't enable mouse on Visual mode.
