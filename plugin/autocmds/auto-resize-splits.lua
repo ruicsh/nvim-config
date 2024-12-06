@@ -1,5 +1,5 @@
 -- Auto resize splits when window is resized
 vim.api.nvim_create_autocmd("VimResized", {
-	group = vim.api.nvim_create_augroup("ruicsh/vim_resized", { clear = true }),
+	group = vim.api.nvim_create_augroup("ruicsh/auto_resize_splits", { clear = true }),
 	command = "wincmd =",
 })
