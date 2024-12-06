@@ -1,4 +1,5 @@
--- Jump to last location when opnint a file
+-- Jump to last location when opening a file
+
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = vim.api.nvim_create_augroup("ruicsh/last_location", { clear = true }),
 	callback = function(args)

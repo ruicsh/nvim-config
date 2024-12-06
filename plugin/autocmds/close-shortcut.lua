@@ -1,6 +1,4 @@
-----
 -- Use the same shortcut to close different panels
-----
 
 local closeShortcut = "<c-]>"
 
