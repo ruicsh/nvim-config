@@ -114,7 +114,6 @@ See [mappings](assets/mappings.md) for the complete list.
 
 - `CopyFilePathToClipboard` - Copy current buffer's path to clipboard.
 - `Scratch` - Create a scratch buffer.
-- `SmartVertSplit` - Open or re-use vertical split.
 - `ToggleFormatOnSave` - Toggle on/off formatting on save.
 
 ## Resources

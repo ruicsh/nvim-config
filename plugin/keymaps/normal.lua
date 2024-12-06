@@ -72,8 +72,7 @@ k("n", '<leader>s"', 'vi"<esc><cmd>Sort<cr>', { desc = '[So]rt: Inside ["]' })
 
 -- Splits
 k("n", "|", "<c-w>w", { desc = "Splits: Switch" })
-k("n", "<c-w>v", "<cmd>SmartVerticalSplit<cr>", { desc = "Splits: Open vertical" })
-k("n", "<c-w>|", "<cmd>SmartVerticalSplit<cr>", { desc = "Splits: Open vertical" })
+k("n", "<c-w>|", "<c-w>v", { desc = "Splits: Open vertical" })
 k("n", "<c-w>[", "<c-w>x<c-w>w", { desc = "Splits: Move file to the left" })
 k("n", "<c-w>]", "<c-w>x<c-w>w", { desc = "Splits: Move file to the right" })
 
