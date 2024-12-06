@@ -372,6 +372,11 @@ loadColorSet({
 	TreesitterContextSeparator = { fg = c.nord0 },
 })
 
+-- csvview.nvim
+loadColorSet({
+	CsvViewDelimiter = { fg = c.nord1 },
+})
+
 ----
 -- Syntax
 ----
