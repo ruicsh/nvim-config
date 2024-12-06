@@ -86,6 +86,7 @@
 - `cs{target}{replacement}` change surrounding character
 - `ds{char}` delete surrounding character
 - `ys{motion}{char}` insert surrounding character
+- `yc` duplicate a line, comment out the first line.
 
 #### Insert mode navigation
 

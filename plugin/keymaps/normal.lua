@@ -93,5 +93,7 @@ end, { expr = true })
 -- Folds
 k("n", "zk", "zk%^") -- Jump to start of previous fold.
 
-k("n", "<esc>", "<cmd>nohl<cr><cmd>echo<cr>", { silent = true }) -- Remove search highlighting.
+-- Miscellaneous
+k("n", "<esc>", "<cmd>nohl<cr><cmd>echo<cr>", { silent = true }) -- Remove search highlighting and clear commandline.
 k("n", "<c-\\>", "<cmd>terminal<cr>", { desc = "Open classic terminal" }) -- Instead of using ToggleTerm.
+k("n", "yc", "yy<cmd>normal gcc<cr>p") -- Duplicate a line and comment out the first line.
