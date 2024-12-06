@@ -113,7 +113,7 @@ loadColorSet({
 	Question = { fg = c.nord14 },
 	QuickFixLine = { link = "IncSearch" },
 	ReplacelMode = { fg = c.nord11, bg = "NONE", style = "reverse" },
-	Search = { fg = c.nord1, bg = c.nord8 },
+	Search = { fg = c.nord1, bg = c.nord9 },
 	SignColumn = { fg = c.nord4, bg = "NONE" },
 	Special = { fg = c.nord7 },
 	SpecialKey = { fg = c.nord9 },
