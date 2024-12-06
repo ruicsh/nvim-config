@@ -8,7 +8,9 @@ return {
 		{ "ib", "<cmd>lua require('various-textobjs').anyBracket('inner')<cr>", mode = { "o", "x" } },
 	},
 	opts = {
-		useDefaultKeymaps = true,
+		keymaps = {
+			useDefaults = true,
+		},
 	},
 
 	main = "various-textobjs",

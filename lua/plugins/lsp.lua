@@ -79,7 +79,7 @@ local function lsp_on_attach(client, bufnr)
 	end
 
 	local function document_symbol()
-		vim.cmd("Outline")
+		vim.cmd("AerialToggle! right")
 	end
 
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
