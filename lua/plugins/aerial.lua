@@ -1,4 +1,4 @@
--- Code outline
+-- Symbols outline
 -- https://github.com/stevearc/aerial.nvim
 
 return {
