@@ -109,6 +109,11 @@ o.wildignore:append({ -- Ignore on file name completion.
 	"**/node_modules/**",
 })
 
+-- 22 language specific
+o.iskeyword:append({
+	"-", -- https://nanotipsforvim.prose.sh/word-boundaries-and-kebab-case-variables
+})
+
 -- 24 various
 o.gdefault = true -- Use g flag for ":substitute".
 o.signcolumn = "yes" -- Always showe to prevent the screen from jumping.
