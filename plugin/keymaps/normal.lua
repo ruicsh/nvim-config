@@ -92,6 +92,11 @@ end, { expr = true })
 -- Folds
 k("n", "zk", "zk%^") -- Jump to start of previous fold.
 
+-- Switch backtick with single quote for easier access.
+k("n", "''", "`'", { desc = "Position before last jump" })
+k("n", "'.", "`.", { desc = "Position where last change was made" })
+k("n", "'0", "`0", { desc = "Position where last exited Vim" })
+
 -- Miscellaneous
 k("n", "<esc>", "<cmd>nohl<cr><cmd>echo<cr>", { silent = true }) -- Remove search highlighting and clear commandline.
 k("n", "<c-\\>", "<cmd>terminal<cr>", { desc = "Open classic terminal" }) -- Instead of using ToggleTerm.

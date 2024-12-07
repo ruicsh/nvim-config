@@ -267,11 +267,22 @@
 - `[<c-q>` previous file
 - `]<c-q>` next file
 
-#### Jumplist
+#### Jumplist, changelist
 
 - `<leader>jj` show jumplist
-- `<c-o>` jump to older position
-- `<c-i>` jump to newer position
+- `<c-o>` jump to older position in the jumplist
+- `<c-i>` jump to newer position in the Jumplist
+- `g;` jump to older position in the changelist
+- `g,` jump to newer position in the changelist
+
+#### Marks
+
+- `''` jump to position before last jump
+- `'.` jumtp to position where last change was made
+- `'0` jump to position when last exited Vim
+- `'{a-z}` jump to line in local mark
+- `'{A-Z}` jump to line in global mark
+- `'{0-9}` jump to last positions when last exited Vim
 
 #### Folds
 
