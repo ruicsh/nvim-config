@@ -13,19 +13,20 @@ k("n", "}", "<cmd>keepj normal!}<cr>")
 k("n", "k", "(v:count > 10 ? \"m'\" .. v:count : '') .. 'k'", { expr = true, noremap = true })
 k("n", "j", "(v:count > 10 ? \"m'\" .. v:count : '') .. 'j'", { expr = true, noremap = true })
 
-k("n", "M", "mzJ`z") -- Keep cursor in place when joining lines
-
 -- Save changes
 k("n", "<leader>w", "<cmd>silent! write<cr>", { desc = "Save file" })
 k({ "s", "i", "n", "v" }, "<c-s>", "<esc>:w<cr>", { desc = "Exit insert mode and save changes." })
 
 -- Editing
-k("n", "Y", "y$", { desc = "[Y]ank to end of line" })
 k("n", "[<space>", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = "Put empty line above" })
 k("n", "]<space>", "<cmd>call append(line('.'),     repeat([''], v:count1))<cr>", { desc = "Put empty line below" })
 k("n", "[p", "<cmd>pu!<cr>==", { desc = "Paste on new line above" })
 k("n", "]p", "<cmd>pu<cr>==", { desc = "Paste on new line below" })
 k("n", "U", "<C-r>", { desc = "Redo" })
+
+-- Focus navigation
+k("n", "<c-d>", "<c-d>zz") -- Scroll down
+k("n", "<c-u>", "<c-u>zz") -- Scroll up
 
 -- Tabs
 k("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Tabs: Close" })
@@ -98,6 +99,7 @@ k("n", "'.", "`.", { desc = "Position where last change was made" })
 k("n", "'0", "`0", { desc = "Position where last exited Vim" })
 
 -- Miscellaneous
-k("n", "<esc>", "<cmd>nohl<cr><cmd>echo<cr>", { silent = true }) -- Remove search highlighting and clear commandline.
+k("n", "<esc>", "<cmd>nohl<cr><cmd>echo<cr><esc>", { silent = true }) -- Remove search highlighting and clear commandline.
 k("n", "<c-\\>", "<cmd>terminal<cr>", { desc = "Open classic terminal" }) -- Instead of using ToggleTerm.
 k("n", "yc", "yy<cmd>normal gcc<cr>p") -- Duplicate a line and comment out the first line.
+k("n", "M", "mzJ`z") -- Keep cursor in place when joining lines
