@@ -1,4 +1,5 @@
 -- Jump to last location when opening a file
+-- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/autocmds.lua
 
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = vim.api.nvim_create_augroup("ruicsh/last_location", { clear = true }),

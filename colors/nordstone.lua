@@ -234,15 +234,16 @@ loadColorSet({
 
 -- Fugitive
 loadColorSet({
-	fugitiveUnmergedHeading = { fg = c.nord13 },
-	fugitiveUntrackedHeading = { fg = c.nord11 },
+	fugitiveHunk = { fg = c.nord3_900 },
+	fugitiveIgnoredHeading = { fg = c.nord3 },
+	fugitiveMergedHeading = { fg = c.nord8 },
+	fugitiveRemoteHeading = { fg = c.nord9 },
 	fugitiveStagedHeading = { fg = c.nord14 },
 	fugitiveStashedHeading = { fg = c.nord12 },
-	fugitiveRemoteHeading = { fg = c.nord9 },
-	fugitiveMergedHeading = { fg = c.nord8 },
-	fugitiveIgnoredHeading = { fg = c.nord3 },
+	fugitiveSymbolicRef = { fg = c.nord9 },
+	fugitiveUnmergedHeading = { fg = c.nord13 },
 	fugitiveUnstagedHeading = { fg = c.nord13 },
-	fugitiveHunk = { fg = c.nord3_900 },
+	fugitiveUntrackedHeading = { fg = c.nord11 },
 })
 
 -- Telescope
