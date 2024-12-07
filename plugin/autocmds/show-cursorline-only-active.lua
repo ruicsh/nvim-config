@@ -2,6 +2,7 @@
 -- https://github.com/folke/dot/blob/master/nvim/lua/config/autocmds.lua
 
 local group = vim.api.nvim_create_augroup("ruicsh/show_cursorline_only_active", { clear = true })
+
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 	group = group,
 	callback = function()
