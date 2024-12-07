@@ -99,6 +99,18 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
+			extensions = {
+				"aerial",
+				"fugitive",
+				"lazy",
+				"man",
+				"mason",
+				"neo-tree",
+				"nvim-dap-ui",
+				"oil",
+				"quickfix",
+				"toggleterm",
+			},
 		})
 	end,
 
