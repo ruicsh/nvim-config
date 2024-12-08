@@ -35,7 +35,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keybidings helper
 - [workspaces.nvim](https://github.com/natecraddock/workspaces.nvim) - Manage workspace directories
 
-#### Buffers, Splits and Tabs
+#### Buffers, Windows and Tabs
 
 - [Bbye (Buffer Bye)](https://github.com/moll/vim-bbye) - Delete buffers and close files without closing your windows or messing up your layout
 - [Scope.nvim](https://github.com/tiagovla/scope.nvim) - Enhanced tab scoping
@@ -104,16 +104,11 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ## Mappings
 
-There is a global keymap to close the different panels, windows and features -
-`<c-]>`. This keymap is used to close Telescope, Fugitive's git status panel or
-a vertical split, for example.
-
 See [mappings](assets/mappings.md) for the complete list.
 
 ## Commands
 
 - `CopyFilePathToClipboard` - Copy current buffer's path to clipboard.
-- `Scratch` - Create a scratch buffer.
 - `ToggleFormatOnSave` - Toggle on/off formatting on save.
 
 ## Resources

@@ -34,7 +34,7 @@
 - `g\` toggle trash
 - `<c-]>` close explorer
 
-### Buffers, Splits and Tabs
+### Buffers, Windows and Tabs
 
 #### Buffers
 
@@ -48,14 +48,13 @@
 - `<leader>bo` close the other buffers
 - `<leader>bx` exit buffer
 
-#### Splits
+#### Windows
 
-- `|` switch splits
-- `<c-w>[` move buffer to split on the left
-- `<c-w>]` move budder to split on the right
-- `<c-w>m` maximize split
-- `<c-]>` quit split
-- `<c-w>v` split vertically
+- `|` switch windows
+- `<c-w>[` move buffer to window on the left
+- `<c-w>]` move budder to window on the right
+- `<c-w>m` maximize window
+- `<c-]>` quit window
 
 #### Tabs
 

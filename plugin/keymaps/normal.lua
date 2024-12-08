@@ -45,6 +45,19 @@ k("n", "<leader>bc", "<cmd>Bdelete<cr>", { desc = "Buffers: Close" })
 k("n", "<leader>bo", "<cmd>bufdo bd<cr>", { desc = "Buffers: Close all other" })
 k("n", "<leader>bx", "<cmd>Bdelete!<cr>", { desc = "Buffers: Exit" })
 
+-- Windows
+k("n", "|", "<c-w>w", { desc = "Windows: Switch" })
+k("n", "<c-w>|", "<c-w>v", { desc = "Windows: Split vertically" })
+k("n", "<c-w>[", "<c-w>x<c-w>w", { desc = "Windows: Move file to the left" })
+k("n", "<c-w>]", "<c-w>x<c-w>w", { desc = "Windows: Move file to the right" })
+
+-- Tabs
+k("n", "<leader>td", "<cmd>tabclose<cr>", { desc = "Tabs: Close" })
+k("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "Tabs: New" })
+k("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Tabs: Close all other" })
+k("n", "<leader>tH", "<cmd>-tabmove<cr>", { desc = "Tabs: Move current tab to before" })
+k("n", "<leader>tL", "<cmd>+tabmove<cr>", { desc = "Tabs: Move current tab to after" })
+
 -- Quickfix
 k("n", "[q", "<cmd>cprev<cr>", { desc = "Quickfix: Previous" })
 k("n", "]q", "<cmd>cnext<cr>", { desc = "Quickfix: Next" })
