@@ -83,7 +83,7 @@ local function lsp_on_attach(client, bufnr)
 	end
 
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
-	k("<c-k>", vim.lsp.buf.hover, "Hover")
+	k("K", vim.lsp.buf.hover, "Hover")
 	k("gd", jump_to_definition, "Jump to [d]efinition")
 	k("gD", vim.lsp.buf.declaration, "Jump to [D]eclaration")
 	k("gO", document_symbol, "Document Symbol")
@@ -95,7 +95,7 @@ local function lsp_on_attach(client, bufnr)
 	k("grn", vim.lsp.buf.rename, "Rename symbol")
 	k("grr", vim.lsp.buf.references, "List [r]eferences")
 	k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "n", "i" })
-	k("<leader>xx", vim.diagnostic.setqflist, "Diagnostics")
+	k("<leader>dd", vim.diagnostic.setqflist, "Diagnostics")
 end
 
 return {

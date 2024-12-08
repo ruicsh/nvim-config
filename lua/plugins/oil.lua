@@ -21,7 +21,7 @@ return {
 			bufhidden = "hide",
 		},
 		columns = {
-			"icon",
+			{ "icon", add_padding = false },
 		},
 		constrain_cursor = "name",
 		default_file_explorer = true,

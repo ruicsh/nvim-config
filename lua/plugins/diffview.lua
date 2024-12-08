@@ -31,11 +31,6 @@ return {
 				},
 			},
 			hooks = {
-				diff_buf_read = function(buffnr)
-					vim.api.nvim_buf_call(buffnr, function()
-						vim.cmd("normal! gg]czz")
-					end)
-				end,
 				diff_buf_win_enter = function()
 					vim.wo.cursorline = false -- Disable cursorline.
 					vim.opt_local.foldenable = false -- Disable folding.

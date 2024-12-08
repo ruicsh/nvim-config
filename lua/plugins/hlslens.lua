@@ -4,6 +4,7 @@
 return {
 	"kevinhwang91/nvim-hlslens",
 	opts = {
+		calm_down = true,
 		nearest_only = true,
 	},
 	config = function(_, opts)
@@ -11,7 +12,7 @@ return {
 		hlslens.setup(opts)
 
 		local k = vim.api.nvim_set_keymap
-		local kopts = { noremap = true, silent = true }
+		local kopts = { silent = true }
 
 		k("n", "n", [[<cmd>execute('normal! ' . v:count1 . 'n')<cr><cmd>lua require('hlslens').start()<cr>]], kopts)
 		k("n", "N", [[<cmd>execute('normal! ' . v:count1 . 'N')<cr><cmd>lua require('hlslens').start()<cr>]], kopts)

@@ -60,11 +60,11 @@ return {
 				enable = true,
 				lookahead = true,
 				keymaps = {
-					["af"] = {
+					["a["] = {
 						query = "@function.outer",
 						desc = "Syntax: Select [a] [f]unction",
 					},
-					["if"] = {
+					["i["] = {
 						query = "@function.inner",
 						desc = "Syntax: Select [i]nner [f]unction",
 					},
@@ -82,20 +82,12 @@ return {
 				enable = true,
 				set_jumps = false,
 				goto_previous_start = {
-					["[f"] = { query = "@function.outer", desc = "Syntax: Previous [f]unction" },
+					["[["] = { query = "@function.outer", desc = "Syntax: Previous [f]unction" },
 					["[a"] = { query = "@parameter.inner", desc = "Syntax: Previous [a]rgument" },
 				},
-				goto_previous_end = {
-					["[F"] = { query = "@function.outer", desc = "Syntax: Previous [f]unction" },
-					["[A"] = { query = "@parameter.inner", desc = "Syntax: Previous [a]rgument" },
-				},
 				goto_next_start = {
-					["]f"] = { query = "@function.outer", desc = "Syntax: Next [f]unction" },
+					["]]"] = { query = "@function.outer", desc = "Syntax: Next [f]unction" },
 					["]a"] = { query = "@parameter.inner", desc = "Syntax: Next [a]rgument" },
-				},
-				goto_next_end = {
-					["]F"] = { query = "@function.outer", desc = "Syntax: Next [f]unction" },
-					["]A"] = { query = "@parameter.inner", desc = "Syntax: Next [a]rgument" },
 				},
 			},
 		},

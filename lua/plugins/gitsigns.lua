@@ -32,21 +32,20 @@ return {
 			end
 
 			-- Navigation
-			map("n", "]c", function()
-				if vim.wo.diff then
-					vim.cmd.normal({ "]c", bang = true })
-				else
-					gitsigns.nav_hunk("next")
+			local function nav_hunk(diff_cmd, direction)
+				local function fn()
+					print("ruic[1]: gitsigns.lua:35: diff_cmd=" .. vim.inspect(diff_cmd))
+					if vim.wo.diff then
+						vim.cmd("normal! " .. diff_cmd)
+					else
+						gitsigns.nav_hunk(direction)
+					end
 				end
-			end, { desc = "Git: Jump to next [c]hange" })
+				return fn
+			end
 
-			map("n", "[c", function()
-				if vim.wo.diff then
-					vim.cmd.normal({ "[c", bang = true })
-				else
-					gitsigns.nav_hunk("prev")
-				end
-			end, { desc = "Git: Jump to previous [c]hange" })
+			map("n", "]c", nav_hunk("]c", "next"))
+			map("n", "[c", nav_hunk("[c", "prev"))
 
 			-- Actions
 			map({ "n", "v" }, "<leader>hs", gitsigns.stage_hunk, { desc = "Git: [s]tage hunk", buffer = bufnr })
