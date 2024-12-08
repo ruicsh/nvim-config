@@ -33,7 +33,7 @@ return {
 			hooks = {
 				diff_buf_win_enter = function()
 					vim.wo.cursorline = false -- Disable cursorline.
-					vim.opt_local.foldenable = false -- Disable folding.
+					vim.wo.relativenumber = false -- Disable relative numbers.
 					vim.cmd("VimadeWinDisable") -- Disable window tint.
 				end,
 				view_enter = function(view)

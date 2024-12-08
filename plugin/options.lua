@@ -14,6 +14,10 @@ o.startofline = true -- Move cursor to the first non-blank character.
 o.fillchars = {
 	eob = " ", -- End of buffer marker.
 	diff = "╱", -- Diffview deleted lines marker.
+	foldopen = "", -- Beggining of a fold.
+	foldclose = "", -- Closed fold.
+	fold = " ", -- Filling foldtext.
+	foldsep = " ", -- Open fold middle marker
 }
 o.number = true -- Show line numbers.
 o.numberwidth = 5 -- More space on the gutter column.
