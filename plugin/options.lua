@@ -1,6 +1,4 @@
---
 -- Options organized by sections on :options
---
 
 local o = vim.opt
 
@@ -20,8 +18,8 @@ o.fillchars = {
 o.number = true -- Show line numbers.
 o.numberwidth = 5 -- More space on the gutter column.
 o.relativenumber = true -- Show relative line numbers.
-o.scrolloff = 6 -- Number of lines to keep up/down of the cursor
-o.sidescrolloff = 10 -- Number of columns to keep left/right of the cursor
+o.scrolloff = 6 -- Number of lines to keep up/down of the cursor.
+o.sidescrolloff = 10 -- Number of columns to keep left/right of the cursor.
 o.wrap = false -- Do not automatically wrap texts.
 
 -- 5 syntax, highlighting and spelling
@@ -99,6 +97,7 @@ o.foldtext = "v:lua.custom_fold_text()." -- Show number of folded lines or first
 
 -- 17 reading and writing files
 o.backup = false -- Do not create backup files.
+o.modeline = false -- Do not check for settings at beginning of file.
 
 -- 18 the swap file
 o.swapfile = false -- Stop creating swp files.

@@ -17,9 +17,6 @@ k("x", "c", '"_c')
 k("x", "p", '"_dp')
 k("x", "x", '"_x')
 
--- Remove search highlighting.
-k("x", "<esc>", "<cmd>noh<cr><esc>")
-
 -- Augmented HJKL
 k("x", "J", "6j")
 k("x", "K", "6k")

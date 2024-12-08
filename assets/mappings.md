@@ -54,7 +54,7 @@
 - `<c-w>[` move buffer to window on the left
 - `<c-w>]` move budder to window on the right
 - `<c-w>m` maximize window
-- `<c-]>` quit window
+- `<c-]>` close window
 
 #### Tabs
 
@@ -69,12 +69,21 @@
 
 ### Editor
 
+#### Navigation
+
+- `{` jump up 6 lines
+- `}` jump down 6 lines
+- `[\` jump to previous position
+- `]\` jump to next position
+- `[;` jump to previous change
+- `];` jump to next change
 - `H` jump to first non-empty character in line
-- `J` jump down 6 lines
-- `K` jump up 6 lines
 - `L` jump to end of line
-- `M` join lines
-- `U` redo
+- `<leader>jj` show jumplist
+- `'0` jump to position where last exited Vim
+
+#### Editing
+
 - `[<space>` add blank line above cursor
 - `]<space>` add blank line below cursor
 - `[e` move line/selection above
@@ -86,6 +95,7 @@
 - `ds{char}` delete surrounding character
 - `ys{motion}{char}` insert surrounding character
 - `yc` duplicate a line, comment out the first line.
+- `U` redo
 
 #### Insert mode navigation
 
@@ -152,12 +162,8 @@
 
 - `[a` jump to previous argument start
 - `]a` jump to next argument start
-- `[A` jump to previous argument end
-- `]A` jump to next argument end
-- `[f` jump to previous function start
-- `]f` jump to next function start
-- `[F` jump to previous function end
-- `]F` jump to next function end
+- `[[` jump to previous function start
+- `]]` jump to next function start
 - `[r` jump to previous symbol reference
 - `]r` jump to next symbol reference
 - `[t` jump to previous AST node
@@ -170,7 +176,7 @@
 #### LSP
 
 - `<c-s>` display signature help
-- `<leader>k` display hover information for symbol
+- `K` display hover information for symbol
 - `gO` list symbols in document
 - `gd` jump to definition
 - `go` jump to type definition
@@ -194,7 +200,7 @@
 
 #### Diagnostics
 
-- `<leader>xx` open diagnostics for buffer
+- `<leader>dd` open diagnostics for buffer
 - `[d` jump to previous diagnostic
 - `]d` jump to next diagnostic
 
@@ -268,14 +274,6 @@
 - `<leader>r` search and replace on all entries
 - `dd` remove entry
 
-#### Jumplist, changelist
-
-- `<leader>jj` show jumplist
-- `<c-o>` jump to older position in the jumplist
-- `<c-i>` jump to newer position in the Jumplist
-- `g;` jump to older position in the changelist
-- `g,` jump to newer position in the changelist
-
 #### Marks
 
 - `''` jump to position before last jump
@@ -283,7 +281,7 @@
 - `'0` jump to position when last exited Vim
 - `'{a-z}` jump to line in local mark
 - `'{A-Z}` jump to line in global mark
-- `'{0-9}` jump to last positions when last exited Vim
+- `'{0-9}` jump to last lines when last exited Vim
 
 #### Folds
 

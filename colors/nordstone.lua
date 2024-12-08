@@ -1,10 +1,7 @@
-------
--- NordStone
-------
+-- NordStone theme
 
 ----
 -- Utilities
-----
 
 -- Set highlight group
 local function hl(group, color)
@@ -38,9 +35,9 @@ end
 
 vim.g.colors_name = "nordstone"
 
-----
+--
 -- Colors
-----
+
 NordStoneColors = {
 	nord0 = "#2e3440",
 	nord1 = "#3b4252",
@@ -72,9 +69,7 @@ NordStoneColors = {
 
 local c = NordStoneColors
 
-----
 -- Editor
-----
 loadColorSet({
 	ColorColumn = { fg = "NONE", bg = "NONE" },
 	CommandMode = { fg = c.nord4, bg = "NONE", style = "reverse" },
@@ -89,14 +84,14 @@ loadColorSet({
 	DiffChange = { bg = c.nord0 },
 	DiffDelete = { bg = c.nord11_900 },
 	DiffText = { bg = c.nord3 },
-	Directory = { fg = c.nord4, bg = "NONE" },
+	Directory = { fg = c.nord4 },
 	EndOfBuffer = { fg = c.nord1 },
 	ErrorMsg = { fg = "NONE" },
 	FloatBorder = { fg = c.nord4, bg = "NONE" },
 	FoldColumn = { fg = c.nord7 },
 	Folded = { fg = c.nord3_500, style = "italic" },
 	Function = { fg = c.nord8 },
-	IncSearch = { bg = c.nord2 },
+	IncSearch = { link = "CurSearch" },
 	InsertMode = { fg = c.nord14, bg = "NONE", style = "reverse" },
 	LineNr = { fg = c.nord3_500 },
 	MatchParen = { fg = c.nord15, bg = "NONE", style = "bold" },
@@ -144,9 +139,7 @@ loadColorSet({
 	healthWarning = { fg = c.nord15 },
 })
 
-----
 -- Terminal
-----
 vim.g.terminal_color_0 = c.nord1
 vim.g.terminal_color_1 = c.nord11
 vim.g.terminal_color_2 = c.nord14
@@ -164,9 +157,64 @@ vim.g.terminal_color_13 = c.nord15
 vim.g.terminal_color_14 = c.nord7
 vim.g.terminal_color_15 = c.nord6
 
-----
 -- Plugins
-----
+
+-- csvview.nvim
+loadColorSet({
+	CsvViewDelimiter = { fg = c.nord1 },
+})
+
+-- Diff
+loadColorSet({
+	diffAdded = { fg = c.nord14 },
+	diffChanged = { fg = c.nord15 },
+	diffFile = { fg = c.nord7 },
+	diffIndexLine = { fg = c.nord9 },
+	diffLine = { fg = c.nord3 },
+	diffNewFile = { fg = c.nord12 },
+	diffOldFile = { fg = c.nord13 },
+	diffRemoved = { fg = c.nord11 },
+	diffSubname = { fg = c.nord3_900, style = "bold" },
+})
+
+-- Fugitive
+loadColorSet({
+	fugitiveHunk = { fg = c.nord3_900 },
+	fugitiveIgnoredHeading = { fg = c.nord3 },
+	fugitiveMergedHeading = { fg = c.nord8 },
+	fugitiveRemoteHeading = { fg = c.nord9 },
+	fugitiveStagedHeading = { fg = c.nord14 },
+	fugitiveStashedHeading = { fg = c.nord12 },
+	fugitiveSymbolicRef = { fg = c.nord9 },
+	fugitiveUnmergedHeading = { fg = c.nord13 },
+	fugitiveUnstagedHeading = { fg = c.nord13 },
+	fugitiveUntrackedHeading = { fg = c.nord11 },
+})
+
+-- GitSigns
+loadColorSet({
+	GitSignsAdd = { fg = c.nord14 },
+	GitSignsAddNr = { fg = c.nord14 },
+	GitSignsAddLn = { fg = c.nord14 },
+	GitSignsChange = { fg = c.nord13 },
+	GitSignsChangeNr = { fg = c.nord13 },
+	GitSignsChangeLn = { fg = c.nord13 },
+	GitSignsDelete = { fg = c.nord11 },
+	GitSignsDeleteNr = { fg = c.nord11 },
+	GitSignsDeleteLn = { fg = c.nord11 },
+	GitSignsCurrentLineBlame = { fg = c.nord3_500, style = "bold" },
+})
+
+-- hlsearch
+loadColorSet({
+	HlSearchLensNear = { fg = c.nord3_500, bg = "NONE" },
+	HlSearchLens = { fg = c.nord3_500, bg = "NONE" },
+})
+
+-- lightbulb.nvim
+loadColorSet({
+	LightBulbVirtualText = { fg = c.nord13 },
+})
 
 -- LSP
 loadColorSet({
@@ -218,68 +266,6 @@ loadColorSet({
 	DiagnosticWarn = { link = "LspDiagnosticsDefaultWarning" },
 })
 
--- GitSigns
-loadColorSet({
-	GitSignsAdd = { fg = c.nord14 },
-	GitSignsAddNr = { fg = c.nord14 },
-	GitSignsAddLn = { fg = c.nord14 },
-	GitSignsChange = { fg = c.nord13 },
-	GitSignsChangeNr = { fg = c.nord13 },
-	GitSignsChangeLn = { fg = c.nord13 },
-	GitSignsDelete = { fg = c.nord11 },
-	GitSignsDeleteNr = { fg = c.nord11 },
-	GitSignsDeleteLn = { fg = c.nord11 },
-	GitSignsCurrentLineBlame = { fg = c.nord3_500, style = "bold" },
-})
-
--- Fugitive
-loadColorSet({
-	fugitiveHunk = { fg = c.nord3_900 },
-	fugitiveIgnoredHeading = { fg = c.nord3 },
-	fugitiveMergedHeading = { fg = c.nord8 },
-	fugitiveRemoteHeading = { fg = c.nord9 },
-	fugitiveStagedHeading = { fg = c.nord14 },
-	fugitiveStashedHeading = { fg = c.nord12 },
-	fugitiveSymbolicRef = { fg = c.nord9 },
-	fugitiveUnmergedHeading = { fg = c.nord13 },
-	fugitiveUnstagedHeading = { fg = c.nord13 },
-	fugitiveUntrackedHeading = { fg = c.nord11 },
-})
-
--- Telescope
-loadColorSet({
-	TelescopePromptBorder = { fg = c.nord4 },
-	TelescopeResultsBorder = { fg = c.nord4 },
-	TelescopePreviewBorder = { fg = c.nord4 },
-	TelescopeSelectionCaret = { fg = c.nord9 },
-	TelescopeSelection = { fg = c.nord6, bg = c.nord2 },
-	TelescopeMatching = { link = "Search" },
-})
-
--- WhichKey
-loadColorSet({
-	WhichKey = { fg = c.nord8, style = "bold" },
-	WhichKeyGroup = { fg = c.nord5 },
-	WhichKeyDesc = { fg = c.nord7, style = "italic" },
-	WhichKeySeperator = { fg = c.nord9 },
-	WhichKeyFloating = { bg = c.nord1 },
-	WhichKeyFloat = { bg = c.nord1 },
-	WhichKeyValue = { fg = c.nord7 },
-})
-
--- Diff
-loadColorSet({
-	diffAdded = { fg = c.nord14 },
-	diffChanged = { fg = c.nord15 },
-	diffFile = { fg = c.nord7 },
-	diffIndexLine = { fg = c.nord9 },
-	diffLine = { fg = c.nord3 },
-	diffNewFile = { fg = c.nord12 },
-	diffOldFile = { fg = c.nord13 },
-	diffRemoved = { fg = c.nord11 },
-	diffSubname = { fg = c.nord3_900, style = "bold" },
-})
-
 -- NeoTree
 loadColorSet({
 	NeoTreeGitDirty = { fg = c.nord13 },
@@ -288,12 +274,6 @@ loadColorSet({
 	NeoTreeGitRenamed = { fg = c.nord12 },
 	NeoTreeGitNew = { fg = c.nord14 },
 	NeoTreeGitUntracked = { fg = c.nord14 },
-})
-
--- hlsearch
-loadColorSet({
-	HlSearchLensNear = { fg = c.nord3_500, bg = "NONE" },
-	HlSearchLens = { fg = c.nord3_500, bg = "NONE" },
 })
 
 -- nvim-dap
@@ -348,20 +328,6 @@ loadColorSet({
 	SpectreSearchHl = { fg = c.nord0, bg = c.nord13 },
 })
 
--- outline.nvim
-loadColorSet({
-	OutlineCurrent = { fg = c.nord8 },
-	OutlineGuides = { fg = c.nord3 },
-	OutlineFoldMarker = { fg = c.nord3 },
-	OutlineDetails = { fg = c.nord3_500 },
-	OutlineLineno = { fg = c.nord3 },
-})
-
--- lightbulb.nvim
-loadColorSet({
-	LightBulbVirtualText = { fg = c.nord13 },
-})
-
 -- quicker.nvim
 loadColorSet({
 	Delimiter = { fg = c.neutral_800 },
@@ -373,14 +339,30 @@ loadColorSet({
 	TreesitterContextSeparator = { fg = c.nord0 },
 })
 
--- csvview.nvim
+-- Telescope
 loadColorSet({
-	CsvViewDelimiter = { fg = c.nord1 },
+	TelescopePromptBorder = { fg = c.nord4 },
+	TelescopeResultsBorder = { fg = c.nord4 },
+	TelescopePreviewBorder = { fg = c.nord4 },
+	TelescopeSelectionCaret = { fg = c.nord9 },
+	TelescopeSelection = { fg = c.nord6, bg = c.nord2 },
+	TelescopeMatching = { link = "Search" },
+})
+
+-- WhichKey
+loadColorSet({
+	WhichKey = { fg = c.nord8, style = "bold" },
+	WhichKeyGroup = { fg = c.nord5 },
+	WhichKeyDesc = { fg = c.nord7, style = "italic" },
+	WhichKeySeperator = { fg = c.nord9 },
+	WhichKeyFloating = { bg = c.nord1 },
+	WhichKeyFloat = { bg = c.nord1 },
+	WhichKeyValue = { fg = c.nord7 },
 })
 
 ----
 -- Syntax
-----
+
 loadColorSet({
 	["@Special"] = { fg = c.nord13 },
 
