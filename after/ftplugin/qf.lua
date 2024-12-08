@@ -1,5 +1,5 @@
 local k = vim.keymap.set
-local opts = { silent = true, buffer = true, noremap = true }
+local opts = { silent = true, buffer = true }
 
 k("n", "<cr>", "<cr><cmd>cclose<cr>", opts) -- Close the quickfix when opening a file
 
@@ -20,7 +20,7 @@ k("n", "<leader>r", function()
 	-- :cdo s//<left><left>
 	local cmd = ":" .. listdo .. " s//g<left><left>"
 	fk(tc(cmd, true, false, true), "n", false)
-end)
+end, opts)
 
 -- Remove quickfix entry.
 -- https://github.com/famiu/dot-nvim/blob/master/ftplugin/qf.lua
@@ -33,4 +33,4 @@ k("n", "dd", function()
 	-- Restore cursor position.
 	local max_lines = vim.api.nvim_buf_line_count(0)
 	vim.api.nvim_win_set_cursor(0, { math.min(line, max_lines), 0 })
-end)
+end, opts)
