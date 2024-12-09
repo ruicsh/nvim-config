@@ -10,6 +10,7 @@ return {
 		vim.keymap.set({ "x", "o" }, "S", "<Plug>(leap-backward)")
 	end,
 
+	events = { "VeryLazy" },
 	dependencies = {
 		"tpope/vim-repeat",
 	},
