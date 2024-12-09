@@ -88,7 +88,7 @@ loadColorSet({
 	EndOfBuffer = { fg = c.nord1 },
 	ErrorMsg = { fg = "NONE" },
 	FloatBorder = { fg = c.nord4, bg = "NONE" },
-	FoldColumn = { fg = c.nord7 },
+	FoldColumn = { fg = c.nord3_500 },
 	Folded = { fg = c.nord3_500, style = "italic" },
 	Function = { fg = c.nord8 },
 	IncSearch = { link = "CurSearch" },
@@ -213,7 +213,7 @@ loadColorSet({
 
 -- lightbulb.nvim
 loadColorSet({
-	LightBulbVirtualText = { fg = c.nord13 },
+	LightBulbSign = { fg = c.nord13 },
 })
 
 -- LSP

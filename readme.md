@@ -2,12 +2,12 @@
 
 This is my configuration for [Neovim](https://neovim.io/), I mostly work on web frontend development.
 
-- **Editor** - enhanced vim motions, extended text objects, mouseless development
+- **Editor** - enhanced vim motions, extended text objects, folding
 - **Code** - formatter, comments, code completion, AI powered suggestions
 - **LSP** - Language Server Protocol client, symbols navigation, diagnostics
 - **Syntax** - highlighting, syntax aware motions and text objects
-- **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
 - **Git integration** - status, diffview, commit message editor, buffer integration
+- **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
 - **Search** - fuzzy find anything, file and workspace scoped search and replace
 - **Application** - files and directory explorer, workspaces, notifications, command palette
 
@@ -31,6 +31,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) - Statusline
 - [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix
 - [quicker.nvim](https://github.com/stevearc/quicker.nvim) - Quickfix/location list formatter
+- [statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim) - Status column
 - [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) - Manage multiple terminal windows
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keybidings helper
 - [workspaces.nvim](https://github.com/natecraddock/workspaces.nvim) - Manage workspace directories

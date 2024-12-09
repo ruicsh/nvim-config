@@ -10,13 +10,10 @@ return {
 		validate_config = "never",
 		code_lenses = true,
 		sign = {
-			enabled = false,
-		},
-		virtual_text = {
 			enabled = true,
 			text = "",
 			lens_text = "",
-			pos = 0,
+			hl = "LightBulbSign",
 		},
 	},
 

@@ -92,12 +92,11 @@ o.softtabstop = 2 -- Number of spaces that a <Tab> key in the file counts for.
 o.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for.
 
 -- 14 folding
-o.foldcolumn = "0" -- Disable fold column.
+o.foldcolumn = "1" -- Show folding signs.
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding.
 o.foldlevel = 99 -- How many folds to close.
 o.foldlevelstart = 99 -- Start with all folds open.
 o.foldmethod = "expr" -- Use expr to determine fold level.
-o.foldtext = "v:lua.custom_fold_text()." -- Show number of folded lines or first line of code.
 
 -- 17 reading and writing files
 o.backup = false -- Do not create backup files.
