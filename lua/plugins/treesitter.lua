@@ -103,7 +103,6 @@ return {
 	},
 
 	main = "nvim-treesitter.configs",
-	event = { "VeryLazy" },
 	build = ":TSUpdate",
 	dependencies = {
 		{
