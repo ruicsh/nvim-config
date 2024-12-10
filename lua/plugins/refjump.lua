@@ -10,4 +10,7 @@ return {
 	},
 
 	event = { "VeryLazy" },
+	dependencies = {
+		{ "mawkler/demicolon.nvim" },
+	},
 }
