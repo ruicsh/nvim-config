@@ -14,7 +14,6 @@ api.nvim_create_autocmd("FileType", {
 		"checkhealth",
 		"fugitive",
 		"git",
-		"gitcommit",
 		"help",
 		"lspinfo",
 		"man",
@@ -27,7 +26,7 @@ api.nvim_create_autocmd("FileType", {
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
 		vim.schedule(function()
-			vim.keymap.set({ "n" }, closeShortcut, function()
+			vim.keymap.set("n", closeShortcut, function()
 				vim.cmd("close")
 				pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
 			end, {
@@ -80,5 +79,13 @@ api.nvim_create_autocmd("FileType", {
 	},
 	callback = function(event)
 		vim.keymap.set("n", closeShortcut, "<cmd>tabclose<cr>", { buffer = event.buf })
+	end,
+})
+
+api.nvim_create_autocmd("FileType", {
+	group = group,
+	pattern = { "gitcommit" },
+	callback = function(event)
+		vim.keymap.set({ "n", "i" }, closeShortcut, "<cmd>q!<cr>", { buffer = event.buf })
 	end,
 })
