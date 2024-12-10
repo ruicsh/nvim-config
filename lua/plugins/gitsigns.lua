@@ -34,7 +34,6 @@ return {
 			-- Navigation
 			local function nav_hunk(diff_cmd, direction)
 				local function fn()
-					print("ruic[1]: gitsigns.lua:35: diff_cmd=" .. vim.inspect(diff_cmd))
 					if vim.wo.diff then
 						vim.cmd("normal! " .. diff_cmd)
 					else

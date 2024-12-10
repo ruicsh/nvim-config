@@ -68,17 +68,8 @@ o.showmode = false -- Do not show mode on last line.
 o.clipboard = "unnamedplus" -- Use system clipboard.
 
 -- 12 editing text
-o.complete:append({ -- Keyword completion in insert mode
-	".", -- Scan the current buffer.
-	"w", -- Scan buffers from other windows.
-	"b", -- Scan other loaded buffers.
-	"u", -- Scan unloaded buffers.
-})
-o.completeopt:append({
-	"menuone", -- Use popup menu even when there is only one entry.
-	"noselect", -- Do not auto-select a match in the menu.
-	"noinsert", -- Do not insert text until selected.
-})
+o.complete = "" -- Disable native autocompletion (using nvim-cmp).
+o.completeopt = "" -- Disable native autocompletion (using nvim-cmp).
 o.pumblend = 5 -- Transparent completion menu background.
 o.pumheight = 15 -- Maximum height of popup menu.
 o.showmatch = false -- Do not jump to matching brackets.

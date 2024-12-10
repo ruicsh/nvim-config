@@ -17,9 +17,6 @@ return {
 
 		local cmp = require("cmp")
 		cmp.setup({
-			completion = {
-				completeopt = "menu,menuone,noselect",
-			},
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
 				format = function(entry, item)
