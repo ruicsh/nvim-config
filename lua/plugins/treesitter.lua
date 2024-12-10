@@ -91,6 +91,15 @@ return {
 				},
 			},
 		},
+		refactor = {
+			navigation = {
+				enable = false,
+				keymaps = {
+					goto_next_usage = "]r",
+					goto_previous_usage = "[r",
+				},
+			},
+		},
 	},
 
 	main = "nvim-treesitter.configs",
@@ -101,6 +110,11 @@ return {
 			-- Syntax aware text objects.
 			-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
+		{
+			-- Syntax aware refactor tools.
+			-- https://github.com/nvim-treesitter/nvim-treesitter-refactor
+			"nvim-treesitter/nvim-treesitter-refactor",
 		},
 	},
 }
