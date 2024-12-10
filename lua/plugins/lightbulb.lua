@@ -17,5 +17,5 @@ return {
 		},
 	},
 
-	event = { "VeryLazy" },
+	event = { "LspAttach" },
 }

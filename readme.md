@@ -98,8 +98,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [Diffview.nvim](https://github.com/sindrets/diffview.nvim) - Diffview/Log
 - [fugitive.vim](https://github.com/tpope/vim-fugitive) - Git wrapper
 - [git-blame.nvim](https://github.com/f-person/git-blame.nvim) - Git blame
-- [git-conflict.nvim](https://github.com/akinsho/git-conflict.nvim) - Merge conflicts
-- [gitlinker.nvim](https://github.com/ruifm/gitlinker.nvim) - Shareable file links
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git buffer integration
 
 ## Mappings
