@@ -12,7 +12,7 @@ return {
 			relativenumber = true,
 			signcolumn = "yes",
 			winfixheight = true,
-			wrap = true,
+			wrap = false,
 		},
 		use_default_opts = false,
 		type_icons = {

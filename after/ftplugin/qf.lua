@@ -3,12 +3,6 @@ local opts = { silent = true, buffer = true }
 
 k("n", "<cr>", "<cr><cmd>cclose<cr>", opts) -- Close the quickfix when opening a file
 
--- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/after/ftplugin/qf.lua
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.opt_local.list = false
-vim.o.buflisted = false
-
 vim.cmd.packadd("cfilter")
 
 -- Search and replace on quickfix files.
