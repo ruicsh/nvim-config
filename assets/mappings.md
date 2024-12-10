@@ -166,8 +166,8 @@
 - `]t` jump to next AST node
 - `[T` jump to parent AST node
 - `]T` jump to child AST node
-- `+` start/increase AST node selection
-- `_` decrease AST node selection
+- `<cr>` start/increase AST node selection
+- `<bs>` decrease AST node selection
 
 #### LSP
 
