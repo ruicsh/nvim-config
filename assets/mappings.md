@@ -73,10 +73,6 @@
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
-- `[\` jump to previous position
-- `]\` jump to next position
-- `[;` jump to previous change
-- `];` jump to next change
 - `H` jump to first non-empty character in line
 - `L` jump to end of line
 - `<leader>jj` show jumplist

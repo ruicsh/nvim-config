@@ -5,13 +5,9 @@ k("n", "H", "0^", { desc = "Jump to first character on line" })
 k("n", "L", "$", { desc = "Jump to end of line" })
 k("n", "{", "<cmd>keepjumps normal!6k<cr>", { desc = "Jump up 6 lines" })
 k("n", "}", "<cmd>keepjumps normal!6j<cr>", { desc = "Jump down 6 lines" })
-k("n", "[;", "g;", { desc = "Jump to previous change" })
-k("n", "];", "g,", { desc = "Jump to next change" })
 -- Don't include small jumps on jumplist.
 k("n", "k", "(v:count > 10 ? \"m'\" .. v:count : '') .. 'k'", { expr = true })
 k("n", "j", "(v:count > 10 ? \"m'\" .. v:count : '') .. 'j'", { expr = true })
-k("n", "[\\", "<c-o>", { desc = "Jump to previous location" })
-k("n", "]\\", "<c-i>", { desc = "Jump to next location" })
 
 -- Editing
 k("n", "[<space>", "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = "Put empty line above" })
