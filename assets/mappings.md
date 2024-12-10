@@ -162,10 +162,6 @@
 - `]]` jump to next function start
 - `[r` jump to previous symbol reference
 - `]r` jump to next symbol reference
-- `[t` jump to previous AST node
-- `]t` jump to next AST node
-- `[T` jump to parent AST node
-- `]T` jump to child AST node
 - `<cr>` start/increase AST node selection
 - `<bs>` decrease AST node selection
 
