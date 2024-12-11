@@ -3,7 +3,7 @@ local M = {}
 M = {
 	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 	servers = {
-		angularls = {
+		["angularls@18.2.0"] = {
 			filetypes = { "htmlangular", "typescript" },
 		},
 		cssls = {},
