@@ -1,6 +1,6 @@
 local M = {}
 
-M.icons = {
+M = {
 	dap = {
 		Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
 		Breakpoint = " ",
@@ -24,34 +24,6 @@ M.icons = {
 		TopDelete = "",
 		ChangeDelete = "┃",
 		Untracked = "┃",
-	},
-}
-
-M.lsp = {
-	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-	servers = {
-		angularls = {
-			filetypes = { "htmlangular", "typescript" },
-		},
-		cssls = {},
-		cssmodules_ls = {},
-		eslint = {},
-		html = {},
-		jsonls = {},
-		lua_ls = {
-			settings = {
-				Lua = {
-					diagnostics = {
-						disable = { "missing-parameters", "missing-fields" },
-					},
-				},
-			},
-		},
-		vuels = {},
-	},
-	tools = {
-		prettierd = {},
-		stylua = {},
 	},
 }
 

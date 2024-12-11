@@ -1,7 +1,7 @@
 -- DAP client implementation
 -- https://github.com/mfussenegger/nvim-dap
 
-local config = require("ruicsh")
+local icons = require("config/icons")
 
 return {
 	"mfussenegger/nvim-dap",
@@ -43,7 +43,7 @@ return {
 		local dap = require("dap")
 
 		-- icons
-		for name, sign in pairs(config.icons.dap) do
+		for name, sign in pairs(icons.dap) do
 			sign = type(sign) == "table" and sign or { sign }
 			vim.fn.sign_define(
 				"Dap" .. name,

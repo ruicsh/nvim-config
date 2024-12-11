@@ -1,26 +1,26 @@
 -- Buffer integration
 -- https://github.com/lewis6991/gitsigns.nvim
 
-local config = require("ruicsh")
+local icons = require("config/icons")
 
 return {
 	"lewis6991/gitsigns.nvim",
 	opts = {
 		signs = {
-			add = { text = config.icons.git.Add },
-			change = { text = config.icons.git.Change },
-			delete = { text = config.icons.git.Delete },
-			topdelete = { text = config.icons.git.TopDelete },
-			changedelete = { text = config.icons.git.ChangeDelete },
-			untracked = { text = config.icons.git.Untracked },
+			add = { text = icons.git.Add },
+			change = { text = icons.git.Change },
+			delete = { text = icons.git.Delete },
+			topdelete = { text = icons.git.TopDelete },
+			changedelete = { text = icons.git.ChangeDelete },
+			untracked = { text = icons.git.Untracked },
 		},
 		signs_staged = {
-			add = { text = config.icons.git.Add },
-			change = { text = config.icons.git.Change },
-			delete = { text = config.icons.git.Delete },
-			topdelete = { text = config.icons.git.TopDelete },
-			changedelete = { text = config.icons.git.ChangeDelete },
-			untracked = { text = config.icons.git.Untracked },
+			add = { text = icons.git.Add },
+			change = { text = icons.git.Change },
+			delete = { text = icons.git.Delete },
+			topdelete = { text = icons.git.TopDelete },
+			changedelete = { text = icons.git.ChangeDelete },
+			untracked = { text = icons.git.Untracked },
 		},
 		on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")

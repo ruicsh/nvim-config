@@ -1,7 +1,8 @@
 -- LSP config
 -- https://github.com/neovim/nvim-lspconfig
 
-local config = require("ruicsh")
+local lspconf = require("config/lsp")
+local icons = require("config/icons")
 
 local lsp_handlers = {
 	-- <s-k> float window
@@ -101,11 +102,11 @@ return {
 			float = {
 				border = "rounded",
 				prefix = function(diagnostic)
-					local icons = {
-						config.icons.diagnostics.Error,
-						config.icons.diagnostics.Warn,
-						config.icons.diagnostics.Info,
-						config.icons.diagnostics.Hint,
+					local iconsMap = {
+						icons.diagnostics.Error,
+						icons.diagnostics.Warn,
+						icons.diagnostics.Info,
+						icons.diagnostics.Hint,
 					}
 					local hl = {
 						"DiagnosticSignError",
@@ -113,17 +114,17 @@ return {
 						"DiagnosticSignInfo",
 						"DiagnosticSignHint",
 					}
-					return icons[diagnostic.severity], hl[diagnostic.severity]
+					return iconsMap[diagnostic.severity], hl[diagnostic.severity]
 				end,
 			},
 			severity_sort = true,
 			signs = {
 				text = {
-					[vim.diagnostic.severity.ERROR] = config.icons.diagnostics.Error,
-					[vim.diagnostic.severity.WARN] = config.icons.diagnostics.Warn,
-					[vim.diagnostic.severity.INFO] = config.icons.diagnostics.Info,
-					[vim.diagnostic.severity.HINT] = config.icons.diagnostics.Hint,
-					[vim.diagnostic.severity.N] = config.icons.diagnostics.Hint,
+					[vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+					[vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+					[vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+					[vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+					[vim.diagnostic.severity.N] = icons.diagnostics.Hint,
 				},
 				numhl = {
 					[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
@@ -148,11 +149,11 @@ return {
 
 		require("mason-tool-installer").setup({
 			run_on_start = true,
-			ensure_installed = vim.tbl_keys(config.lsp.tools or {}),
+			ensure_installed = vim.tbl_keys(lspconf.tools or {}),
 		})
 
 		require("mason-lspconfig").setup({
-			ensure_installed = vim.tbl_keys(config.lsp.servers or {}),
+			ensure_installed = vim.tbl_keys(lspconf.servers or {}),
 			handlers = {
 				function(server_name)
 					-- Don't setup ts_ls, we're using tsserer from typescript-tools
@@ -160,7 +161,7 @@ return {
 						return
 					end
 
-					local server = config.lsp.servers[server_name] or {}
+					local server = lspconf.servers[server_name] or {}
 
 					local conf = vim.tbl_deep_extend("force", server, {
 						capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),

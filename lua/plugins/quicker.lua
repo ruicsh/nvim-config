@@ -1,7 +1,7 @@
 -- Quickfix/location list formatter
 -- https://github.com/stevearc/quicker.nvim
 
-local config = require("ruicsh")
+local icons = require("config/icons")
 
 return {
 	"stevearc/quicker.nvim",
@@ -16,11 +16,11 @@ return {
 		},
 		use_default_opts = false,
 		type_icons = {
-			E = config.icons.diagnostics.Error,
-			W = config.icons.diagnostics.Warn,
-			I = config.icons.diagnostics.Info,
-			N = config.icons.diagnostics.Hint,
-			H = config.icons.diagnostics.Hint,
+			E = icons.diagnostics.Error,
+			W = icons.diagnostics.Warn,
+			I = icons.diagnostics.Info,
+			N = icons.diagnostics.Hint,
+			H = icons.diagnostics.Hint,
 		},
 		max_filename_width = function()
 			return math.floor(math.min(95, vim.o.columns / 3))

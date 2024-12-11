@@ -1,7 +1,7 @@
 -- Status line
 -- https://github.com/nvim-lualine/lualine.nvim
 
-local config = require("ruicsh")
+local icons = require("config/icons")
 
 return {
 	"nvim-lualine/lualine.nvim",
@@ -64,10 +64,10 @@ return {
 					{
 						"diagnostics",
 						symbols = {
-							error = config.icons.diagnostics.Error,
-							warn = config.icons.diagnostics.Warn,
-							info = config.icons.diagnostics.Info,
-							hint = config.icons.diagnostics.Hint,
+							error = icons.diagnostics.Error,
+							warn = icons.diagnostics.Warn,
+							info = icons.diagnostics.Info,
+							hint = icons.diagnostics.Hint,
 						},
 					},
 				},
@@ -81,9 +81,9 @@ return {
 					{
 						"diff",
 						symbols = {
-							added = config.icons.git.added,
-							modified = config.icons.git.modified,
-							removed = config.icons.git.removed,
+							added = icons.git.added,
+							modified = icons.git.modified,
+							removed = icons.git.removed,
 						},
 					},
 				},
