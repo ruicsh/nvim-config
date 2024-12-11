@@ -91,7 +91,6 @@ o.foldmethod = "expr" -- Use expr to determine fold level.
 
 -- 17 reading and writing files
 o.backup = false -- Do not create backup files.
-o.modeline = false -- Do not check for settings at beginning of file.
 
 -- 18 the swap file
 o.swapfile = false -- Stop creating swp files.
