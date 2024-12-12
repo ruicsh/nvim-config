@@ -81,6 +81,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [lazydev.nvim](https://github.com/folke/trouble.nvim) - Lua language server
 - [nvim-lightbulb](https://github.com/kosayoda/nvim-lightbulb) - Code actions
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
+- [refjump](https://github.com/mawkler/refjump.nvim) - Jump to next reference of symbol
 
 #### Syntax
 
