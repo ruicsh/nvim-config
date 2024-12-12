@@ -109,6 +109,7 @@ o.iskeyword:append({
 
 -- 24 various
 o.gdefault = true -- Use g flag for ":substitute".
+o.sessionoptions = { "buffers", "folds", "localoptions", "options", "tabpages" } -- Save session options.
 o.signcolumn = "yes" -- Always showe to prevent the screen from jumping.
 o.shada = {
 	"'10", -- Remember marks for the last 10 edited files.

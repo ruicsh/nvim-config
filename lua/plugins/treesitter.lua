@@ -93,6 +93,7 @@ return {
 		},
 	},
 
+	event = { "BufReadPost", "BufNewFile" },
 	main = "nvim-treesitter.configs",
 	build = ":TSUpdate",
 	dependencies = {
