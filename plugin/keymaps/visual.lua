@@ -17,9 +17,9 @@ k("x", "c", '"_c')
 k("x", "p", '"_dp')
 k("x", "x", '"_x')
 
--- Augmented HJKL
-k("x", "J", "6j")
-k("x", "K", "6k")
+-- Navigation
+k("x", "{", "6k")
+k("x", "}", "6j")
 k("x", "H", "0^")
 k("x", "L", "$")
 
