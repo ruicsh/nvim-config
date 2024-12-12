@@ -36,7 +36,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 #### Buffers, Windows and Tabs
 
-- [Bbye (Buffer Bye)](https://github.com/moll/vim-bbye) - Delete buffers and close files without closing your windows or messing up your layout
 - [Scope.nvim](https://github.com/tiagovla/scope.nvim) - Enhanced tab scoping
 - [buffer_manager.nvim](https://github.com/j-morano/buffer_manager.nvim) - Easily manage buffers
 - [tabby.nvim](https://github.com/nanozuki/tabby.nvim) - Tabline
