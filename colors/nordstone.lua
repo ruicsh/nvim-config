@@ -341,7 +341,7 @@ loadColorSet({
 
 -- snacks.nvim
 loadColorSet({
-	SnacksIndentScope = { fg = c.nord9 },
+	SnacksIndentScope = { fg = c.nord3_500 },
 })
 
 -- Telescope
