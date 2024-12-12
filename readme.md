@@ -27,12 +27,10 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 ### UI
 
 - [Fidget](https://github.com/j-hui/fidget.nvim) - Notifications
-- [Indent Blankline](https://github.com/nvim-lualine/lualine.nvim) - Indent guides
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) - Statusline
 - [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix
 - [quicker.nvim](https://github.com/stevearc/quicker.nvim) - Quickfix/location list formatter
-- [statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim) - Status column
-- [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) - Manage multiple terminal windows
+- [snacks.nvim](https://github.com/folke/snacks.nvim) - Small QoL plugins
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keybidings helper
 - [workspaces.nvim](https://github.com/natecraddock/workspaces.nvim) - Manage workspace directories
 

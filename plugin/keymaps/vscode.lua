@@ -15,7 +15,7 @@ end
 
 -- Native
 k("n", "<leader>vb", ac("workbench.action.toggleSidebarVisibility"))
-k("n", "<c-t>", ac("workbench.action.terminal.new"))
+k("n", "<c-\\>", ac("workbench.action.terminal.new"))
 k("n", "<leader>nc", ac("workbench.action.showCommands"))
 
 -- Explorer

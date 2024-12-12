@@ -328,15 +328,20 @@ loadColorSet({
 	SpectreSearchHl = { fg = c.nord0, bg = c.nord13 },
 })
 
+-- nvim-treesitter-context
+loadColorSet({
+	TreesitterContextSeparator = { fg = c.nord0 },
+})
+
 -- quicker.nvim
 loadColorSet({
 	Delimiter = { fg = c.neutral_800 },
 	QuickFixFilename = { fg = c.nord9 },
 })
 
--- nvim-treesitter-context
+-- snacks.nvim
 loadColorSet({
-	TreesitterContextSeparator = { fg = c.nord0 },
+	SnacksIndentScope = { fg = c.nord9 },
 })
 
 -- Telescope
