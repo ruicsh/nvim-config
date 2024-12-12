@@ -43,16 +43,15 @@
 - `]b` next opened buffer
 - `<bs>` previous recently used buffer
 - `<s-bs>` next recently used buffer
-- `<leader>bc` close buffer
+- `<c-]>` close buffer
 - `<leader>bC` close all buffers
 - `<leader>bo` close the other buffers
-- `<leader>bx` exit buffer
 
 #### Windows
 
 - `|` switch windows
 - `<c-w>[` move buffer to window on the left
-- `<c-w>]` move budder to window on the right
+- `<c-w>]` move buffer to window on the right
 - `<c-w>m` maximize window
 - `<c-]>` close window
 

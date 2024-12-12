@@ -6,7 +6,19 @@ local api = vim.api
 
 local group = api.nvim_create_augroup("ruicsh/close_shortcut", { clear = true })
 
-vim.keymap.set("n", closeShortcut, "<c-w>q", { desc = "Close split" })
+-- Close buffer, close window if empty, close app if last window
+local function close_buffer_or_window_or_quit()
+	if vim.fn.expand("%:p") == "" then
+		if #api.nvim_list_wins() == 1 then
+			vim.cmd("q")
+		else
+			api.nvim_win_close(api.nvim_get_current_win(), true)
+		end
+	else
+		require("snacks.bufdelete").delete()
+	end
+end
+vim.keymap.set("n", closeShortcut, close_buffer_or_window_or_quit)
 
 api.nvim_create_autocmd("FileType", {
 	group = group,

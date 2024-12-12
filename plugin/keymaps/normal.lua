@@ -37,7 +37,6 @@ k("n", "]b", "<cmd>bnext<cr>", { desc = "Buffers: Go to next" })
 k("n", "<bs>", "<c-^>", { desc = "Buffers: Go to previous visited" })
 local bufdelete = require("snacks.bufdelete")
 k("n", "<leader>bC", bufdelete.all, { desc = "Buffers: Close all" })
-k("n", "<leader>bc", bufdelete.delete, { desc = "Buffers: Close" })
 k("n", "<leader>bo", bufdelete.other, { desc = "Buffers: Close all other" })
 
 -- Windows
