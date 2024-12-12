@@ -11,10 +11,8 @@ return {
 		},
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/indent.md
 		indent = {
-			scope = {
-				animate = {
-					enabled = false,
-				},
+			animate = {
+				enabled = false,
 			},
 		},
 	},
