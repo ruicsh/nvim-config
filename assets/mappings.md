@@ -153,8 +153,14 @@
 - `A` apply all generated code
 - `a` apply hunk of generated code
 
-#### Syntax
+#### Syntax (AST)
 
+- `<cr>` start/increase node selection
+- `<bs>` decrease node selection
+- `<c-h>` jump to parent node
+- `<c-j>` jump to next sibling node
+- `<c-k>` jump to previous sibling node
+- `<c-l>` jump to child node
 - `[a` jump to previous argument start
 - `]a` jump to next argument start
 - `[[` jump to previous function start

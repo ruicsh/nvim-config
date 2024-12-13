@@ -89,6 +89,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) - Language aware comments
+- [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - Fast navigation around the AST tree
 
 ### Git
 
