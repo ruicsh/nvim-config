@@ -159,14 +159,9 @@
 - `]a` jump to next argument start
 - `[[` jump to previous function start
 - `]]` jump to next function start
-- `[r` jump to previous symbol reference
-- `]r` jump to next symbol reference
-- `<cr>` start/increase AST node selection
-- `<bs>` decrease AST node selection
 
 #### LSP
 
-- `<c-s>` display signature help
 - `K` display hover information for symbol
 - `gO` list symbols in document
 - `gd` jump to definition
@@ -180,6 +175,9 @@
 - `grr` list references
 - `grI` toggle inlay hints
 - `gD` jump to declaration
+- `[r` jump to previous symbol reference
+- `]r` jump to next symbol reference
+- `<c-s>` display signature help
 
 #### TypeScript
 

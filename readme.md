@@ -85,7 +85,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 #### Syntax
 
-- [nvim-treesitter-refactor](nvim-treesitter/nvim-treesitter-refactor) - Reference navigation
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - Text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
