@@ -32,8 +32,6 @@ k("n", "x", '"_x')
 k("n", "X", '"_X')
 
 -- Buffers
-k("n", "[b", "<cmd>bprev<cr>", { desc = "Buffers: Go to previous" })
-k("n", "]b", "<cmd>bnext<cr>", { desc = "Buffers: Go to next" })
 k("n", "<bs>", "<c-^>", { desc = "Buffers: Go to previous visited" })
 local bufdelete = require("snacks.bufdelete")
 k("n", "<leader>bC", bufdelete.all, { desc = "Buffers: Close all" })
@@ -53,10 +51,6 @@ k("n", "<leader>tH", "<cmd>-tabmove<cr>", { desc = "Tabs: Move current tab to be
 k("n", "<leader>tL", "<cmd>+tabmove<cr>", { desc = "Tabs: Move current tab to after" })
 
 -- Quickfix
-k("n", "[q", "<cmd>cprev<cr>", { desc = "Quickfix: Previous" })
-k("n", "]q", "<cmd>cnext<cr>", { desc = "Quickfix: Next" })
-k("n", "[Q", "<cmd>cfirst<cr>", { desc = "Quickfix: First" })
-k("n", "]Q", "<cmd>clast<cr>", { desc = "Quickfix: Last" })
 k("n", "[<c-q>", "<cmd>cpfile<cr>", { desc = "Quickfix: Previous file" })
 k("n", "]<c-q>", "<cmd>cnfile<cr>", { desc = "Quickfix: Next file" })
 

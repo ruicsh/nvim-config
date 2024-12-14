@@ -74,7 +74,7 @@ loadColorSet({
 	ColorColumn = { fg = "NONE", bg = "NONE" },
 	CommandMode = { fg = c.nord4, bg = "NONE", style = "reverse" },
 	Conceal = { fg = c.nord1 },
-	CurSearch = { fg = c.nord1, bg = c.nord9 },
+	CurSearch = { fg = c.nord1, bg = c.nord8 },
 	Cursor = { fg = c.nord4, bg = "NONE", style = "reverse" },
 	CursorColumn = { fg = "NONE", bg = c.nord0 },
 	CursorIM = { fg = c.nord5, bg = "NONE", style = "reverse" },
