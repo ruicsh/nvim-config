@@ -30,6 +30,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) - Statusline
 - [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix
 - [quicker.nvim](https://github.com/stevearc/quicker.nvim) - Quickfix/location list formatter
+- [satellite.nvim](https://github.com/lewis6991/satellite.nvim) - Scrollbar
 - [snacks.nvim](https://github.com/folke/snacks.nvim) - Small QoL plugins
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keybidings helper
 - [workspaces.nvim](https://github.com/natecraddock/workspaces.nvim) - Manage workspace directories
