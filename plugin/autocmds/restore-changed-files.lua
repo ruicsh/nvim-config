@@ -43,37 +43,59 @@ local function is_to_ignore_file(file)
 	return false
 end
 
+-- List files changed on git status.
+local function get_changed_files()
+	local git_status = vim.fn.systemlist("git status --porcelain")
+
+	local changed_files = {}
+	for _, line in ipairs(git_status) do
+		local status, file = line:match("^(..)%s+(.*)")
+		if status and file then
+			-- Generate absolute path for each file (relative to the git repo root)
+			local abs_path = vim.fn.expand("%:p:h") .. "/" .. file
+			table.insert(changed_files, abs_path)
+		end
+	end
+
+	return changed_files
+end
+
+-- Prune list of files from files to ignore or unreadable.
+local function prune_list(filepaths)
+	local to_read_files = {}
+	for _, file in ipairs(filepaths) do
+		if not is_to_ignore_file(file) then
+			if vim.fn.filereadable(file) == 1 then
+				table.insert(to_read_files, file)
+			end
+		end
+	end
+
+	return to_read_files
+end
+
+-- Sort files by last updated time.
+local function sort_by_mtime(filepaths)
+	table.sort(filepaths, function(a, b)
+		local mtime_a = vim.fn.getftime(a)
+		local mtime_b = vim.fn.getftime(b)
+		return mtime_a < mtime_b
+	end)
+
+	return filepaths
+end
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
 	group = group,
 	callback = function()
 		vim.schedule(function()
-			-- Run the git status command to get changed files.
-			local git_status = vim.fn.systemlist("git status --porcelain")
-
-			-- Filter out the lines that represent changed files and map them to absolute paths.
-			local changed_files = {}
-			for _, line in ipairs(git_status) do
-				local status, file = line:match("^(..)%s+(.*)")
-				if status and file then
-					-- Generate absolute path for each file (relative to the git repo root)
-					local abs_path = vim.fn.expand("%:p:h") .. "/" .. file
-					table.insert(changed_files, abs_path)
-				end
-			end
-
-			-- ignore configured files
-			local to_read_files = {}
-			for _, file in ipairs(changed_files) do
-				if not is_to_ignore_file(file) then
-					table.insert(to_read_files, file)
-				end
-			end
+			local files = get_changed_files()
+			files = prune_list(files)
+			files = sort_by_mtime(files)
 
 			-- Use vim.cmd.edit to open the file in a new buffer
-			for _, file in ipairs(to_read_files) do
-				if vim.fn.filereadable(file) == 1 then
-					vim.cmd.edit(file)
-				end
+			for _, file in ipairs(files) do
+				vim.cmd.edit(file)
 			end
 		end)
 	end,
