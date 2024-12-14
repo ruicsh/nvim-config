@@ -55,6 +55,7 @@ o.shortmess:append({ -- Don't show messages:
 	A = true, -- When a swap file is found.
 	C = true, -- When scanning for ins-completion items.
 	F = true, -- File info when editing a file.
+	I = true, -- Skip intro message.
 	S = true, -- Search messages, using nvim-hlslens instead.
 	W = true, -- When writing a file.
 	a = true, -- use abbreviations
@@ -109,7 +110,6 @@ o.iskeyword:append({
 
 -- 24 various
 o.gdefault = true -- Use g flag for ":substitute".
-o.sessionoptions = { "buffers", "folds", "localoptions", "options", "tabpages" } -- Save session options.
 o.signcolumn = "yes" -- Always showe to prevent the screen from jumping.
 o.shada = {
 	"'10", -- Remember marks for the last 10 edited files.
