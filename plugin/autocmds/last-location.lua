@@ -1,5 +1,5 @@
 -- Jump to last location when opening a file
--- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/autocmds.lua
+-- https://vim.fandom.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
 
 local group = vim.api.nvim_create_augroup("ruicsh/last_location_on_file", { clear = true })
 

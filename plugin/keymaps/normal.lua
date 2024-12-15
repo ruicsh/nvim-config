@@ -65,6 +65,10 @@ k("n", "dd", function()
 	return vim.fn.getline(".") == "" and '"_dd' or "dd"
 end, { expr = true })
 
+-- Keep same logic from y/c/d on v for selection
+k("n", "V", "v$") -- Select until end of line
+k("n", "vv", "V") -- Enter visual linewise mode
+
 -- Miscellaneous
 k("n", "<c-\\>", "<cmd>terminal<cr>", { desc = "Open classic terminal" }) -- Instead of using ToggleTerm.
 k("n", "yc", "yy<cmd>normal gcc<cr>p") -- Duplicate a line and comment out the first line.

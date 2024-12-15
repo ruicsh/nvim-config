@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 	callback = function()
 		if vim.w.auto_cursorline then
 			vim.wo.cursorline = true
-			vim.w.auto_cursorline = nil
+			vim.w.auto_cursorline = false
 		end
 	end,
 })
