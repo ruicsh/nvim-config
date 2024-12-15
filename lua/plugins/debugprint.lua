@@ -7,20 +7,20 @@ return {
 		print_tag = "ruic",
 		keymaps = {
 			normal = {
-				plain_below = "g?p",
-				plain_above = "g?P",
-				variable_below = "g?v",
-				variable_above = "g?V",
+				plain_below = "glp",
+				plain_above = "glP",
+				variable_below = "glv",
+				variable_above = "glV",
 				variable_below_alwaysprompt = nil,
 				variable_above_alwaysprompt = nil,
-				textobj_below = "g?o",
-				textobj_above = "g?O",
+				textobj_below = "glo",
+				textobj_above = "glO",
 				toggle_comment_debug_prints = nil,
 				delete_debug_prints = nil,
 			},
 			visual = {
-				variable_below = "g?v",
-				variable_above = "g?V",
+				variable_below = "glv",
+				variable_above = "glV",
 			},
 		},
 		commands = {
