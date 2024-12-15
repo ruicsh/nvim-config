@@ -1,5 +1,9 @@
 # Neovim IDE configuration
 
+<a href="https://dotfyle.com/ruicsh/nvim-config"><img src="https://dotfyle.com/ruicsh/nvim-config/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/ruicsh/nvim-config"><img src="https://dotfyle.com/ruicsh/nvim-config/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/ruicsh/nvim-config"><img src="https://dotfyle.com/ruicsh/nvim-config/badges/plugin-manager?style=flat" /></a>
+
 This is my configuration for [Neovim](https://neovim.io/), I mostly work on web frontend development.
 
 - **Editor** - enhanced vim motions, extended text objects, folding
