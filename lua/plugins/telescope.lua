@@ -11,6 +11,7 @@ return {
 		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "ui-select")
 		pcall(telescope.load_extension, "workspaces")
+		pcall(telescope.load_extension, "dir")
 
 		telescope.setup({
 			defaults = {
@@ -55,9 +56,9 @@ return {
 		local k = vim.keymap
 		local builtin = require("telescope.builtin")
 
-		k.set("n", "<leader>,", builtin.oldfiles, { desc = "Telescope: find recent files)" })
 		k.set("n", "<leader><leader>", builtin.find_files, { desc = "Telescope: Files" })
-		k.set("n", "<leader>f", builtin.live_grep, { desc = "Telescope: [f]ind word in workspace" })
+		k.set("n", "<leader>ff", builtin.live_grep, { desc = "Telescope: [f]ind word in workspace" })
+		k.set("n", "<leader>,", builtin.oldfiles, { desc = "Telescope: find recent files)" })
 		k.set("n", "<leader>.", builtin.resume, { desc = "Telescope: Resume last search" })
 		k.set("n", "<leader>nc", builtin.commands, { desc = "Telescope: [c]ommands" })
 		k.set("n", "<leader>nh", builtin.help_tags, { desc = "Telescope: [h]elp" })
@@ -104,7 +105,8 @@ return {
 			-- https://github.com/nvim-telescope/telescope-ui-select.nvim
 			"nvim-telescope/telescope-ui-select.nvim",
 		},
-		{ "nvim-tree/nvim-web-devicons" },
+		"princejoogie/dir-telescope.nvim",
+		"nvim-tree/nvim-web-devicons",
 		"natecraddock/workspaces.nvim",
 	},
 }

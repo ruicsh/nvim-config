@@ -74,7 +74,6 @@
 - `}` jump down 6 lines
 - `H` jump to first non-empty character in line
 - `L` jump to end of line
-- `<leader>jj` show jumplist
 - `'0` jump to position where last exited Vim
 
 #### Editing
@@ -131,7 +130,8 @@
 
 - `/` find in document forward
 - `?` find in document backward
-- `<leader>f` find in workspace
+- `<leader>ff` find in workspace
+- `<leader>fd` find in directory
 - `<leader>r` replace in selection/document/workspace
 
 ### Coding
