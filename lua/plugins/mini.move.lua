@@ -1,5 +1,5 @@
 -- Move line/selection up/down.
--- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-move.md
+-- https://github.com/echasnovski/mini.move
 
 return {
 	"echasnovski/mini.move",

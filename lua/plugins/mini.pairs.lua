@@ -1,5 +1,5 @@
 -- Autopairs.
--- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-pairs.md
+-- https://github.com/echasnovski/mini.pairs
 
 return {
 	"echasnovski/mini.pairs",

@@ -1,5 +1,5 @@
 -- Surround actions.
--- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md
+-- https://github.com/echasnovski/mini.surround
 
 return {
 	"echasnovski/mini.surround",

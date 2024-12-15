@@ -54,9 +54,9 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### Editing
 
-- [mini.ai](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md) - a/i textobjects
-- [mini.move](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-move.md) - Move lines/selection
-- [mini.surround](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md) - Surround pairs
+- [mini.ai](https://github.com/echasnovski/mini.ai) - a/i textobjects
+- [mini.move](https://github.com/echasnovski/mini.move) - move lines/selection
+- [mini.surround](https://github.com/echasnovski/mini.surround) - Surround pairs
 - [nvim-spider](https://github.com/chrisgrieser/nvim-spider) - Move by subwords (camelCase, ...)
 - [nvim-various-textobjs](https://github.com/chrisgrieser/nvim-various-textobjs) - Bundle of text objects
 - [repeat.vim](https://github.com/tpope/vim-repeat) - Repeat plugin keymaps
@@ -78,7 +78,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - GitHub Copilot
 - [csvview.nvim](https://github.com/hat0uma/csvview.nvim) - CSV editing
 - [debugprint.nvim](https://github.com/andrewferrier/debugprint.nvim) - Debug statements
-- [mini.pairs](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-pairs.md) - Autopairs (`()`, `[]`, `{}`)
+- [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs (`()`, `[]`, `{}`)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Completions
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Display code context
 

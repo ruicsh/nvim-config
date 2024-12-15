@@ -1,5 +1,5 @@
 -- Go forward/backward with square brackets.
--- https://github.com/echasnovski/mini.bracketed/blob/main/README.md
+-- https://github.com/echasnovski/mini.bracketed
 
 return {
 	"echasnovski/mini.bracketed",
