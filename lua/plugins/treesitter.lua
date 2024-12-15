@@ -60,11 +60,11 @@ return {
 				enable = true,
 				lookahead = true,
 				keymaps = {
-					["a["] = {
+					["af"] = {
 						query = "@function.outer",
 						desc = "Syntax: Select [a] [f]unction",
 					},
-					["i["] = {
+					["if"] = {
 						query = "@function.inner",
 						desc = "Syntax: Select [i]nner [f]unction",
 					},
