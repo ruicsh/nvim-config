@@ -271,11 +271,13 @@
 - `]<c-q>` next file
 - `<leader>r` search and replace on all entries
 - `dd` remove entry
+- `<c-p>` open previous list
+- `<c-n>` open next list
 
 #### Marks
 
 - `''` jump to position before last jump
-- `'.` jumtp to position where last change was made
+- `'.` jump to position where last change was made
 - `'0` jump to position when last exited Vim
 - `'{a-z}` jump to line in local mark
 - `'{A-Z}` jump to line in global mark
