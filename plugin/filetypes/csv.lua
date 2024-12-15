@@ -4,7 +4,7 @@ local group = vim.api.nvim_create_augroup("ruicsh/ft/csv", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = group,
-	pattern = "qf",
+	pattern = "csv",
 	callback = function()
 		require("csvview").enable()
 

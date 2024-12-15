@@ -20,6 +20,8 @@ local function close_buffer_or_window_or_quit()
 end
 vim.keymap.set("n", closeShortcut, close_buffer_or_window_or_quit)
 
+vim.keymap.set("x", closeShortcut, "<esc>") -- Use it to exit visual mode
+
 api.nvim_create_autocmd("FileType", {
 	group = group,
 	pattern = {

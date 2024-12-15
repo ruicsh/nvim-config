@@ -55,10 +55,6 @@ return {
 		local k = vim.keymap
 		local builtin = require("telescope.builtin")
 
-		local function show_jumplist()
-			return builtin.jumplist({ show_line = false })
-		end
-
 		k.set("n", "<leader>,", builtin.oldfiles, { desc = "Telescope: find recent files)" })
 		k.set("n", "<leader><leader>", builtin.find_files, { desc = "Telescope: Files" })
 		k.set("n", "<leader>f", builtin.live_grep, { desc = "Telescope: [f]ind word in workspace" })
@@ -68,7 +64,6 @@ return {
 		k.set("n", "<leader>nk", builtin.keymaps, { desc = "Telescope: [k]eymaps" })
 		k.set("n", "<leader>nt", builtin.builtin, { desc = "Telescope: select [t]elescope" })
 		k.set("n", "<leader>hf", builtin.git_status, { desc = "Git: list files" })
-		k.set("n", "<leader>jj", show_jumplist, { desc = "Jumplist: Show" })
 
 		-- Slightly advanced example of overriding default behavior and theme.
 		k.set("n", "<leader>/", function()

@@ -53,6 +53,8 @@ k("n", "<leader>tL", "<cmd>+tabmove<cr>", { desc = "Tabs: Move current tab to af
 -- Quickfix
 k("n", "[<c-q>", "<cmd>cpfile<cr>", { desc = "Quickfix: Previous file" })
 k("n", "]<c-q>", "<cmd>cnfile<cr>", { desc = "Quickfix: Next file" })
+k("n", "<leader>qc", "<cmd>OpenChangesInQuickfix<cr>", { desc = "Quickfix: open changes list" })
+k("n", "<leader>qj", "<cmd>OpenJumpsInQuickfix<cr>", { desc = "Quickfix: open jumps list" })
 
 -- Git
 k("n", "<leader>hh", "<cmd>vertical Git<cr>", { desc = "Git: Status" })

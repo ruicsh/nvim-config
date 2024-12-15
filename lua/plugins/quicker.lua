@@ -40,7 +40,7 @@ return {
 
 		return {
 			{ "<leader>qq", toggle_quickfix, desc = "Toggle quickfix" },
-			{ "<leader>ll", toggle_loclist, desc = "Toggle locklist" },
+			{ "<leader>ql", toggle_loclist, desc = "Toggle locklist" },
 		}
 	end,
 
