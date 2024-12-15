@@ -25,5 +25,5 @@ k("x", "L", "$")
 
 -- Maintain the cursor position when yanking a visual selection.
 -- https://ddrscott.github.io/blog/2016/yank-without-jank/
-k("x", "y", "myy`y")
-k("x", "Y", "myY`y")
+k("x", "y", "myy`y<cmd>delmarks y<cr>", { silent = true })
+k("x", "Y", "myY`y<cmd>delmarks y<cr>", { silent = true })
