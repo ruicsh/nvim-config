@@ -47,6 +47,7 @@ end
 
 -- List files changed on git status.
 local function get_changed_files()
+	local git_root = vim.fn.getgitroot()
 	local git_status = vim.fn.systemlist("git status --porcelain")
 
 	local changed_files = {}
@@ -55,14 +56,14 @@ local function get_changed_files()
 		local status, file = line:match("^(..)%s+(.*)")
 		if status and file then
 			-- Generate absolute path for each file (relative to the git repo root)
-			local abs_path = vim.fs.normalize(vim.fn.expand("%:p:h") .. "/" .. file)
-			if vim.fn.isdirectory(abs_path) ~= 0 then
-				local dir_files = scan_dir(abs_path)
+			local filepath = vim.fs.normalize(git_root .. "/" .. file)
+			if vim.fn.isdirectory(filepath) ~= 0 then
+				local dir_files = scan_dir(filepath)
 				for _, dir_file in ipairs(dir_files) do
 					table.insert(changed_files, dir_file)
 				end
 			else
-				table.insert(changed_files, abs_path)
+				table.insert(changed_files, filepath)
 			end
 		end
 	end
