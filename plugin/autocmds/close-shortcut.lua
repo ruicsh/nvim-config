@@ -3,6 +3,7 @@
 
 local closeShortcut = "<c-]>"
 local api = vim.api
+local k = vim.keymap.set
 
 local group = api.nvim_create_augroup("ruicsh/close_shortcut", { clear = true })
 
@@ -18,9 +19,10 @@ local function close_buffer_or_window_or_quit()
 		require("snacks.bufdelete").delete()
 	end
 end
-vim.keymap.set("n", closeShortcut, close_buffer_or_window_or_quit)
+k("n", closeShortcut, close_buffer_or_window_or_quit)
 
-vim.keymap.set("x", closeShortcut, "<esc>") -- Use it to exit visual mode
+k("x", closeShortcut, "<esc>") -- Use it to exit visual mode
+k("t", closeShortcut, "<c-\\><c-n>") -- Return to normal mode in the terminal
 
 api.nvim_create_autocmd("FileType", {
 	group = group,
@@ -40,7 +42,7 @@ api.nvim_create_autocmd("FileType", {
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
 		vim.schedule(function()
-			vim.keymap.set("n", closeShortcut, function()
+			k("n", closeShortcut, function()
 				vim.cmd("close")
 				pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
 			end, {
@@ -55,7 +57,7 @@ api.nvim_create_autocmd("FileType", {
 	group = group,
 	pattern = { "neo-tree" },
 	callback = function(event)
-		vim.keymap.set("n", closeShortcut, "<cmd>Neotree action=close<cr>", { buffer = event.buf })
+		k("n", closeShortcut, "<cmd>Neotree action=close<cr>", { buffer = event.buf })
 	end,
 })
 
@@ -63,12 +65,7 @@ api.nvim_create_autocmd("FileType", {
 	group = group,
 	pattern = { "oil" },
 	callback = function(event)
-		vim.keymap.set(
-			"n",
-			closeShortcut,
-			"<cmd>lua require('oil.actions').close.callback()<cr>",
-			{ buffer = event.buf }
-		)
+		k("n", closeShortcut, "<cmd>lua require('oil.actions').close.callback()<cr>", { buffer = event.buf })
 	end,
 })
 
@@ -81,7 +78,7 @@ api.nvim_create_autocmd("FileType", {
 			actions.close(event.buf)
 		end
 
-		vim.keymap.set({ "i", "n" }, closeShortcut, close_telescope, { buffer = event.buf })
+		k({ "i", "n" }, closeShortcut, close_telescope, { buffer = event.buf })
 	end,
 })
 
@@ -92,7 +89,7 @@ api.nvim_create_autocmd("FileType", {
 		"DiffviewFileHistory",
 	},
 	callback = function(event)
-		vim.keymap.set("n", closeShortcut, "<cmd>tabclose<cr>", { buffer = event.buf })
+		k("n", closeShortcut, "<cmd>tabclose<cr>", { buffer = event.buf })
 	end,
 })
 
@@ -100,6 +97,6 @@ api.nvim_create_autocmd("FileType", {
 	group = group,
 	pattern = { "gitcommit" },
 	callback = function(event)
-		vim.keymap.set({ "n", "i" }, closeShortcut, "<cmd>q!<cr>", { buffer = event.buf })
+		k({ "n", "i" }, closeShortcut, "<cmd>q!<cr>", { buffer = event.buf })
 	end,
 })
