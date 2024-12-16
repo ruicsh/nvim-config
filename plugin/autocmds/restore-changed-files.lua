@@ -43,6 +43,24 @@ local function is_to_ignore_file(file)
 	return false
 end
 
+-- Recursively list all files in a directory
+local function list_files_in_directory(directory)
+	local files = {}
+	local entries = vim.fn.glob(directory .. "*", true, true)
+	for _, entry in ipairs(entries) do
+		if vim.fn.isdirectory(entry) ~= 0 then
+			local dir_files = list_files_in_directory(entry .. "/")
+			for _, dir_file in ipairs(dir_files) do
+				table.insert(files, dir_file)
+			end
+		else
+			table.insert(files, entry)
+		end
+	end
+
+	return files
+end
+
 -- List files changed on git status.
 local function get_changed_files()
 	local git_status = vim.fn.systemlist("git status --porcelain")
@@ -53,7 +71,14 @@ local function get_changed_files()
 		if status and file then
 			-- Generate absolute path for each file (relative to the git repo root)
 			local abs_path = vim.fn.expand("%:p:h") .. "/" .. file
-			table.insert(changed_files, abs_path)
+			if vim.fn.isdirectory(abs_path) ~= 0 then
+				local dir_files = list_files_in_directory(abs_path)
+				for _, dir_file in ipairs(dir_files) do
+					table.insert(changed_files, dir_file)
+				end
+			else
+				table.insert(changed_files, abs_path)
+			end
 		end
 	end
 
