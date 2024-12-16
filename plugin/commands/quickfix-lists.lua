@@ -1,25 +1,6 @@
 -- Use quickfix to list jump and change list
 -- https://github.com/debugloop/dotfiles/blob/main/home/nvim/lua/maps.lua
 
--- Reverse a list
-local function reverse_list(tbl)
-	local reversed = {}
-	for i = #tbl, 1, -1 do
-		table.insert(reversed, tbl[i])
-	end
-	return reversed
-end
-
--- Find index of a value on a list
-local function find_index(haystack, needle)
-	for i, v in ipairs(haystack) do
-		if v == needle then
-			return i
-		end
-	end
-	return nil
-end
-
 -- List buffers ordered by last accessed
 local function get_buffers_sorted_by_last_accessed()
 	local jumplist = vim.fn.getjumplist()[1]
@@ -27,7 +8,7 @@ local function get_buffers_sorted_by_last_accessed()
 	local bufs = {}
 	for _, v in ipairs(jumplist) do
 		if vim.fn.bufloaded(v.bufnr) == 1 then
-			if find_index(bufs, v.bufnr) == nil then
+			if not vim.tbl_contains(bufs, v.bufnr) then
 				table.insert(bufs, v.bufnr)
 			end
 		end
@@ -38,12 +19,12 @@ end
 
 -- List changes
 local function get_changes_list()
-	local buffers = reverse_list(get_buffers_sorted_by_last_accessed())
+	local buffers = vim.tbl_reverse(get_buffers_sorted_by_last_accessed())
 
 	local qf_list = {}
 	for _, bufnr in ipairs(buffers) do
 		-- Sort the changelist time descending
-		local changelist = reverse_list(vim.fn.getchangelist(bufnr)[1])
+		local changelist = vim.tbl_reverse(vim.fn.getchangelist(bufnr)[1])
 		local seen = {}
 		for _, v in ipairs(changelist) do
 			local text = vim.api.nvim_buf_get_lines(bufnr, v.lnum - 1, v.lnum, false)[1]
@@ -81,7 +62,7 @@ local function get_jumps_list()
 		end
 	end
 
-	return reverse_list(qf_list)
+	return vim.tbl_reverse(qf_list)
 end
 
 -- Take a list, set it to quickfix and open its window

@@ -8,4 +8,5 @@ vim.cmd.colorscheme("nordstone")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+require("ruicsh")
 require("config.lazy")
