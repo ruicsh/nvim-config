@@ -1,5 +1,7 @@
 -- On VimEnter, open all git changed files in current working directory.
 
+local scan_dir = require("plenary.scandir").scan_dir
+
 local group = vim.api.nvim_create_augroup("ruicsh/restore_changed_files", { clear = true })
 
 -- ignore files with these basenames
@@ -21,44 +23,26 @@ local ignore_extensions = {
 	".webp",
 }
 
-local function is_to_ignore_file(file)
+local function is_file_to_ignore(file)
 	-- ignore by extension
 	local extension = file:match("^.+(%..+)$")
 	if extension then
 		for _, ignore_extension in ipairs(ignore_extensions) do
-			if extension:lower() == ignore_extension then
+			if extension:lower() == ignore_extension:lower() then
 				return true
 			end
 		end
 	end
 
 	-- ignore by basename
-	local basename = file:match("([^/\\]+)$")
+	local basename = vim.fs.basename(file)
 	for _, ignore_basename in ipairs(ignore_basenames) do
-		if basename:lower() == ignore_basename then
+		if basename:lower() == ignore_basename:lower() then
 			return true
 		end
 	end
 
 	return false
-end
-
--- Recursively list all files in a directory
-local function list_files_in_directory(directory)
-	local files = {}
-	local entries = vim.fn.glob(directory .. "*", true, true)
-	for _, entry in ipairs(entries) do
-		if vim.fn.isdirectory(entry) ~= 0 then
-			local dir_files = list_files_in_directory(entry .. "/")
-			for _, dir_file in ipairs(dir_files) do
-				table.insert(files, dir_file)
-			end
-		else
-			table.insert(files, entry)
-		end
-	end
-
-	return files
 end
 
 -- List files changed on git status.
@@ -67,12 +51,13 @@ local function get_changed_files()
 
 	local changed_files = {}
 	for _, line in ipairs(git_status) do
+		-- remove the trailing symbols from git
 		local status, file = line:match("^(..)%s+(.*)")
 		if status and file then
 			-- Generate absolute path for each file (relative to the git repo root)
-			local abs_path = vim.fn.expand("%:p:h") .. "/" .. file
+			local abs_path = vim.fs.normalize(vim.fn.expand("%:p:h") .. "/" .. file)
 			if vim.fn.isdirectory(abs_path) ~= 0 then
-				local dir_files = list_files_in_directory(abs_path)
+				local dir_files = scan_dir(abs_path)
 				for _, dir_file in ipairs(dir_files) do
 					table.insert(changed_files, dir_file)
 				end
@@ -89,7 +74,7 @@ end
 local function prune_list(filepaths)
 	local to_read_files = {}
 	for _, file in ipairs(filepaths) do
-		if not is_to_ignore_file(file) then
+		if not is_file_to_ignore(file) then
 			if vim.fn.filereadable(file) == 1 then
 				table.insert(to_read_files, file)
 			end
@@ -119,8 +104,12 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			files = sort_by_mtime(files)
 
 			-- Use vim.cmd.edit to open the file in a new buffer
-			for _, file in ipairs(files) do
-				vim.cmd.edit(file)
+			local n_files = vim.tbl_count(files)
+			for i, file in ipairs(files) do
+				-- limit to the last 10 updated files
+				if i > n_files - 10 then
+					vim.cmd.edit(file)
+				end
 			end
 		end)
 	end,
