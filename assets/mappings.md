@@ -39,10 +39,8 @@
 #### Buffers
 
 - `§` list buffers
-- `[b` previous opened buffer
-- `]b` next opened buffer
-- `<bs>` previous recently used buffer
-- `<s-bs>` next recently used buffer
+- `<bs>` next opened buffer
+- `<s-bs>` previous opened buffer
 - `<c-]>` close buffer
 - `<leader>bC` close all buffers
 - `<leader>bo` close the other buffers

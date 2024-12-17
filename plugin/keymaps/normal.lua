@@ -36,6 +36,8 @@ k("n", "<bs>", "<c-^>", { desc = "Buffers: Go to previous visited" })
 local bufdelete = require("snacks.bufdelete")
 k("n", "<leader>bC", bufdelete.all, { desc = "Buffers: Close all" })
 k("n", "<leader>bo", bufdelete.other, { desc = "Buffers: Close all other" })
+k("n", "<tab>", "<cmd>bnext<cr>", { desc = "Buffers: Next" })
+k("n", "<s-tab>", "<cmd>bprev<cr>", { desc = "Buffers: Previous" })
 
 -- Windows
 k("n", "|", "<c-w>w", { desc = "Windows: Switch" })
