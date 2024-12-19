@@ -11,6 +11,8 @@ local templates_js = {
 	},
 }
 
+local counter = 0
+
 return {
 	"Goose97/timber.nvim",
 	opts = {
@@ -23,9 +25,12 @@ return {
 			insert_batch_log = "glb",
 		},
 		template_placeholders = {
-			print_tag = "ruic",
+			print_tag = function()
+				counter = counter + 1
+				return "ruic[" .. counter .. "]"
+			end,
 			snippet = function()
-				return vim.trim(vim.fn.getline(".")):gsub('"', ""):sub(1, 50)
+				return vim.trim(vim.fn.getline(".")):gsub('"', ""):gsub("'", ""):gsub("\\", ""):sub(1, 50)
 			end,
 			placement = function(ctx)
 				return ctx.log_position == "above" and "before" or "after"
