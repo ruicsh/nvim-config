@@ -73,10 +73,10 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - GitHub Copilot
 - [csvview.nvim](https://github.com/hat0uma/csvview.nvim) - CSV editing
-- [debugprint.nvim](https://github.com/andrewferrier/debugprint.nvim) - Debug statements
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs (`()`, `[]`, `{}`)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Completions
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Display code context
+- [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
 
 #### LSP
 
