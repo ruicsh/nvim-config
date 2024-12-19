@@ -4,7 +4,7 @@
 local templates_js = {
 	log_templates = {
 		default = [[console.warn("%print_tag: %log_target=", %log_target)]],
-		plain = [[console.warn("%print_tag: (%after %snippet)")]],
+		plain = [[console.warn("%print_tag: (%placement %snippet)")]],
 	},
 	batch = {
 		default = [[console.warn("%print_tag", { %repeat<"%log_target": %log_target><, > })]],
