@@ -128,7 +128,7 @@ loadColorSet({
 	ToolbarButton = { fg = c.nord4, bg = "NONE", style = "bold" },
 	ToolbarLine = { fg = c.nord4, bg = c.nord1 },
 	VertSplit = { fg = c.nord2, bg = "NONE" },
-	Visual = { fg = c.nord0, bg = c.nord9 },
+	Visual = { fg = c.nord4, bg = c.nord3 },
 	VisualMode = { fg = c.nord0, bg = c.nord9 },
 	WarningMsg = { fg = c.nord15 },
 	Warnings = { fg = c.nord15 },
