@@ -4,7 +4,7 @@
 return {
 	"natecraddock/workspaces.nvim",
 	keys = {
-		{ "<leader>pp", "<cmd>Telescope workspaces<cr>", { desc = "Workspaces: List" } },
+		-- { "<leader>pp", "<cmd>Telescope workspaces<cr>", { desc = "Workspaces: List" } },
 	},
 	opts = {
 		cd_type = "tab",

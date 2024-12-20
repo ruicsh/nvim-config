@@ -71,19 +71,6 @@ api.nvim_create_autocmd("FileType", {
 
 api.nvim_create_autocmd("FileType", {
 	group = group,
-	pattern = { "TelescopePrompt" },
-	callback = function(event)
-		local function close_telescope()
-			local actions = require("telescope.actions")
-			actions.close(event.buf)
-		end
-
-		k({ "i", "n" }, closeShortcut, close_telescope, { buffer = event.buf })
-	end,
-})
-
-api.nvim_create_autocmd("FileType", {
-	group = group,
 	pattern = {
 		"DiffviewFiles",
 		"DiffviewFileHistory",

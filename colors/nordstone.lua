@@ -191,6 +191,13 @@ loadColorSet({
 	fugitiveUntrackedHeading = { fg = c.nord11 },
 })
 
+-- fzf
+loadColorSet({
+	FzfLuaBorder = { fg = c.nord4 },
+	FzfLuaHeaderBind = { fg = c.nord3_900 },
+	FzfLuaHeaderText = { fg = c.nord3_500 },
+})
+
 -- GitSigns
 loadColorSet({
 	GitSignsAdd = { fg = c.nord14 },
@@ -342,16 +349,6 @@ loadColorSet({
 -- snacks.nvim
 loadColorSet({
 	SnacksIndentScope = { fg = c.nord3_500 },
-})
-
--- Telescope
-loadColorSet({
-	TelescopePromptBorder = { fg = c.nord4 },
-	TelescopeResultsBorder = { fg = c.nord4 },
-	TelescopePreviewBorder = { fg = c.nord4 },
-	TelescopeSelectionCaret = { fg = c.nord9 },
-	TelescopeSelection = { fg = c.nord6, bg = c.nord2 },
-	TelescopeMatching = { link = "Search" },
 })
 
 -- WhichKey

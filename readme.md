@@ -61,11 +61,10 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 #### Search
 
-- [dir-telescope.nvim](https://github.com/princejoogie/dir-telescope.nvim) - Find in directory
+- [fzf-lua](https://github.com/ibhagwan/fzf-lua) - Fuzzy finder
 - [leap.nvim](https://github.com/ggandor/leap.nvim) - Navigate with search labels
 - [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens) - Search results labels
 - [nvim-spectre](https://github.com/nvim-pack/nvim-spectre) - Find and replace
-- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Find, filter, preview and pick
 
 ### Coding
 
