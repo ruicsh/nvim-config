@@ -90,6 +90,11 @@ o.foldlevel = 99 -- How many folds to close.
 o.foldlevelstart = 99 -- Start with all folds open.
 o.foldmethod = "expr" -- Use expr to determine fold level.
 
+-- 16 mapping
+
+o.timeout = true -- Wait for mapped key sequence to be received
+o.timeoutlen = 350 -- Don't wait 1sec for a possible new key
+
 -- 17 reading and writing files
 o.backup = false -- Do not create backup files.
 
