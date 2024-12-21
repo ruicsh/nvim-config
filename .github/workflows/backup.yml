@@ -1,0 +1,16 @@
+name: backup
+
+on: push
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+        with:
+          fetch-depth: "0"
+      - uses: ruicsh/backup-action@main
+        with:
+          bitbucket_app_user: ${{ secrets.BACKUP_APP_USER }}
+          bitbucket_app_password: ${{ secrets.BACKUP_APP_PASSWORD }}
+          target_repo: ruicsh/nvim-config
