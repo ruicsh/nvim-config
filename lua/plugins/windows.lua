@@ -4,7 +4,7 @@
 return {
 	"anuvyklack/windows.nvim",
 	keys = {
-		{ "<c-w>m", "<cmd>WindowsMaximize<cr>", mode = { "n", "x", "i" }, silent = true },
+		{ "<c-w>m", ":WindowsMaximize<cr>", mode = { "n", "x", "i" }, silent = true },
 	},
 	opts = {
 		animation = {

@@ -14,12 +14,12 @@ return {
 		local k = vim.api.nvim_set_keymap
 		local kopts = { silent = true }
 
-		k("n", "n", [[<cmd>execute('normal! ' . v:count1 . 'n')<cr><cmd>lua require('hlslens').start()<cr>]], kopts)
-		k("n", "N", [[<cmd>execute('normal! ' . v:count1 . 'N')<cr><cmd>lua require('hlslens').start()<cr>]], kopts)
-		k("n", "*", [[*<cmd>lua require('hlslens').start()<cr>]], kopts)
-		k("n", "#", [[#<cmd>lua require('hlslens').start()<cr>]], kopts)
-		k("n", "g*", [[g*<cmd>lua require('hlslens').start()<cr>]], kopts)
-		k("n", "g#", [[g#<cmd>lua require('hlslens').start()<cr>]], kopts)
+		k("n", "n", [[:execute('normal! ' . v:count1 . 'n')<cr>:lua require('hlslens').start()<cr>]], kopts)
+		k("n", "N", [[:execute('normal! ' . v:count1 . 'N')<cr>:lua require('hlslens').start()<cr>]], kopts)
+		k("n", "*", [[*:lua require('hlslens').start()<cr>]], kopts)
+		k("n", "#", [[#:lua require('hlslens').start()<cr>]], kopts)
+		k("n", "g*", [[g*:lua require('hlslens').start()<cr>]], kopts)
+		k("n", "g#", [[g#:lua require('hlslens').start()<cr>]], kopts)
 	end,
 
 	event = { "VeryLazy" },

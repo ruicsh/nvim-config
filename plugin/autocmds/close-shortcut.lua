@@ -57,7 +57,7 @@ api.nvim_create_autocmd("FileType", {
 	group = group,
 	pattern = { "neo-tree" },
 	callback = function(event)
-		k("n", closeShortcut, "<cmd>Neotree action=close<cr>", { buffer = event.buf })
+		k("n", closeShortcut, ":Neotree action=close<cr>", { buffer = event.buf })
 	end,
 })
 
@@ -65,7 +65,7 @@ api.nvim_create_autocmd("FileType", {
 	group = group,
 	pattern = { "oil" },
 	callback = function(event)
-		k("n", closeShortcut, "<cmd>lua require('oil.actions').close.callback()<cr>", { buffer = event.buf })
+		k("n", closeShortcut, ":lua require('oil.actions').close.callback()<cr>", { buffer = event.buf })
 	end,
 })
 
@@ -76,7 +76,7 @@ api.nvim_create_autocmd("FileType", {
 		"DiffviewFileHistory",
 	},
 	callback = function(event)
-		k("n", closeShortcut, "<cmd>tabclose<cr>", { buffer = event.buf })
+		k("n", closeShortcut, ":tabclose<cr>", { buffer = event.buf })
 	end,
 })
 
@@ -84,6 +84,6 @@ api.nvim_create_autocmd("FileType", {
 	group = group,
 	pattern = { "gitcommit" },
 	callback = function(event)
-		k({ "n", "i" }, closeShortcut, "<cmd>q!<cr>", { buffer = event.buf })
+		k({ "n", "i" }, closeShortcut, ":q!<cr>", { buffer = event.buf })
 	end,
 })

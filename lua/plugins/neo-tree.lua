@@ -4,7 +4,7 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	keys = {
-		{ "\\", "<cmd>Neotree source=filesystem toggle reveal<cr>" },
+		{ "\\", ":Neotree source=filesystem toggle reveal<cr>" },
 	},
 	opts = {
 		sync_root_with_cwd = true,

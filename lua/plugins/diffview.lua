@@ -4,8 +4,8 @@
 return {
 	"sindrets/diffview.nvim",
 	keys = {
-		{ "<leader>hg", "<cmd>DiffviewOpen<cr>", { desc = "Git: Open diffview" } },
-		{ "<leader>hj", "<cmd>DiffviewFileHistory<cr>", { desc = "Git: Log" } },
+		{ "<leader>hg", ":DiffviewOpen<cr>", { desc = "Git: Open diffview" } },
+		{ "<leader>hj", ":DiffviewFileHistory<cr>", { desc = "Git: Log" } },
 	},
 	config = function()
 		local diffview = require("diffview")
@@ -40,7 +40,7 @@ return {
 					vim.cmd("VimadeWinDisable") -- Disable window tint.
 					local bufnr = view.buffer
 					-- Use cc to commit.
-					vim.keymap.set("n", "cc", "<cmd>DiffviewClose<cr><cmd>vertical Git commit<cr>", { buffer = bufnr })
+					vim.keymap.set("n", "cc", ":DiffviewClose<cr>:vertical Git commit<cr>", { buffer = bufnr })
 				end,
 			},
 		})

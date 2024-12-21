@@ -11,9 +11,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }
 
-		k("n", "<cr>", "<cr><cmd>cclose<cr>", opts) -- Close the quickfix when opening a file.
-		k("n", "<c-p>", "<cmd>colder<cr>", opts) -- Open previous list.
-		k("n", "<c-n>", "<cmd>cnewer<cr>", opts) -- Open next list.
+		k("n", "<cr>", "<cr>:cclose<cr>", opts) -- Close the quickfix when opening a file.
+		k("n", "<c-p>", ":colder<cr>", opts) -- Open previous list.
+		k("n", "<c-n>", ":cnewer<cr>", opts) -- Open next list.
 
 		-- Search and replace on quickfix files.
 		-- https://github.com/theHamsta/dotfiles/blob/master/.config/nvim/ftplugin/qf.lua

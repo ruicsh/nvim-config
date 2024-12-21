@@ -4,7 +4,7 @@
 return {
 	"nvim-pack/nvim-spectre",
 	keys = {
-		{ "<leader>r", "<cmd>Spectre %<cr>", { desc = "[r]eplace" } },
+		{ "<leader>r", ":Spectre %<cr>", { desc = "[r]eplace" } },
 	},
 	opts = {
 		highlight = {

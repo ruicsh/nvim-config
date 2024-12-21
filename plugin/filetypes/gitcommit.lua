@@ -12,6 +12,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		local opts = { buffer = event.buf }
 
 		-- Use <c-s> to save the commit message.
-		k("i", "<c-s>", "<esc><cmd>w<cr><c-w>q", opts)
+		k("i", "<c-s>", "<esc>:w<cr><c-w>q", opts)
 	end,
 })
