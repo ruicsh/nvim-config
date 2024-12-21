@@ -10,7 +10,6 @@ return {
 		vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text.
 
 		local lualine = require("lualine")
-		local workspaces = require("workspaces")
 
 		local c = NordStoneColors
 		local theme = {
@@ -19,6 +18,7 @@ return {
 				b = { fg = c.nord5, bg = c.nord1 },
 				c = { fg = c.nord5, bg = "NONE" },
 				x = { fg = c.nord3_500, bg = "NONE" },
+				y = { fg = c.nord3_500, bg = c.nord1 },
 			},
 			insert = {
 				a = { fg = c.nord1, bg = c.nord6, gui = "bold" },
@@ -50,16 +50,21 @@ return {
 						end,
 					},
 				},
-				lualine_b = { workspaces.name },
+				lualine_b = {
+					{ "branch" },
+				},
 				lualine_c = {
 					{
 						"filename",
 						path = 4,
 					},
 					{
-						"filetype",
-						icon_only = true,
-						icon = { align = "right" },
+						"diff",
+						symbols = {
+							added = icons.git.added,
+							modified = icons.git.modified,
+							removed = icons.git.removed,
+						},
 					},
 					{
 						"diagnostics",
@@ -77,19 +82,8 @@ return {
 						cond = git_blame.is_blame_text_available,
 					},
 				},
-				lualine_y = {
-					{
-						"diff",
-						symbols = {
-							added = icons.git.added,
-							modified = icons.git.modified,
-							removed = icons.git.removed,
-						},
-					},
-				},
-				lualine_z = {
-					"branch",
-				},
+				lualine_y = {},
+				lualine_z = {},
 			},
 			inactive_sections = {
 				lualine_a = {},

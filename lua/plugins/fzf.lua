@@ -8,7 +8,7 @@ return {
 
 		return {
 			{ "<leader><leader>", fzf.files, { desc = "Find files" } },
-			{ "<leader>ff", fzf.live_grep, { desc = "Search in workspace" } },
+			{ "<leader>f", fzf.live_grep, { desc = "Search in workspace" } },
 			{ "<leader>.", fzf.resume, { desc = "Last search" } },
 			{ "<leader>nh", fzf.helptags, { desc = "Neovim: help" } },
 			{ "<leader>nc", fzf.commands, { desc = "Neovim: commands" } },

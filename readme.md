@@ -9,7 +9,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - **Git integration** - status, diffview, commit message editor, buffer integration
 - **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
 - **Search** - fuzzy find anything, file and workspace scoped search and replace
-- **Application** - files and directory explorer, workspaces, notifications, command palette
+- **Application** - files and directory explorer, notifications, command palette
 
 <sub>Works on Neovim v0.10.2</sub>
 
@@ -74,12 +74,10 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [csvview.nvim](https://github.com/hat0uma/csvview.nvim) - CSV editing
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs (`()`, `[]`, `{}`)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Completions
-- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Display code context
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
 
 #### LSP
 
-- [aerial.nvim](https://github.com/stevearc/aerial.nvim) - Symbols outline
 - [lazydev.nvim](https://github.com/folke/trouble.nvim) - Lua language server
 - [nvim-lightbulb](https://github.com/kosayoda/nvim-lightbulb) - Code actions
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
