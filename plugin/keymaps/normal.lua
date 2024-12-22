@@ -75,5 +75,5 @@ k("n", "vv", "V") -- Enter visual linewise mode
 k("n", "<c-\\>", ":terminal<cr>", { desc = "Open classic terminal" }) -- Instead of using ToggleTerm.
 k("n", "yc", "yy:normal gcc<cr>p") -- Duplicate a line and comment out the first line.
 k("n", "J", "mzJ`z:delmarks z<cr>", { silent = true }) -- Keep cursor in place when joining lines
-k("n", "<leader>w", ":silent! write<cr>", { desc = "Save file" }) -- Save changes
+k("n", "<leader>w", ":silent! write<cr>", { silent = true, desc = "Save file" }) -- Save changes
 k("n", "zk", "zk%^") -- Jump to start of previous fold.
