@@ -3,12 +3,23 @@
 
 return {
 	"chrisgrieser/nvim-spider",
-	keys = {
-		{ "w", ":lua require('spider').motion('w')<cr>" },
-		{ "e", ":lua require('spider').motion('e')<cr>" },
-		{ "b", ":lua require('spider').motion('b')<cr>" },
-		{ "ge", ":lua require('spider').motion('ge')<cr>" },
-	},
+	keys = function()
+		local function motion(char)
+			return function()
+				local spider = require("spider")
+				spider.motion(char)
+			end
+		end
+
+		local opts = { mode = { "n", "o", "x" }, silent = true }
+
+		return {
+			{ "w", motion("w"), opts },
+			{ "e", motion("e"), opts },
+			{ "b", motion("b"), opts },
+			{ "ge", motion("ge"), opts },
+		}
+	end,
 
 	event = { "VeryLazy" },
 }
