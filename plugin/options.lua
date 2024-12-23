@@ -115,10 +115,23 @@ o.iskeyword:append({
 
 -- 24 various
 o.gdefault = true -- Use g flag for ":substitute".
-o.signcolumn = "yes" -- Always showe to prevent the screen from jumping.
+o.signcolumn = "yes" -- Always showed to prevent the screen from jumping.
 o.shada = {
-	"'10", -- Remember marks for the last 10 edited files.
-	"<0", -- Max 10 lines saved for each register.
-	"s10", -- Max size of an item contents in KiB.
+	'"50', -- Max number of lines saved for each register.
+	"'50", -- Remember marks for the last 10 edited files.
+	"/50", -- Max number of items in the search pattern.
+	":50", -- Max number of items in the command-line history.
+	"<50", -- Max number of lines saved for each register.
+	"@50", -- Max number of items in the input-line history.
+	"f1", -- Save all file marks
 	"h", -- Disable the effect of hlsearch when loading the shada file.
 }
+-- https://www.reddit.com/r/neovim/comments/1hkpgar/a_per_project_shadafile/
+o.shadafile = (function() -- Per project shadafile
+	local data = vim.fn.stdpath("data")
+	local cwd = vim.fn.getgitroot() or vim.fn.getcwd()
+	local cwd_b64 = vim.base64.encode(cwd)
+	local file = vim.fs.joinpath(data, "project_shada", cwd_b64)
+	vim.fn.mkdir(vim.fs.dirname(file), "p")
+	return file
+end)()
