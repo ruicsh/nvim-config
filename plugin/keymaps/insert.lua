@@ -1,6 +1,9 @@
-local k = vim.keymap.set
+local function k(lhs, rhs, opts)
+	local options = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
+	vim.keymap.set("i", lhs, rhs, options)
+end
 
 -- Use nvim-cmp instead of the default autocomplete (when on empty line)
 local cmp = require("cmp")
-k("i", "<c-n>", cmp.complete)
-k("i", "<c-p>", cmp.complete)
+k("<c-n>", cmp.complete)
+k("<c-p>", cmp.complete)
