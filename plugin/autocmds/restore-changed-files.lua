@@ -99,6 +99,11 @@ end
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
 	group = group,
 	callback = function()
+		-- if vim was opened with files, don't open changed files
+		if #vim.fn.argv() > 0 then
+			return
+		end
+
 		vim.schedule(function()
 			local files = get_changed_files()
 			files = prune_list(files)
