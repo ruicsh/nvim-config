@@ -58,11 +58,9 @@
 - `gt` jump to next tab
 - `gT` jump to previous tab
 - `{number}gt` jump to tab {number}
-- `<leader>td` close tab
+- `<leader>tc` close tab
 - `<leader>tn` new tab
 - `<leader>to` close all other
-- `<leader>tH` move current tab to before
-- `<leader>tL` move current tab to after
 
 ### Editor
 
@@ -70,8 +68,6 @@
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
-- `H` jump to first non-empty character in line
-- `L` jump to end of line
 - `'0` jump to position where last exited Vim
 
 #### Editing
