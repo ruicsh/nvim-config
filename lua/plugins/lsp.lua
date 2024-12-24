@@ -25,8 +25,10 @@ local function lsp_on_attach(client, bufnr)
 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
 	end
 
+	local methods = vim.lsp.protocol.Methods
+
 	-- Highlight all references to symbol under cursor
-	if client.server_capabilities.documentHighlightProvider then
+	if client:supports_method(methods.textDocument_documentHighlight) then
 		local group = vim.api.nvim_create_augroup("ruicsh/lsp_document_highlight", { clear = true })
 		vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
 
@@ -46,7 +48,7 @@ local function lsp_on_attach(client, bufnr)
 	end
 
 	-- Inlay hints
-	if client.server_capabilities.inlayHintProvider then
+	if client:supports_method(methods.textDocument_inlayHint) then
 		local function toggle_hint()
 			local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
 			vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
@@ -69,26 +71,18 @@ local function lsp_on_attach(client, bufnr)
 	end
 
 	-- Keymaps
-	local function document_symbol()
-		vim.cmd("AerialToggle! right")
-	end
-
-	local function list_references()
-		vim.lsp.buf.references({ includeDeclaration = false })
-	end
-
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
 	k("K", vim.lsp.buf.hover, "Hover")
 	k("gd", vim.lsp.buf.definition, "Jump to [d]efinition")
 	k("gD", vim.lsp.buf.declaration, "Jump to [D]eclaration")
-	k("gO", document_symbol, "Document Symbol")
+	k("gO", vim.lsp.buf.document_symbol, "Document Symbol")
 	k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" })
 	k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
 	k("gri", vim.lsp.buf.implementation, "List [i]mplementations")
 	k("grj", vim.lsp.buf.incoming_calls, "Incoming calls")
 	k("grk", vim.lsp.buf.outgoing_calls, "Outgoing calls")
 	k("grn", vim.lsp.buf.rename, "Rename symbol")
-	k("grr", list_references, "List [r]eferences")
+	k("grr", vim.lsp.buf.references, "List [r]eferences")
 	k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "n", "i" })
 
 	k("<leader>dd", vim.diagnostic.setqflist, "Diagnostics")

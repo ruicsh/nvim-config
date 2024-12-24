@@ -15,11 +15,15 @@ return {
 		end
 
 		return {
-			{ "[r", jump_to_previous_reference, { desc = "Jump to previous reference" } },
-			{ "]r", jump_to_next_reference, { desc = "Jump to next reference" } },
+			{ "[r", jump_to_previous_reference, { desc = "LSP: Jump to previous reference" } },
+			{ "]r", jump_to_next_reference, { desc = "LSP: Jump to next reference" } },
 		}
 	end,
 	opts = {
+		-- https://github.com/folke/snacks.nvim/blob/main/docs/bufdelete.md
+		bufdelete = {
+			enabled = true,
+		},
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/statuscolumn.md
 		statuscolumn = {
 			left = { "sign", "git" },
