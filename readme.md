@@ -52,12 +52,11 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - [mini.ai](https://github.com/echasnovski/mini.ai) - a/i textobjects
 - [mini.move](https://github.com/echasnovski/mini.move) - move lines/selection
+- [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround pairs
 - [nvim-spider](https://github.com/chrisgrieser/nvim-spider) - Move by subwords (camelCase, ...)
-- [nvim-various-textobjs](https://github.com/chrisgrieser/nvim-various-textobjs) - Bundle of text objects
 - [repeat.vim](https://github.com/tpope/vim-repeat) - Repeat plugin keymaps
 - [rsi.vim](https://github.com/tpope/vim-rsi) - Insert mode navigation
-- [sort.nvim](https://github.com/sQVe/sort.nvim) - Sort selection
 
 #### Search
 

@@ -82,7 +82,6 @@
 - `]e` move line/selection below
 - `[p` paste to new line above
 - `]p` paste to new line below
-- `S{char}` surround selection (visual mode)
 - `cs{target}{replacement}` change surrounding character
 - `ds{char}` delete surrounding character
 - `ys{motion}{char}` insert surrounding character
@@ -102,34 +101,23 @@
 
 #### Text objects
 
-- `#` color in CSS
-- `S` word in camelCase, PascalCase, snake_case and kebab-case
 - `a` function argument
 - `b` brackets ({}, (), [])
-- `c` class in CSS
 - `d` code blocks (if, while, for, ...)
 - `f` function
-- `k` key, left side of assignment
 - `q` quotes ("", '', ``)
-- `v` value, right side of assignment
-- `x` HTML attribute
 
-#### Sorting
+#### Operators
 
-- `<leader>so` sort selection
-- `<leader>s(` sort inside ()
-- `<leader>s[` sort inside []
-- `<leader>s{` sort inside {}
-- `<leader>s'` sort inside ''
-- `<leader>s"` sort inside ""
-- `<leader>s}` sort paragraph
+- `R{motion}` replace with last yank
+- `gm{motion}` multiply
+- `gs{motion}` sort
 
 #### Search
 
 - `/` find in document forward
 - `?` find in document backward
-- `<leader>ff` find in workspace
-- `<leader>fd` find in directory
+- `<leader>f` find in workspace
 - `<leader>r` replace in selection/document/workspace
 
 ### Coding
