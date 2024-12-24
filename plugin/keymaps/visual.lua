@@ -3,9 +3,6 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("x", lhs, rhs, options)
 end
 
--- Sort
-k("<leader>so", "<esc>:Sort<cr>", { desc = "[S]ort" })
-
 -- Search and replace
 k("<leader>r", ":s/", { desc = "Replace within selection" })
 
@@ -25,8 +22,3 @@ k("{", "6k")
 k("}", "6j")
 k("H", "0^")
 k("L", "$")
-
--- Maintain the cursor position when yanking a visual selection.
--- https://ddrscott.github.io/blog/2016/yank-without-jank/
-k("y", "myy`y:delmarks y<cr>", { silent = true })
-k("Y", "myY`y:delmarks y<cr>", { silent = true })
