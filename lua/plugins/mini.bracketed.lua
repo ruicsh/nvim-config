@@ -6,7 +6,7 @@ return {
 	opts = {
 		buffer = { suffix = "" },
 		comment = { suffix = "" },
-		conflict = { suffix = "c" },
+		conflict = { suffix = "" },
 		diagnostic = { suffix = "d" },
 		file = { suffix = "" },
 		indent = { suffix = "" },

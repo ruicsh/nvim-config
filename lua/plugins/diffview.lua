@@ -40,7 +40,8 @@ return {
 					vim.cmd("VimadeWinDisable") -- Disable window tint.
 					local bufnr = view.buffer
 					-- Use cc to commit.
-					vim.keymap.set("n", "cc", ":DiffviewClose<cr>:vertical Git commit<cr>", { buffer = bufnr })
+					local opts = { buffer = bufnr, unique = true }
+					vim.keymap.set("n", "cc", ":DiffviewClose<cr>:vertical Git commit<cr>", opts)
 				end,
 			},
 		})

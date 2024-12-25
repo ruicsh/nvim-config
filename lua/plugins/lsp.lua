@@ -22,7 +22,7 @@ local lsp_handlers = {
 local function lsp_on_attach(client, bufnr)
 	local k = function(keys, func, desc, mode)
 		mode = mode or "n"
-		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+		vim.keymap.set(mode, keys, func, { buffer = bufnr, unique = true, desc = "LSP: " .. desc })
 	end
 
 	local methods = vim.lsp.protocol.Methods
@@ -72,7 +72,6 @@ local function lsp_on_attach(client, bufnr)
 
 	-- Keymaps
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
-	k("K", vim.lsp.buf.hover, "Hover")
 	k("gd", vim.lsp.buf.definition, "Jump to [d]efinition")
 	k("gD", vim.lsp.buf.declaration, "Jump to [D]eclaration")
 	k("gO", vim.lsp.buf.document_symbol, "Document Symbol")

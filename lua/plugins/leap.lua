@@ -4,10 +4,12 @@
 return {
 	"ggandor/leap.nvim",
 	config = function()
-		vim.keymap.set("n", "s", "<Plug>(leap)")
-		vim.keymap.set("n", "S", "<Plug>(leap-from-window)")
-		vim.keymap.set({ "x", "o" }, "s", "<Plug>(leap-forward)")
-		vim.keymap.set({ "x", "o" }, "S", "<Plug>(leap-backward)")
+		local opts = { silent = true, unique = true }
+
+		vim.keymap.set("n", "s", "<Plug>(leap)", opts)
+		vim.keymap.set("n", "S", "<Plug>(leap-from-window)", opts)
+		vim.keymap.set({ "x", "o" }, "s", "<Plug>(leap-forward)", opts)
+		vim.keymap.set({ "x", "o" }, "S", "<Plug>(leap-backward)", opts)
 	end,
 
 	events = { "VeryLazy" },

@@ -1,5 +1,5 @@
 local function k(lhs, rhs, desc)
-	vim.keymap.set("n", lhs, rhs, { desc = "[t]ypescript: " .. desc, buffer = true, lazy = true })
+	vim.keymap.set("n", lhs, rhs, { desc = "[t]ypescript: " .. desc, buffer = true, lazy = true, unique = true })
 end
 
 k("<leader>tso", ":TSToolsOrganizeImports<cr>", "[o]rganize imports")

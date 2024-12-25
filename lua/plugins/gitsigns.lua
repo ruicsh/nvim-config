@@ -26,8 +26,7 @@ return {
 			local gitsigns = require("gitsigns")
 
 			local function map(mode, l, r, opts)
-				opts = opts or {}
-				opts.buffer = bufnr
+				opts = vim.tbl_extend("force", { buffer = bufnr, unique = true }, opts or {})
 				vim.keymap.set(mode, l, r, opts)
 			end
 

@@ -21,7 +21,10 @@ return {
 		})
 
 		local bmui = require("buffer_manager.ui")
-		vim.keymap.set("n", "§", bmui.toggle_quick_menu, { noremap = true, silent = true })
+		local k = vim.keymap.set
+		local opts = { noremap = true, silent = true, unique = true }
+
+		k("n", "§", bmui.toggle_quick_menu, opts)
 	end,
 
 	event = { "VeryLazy" },

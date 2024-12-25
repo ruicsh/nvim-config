@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.cmd.packadd("cfilter") -- Install package to filter entries.
 
 		local k = vim.keymap.set
-		local opts = { buffer = event.buf }
+		local opts = { buffer = event.buf, unique = true }
 
 		k("n", "<cr>", "<cr>:cclose<cr>", opts) -- Close the quickfix when opening a file.
 		k("n", "<c-p>", ":colder<cr>", opts) -- Open previous list.
