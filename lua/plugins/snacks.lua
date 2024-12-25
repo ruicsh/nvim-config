@@ -14,10 +14,11 @@ return {
 			snacks.words.jump(1, true)
 		end
 
-		return {
-			{ "[r", jump_to_previous_reference, { desc = "LSP: Jump to previous reference" } },
-			{ "]r", jump_to_next_reference, { desc = "LSP: Jump to next reference" } },
+		local mappings = {
+			{ "[r", jump_to_previous_reference, "Jump to previous reference" },
+			{ "]r", jump_to_next_reference, "Jump to next reference" },
 		}
+		return vim.fn.getlazykeysconf(mappings, "LSP")
 	end,
 	opts = {
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/bufdelete.md

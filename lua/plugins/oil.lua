@@ -5,15 +5,15 @@ return {
 	"stevearc/oil.nvim",
 	keys = function()
 		local oil = require("oil")
-
 		local function open_cwd()
 			oil.open(vim.fn.getcwd())
 		end
 
-		return {
-			{ "-", ":Oil<cr>", desc = "Oil: Open parent directory" },
-			{ "_", open_cwd, desc = "Oil: Open cwd" },
+		local mappings = {
+			{ "-", ":Oil<cr>", "Open parent" },
+			{ "_", open_cwd, "Open cwd" },
 		}
+		return vim.fn.getlazykeysconf(mappings, "Oil")
 	end,
 	opts = {
 		buf_options = {

@@ -24,3 +24,14 @@ vim.fn.getgitroot = function()
 
 	return dot_git_dir
 end
+
+-- Takes a table of keys, returns a keymaps lazy config
+vim.fn.getlazykeysconf = function(mappings, desc_prefix, opts)
+	local mode = opts and opts.mode or "n"
+	return vim.tbl_map(function(mapping)
+		local lhs = mapping[1]
+		local rhs = mapping[2]
+		local desc = desc_prefix .. ": " .. mapping[3]
+		return { lhs, rhs, silent = true, mode = mode, noremap = true, unique = true, desc = desc }
+	end, mappings)
+end

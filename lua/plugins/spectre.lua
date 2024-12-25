@@ -3,9 +3,12 @@
 
 return {
 	"nvim-pack/nvim-spectre",
-	keys = {
-		{ "<leader>r", ":Spectre %<cr>", { desc = "[r]eplace" } },
-	},
+	keys = function()
+		local mappings = {
+			{ "<leader>r", ":Spectre %<cr>", "[r]eplace" },
+		}
+		return vim.fn.getlazykeysconf(mappings, "Spectre")
+	end,
 	opts = {
 		highlight = {
 			search = "SpectreSearchHl",

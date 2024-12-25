@@ -3,9 +3,12 @@
 
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	keys = {
-		{ "\\", ":Neotree source=filesystem toggle reveal<cr>" },
-	},
+	keys = function()
+		local mappings = {
+			{ "\\", ":Neotree source=filesystem toggle reveal<cr>", "Toggle" },
+		}
+		return vim.fn.getlazykeysconf(mappings, "Explorer")
+	end,
 	opts = {
 		sync_root_with_cwd = true,
 		respect_buf_cwd = true,

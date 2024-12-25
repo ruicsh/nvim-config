@@ -3,9 +3,12 @@
 
 return {
 	"anuvyklack/windows.nvim",
-	keys = {
-		{ "<c-w>m", ":WindowsMaximize<cr>", mode = { "n", "x", "i" }, silent = true },
-	},
+	keys = function()
+		local mappings = {
+			{ "<c-w>m", ":WindowsMaximize<cr>", "Maximize", { mode = { "n", "x", "i" } } },
+		}
+		return vim.fn.getlazykeysconf(mappings, "Windows")
+	end,
 	opts = {
 		animation = {
 			enable = false,

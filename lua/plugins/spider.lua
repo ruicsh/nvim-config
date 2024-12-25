@@ -11,14 +11,15 @@ return {
 			end
 		end
 
-		local opts = { mode = { "n", "o", "x" }, silent = true }
+		local opts = { mode = { "n", "o", "x" } }
 
-		return {
-			{ "w", motion("w"), opts },
-			{ "e", motion("e"), opts },
-			{ "b", motion("b"), opts },
-			{ "ge", motion("ge"), opts },
+		local mappings = {
+			{ "w", motion("w"), "word", opts },
+			{ "e", motion("e"), "end of word", opts },
+			{ "b", motion("b"), "back word", opts },
+			{ "ge", motion("ge"), "back end of word", opts },
 		}
+		return vim.fn.getlazykeysconf(mappings, "Spider")
 	end,
 
 	event = { "VeryLazy" },

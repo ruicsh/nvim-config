@@ -5,6 +5,23 @@ local icons = require("config/icons")
 
 return {
 	"stevearc/quicker.nvim",
+	keys = function()
+		local quicker = require("quicker")
+
+		local function toggle_quickfix()
+			quicker.toggle({ focus = true })
+		end
+
+		local function toggle_loclist()
+			quicker.toggle({ loclist = true })
+		end
+
+		local mappings = {
+			{ "<leader>qq", toggle_quickfix, "Toggle" },
+			{ "<leader>ql", toggle_loclist, "Toggle locklist" },
+		}
+		return vim.fn.getlazykeysconf(mappings, "Quickfix")
+	end,
 	opts = {
 		opts = {
 			buflisted = false,
@@ -27,22 +44,6 @@ return {
 		end,
 		constrain_cursor = false,
 	},
-	keys = function()
-		local quicker = require("quicker")
-
-		local function toggle_quickfix()
-			quicker.toggle({ focus = true })
-		end
-
-		local function toggle_loclist()
-			quicker.toggle({ loclist = true })
-		end
-
-		return {
-			{ "<leader>qq", toggle_quickfix, desc = "Toggle quickfix" },
-			{ "<leader>ql", toggle_loclist, desc = "Toggle locklist" },
-		}
-	end,
 
 	ft = { "qf" },
 }

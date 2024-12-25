@@ -5,15 +5,15 @@ return {
 	"ibhagwan/fzf-lua",
 	keys = function()
 		local fzf = require("fzf-lua")
-
-		return {
-			{ "<leader><leader>", fzf.files, { desc = "Find files" } },
-			{ "<leader>f", fzf.live_grep, { desc = "Search in workspace" } },
-			{ "<leader>.", fzf.resume, { desc = "Last search" } },
-			{ "<leader>nh", fzf.helptags, { desc = "Neovim: help" } },
-			{ "<leader>nc", fzf.commands, { desc = "Neovim: commands" } },
-			{ "<leader>hf", fzf.git_status, { desc = "Git: list files" } },
+		local mappings = {
+			{ "<leader><leader>", fzf.files, "Find files" },
+			{ "<leader>f", fzf.live_grep, "Search in workspace" },
+			{ "<leader>.", fzf.resume, "Last search" },
+			{ "<leader>nh", fzf.helptags, "Neovim: help" },
+			{ "<leader>nc", fzf.commands, "Neovim: commands" },
+			{ "<leader>hf", fzf.git_status, "Git: list files" },
 		}
+		return vim.fn.getlazykeysconf(mappings, "FZF")
 	end,
 	config = function()
 		local fzf = require("fzf-lua")

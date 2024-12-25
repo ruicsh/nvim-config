@@ -7,6 +7,8 @@ return {
 		local bm = require("buffer_manager")
 		bm.setup({
 			show_indicators = true,
+			short_file_names = false,
+			short_term_names = false,
 			format_function = function(buf)
 				-- display the parent directory name and basename
 				local path = vim.fs.dirname(buf)
@@ -22,9 +24,7 @@ return {
 
 		local bmui = require("buffer_manager.ui")
 		local k = vim.keymap.set
-		local opts = { noremap = true, silent = true, unique = true }
-
-		k("n", "§", bmui.toggle_quick_menu, opts)
+		k("n", "§", bmui.toggle_quick_menu, { noremap = true, silent = true, unique = true })
 	end,
 
 	event = { "VeryLazy" },

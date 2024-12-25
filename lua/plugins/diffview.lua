@@ -3,10 +3,13 @@
 
 return {
 	"sindrets/diffview.nvim",
-	keys = {
-		{ "<leader>hg", ":DiffviewOpen<cr>", { desc = "Git: Open diffview" } },
-		{ "<leader>hj", ":DiffviewFileHistory<cr>", { desc = "Git: Log" } },
-	},
+	keys = function()
+		local mappings = {
+			{ "<leader>hg", ":DiffviewOpen<cr>", "Open diffview" },
+			{ "<leader>hj", ":DiffviewFileHistory<cr>", "Log" },
+		}
+		return vim.fn.getlazykeysconf(mappings, "Git")
+	end,
 	config = function()
 		local diffview = require("diffview")
 		local actions = require("diffview.actions")

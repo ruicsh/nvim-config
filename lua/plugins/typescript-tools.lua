@@ -12,13 +12,7 @@ return {
 			{ "<leader>tss", ":TSToolsSortImports<cr>", "Sort imports" },
 			{ "<leader>tsu", ":TSToolsRemoveUnusedImports<cr>", "Remove unused imports" },
 		}
-
-		return vim.tbl_map(function(mapping)
-			local lhs = mapping[1]
-			local rhs = mapping[2]
-			local desc = "TypeScript: " .. mapping[3]
-			return { lhs, rhs, silent = true, noremap = true, unique = true, desc = desc }
-		end, mappings)
+		return vim.fn.getlazykeysconf(mappings, "TypeScript")
 	end,
 	opts = {
 		settings = {
