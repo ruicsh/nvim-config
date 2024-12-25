@@ -1,4 +1,4 @@
--- Quickfix.
+-- Angular's component template files (*.component.html)
 
 local group = vim.api.nvim_create_augroup("ruicsh/ft/htmlangular", { clear = true })
 

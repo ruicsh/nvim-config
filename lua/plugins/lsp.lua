@@ -181,26 +181,26 @@ return {
 			-- https://github.com/williamboman/mason-lspconfig.nvim
 			"williamboman/mason-lspconfig.nvim",
 		},
-		{ -- TypeScript LSP (tsserver)
-			-- https://github.com/pmizio/typescript-tools.nvim
-			"pmizio/typescript-tools.nvim",
-			opts = {
-				handlers = lsp_handlers,
-				on_attach = lsp_on_attach,
-				settings = {
-					tsserver_file_preferences = {
-						includeInlayEnumMemberValueHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-					},
-				},
-			},
-		},
+		-- { -- TypeScript LSP (tsserver)
+		-- 	-- https://github.com/pmizio/typescript-tools.nvim
+		-- 	"pmizio/typescript-tools.nvim",
+		-- 	opts = {
+		-- 		-- handlers = lsp_handlers,
+		-- 		-- on_attach = lsp_on_attach,
+		-- 		settings = {
+		-- 			tsserver_file_preferences = {
+		-- 				includeInlayEnumMemberValueHints = true,
+		-- 				includeInlayFunctionLikeReturnTypeHints = true,
+		-- 				includeInlayFunctionParameterTypeHints = true,
+		-- 				includeInlayParameterNameHints = "all",
+		-- 				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+		-- 				includeInlayPropertyDeclarationTypeHints = true,
+		-- 				includeInlayVariableTypeHints = true,
+		-- 				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+		-- 			},
+		-- 		},
+		-- 	},
+		-- },
 		{ -- Pictograms for completion items (lspkind.nvim).
 			-- https://github.com/onsails/lspkind.nvim
 			"onsails/lspkind.nvim",
