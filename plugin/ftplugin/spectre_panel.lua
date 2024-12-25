@@ -8,7 +8,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function(event)
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }
-
 		-- When deleting the path, have it trigger a new search.
 		k("n", "D", "A<c-u><esc>", opts)
 	end,

@@ -13,8 +13,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.cmd.wincmd("=")
 
 		local k = vim.keymap.set
-		local opts = { buffer = event.buf, unique = true }
-
+		local opts = { buffer = event.buf }
 		-- Better navigation.
 		-- https://vim.fandom.com/wiki/Learn_to_use_help#Simplify_help_navigation
 		k("n", "<cr>", "<c-]>", opts)
