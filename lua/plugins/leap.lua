@@ -1,9 +1,11 @@
--- Jump with search labels
+-- Jump with search labels.
 -- https://github.com/ggandor/leap.nvim
 
 return {
 	"ggandor/leap.nvim",
 	config = function()
+		local leap_remote = require("leap.remote")
+
 		local k = function(mode, lhs, rhs, opts)
 			local desc = opts.desc and "Leap: " .. opts.desc or ""
 			local options = vim.tbl_extend("force", opts, { desc = desc, noremap = true, silent = true })
@@ -14,6 +16,7 @@ return {
 		k("n", "S", "<Plug>(leap-from-window)", { desc = "Search on windows" })
 		k({ "x", "o" }, "s", "<Plug>(leap-forward)", { desc = "Forward" })
 		k({ "x", "o" }, "S", "<Plug>(leap-backward)", { desc = "Backward" })
+		k({ "n", "o" }, "gs", leap_remote.action, { desc = "Remote" })
 	end,
 
 	dependencies = {
