@@ -36,7 +36,6 @@ api.nvim_create_autocmd("FileType", {
 		"qf",
 		"query",
 		"scratch",
-		"spectre_panel",
 		"startuptime",
 	},
 	callback = function(event)

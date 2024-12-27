@@ -3,9 +3,6 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("x", lhs, rhs, options)
 end
 
--- Search and replace
-k("<leader>r", ":s/", { desc = "Replace within selection" })
-
 -- Keep visual selection after indenting.
 k("<<", "<gv")
 k(">>", ">gv")
