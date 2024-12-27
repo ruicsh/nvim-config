@@ -18,7 +18,6 @@ return {
 				b = { fg = c.nord5, bg = c.nord1 },
 				c = { fg = c.nord5, bg = "NONE" },
 				x = { fg = c.nord3_500, bg = "NONE" },
-				y = { fg = c.nord3_500, bg = c.nord1 },
 			},
 			insert = {
 				a = { fg = c.nord1, bg = c.nord6, gui = "bold" },
@@ -83,7 +82,7 @@ return {
 					},
 				},
 				lualine_y = {},
-				lualine_z = {},
+				lualine_z = { "progress" },
 			},
 			inactive_sections = {
 				lualine_a = {},
