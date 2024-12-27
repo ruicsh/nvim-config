@@ -3,17 +3,19 @@
 
 return {
 	"ggandor/leap.nvim",
-	keys = function()
-		local mappings = {
-			{ "s", "<Plug>(leap)", "Search" },
-			{ "S", "<Plug>(leap-from-window)", "Search on windows" },
-			{ "s", "<Plug>(leap-forward)", "Forward", { modes = { "x", "o" } } },
-			{ "S", "<Plug>(leap-backward)", "Backward", { modes = { "x", "o" } } },
-		}
-		return vim.fn.getlazykeysconf(mappings, "Leap")
+	config = function()
+		local k = function(mode, lhs, rhs, opts)
+			local desc = opts.desc and "Leap: " .. opts.desc or ""
+			local options = vim.tbl_extend("force", opts, { desc = desc, noremap = true, silent = true })
+			vim.keymap.set(mode, lhs, rhs, options)
+		end
+
+		k("n", "s", "<Plug>(leap)", { desc = "Search" })
+		k("n", "S", "<Plug>(leap-from-window)", { desc = "Search on windows" })
+		k({ "x", "o" }, "s", "<Plug>(leap-forward)", { desc = "Forward" })
+		k({ "x", "o" }, "S", "<Plug>(leap-backward)", { desc = "Backward" })
 	end,
 
-	events = { "VeryLazy" },
 	dependencies = {
 		"tpope/vim-repeat",
 	},
