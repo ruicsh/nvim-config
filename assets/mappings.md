@@ -105,16 +105,15 @@
 
 #### Operators
 
-- `R{motion}` replace with last yank
-- `gm{motion}` multiply
-- `gs{motion}` sort
+- `<leader>r{motion}` replace with last yank
+- `<leader>m{motion}` multiply
+- `<leader>gs{motion}` sort
 
 #### Search
 
 - `/` find in document forward
 - `?` find in document backward
 - `<leader>f` find in workspace
-- `<leader>r` replace in selection/document/workspace
 
 ### Coding
 

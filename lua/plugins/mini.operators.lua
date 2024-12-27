@@ -8,13 +8,13 @@ return {
 			prefix = "",
 		},
 		multiply = {
-			prefix = "gm",
+			prefix = "<leader>m",
 		},
 		replace = {
-			prefix = "R",
+			prefix = "<leader>r",
 		},
 		sort = {
-			prefix = "gs",
+			prefix = "<leader>s",
 		},
 	},
 }
