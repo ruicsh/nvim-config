@@ -72,44 +72,29 @@ local function lsp_on_attach(client, bufnr)
 
 	-- Keymaps
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
-	if client.supports_method(methods.textDocument_hover) then
-		k("K", vim.lsp.buf.hover, "Hover")
-	end
+	k("K", vim.lsp.buf.hover, "Hover")
+	k("grn", vim.lsp.buf.rename, "Rename symbol")
+	k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" })
+	k("grr", vim.lsp.buf.references, "List [r]eferences")
+	k("gri", vim.lsp.buf.implementation, "List [i]mplementations")
+	k("gO", vim.lsp.buf.document_symbol, "Document Symbol")
+	k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "n", "i" })
+	k("<leader>dd", vim.diagnostic.setqflist, "Diagnostics")
+
 	if client.supports_method(methods.textDocument_definition) then
 		k("gd", vim.lsp.buf.definition, "Jump to [d]efinition")
 	end
 	if client.supports_method(methods.textDocument_declaration) then
 		k("gD", vim.lsp.buf.declaration, "Jump to [D]eclaration")
 	end
-	if client.supports_method(methods.textDocument_documentSymbol) then
-		k("gO", vim.lsp.buf.document_symbol, "Document Symbol")
-	end
-	if client.supports_method(methods.textDocument_codeAction) then
-		k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" })
-	end
 	if client.supports_method(methods.textDocument_typeDefinition) then
 		k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
-	end
-	if client.supports_method(methods.textDocument_implementation) then
-		k("gri", vim.lsp.buf.implementation, "List [i]mplementations")
 	end
 	if client.supports_method(methods.callHierarchy_incomingCalls) then
 		k("grj", vim.lsp.buf.incoming_calls, "Incoming calls")
 	end
 	if client.supports_method(methods.callHierarchy_outgoingCalls) then
 		k("grk", vim.lsp.buf.outgoing_calls, "Outgoing calls")
-	end
-	if client.supports_method(methods.textDocument_rename) then
-		k("grn", vim.lsp.buf.rename, "Rename symbol")
-	end
-	if client.supports_method(methods.textDocument_references) then
-		k("grr", vim.lsp.buf.references, "List [r]eferences")
-	end
-	if client.supports_method(methods.textDocument_signatureHelp) then
-		k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "n", "i" })
-	end
-	if client.supports_method(methods.workspace_diagnostic) then
-		k("<leader>dd", vim.diagnostic.setqflist, "Diagnostics")
 	end
 end
 
