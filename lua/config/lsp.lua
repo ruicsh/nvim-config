@@ -26,6 +26,18 @@ M = {
 		prettierd = {},
 		stylua = {},
 	},
+	handlers = {
+		["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+			border = "rounded",
+			focus = true,
+			max_width = 80,
+		}),
+		["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+			border = "rounded",
+			focus = true,
+			max_width = 80,
+		}),
+	},
 }
 
 return M

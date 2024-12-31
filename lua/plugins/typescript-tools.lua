@@ -1,6 +1,8 @@
 -- TypeScript LSP (tsserver)
 -- https://github.com/pmizio/typescript-tools.nvim
 
+local lspconf = require("config/lsp")
+
 return {
 	"pmizio/typescript-tools.nvim",
 	keys = function()
@@ -27,6 +29,7 @@ return {
 				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
 			},
 		},
+		handlers = lspconf.handlers,
 	},
 
 	ft = { "typescript", "typescriptreact" },

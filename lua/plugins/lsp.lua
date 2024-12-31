@@ -4,21 +4,6 @@
 local lspconf = require("config/lsp")
 local icons = require("config/icons")
 
-local lsp_handlers = {
-	-- <s-k> float window
-	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-		border = "rounded",
-		focusable = false,
-		focus = false,
-	}),
-	-- i_<c-k> float window
-	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-		border = "rounded",
-		focusable = false,
-		focus = false,
-	}),
-}
-
 local function lsp_on_attach(client, bufnr)
 	local k = function(keys, func, desc, mode)
 		mode = mode or "n"
@@ -160,7 +145,7 @@ return {
 			ensure_installed = vim.tbl_keys(lspconf.servers or {}),
 			handlers = {
 				function(server_name)
-					-- Don't setup ts_ls, we're using tsserer from typescript-tools
+					-- Don't setup ts_ls, we're using tsserver from typescript-tools
 					if server_name == "ts_ls" then
 						return
 					end
@@ -169,7 +154,7 @@ return {
 
 					local conf = vim.tbl_deep_extend("force", server, {
 						capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
-						handlers = lsp_handlers,
+						handlers = lspconf.handlers,
 						on_attach = lsp_on_attach,
 					})
 
