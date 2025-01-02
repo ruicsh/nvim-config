@@ -107,13 +107,19 @@
 
 - `<leader>r{motion}` replace with last yank
 - `<leader>m{motion}` multiply
-- `<leader>gs{motion}` sort
+- `<leader>s{motion}` sort
 
 #### Search
 
 - `/` find in document forward
 - `?` find in document backward
 - `<leader>f` find in workspace
+
+#### Miscellaneous
+
+- `<leader>ow` toggle soft/hard wrap
+- `[ow` soft wrap
+- `]ow` hard wrap
 
 ### Coding
 
