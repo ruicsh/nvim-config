@@ -59,8 +59,9 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 #### Search
 
+- [flit.nvim](https://github.com/ggandor/flit.nvim) - Enhanced f/t motions
 - [fzf-lua](https://github.com/ibhagwan/fzf-lua) - Fuzzy finder
-- [leap.nvim](https://github.com/ggandor/leap.nvim) - Navigate with search labels
+- [leap.nvim](https://github.com/ggandor/leap.nvim) - Navigate with labels
 - [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens) - Search results labels
 
 ### Coding
