@@ -148,8 +148,8 @@
 - `<s-right>` jump to child node
 - `[a` jump to previous argument start
 - `]a` jump to next argument start
-- `[[` jump to previous function start
-- `]]` jump to next function start
+- `[f` jump to previous function start
+- `]f` jump to next function start
 
 #### LSP
 
