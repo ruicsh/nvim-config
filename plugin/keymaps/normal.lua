@@ -6,9 +6,6 @@ end
 -- Navigation
 k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines" })
 k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines" })
--- Don't include small jumps on jumplist.
-k("k", "(v:count > 10 ? \"m'\" .. v:count : '') .. 'k'", { expr = true })
-k("j", "(v:count > 10 ? \"m'\" .. v:count : '') .. 'j'", { expr = true })
 
 -- Editing
 k("[<space>", ":call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = "Put empty line above" })
