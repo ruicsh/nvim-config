@@ -7,7 +7,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - **LSP** - Language Server Protocol client, symbols navigation, diagnostics
 - **Syntax** - highlighting, syntax aware motions and text objects
 - **Git integration** - status, diffview, commit message editor, buffer integration
-- **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
 - **Search** - fuzzy find anything, file and workspace scoped search and replace
 - **Application** - files and directory explorer, notifications, command palette
 

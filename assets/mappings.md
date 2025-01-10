@@ -130,7 +130,7 @@
 - `<c-p>` select previous entry
 - `<c-e>` close menu
 
-#### Debug
+#### Logging
 
 - `glv` insert variable log below
 - `glV` insert variable log above
@@ -183,26 +183,6 @@
 - `<leader>dd` open diagnostics for buffer
 - `[d` jump to previous diagnostic
 - `]d` jump to next diagnostic
-
-#### Debugger
-
-- `<c-9>`toggle breakpoint
-- `<c-5>` start
-- `<c-s-5>` stop
-- `<c-->` step into
-- `<c-s-->` step out
-- `<c-0>` step over
-- `<leader>ki` hover
-- `<leader>dB` set breakpoint condition
-- `<leader>dC` run to cursor
-- `<leader>da` run with args
-- `<leader>dg` go to line
-- `<leader>dj` go down in the stacktrace
-- `<leader>dk` go up in the stacktrace
-- `<leader>dl` run last
-- `<leader>dp` pause
-- `<leader>dr` toggle REPL
-- `<leader>ds` session
 
 ### Git
 

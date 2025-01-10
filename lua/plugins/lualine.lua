@@ -99,7 +99,6 @@ return {
 				"man",
 				"mason",
 				"neo-tree",
-				"nvim-dap-ui",
 				"oil",
 				"quickfix",
 				"toggleterm",
