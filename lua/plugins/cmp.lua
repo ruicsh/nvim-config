@@ -4,6 +4,7 @@
 return {
 	"hrsh7th/nvim-cmp",
 	config = function()
+		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
 
@@ -15,12 +16,11 @@ return {
 			},
 		})
 
-		local cmp = require("cmp")
 		cmp.setup({
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
 				format = function(entry, item)
-					item = require("lspkind").cmp_format({
+					item = lspkind.cmp_format({
 						mode = "symbol",
 						show_labelDetails = true,
 						maxwidth = 50,
@@ -82,14 +82,36 @@ return {
 		})
 
 		cmp.setup.cmdline({ "/", "?" }, {
-			mapping = cmp.mapping.preset.cmdline(),
+			mapping = cmp.mapping.preset.cmdline({
+				["<down>"] = {
+					c = function()
+						cmp.select_next_item()
+					end,
+				},
+				["<up>"] = {
+					c = function()
+						cmp.select_prev_item()
+					end,
+				},
+			}),
 			sources = {
 				{ name = "buffer" },
 			},
 		})
 
 		cmp.setup.cmdline(":", {
-			mapping = cmp.mapping.preset.cmdline(),
+			mapping = cmp.mapping.preset.cmdline({
+				["<down>"] = {
+					c = function()
+						cmp.select_next_item()
+					end,
+				},
+				["<up>"] = {
+					c = function()
+						cmp.select_prev_item()
+					end,
+				},
+			}),
 			sources = cmp.config.sources({
 				{ name = "path" },
 				{ name = "cmdline" },
@@ -108,11 +130,11 @@ return {
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-cmdline" },
 		{ "zbirenbaum/copilot-cmp" },
-		{ -- Pictograms for completion items (lspkind.nvim).
+		{ -- Pictograms for completion items
 			-- https://github.com/onsails/lspkind.nvim
 			"onsails/lspkind.nvim",
 		},
-		{ -- snippet engine (luasnip)
+		{ -- Snippet engine
 			-- https://github.com/L3MON4D3/LuaSnip
 			"L3MON4D3/LuaSnip",
 			config = function()
@@ -124,7 +146,7 @@ return {
 				"rafamadriz/friendly-snippets",
 			},
 		},
-		{ -- GitHub Copilot (copilot.lua).
+		{ -- GitHub Copilot
 			-- https://github.com/zbirenbaum/copilot.lua
 			"zbirenbaum/copilot.lua",
 			opts = {
