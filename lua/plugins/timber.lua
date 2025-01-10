@@ -2,7 +2,7 @@
 -- https://github.com/Goose97/timber.nvim
 
 local templates_js = {
-	log_templates = {
+	log = {
 		default = [[console.warn("%print_tag: %log_target=", %log_target)]],
 		plain = [[console.warn("%print_tag: (%placement %snippet)")]],
 	},
@@ -38,29 +38,30 @@ return {
 		},
 		log_templates = {
 			default = {
-				javascript = templates_js.log_templates.default,
-				jsx = templates_js.log_templates.default,
+				javascript = templates_js.log.default,
+				jsx = templates_js.log.default,
 				lua = [[print("%print_tag: %filename:%line_number %log_target=" .. vim.inspect(%log_target))]],
-				tsx = templates_js.log_templates.default,
-				typescript = templates_js.log_templates.default,
-				typescriptreact = templates_js.log_templates.default,
+				tsx = templates_js.log.default,
+				typescript = templates_js.log.default,
+				typescriptreact = templates_js.log.default,
 			},
 			plain = {
-				javascript = templates_js.log_templates.plain,
-				jsx = templates_js.log_templates.plain,
+				javascript = templates_js.log.plain,
+				jsx = templates_js.log.plain,
 				lua = [[print("%print_tag: %filename:%line_number (%placement %snippet)")]],
-				tsx = templates_js.log_templates.plain,
-				typescript = templates_js.log_templates.plain,
-				typescriptreact = templates_js.log_templates.plain,
+				tsx = templates_js.log.plain,
+				typescript = templates_js.log.plain,
+				typescriptreact = templates_js.log.plain,
 			},
 		},
 		batch_log_templates = {
 			default = {
 				javascript = templates_js.batch.default,
-				typescript = templates_js.batch.default,
 				jsx = templates_js.batch.default,
-				tsx = templates_js.batch.default,
 				lua = [[print("%print_tag: " .. vim.inspect({ %repeat<["%log_target"] = vim.inspect(%log_target)><, > }))]],
+				tsx = templates_js.batch.default,
+				typescript = templates_js.batch.default,
+				typescriptreact = templates_js.batch.default,
 			},
 		},
 	},
