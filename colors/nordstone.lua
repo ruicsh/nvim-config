@@ -218,11 +218,6 @@ loadColorSet({
 	HlSearchLens = { fg = c.nord3_500, bg = "NONE" },
 })
 
--- lightbulb.nvim
-loadColorSet({
-	LightBulbSign = { fg = c.nord13 },
-})
-
 -- LSP
 loadColorSet({
 	LspDiagnosticsDefaultError = { fg = c.nord11 },
