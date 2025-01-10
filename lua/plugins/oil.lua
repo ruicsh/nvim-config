@@ -5,6 +5,7 @@ return {
 	"stevearc/oil.nvim",
 	keys = function()
 		local oil = require("oil")
+
 		local function open_cwd()
 			oil.open(vim.fn.getcwd())
 		end
