@@ -140,8 +140,9 @@
 
 #### Syntax (AST)
 
-- `<cr>` start/increase node selection
-- `<bs>` decrease node selection
+- `S` start node selection
+- `;` increase node selection
+- `,` decrease node selection
 - `<s-left>` jump to parent node
 - `<s-down>` jump to next sibling node
 - `<s-up>` jump to previous sibling node
