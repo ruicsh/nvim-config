@@ -115,12 +115,6 @@
 - `?` find in document backward
 - `<leader>f` find in workspace
 
-#### Miscellaneous
-
-- `<leader>ow` toggle soft/hard wrap
-- `[ow` soft wrap
-- `]ow` hard wrap
-
 ### Coding
 
 #### Autocomplete

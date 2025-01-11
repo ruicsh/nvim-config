@@ -53,7 +53,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [nvim-spider](https://github.com/chrisgrieser/nvim-spider) - Move by subwords (camelCase, ...)
 - [repeat.vim](https://github.com/tpope/vim-repeat) - Repeat plugin keymaps
 - [rsi.vim](https://github.com/tpope/vim-rsi) - Insert mode navigation
-- [wrapping.nvim](https://github.com/andrewferrier/wrapping.nvim) - Toggle soft/hard wrap
 
 #### Search
 
