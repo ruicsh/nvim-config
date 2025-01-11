@@ -25,11 +25,6 @@ return {
 		bufdelete = {
 			enabled = true,
 		},
-		-- https://github.com/folke/snacks.nvim/blob/main/docs/statuscolumn.md
-		statuscolumn = {
-			left = { "sign", "git" },
-			right = { "mark", "fold" },
-		},
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/indent.md
 		indent = {
 			animate = {
@@ -38,6 +33,11 @@ return {
 			scope = {
 				only_current = true,
 			},
+		},
+		-- https://github.com/folke/snacks.nvim/blob/main/docs/statuscolumn.md
+		statuscolumn = {
+			left = { "sign", "git" },
+			right = { "mark", "fold" },
 		},
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/words.md
 		words = {
