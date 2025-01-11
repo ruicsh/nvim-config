@@ -187,6 +187,9 @@
 
 ### Git
 
+- `[c` previous change
+- `]c` next change
+- `<leader>hb` blame line
 - `<leader>hf` list changed files
 - `<leader>hg` diffview
 - `<leader>hh` status
@@ -194,14 +197,13 @@
 - `<leader>ho` push set-upstream origin HEAD
 - `<leader>hp` push
 - `<leader>hr` reset hunk
-- `<leader>hR` reset file
 - `<leader>hs` stage hunk
-- `<leader>hS` stage file
 - `<leader>hu` unstage hunk
 - `<leader>hv` preview change
 - `<leader>hy` share file permalink
-- `[c` previous change
-- `]c` next change
+- `<leader>hB` blame file
+- `<leader>hR` reset file
+- `<leader>hS` stage file
 
 #### Diffview
 

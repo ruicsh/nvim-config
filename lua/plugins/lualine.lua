@@ -6,9 +6,6 @@ local icons = require("config/icons")
 return {
 	"nvim-lualine/lualine.nvim",
 	config = function()
-		local git_blame = require("gitblame")
-		vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text.
-
 		local lualine = require("lualine")
 
 		local c = NordStoneColors
@@ -75,12 +72,7 @@ return {
 						},
 					},
 				},
-				lualine_x = {
-					{
-						git_blame.get_current_blame_text,
-						cond = git_blame.is_blame_text_available,
-					},
-				},
+				lualine_x = {},
 				lualine_y = {},
 				lualine_z = { "progress" },
 			},
@@ -101,7 +93,6 @@ return {
 				"neo-tree",
 				"oil",
 				"quickfix",
-				"toggleterm",
 			},
 		})
 	end,

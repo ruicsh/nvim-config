@@ -22,6 +22,8 @@ return {
 			changedelete = { text = icons.git.ChangeDelete },
 			untracked = { text = icons.git.Untracked },
 		},
+		current_line_blame = true,
+		current_line_blame_formatter = "<author> • <author_time:%R> • <summary>",
 		on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")
 
@@ -48,6 +50,7 @@ return {
 			-- Actions
 			map({ "n", "v" }, "<leader>hs", gitsigns.stage_hunk, { desc = "Git: [s]tage hunk", buffer = bufnr })
 			map({ "n", "v" }, "<leader>hr", gitsigns.reset_hunk, { desc = "Git: [r]eset hunk", buffer = bufnr })
+			map({ "n", "v" }, "<leader>hB", gitsigns.blame, { desc = "Git: [b]lame file", buffer = bufnr })
 			map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Git: [S]tage file" })
 			map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Git: [R]eset file" })
 			map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Git: [u]nstage hunk" })
