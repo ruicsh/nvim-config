@@ -36,7 +36,7 @@ o.splitbelow = true -- Open a new horizontal split below.
 o.splitright = true -- Open a new vertical split to the right.
 
 -- 7 multiple tab pages
-o.showtabline = 2 -- Always show tabline (tabby)
+o.showtabline = 1 -- Only show if there are at least two tabs.
 
 -- 8 terminal
 o.title = true -- Show info in the window title
