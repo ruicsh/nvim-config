@@ -177,6 +177,11 @@ loadColorSet({
 	diffSubname = { fg = c.nord3_900, style = "bold" },
 })
 
+-- flash.nvim
+loadColorSet({
+	FlashLabel = { style = "reverse" },
+})
+
 -- Fugitive
 loadColorSet({
 	fugitiveHunk = { fg = c.nord3_900 },

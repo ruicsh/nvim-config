@@ -66,6 +66,7 @@
 
 #### Navigation
 
+- `s` jump with search labels
 - `{` jump up 6 lines
 - `}` jump down 6 lines
 - `'0` jump to position where last exited Vim
@@ -140,9 +141,9 @@
 
 #### Syntax (AST)
 
-- `S` start node selection
-- `;` increase node selection
-- `,` decrease node selection
+- `<leader>v` start node selection mode
+- `;` increase selection (on node selection mode)
+- `,` decrease selection (on node selection mode)
 - `<s-left>` jump to parent node
 - `<s-down>` jump to next sibling node
 - `<s-up>` jump to previous sibling node
