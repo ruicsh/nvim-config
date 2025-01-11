@@ -50,7 +50,6 @@
 - `|` switch windows
 - `<c-w>[` move buffer to window on the left
 - `<c-w>]` move buffer to window on the right
-- `<c-w>m` maximize window
 - `<c-]>` close window
 
 #### Tabs
