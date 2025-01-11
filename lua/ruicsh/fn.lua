@@ -26,12 +26,14 @@ vim.fn.getgitroot = function()
 end
 
 -- Takes a table of keys, returns a keymaps lazy config
-vim.fn.getlazykeysconf = function(mappings, desc_prefix, opts)
-	local mode = opts and opts.mode or "n"
+vim.fn.getlazykeysconf = function(mappings, desc_prefix)
 	return vim.tbl_map(function(mapping)
 		local lhs = mapping[1]
 		local rhs = mapping[2]
 		local desc = desc_prefix .. ": " .. mapping[3]
+		local opts = mapping[4]
+		local mode = opts and opts.mode or "n"
+
 		return { lhs, rhs, silent = true, mode = mode, noremap = true, unique = true, desc = desc }
 	end, mappings)
 end
