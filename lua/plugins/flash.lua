@@ -15,6 +15,9 @@ return {
 		highlight = {
 			backdrop = false,
 		},
+		jump = {
+			autojump = true,
+		},
 		modes = {
 			search = {
 				enabled = true,
