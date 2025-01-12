@@ -2,15 +2,15 @@ local M = {}
 
 M = {
 	diagnostics = {
-		Error = " ",
-		Warn = " ",
-		Hint = " ",
-		Info = " ",
+		error = "",
+		warning = "",
+		hint = "",
+		information = "",
 	},
 	git = {
-		added = " ",
-		modified = " ",
-		removed = " ",
+		added = "",
+		changed = "",
+		removed = "",
 		Add = "┃",
 		Change = "┋",
 		Delete = "",

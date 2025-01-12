@@ -92,10 +92,10 @@ return {
 				border = "rounded",
 				prefix = function(diagnostic)
 					local iconsMap = {
-						icons.diagnostics.Error,
-						icons.diagnostics.Warn,
-						icons.diagnostics.Info,
-						icons.diagnostics.Hint,
+						Error = icons.diagnostics.error,
+						Warn = icons.diagnostics.warning,
+						Info = icons.diagnostics.information,
+						Hint = icons.diagnostics.hint,
 					}
 					local hl = {
 						"DiagnosticSignError",
@@ -109,11 +109,11 @@ return {
 			severity_sort = true,
 			signs = {
 				text = {
-					[vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
-					[vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
-					[vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
-					[vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-					[vim.diagnostic.severity.N] = icons.diagnostics.Hint,
+					[vim.diagnostic.severity.ERROR] = icons.diagnostics.error,
+					[vim.diagnostic.severity.WARN] = icons.diagnostics.warning,
+					[vim.diagnostic.severity.INFO] = icons.diagnostics.information,
+					[vim.diagnostic.severity.HINT] = icons.diagnostics.hint,
+					[vim.diagnostic.severity.N] = icons.diagnostics.hint,
 				},
 				numhl = {
 					[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",

@@ -12,6 +12,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 			set.number = false -- Don't show numbers
 			set.relativenumber = false -- Don't show relativenumbers
 			set.scrolloff = 0 -- Don't scroll when at the top or bottom of the terminal buffer
+			vim.opt.filetype = "terminal"
 
 			vim.cmd.startinsert() -- Start in insert mode
 		end

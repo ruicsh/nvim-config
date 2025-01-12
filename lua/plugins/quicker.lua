@@ -33,11 +33,11 @@ return {
 		},
 		use_default_opts = false,
 		type_icons = {
-			E = icons.diagnostics.Error,
-			W = icons.diagnostics.Warn,
-			I = icons.diagnostics.Info,
-			N = icons.diagnostics.Hint,
-			H = icons.diagnostics.Hint,
+			E = icons.diagnostics.error,
+			W = icons.diagnostics.warning,
+			I = icons.diagnostics.information,
+			N = icons.diagnostics.hint,
+			H = icons.diagnostics.hint,
 		},
 		max_filename_width = function()
 			return math.floor(math.min(95, vim.o.columns / 3))
