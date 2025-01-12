@@ -217,12 +217,6 @@ loadColorSet({
 	GitSignsCurrentLineBlame = { fg = c.nord3_500, style = "bold" },
 })
 
--- hlsearch
-loadColorSet({
-	HlSearchLensNear = { fg = c.nord3_500, bg = "NONE" },
-	HlSearchLens = { fg = c.nord3_500, bg = "NONE" },
-})
-
 -- LSP
 loadColorSet({
 	LspDiagnosticsDefaultError = { fg = c.nord11 },

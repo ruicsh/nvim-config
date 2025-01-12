@@ -57,7 +57,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - [flash.nvim](https://github.com/folke/flash.nvim) - Navigate with labels
 - [fzf-lua](https://github.com/ibhagwan/fzf-lua) - Fuzzy finder
-- [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens) - Search results labels
 
 ### Coding
 
