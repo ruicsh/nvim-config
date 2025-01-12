@@ -125,14 +125,21 @@ local function c_filename()
 		return ""
 	else
 		local cwd = vim.fn.getcwd()
-		local filepath = vim.fn.expand("%:p:~")
+		local path = vim.fn.expand("%:p:~")
 
 		if ft == "oil" then
 			-- show full path
-			line = line .. filepath:sub(#cwd + 3)
+			line = line .. path:sub(#cwd + 3)
 		else
+			local icon = "󰈚 "
+			local name = (path == "" and "Empty ") or path:match("([^/\\]+)[/\\]*$")
+			local devicons_present, devicons = pcall(require, "nvim-web-devicons")
+			if devicons_present then
+				local ft_icon = devicons.get_icon(name)
+				icon = (ft_icon ~= nil and ft_icon) or icon
+			end
 			-- show parent/filename
-			line = line .. only_last_two_segments(filepath)
+			line = line .. icon .. " " .. only_last_two_segments(path)
 		end
 	end
 
