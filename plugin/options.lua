@@ -11,6 +11,7 @@ o.smartcase = true -- Use case sensitive if keyword contains capital letters.
 o.startofline = true -- Move cursor to the first non-blank character.
 
 -- 4 displaying text
+o.cmdheight = 1 -- Show command line on 1 line.
 o.fillchars = {
 	eob = " ", -- End of buffer marker.
 	diff = "╱", -- Diffview deleted lines marker.
@@ -36,7 +37,7 @@ o.splitbelow = true -- Open a new horizontal split below.
 o.splitright = true -- Open a new vertical split to the right.
 
 -- 7 multiple tab pages
-o.showtabline = 1 -- Only show if there are at least two tabs.
+o.showtabline = 0 -- Never show tabline (tabs are shown on the statusline).
 
 -- 8 terminal
 o.title = true -- Show info in the window title

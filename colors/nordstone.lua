@@ -116,7 +116,7 @@ loadColorSet({
 	SpellCap = { fg = c.nord7, bg = "NONE", style = "italic,undercurl" },
 	SpellLocal = { fg = c.nord8, bg = "NONE", style = "italic,undercurl" },
 	SpellRare = { fg = c.nord9, bg = "NONE", style = "italic,undercurl" },
-	StatusLine = { fg = c.nord4, bg = c.nord2 },
+	StatusLine = { fg = c.nord4, bg = "NONE" },
 	StatusLineNC = { fg = c.nord4, bg = c.nord1 },
 	StatusLineTerm = { fg = c.nord4, bg = c.nord2 },
 	StatusLineTermNC = { fg = c.nord4, bg = c.nord1 },
@@ -291,6 +291,23 @@ loadColorSet({
 -- snacks.nvim
 loadColorSet({
 	SnacksIndentScope = { fg = c.nord3_500 },
+})
+
+-- StatusLine
+loadColorSet({
+	StatusLineA = { fg = c.nord1, bg = c.nord8, gui = "bold" },
+	StatusLineB = { fg = c.nord5, bg = c.nord1 },
+	StatusLineC = { fg = c.nord5, bg = "NONE" },
+	StatusLineGitStatusAdded = { link = "GitSignsAdd" },
+	StatusLineGitStatusChanged = { link = "GitSignsChange" },
+	StatusLineGitStatusRemoved = { link = "GitSignsDelete" },
+	StatusLineModeCommand = { fg = c.nord0, bg = c.nord14, gui = "bold" },
+	StatusLineModeInsert = { fg = c.nord0, bg = c.nord6, gui = "bold" },
+	StatusLineModeNormal = { link = "StatusLineA" },
+	StatusLineModeOther = { fg = c.nord0, bg = c.nord15, gui = "bold" },
+	StatusLineModePending = { fg = c.nord0, bg = c.nord12, gui = "bold" },
+	StatusLineModeVisual = { fg = c.nord4, bg = c.nord11, gui = "bold" },
+	StatusLineSearchCount = { fg = c.nord3_500, bg = "NONE" },
 })
 
 -- WhichKey
