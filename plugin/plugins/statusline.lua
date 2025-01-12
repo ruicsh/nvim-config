@@ -88,7 +88,7 @@ local function c_git_branch()
 	end
 
 	local hl = "%#StatusLineGitBranch#"
-	return string.format("%s   %s", hl, head)
+	return string.format("%s  %s", hl, head)
 end
 
 -- Show only the last two segments of a path
@@ -235,14 +235,14 @@ end
 
 -- Construct the statusline
 function StatusLine()
-	local line = ""
+	local line = "%#StatusLine#"
 
 	line = concat_components({
 		c_mode(),
 		c_filename(),
 		c_diagnostics(),
 		c_search_count(),
-		"%#StatusLine#%=",
+		"%=",
 		c_git_status(),
 		c_git_branch(),
 		c_tabs(),
