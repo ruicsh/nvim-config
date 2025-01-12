@@ -16,6 +16,11 @@ return {
 			},
 		})
 
+		local has_words_before = function()
+			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+		end
+
 		cmp.setup({
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
@@ -40,31 +45,66 @@ return {
 				expandable_indicator = true,
 			},
 
-			mapping = cmp.mapping.preset.insert({
-				["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<c-y>"] = cmp.mapping(
-					cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Insert,
-						select = true,
-					}),
-					{ "i", "c" }
-				),
-				["<c-e>"] = cmp.mapping.abort(),
-				["<cr>"] = cmp.mapping.confirm({ select = false }),
-				["<tab>"] = cmp.mapping.confirm({ select = true }),
-			}),
+			mapping = {
+				["<c-u>"] = cmp.mapping.scroll_docs(-4), -- scroll up preview
+				["<c-d>"] = cmp.mapping.scroll_docs(4), -- scroll down preview
+				["<c-e>"] = cmp.mapping.close(), -- close menu
+				-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+				["<cr>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						if luasnip.expandable() then
+							luasnip.expand()
+						else
+							cmp.confirm({ select = true })
+						end
+					else
+						fallback()
+					end
+				end),
+				-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#confirm-candidate-on-tab-immediately-when-theres-only-one-completion-entry
+				["<tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						-- if there is only, select it
+						if #cmp.get_entries() == 1 then
+							cmp.confirm({ select = true })
+						else
+							cmp.select_next_item()
+						end
+					elseif luasnip.locally_jumpable(1) then
+						luasnip.jump(1)
+					elseif has_words_before() then
+						cmp.complete()
+						-- if there is only, select it
+						if #cmp.get_entries() == 1 then
+							cmp.confirm({ select = true })
+						end
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#confirm-candidate-on-tab-immediately-when-theres-only-one-completion-entry
+				["<s-tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif luasnip.locally_jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+			},
+
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
 				end,
 			},
+
 			sources = cmp.config.sources({
 				{ name = "lazydev", group_index = 0 },
 				{ name = "copilot" },
 				{ name = "nvim_lsp" },
+				{ name = "nvim_lsp_signature_help" },
 				{ name = "path" },
 				{ name = "buffer" },
 				{
@@ -75,6 +115,7 @@ return {
 					},
 				},
 			}),
+
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
@@ -126,6 +167,7 @@ return {
 	dependencies = {
 		{ "hrsh7th/nvim-cmp" },
 		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 		{ "hrsh7th/cmp-path" },
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-cmdline" },
