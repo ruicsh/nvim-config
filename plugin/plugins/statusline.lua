@@ -1,5 +1,7 @@
 -- Tabline
 
+local icons = require("config/icons")
+
 -- Show the current mode
 -- https://github.com/MariaSolOs/dotfiles/blob/main/.config/nvim/lua/statusline.lua
 local function c_mode()
@@ -59,7 +61,23 @@ local function c_mode()
 		hl = "Command"
 	end
 
-	return string.format("%%#StatusLineMode%s#  %s", hl, mode)
+	-- Special modes for certain filetypes
+	local bt = vim.bo.buftype
+	local ft = vim.bo.filetype
+	if bt == "help" then
+		mode = "HELP"
+	elseif bt == "quickfix" then
+		mode = "QUICKFIX"
+	elseif ft == "oil" then
+		mode = "DIRECTORY"
+	elseif ft == "vim" then
+		mode = "VIM"
+	elseif ft == "fugitive" or ft == "gitcommit" or ft:match("Diffview") or vim.wo.diff then
+		mode = "GIT"
+	end
+
+	-- return string.format("%%#StatusLineMode%s#  %%#StatusLineModeText# %s", hl, mode)
+	return string.format("%%#StatusLineMode%s# %%#StatusLineMode%sText# %s", hl, hl, mode)
 end
 
 -- Show the current git branch
@@ -69,7 +87,7 @@ local function c_git_branch()
 		return ""
 	end
 
-	local hl = "%#StatusLineB#"
+	local hl = "%#StatusLineGitBranch#"
 	return string.format("%s   %s", hl, head)
 end
 
@@ -88,46 +106,76 @@ end
 
 -- Show the current filename
 local function c_filename()
-	local hl = "%#StatusLineC#"
-	local line = hl
+	local hl = "%#StatusLineFilename#"
+	local line = hl .. " "
+	local ft = vim.bo.filetype
+	local bt = vim.bo.buftype
 
-	if vim.bo.buftype == "terminal" then
-		line = line .. " %t"
+	if bt == "terminal" then
+		line = line .. "term://%t"
+	elseif ft == "fugitive" then
+		line = line .. "STATUS"
+	elseif ft == "gitcommit" then
+		line = line .. "COMMIT"
+	elseif ft == "DiffviewFiles" then
+		line = line .. "DIFF"
+	elseif ft == "DiffviewFileHistory" then
+		line = line .. "LOG"
+	elseif bt == "nofile" then
+		return ""
 	else
-		line = line .. "  " .. only_last_two_segments(vim.fn.expand("%:p:~"))
+		local cwd = vim.fn.getcwd()
+		local filepath = vim.fn.expand("%:p:~")
+
+		if ft == "oil" then
+			-- show full path
+			line = line .. filepath:sub(#cwd + 3)
+		else
+			-- show parent/filename
+			line = line .. only_last_two_segments(filepath)
+		end
 	end
 
 	return line
 end
 
--- Show the git status
-local function c_git_status()
-	local status = vim.b.gitsigns_status
-	if not status or status == "" then
-		return ""
-	end
-
-	-- extract the counts from status (ex +115 ~21 -14)
-	local added, changed, removed
-	for a, c, r in status:gmatch("([+-]?%d+)%s?~?(%d*)%s?[-]?(%d*)") do
-		-- If the number is missing, it will be an empty string, so we default to nil
-		added = (a ~= "" and tonumber(a)) or nil
-		changed = (c ~= "" and tonumber(c)) or nil
-		removed = (r ~= "" and tonumber(r)) or nil
-	end
-
+-- Show diagnostics
+local function c_diagnostics()
 	local line = ""
-	if added then
-		line = line .. "%#StatusLineGitStatusAdded#  " .. added
-	end
-	if changed then
-		line = line .. "%#StatusLineGitStatusChanged#  " .. changed
-	end
-	if removed then
-		line = line .. "%#StatusLineGitStatusRemoved#  " .. removed
+	if not rawget(vim, "lsp") then
+		return line
 	end
 
-	-- remove the first character
+	local keys = { "error", "warning", "information", "hint" }
+	for i, k in ipairs(keys) do
+		local ki = vim.diagnostic.severity[i]
+		local severity = vim.diagnostic.severity[ki]
+		local count = vim.diagnostic.count(0, { severity = severity })[severity]
+		if count and count > 0 then
+			local hl = "%#StatusLineDiagnostics" .. k:sub(1, 1):upper() .. k:sub(2) .. "#"
+			line = line .. hl .. " " .. icons.diagnostics[k] .. " " .. count
+		end
+	end
+
+	return line
+end
+
+-- Show git status
+local function c_git_status()
+	local line = ""
+	local status = vim.b.gitsigns_status_dict
+	if not status or status == "" then
+		return line
+	end
+
+	local keys = { "added", "changed", "removed" }
+	for _, k in ipairs(keys) do
+		if status[k] and status[k] > 0 then
+			local hl = "%#StatusLineGitStatus" .. k:sub(1, 1):upper() .. k:sub(2) .. "#"
+			line = line .. hl .. " " .. icons.git[k] .. " " .. status[k]
+		end
+	end
+
 	return line:sub(1)
 end
 
@@ -191,11 +239,12 @@ function StatusLine()
 
 	line = concat_components({
 		c_mode(),
-		c_git_branch(),
 		c_filename(),
-		c_git_status(),
+		c_diagnostics(),
 		c_search_count(),
 		"%#StatusLine#%=",
+		c_git_status(),
+		c_git_branch(),
 		c_tabs(),
 	})
 

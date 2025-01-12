@@ -8,9 +8,9 @@ M = {
 		information = "",
 	},
 	git = {
-		added = "",
-		changed = "",
-		removed = "",
+		added = "",
+		changed = "",
+		removed = "",
 		Add = "┃",
 		Change = "┋",
 		Delete = "",

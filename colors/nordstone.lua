@@ -294,19 +294,37 @@ loadColorSet({
 })
 
 -- StatusLine
+local cmode = {
+	c = c.nord14, -- #a3be8c
+	i = c.nord4, -- #d8dee9
+	n = c.nord8, -- #88c0d0
+	o = c.nord12, -- #d08770
+	x = c.nord13, -- #ebcb8b
+	_ = c.nord11, -- #bf616a
+}
+
 loadColorSet({
-	StatusLineA = { fg = c.nord1, bg = c.nord8, gui = "bold" },
-	StatusLineB = { fg = c.nord5, bg = c.nord1 },
-	StatusLineC = { fg = c.nord5, bg = "NONE" },
+	StatusLineDiagnosticsError = { link = "LspDiagnosticsSignError" },
+	StatusLineDiagnosticsHint = { link = "LspDiagnosticsSignHint" },
+	StatusLineDiagnosticsInfo = { link = "LspDiagnosticsSignInfo" },
+	StatusLineDiagnosticsWarn = { link = "LspDiagnosticsSignWarn" },
+	StatusLineFilename = { fg = c.nord3_900 },
+	StatusLineGitBranch = { fg = c.nord3_900 },
 	StatusLineGitStatusAdded = { link = "GitSignsAdd" },
 	StatusLineGitStatusChanged = { link = "GitSignsChange" },
 	StatusLineGitStatusRemoved = { link = "GitSignsDelete" },
-	StatusLineModeCommand = { fg = c.nord0, bg = c.nord14, gui = "bold" },
-	StatusLineModeInsert = { fg = c.nord0, bg = c.nord6, gui = "bold" },
-	StatusLineModeNormal = { link = "StatusLineA" },
-	StatusLineModeOther = { fg = c.nord0, bg = c.nord15, gui = "bold" },
-	StatusLineModePending = { fg = c.nord0, bg = c.nord12, gui = "bold" },
-	StatusLineModeVisual = { fg = c.nord4, bg = c.nord11, gui = "bold" },
+	StatusLineModeCommand = { bg = cmode.c },
+	StatusLineModeCommandText = { fg = cmode.c, bg = "NONE", gui = "bold" },
+	StatusLineModeInsert = { bg = cmode.i },
+	StatusLineModeInsertText = { fg = cmode.i, bg = "NONE", gui = "bold" },
+	StatusLineModeNormal = { bg = cmode.n },
+	StatusLineModeNormalText = { fg = cmode.n, bg = "NONE", gui = "bold" },
+	StatusLineModeOther = { bg = cmode._ },
+	StatusLineModeOtherText = { fg = cmode._, bg = "NONE", gui = "bold" },
+	StatusLineModePending = { bg = cmode.o },
+	StatusLineModePendingText = { fg = cmode.o, bg = "NONE", gui = "bold" },
+	StatusLineModeVisual = { bg = cmode.x },
+	StatusLineModeVisualText = { fg = cmode.x, bg = "NONE", gui = "bold" },
 	StatusLineSearchCount = { fg = c.nord3_500, bg = "NONE" },
 })
 
