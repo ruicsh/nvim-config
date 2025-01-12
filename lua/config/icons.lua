@@ -8,7 +8,7 @@ M = {
 		information = "",
 	},
 	git = {
-		added = "",
+		added = "󰜄",
 		changed = "",
 		removed = "",
 		Add = "┃",

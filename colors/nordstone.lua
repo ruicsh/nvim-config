@@ -304,13 +304,6 @@ local cmode = {
 }
 
 loadColorSet({
-	StatusLineDiagnosticsError = { link = "LspDiagnosticsSignError" },
-	StatusLineDiagnosticsHint = { link = "LspDiagnosticsSignHint" },
-	StatusLineDiagnosticsInfo = { link = "LspDiagnosticsSignInfo" },
-	StatusLineDiagnosticsWarn = { link = "LspDiagnosticsSignWarn" },
-	StatusLineGitStatusAdded = { link = "GitSignsAdd" },
-	StatusLineGitStatusChanged = { link = "GitSignsChange" },
-	StatusLineGitStatusRemoved = { link = "GitSignsDelete" },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
 	StatusLineModeInsert = { bg = cmode.i },
@@ -323,6 +316,7 @@ loadColorSet({
 	StatusLineModePendingText = { fg = cmode.o },
 	StatusLineModeVisual = { bg = cmode.x },
 	StatusLineModeVisualText = { fg = cmode.x },
+	StatusLineSeparator = { fg = c.nord3 },
 })
 
 -- WhichKey
