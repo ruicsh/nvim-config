@@ -239,7 +239,21 @@ local function c_git_branch()
 	end
 
 	local hl = "%#StatusLineGitBranch#"
-	return sep() .. " " .. string.format("%s %s", hl, head) .. " "
+	return sep() .. " " .. string.format("%s %s", hl, head)
+end
+
+-- Show the current position
+local function c_cursor_position()
+	local ft = vim.bo.filetype
+	if ft == "" or ft == "fugitive" then
+		return ""
+	end
+
+	local hl = "%#StatusLine#"
+	local pos = vim.api.nvim_win_get_cursor(0)
+	local total_lines = vim.fn.line("$")
+	local text = math.modf((pos[1] / total_lines) * 100) .. tostring("%%")
+	return sep() .. " " .. hl .. " " .. pos[1] .. ":" .. pos[2] .. " " .. text .. " "
 end
 
 -- Show tabs (only if there are more than one)
@@ -283,6 +297,7 @@ function StatusLine()
 		c_lsp_status(),
 		c_git_status(),
 		c_git_branch(),
+		c_cursor_position(),
 		c_tabs(),
 	})
 
