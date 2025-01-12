@@ -1,7 +1,6 @@
 -- NordStone theme
 
-----
--- Utilities
+-- UTILITIES
 
 -- Set highlight group
 local function hl(group, color)
@@ -25,9 +24,7 @@ local function loadColorSet(colorSet)
 	end
 end
 
---
 -- Reset highlighting
---
 vim.cmd.highlight("clear")
 if vim.fn.exists("syntax_on") then
 	vim.cmd.syntax("reset")
@@ -35,8 +32,7 @@ end
 
 vim.g.colors_name = "nordstone"
 
---
--- Colors
+-- COLORS
 
 NordStoneColors = {
 	nord0 = "#2e3440",
@@ -69,7 +65,7 @@ NordStoneColors = {
 
 local c = NordStoneColors
 
--- Editor
+-- EDITOR
 loadColorSet({
 	ColorColumn = { fg = "NONE", bg = "NONE" },
 	CommandMode = { fg = c.nord4, bg = "NONE", style = "reverse" },
@@ -139,7 +135,7 @@ loadColorSet({
 	healthWarning = { fg = c.nord15 },
 })
 
--- Terminal
+-- TERMINAL
 vim.g.terminal_color_0 = c.nord1
 vim.g.terminal_color_1 = c.nord11
 vim.g.terminal_color_2 = c.nord14
@@ -157,8 +153,39 @@ vim.g.terminal_color_13 = c.nord15
 vim.g.terminal_color_14 = c.nord7
 vim.g.terminal_color_15 = c.nord6
 
--- Plugins
+-- CUSTOM
+-- inline-search-count
+loadColorSet({
+	InlineSearchCount = { fg = c.nord3_500, bg = "NONE" },
+})
 
+-- status-line
+local cmode = {
+	c = c.nord14, -- #a3be8c
+	i = c.nord4, -- #d8dee9
+	n = c.nord8, -- #88c0d0
+	o = c.nord12, -- #d08770
+	x = c.nord13, -- #ebcb8b
+	_ = c.nord11, -- #bf616a
+}
+
+loadColorSet({
+	StatusLineModeCommand = { bg = cmode.c },
+	StatusLineModeCommandText = { fg = cmode.c },
+	StatusLineModeInsert = { bg = cmode.i },
+	StatusLineModeInsertText = { fg = cmode.i },
+	StatusLineModeNormal = { bg = cmode.n },
+	StatusLineModeNormalText = { fg = cmode.n },
+	StatusLineModeOther = { bg = cmode._ },
+	StatusLineModeOtherText = { fg = cmode._ },
+	StatusLineModePending = { bg = cmode.o },
+	StatusLineModePendingText = { fg = cmode.o },
+	StatusLineModeVisual = { bg = cmode.x },
+	StatusLineModeVisualText = { fg = cmode.x },
+	StatusLineSeparator = { fg = c.nord3 },
+})
+
+-- PLUGINS
 -- csvview.nvim
 loadColorSet({
 	CsvViewDelimiter = { fg = c.nord1 },
@@ -277,11 +304,6 @@ loadColorSet({
 	NeoTreeGitUntracked = { fg = c.nord14 },
 })
 
--- nvim-treesitter-context
-loadColorSet({
-	TreesitterContextSeparator = { fg = c.nord0 },
-})
-
 -- quicker.nvim
 loadColorSet({
 	Delimiter = { fg = c.neutral_800 },
@@ -291,32 +313,6 @@ loadColorSet({
 -- snacks.nvim
 loadColorSet({
 	SnacksIndentScope = { fg = c.nord3_500 },
-})
-
--- StatusLine
-local cmode = {
-	c = c.nord14, -- #a3be8c
-	i = c.nord4, -- #d8dee9
-	n = c.nord8, -- #88c0d0
-	o = c.nord12, -- #d08770
-	x = c.nord13, -- #ebcb8b
-	_ = c.nord11, -- #bf616a
-}
-
-loadColorSet({
-	StatusLineModeCommand = { bg = cmode.c },
-	StatusLineModeCommandText = { fg = cmode.c },
-	StatusLineModeInsert = { bg = cmode.i },
-	StatusLineModeInsertText = { fg = cmode.i },
-	StatusLineModeNormal = { bg = cmode.n },
-	StatusLineModeNormalText = { fg = cmode.n },
-	StatusLineModeOther = { bg = cmode._ },
-	StatusLineModeOtherText = { fg = cmode._ },
-	StatusLineModePending = { bg = cmode.o },
-	StatusLineModePendingText = { fg = cmode.o },
-	StatusLineModeVisual = { bg = cmode.x },
-	StatusLineModeVisualText = { fg = cmode.x },
-	StatusLineSeparator = { fg = c.nord3 },
 })
 
 -- WhichKey
@@ -330,9 +326,7 @@ loadColorSet({
 	WhichKeyValue = { fg = c.nord7 },
 })
 
-----
--- Syntax
-
+-- SYNTAX
 loadColorSet({
 	["@Special"] = { fg = c.nord13 },
 
