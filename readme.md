@@ -26,7 +26,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 ### UI
 
 - [Fidget](https://github.com/j-hui/fidget.nvim) - Notifications
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) - Statusline
 - [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix
 - [quicker.nvim](https://github.com/stevearc/quicker.nvim) - Quickfix/location list formatter
 - [snacks.nvim](https://github.com/folke/snacks.nvim) - Small QoL plugins
@@ -72,7 +71,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - [lazydev.nvim](https://github.com/folke/trouble.nvim) - Lua language server
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
-- [refjump](https://github.com/mawkler/refjump.nvim) - Jump to next reference of symbol
 
 #### Syntax
 
