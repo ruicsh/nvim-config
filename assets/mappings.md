@@ -78,9 +78,9 @@
 - `]e` move line/selection below
 - `[p` paste to new line above
 - `]p` paste to new line below
-- `cs{target}{replacement}` change surrounding character
-- `ds{char}` delete surrounding character
-- `ys{motion}{char}` insert surrounding character
+- `gsr{target}{replacement}` replace surrounding character
+- `gsd{char}` delete surrounding character
+- `gsa{motion}{char}` add surrounding character
 - `yc` duplicate a line, comment out the first line.
 - `U` redo
 
@@ -105,6 +105,9 @@
 
 #### Operators
 
+- `gsa{motion}{char}` add surrounding character
+- `gsd{char}` delete surrounding character
+- `gsr{target}{replacement}` replace surrounding character
 - `<leader>r{motion}` replace with last yank
 - `<leader>m{motion}` multiply
 - `<leader>s{motion}` sort
