@@ -170,6 +170,7 @@ local cmode = {
 }
 
 loadColorSet({
+	StatusLineLabel = { fg = c.nord3_500 },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
 	StatusLineModeInsert = { bg = cmode.i },

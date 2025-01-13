@@ -3,7 +3,7 @@
 local icons = require("config/icons")
 
 local function sep()
-	return "%#StatusLineSeparator#|"
+	return "%#StatusLineSeparator#|%#StatusLine#"
 end
 
 -- Show the current mode
@@ -124,15 +124,8 @@ local function c_filename()
 			-- show full path
 			line = line .. path:sub(#cwd + 3)
 		else
-			local icon = "󰈚 "
-			local name = (path == "" and "Empty ") or path:match("([^/\\]+)[/\\]*$")
-			local devicons_present, devicons = pcall(require, "nvim-web-devicons")
-			if devicons_present then
-				local ft_icon = devicons.get_icon(name)
-				icon = (ft_icon ~= nil and ft_icon) or icon
-			end
 			-- show parent/filename
-			line = line .. icon .. " " .. only_last_two_segments(path)
+			line = line .. "󰈮 " .. only_last_two_segments(path)
 		end
 	end
 
@@ -155,9 +148,8 @@ local function c_search_count()
 
 	local line = sep() .. " "
 
-	local hl = "%#StatusLineSearchCount#"
 	if s_count.incomplete == 1 then
-		line = line .. hl .. "   ?/?"
+		line = line .. " ?/?"
 		return line
 	end
 
@@ -165,52 +157,42 @@ local function c_search_count()
 	local current = s_count.current > s_count.maxcount and too_many or s_count.current
 	local total = s_count.total > s_count.maxcount and too_many or s_count.total
 
-	return line .. hl .. "  " .. current .. " of " .. total .. " matches"
+	return line .. " " .. current .. " of " .. total .. " matches"
 end
 
--- Show diagnostics
+-- Show LSP diagnostics
 local function c_lsp_diagnostics()
-	local line = ""
 	if not rawget(vim, "lsp") then
-		return line
+		return ""
 	end
 
+	local line = ""
 	local keys = { "error", "warning", "information", "hint" }
+	local total_count = 0
 	for i, k in ipairs(keys) do
 		local ki = vim.diagnostic.severity[i]
 		local severity = vim.diagnostic.severity[ki]
 		local count = vim.diagnostic.count(0, { severity = severity })[severity]
 		if count and count > 0 then
-			local hl = "%#StatusLineDiagnostics" .. k:sub(1, 1):upper() .. k:sub(2) .. "#"
-			line = line .. hl .. " " .. icons.diagnostics[k] .. count
+			total_count = total_count + count
+			line = line .. icons.diagnostics[k] .. count .. " "
 		end
 	end
 
-	return line
-end
+	line = line:match("^%s*(.-)%s*$") -- trim
 
--- Show LSP status
-local function c_lsp_status()
-	if not rawget(vim, "lsp") then
+	if total_count == 0 then
 		return ""
 	end
 
-	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.get_clients({ bufnr = bufnr })
-	for _, client in ipairs(clients) do
-		if client.name ~= "copilot" and client.name ~= "eslint" then
-			return " LSP"
-		end
-	end
-	return ""
+	return "󰈽 " .. line .. " " .. sep()
 end
 
 -- Show git status
 local function c_git_status()
-	local line = ""
 	local status = vim.b.gitsigns_status_dict
 	if not status or status == "" then
-		return line
+		return ""
 	end
 
 	local n_changes = 0
@@ -224,8 +206,7 @@ local function c_git_status()
 		return ""
 	end
 
-	local hl = "%#StatusLine#"
-	return sep() .. " " .. hl .. vim.b.gitsigns_status
+	return " " .. vim.b.gitsigns_status .. " " .. sep()
 end
 
 -- Show the current git branch
@@ -235,8 +216,7 @@ local function c_git_branch()
 		return ""
 	end
 
-	local hl = "%#StatusLineGitBranch#"
-	return sep() .. " " .. string.format("%s %s", hl, head)
+	return " " .. head .. " " .. sep()
 end
 
 -- Show the current position
@@ -246,11 +226,10 @@ local function c_cursor_position()
 		return ""
 	end
 
-	local hl = "%#StatusLine#"
 	local pos = vim.api.nvim_win_get_cursor(0)
 	local total_lines = vim.fn.line("$")
 	local text = math.modf((pos[1] / total_lines) * 100) .. tostring("%%")
-	return sep() .. " " .. hl .. " " .. pos[1] .. ":" .. pos[2] .. " " .. text .. " "
+	return "󰈙 " .. pos[1] .. ":" .. pos[2] .. " " .. text .. " "
 end
 
 -- Show tabs (only if there are more than one)
@@ -283,22 +262,20 @@ end
 
 -- Construct the statusline
 function StatusLine()
-	local line = "%#StatusLine#"
+	local hl = "%#StatusLine#"
 
-	line = concat_components({
+	return concat_components({
+		hl,
 		c_mode(),
 		c_filename(),
 		c_search_count(),
 		"%=",
 		c_lsp_diagnostics(),
-		c_lsp_status(),
 		c_git_status(),
 		c_git_branch(),
 		c_cursor_position(),
 		c_tabs(),
 	})
-
-	return line
 end
 
 vim.opt.statusline = "%!v:lua.StatusLine()"
