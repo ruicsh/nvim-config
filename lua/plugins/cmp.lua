@@ -46,9 +46,13 @@ return {
 			},
 
 			mapping = {
+				["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+				["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+				["<down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+				["<up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 				["<c-u>"] = cmp.mapping.scroll_docs(-4), -- scroll up preview
 				["<c-d>"] = cmp.mapping.scroll_docs(4), -- scroll down preview
-				["<c-e>"] = cmp.mapping.close(), -- close menu
+				["<c-e>"] = cmp.mapping.abort(), -- close menu, and don't pick anything
 				-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
 				["<cr>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
