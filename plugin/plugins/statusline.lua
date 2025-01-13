@@ -125,7 +125,7 @@ local function c_filename()
 			line = line .. path:sub(#cwd + 3)
 		else
 			-- show parent/filename
-			line = line .. "󰈮 " .. only_last_two_segments(path)
+			line = line .. " " .. only_last_two_segments(path)
 		end
 	end
 
@@ -185,7 +185,7 @@ local function c_lsp_diagnostics()
 		return ""
 	end
 
-	return "󰈽 " .. line .. " " .. sep()
+	return " " .. line .. " " .. sep()
 end
 
 -- Show git status
@@ -229,7 +229,7 @@ local function c_cursor_position()
 	local pos = vim.api.nvim_win_get_cursor(0)
 	local total_lines = vim.fn.line("$")
 	local text = math.modf((pos[1] / total_lines) * 100) .. tostring("%%")
-	return "󰈙 " .. pos[1] .. ":" .. pos[2] .. " " .. text .. " "
+	return " " .. pos[1] .. ":" .. pos[2] .. " " .. text .. " "
 end
 
 -- Show tabs (only if there are more than one)
