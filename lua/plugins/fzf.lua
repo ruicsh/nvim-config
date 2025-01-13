@@ -8,17 +8,23 @@ return {
 		local mappings = {
 			{ "<leader><leader>", fzf.files, "Find files" },
 			{ "<leader>f", fzf.live_grep, "Search in workspace" },
-			{ "<leader>.", fzf.resume, "Last search" },
-			{ "<leader>nh", fzf.helptags, "Neovim: help" },
-			{ "<leader>nc", fzf.commands, "Neovim: commands" },
-			{ "<leader>hf", fzf.git_status, "Git: list files" },
+			{ "<leader>.", fzf.resume, "FZF: Last search" },
+			{ "<leader>nh", fzf.helptags, "Search: Help" },
+			{ "<leader>nc", fzf.commands, "Search: Commands" },
+			{ "<leader>nk", fzf.keymaps, "Search: Keymaps" },
+			{ "<leader>hf", fzf.git_status, "Git: Files" },
 		}
-		return vim.fn.getlazykeysconf(mappings, "FZF")
+		return vim.fn.getlazykeysconf(mappings)
 	end,
-	config = function()
-		local fzf = require("fzf-lua")
-		fzf.setup({ "telescope" })
-	end,
+	opts = {
+		"telescope",
+		winopts = {
+			-- https://github.com/ibhagwan/fzf-lua/issues/808#issuecomment-1620961060
+			on_create = function()
+				vim.keymap.set("t", "<C-r>", [['<C-\><C-N>"'.nr2char(getchar()).'pi']], { expr = true, buffer = true })
+			end,
+		},
+	},
 
 	event = { "VeryLazy" },
 	dependencies = {

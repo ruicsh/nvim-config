@@ -30,7 +30,7 @@ vim.fn.getlazykeysconf = function(mappings, desc_prefix)
 	return vim.tbl_map(function(mapping)
 		local lhs = mapping[1]
 		local rhs = mapping[2]
-		local desc = desc_prefix .. ": " .. mapping[3]
+		local desc = desc_prefix and desc_prefix .. ": " .. mapping[3] or mapping[3]
 		local opts = mapping[4]
 		local mode = opts and opts.mode or "n"
 

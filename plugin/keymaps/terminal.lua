@@ -9,6 +9,3 @@ k("§", function()
 	local bmui = require("buffer_manager.ui")
 	bmui.toggle_quick_menu()
 end, { silent = true })
-
--- Paste from register in terminal.
-k("<c-r>", [['<c-\><c-n>"'.nr2char(getchar()).'pi']], { expr = true })
