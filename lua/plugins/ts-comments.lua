@@ -1,9 +1,20 @@
--- Custom comments configurations per language.
+-- Custom commentstring per language.
 -- https://github.com/folke/ts-comments.nvim
 
 return {
 	"folke/ts-comments.nvim",
-	opts = {},
+	opts = {
+		lang = {
+			angular = {
+				document = "<!-- %s -->",
+			},
+			typescript = {
+				"// %s",
+				"/* %s */",
+				document = "<!-- %s ->",
+			},
+		},
+	},
 
 	event = { "VeryLazy" },
 }
