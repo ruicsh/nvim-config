@@ -19,9 +19,6 @@ return {
 			autojump = true,
 		},
 		modes = {
-			search = {
-				enabled = true,
-			},
 			char = {
 				enabled = false,
 			},
