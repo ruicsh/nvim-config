@@ -105,7 +105,7 @@ local function c_filename()
 	local bt = vim.bo.buftype
 
 	if bt == "terminal" then
-		line = line .. "term://%t"
+		return ""
 	elseif ft == "fugitive" then
 		line = line .. "STATUS"
 	elseif ft == "gitcommit" then
@@ -221,8 +221,9 @@ end
 
 -- Show the current position
 local function c_cursor_position()
+	local bt = vim.bo.buftype
 	local ft = vim.bo.filetype
-	if ft == "" or ft == "fugitive" then
+	if bt == "terminal" or ft == "" or ft == "fugitive" then
 		return ""
 	end
 
