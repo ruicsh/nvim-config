@@ -216,11 +216,7 @@ local function c_git_status()
 	local n_changes = 0
 	local keys = { "added", "changed", "removed" }
 	for _, k in ipairs(keys) do
-		if status[k] and status[k] > 0 then
-			local hl = "%#StatusLineGitStatus" .. k:sub(1, 1):upper() .. k:sub(2) .. "#"
-			n_changes = n_changes + status[k]
-			line = line .. hl .. icons.git[k] .. " " .. status[k] .. " "
-		end
+		n_changes = n_changes + (status[k] or 0)
 	end
 
 	-- don't show anything if there are no changes
@@ -228,7 +224,8 @@ local function c_git_status()
 		return ""
 	end
 
-	return sep() .. " " .. line:sub(1):gsub("^%s*(.-)%s*$", "%1")
+	local hl = "%#StatusLine#"
+	return sep() .. " " .. hl .. vim.b.gitsigns_status
 end
 
 -- Show the current git branch
