@@ -182,7 +182,7 @@ local function c_lsp_diagnostics()
 		local count = vim.diagnostic.count(0, { severity = severity })[severity]
 		if count and count > 0 then
 			local hl = "%#StatusLineDiagnostics" .. k:sub(1, 1):upper() .. k:sub(2) .. "#"
-			line = line .. hl .. " " .. icons.diagnostics[k] .. " " .. count
+			line = line .. hl .. " " .. icons.diagnostics[k] .. count
 		end
 	end
 
