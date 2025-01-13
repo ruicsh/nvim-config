@@ -61,7 +61,7 @@ k("vv", "V") -- Enter visual linewise mode
 
 -- Miscellaneous
 k("<c-\\>", ":terminal<cr>", { desc = "Open classic terminal", silent = true })
-k("yc", "yy:normal gcc<cr>p") -- Duplicate a line and comment out the first line.
+k("gcp", "yy:normal gcc<cr>p") -- Duplicate a line and comment out the first line.
 k("J", "mzJ`z:delmarks z<cr>", { silent = true }) -- Keep cursor in place when joining lines
 k("<leader>w", ":silent! write<cr>", { silent = true, desc = "Save file" }) -- Save changes
 k("zk", "zk%^") -- Jump to start of previous fold.

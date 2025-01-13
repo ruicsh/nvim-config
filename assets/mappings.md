@@ -78,10 +78,7 @@
 - `]e` move line/selection below
 - `[p` paste to new line above
 - `]p` paste to new line below
-- `gsr{target}{replacement}` replace surrounding character
-- `gsd{char}` delete surrounding character
-- `gsa{motion}{char}` add surrounding character
-- `yc` duplicate a line, comment out the first line.
+- `gcp` duplicate a line, comment out the first line.
 - `U` redo
 
 #### Insert mode navigation
