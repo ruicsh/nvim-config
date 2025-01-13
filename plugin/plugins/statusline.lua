@@ -179,13 +179,11 @@ local function c_lsp_diagnostics()
 		end
 	end
 
-	line = line:match("^%s*(.-)%s*$") -- trim
-
 	if total_count == 0 then
 		return ""
 	end
 
-	return " " .. line .. " " .. sep()
+	return " " .. vim.trim(line) .. " " .. sep()
 end
 
 -- Show git status

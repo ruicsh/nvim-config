@@ -29,7 +29,7 @@ local function get_changes_list()
 		for _, v in ipairs(changelist) do
 			local text = vim.api.nvim_buf_get_lines(bufnr, v.lnum - 1, v.lnum, false)[1]
 			-- Don't include lines that aren't there anymore
-			local trimmed = text and text:match("^%s*(.-)%s*$") or ""
+			local trimmed = text and vim.trim(text) or ""
 			if not seen[v.lnum] and #trimmed ~= 0 then
 				-- Don't include the same line again
 				seen[v.lnum] = true
