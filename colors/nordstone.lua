@@ -117,9 +117,9 @@ loadColorSet({
 	StatusLineTerm = { fg = c.nord4, bg = c.nord2 },
 	StatusLineTermNC = { fg = c.nord4, bg = c.nord1 },
 	Substitute = { fg = c.nord0, bg = c.nord12 },
-	TabLine = { fg = c.nord4, bg = c.nord1 },
-	TabLineFill = { fg = c.nord4, bg = "NONE" },
-	TabLineSel = { fg = c.nord1, bg = c.nord9 },
+	TabLine = { fg = c.nord3_500 },
+	TabLineFill = {},
+	TabLineSel = { fg = c.nord3_900 },
 	Title = { fg = c.nord4, bg = "NONE", style = "bold" },
 	ToolbarButton = { fg = c.nord4, bg = "NONE", style = "bold" },
 	ToolbarLine = { fg = c.nord4, bg = c.nord1 },
@@ -170,7 +170,6 @@ local cmode = {
 }
 
 loadColorSet({
-	StatusLineLabel = { fg = c.nord3_500 },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
 	StatusLineModeInsert = { bg = cmode.i },
