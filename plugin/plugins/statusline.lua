@@ -71,9 +71,9 @@ local function c_mode()
 	if bt == "help" then
 		mode = "HELP"
 	elseif bt == "quickfix" then
-		mode = "QUICKFIX"
-	elseif ft == "oil" then
-		mode = "DIRECTORY"
+		mode = "QF"
+	elseif ft == "oil" or ft == "neo-tree" then
+		mode = "DIR"
 	elseif ft == "vim" then
 		mode = "VIM"
 	elseif ft == "fugitive" or ft == "gitcommit" or ft:match("Diffview") or vim.wo.diff then
@@ -114,15 +114,15 @@ local function c_filename()
 		line = line .. "DIFF"
 	elseif ft == "DiffviewFileHistory" then
 		line = line .. "LOG"
-	elseif bt == "nofile" then
+	elseif ft == "" then
 		return ""
 	else
 		local cwd = vim.fn.getcwd()
 		local path = vim.fn.expand("%:p:~")
 
-		if ft == "oil" then
+		if ft == "oil" or ft == "neo-tree" then
 			-- show full path
-			line = line .. path:sub(#cwd + 3)
+			line = line .. " " .. path:sub(#cwd + 3)
 		else
 			-- show parent/filename
 			line = line .. " " .. only_last_two_segments(path)
