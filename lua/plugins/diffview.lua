@@ -37,10 +37,8 @@ return {
 				diff_buf_win_enter = function()
 					vim.wo.cursorline = false -- Disable cursorline.
 					vim.wo.relativenumber = false -- Disable relative numbers.
-					vim.cmd("VimadeWinDisable") -- Disable window tint.
 				end,
 				view_enter = function(view)
-					vim.cmd("VimadeWinDisable") -- Disable window tint.
 					local bufnr = view.buffer
 					-- Use cc to commit.
 					local opts = { buffer = bufnr, unique = true }

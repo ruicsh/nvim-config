@@ -2,6 +2,15 @@
 
 local group = vim.api.nvim_create_augroup("ruicsh/dim_inactive_windows", { clear = true })
 
+local function ignore_window()
+	if vim.wo.diff then
+		return true
+	end
+
+	local ft = vim.bo.filetype
+	return ft == "qf" or ft:match("Diffview")
+end
+
 -- Compose the inactive window highlight group on entering vim
 local inactive_winhighlight = ""
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
@@ -9,15 +18,15 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 	callback = function()
 		local highlights = {}
 
-		-- set all highlight groups to hl_InactiveWindow
+		-- set all highlight groups to hl_DimInactiveWindows
 		for hl, _ in pairs(vim.api.nvim_get_hl(0, {})) do
-			table.insert(highlights, hl .. ":DimInactiveWindow")
+			table.insert(highlights, hl .. ":DimInactiveWindowsText900")
 		end
 
 		-- some elements are dimmer
-		local dimmer = { "SnacksIndent" }
+		local dimmer = { "SnacksIndent", "@comment" }
 		for _, hl in pairs(dimmer) do
-			table.insert(highlights, hl .. ":DimInactiveWindowDimmer")
+			table.insert(highlights, hl .. ":DimInactiveWindowsText500")
 		end
 
 		-- store it for use when leaving windows
@@ -25,34 +34,34 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 	end,
 })
 
--- Store settings per window to use when re-entering
-local settings_by_window = {}
-
 vim.api.nvim_create_autocmd({ "WinLeave" }, {
 	group = group,
 	callback = function()
-		-- init a cache for this window settings
-		local winid = vim.api.nvim_win_get_number(0)
-		local cached = settings_by_window[winid] or {}
-		settings_by_window[winid] = cached
+		if ignore_window() then
+			return
+		end
 
 		vim.wo.winhighlight = inactive_winhighlight
-		vim.cmd("ColorizerToggle") -- don't highlight CSS colors
-
-		cached.spell = vim.wo.spell -- store it for use on re-enter
-		vim.wo.spell = false
+		vim.cmd("ColorizerDetachFromBuffer") -- don't highlight CSS colors
+		vim.wo.spell = false -- turn spelling off
 	end,
 })
 
 vim.api.nvim_create_autocmd({ "WinEnter" }, {
 	group = group,
 	callback = function()
-		local winid = vim.api.nvim_win_get_number(0)
-		local cached = settings_by_window[winid] or {}
+		if ignore_window() then
+			return
+		end
+
+		local ft = vim.bo.filetype
 
 		vim.wo.winhighlight = ""
-		vim.cmd("ColorizerToggle") -- turn it back on
+		vim.cmd("ColorizerAttachToBuffer") -- turn it back on
 
-		vim.wo.spell = cached.spell -- toggle back to spelling (or not)
+		-- if text files switch spell back on
+		if ft == "markdown" or ft == "text" or ft == "gitcommit" then
+			vim.wo.spell = true
+		end
 	end,
 })

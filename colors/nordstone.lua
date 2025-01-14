@@ -108,18 +108,18 @@ loadColorSet({
 	SignColumn = { fg = c.nord4, bg = "NONE" },
 	Special = { fg = c.nord7 },
 	SpecialKey = { fg = c.nord9 },
-	SpellBad = { fg = c.nord11, bg = "NONE", style = "italic,undercurl" },
-	SpellCap = { fg = c.nord7, bg = "NONE", style = "italic,undercurl" },
-	SpellLocal = { fg = c.nord8, bg = "NONE", style = "italic,undercurl" },
-	SpellRare = { fg = c.nord9, bg = "NONE", style = "italic,undercurl" },
+	SpellBad = { fg = c.nord12, style = "undercurl" },
+	SpellCap = { fg = c.nord7, bg = "NONE", style = "undercurl" },
+	SpellLocal = { fg = c.nord8, bg = "NONE", style = "undercurl" },
+	SpellRare = { fg = c.nord9, bg = "NONE", style = "undercurl" },
 	StatusLine = { fg = c.nord3_900, bg = "NONE" },
 	StatusLineNC = { fg = c.nord4, bg = c.nord1 },
 	StatusLineTerm = { fg = c.nord4, bg = c.nord2 },
 	StatusLineTermNC = { fg = c.nord4, bg = c.nord1 },
 	Substitute = { fg = c.nord0, bg = c.nord12 },
-	TabLine = { fg = c.nord3_500 },
+	TabLine = { fg = c.nord3_900 },
 	TabLineFill = {},
-	TabLineSel = { fg = c.nord3_900 },
+	TabLineSel = { fg = c.nord3_900, bg = c.nord1 },
 	Title = { fg = c.nord4, bg = "NONE", style = "bold" },
 	ToolbarButton = { fg = c.nord4, bg = "NONE", style = "bold" },
 	ToolbarLine = { fg = c.nord4, bg = c.nord1 },
@@ -161,8 +161,8 @@ loadColorSet({
 
 -- dim-inactive-windows
 loadColorSet({
-	DimInactiveWindow = { fg = c.nord3_500 },
-	DimInactiveWindowDimmer = { fg = c.nord1 },
+	DimInactiveWindowsText900 = { fg = c.nord3_500 },
+	DimInactiveWindowsText500 = { fg = c.nord1 },
 })
 
 -- status-line
