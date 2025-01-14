@@ -31,12 +31,15 @@ return {
 						maxwidth = 50,
 						ellipsis_char = "...",
 						menu = {
-							copilot = "[ghc]",
 							buffer = "[buf]",
+							cmdline = "[cmd]",
+							cmdline_history = "[hst]",
+							copilot = "[cop]",
+							luasnip = "[snp]",
 							nvim_lsp = "[lsp]",
-							nvim_lua = "[api]",
-							path = "[path]",
-							luasnip = "[snip]",
+							nvim_lsp_signature_help = "[sig]",
+							nvim_lua = "[lua]",
+							path = "[pat]",
 						},
 					})(entry, item)
 
@@ -53,24 +56,44 @@ return {
 				["<c-u>"] = cmp.mapping.scroll_docs(-4), -- scroll up preview
 				["<c-d>"] = cmp.mapping.scroll_docs(4), -- scroll down preview
 				["<c-e>"] = cmp.mapping.abort(), -- close menu, and don't pick anything
-				-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
+				["<esc>"] = cmp.mapping.abort(),
+				["<c-]>"] = cmp.mapping.abort(),
+
+				-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
 				["<cr>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						if luasnip.expandable() then
 							luasnip.expand()
+						elseif cmp.get_active_entry() then
+							-- suggestion was selected, use it
+							cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
 						else
-							cmp.confirm({ select = true })
+							-- make it go away if hit <cr> with nothing selected
+							cmp.abort()
 						end
 					else
 						fallback()
 					end
 				end),
-				-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#confirm-candidate-on-tab-immediately-when-theres-only-one-completion-entry
 				["<tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
-						-- if there is only, select it
-						if #cmp.get_entries() == 1 then
-							cmp.confirm({ select = true })
+						local entries = cmp.get_entries()
+						-- there's only 1 suggestion
+						if #entries == 1 then
+							-- and it's from copilot
+							if entries[1].source.name == "copilot" then
+								local active = cmp.get_active_entry()
+								-- it's not selected yet, select and preview it
+								if not active then
+									cmp.select_next_item()
+								else
+									-- it's already previewed, I don't want it, hit <tab> again
+									cmp.abort()
+								end
+							else
+								-- if there is only, but not from copilot, select it
+								cmp.confirm({ select = true })
+							end
 						else
 							cmp.select_next_item()
 						end
@@ -86,7 +109,6 @@ return {
 						fallback()
 					end
 				end, { "i", "s" }),
-				-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#confirm-candidate-on-tab-immediately-when-theres-only-one-completion-entry
 				["<s-tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
@@ -105,10 +127,9 @@ return {
 			},
 
 			sources = cmp.config.sources({
-				{ name = "lazydev", group_index = 0 },
-				{ name = "copilot" },
+				{ name = "nvim_lsp_signature_help", group_index = 0 },
 				{ name = "nvim_lsp" },
-				{ name = "nvim_lsp_signature_help" },
+				{ name = "copilot" },
 				{ name = "path" },
 				{ name = "buffer" },
 				{
@@ -124,6 +145,8 @@ return {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
 			},
+
+			selection_order = "near_cursor",
 		})
 
 		cmp.setup.cmdline({ "/", "?" }, {
@@ -140,8 +163,10 @@ return {
 				},
 			}),
 			sources = {
+				{ name = "cmdline_history", max_item_count = 5 },
 				{ name = "buffer" },
 			},
+			selection_order = "near_cursor",
 		})
 
 		cmp.setup.cmdline(":", {
@@ -158,12 +183,14 @@ return {
 				},
 			}),
 			sources = cmp.config.sources({
+				{ name = "cmdline_history", max_item_count = 5 },
 				{ name = "path" },
 				{ name = "cmdline" },
 			}),
 			matching = {
 				disallow_symbol_nonprefix_matching = false,
 			},
+			selection_order = "near_cursor",
 		})
 	end,
 
@@ -176,6 +203,7 @@ return {
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-cmdline" },
 		{ "zbirenbaum/copilot-cmp" },
+		{ "dmitmel/cmp-cmdline-history" },
 		{ -- Pictograms for completion items
 			-- https://github.com/onsails/lspkind.nvim
 			"onsails/lspkind.nvim",
