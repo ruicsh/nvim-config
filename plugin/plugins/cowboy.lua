@@ -2,7 +2,7 @@
 -- https://github.com/folke/dot/blob/master/nvim/lua/util/init.lua
 
 local restricted_keys = { "h", "j", "k", "l", "<left>", "<down>", "<up>", "<right>" } -- keys under restrictions
-local max_count = 3 -- max successive key presses
+local max_count = 5 -- max successive key presses
 local reset_ms = 2000 -- time to reset count
 local ignore_ft = { "help", "fugitive", "qf" } -- don't limit on these filetypes
 
