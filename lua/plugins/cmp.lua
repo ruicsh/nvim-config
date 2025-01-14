@@ -5,7 +5,6 @@ return {
 	"hrsh7th/nvim-cmp",
 	config = function()
 		local cmp = require("cmp")
-		local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
 
 		-- copilot suggestions
@@ -35,7 +34,6 @@ return {
 							cmdline = "[cmd]",
 							cmdline_history = "[hst]",
 							copilot = "[cop]",
-							luasnip = "[snp]",
 							nvim_lsp = "[lsp]",
 							nvim_lsp_signature_help = "[sig]",
 							nvim_lua = "[lua]",
@@ -62,9 +60,7 @@ return {
 				-- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
 				["<cr>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
-						if luasnip.expandable() then
-							luasnip.expand()
-						elseif cmp.get_active_entry() then
+						if cmp.get_active_entry() then
 							-- suggestion was selected, use it
 							cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
 						else
@@ -97,8 +93,6 @@ return {
 						else
 							cmp.select_next_item()
 						end
-					elseif luasnip.locally_jumpable(1) then
-						luasnip.jump(1)
 					elseif has_words_before() then
 						cmp.complete()
 						-- if there is only, select it
@@ -112,18 +106,10 @@ return {
 				["<s-tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
-					elseif luasnip.locally_jumpable(-1) then
-						luasnip.jump(-1)
 					else
 						fallback()
 					end
 				end, { "i", "s" }),
-			},
-
-			snippet = {
-				expand = function(args)
-					luasnip.lsp_expand(args.body)
-				end,
 			},
 
 			sources = cmp.config.sources({
@@ -132,13 +118,6 @@ return {
 				{ name = "copilot" },
 				{ name = "path" },
 				{ name = "buffer" },
-				{
-					name = "luasnip",
-					option = {
-						use_show_condition = false,
-						show_autosnippets = true,
-					},
-				},
 			}),
 
 			window = {
@@ -207,18 +186,6 @@ return {
 		{ -- Pictograms for completion items
 			-- https://github.com/onsails/lspkind.nvim
 			"onsails/lspkind.nvim",
-		},
-		{ -- Snippet engine
-			-- https://github.com/L3MON4D3/LuaSnip
-			"L3MON4D3/LuaSnip",
-			config = function()
-				require("luasnip/loaders/from_vscode").lazy_load()
-			end,
-			build = "make install_jsregexp",
-			dependencies = {
-				"saadparwaiz1/cmp_luasnip",
-				"rafamadriz/friendly-snippets",
-			},
 		},
 		{ -- GitHub Copilot
 			-- https://github.com/zbirenbaum/copilot.lua
