@@ -159,6 +159,12 @@ loadColorSet({
 	InlineSearchCount = { fg = c.nord3_500, bg = "NONE" },
 })
 
+-- dim-inactive-windows
+loadColorSet({
+	DimInactiveWindow = { fg = c.nord3_500 },
+	DimInactiveWindowDimmer = { fg = c.nord1 },
+})
+
 -- status-line
 local cmode = {
 	c = c.nord14, -- #a3be8c

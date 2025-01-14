@@ -1,4 +1,4 @@
---  CSS colors
+-- CSS colors
 -- https://github.com/norcalli/nvim-colorizer.lua
 
 return {

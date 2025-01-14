@@ -35,7 +35,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - [Scope.nvim](https://github.com/tiagovla/scope.nvim) - Enhanced tab scoping
 - [buffer_manager.nvim](https://github.com/j-morano/buffer_manager.nvim) - Easily manage buffers
-- [vimade](https://github.com/tadaa/vimade) - Fade inactive buffers
 
 #### File explorers
 
