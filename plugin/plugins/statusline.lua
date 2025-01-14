@@ -249,9 +249,7 @@ local function c_tabs()
 	for i = 1, n_tabs, 1 do
 		local isSelected = vim.fn.tabpagenr() == i
 		local hl = (isSelected and "%#TabLineSel#" or "%#TabLine#")
-		local icon = isSelected and "" or ""
-
-		local cell = hl .. icon .. " " .. i .. " "
+		local cell = hl .. " " .. i .. " "
 		line = line .. cell
 	end
 
