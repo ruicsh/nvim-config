@@ -1,7 +1,5 @@
 -- On VimEnter, open all git changed files in current working directory.
 
-local scan_dir = require("plenary.scandir").scan_dir
-
 local group = vim.api.nvim_create_augroup("ruicsh/restore_changed_files", { clear = true })
 
 -- ignore files with these basenames
@@ -58,9 +56,11 @@ local function get_changed_files()
 			-- Generate absolute path for each file (relative to the git repo root)
 			local filepath = vim.fs.normalize(git_root .. "/" .. file)
 			if vim.fn.isdirectory(filepath) ~= 0 then
-				local dir_files = scan_dir(filepath)
-				for _, dir_file in ipairs(dir_files) do
-					table.insert(changed_files, dir_file)
+				for dirfile, type in vim.fs.dir(filepath, { depth = 9999 }) do
+					if type == "file" then
+						local dirfilepath = vim.fs.joinpath(filepath, dirfile)
+						table.insert(changed_files, dirfilepath)
+					end
 				end
 			else
 				table.insert(changed_files, filepath)
@@ -110,10 +110,9 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			files = sort_by_mtime(files)
 
 			-- Use vim.cmd.edit to open the file in a new buffer
-			local n_files = vim.tbl_count(files)
 			for i, file in ipairs(files) do
 				-- limit to the last 10 updated files
-				if i > n_files - 10 then
+				if i > #files - 10 then
 					vim.cmd.edit(file)
 				end
 			end
