@@ -43,6 +43,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### Editing
 
+- [flash.nvim](https://github.com/folke/flash.nvim) - Navigate with labels
 - [mini.ai](https://github.com/echasnovski/mini.ai) - a/i textobjects
 - [mini.move](https://github.com/echasnovski/mini.move) - move lines/selection
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
@@ -50,11 +51,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [nvim-spider](https://github.com/chrisgrieser/nvim-spider) - Move by subwords (camelCase, ...)
 - [repeat.vim](https://github.com/tpope/vim-repeat) - Repeat plugin keymaps
 - [rsi.vim](https://github.com/tpope/vim-rsi) - Insert mode navigation
-
-#### Search
-
-- [flash.nvim](https://github.com/folke/flash.nvim) - Navigate with labels
-- [fzf-lua](https://github.com/ibhagwan/fzf-lua) - Fuzzy finder
 
 ### Coding
 

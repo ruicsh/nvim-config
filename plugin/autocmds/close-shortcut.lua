@@ -36,12 +36,13 @@ api.nvim_create_autocmd("FileType", {
 		"qf",
 		"query",
 		"scratch",
+		"snacks_picker_input",
 		"startuptime",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
 		vim.schedule(function()
-			k("n", closeShortcut, function()
+			k({ "n", "i" }, closeShortcut, function()
 				vim.cmd("close")
 				pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
 			end, {

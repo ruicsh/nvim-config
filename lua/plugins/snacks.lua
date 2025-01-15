@@ -15,10 +15,17 @@ return {
 		end
 
 		local mappings = {
-			{ "[r", jump_to_previous_reference, "Jump to previous reference" },
-			{ "]r", jump_to_next_reference, "Jump to next reference" },
+			{ "<leader><space>", snacks.picker.files, "Find files" },
+			{ "<leader>f", snacks.picker.grep, "Search: workspace" },
+			{ "<leader>.", snacks.picker.resume, "Search: Last search" },
+			{ "<leader>nh", snacks.picker.help, "Search: Help" },
+			{ "<leader>nc", snacks.picker.commands, "Search: Commands" },
+			{ "<leader>nk", snacks.picker.keymaps, "Search: Keymaps" },
+			{ "<leader>hf", snacks.picker.git_status, "Git: Files" },
+			{ "[r", jump_to_previous_reference, "LSP: Jump to previous reference" },
+			{ "]r", jump_to_next_reference, "LSP: Jump to next reference" },
 		}
-		return vim.fn.getlazykeysconf(mappings, "LSP")
+		return vim.fn.getlazykeysconf(mappings)
 	end,
 	opts = {
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/bufdelete.md
@@ -34,6 +41,8 @@ return {
 				only_current = true,
 			},
 		},
+		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
+		picker = {},
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/statuscolumn.md
 		statuscolumn = {
 			left = { "sign", "git" },
