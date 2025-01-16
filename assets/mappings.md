@@ -117,12 +117,12 @@
 
 ### Coding
 
-#### Autocompletion/snippets
+#### Autocompletion
 
-- `<c-m>` accept
+- `<c-l>` confirm
 - `<c-n>` select next entry
 - `<c-p>` select previous entry
-- `<c-]>` close menu
+- `<c-]>` abort
 
 ### Snippets
 

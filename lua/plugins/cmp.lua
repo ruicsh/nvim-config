@@ -53,11 +53,11 @@ return {
 
 			mapping = {
 				-- confirm completion
-				["<c-m>"] = cmp.mapping.confirm({ select = true }),
+				["<c-l>"] = cmp.mapping.confirm({ select = true }),
 
 				-- move up/down the menu
-				["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-				["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+				["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+				["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 
 				-- scroll up/down
 				["<c-u>"] = cmp.mapping.scroll_docs(-4),
@@ -82,6 +82,10 @@ return {
 			},
 
 			selection_order = "near_cursor",
+
+			experimental = {
+				ghost_text = true,
+			},
 		})
 
 		cmp.setup.cmdline({ "/", "?" }, {
