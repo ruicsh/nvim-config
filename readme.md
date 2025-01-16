@@ -43,6 +43,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### Editing
 
+- [csvview.nvim](https://github.com/hat0uma/csvview.nvim) - CSV editing
 - [flash.nvim](https://github.com/folke/flash.nvim) - Navigate with labels
 - [mini.ai](https://github.com/echasnovski/mini.ai) - a/i textobjects
 - [mini.move](https://github.com/echasnovski/mini.move) - move lines/selection
@@ -57,9 +58,9 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua) - CSS Colors
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - GitHub Copilot
-- [csvview.nvim](https://github.com/hat0uma/csvview.nvim) - CSV editing
-- [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs (`()`, `[]`, `{}`)
+- [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Completions
+- [nvim-snippets](https://github.com/garymjr/nvim-snippets) - Snippets
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
 
 #### LSP

@@ -117,12 +117,17 @@
 
 ### Coding
 
-#### Autocomplete
+#### Autocompletion/snippets
 
-- `<cr>` accept
+- `<c-m>` accept
 - `<c-n>` select next entry
 - `<c-p>` select previous entry
-- `<c-e>` close menu
+- `<c-]>` close menu
+
+### Snippets
+
+- `<tab>` jump to next placeholder
+- `<s-tab>` jump to previous placeholder
 
 #### Logging
 
