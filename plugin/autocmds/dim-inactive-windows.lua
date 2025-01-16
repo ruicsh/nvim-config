@@ -20,13 +20,13 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 
 		-- set all highlight groups to hl_DimInactiveWindows
 		for hl, _ in pairs(vim.api.nvim_get_hl(0, {})) do
-			table.insert(highlights, hl .. ":DimInactiveWindowsText900")
+			table.insert(highlights, hl .. ":DimInactiveWindowsText500")
 		end
 
 		-- some elements are dimmer
 		local dimmer = { "SnacksIndent", "@comment" }
 		for _, hl in pairs(dimmer) do
-			table.insert(highlights, hl .. ":DimInactiveWindowsText500")
+			table.insert(highlights, hl .. ":DimInactiveWindowsText900")
 		end
 
 		-- store it for use when leaving windows

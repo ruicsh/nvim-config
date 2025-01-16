@@ -161,8 +161,8 @@ loadColorSet({
 
 -- dim-inactive-windows
 loadColorSet({
-	DimInactiveWindowsText900 = { fg = c.nord3_500 },
-	DimInactiveWindowsText500 = { fg = c.nord1 },
+	DimInactiveWindowsText500 = { fg = c.neutral_500 },
+	DimInactiveWindowsText900 = { fg = c.neutral_900 },
 })
 
 -- status-line
