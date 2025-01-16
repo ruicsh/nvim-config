@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 		end
 
 		-- some elements are dimmer
-		local dimmer = { "SnacksIndent", "@comment" }
+		local dimmer = { "SnacksIndent" }
 		for _, hl in pairs(dimmer) do
 			table.insert(highlights, hl .. ":DimInactiveWindowsText900")
 		end
