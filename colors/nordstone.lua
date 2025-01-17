@@ -319,6 +319,8 @@ loadColorSet({
 -- snacks.nvim
 loadColorSet({
 	SnacksIndentScope = { fg = c.nord3_500 },
+	SnacksPickerDir = { fg = c.nord3_500 },
+	SnacksPickerMatch = { link = "IncSearch" },
 })
 
 -- WhichKey
