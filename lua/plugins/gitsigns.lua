@@ -29,16 +29,22 @@ return {
 		on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")
 
-			local function map(mode, l, r, opts)
-				opts = vim.tbl_extend("force", { buffer = bufnr, unique = true }, opts or {})
-				vim.keymap.set(mode, l, r, opts)
+			-- Set keymap, but only if it's not already set
+			local function k(mode, l, r, opts)
+				opts = vim.tbl_extend("force", { buffer = bufnr, unique = true, silent = true }, opts or {})
+				local modes = type(mode) == "table" and mode or { mode }
+				for _, m in ipairs(modes) do
+					if not vim.fn.iskeymapset(m, l) then
+						vim.keymap.set(m, l, r, opts)
+					end
+				end
 			end
 
 			-- Navigation
 			local function nav_hunk(diff_cmd, direction)
 				local function fn()
 					if vim.wo.diff then
-						vim.cmd("normal! " .. diff_cmd)
+						vim.cmd.normal({ diff_cmd, bang = true })
 					else
 						gitsigns.nav_hunk(direction)
 					end
@@ -46,21 +52,16 @@ return {
 				return fn
 			end
 
-			map("n", "]c", nav_hunk("]c", "next"))
-			map("n", "[c", nav_hunk("[c", "prev"))
+			k("n", "]c", nav_hunk("]c", "next"))
+			k("n", "[c", nav_hunk("[c", "prev"))
 
 			-- Actions
-			map({ "n", "v" }, "<leader>hs", gitsigns.stage_hunk, { desc = "Git: [s]tage hunk", buffer = bufnr })
-			map({ "n", "v" }, "<leader>hr", gitsigns.reset_hunk, { desc = "Git: [r]eset hunk", buffer = bufnr })
-			map("n", "<leader>hb", gitsigns.toggle_current_line_blame, { desc = "Git: [b]lame line", buffer = bufnr })
-			map({ "n", "v" }, "<leader>hB", gitsigns.blame, { desc = "Git: [b]lame file", buffer = bufnr })
-			map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "Git: [S]tage file" })
-			map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "Git: [R]eset file" })
-			map("n", "<leader>hu", gitsigns.undo_stage_hunk, { desc = "Git: [u]nstage hunk" })
-			map("n", "<leader>hv", gitsigns.preview_hunk_inline, { desc = "Git: pre[v]iew hunk" })
+			k({ "n", "v" }, "gh", gitsigns.stage_hunk, { desc = "Git: [s]tage hunk" })
+			k({ "n", "v" }, "gH", gitsigns.reset_hunk, { desc = "Git: [r]eset hunk" })
+			k("n", "ghb", gitsigns.toggle_current_line_blame, { desc = "Git: [b]lame line" })
 
 			-- Text object
-			map({ "o", "x" }, "ih", ":<c-u>Gitsigns select_hunk<cr>")
+			k({ "o", "x" }, "gh", ":<c-u>Gitsigns select_hunk<cr>", { unique = false })
 		end,
 	},
 

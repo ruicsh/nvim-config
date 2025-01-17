@@ -38,12 +38,6 @@ return {
 					vim.wo.cursorline = false -- Disable cursorline.
 					vim.wo.relativenumber = false -- Disable relative numbers.
 				end,
-				view_enter = function(view)
-					local bufnr = view.buffer
-					-- Use cc to commit.
-					local opts = { buffer = bufnr, unique = true }
-					vim.keymap.set("n", "cc", ":DiffviewClose<cr>:vertical Git commit<cr>", opts)
-				end,
 			},
 		})
 	end,

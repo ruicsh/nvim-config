@@ -37,3 +37,14 @@ vim.fn.getlazykeysconf = function(mappings, desc_prefix)
 		return { lhs, rhs, silent = true, mode = mode, noremap = true, unique = true, desc = desc }
 	end, mappings)
 end
+
+-- Check if a keymap is set
+vim.fn.iskeymapset = function(mode, lhs)
+	local keymaps = vim.api.nvim_get_keymap(mode)
+	for _, keymap in ipairs(keymaps) do
+		if keymap.lhs == lhs then
+			return true
+		end
+	end
+	return false
+end

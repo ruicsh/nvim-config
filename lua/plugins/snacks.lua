@@ -21,7 +21,6 @@ return {
 			{ "<leader>nh", snacks.picker.help, "Search: Help" },
 			{ "<leader>nc", snacks.picker.commands, "Search: Commands" },
 			{ "<leader>nk", snacks.picker.keymaps, "Search: Keymaps" },
-			{ "<leader>hf", snacks.picker.git_status, "Git: Files" },
 			{ "[r", jump_to_previous_reference, "LSP: Jump to previous reference" },
 			{ "]r", jump_to_next_reference, "LSP: Jump to next reference" },
 		}

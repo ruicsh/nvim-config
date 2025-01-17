@@ -99,6 +99,7 @@
 - `d` code blocks (if, while, for, ...)
 - `f` function
 - `q` quotes ("", '', ``)
+- `gh` git hunk
 
 #### Operators
 
@@ -188,27 +189,19 @@
 
 - `[c` previous change
 - `]c` next change
-- `<leader>hb` blame line
-- `<leader>hf` list changed files
+- `gh` stage hunk
+- `gH` reset hunk
+- `ghb` toggle blame line
 - `<leader>hg` diffview
 - `<leader>hh` status
 - `<leader>hj` log
 - `<leader>ho` push set-upstream origin HEAD
 - `<leader>hp` push
-- `<leader>hr` reset hunk
-- `<leader>hs` stage hunk
-- `<leader>hu` unstage hunk
-- `<leader>hv` preview change
-- `<leader>hy` share file permalink
-- `<leader>hB` blame file
-- `<leader>hR` reset file
-- `<leader>hS` stage file
 
 #### Diffview
 
 - `<up>` open diff for previous file
 - `<down>` open diff for next file
-- `cc` commit
 - `s` stage file
 - `X` reset file
 - `<c-]>` close panel
