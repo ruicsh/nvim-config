@@ -47,10 +47,8 @@ vim.on_key(function(key)
 	local shortPattern = vim.fn.getreg("/"):gsub([[\V\C]], ""):len() <= 1 -- for `fF` function
 
 	if searchCancelled or (not searchMovement and not searchConfirmed) then
-		vim.opt.hlsearch = false
 		searchCountIndicator("clear")
 	elseif (searchMovement and not shortPattern) or searchConfirmed or searchStarted then
-		vim.opt.hlsearch = true
 		vim.defer_fn(searchCountIndicator, 1)
 	end
 end, ns)
