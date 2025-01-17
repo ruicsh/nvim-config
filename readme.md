@@ -91,23 +91,23 @@ See [mappings](assets/mappings.md) for the complete list.
 - `CopyFilePathToClipboard` - Copy current buffer's path to clipboard.
 - `ToggleFormatOnSave` - Toggle on/off formatting on save.
 
-## Resources
+## Autocmds
 
-#### Video series
-
-- [Neovim (etc) screecasts](https://www.youtube.com/playlist?list=PLwJS-G75vM7kFO-yUkyNphxSIdbi_1NKX) by Greg Hurrell
-- [Neovim Config Rewrite](https://www.youtube.com/playlist?list=PLep05UYkc6wRcB9dxdXkc5tYHlpQFlRUF) by TJ DeVries
-- [Neovim Configuration](https://www.youtube.com/playlist?list=PLsz00TDipIffxsNXSkskknolKShdbcALR) by typecraft
-- [Neovim Weekly Plugin Series](https://www.youtube.com/playlist?list=PLrgztVx4lZIova0vq7Nb_ZcmgU_MZ3NlJ) by CantuCodes
-- [Neovim from Scratch](https://www.youtube.com/playlist?list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) by chris@machine
-- [Neovim](https://www.youtube.com/playlist?list=PLOIdWGSU_Wcp9_w8euHJaux8DEIBCvYGc) by Andrew Courter
-- [Neovim](https://www.youtube.com/playlist?list=PLmcTCfaoOo_grgVqU7UbOx7_RG9kXPgEr) by DevOps Toolbox
-- [Understanding Neovim](https://www.youtube.com/playlist?list=PLx2ksyallYzW4WNYHD9xOFrPRYGlntAft) by Vhyrro
-- [Vim As Your Editor](https://www.youtube.com/playlist?list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R) by ThePrimeagen
-- [Vim Beginners Guide](https://www.youtube.com/watch?v=wACD8WEnImo&list=PLT98CRl2KxKHy4A5N70jMRYAROzzC2a6x&pp=iAQB) by Learn Linux TV
-- [Vim Meetups](https://www.youtube.com/playlist?list=PL8tzorAO7s0jy7DQ3Q0FwF3BnXGQnDirs) by thoughbot
-- [neovim](https://www.youtube.com/playlist?list=PLko9chwSoP-2RxNuglpJriLO5HHXIcP6x) by Vimjoyer
-- [vimcasts.org](http://vimcasts.org/episodes/) by Drew Neil
+|                                                                                                                                                 |                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [auto-resize-splits](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/auto-resize-splits.lua)               | Auto resize splits when window is resized                             |
+| [close-shortcut](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/close-shortcut.lua)                       | Use the same shortcut to close different panels                       |
+| [create-intermediate-dirs](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/create-intermediate-dirs.lua)   | Create intermediate directories                                       |
+| [custom-fold-text](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/custom-fold-text.lua)                   | Custom fold text                                                      |
+| [dim-inactive-windows](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/dim-inactive-windows.lua)           | Dim inactive windows                                                  |
+| [disable-new-line-comments](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/disable-new-line-comments.lua) | Disable new line comments                                             |
+| [last-location](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/last-location.lua)                         | Jump to last location when opening a file                             |
+| [open-directory-oil](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/open-directory-oil.lua)               | If neovim is opened with a directory as argument open oil-filemanager |
+| [restore-changed-files](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/restore-changed-files.lua)         | On VimEnter, open all git changed files in current working directory  |
+| [terminal](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/terminal.lua)                                   | Terminal windows                                                      |
+| [toggle-hlsearch](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/toggle-hlsearch.lua)                     | Toogle off hlsearch when entering insert mode and the cursor is moved |
+| [yank-highlight](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/yank-highlight.lua)                       | Highlight selection when yanking                                      |
+| [yank-deep-cursor-position](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/yank-deep-cursor-position.lua) | Keep cursor position on yank                                          |
 
 <div style="margin-top:80px"></div>
 
