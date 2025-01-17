@@ -166,7 +166,7 @@ local function c_lsp_diagnostics()
 		return ""
 	end
 
-	local line = ""
+	local lines = {}
 	local keys = { "error", "warning", "information", "hint" }
 	local total_count = 0
 	for i, k in ipairs(keys) do
@@ -175,7 +175,7 @@ local function c_lsp_diagnostics()
 		local count = vim.diagnostic.count(0, { severity = severity })[severity]
 		if count and count > 0 then
 			total_count = total_count + count
-			line = line .. icons.diagnostics[k] .. count .. " "
+			table.insert(lines, icons.diagnostics[k] .. " " .. count)
 		end
 	end
 
@@ -183,7 +183,7 @@ local function c_lsp_diagnostics()
 		return ""
 	end
 
-	return " " .. vim.trim(line) .. " " .. sep()
+	return " " .. table.concat(lines, " ") .. " " .. sep()
 end
 
 -- Show git status
@@ -195,8 +195,13 @@ local function c_git_status()
 
 	local n_changes = 0
 	local keys = { "added", "changed", "removed" }
+	local entries = {}
 	for _, k in ipairs(keys) do
-		n_changes = n_changes + (status[k] or 0)
+		local count = (status[k] or 0)
+		if count > 0 then
+			table.insert(entries, icons.git[k] .. " " .. count)
+		end
+		n_changes = n_changes + count
 	end
 
 	-- don't show anything if there are no changes
@@ -204,7 +209,7 @@ local function c_git_status()
 		return ""
 	end
 
-	return " " .. vim.b.gitsigns_status .. " " .. sep()
+	return " " .. table.concat(entries, " ") .. " " .. sep()
 end
 
 -- Show the current git branch
@@ -226,6 +231,7 @@ end
 local function c_cursor_position()
 	local bt = vim.bo.buftype
 	local ft = vim.bo.filetype
+
 	if bt == "terminal" or ft == "" or ft == "fugitive" or ft == "gitcommit" then
 		return ""
 	end
@@ -233,12 +239,12 @@ local function c_cursor_position()
 	local pos = vim.api.nvim_win_get_cursor(0)
 	local total_lines = vim.fn.line("$")
 	local text = math.modf((pos[1] / total_lines) * 100) .. tostring("%%")
-	return " " .. pos[1] .. ":" .. pos[2] .. " " .. text .. " "
+
+	return " " .. table.concat(pos, ":") .. " " .. text .. " "
 end
 
 -- Show tabs (only if there are more than one)
 local function c_tabs()
-	local line = ""
 	local n_tabs = vim.fn.tabpagenr("$")
 
 	-- only show tabs if there are more than one
@@ -246,14 +252,15 @@ local function c_tabs()
 		return ""
 	end
 
+	local lines = {}
 	for i = 1, n_tabs, 1 do
 		local isSelected = vim.fn.tabpagenr() == i
 		local hl = (isSelected and "%#TabLineSel#" or "%#TabLine#")
 		local cell = hl .. " " .. i .. " "
-		line = line .. cell
+		table.insert(lines, cell)
 	end
 
-	return sep() .. " " .. line
+	return sep() .. " " .. vim.trim(table.concat(lines, " "))
 end
 
 local function concat_components(components)
