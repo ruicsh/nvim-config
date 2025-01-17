@@ -1,6 +1,38 @@
 -- Autocomplete
 -- https://github.com/hrsh7th/nvim-cmp
 
+local function setup_ghost_text()
+	local config = require("cmp.config")
+
+	-- Only show ghost text at word boundaries, not inside keywords.
+	-- https://github.com/wincent/wincent/blob/main/aspects/nvim/files/.config/nvim/after/plugin/nvim-cmp.lua
+	local toggle_ghost_text = function()
+		if vim.api.nvim_get_mode().mode ~= "i" then
+			return
+		end
+
+		local cursor_column = vim.fn.col(".")
+		local current_line_contents = vim.fn.getline(".")
+		local character_after_cursor = current_line_contents:sub(cursor_column, cursor_column)
+
+		local should_enable_ghost_text = character_after_cursor == ""
+			or vim.fn.match(character_after_cursor, [[\k]]) == -1
+
+		local current = config.get().experimental.ghost_text
+		if current ~= should_enable_ghost_text then
+			config.set_global({
+				experimental = {
+					ghost_text = should_enable_ghost_text,
+				},
+			})
+		end
+	end
+
+	vim.api.nvim_create_autocmd({ "InsertEnter", "CursorMovedI" }, {
+		callback = toggle_ghost_text,
+	})
+end
+
 return {
 	"hrsh7th/nvim-cmp",
 	config = function()
@@ -15,6 +47,9 @@ return {
 				Copilot = "",
 			},
 		})
+
+		-- Only show ghost text at word boundaries, not inside keywords.
+		setup_ghost_text()
 
 		cmp.setup({
 			completion = { completeopt = "menu,menuone,noinsert" },
@@ -53,7 +88,43 @@ return {
 
 			mapping = {
 				-- confirm completion
-				["<c-l>"] = cmp.mapping.confirm({ select = true }),
+				["<c-l>"] = cmp.mapping(function(fallback)
+					-- Until https://github.com/hrsh7th/nvim-cmp/issues/1716
+					-- (cmp.ConfirmBehavior.MatchSuffix) gets implemented, use this local wrapper
+					if cmp.visible() then
+						local entry = cmp.get_selected_entry()
+						local behavior = cmp.ConfirmBehavior.Replace
+
+						if entry then
+							local completion_item = entry.completion_item
+							local newText = ""
+							-- lsp server completion
+							if completion_item.textEdit then
+								newText = completion_item.textEdit.newText
+							elseif
+								type(completion_item.insertText) == "string" and completion_item.insertText ~= ""
+							then
+								newText = completion_item.insertText
+							else
+								newText = completion_item.word or completion_item.label or ""
+							end
+
+							-- How many characters will be different after the cursor position if we replace?
+							local diff_after = math.max(0, entry.replace_range["end"].character + 1)
+								- entry.context.cursor.col
+
+							-- Does the text that will be replaced after the cursor match the suffix
+							-- of the `newText` to be inserted? If not, we should `Insert` instead.
+							if entry.context.cursor_after_line:sub(1, diff_after) ~= newText:sub(-diff_after) then
+								behavior = cmp.ConfirmBehavior.Insert
+							end
+						end
+
+						cmp.confirm({ select = true, behavior = behavior })
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
 
 				-- move up/down the menu
 				["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
@@ -84,6 +155,7 @@ return {
 			selection_order = "near_cursor",
 
 			experimental = {
+				-- see also `setup_ghost_text()` above.
 				ghost_text = true,
 			},
 		})
