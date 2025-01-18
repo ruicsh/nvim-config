@@ -84,19 +84,6 @@ local function c_mode()
 	return string.format("%%#StatusLineMode%s# %%#StatusLineMode%sText# %s", hl, hl, mode)
 end
 
--- Show only the last two segments of a path
-local function only_last_two_segments(path)
-	local path_separator = "/"
-	local segments = vim.split(path, path_separator)
-	if #segments == 0 then
-		return path
-	elseif #segments == 1 then
-		return segments[#segments]
-	else
-		return table.concat({ segments[#segments - 1], segments[#segments] }, path_separator)
-	end
-end
-
 -- Show the current filename
 local function c_filename()
 	local hl = "%#StatusLineFilename#"
@@ -124,8 +111,8 @@ local function c_filename()
 			-- show full path
 			line = line .. " " .. path:sub(#cwd + 3)
 		else
-			-- show parent/filename
-			line = line .. " " .. only_last_two_segments(path)
+			-- show only parent/filename
+			line = line .. " " .. vim.fs.getshortpath(path)
 		end
 	end
 
@@ -270,7 +257,7 @@ local function concat_components(components)
 end
 
 -- Construct the statusline
-function StatusLine()
+function _G.statusLine()
 	local hl = "%#StatusLine#"
 
 	return concat_components({
@@ -287,4 +274,4 @@ function StatusLine()
 	})
 end
 
-vim.opt.statusline = "%!v:lua.StatusLine()"
+vim.o.statusline = "%!v:lua._G.statusLine()"
