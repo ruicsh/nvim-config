@@ -17,6 +17,29 @@ return {
 	end,
 	opts = {
 		"telescope",
+		files = {
+			cwd_prompt = false,
+			prompt = "Files: ",
+			formatter = "path.filename_first",
+		},
+		fzf_colors = {
+			["bg"] = { "bg", "NormalFloat" },
+			["bg+"] = { "bg", "CursorLine" },
+			["fg"] = { "fg", "Comment" },
+			["fg+"] = { "fg", "Normal" },
+			["hl"] = { "fg", "CmpItemAbbrMatch" },
+			["hl+"] = { "fg", "CmpItemAbbrMatch" },
+			["gutter"] = { "bg", "NormalFloat" },
+			["header"] = { "fg", "NonText" },
+			["info"] = { "fg", "NonText" },
+			["pointer"] = { "bg", "Cursor" },
+			["separator"] = { "bg", "NormalFloat" },
+			["spinner"] = { "fg", "NonText" },
+		},
+		grep = {
+			cmd = "rg -o -r '' --column --no-heading --smart-case",
+			prompt = "Text: ",
+		},
 		winopts = {
 			-- https://github.com/ibhagwan/fzf-lua/issues/808#issuecomment-1620961060
 			on_create = function()
