@@ -8,8 +8,8 @@ k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines" })
 k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines" })
 
 -- Editing
-k("[<space>", ":call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = "Put empty line above" })
-k("]<space>", ":call append(line('.'),     repeat([''], v:count1))<cr>", { desc = "Put empty line below" })
+k("[<space>", ":call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = "Put empty line above" }) -- FIXME: will be default in v0.11
+k("]<space>", ":call append(line('.'),     repeat([''], v:count1))<cr>", { desc = "Put empty line below" }) -- FIXME: will be default in v0.11
 k("[p", ":pu!<cr>==", { desc = "Paste on new line above" })
 k("]p", ":pu<cr>==", { desc = "Paste on new line below" })
 k("U", "<C-r>", { desc = "Redo" })
@@ -45,8 +45,8 @@ k("<leader>qq", ":copen<cr>", { desc = "Quickfix: Open quickfix" })
 k("<leader>ql", ":lopen<cr>", { desc = "Quickfix: Open location list" })
 k("<leader>qc", ":OpenChangesInQuickfix<cr>", { desc = "Quickfix: open changes list" })
 k("<leader>qj", ":OpenJumpsInQuickfix<cr>", { desc = "Quickfix: open jumps list" })
-k("[<c-q>", ":cpfile<cr>", { desc = "Quickfix: Previous file" })
-k("]<c-q>", ":cnfile<cr>", { desc = "Quickfix: Next file" })
+k("[<c-q>", ":cpfile<cr>", { desc = "Quickfix: Previous file" }) -- FIXME: will be default in v0.11
+k("]<c-q>", ":cnfile<cr>", { desc = "Quickfix: Next file" }) -- FIXME: will be default in v0.11
 
 -- Git
 k("<leader>hh", ":vertical Git<cr>", { desc = "Git: Status" })

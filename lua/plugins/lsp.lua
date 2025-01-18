@@ -57,13 +57,13 @@ local function lsp_on_attach(client, bufnr)
 
 	-- Keymaps
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
-	k("K", vim.lsp.buf.hover, "Hover")
-	k("grn", vim.lsp.buf.rename, "Rename symbol")
-	k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" })
-	k("grr", vim.lsp.buf.references, "List [r]eferences")
-	k("gri", vim.lsp.buf.implementation, "List [i]mplementations")
-	k("gO", vim.lsp.buf.document_symbol, "Document Symbol")
-	k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "n", "i" })
+	k("K", vim.lsp.buf.hover, "Hover") -- FIXME: will be default in v0.11
+	k("grn", vim.lsp.buf.rename, "Rename symbol") -- FIXME: will be default in v0.11
+	k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" }) -- FIXME: will be default in v0.11
+	k("grr", vim.lsp.buf.references, "List [r]eferences") -- FIXME: will be default in v0.11
+	k("gri", vim.lsp.buf.implementation, "List [i]mplementations") -- FIXME: will be default in v0.11
+	k("gO", vim.lsp.buf.document_symbol, "Document Symbol") -- FIXME: will be default in v0.11
+	k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "n", "i" }) -- FIXME: will be default in v0.11
 	k("<leader>dd", vim.diagnostic.setqflist, "Diagnostics")
 
 	if client.supports_method(methods.textDocument_definition) then
