@@ -113,8 +113,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "qf",
 	callback = function(event)
-		vim.wo.spell = false
-
 		-- set the diagnostic signs in the status column async
 		local items = vim.fn.getqflist()
 		set_statucolumn_signs(event.buf, items)

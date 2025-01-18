@@ -6,6 +6,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = group,
 	pattern = "qf",
 	callback = function(event)
+		vim.wo.spell = false
+		vim.wo.relativenumber = false
+		vim.wo.statusline = "%!v:lua._G.status_line_qf()"
+
 		vim.cmd.packadd("cfilter") -- Install package to filter entries.
 
 		local k = vim.keymap.set

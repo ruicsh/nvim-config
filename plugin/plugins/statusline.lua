@@ -116,7 +116,7 @@ local function c_filename()
 		end
 	end
 
-	return line
+	return line .. " %m"
 end
 
 -- Show search count
@@ -223,11 +223,9 @@ local function c_cursor_position()
 		return ""
 	end
 
-	local pos = vim.api.nvim_win_get_cursor(0)
-	local total_lines = vim.fn.line("$")
-	local text = math.modf((pos[1] / total_lines) * 100) .. tostring("%%")
+	local has_tabs = vim.fn.tabpagenr("$") > 1
 
-	return " " .. table.concat(pos, ":") .. " " .. text .. " "
+	return " %l:%c %p%% " .. (has_tabs and sep() or "")
 end
 
 -- Show tabs (only if there are more than one)
@@ -239,15 +237,21 @@ local function c_tabs()
 		return ""
 	end
 
-	local lines = {}
+	local tabs = {}
 	for i = 1, n_tabs, 1 do
 		local isSelected = vim.fn.tabpagenr() == i
 		local hl = (isSelected and "%#TabLineSel#" or "%#TabLine#")
 		local cell = hl .. " " .. i .. " "
-		table.insert(lines, cell)
+		table.insert(tabs, cell)
 	end
 
-	return sep() .. " " .. vim.trim(table.concat(lines, " "))
+	return table.concat(tabs, "%#StatusLine# ")
+end
+
+-- Show quickfix status
+local c_quickfix = function()
+	local title = vim.fn.getqflist({ title = 1 }).title
+	return "%#StatusLine#" .. title .. " [%l/%L] %p%%"
 end
 
 local function concat_components(components)
@@ -256,8 +260,8 @@ local function concat_components(components)
 	end)
 end
 
--- Construct the statusline
-function _G.statusLine()
+-- Construct the statusline (default)
+function _G.status_line()
 	local hl = "%#StatusLine#"
 
 	return concat_components({
@@ -274,4 +278,17 @@ function _G.statusLine()
 	})
 end
 
-vim.o.statusline = "%!v:lua._G.statusLine()"
+function _G.status_line_qf()
+	local hl = "%#StatusLine#"
+
+	return concat_components({
+		hl,
+		c_mode(),
+		c_quickfix(),
+		"%=",
+		c_lsp_diagnostics(),
+		c_tabs(),
+	})
+end
+
+vim.o.statusline = "%!v:lua._G.status_line()"
