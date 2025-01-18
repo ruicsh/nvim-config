@@ -1,6 +1,6 @@
 -- Custom fold text.
 
-local group = vim.api.nvim_create_augroup("ruicsh/custom_fold_text", { clear = true })
+local group = vim.api.nvim_create_augroup("ruicsh/config/foldtext", { clear = true })
 
 function _G.custom_fold_text()
 	local line = vim.fn.getline(vim.v.foldstart)

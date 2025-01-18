@@ -1,4 +1,4 @@
--- Tabline
+-- Statusline configuration
 
 local icons = require("config/icons")
 

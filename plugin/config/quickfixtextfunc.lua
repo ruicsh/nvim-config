@@ -1,7 +1,9 @@
+-- Quickfix formatting and highlighting customization
+
 local icons = require("config/icons")
 
-local ns = vim.api.nvim_create_namespace("ruicsh/quickfix")
-local augroup = vim.api.nvim_create_augroup("ruicsh/quickfix", { clear = true })
+local ns = vim.api.nvim_create_namespace("ruicsh/config/quickfixtextfunc")
+local augroup = vim.api.nvim_create_augroup("ruicsh/config/quickfixtextfunc", { clear = true })
 
 -- Get the list of items from the quickfix or location list
 local function get_list_items(info)

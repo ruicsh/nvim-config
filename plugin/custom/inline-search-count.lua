@@ -1,4 +1,4 @@
--- Auto-clear search count indicator when search is cancelled or moved
+-- Search count indicator
 -- https://github.com/chrisgrieser/.config/blob/main/nvim/lua/config/autocmds.lua
 
 local ns = vim.api.nvim_create_namespace("ruicsh/auto_nohl_inline_search_count")
