@@ -28,7 +28,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [Fidget](https://github.com/j-hui/fidget.nvim) - Notifications
 - [fzf-lua](https://github.com/ibhagwan/fzf-lua) - Fuzzy finder
 - [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix
-- [quicker.nvim](https://github.com/stevearc/quicker.nvim) - Quickfix/location list formatter
 - [snacks.nvim](https://github.com/folke/snacks.nvim) - Small QoL plugins
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keybidings helper
 

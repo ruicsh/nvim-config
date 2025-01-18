@@ -229,8 +229,6 @@
 - `]Q` last entry
 - `[<c-q>` previous file
 - `]<c-q>` next file
-- `<leader>r` search and replace on all entries
-- `dd` remove entry
 - `<c-p>` open previous list
 - `<c-n>` open next list
 

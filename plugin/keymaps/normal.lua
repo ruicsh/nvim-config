@@ -41,10 +41,12 @@ k("<leader>tn", ":tabnew<cr>", { desc = "Tabs: New" })
 k("<leader>to", ":tabonly<cr>", { desc = "Tabs: Close all other" })
 
 -- Quickfix
-k("[<c-q>", ":cpfile<cr>", { desc = "Quickfix: Previous file" })
-k("]<c-q>", ":cnfile<cr>", { desc = "Quickfix: Next file" })
+k("<leader>qq", ":copen<cr>", { desc = "Quickfix: Open quickfix" })
+k("<leader>ql", ":lopen<cr>", { desc = "Quickfix: Open location list" })
 k("<leader>qc", ":OpenChangesInQuickfix<cr>", { desc = "Quickfix: open changes list" })
 k("<leader>qj", ":OpenJumpsInQuickfix<cr>", { desc = "Quickfix: open jumps list" })
+k("[<c-q>", ":cpfile<cr>", { desc = "Quickfix: Previous file" })
+k("]<c-q>", ":cnfile<cr>", { desc = "Quickfix: Next file" })
 
 -- Git
 k("<leader>hh", ":vertical Git<cr>", { desc = "Git: Status" })

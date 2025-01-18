@@ -4,8 +4,8 @@ M = {
 	diagnostics = {
 		error = "",
 		warning = "",
-		hint = "",
-		information = "",
+		information = "",
+		hint = "",
 	},
 	git = {
 		added = "",

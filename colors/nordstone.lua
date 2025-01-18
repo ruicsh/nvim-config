@@ -102,7 +102,7 @@ loadColorSet({
 	PmenuSel = { fg = c.nord4, bg = c.nord10 },
 	PmenuThumb = { fg = c.nord4, bg = c.nord4 },
 	Question = { fg = c.nord14 },
-	QuickFixLine = { fg = c.nord1, bg = c.nord8 },
+	QuickFixLine = { fg = c.nord4, bg = c.nord3 },
 	ReplacelMode = { fg = c.nord11, bg = "NONE", style = "reverse" },
 	Search = { bg = c.nord2 },
 	SignColumn = { fg = c.nord4, bg = "NONE" },
@@ -157,6 +157,13 @@ vim.g.terminal_color_15 = c.nord6
 -- inline-search-count
 loadColorSet({
 	InlineSearchCount = { fg = c.nord3_500, bg = "NONE" },
+})
+
+-- quickfix
+loadColorSet({
+	qfDirectory = { fg = c.nord3 },
+	qfFileName = { fg = c.nord9 },
+	qfSnippet = { fg = c.nord3_900 },
 })
 
 -- dim-inactive-windows
@@ -308,12 +315,6 @@ loadColorSet({
 	NeoTreeGitRenamed = { fg = c.nord12 },
 	NeoTreeGitNew = { fg = c.nord14 },
 	NeoTreeGitUntracked = { fg = c.nord14 },
-})
-
--- quicker.nvim
-loadColorSet({
-	Delimiter = { fg = c.neutral_800 },
-	QuickFixFilename = { fg = c.nord9 },
 })
 
 -- snacks.nvim
