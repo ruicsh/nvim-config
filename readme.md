@@ -93,21 +93,21 @@ See [mappings](assets/mappings.md) for the complete list.
 
 ## Autocmds
 
-|                                                                                                                                                 |                                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [auto-resize-splits](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/auto-resize-splits.lua)               | Auto resize splits when window is resized                             |
-| [close-shortcut](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/close-shortcut.lua)                       | Use the same shortcut to close different panels                       |
-| [create-intermediate-dirs](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/create-intermediate-dirs.lua)   | Create intermediate directories                                       |
-| [custom-fold-text](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/custom-fold-text.lua)                   | Custom fold text                                                      |
-| [dim-inactive-windows](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/dim-inactive-windows.lua)           | Dim inactive windows                                                  |
-| [disable-new-line-comments](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/disable-new-line-comments.lua) | Disable new line comments                                             |
-| [last-location](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/last-location.lua)                         | Jump to last location when opening a file                             |
-| [open-directory-oil](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/open-directory-oil.lua)               | If neovim is opened with a directory as argument open oil-filemanager |
-| [restore-changed-files](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/restore-changed-files.lua)         | On VimEnter, open all git changed files in current working directory  |
-| [terminal](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/terminal.lua)                                   | Terminal windows                                                      |
-| [toggle-hlsearch](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/toggle-hlsearch.lua)                     | Toogle off hlsearch when entering insert mode and the cursor is moved |
-| [yank-highlight](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/yank-highlight.lua)                       | Highlight selection when yanking                                      |
-| [yank-deep-cursor-position](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/plugin/autocmds/yank-deep-cursor-position.lua) | Keep cursor position on yank                                          |
+|                                                                                                                            |                                                                       |
+| -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [auto-resize-splits](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-resize-splits.lua)               | Auto resize splits when window is resized                             |
+| [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/close-shortcut.lua)                       | Use the same shortcut to close different panels                       |
+| [create-intermediate-dirs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/create-intermediate-dirs.lua)   | Create intermediate directories                                       |
+| [custom-fold-text](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/custom-fold-text.lua)                   | Custom fold text                                                      |
+| [dim-inactive-windows](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/dim-inactive-windows.lua)           | Dim inactive windows                                                  |
+| [disable-new-line-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-new-line-comments.lua) | Disable new line comments                                             |
+| [last-location](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/last-location.lua)                         | Jump to last location when opening a file                             |
+| [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)               | If neovim is opened with a directory as argument open oil-filemanager |
+| [restore-changed-files](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/restore-changed-files.lua)         | On VimEnter, open all git changed files in current working directory  |
+| [terminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/terminal.lua)                                   | Terminal windows                                                      |
+| [toggle-hlsearch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/toggle-hlsearch.lua)                     | Toogle off hlsearch when entering insert mode and the cursor is moved |
+| [yank-highlight](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-highlight.lua)                       | Highlight selection when yanking                                      |
+| [yank-deep-cursor-position](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-deep-cursor-position.lua) | Keep cursor position on yank                                          |
 
 <div style="margin-top:80px"></div>
 
