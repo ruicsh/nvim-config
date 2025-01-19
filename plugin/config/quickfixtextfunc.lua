@@ -32,7 +32,8 @@ local function get_snippet(entry)
 
 	-- if no text, return the line from the buffer
 	if not text or text == "" then
-		local line = vim.api.nvim_buf_get_lines(entry.bufnr, entry.lnum - 1, entry.lnum, false)[1]
+		local lnum = entry.lnum and entry.lnum or 1
+		local line = vim.api.nvim_buf_get_lines(entry.bufnr, lnum - 1, lnum, false)[1]
 		return line
 	end
 
@@ -42,7 +43,8 @@ local function get_snippet(entry)
 	end
 
 	snippet = snippet:gsub("^[^:]+:[0-9]+:[0-9]+:", "")
-	return vim.trim(snippet)
+	snippet = snippet:gsub("\t", string.rep(" ", vim.bo.tabstop))
+	return snippet
 end
 
 local typeIconsMap = {

@@ -162,7 +162,7 @@ loadColorSet({
 -- quickfix
 loadColorSet({
 	qfDirectory = { fg = c.nord9 },
-	qfFileName = { link = "Normal" },
+	qfFileName = { fg = c.nord4 },
 	qfSnippet = { fg = c.nord3_900 },
 })
 

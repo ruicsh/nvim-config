@@ -14,12 +14,18 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.cmd.packadd("cfilter") -- Install package to filter entries.
 
 		local k = vim.keymap.set
-		local opts = { buffer = event.buf }
+		local opts = { buffer = event.buf, silent = true }
 
 		k("n", "<cr>", "<cr>:cclose<cr>", opts) -- Close the quickfix when opening a file.
 		k("n", "<c-p>", ":colder<cr>", opts) -- Open previous list.
 		k("n", "<c-n>", ":cnewer<cr>", opts) -- Open next list.
-		--
+
+		-- use numbers to open the first 9 buffers
+		local size = vim.fn.getqflist({ size = 1 }).size
+		for i = 1, math.max(size, 9) do
+			k("n", tostring(i), ":cc " .. i .. "<cr>:cclose<cr>", opts)
+		end
+
 		-- Search and replace on quickfix files.
 		-- https://github.com/theHamsta/dotfiles/blob/master/.config/nvim/ftplugin/qf.lua
 		k("n", "<leader>r", function()
