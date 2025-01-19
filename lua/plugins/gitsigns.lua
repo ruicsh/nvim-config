@@ -31,7 +31,7 @@ return {
 
 			-- Set keymap, but only if it's not already set
 			local function k(mode, l, r, opts)
-				opts = vim.tbl_extend("force", { buffer = bufnr, unique = true, silent = true }, opts or {})
+				opts = vim.tbl_extend("force", { buffer = bufnr, silent = true }, opts or {})
 				local modes = type(mode) == "table" and mode or { mode }
 				for _, m in ipairs(modes) do
 					if not vim.fn.iskeymapset(m, l) then
