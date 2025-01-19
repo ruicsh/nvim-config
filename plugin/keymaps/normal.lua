@@ -67,3 +67,6 @@ k("gcp", "yy:normal gcc<cr>p") -- Duplicate a line and comment out the first lin
 k("J", "mzJ`z:delmarks z<cr>", { silent = true }) -- Keep cursor in place when joining lines
 k("<leader>w", ":silent! write<cr>", { silent = true, desc = "Save file" }) -- Save changes
 k("zk", "zk%^") -- Jump to start of previous fold.
+
+k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
+-- k("<bs>", "<c-T>", { desc = "", unique = false, silent = false })
