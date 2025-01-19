@@ -102,7 +102,7 @@ loadColorSet({
 	PmenuSel = { fg = c.nord4, bg = c.nord10 },
 	PmenuThumb = { fg = c.nord4, bg = c.nord4 },
 	Question = { fg = c.nord14 },
-	QuickFixLine = { fg = c.nord4, bg = c.nord3 },
+	QuickFixLine = {},
 	ReplacelMode = { fg = c.nord11, bg = "NONE", style = "reverse" },
 	Search = { bg = c.nord2 },
 	SignColumn = { fg = c.nord4, bg = "NONE" },
@@ -161,9 +161,15 @@ loadColorSet({
 
 -- quickfix
 loadColorSet({
-	qfDirectory = { fg = c.nord3 },
-	qfFileName = { fg = c.nord9 },
+	qfDirectory = { fg = c.nord9 },
+	qfFileName = { link = "Normal" },
 	qfSnippet = { fg = c.nord3_900 },
+})
+
+-- buffers
+loadColorSet({
+	BuffersSignCurrent = { link = "Normal" },
+	BuffersSignAlternate = { link = "Normal" },
 })
 
 -- dim-inactive-windows

@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.wo.spell = false
 		vim.wo.relativenumber = false
 		vim.wo.statusline = "%!v:lua._G.status_line_qf()"
+		vim.wo.cursorline = true
 
 		vim.cmd.packadd("cfilter") -- Install package to filter entries.
 
