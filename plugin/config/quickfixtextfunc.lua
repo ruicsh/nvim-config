@@ -18,6 +18,10 @@ end
 
 -- Get entry's type (error, warning, info, hint) -> E, W, I, H
 local function get_qtype(entry)
+	if not entry.type then
+		return ""
+	end
+
 	return entry.type == "" and "" or entry.type:sub(1, 1):upper()
 end
 
@@ -25,36 +29,50 @@ end
 local function get_snippet(entry)
 	local qtype = get_qtype(entry)
 	local text = entry.text
+
+	-- if no text, return the line from the buffer
+	if not text or text == "" then
+		local line = vim.api.nvim_buf_get_lines(entry.bufnr, entry.lnum - 1, entry.lnum, false)[1]
+		return line
+	end
+
 	local snippet = #qtype > 0 and text:gsub("^ " .. qtype .. " ", "") or text
+	if not snippet then
+		return ""
+	end
+
 	snippet = snippet:gsub("^[^:]+:[0-9]+:[0-9]+:", "")
 	return vim.trim(snippet)
 end
 
-local diagnosticIconsMap = {
+local typeIconsMap = {
 	E = icons.diagnostics.error,
-	W = icons.diagnostics.warning,
-	I = icons.diagnostics.information,
 	H = icons.diagnostics.hint,
+	I = icons.diagnostics.information,
 	N = icons.diagnostics.hint,
+	W = icons.diagnostics.warning,
 }
 
-local diagnosticHighlightMap = {
+local typeHighlightMap = {
 	E = "DiagnosticSignError",
-	W = "DiagnosticSignWarn",
-	I = "DiagnosticSignInfo",
 	H = "DiagnosticSignHint",
+	I = "DiagnosticSignInfo",
 	N = "DiagnosticSignHint",
+	W = "DiagnosticSignWarn",
 }
 
 -- Set the diagnostic signs in the status column
 local function set_statucolumn_signs(bufnr, entries)
+	-- reset all extmarks in the buffer first
+	vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+
 	for i, entry in ipairs(entries) do
 		if entry.valid == 1 then
 			local qtype = get_qtype(entry)
 			if qtype ~= "" then
 				vim.api.nvim_buf_set_extmark(bufnr, ns, i - 1, 0, {
-					sign_text = diagnosticIconsMap[qtype],
-					sign_hl_group = diagnosticHighlightMap[qtype],
+					sign_text = typeIconsMap[qtype],
+					sign_hl_group = typeHighlightMap[qtype],
 					number_hl_group = "",
 					line_hl_group = "",
 					priority = 1000,
