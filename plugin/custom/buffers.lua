@@ -65,6 +65,7 @@ local function get_buffers_list()
 			local col = cursor_pos[2]
 			local lines = vim.api.nvim_buf_get_lines(bufnr, lnum - 1, lnum, false)[1]
 			local snippet = lines and lines[1] or ""
+			snippet = snippet:gsub("\t", string.rep(" ", vim.bo.tabstop))
 
 			table.insert(qf_list, {
 				bufnr = bufnr,
