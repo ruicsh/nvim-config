@@ -128,7 +128,11 @@ return {
 
 				-- move up/down the menu
 				["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+				["<c-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+				["<down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
 				["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+				["<c-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+				["<up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 
 				-- scroll up/down
 				["<c-u>"] = cmp.mapping.scroll_docs(-4),
