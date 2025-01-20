@@ -48,11 +48,11 @@ local function get_entry_type(bufnr)
 end
 
 local function get_buffers_list()
-	local current_bufnr = vim.api.nvim_get_current_buf()
-
-	local qf_list = {}
+	local items = {}
 	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-		if vim.api.nvim_buf_is_loaded(bufnr) and vim.fn.buflisted(bufnr) then
+		local is_loaded = vim.api.nvim_buf_is_loaded(bufnr)
+		local is_listed = vim.api.nvim_get_option_value("buflisted", { buf = bufnr })
+		if is_loaded and is_listed then
 			local filename = vim.api.nvim_buf_get_name(bufnr)
 			local is_hidden = vim.api.nvim_get_option_value("bufhidden", { buf = bufnr }) == "hide"
 
@@ -67,7 +67,7 @@ local function get_buffers_list()
 			local snippet = lines and lines[1] or ""
 			snippet = snippet:gsub("\t", string.rep(" ", vim.bo.tabstop))
 
-			table.insert(qf_list, {
+			table.insert(items, {
 				bufnr = bufnr,
 				filename = filename,
 				lnum = lnum,
@@ -80,12 +80,21 @@ local function get_buffers_list()
 		end
 	end
 
-	return qf_list, current_bufnr
+	return items
 end
 
 local function open_buffers_list()
-	local qf_list, current_bufnr = get_buffers_list()
-	vim.fn.setqflist({}, " ", { title = "Buffers", items = qf_list, idx = current_bufnr })
+	local context = vim.fn.getqflist({ context = 1 }).context
+	local action = context.type == "buffers" and "r" or " " -- add or replace qf list
+	local items = get_buffers_list()
+
+	vim.fn.setqflist({}, action, {
+		title = "Buffers",
+		items = items,
+		idx = vim.api.nvim_get_current_buf(),
+		context = { type = "buffers" },
+	})
+
 	vim.cmd.copen()
 end
 
@@ -95,8 +104,8 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "qf",
 	callback = function(event)
-		local title = vim.fn.getqflist({ title = 1 }).title
-		if title ~= "Buffers" then
+		local context = vim.fn.getqflist({ context = 1 }).context
+		if context and context.type ~= "buffers" then
 			return
 		end
 

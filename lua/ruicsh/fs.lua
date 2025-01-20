@@ -11,3 +11,8 @@ vim.fs.getshortpath = function(path)
 
 	return table.concat({ segments[#segments - 1], segments[#segments] }, path_separator)
 end
+
+-- Show the path relative to the current working directory
+vim.fs.getrelativepath = function(filename)
+	return vim.fn.fnamemodify(filename, ":~:.")
+end

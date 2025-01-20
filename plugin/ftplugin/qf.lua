@@ -3,16 +3,28 @@
 local augroup = vim.api.nvim_create_augroup("ruicsh/ftplugin/qf", { clear = true })
 
 -- hold the window id for the preview window
-local preview_window = nil
+local preview_winid = nil
+
+local function close_preview_window()
+	if preview_winid then
+		if not vim.api.nvim_win_is_valid(preview_winid) then
+			preview_winid = nil
+		else
+			vim.api.nvim_win_close(preview_winid, true)
+		end
+	end
+end
 
 local function open_preview()
 	local line = vim.fn.line(".")
-	local qf_items = vim.fn.getqflist()
-	local entry = qf_items[line]
+	local qf = vim.fn.getqflist({ items = 0, size = 1 })
+	local entry = qf.items[line]
 	local file = vim.api.nvim_buf_get_name(entry.bufnr)
 	local lnum = entry.lnum
 
-	if not preview_window then
+	if preview_winid and vim.api.nvim_win_is_valid(preview_winid) then
+		vim.api.nvim_set_current_win(preview_winid)
+	else
 		local buf = vim.api.nvim_create_buf(false, true)
 		vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
 
@@ -24,25 +36,26 @@ local function open_preview()
 			border = "rounded",
 			col = 0,
 			focusable = false,
-			height = 25,
+			height = 30,
 			relative = "win",
 			row = -1,
 			width = qfwin.width,
 			noautocmd = true,
 			zindex = 52,
 		}
-		preview_window = vim.api.nvim_open_win(buf, true, config)
-	else
-		vim.api.nvim_set_current_win(preview_window) -- Focus the preview window
+		preview_winid = vim.api.nvim_open_win(buf, true, config)
 	end
 
 	vim.cmd.edit(file) -- Open the file in the preview window
 	vim.api.nvim_win_set_cursor(0, { lnum, 0 }) -- Move to the specific line
-	vim.api.nvim_win_set_config(preview_window, {
-		title = file,
+	vim.cmd("normal! zz") -- Center the line in the preview window
+
+	local title = string.format("[ %d/%d ] %s", line, qf.size, vim.fs.getrelativepath(file))
+	vim.api.nvim_win_set_config(preview_winid, {
+		title = title,
 	})
-	vim.api.nvim_set_option_value("winhighlight", "", { win = preview_window })
-	vim.api.nvim_set_option_value("previewwindow", true, { win = preview_window })
+	vim.api.nvim_set_option_value("winhighlight", "", { win = preview_winid })
+	vim.api.nvim_set_option_value("previewwindow", true, { win = preview_winid })
 
 	local bufnr = vim.api.nvim_get_current_buf()
 
@@ -50,34 +63,14 @@ local function open_preview()
 		group = augroup,
 		buffer = bufnr,
 		callback = function()
-			preview_window = nil
+			preview_winid = nil
 		end,
 	})
-end
-
-local function close_preview_window()
-	if preview_window then
-		vim.api.nvim_win_close(preview_window, true)
-	end
 end
 
 local function preview_file()
 	open_preview()
 	vim.cmd.wincmd("p") -- go back to qf window
-end
-
-local function restore_highlight_on_entered_window()
-	local qf = vim.fn.getqflist({ items = 1, idx = 0 })
-	local active = qf.items[qf.idx]
-
-	local wins = vim.api.nvim_list_wins()
-	for _, win in ipairs(wins) do
-		local bufnr = vim.api.nvim_win_get_buf(win)
-		if bufnr == active.bufnr then
-			vim.api.nvim_set_option_value("winhighlight", "", { win = win })
-			return
-		end
-	end
 end
 
 local mappings = {
@@ -167,8 +160,6 @@ vim.api.nvim_create_autocmd("FileType", {
 			callback = function()
 				-- Always close the preview window when leaving the quickfix window
 				close_preview_window()
-				-- Because the quickfix window is active the dim window events are paused
-				restore_highlight_on_entered_window()
 			end,
 		})
 	end,
