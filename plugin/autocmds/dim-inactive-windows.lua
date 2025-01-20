@@ -3,7 +3,7 @@
 local group = vim.api.nvim_create_augroup("ruicsh/dim_inactive_windows", { clear = true })
 
 local function ignore_window()
-	if vim.wo.diff then
+	if vim.wo.diff or vim.wo.previewwindow then
 		return true
 	end
 

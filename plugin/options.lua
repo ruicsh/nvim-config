@@ -33,7 +33,6 @@ o.termguicolors = true -- Enable true colors.
 
 -- 6 multiple windows
 o.laststatus = 3 -- Always show global statusline.
-o.previewheight = 25 -- Maximum height of preview window.
 o.splitbelow = true -- Open a new horizontal split below.
 o.splitright = true -- Open a new vertical split to the right.
 

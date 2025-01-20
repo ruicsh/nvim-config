@@ -24,7 +24,7 @@ local function open_preview()
 			border = "rounded",
 			col = 0,
 			focusable = false,
-			height = vim.api.nvim_get_option_value("previewheight", { scope = "global" }),
+			height = 25,
 			relative = "win",
 			row = -1,
 			width = qfwin.width,
@@ -42,10 +42,13 @@ local function open_preview()
 		title = file,
 	})
 	vim.api.nvim_set_option_value("winhighlight", "", { win = preview_window })
+	vim.api.nvim_set_option_value("previewwindow", true, { win = preview_window })
+
+	local bufnr = vim.api.nvim_get_current_buf()
 
 	vim.api.nvim_create_autocmd({ "WinClosed" }, {
 		group = augroup,
-		buffer = vim.api.nvim_get_current_buf(),
+		buffer = bufnr,
 		callback = function()
 			preview_window = nil
 		end,
@@ -106,12 +109,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "qf",
 	callback = function(event)
-		if vim.g.is_quickfix_open then
-			return
-		end
-
-		vim.g.is_quickfix_open = true -- signal that the quickfix window is open
-
 		vim.wo.spell = false
 		vim.wo.relativenumber = false
 		vim.wo.statusline = "%!v:lua._G.status_line_qf()"
@@ -170,10 +167,8 @@ vim.api.nvim_create_autocmd("FileType", {
 			callback = function()
 				-- Always close the preview window when leaving the quickfix window
 				close_preview_window()
-				-- Because thq quickfix window is active the dim window events are paused
+				-- Because the quickfix window is active the dim window events are paused
 				restore_highlight_on_entered_window()
-
-				vim.g.is_quickfix_open = false
 			end,
 		})
 	end,
