@@ -26,18 +26,11 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 ### UI
 
 - [Fidget](https://github.com/j-hui/fidget.nvim) - Notifications
+- [Neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - Manage the file system as a tree
 - [fzf-lua](https://github.com/ibhagwan/fzf-lua) - Fuzzy finder
+- [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit filesystem like a buffer
 - [snacks.nvim](https://github.com/folke/snacks.nvim) - Small QoL plugins
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keybidings helper
-
-#### Buffers, Windows and Tabs
-
-- [buffer_manager.nvim](https://github.com/j-morano/buffer_manager.nvim) - Easily manage buffers
-
-#### File explorers
-
-- [Neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - Manage the file system as a tree
-- [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit filesystem like a buffer
 
 ### Editing
 
