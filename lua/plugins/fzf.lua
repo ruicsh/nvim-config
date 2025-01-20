@@ -20,7 +20,6 @@ return {
 		files = {
 			cwd_prompt = false,
 			prompt = "Files: ",
-			formatter = "path.filename_first",
 		},
 		fzf_colors = {
 			["bg"] = { "bg", "NormalFloat" },
