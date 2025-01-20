@@ -1,6 +1,6 @@
 -- Dim inactive windows.
 
-local group = vim.api.nvim_create_augroup("ruicsh/dim_inactive_windows", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/dim_inactive_windows", { clear = true })
 
 local function ignore_window()
 	if vim.wo.diff or vim.wo.previewwindow then
@@ -14,7 +14,7 @@ end
 -- Compose the inactive window highlight group on entering vim
 local inactive_winhighlight = ""
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
-	group = group,
+	group = augroup,
 	callback = function()
 		local highlights = {}
 
@@ -35,11 +35,18 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 })
 
 vim.api.nvim_create_autocmd({ "WinLeave" }, {
-	group = group,
+	group = augroup,
 	callback = function()
 		if ignore_window() then
 			return
 		end
+
+		vim.schedule(function()
+			-- only dim inactive windows if there is no diff
+			if vim.fn.isdiffopen() then
+				vim.wo.winhighlight = ""
+			end
+		end)
 
 		vim.wo.winhighlight = inactive_winhighlight
 		vim.cmd("ColorizerDetachFromBuffer") -- don't highlight CSS colors
@@ -48,7 +55,7 @@ vim.api.nvim_create_autocmd({ "WinLeave" }, {
 })
 
 vim.api.nvim_create_autocmd({ "WinEnter" }, {
-	group = group,
+	group = augroup,
 	callback = function()
 		if ignore_window() then
 			return

@@ -56,12 +56,21 @@ return {
 			k("n", "[c", nav_hunk("[c", "prev"))
 
 			-- Actions
-			k({ "n", "v" }, "gh", gitsigns.stage_hunk, { desc = "Git: [s]tage hunk" })
-			k({ "n", "v" }, "gH", gitsigns.reset_hunk, { desc = "Git: [r]eset hunk" })
-			k("n", "ghb", gitsigns.toggle_current_line_blame, { desc = "Git: [b]lame line" })
+			k("n", "gh", gitsigns.stage_hunk, { desc = "Git: stage hunk" })
+			k("n", "gH", gitsigns.reset_hunk, { desc = "Git: reset hunk" })
+
+			k("v", "gh", function()
+				gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+			end, { desc = "Git: stage hunk" })
+			k("v", "gH", function()
+				gitsigns.reset_hunk({ vim.fn.line("'."), vim.fn.line("v") })
+			end, { desc = "Git: reset hunk" })
+
+			k("n", "<leader>hb", gitsigns.toggle_current_line_blame, { desc = "Git: [b]lame line" })
+			k("n", "<leader>hd", gitsigns.diffthis)
 
 			-- Text object
-			k({ "o", "x" }, "gh", ":<c-u>Gitsigns select_hunk<cr>", { unique = false })
+			k({ "o", "x" }, "h", ":<c-u>Gitsigns select_hunk<cr>", { unique = false })
 		end,
 	},
 

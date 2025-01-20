@@ -245,8 +245,8 @@ Random features added.
 - `b` brackets ({}, (), [])
 - `d` code blocks (if, while, for, ...)
 - `f` function
+- `h` git hunk
 - `q` quotes ("", '', ``)
-- `gh` git hunk
 
 #### Operators
 
@@ -338,8 +338,9 @@ Random features added.
 - `]c` next change
 - `gh` stage hunk
 - `gH` reset hunk
-- `ghb` toggle blame line
-- `<leader>hg` diffview
+- `<leader>hb` toggle blame line
+- `<leader>hd` diff
+- `<leader>hg` diff files
 - `<leader>hh` status
 - `<leader>hj` log
 - `<leader>ho` push set-upstream origin HEAD

@@ -5,7 +5,7 @@ local closeShortcut = "<c-]>"
 local api = vim.api
 local k = vim.keymap.set
 
-local group = api.nvim_create_augroup("ruicsh/close_shortcut", { clear = true })
+local augroup = api.nvim_create_augroup("ruicsh/close_shortcut", { clear = true })
 
 -- Close buffer, close window if empty, close app if last window
 local function close_buffer_or_window_or_quit()
@@ -25,7 +25,7 @@ k("x", closeShortcut, "<esc>") -- Use it to exit visual mode
 k("t", closeShortcut, "<c-\\><c-n>") -- Return to normal mode in the terminal
 
 api.nvim_create_autocmd("FileType", {
-	group = group,
+	group = augroup,
 	pattern = {
 		"checkhealth",
 		"fugitive",
@@ -54,7 +54,7 @@ api.nvim_create_autocmd("FileType", {
 })
 
 api.nvim_create_autocmd("FileType", {
-	group = group,
+	group = augroup,
 	pattern = { "neo-tree" },
 	callback = function(event)
 		k("n", closeShortcut, ":Neotree action=close<cr>", { buffer = event.buf })
@@ -62,7 +62,7 @@ api.nvim_create_autocmd("FileType", {
 })
 
 api.nvim_create_autocmd("FileType", {
-	group = group,
+	group = augroup,
 	pattern = { "oil" },
 	callback = function(event)
 		k("n", closeShortcut, ":lua require('oil.actions').close.callback()<cr>", { buffer = event.buf })
@@ -70,7 +70,7 @@ api.nvim_create_autocmd("FileType", {
 })
 
 api.nvim_create_autocmd("FileType", {
-	group = group,
+	group = augroup,
 	pattern = {
 		"DiffviewFiles",
 		"DiffviewFileHistory",
@@ -81,9 +81,27 @@ api.nvim_create_autocmd("FileType", {
 })
 
 api.nvim_create_autocmd("FileType", {
-	group = group,
+	group = augroup,
 	pattern = { "gitcommit" },
 	callback = function(event)
 		k({ "n", "i" }, closeShortcut, ":q!<cr>", { buffer = event.buf })
+	end,
+})
+
+-- Close diffview
+vim.api.nvim_create_autocmd({ "WinEnter" }, {
+	group = augroup,
+	callback = function()
+		if not vim.wo.diff then
+			return
+		end
+
+		k("n", closeShortcut, function()
+			for _, win in ipairs(vim.api.nvim_list_wins()) do
+				if vim.api.nvim_get_option_value("diff", { win = win }) then
+					vim.api.nvim_win_close(win, false)
+				end
+			end
+		end)
 	end,
 })

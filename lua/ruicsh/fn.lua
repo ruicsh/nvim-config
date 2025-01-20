@@ -48,3 +48,12 @@ vim.fn.iskeymapset = function(mode, lhs)
 	end
 	return false
 end
+
+-- Check if a diff window is open
+vim.fn.isdiffopen = function()
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		if vim.api.nvim_get_option_value("diff", { win = win }) then
+			return true
+		end
+	end
+end
