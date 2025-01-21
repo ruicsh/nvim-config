@@ -46,25 +46,6 @@ local function get_changes_list()
 	return qf_list
 end
 
--- List jumps
-local function get_jumps_list()
-	local jumplist = vim.fn.getjumplist()[1]
-
-	local qf_list = {}
-	for _, v in ipairs(jumplist) do
-		if vim.fn.bufloaded(v.bufnr) == 1 then
-			table.insert(qf_list, {
-				bufnr = v.bufnr,
-				lnum = v.lnum,
-				col = v.col,
-				text = vim.api.nvim_buf_get_lines(v.bufnr, v.lnum - 1, v.lnum, false)[1],
-			})
-		end
-	end
-
-	return vim.tbl_reverse(qf_list)
-end
-
 -- Take a list, set it to quickfix and open its window
 local function set_qf_list(opts)
 	vim.fn.setqflist({}, " ", opts)
@@ -73,8 +54,4 @@ end
 
 vim.api.nvim_create_user_command("OpenChangesInQuickfix", function()
 	set_qf_list({ items = get_changes_list(), title = "Changes" })
-end, {})
-
-vim.api.nvim_create_user_command("OpenJumpsInQuickfix", function()
-	set_qf_list({ items = get_jumps_list(), title = "Jumps" })
 end, {})
