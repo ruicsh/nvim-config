@@ -92,7 +92,7 @@ local function get_qf_items()
 	return items
 end
 
-local function set_buffers_qflist(items, opts)
+local function set_qflist(items, opts)
 	local action = opts and opts.action or " "
 	local idx = opts and opts.idx or vim.api.nvim_get_current_buf()
 
@@ -104,12 +104,12 @@ local function set_buffers_qflist(items, opts)
 	})
 end
 
-local function open_buffers_list()
+local function open_qflist()
 	local context = vim.fn.getqflist({ context = 1 }).context
 	local action = context.type == "buffers" and "r" or " " -- add or replace qf list
 	local items = get_qf_items()
 
-	set_buffers_qflist(items, action)
+	set_qflist(items, { action = action })
 
 	vim.cmd.copen()
 end
@@ -144,8 +144,16 @@ local mappings = {
 
 			table.insert(items, new_idx, current)
 
-			set_buffers_qflist(items, { idx = new_idx })
+			set_qflist(items, { idx = new_idx, action = "r" })
 		end
+	end,
+	close = function()
+		local idx = vim.fn.line(".")
+		local items = vim.fn.getqflist()
+		local current = items[idx]
+		vim.api.nvim_buf_delete(current.bufnr, { force = true })
+		table.remove(items, idx)
+		set_qflist(items, { idx = idx, action = "r" })
 	end,
 }
 
@@ -160,9 +168,12 @@ local function set_keymaps(bufnr)
 	k("[e", mappings.move("up"), "Move down")
 	k("]E", mappings.move("bottom"), "Move to top")
 	k("[E", mappings.move("top"), "Move to bottom")
+
+	k("dd", mappings.close, "Close buffer")
+	k("D", mappings.close, "Close buffer")
 end
 
-vim.keymap.set("n", "<leader>,", open_buffers_list, { noremap = true, silent = true, unique = true })
+vim.keymap.set("n", "<leader>,", open_qflist, { noremap = true, silent = true, unique = true })
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,

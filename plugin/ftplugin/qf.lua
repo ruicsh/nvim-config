@@ -140,19 +140,6 @@ vim.api.nvim_create_autocmd("FileType", {
 			fk(tc(cmd, true, false, true), "n", false)
 		end, opts)
 
-		-- Remove quickfix entry.
-		-- https://github.com/famiu/dot-nvim/blob/master/ftplugin/qf.lua
-		vim.keymap.set("n", "dd", function()
-			local line = vim.api.nvim_win_get_cursor(0)[1]
-			local qflist = vim.fn.getqflist()
-			-- Remove line from qflist.
-			table.remove(qflist, line)
-			vim.fn.setqflist(qflist, "r")
-			-- Restore cursor position.
-			local max_lines = vim.api.nvim_buf_line_count(0)
-			vim.api.nvim_win_set_cursor(0, { math.min(line, max_lines), 0 })
-		end, opts)
-
 		vim.api.nvim_create_autocmd({ "BufHidden" }, {
 			group = augroup,
 			buffer = event.buf,
