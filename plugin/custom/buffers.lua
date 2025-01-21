@@ -1,4 +1,4 @@
--- Buffers management (on quickfix list)
+--  Buffers switch using quickfix list
 
 local icons = require("config/icons")
 

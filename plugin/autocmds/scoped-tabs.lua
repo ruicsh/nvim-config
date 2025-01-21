@@ -1,4 +1,4 @@
--- Keeping buffers in tabs scoped to the tab they were opened in
+-- Keep buffers in tabs scoped to the tab they were opened in
 -- https://github.com/tiagovla/scope.nvim
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/scoped_tabs", { clear = true })
