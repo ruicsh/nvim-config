@@ -50,7 +50,6 @@ vim.api.nvim_create_autocmd({ "WinLeave" }, {
 
 		vim.wo.winhighlight = inactive_winhighlight
 		vim.cmd("ColorizerDetachFromBuffer") -- don't highlight CSS colors
-		vim.wo.spell = false -- turn spelling off
 	end,
 })
 
@@ -61,14 +60,7 @@ vim.api.nvim_create_autocmd({ "WinEnter" }, {
 			return
 		end
 
-		local ft = vim.bo.filetype
-
 		vim.wo.winhighlight = ""
 		vim.cmd("ColorizerAttachToBuffer") -- turn it back on
-
-		-- if text files switch spell back on
-		if ft == "markdown" or ft == "text" or ft == "gitcommit" then
-			vim.wo.spell = true
-		end
 	end,
 })

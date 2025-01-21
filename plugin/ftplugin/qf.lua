@@ -102,7 +102,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "qf",
 	callback = function(event)
-		vim.wo.spell = false
 		vim.wo.relativenumber = false
 		vim.wo.statusline = "%!v:lua._G.status_line_qf()"
 		vim.wo.cursorline = true
