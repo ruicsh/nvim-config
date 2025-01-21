@@ -27,9 +27,8 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - [Fidget](https://github.com/j-hui/fidget.nvim) - Notifications
 - [Neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - Manage the file system as a tree
-- [fzf-lua](https://github.com/ibhagwan/fzf-lua) - Fuzzy finder
 - [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit filesystem like a buffer
-- [snacks.nvim](https://github.com/folke/snacks.nvim) - Small QoL plugins
+- [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers, statuscolumn, indent lines
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keybidings helper
 
 ### Editing
@@ -54,13 +53,10 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [nvim-snippets](https://github.com/garymjr/nvim-snippets) - Snippets
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
 
-#### LSP
+#### LSP/Syntax
 
 - [lazydev.nvim](https://github.com/folke/trouble.nvim) - Lua language server
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
-
-#### Syntax
-
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - Text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags

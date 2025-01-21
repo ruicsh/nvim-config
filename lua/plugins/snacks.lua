@@ -15,6 +15,13 @@ return {
 		end
 
 		local mappings = {
+			{ "<leader><leader>", snacks.picker.files, "Search: Files" },
+			{ "<leader>f", snacks.picker.grep, "Search: Workspace" },
+			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
+			{ "<leader>j", snacks.picker.jumps, "Search: Jumplist" },
+			{ "<leader>nh", snacks.picker.help, "Search: Help" },
+			{ "<leader>nc", snacks.picker.commands, "Search: Commands" },
+			{ "<leader>nk", snacks.picker.keymaps, "Search: Keymaps" },
 			{ "[r", jump_to_previous_reference, "LSP: Jump to previous reference" },
 			{ "]r", jump_to_next_reference, "LSP: Jump to next reference" },
 		}
@@ -32,6 +39,15 @@ return {
 			},
 			scope = {
 				only_current = true,
+			},
+		},
+		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
+		picker = {
+			enabled = true,
+			formatters = {
+				file = {
+					filename_first = true,
+				},
 			},
 		},
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/statuscolumn.md
