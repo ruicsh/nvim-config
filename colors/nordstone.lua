@@ -119,7 +119,7 @@ loadColorSet({
 	Substitute = { fg = c.nord0, bg = c.nord12 },
 	TabLine = { fg = c.nord3_900 },
 	TabLineFill = {},
-	TabLineSel = { fg = c.nord3_900, bg = c.nord1 },
+	TabLineSel = { fg = c.nord3_900 },
 	Title = { fg = c.nord4, bg = "NONE", style = "bold" },
 	ToolbarButton = { fg = c.nord4, bg = "NONE", style = "bold" },
 	ToolbarLine = { fg = c.nord4, bg = c.nord1 },

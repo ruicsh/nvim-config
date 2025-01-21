@@ -241,11 +241,12 @@ local function c_tabs()
 	for i = 1, n_tabs, 1 do
 		local isSelected = vim.fn.tabpagenr() == i
 		local hl = (isSelected and "%#TabLineSel#" or "%#TabLine#")
-		local cell = hl .. " " .. i .. " "
+		local icon = isSelected and "" or ""
+		local cell = hl .. " " .. icon .. " " .. i
 		table.insert(tabs, cell)
 	end
 
-	return table.concat(tabs, "%#StatusLine# ")
+	return table.concat(tabs, "")
 end
 
 -- Show quickfix status
@@ -254,17 +255,11 @@ local c_quickfix = function()
 	return "%#StatusLine#" .. title .. " [%l/%L] %p%%"
 end
 
-local function concat_components(components)
-	return vim.iter(components):skip(1):fold(components[1], function(acc, component)
-		return #component > 0 and string.format("%s %s", acc, component) or acc
-	end)
-end
-
 -- Construct the statusline (default)
 function _G.status_line()
 	local hl = "%#StatusLine#"
 
-	return concat_components({
+	return table.concat({
 		hl,
 		c_mode(),
 		c_filename(),
@@ -275,20 +270,21 @@ function _G.status_line()
 		c_git_branch(),
 		c_cursor_position(),
 		c_tabs(),
-	})
+	}, " ")
 end
 
+-- Used on quickfix window
 function _G.status_line_qf()
 	local hl = "%#StatusLine#"
 
-	return concat_components({
+	return table.concat({
 		hl,
 		c_mode(),
 		c_quickfix(),
 		"%=",
 		c_lsp_diagnostics(),
 		c_tabs(),
-	})
+	}, " ")
 end
 
 vim.o.statusline = "%!v:lua._G.status_line()"
