@@ -47,55 +47,119 @@ local function get_entry_type(bufnr)
 	end
 end
 
-local function get_buffers_list()
-	local items = {}
+-- List all buffers that are loaded, listed and not hidden
+local function list_buffers()
+	local bufnrs = {}
+
 	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
 		local is_loaded = vim.api.nvim_buf_is_loaded(bufnr)
 		local is_listed = vim.api.nvim_get_option_value("buflisted", { buf = bufnr })
-		if is_loaded and is_listed then
-			local filename = vim.api.nvim_buf_get_name(bufnr)
-			local is_hidden = vim.api.nvim_get_option_value("bufhidden", { buf = bufnr }) == "hide"
+		local filename = vim.api.nvim_buf_get_name(bufnr)
+		local is_hidden = vim.api.nvim_get_option_value("bufhidden", { buf = bufnr }) == "hide"
 
-			if not filename or filename == "" or is_hidden then
-				goto continue
-			end
-
-			local cursor_pos = vim.api.nvim_buf_get_mark(bufnr, '"')
-			local lnum = cursor_pos[1]
-			local col = cursor_pos[2]
-			local lines = vim.api.nvim_buf_get_lines(bufnr, lnum - 1, lnum, false)[1]
-			local snippet = lines and lines[1] or ""
-			snippet = snippet:gsub("\t", string.rep(" ", vim.bo.tabstop))
-
-			table.insert(items, {
-				bufnr = bufnr,
-				filename = filename,
-				lnum = lnum,
-				col = col,
-				type = get_entry_type(bufnr),
-				text = snippet,
-			})
-
-			::continue::
+		if is_loaded and is_listed and filename and filename ~= "" and not is_hidden then
+			table.insert(bufnrs, bufnr)
 		end
+	end
+
+	return bufnrs
+end
+
+local function get_qf_items()
+	local bufnrs = list_buffers()
+
+	local items = {}
+	for _, bufnr in ipairs(bufnrs) do
+		local filename = vim.api.nvim_buf_get_name(bufnr)
+
+		local cursor_pos = vim.api.nvim_buf_get_mark(bufnr, '"')
+		local lnum = cursor_pos[1]
+		local col = cursor_pos[2]
+		local lines = vim.api.nvim_buf_get_lines(bufnr, lnum - 1, lnum, false)[1]
+		local snippet = lines and lines[1] or ""
+		snippet = snippet:gsub("\t", string.rep(" ", vim.bo.tabstop))
+
+		table.insert(items, {
+			bufnr = bufnr,
+			filename = filename,
+			lnum = lnum,
+			col = col,
+			type = get_entry_type(bufnr),
+			text = snippet,
+		})
 	end
 
 	return items
 end
 
-local function open_buffers_list()
-	local context = vim.fn.getqflist({ context = 1 }).context
-	local action = context.type == "buffers" and "r" or " " -- add or replace qf list
-	local items = get_buffers_list()
+local function set_buffers_qflist(items, opts)
+	local action = opts and opts.action or " "
+	local idx = opts and opts.idx or vim.api.nvim_get_current_buf()
 
 	vim.fn.setqflist({}, action, {
 		title = "Buffers",
 		items = items,
-		idx = vim.api.nvim_get_current_buf(),
+		idx = idx,
 		context = { type = "buffers" },
 	})
+end
+
+local function open_buffers_list()
+	local context = vim.fn.getqflist({ context = 1 }).context
+	local action = context.type == "buffers" and "r" or " " -- add or replace qf list
+	local items = get_qf_items()
+
+	set_buffers_qflist(items, action)
 
 	vim.cmd.copen()
+end
+
+local mappings = {
+	move = function(direction)
+		return function()
+			local idx = vim.fn.line(".")
+			local last_line = vim.fn.line("$")
+
+			-- Skip if already at the top or bottom
+			if idx == 1 and (direction == "up" or direction == "top") then
+				return
+			elseif idx == last_line and (direction == "down" or direction == "bottom") then
+				return
+			end
+
+			local items = vim.fn.getqflist()
+			local current = items[idx]
+			table.remove(items, idx)
+
+			local new_idx
+			if direction == "up" then
+				new_idx = idx - 1
+			elseif direction == "down" then
+				new_idx = idx + 1
+			elseif direction == "top" then
+				new_idx = 1
+			elseif direction == "bottom" then
+				new_idx = last_line
+			end
+
+			table.insert(items, new_idx, current)
+
+			set_buffers_qflist(items, { idx = new_idx })
+		end
+	end,
+}
+
+local function set_keymaps(bufnr)
+	local function k(lhs, rhs, desc)
+		local opts = { silent = true, noremap = true, buffer = bufnr }
+		opts.desc = "Buffers: " .. desc
+		vim.keymap.set("n", lhs, rhs, opts)
+	end
+
+	k("]e", mappings.move("down"), "Move up")
+	k("[e", mappings.move("up"), "Move down")
+	k("]E", mappings.move("bottom"), "Move to top")
+	k("[E", mappings.move("top"), "Move to bottom")
 end
 
 vim.keymap.set("n", "<leader>,", open_buffers_list, { noremap = true, silent = true, unique = true })
@@ -108,6 +172,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		if context and context.type ~= "buffers" then
 			return
 		end
+
+		set_keymaps(event.buf)
 
 		set_qf_statucolumn_signs(event.buf)
 	end,
