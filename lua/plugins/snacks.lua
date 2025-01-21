@@ -49,6 +49,22 @@ return {
 					filename_first = true,
 				},
 			},
+			sources = {
+				buffers = {
+					win = {
+						input = {
+							keys = {
+								["<c-d>"] = { "bufdelete", mode = { "n", "i" } },
+							},
+						},
+						list = {
+							keys = {
+								["<c-d>"] = "bufdelete",
+							},
+						},
+					},
+				},
+			},
 		},
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/statuscolumn.md
 		statuscolumn = {
