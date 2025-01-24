@@ -25,7 +25,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### UI
 
-- [Neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - Manage the file system as a tree
 - [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit filesystem like a buffer
 - [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers, statuscolumn, indent lines, notifications
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keybidings helper

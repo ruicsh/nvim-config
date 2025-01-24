@@ -55,14 +55,6 @@ api.nvim_create_autocmd("FileType", {
 
 api.nvim_create_autocmd("FileType", {
 	group = augroup,
-	pattern = { "neo-tree" },
-	callback = function(event)
-		k("n", closeShortcut, ":Neotree action=close<cr>", { buffer = event.buf })
-	end,
-})
-
-api.nvim_create_autocmd("FileType", {
-	group = augroup,
 	pattern = { "oil" },
 	callback = function(event)
 		k("n", closeShortcut, ":lua require('oil.actions').close.callback()<cr>", { buffer = event.buf })
