@@ -22,6 +22,7 @@ return {
 			{ "<leader>nh", snacks.picker.help, "Search: Help" },
 			{ "<leader>nc", snacks.picker.commands, "Search: Commands" },
 			{ "<leader>nk", snacks.picker.keymaps, "Search: Keymaps" },
+			{ "<leader>no", snacks.notifier.show_history, "Notifications: Show history" },
 			{ "[r", jump_to_previous_reference, "LSP: Jump to previous reference" },
 			{ "]r", jump_to_next_reference, "LSP: Jump to next reference" },
 		}
@@ -40,6 +41,11 @@ return {
 			scope = {
 				only_current = true,
 			},
+		},
+		-- https://github.com/folke/snacks.nvim/blob/main/docs/notifier.md
+		notifier = {
+			enabled = true,
+			style = "minimal",
 		},
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 		picker = {
@@ -77,5 +83,5 @@ return {
 		},
 	},
 
-	event = { "VeryLazy" },
+	lazy = false,
 }

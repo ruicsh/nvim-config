@@ -25,10 +25,9 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### UI
 
-- [Fidget](https://github.com/j-hui/fidget.nvim) - Notifications
 - [Neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - Manage the file system as a tree
 - [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit filesystem like a buffer
-- [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers, statuscolumn, indent lines
+- [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers, statuscolumn, indent lines, notifications
 - [which-key.nvim](https://github.com/folke/which-key.nvim) - Keybidings helper
 
 ### Editing
@@ -116,6 +115,7 @@ New features built around autocmds (events).
 | [create-intermediate-dirs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/create-intermediate-dirs.lua)   | Create intermediate directories                                       |
 | [disable-new-line-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-new-line-comments.lua) | Disable new line comments                                             |
 | [last-location](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/last-location.lua)                         | Jump to last location when opening a file                             |
+| [lsp-progress](https://github.com/ruicsh/nvim-config/blog/main/plugin/autocmds/lsp-progress.lua)                           | Show LSP installation progress                                        |
 | [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)               | If neovim is opened with a directory as argument open oil-filemanager |
 | [restore-changed-files](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/restore-changed-files.lua)         | On VimEnter, open all git changed files in current working directory  |
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                             | Keep buffers in tabs scoped to the tab they were opened in            |
