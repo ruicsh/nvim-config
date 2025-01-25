@@ -45,7 +45,7 @@ return {
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/notifier.md
 		notifier = {
 			enabled = true,
-			style = "minimal",
+			level = vim.log.levels.ERROR,
 		},
 		-- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 		picker = {
