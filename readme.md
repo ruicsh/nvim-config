@@ -87,6 +87,7 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 | [WindowToggleMaximize][https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/window-toggle-maximize.lua]         | Maximize and restore current window.        |
 | [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window |
 | [ToggleFormatOnSave](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-format-on-save.lua)            | Toggle on/off formatting on save.           |
+| [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                 |
 
 ## Ftplugins
 
@@ -136,25 +137,8 @@ Random features added.
 
 ### Files explorer
 
-- `\` toggle tree explorer
 - `-` open directory explorer
-- `<leader>f` fuzzy find files
-- `<leader>,` fuzzy find recent files
-
-#### Tree explorer
-
-- `<enter>` open
-- `a` add
-- `r` rename
-- `c` duplicate
-- `y` copy
-- `d` delete
-- `x` cut
-- `p` paste
-- `<c-v>` open file to the side
-- `<c-]>` close explorer
-- `[c` previous git change
-- `]c` next git change
+- `<leader><leader>` fuzzy find files
 
 #### Directory explorer
 
@@ -185,6 +169,7 @@ Random features added.
 - `<c-w>[` move buffer to window on the left
 - `<c-w>]` move buffer to window on the right
 - `<c-]>` close window
+- `<c-w>m` maximize window
 
 #### Tabs
 
@@ -248,7 +233,7 @@ Random features added.
 
 - `/` find in document forward
 - `?` find in document backward
-- `<leader>f` find in workspace
+- `<leader>f` fuzzy find in workspace
 
 ### Coding
 
@@ -337,14 +322,6 @@ Random features added.
 - `<leader>ho` push set-upstream origin HEAD
 - `<leader>hp` push
 
-#### Diffview
-
-- `<up>` open diff for previous file
-- `<down>` open diff for next file
-- `s` stage file
-- `X` reset file
-- `<c-]>` close panel
-
 #### Merge Conflicts
 
 - `co` choose ours
@@ -396,21 +373,11 @@ Random features added.
 - `zk` jump to previous fold
 - `zj` jump to next fold
 
-#### Workspaces
-
-- `<leader>pp` list workspaces
-
 #### Application
 
-- `<leader>n,` search configuration / open settings
-- `<leader>n<` open settings (JSON) _(only vscode)_
-- `<leader>nn` show notifications history _(only neovim)_
 - `<leader>nc` show commands
 - `<leader>nh` help
 - `<leader>nk` keyboard shortcuts
-- `<leader>nK` keyboard shortcuts (JSON) _(only vscode)_
-- `<leader>nt` select fuzzy finder to use _(only neovim)_
-- `<leader>vb` toggle sidebar visibility _(only vscode)_
 
 <div style="margin-top:80px"></div>
 
