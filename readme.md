@@ -129,7 +129,6 @@ Random features added.
 |                                                                                                              |                                                 |
 | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
 | [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)           | Use the same shortcut to close different panels |
-| [cowboy](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/cowboy.lua)                           | Restricts repeating cursor movements            |
 | [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua) | Search count inline indicator                   |
 
 # Mappings
