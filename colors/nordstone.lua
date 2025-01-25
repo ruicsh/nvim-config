@@ -112,7 +112,7 @@ loadColorSet({
 	SpellCap = { fg = c.nord7, bg = "NONE", style = "undercurl" },
 	SpellLocal = { fg = c.nord8, bg = "NONE", style = "undercurl" },
 	SpellRare = { fg = c.nord9, bg = "NONE", style = "undercurl" },
-	StatusLine = { fg = c.nord3_900, bg = "NONE" },
+	StatusLine = { fg = c.nord4, bg = "NONE" },
 	StatusLineNC = { fg = c.nord4, bg = c.nord1 },
 	StatusLineTerm = { fg = c.nord4, bg = c.nord2 },
 	StatusLineTermNC = { fg = c.nord4, bg = c.nord1 },
