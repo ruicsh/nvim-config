@@ -34,6 +34,7 @@ k("|", "<c-w>w", { desc = "Windows: Switch" })
 k("<c-w>|", "<c-w>v", { desc = "Windows: Split vertically" })
 k("<c-w>[", "<c-w>x<c-w>w", { desc = "Windows: Move file to the left" })
 k("<c-w>]", "<c-w>x<c-w>w", { desc = "Windows: Move file to the right" })
+k("<c-w>m", ":WindowToggleMaximize<cr>", { desc = "Windows: Maximize" })
 
 -- Tabs
 k("<leader>tc", ":tabclose<cr>", { desc = "Tabs: Close" })
