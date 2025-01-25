@@ -172,12 +172,6 @@ loadColorSet({
 	BuffersSignAlternate = { link = "Normal" },
 })
 
--- dim-inactive-windows
-loadColorSet({
-	DimInactiveWindowsText500 = { fg = c.neutral_500 },
-	DimInactiveWindowsText900 = { fg = c.neutral_900 },
-})
-
 -- status-line
 local cmode = {
 	c = c.nord14, -- #a3be8c
@@ -240,13 +234,6 @@ loadColorSet({
 	fugitiveUnmergedHeading = { fg = c.nord13 },
 	fugitiveUnstagedHeading = { fg = c.nord13 },
 	fugitiveUntrackedHeading = { fg = c.nord11 },
-})
-
--- fzf
-loadColorSet({
-	FzfLuaBorder = { fg = c.nord4 },
-	FzfLuaHeaderBind = { fg = c.nord3_900 },
-	FzfLuaHeaderText = { fg = c.nord3_500 },
 })
 
 -- GitSigns
