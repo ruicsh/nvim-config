@@ -1,10 +1,10 @@
 -- Create intermediate dirs
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 
-local group = vim.api.nvim_create_augroup("ruicsh/create_intermediate_dirs", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/create_intermediate_dirs", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-	group = group,
+	group = augroup,
 	callback = function(event)
 		if event.match:match("^%w%w+:[\\/][\\/]") then
 			return
