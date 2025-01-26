@@ -63,7 +63,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### Git
 
-- [Diffview.nvim](https://github.com/sindrets/diffview.nvim) - Diffview/Log
 - [fugitive.vim](https://github.com/tpope/vim-fugitive) - Git wrapper
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git buffer integration
 
@@ -84,7 +83,7 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 |                                                                                                                            |                                             |
 | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | [CopyFilePathToClipboard](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/copy-file-path-to-clipboard.lua) | Copy current buffer's path to clipboard.    |
-| [WindowToggleMaximize][https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/window-toggle-maximize.lua]         | Maximize and restore current window.        |
+| [WindowToggleMaximize](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/window-toggle-maximize.lua)         | Maximize and restore current window.        |
 | [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window |
 | [ToggleFormatOnSave](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-format-on-save.lua)            | Toggle on/off formatting on save.           |
 | [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                 |
@@ -119,6 +118,7 @@ New features built around autocmds (events).
 | [lsp-progress](https://github.com/ruicsh/nvim-config/blog/main/plugin/autocmds/lsp-progress.lua)                           | Show LSP installation progress                                        |
 | [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)               | If neovim is opened with a directory as argument open oil-filemanager |
 | [restore-changed-files](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/restore-changed-files.lua)         | On VimEnter, open all git changed files in current working directory  |
+| [save-on-win-leave](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/save-on-win-leave.lua)                 | Save and format file on window leave                                  |
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                             | Keep buffers in tabs scoped to the tab they were opened in            |
 | [toggle-hlsearch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/toggle-hlsearch.lua)                     | Toogle off hlsearch when entering insert mode and the cursor is moved |
 | [yank-highlight](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-highlight.lua)                       | Highlight selection when yanking                                      |
