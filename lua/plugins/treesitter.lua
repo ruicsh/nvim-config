@@ -82,6 +82,15 @@ return {
 				},
 			},
 		},
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection = "<c-s-left>",
+				node_incremental = "<c-s-left>",
+				scope_incremental = false,
+				node_decremental = "<c-s-right>",
+			},
+		},
 	},
 
 	main = "nvim-treesitter.configs",

@@ -259,17 +259,18 @@ Random features added.
 
 #### Syntax (AST)
 
-- `<leader>v` start node selection mode
-- `;` increase selection (on node selection mode)
-- `,` decrease selection (on node selection mode)
 - `<s-left>` jump to parent node
 - `<s-right>` jump to child node
 - `<s-up>` jump to previous sibling node
 - `<s-down>` jump to next sibling node
-- `<c-s-left>` swap with lateral previous node
-- `<c-s-right>` swap with lateral next node
-- `<c-s-up>` swap with vertical previous node
-- `<c-s-down>` swap with vertical next node
+- `<leader>v` start node target mode (with search labels)
+- `<c-s-left>` select current node
+- `<c-s-left>` increase selection (on node selection mode)
+- `<c-s-right>` decrease selection (on node selection mode)
+- `<c-s-h>` swap with lateral previous node
+- `<c-s-l>` swap with lateral next node
+- `<c-s-k>` swap with vertical previous node
+- `<c-s-j>` swap with vertical next node
 - `[a` jump to previous argument start
 - `]a` jump to next argument start
 - `[f` jump to previous function start
