@@ -12,10 +12,12 @@ local ignore_basenames = {
 -- ignore files with these extensions
 local ignore_extensions = {
 	".bmp",
+	".bru",
 	".gif",
 	".jpeg",
 	".jpg",
 	".png",
+	".snap",
 	".svg",
 	".tiff",
 	".webp",
