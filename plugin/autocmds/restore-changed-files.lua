@@ -47,11 +47,28 @@ end
 
 -- List files changed on git status.
 local function get_changed_files()
+	local git_root = vim.fn.getgitroot()
 	local tracked_files = vim.fn.systemlist("git diff --name-only")
 	local untracked_files = vim.fn.systemlist("git ls-files --others --exclude-standard")
 	local changed_files = vim.list_extend(tracked_files, untracked_files)
 
-	return changed_files
+	local files = {}
+	-- Generate absolute path for each file (relative to the git repo root)
+	for _, file in ipairs(changed_files) do
+		local filepath = vim.fs.normalize(git_root .. "/" .. file)
+		if vim.fn.isdirectory(filepath) ~= 0 then
+			for dirfile, type in vim.fs.dir(filepath, { depth = 9999 }) do
+				if type == "file" then
+					local dirfilepath = vim.fs.joinpath(filepath, dirfile)
+					table.insert(files, dirfilepath)
+				end
+			end
+		else
+			table.insert(files, filepath)
+		end
+	end
+
+	return files
 end
 
 -- Prune list of files from files to ignore or unreadable.
