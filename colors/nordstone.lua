@@ -304,7 +304,7 @@ loadColorSet({
 loadColorSet({
 	SnacksIndentScope = { fg = c.nord3_500 },
 	SnacksPickerDir = { fg = c.nord3_500 },
-	SnacksPickerMatch = { link = "IncSearch" },
+	SnacksPickerMatch = { fg = c.nord4, bg = c.nord3 },
 })
 
 -- WhichKey
