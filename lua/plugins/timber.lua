@@ -5,6 +5,7 @@ local templates_js = {
 	log = {
 		default = [[console.warn("%print_tag: %log_target=", %log_target)]],
 		plain = [[console.warn("%print_tag: (%placement %snippet)")]],
+		time = [[console.log(new Date().toISOString())]],
 	},
 	batch = {
 		default = [[console.warn("%print_tag", { %repeat<"%log_target": %log_target><, > })]],
@@ -15,6 +16,30 @@ local counter = 0
 
 return {
 	"Goose97/timber.nvim",
+	keys = function()
+		local actions = require("timber.actions")
+
+		local function insert_time_log(position)
+			return function()
+				local template = position == "surround" and "default" or "time"
+				local templates = position == "surround" and { before = "time", after = "time" } or {}
+
+				actions.insert_log({
+					template = template,
+					templates = templates,
+					position = position,
+				})
+			end
+		end
+
+		local mappings = {
+			{ "glt", insert_time_log("below"), "Timestamp below" },
+			{ "glT", insert_time_log("above"), "Timestamp above" },
+			{ "<leader>glt", insert_time_log("surround"), "Timestamp above/below" },
+		}
+
+		return vim.fn.getlazykeysconf(mappings, "Logs")
+	end,
 	opts = {
 		keymaps = {
 			insert_log_below = "glv",
@@ -52,6 +77,14 @@ return {
 				tsx = templates_js.log.plain,
 				typescript = templates_js.log.plain,
 				typescriptreact = templates_js.log.plain,
+			},
+			time = {
+				javascript = templates_js.log.time,
+				jsx = templates_js.log.time,
+				lua = [[print(os.date("!%Y-%m-%dT%H:%M:%SZ"))]],
+				tsx = templates_js.log.time,
+				typescript = templates_js.log.time,
+				typescriptreact = templates_js.log.time,
 			},
 		},
 		batch_log_templates = {
