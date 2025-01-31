@@ -197,7 +197,7 @@ Random features added.
 - `]e` move line/selection below
 - `[p` paste to new line above
 - `]p` paste to new line below
-- `gcp` duplicate a line, comment out the first line.
+- `ycc` duplicate a line, comment out the first line.
 - `U` redo
 
 #### Insert mode navigation
