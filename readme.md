@@ -43,6 +43,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### Coding
 
+- [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim) - AI Chat
 - [colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua) - CSS Colors
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - GitHub Copilot
@@ -242,6 +243,12 @@ Random features added.
 - `<c-n>` select next entry
 - `<c-p>` select previous entry
 - `<c-]>` abort
+
+#### AI
+
+- `<leader>a` Toggle Chat
+- `<c-a>` Actions
+- `ga` Add selection to chat
 
 ### Snippets
 
