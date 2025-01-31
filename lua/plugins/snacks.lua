@@ -55,6 +55,13 @@ return {
 					filename_first = true,
 				},
 			},
+			win = {
+				input = {
+					keys = {
+						["<c-]>"] = { "close", mode = { "n", "i" } },
+					},
+				},
+			},
 			sources = {
 				buffers = {
 					win = {

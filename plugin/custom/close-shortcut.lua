@@ -36,7 +36,6 @@ api.nvim_create_autocmd("FileType", {
 		"qf",
 		"query",
 		"scratch",
-		"snacks_picker_input",
 		"startuptime",
 	},
 	callback = function(event)
