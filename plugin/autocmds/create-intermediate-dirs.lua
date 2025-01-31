@@ -1,7 +1,7 @@
 -- Create intermediate dirs
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/create_intermediate_dirs", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/create_intermediate_dirs", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	group = augroup,

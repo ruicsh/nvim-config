@@ -1,6 +1,6 @@
 -- On VimEnter, open all git changed files in current working directory.
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/restore_changed_files", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/restore_changed_files", { clear = true })
 
 -- ignore files with these basenames
 local ignore_basenames = {

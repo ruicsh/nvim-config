@@ -1,7 +1,7 @@
 -- Highlight selection when yanking
 -- https://github.com/dmmulroy/kickstart.nix/blob/main/config/nvim/
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/yank_highlight", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/yank_highlight", { clear = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup,

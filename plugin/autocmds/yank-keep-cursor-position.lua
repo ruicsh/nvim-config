@@ -1,7 +1,7 @@
 -- Keep cursor position on yank.
 -- https://nanotipsforvim.prose.sh/sticky-yank
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/yank_keep_cursor_position", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/yank_keep_cursor_position", { clear = true })
 
 local cursorPreYank
 vim.keymap.set({ "n", "x" }, "y", function()
