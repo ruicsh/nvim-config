@@ -1,9 +1,9 @@
 -- Git commit panel.
 
-local group = vim.api.nvim_create_augroup("ruicsh/ft/gitcommit", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/ft/gitcommit", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-	group = group,
+	group = augroup,
 	pattern = "gitcommit",
 	callback = function(event)
 		vim.cmd("startinsert", { silent = true }) -- Start on insert mode.

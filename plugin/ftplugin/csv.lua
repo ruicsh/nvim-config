@@ -1,9 +1,9 @@
 -- CSV files.
 
-local group = vim.api.nvim_create_augroup("ruicsh/ft/csv", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/ft/csv", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-	group = group,
+	group = augroup,
 	pattern = "csv",
 	callback = function()
 		require("csvview").enable()

@@ -1,9 +1,9 @@
 -- Fugitive panel.
 
-local group = vim.api.nvim_create_augroup("ruicsh/ft/fugitive", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/ft/fugitive", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-	group = group,
+	group = augroup,
 	pattern = "fugitive",
 	callback = function(event)
 		vim.bo.buflisted = false

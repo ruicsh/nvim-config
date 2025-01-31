@@ -1,9 +1,9 @@
 -- Help files.
 
-local group = vim.api.nvim_create_augroup("ruicsh/ft/help", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/ft/help", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-	group = group,
+	group = augroup,
 	pattern = "help",
 	callback = function(event)
 		-- Always open help panel on a vertical split, full height.
