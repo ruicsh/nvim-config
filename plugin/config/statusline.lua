@@ -278,6 +278,16 @@ local c_lsp_progress = function()
 	return status and table.concat(status, " ") or ""
 end
 
+-- Show copilot icon when a request is in flight
+_G.codecompanion = { is_processing = false }
+local function c_codecompanion()
+	if not _G.codecompanion.is_processing then
+		return ""
+	end
+
+	return sep() .. " "
+end
+
 -- Construct the statusline (default)
 function _G.status_line()
 	local hl = "%#StatusLine#"
@@ -287,6 +297,7 @@ function _G.status_line()
 		c_mode(),
 		c_filename(),
 		c_search_count(),
+		c_codecompanion(),
 		"%=",
 		c_lsp_progress(),
 		"%=",
