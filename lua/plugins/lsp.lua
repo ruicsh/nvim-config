@@ -131,7 +131,6 @@ return {
 
 		-- LSP servers
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 		require("mason").setup()
@@ -181,6 +180,5 @@ return {
 			-- https://github.com/onsails/lspkind.nvim
 			"onsails/lspkind.nvim",
 		},
-		{ "hrsh7th/cmp-nvim-lsp" },
 	},
 }

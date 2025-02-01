@@ -39,15 +39,6 @@ return {
 		local cmp = require("cmp")
 		local lspkind = require("lspkind")
 
-		-- copilot suggestions
-		require("copilot_cmp").setup()
-		lspkind.init({
-			symbol_map = {
-				Snippet = "",
-				Copilot = "",
-			},
-		})
-
 		-- Only show ghost text at word boundaries, not inside keywords.
 		setup_ghost_text()
 
@@ -66,24 +57,16 @@ return {
 							buffer = "[buf]",
 							cmdline = "[cmd]",
 							cmdline_history = "[hst]",
-							copilot = "[cop]",
 							nvim_lsp = "[lsp]",
 							nvim_lsp_signature_help = "[sig]",
 							nvim_lua = "[lua]",
 							path = "[pat]",
-							snippets = "[snp]",
 						},
 					})(entry, item)
 
 					return item
 				end,
 				expandable_indicator = true,
-			},
-
-			snippet = {
-				expand = function(args)
-					vim.snippet.expand(args.body)
-				end,
 			},
 
 			mapping = {
@@ -139,13 +122,13 @@ return {
 				["<c-d>"] = cmp.mapping.scroll_docs(4),
 
 				-- close menu, and don't pick anything
+				["<c-e>"] = cmp.mapping.abort(),
 				["<c-]>"] = cmp.mapping.abort(),
 			},
 
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp_signature_help", group_index = 0 },
-				{ name = "snippets", group_index = 1 },
-				{ name = "copilot", group_index = 2 },
+				-- { name = "copilot", group_index = 2 },
 				{ name = "path", group_index = 3 },
 				{ name = "buffer", group_index = 4 },
 				{ name = "nvim_lsp", group_index = 5 },
@@ -203,19 +186,9 @@ return {
 		{ "hrsh7th/cmp-path", event = { "BufRead" } },
 		{ "hrsh7th/cmp-buffer", event = { "BufRead" } },
 		{ "hrsh7th/cmp-cmdline", event = { "CmdlineEnter" } },
-		{ "zbirenbaum/copilot-cmp", event = { "BufRead" } },
 		{ -- Pictograms for completion items
 			-- https://github.com/onsails/lspkind.nvim
 			"onsails/lspkind.nvim",
-		},
-		{ -- GitHub Copilot
-			-- https://github.com/zbirenbaum/copilot.lua
-			"zbirenbaum/copilot.lua",
-			opts = {
-				suggestion = { enabled = false },
-				panel = { enabled = false },
-			},
-			event = { "BufRead" },
 		},
 	},
 }
