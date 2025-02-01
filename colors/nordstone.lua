@@ -408,7 +408,7 @@ loadColorSet({
 	["@markup.heading.4.markdown"] = { fg = c.nord9 },
 	["@markup.heading.5.markdown"] = { fg = c.nord9 },
 	["@markup.heading.6.markdown"] = { fg = c.nord9 },
-	["@punctuation.special.markdown"] = { fg = c.nord8 },
+	["@punctuation.special.markdown"] = { fg = c.nord3 },
 
 	-- scss
 	["@keyword.import.scss"] = { fg = c.nord7 },

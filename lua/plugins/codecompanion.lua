@@ -1,4 +1,4 @@
--- AI chat and inline assisntant.
+-- AI chat and inline assistant.
 -- https://codecompanion.olimorris.dev/
 
 return {
@@ -12,9 +12,36 @@ return {
 		return vim.fn.getlazykeysconf(mappings, "AI")
 	end,
 	opts = {
+		adapters = {
+			anthropic = function()
+				return require("codecompanion.adapters").extend("anthropic", {
+					env = {
+						ANTHROPIC_API_KEY = vim.fn.getenv("ANTHROPIC_API_KEY"),
+					},
+				})
+			end,
+			copilot = function()
+				return require("codecompanion.adapters").extend("copilot", {
+					schema = {
+						model = {
+							default = "gpt-4o-2024-08-06",
+						},
+					},
+				})
+			end,
+			openai = function()
+				return require("codecompanion.adapters").extend("openai", {
+					env = {
+						OPENAI_API_KEY = vim.fn.getenv("OPENAI_API_KEY"),
+					},
+				})
+			end,
+		},
 		display = {
 			chat = {
 				intro_message = "Press ? for options",
+				show_header_separator = true,
+				separator = "──",
 				window = {
 					layout = "buffer",
 					opts = {
@@ -30,9 +57,9 @@ return {
 			chat = {
 				adapter = "copilot",
 				roles = {
-					user = "me",
+					user = "Me",
 					llm = function(adapter)
-						return string.lower(adapter.formatted_name) .. " "
+						return adapter.formatted_name .. " ㋶"
 					end,
 				},
 				keymaps = {
@@ -56,6 +83,7 @@ return {
 	config = function(_, opts)
 		local cc = require("codecompanion")
 		cc.setup(opts)
+
 		vim.cmd([[cab cc CodeCompanion]]) -- shortcut on the cmdline
 	end,
 
