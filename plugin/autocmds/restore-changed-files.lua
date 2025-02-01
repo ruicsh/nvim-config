@@ -49,8 +49,10 @@ end
 local function get_changed_files()
 	local git_root = vim.fn.getgitroot()
 	local tracked_files = vim.fn.systemlist("git diff --name-only")
+	local staged_files = vim.fn.systemlist("git diff --cached --name-only")
 	local untracked_files = vim.fn.systemlist("git ls-files --others --exclude-standard")
-	local changed_files = vim.list_extend(tracked_files, untracked_files)
+	local changed_files = vim.list_extend(tracked_files, staged_files)
+	changed_files = vim.list_extend(changed_files, untracked_files)
 
 	local files = {}
 	-- Generate absolute path for each file (relative to the git repo root)
