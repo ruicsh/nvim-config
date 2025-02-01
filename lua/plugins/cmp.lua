@@ -33,6 +33,21 @@ local function setup_ghost_text()
 	})
 end
 
+-- Setup event listeners
+local function setup_event_listeners()
+	local cmp = require("cmp")
+
+	cmp.event:on("menu_opened", function()
+		-- Hide copilot suggestions when the completion menu is opened.
+		vim.b.copilot_suggestion_hidden = true
+	end)
+
+	cmp.event:on("menu_closed", function()
+		-- Allow copilot suggestions when the completion menu is closed.
+		vim.b.copilot_suggestion_hidden = false
+	end)
+end
+
 return {
 	"hrsh7th/nvim-cmp",
 	config = function()
@@ -41,6 +56,9 @@ return {
 
 		-- Only show ghost text at word boundaries, not inside keywords.
 		setup_ghost_text()
+
+		-- Handlers for cmp events.
+		setup_event_listeners()
 
 		cmp.setup({
 			completion = { completeopt = "menu,menuone,noinsert" },
@@ -70,6 +88,7 @@ return {
 			},
 
 			mapping = {
+				["<c-m>"] = cmp.mapping.complete(),
 				-- confirm completion
 				["<c-l>"] = cmp.mapping(function(fallback)
 					-- Until https://github.com/hrsh7th/nvim-cmp/issues/1716

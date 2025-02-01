@@ -1,4 +1,4 @@
--- AI chat
+-- AI chat and inline assisntant.
 -- https://codecompanion.olimorris.dev/
 
 return {

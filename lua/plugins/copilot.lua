@@ -1,25 +1,26 @@
 -- GitHub Copilot suggestions
--- https://github.com/zbirenbaum/copilot.lua
+-- https://github.com/zbirenbaum/copilot.lua.
 
 return {
 	"zbirenbaum/copilot.lua",
 	opts = {
+		panel = {
+			enabled = false,
+		},
 		suggestion = {
 			enabled = true,
 			auto_trigger = true,
 			keymap = {
 				accept = "<c-l>",
-				accept_word = false,
+				accept_word = "<tab>",
 				accept_line = false,
-				next = "<tab>",
-				prev = "<s-tab>",
-				dismiss = "<c-]>",
+				next = "<c-n>",
+				prev = "<c-p>",
+				dismiss = "<c-e>",
 			},
-		},
-		panel = {
-			enabled = false,
 		},
 	},
 
-	event = { "BufRead" },
+	cmd = "Copilot",
+	event = { "InsertEnter" },
 }

@@ -43,13 +43,12 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### Coding
 
-- [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim) - AI Chat
+- [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim) - AI Chat and inline assistant
 - [colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua) - CSS Colors
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
-- [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - GitHub Copilot
+- [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - Copilot suggestions
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Completions
-- [nvim-snippets](https://github.com/garymjr/nvim-snippets) - Snippets
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Autocompletion
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
 
 #### LSP/Syntax
@@ -246,9 +245,14 @@ Random features added.
 
 #### AI
 
-- `<leader>a` Toggle Chat
-- `<c-a>` Actions
-- `ga` Add selection to chat
+- `<leader>a` toggle Chat
+- `<c-a>` actions
+- `ga` add selection to chat
+- `<c-l>` accept whole suggestion
+- `<tab>` accept word in suggestion
+- `<c-n>` next suggestion
+- `<c-p>` previous suggestion
+- `<c-]>` dismiss suggestions
 
 ### Snippets
 
