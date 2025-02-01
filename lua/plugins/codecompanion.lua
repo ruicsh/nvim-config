@@ -30,10 +30,22 @@ return {
 			chat = {
 				adapter = "copilot",
 				roles = {
-					user = "ruic",
+					user = "me",
 					llm = function(adapter)
-						return adapter.formatted_name
+						return string.lower(adapter.formatted_name) .. " "
 					end,
+				},
+				keymaps = {
+					previous_chat = {
+						modes = {
+							n = "<tab>",
+						},
+					},
+					next_chat = {
+						modes = {
+							n = "<s-tab>",
+						},
+					},
 				},
 			},
 			inline = {
