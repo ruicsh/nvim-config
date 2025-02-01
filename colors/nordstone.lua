@@ -34,7 +34,7 @@ vim.g.colors_name = "nordstone"
 
 -- COLORS
 
-NordStoneColors = {
+_G.NordStoneColors = {
 	nord0 = "#2e3440",
 	nord1 = "#3b4252",
 	nord2 = "#434c5e",
@@ -63,7 +63,7 @@ NordStoneColors = {
 	neutral_400 = "#a1a1aa",
 }
 
-local c = NordStoneColors
+local c = _G.NordStoneColors
 
 -- EDITOR
 loadColorSet({
@@ -347,7 +347,7 @@ loadColorSet({
 	["@keyword.operator"] = { fg = c.nord9 },
 	["@keyword.return"] = { fg = c.nord9 },
 	["@label"] = { fg = c.nord15 },
-	["@markup"] = { fg = c.nord9 },
+	["@markup"] = { fg = c.nord10 },
 	["@markup.heading.html"] = { fg = c.nord4 },
 	["@method"] = { fg = c.nord8 },
 	["@namespace"] = { fg = c.nord4 },
@@ -400,6 +400,15 @@ loadColorSet({
 	["@keyword.import.css"] = { fg = c.nord7 },
 	["@string.css"] = { fg = c.nord9 },
 	["@type.css"] = { fg = c.nord7 },
+
+	-- markdown
+	["@markup.heading.1.markdown"] = { fg = c.nord9 },
+	["@markup.heading.2.markdown"] = { fg = c.nord9 },
+	["@markup.heading.3.markdown"] = { fg = c.nord9 },
+	["@markup.heading.4.markdown"] = { fg = c.nord9 },
+	["@markup.heading.5.markdown"] = { fg = c.nord9 },
+	["@markup.heading.6.markdown"] = { fg = c.nord9 },
+	["@punctuation.special.markdown"] = { fg = c.nord8 },
 
 	-- scss
 	["@keyword.import.scss"] = { fg = c.nord7 },

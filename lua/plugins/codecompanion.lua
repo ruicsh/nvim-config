@@ -14,21 +14,38 @@ return {
 	opts = {
 		display = {
 			chat = {
+				intro_message = "Press ? for options",
 				window = {
 					layout = "buffer",
+					opts = {
+						cursorline = true,
+						foldcolumn = "1",
+						numberwidth = 5,
+						signcolumn = "yes",
+					},
 				},
 			},
 		},
 		strategies = {
 			chat = {
 				adapter = "copilot",
+				roles = {
+					user = "ruic",
+					llm = function(adapter)
+						return adapter.formatted_name
+					end,
+				},
 			},
 			inline = {
 				adapter = "copilot",
 			},
 		},
 	},
-	config = true,
+	config = function(_, opts)
+		local cc = require("codecompanion")
+		cc.setup(opts)
+		vim.cmd([[cab cc CodeCompanion]]) -- shortcut on the cmdline
+	end,
 
 	dependencies = {
 		{ "nvim-lua/plenary.nvim", branch = "master" },
