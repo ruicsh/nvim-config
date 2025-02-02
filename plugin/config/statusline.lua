@@ -242,7 +242,7 @@ local function c_tabs()
 		local isSelected = vim.fn.tabpagenr() == i
 		local hl = (isSelected and "%#TabLineSel#" or "%#TabLine#")
 		local icon = isSelected and "" or ""
-		local cell = hl .. " " .. icon .. " " .. i
+		local cell = hl .. icon .. " "
 		table.insert(tabs, cell)
 	end
 
@@ -285,7 +285,7 @@ local function c_codecompanion()
 		return ""
 	end
 
-	return sep() .. " "
+	return sep() .. " ㋶"
 end
 
 -- Construct the statusline (default)
