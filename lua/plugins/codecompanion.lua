@@ -4,9 +4,18 @@
 return {
 	"olimorris/codecompanion.nvim",
 	keys = function()
+		local function switch_window(cmd)
+			return function()
+				vim.cmd.wincmd("w")
+				vim.cmd(cmd)
+			end
+		end
+
 		local mappings = {
-			{ "<c-a>", ":CodeCompanionActions<cr>", "Actions", { mode = { "n", "v" } } },
-			{ "<leader>a", ":CodeCompanionChat Toggle<cr>", "Chat", { mode = { "n", "v" } } },
+			{ "<leader>aa", switch_window("CodeCompanionChat"), "Chat", { mode = { "n", "v" } } },
+			{ "<leader>ae", switch_window("CodeCompanion /explain"), "Explain", { mode = { "v" } } },
+			{ "<leader>ac", ":CodeCompanionActions<cr>", "Actions", { mode = { "n", "v" } } },
+			{ "<c-a>", ":CodeCompanionChat Toggle<cr>", "Chat", { mode = { "n", "v" } } },
 			{ "ga", ":CodeCompanionChat Add<cr>", "Add", { mode = { "v" } } },
 		}
 		return vim.fn.getlazykeysconf(mappings, "AI")
@@ -40,8 +49,9 @@ return {
 		display = {
 			chat = {
 				intro_message = "Press ? for options",
-				show_header_separator = true,
 				separator = "──",
+				show_header_separator = true,
+				show_references = true,
 				window = {
 					layout = "buffer",
 					opts = {
@@ -87,6 +97,12 @@ return {
 		vim.cmd([[cab cc CodeCompanion]]) -- shortcut on the cmdline
 	end,
 
+	cmd = {
+		"CodeCompanion",
+		"CodeCompanionActions",
+		"CodeCompanionChat",
+		"CodeCompanionCmd",
+	},
 	dependencies = {
 		{ "nvim-lua/plenary.nvim", branch = "master" },
 		"nvim-treesitter/nvim-treesitter",
