@@ -10,7 +10,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - **Search** - fuzzy find anything, file and workspace scoped search and replace
 - **Application** - files and directory explorer, notifications, command palette
 
-<sub>Works on Neovim v0.10.3</sub>
+<sub>Works on Neovim v0.10.4</sub>
 
 ## Screenshots
 
@@ -63,6 +63,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### Git
 
+- [diffview](https://github.com/sindrets/diffview.nvim) - Diffview/Git log
 - [fugitive.vim](https://github.com/tpope/vim-fugitive) - Git wrapper
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git buffer integration
 
