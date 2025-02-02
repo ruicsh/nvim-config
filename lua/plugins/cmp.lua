@@ -48,6 +48,57 @@ local function setup_event_listeners()
 	end)
 end
 
+local mapping = function()
+	local cmp = require("cmp")
+
+	local select_next_item = {
+		i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+		c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+	}
+
+	local select_prev_item = {
+		i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+		c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+	}
+
+	local abort = {
+		i = cmp.mapping.abort(),
+		c = cmp.mapping.abort(),
+	}
+
+	local scroll_up_docs = {
+		i = cmp.mapping.scroll_docs(-4),
+	}
+
+	local scroll_down_docs = {
+		i = cmp.mapping.scroll_docs(4),
+	}
+
+	local confirm = {
+		i = cmp.mapping.confirm({ select = true }),
+		c = cmp.mapping.confirm({ select = false }),
+	}
+
+	return {
+		-- select_next_item
+		["<c-j>"] = select_next_item,
+		["<c-n>"] = select_next_item,
+		["<down>"] = select_next_item,
+		-- select_prev_item
+		["<c-k>"] = select_prev_item,
+		["<c-p>"] = select_prev_item,
+		["<up>"] = select_prev_item,
+		-- abort
+		["<c-e>"] = abort,
+		["<c-]>"] = abort,
+		-- scroll docs
+		["<c-u>"] = scroll_up_docs,
+		["<c-d>"] = scroll_down_docs,
+		-- confirm
+		["<c-l>"] = confirm,
+	}
+end
+
 return {
 	"hrsh7th/nvim-cmp",
 	config = function()
@@ -87,8 +138,7 @@ return {
 				expandable_indicator = true,
 			},
 
-			mapping = {
-				["<c-m>"] = cmp.mapping.complete(),
+			mapping = vim.tbl_extend("force", mapping(), {
 				-- confirm completion
 				["<c-l>"] = cmp.mapping(function(fallback)
 					-- Until https://github.com/hrsh7th/nvim-cmp/issues/1716
@@ -127,27 +177,10 @@ return {
 						fallback()
 					end
 				end, { "i", "s" }),
-
-				-- move up/down the menu
-				["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-				["<c-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-				["<down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-				["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-				["<c-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-				["<up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-
-				-- scroll up/down
-				["<c-u>"] = cmp.mapping.scroll_docs(-4),
-				["<c-d>"] = cmp.mapping.scroll_docs(4),
-
-				-- close menu, and don't pick anything
-				["<c-e>"] = cmp.mapping.abort(),
-				["<c-]>"] = cmp.mapping.abort(),
-			},
+			}),
 
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp_signature_help", group_index = 0 },
-				-- { name = "copilot", group_index = 2 },
 				{ name = "path", group_index = 3 },
 				{ name = "buffer", group_index = 4 },
 				{ name = "nvim_lsp", group_index = 5 },
@@ -168,11 +201,7 @@ return {
 
 		cmp.setup.cmdline({ "/", "?" }, {
 			autocomplete = { cmp.TriggerEvent.TextChanged },
-			mapping = cmp.mapping.preset.cmdline({
-				["<c-l>"] = {
-					c = cmp.mapping.confirm({ select = false }),
-				},
-			}),
+			mapping = mapping(),
 			sources = {
 				{ name = "buffer" },
 			},
@@ -181,11 +210,7 @@ return {
 
 		cmp.setup.cmdline(":", {
 			autocomplete = { cmp.TriggerEvent.TextChanged },
-			mapping = cmp.mapping.preset.cmdline({
-				["<c-l>"] = {
-					c = cmp.mapping.confirm({ select = false }),
-				},
-			}),
+			mapping = mapping(),
 			sources = cmp.config.sources({
 				{ name = "path" },
 				{ name = "cmdline" },

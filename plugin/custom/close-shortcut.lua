@@ -5,7 +5,7 @@ local closeShortcut = "<c-]>"
 local api = vim.api
 local k = vim.keymap.set
 
-local augroup = api.nvim_create_augroup("ruicsh/close_shortcut", { clear = true })
+local augroup = api.nvim_create_augroup("ruicsh/custom/close_shortcut", { clear = true })
 
 -- Close buffer, close window if empty, close app if last window
 local function close_buffer_or_window_or_quit()
