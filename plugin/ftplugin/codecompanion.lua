@@ -6,6 +6,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "codecompanion",
 	callback = function()
-		vim.opt_local.shiftwidth = 2
+		vim.opt_local.shiftwidth = 2 -- tab stop width
 	end,
 })

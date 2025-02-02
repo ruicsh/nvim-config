@@ -101,7 +101,7 @@ local function c_filename()
 		line = line .. "DIFF"
 	elseif ft == "DiffviewFileHistory" then
 		line = line .. "LOG"
-	elseif ft == "" then
+	elseif ft == "" or ft == "codecompanion" then
 		return ""
 	else
 		local cwd = vim.fn.getcwd()
@@ -278,15 +278,47 @@ local c_lsp_progress = function()
 	return status and table.concat(status, " ") or ""
 end
 
--- Show copilot icon when a request is in flight
-_G.codecompanion = { is_processing = false }
+_G.codecompanion = { is_processing = false, spinner_frame = 1 }
+local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+
+local function update_spinner()
+	_G.codecompanion.spinner_frame = (_G.codecompanion.spinner_frame % #spinner_frames) + 1
+end
+
 local function c_codecompanion()
-	if not _G.codecompanion.is_processing then
+	local ft = vim.bo.filetype
+	if ft ~= "codecompanion" then
 		return ""
 	end
 
-	return sep() .. " ㋶"
+	local cc = require("codecompanion")
+	local bufnr = vim.api.nvim_get_current_buf()
+	local chat = cc.buf_get_chat(bufnr)
+	if not chat then
+		return ""
+	end
+
+	local adapter = chat.adapter.formatted_name
+	local model = chat.settings.model
+
+	local status = { "㋶", adapter, "%#StatusLine#", model }
+	if _G.codecompanion.is_processing then
+		table.insert(status, spinner_frames[_G.codecompanion.spinner_frame])
+		update_spinner()
+	end
+
+	return table.concat(status, " ")
 end
+
+-- Optionally, you can set up a timer to update the spinner frame periodically
+vim.api.nvim_create_autocmd("CursorHold", {
+	callback = function()
+		if _G.codecompanion.is_processing then
+			update_spinner()
+			vim.cmd("redrawstatus")
+		end
+	end,
+})
 
 -- Construct the statusline (default)
 function _G.status_line()
@@ -296,8 +328,8 @@ function _G.status_line()
 		hl,
 		c_mode(),
 		c_filename(),
-		c_search_count(),
 		c_codecompanion(),
+		c_search_count(),
 		"%=",
 		c_lsp_progress(),
 		"%=",
