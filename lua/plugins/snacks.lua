@@ -14,11 +14,6 @@ return {
 			snacks.words.jump(1, true)
 		end
 
-		local search_word = function()
-			local word = vim.fn.expand("<cword>")
-			snacks.picker.grep({ search = word })
-		end
-
 		local dirs_to_exclude_from_search = {
 			".git",
 			".requests",
@@ -26,6 +21,10 @@ return {
 			"__data__",
 			"node_modules",
 		}
+
+		local search_workspace = function()
+			snacks.picker.grep({ search = vim.fn.expand("<cword>") })
+		end
 
 		local search_directory = function()
 			local conditions = {}
@@ -48,14 +47,13 @@ return {
 					return item
 				end,
 			}, function(choice)
-				snacks.picker.grep({ dirs = { choice } })
+				snacks.picker.grep({ search = vim.fn.expand("<cword>"), dirs = { choice } })
 			end)
 		end
 
 		local mappings = {
 			{ "<leader><leader>", snacks.picker.files, "Search: Files" },
-			{ "<leader>ff", snacks.picker.grep, "Search: Workspace" },
-			{ "<leader>fw", search_word, "Search: Word under cursor" },
+			{ "<leader>ff", search_workspace, "Search: Workspace" },
 			{ "<leader>fd", search_directory, "Search: Directory" },
 			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
 			{ "<leader>j", snacks.picker.jumps, "Search: Jumplist" },
