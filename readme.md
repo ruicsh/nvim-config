@@ -33,7 +33,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - [csvview.nvim](https://github.com/hat0uma/csvview.nvim) - CSV editing
 - [flash.nvim](https://github.com/folke/flash.nvim) - Navigate with labels
-- [mini.ai](https://github.com/echasnovski/mini.ai) - a/i textobjects
+- [mini.ai](https://github.com/echasnovski/mini.ai) - around/inside textobjects
 - [mini.move](https://github.com/echasnovski/mini.move) - move lines/selection
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround pairs
@@ -55,7 +55,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - [lazydev.nvim](https://github.com/folke/trouble.nvim) - Lua language server
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
-- [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - Text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - Fast navigation around the AST tree
@@ -219,6 +218,7 @@ Random features added.
 - `f` function
 - `h` git hunk
 - `q` quotes ("", '', ``)
+- `t` tags
 
 #### Operators
 
@@ -284,10 +284,6 @@ Random features added.
 - `<c-s-l>` swap with lateral next node
 - `<c-s-k>` swap with vertical previous node
 - `<c-s-j>` swap with vertical next node
-- `[a` jump to previous argument start
-- `]a` jump to next argument start
-- `[f` jump to previous function start
-- `]f` jump to next function start
 
 #### LSP
 

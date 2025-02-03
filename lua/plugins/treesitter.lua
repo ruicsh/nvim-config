@@ -46,42 +46,6 @@ return {
 		indent = {
 			enable = true,
 		},
-		textobjects = {
-			select = {
-				enable = true,
-				lookahead = true,
-				keymaps = {
-					["af"] = {
-						query = "@function.outer",
-						desc = "Syntax: Select [a] [f]unction",
-					},
-					["if"] = {
-						query = "@function.inner",
-						desc = "Syntax: Select [i]nner [f]unction",
-					},
-					["aa"] = {
-						query = "@paramenter.outer",
-						desc = "Syntax: Select [a] [a]rgument",
-					},
-					["ia"] = {
-						query = "@paramenter.inner",
-						desc = "Syntax: Select [i]nner [a]rgument",
-					},
-				},
-			},
-			move = {
-				enable = true,
-				set_jumps = false,
-				goto_previous_start = {
-					["[f"] = { query = "@function.outer", desc = "Syntax: Previous [f]unction" },
-					["[a"] = { query = "@parameter.inner", desc = "Syntax: Previous [a]rgument" },
-				},
-				goto_next_start = {
-					["]f"] = { query = "@function.outer", desc = "Syntax: Next [f]unction" },
-					["]a"] = { query = "@parameter.inner", desc = "Syntax: Next [a]rgument" },
-				},
-			},
-		},
 		incremental_selection = {
 			enable = true,
 			keymaps = {
@@ -95,11 +59,4 @@ return {
 
 	main = "nvim-treesitter.configs",
 	build = ":TSUpdate",
-	dependencies = {
-		{
-			-- Syntax aware text objects.
-			-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-	},
 }
