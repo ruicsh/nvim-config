@@ -112,7 +112,7 @@ local function c_filename()
 			line = line .. " " .. path:sub(#cwd + 3)
 		else
 			-- show only parent/filename
-			line = line .. " " .. vim.fs.getshortpath(path)
+			line = line .. " " .. vim.fs.get_short_path(path)
 		end
 	end
 

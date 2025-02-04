@@ -34,7 +34,7 @@ return {
 				opts = vim.tbl_extend("force", { buffer = bufnr, silent = true }, opts or {})
 				local modes = type(mode) == "table" and mode or { mode }
 				for _, m in ipairs(modes) do
-					if not vim.fn.iskeymapset(m, l) then
+					if not vim.fn.is_keymap_set(m, l) then
 						vim.keymap.set(m, l, r, opts)
 					end
 				end

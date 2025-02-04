@@ -29,7 +29,7 @@ return {
 			})
 		end
 
-		return vim.fn.getlazykeysconf(keymaps, "AST")
+		return vim.fn.get_lazy_keys_conf(keymaps, "AST")
 	end,
 
 	event = { "BufRead", "BufNewFile" },

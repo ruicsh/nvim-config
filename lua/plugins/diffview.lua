@@ -8,7 +8,7 @@ return {
 			{ "<leader>hg", ":DiffviewOpen<cr>", "Open diffview" },
 			{ "<leader>hj", ":DiffviewFileHistory<cr>", "Log" },
 		}
-		return vim.fn.getlazykeysconf(mappings, "Git")
+		return vim.fn.get_lazy_keys_conf(mappings, "Git")
 	end,
 	config = function()
 		local diffview = require("diffview")

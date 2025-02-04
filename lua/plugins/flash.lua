@@ -9,7 +9,7 @@ return {
 			{ "s", flash.jump, "Jump", { mode = { "n", "o", "x" } } },
 			{ "<leader>v", flash.treesitter, "Treesitter", { mode = "n" } },
 		}
-		return vim.fn.getlazykeysconf(mappings, "Flash")
+		return vim.fn.get_lazy_keys_conf(mappings, "Flash")
 	end,
 	opts = {
 		highlight = {

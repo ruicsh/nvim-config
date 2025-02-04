@@ -19,7 +19,7 @@ return {
 			{ "b", motion("b"), "back word", opts },
 			{ "ge", motion("ge"), "back end of word", opts },
 		}
-		return vim.fn.getlazykeysconf(mappings, "Spider")
+		return vim.fn.get_lazy_keys_conf(mappings, "Spider")
 	end,
 
 	event = { "VeryLazy" },

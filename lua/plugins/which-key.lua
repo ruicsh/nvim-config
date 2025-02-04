@@ -11,7 +11,7 @@ return {
 		local mappings = {
 			{ "<leader>?", show_local_keymaps, "Buffer local keymaps" },
 		}
-		return vim.fn.getlazykeysconf(mappings, "WhichKey")
+		return vim.fn.get_lazy_keys_conf(mappings, "WhichKey")
 	end,
 	opts = {
 		preset = "modern",

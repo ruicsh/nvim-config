@@ -1,5 +1,5 @@
 -- Show only the last two segments of a path (parent/filename)
-vim.fs.getshortpath = function(path)
+vim.fs.get_short_path = function(path)
 	local path_separator = "/"
 	local segments = vim.split(path, path_separator)
 
@@ -13,6 +13,6 @@ vim.fs.getshortpath = function(path)
 end
 
 -- Show the path relative to the current working directory
-vim.fs.getrelativepath = function(filename)
+vim.fs.get_relative_path = function(filename)
 	return vim.fn.fnamemodify(filename, ":~:.")
 end

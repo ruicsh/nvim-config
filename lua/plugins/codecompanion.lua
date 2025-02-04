@@ -18,7 +18,7 @@ return {
 			{ "<c-a>", ":CodeCompanionChat Toggle<cr>", "Chat", { mode = { "n", "v" } } },
 			{ "ga", ":CodeCompanionChat Add<cr>", "Add", { mode = { "v" } } },
 		}
-		return vim.fn.getlazykeysconf(mappings, "AI")
+		return vim.fn.get_lazy_keys_conf(mappings, "AI")
 	end,
 	opts = {
 		adapters = {

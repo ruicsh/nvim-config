@@ -92,7 +92,7 @@ local function get_max_fname_len(items, info)
 		local fname = ""
 		if entry.bufnr > 0 then
 			fname = vim.fn.bufname(entry.bufnr)
-			fname = vim.fs.getshortpath(fname)
+			fname = vim.fs.get_short_path(fname)
 		end
 		max_fname_len = math.max(max_fname_len, #fname)
 	end
@@ -114,7 +114,7 @@ function _G.quickfixtextfunc(info)
 			local fname = ""
 			if entry.bufnr > 0 then
 				fname = vim.fn.bufname(entry.bufnr)
-				fname = vim.fs.getshortpath(fname)
+				fname = vim.fs.get_short_path(fname)
 			end
 
 			local linenr = entry.lnum > 99999 and -1 or entry.lnum

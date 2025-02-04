@@ -18,7 +18,7 @@ return {
 			{ "[r", jump_to_previous_reference, "LSP: Jump to previous reference" },
 			{ "]r", jump_to_next_reference, "LSP: Jump to next reference" },
 		}
-		return vim.fn.getlazykeysconf(mappings)
+		return vim.fn.get_lazy_keys_conf(mappings)
 	end)(),
 	opts = {
 		words = {

@@ -38,7 +38,7 @@ return {
 			{ "<leader>glt", insert_time_log("surround"), "Timestamp above/below" },
 		}
 
-		return vim.fn.getlazykeysconf(mappings, "Logs")
+		return vim.fn.get_lazy_keys_conf(mappings, "Logs")
 	end,
 	opts = {
 		keymaps = {

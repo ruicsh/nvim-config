@@ -50,7 +50,7 @@ local function open_preview()
 	vim.api.nvim_win_set_cursor(0, { lnum, 0 }) -- Move to the specific line
 	vim.cmd("normal! zz") -- Center the line in the preview window
 
-	local title = string.format("[ %d/%d ] %s", line, qf.size, vim.fs.getrelativepath(file))
+	local title = string.format("[ %d/%d ] %s", line, qf.size, vim.fs.get_relative_path(file))
 	vim.api.nvim_win_set_config(preview_winid, {
 		title = title,
 	})

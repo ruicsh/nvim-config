@@ -1,5 +1,5 @@
 -- Finds the root dir for the current git repo
-vim.fn.getgitroot = function()
+vim.fn.get_git_root = function()
 	-- git submodules have a file named .git, not a dir named .git
 	local dot_git_file = vim.fn.findfile(".git", ".;")
 	local dot_git_filedir = string.len(dot_git_file) ~= 0 and vim.fn.fnamemodify(dot_git_file, ":h") or false
@@ -26,7 +26,7 @@ vim.fn.getgitroot = function()
 end
 
 -- Takes a table of keys, returns a keymaps lazy config
-vim.fn.getlazykeysconf = function(mappings, desc_prefix)
+vim.fn.get_lazy_keys_conf = function(mappings, desc_prefix)
 	return vim.tbl_map(function(mapping)
 		local lhs = mapping[1]
 		local rhs = mapping[2]
@@ -39,7 +39,7 @@ vim.fn.getlazykeysconf = function(mappings, desc_prefix)
 end
 
 -- Check if a keymap is set
-vim.fn.iskeymapset = function(mode, lhs)
+vim.fn.is_keymap_set = function(mode, lhs)
 	local keymaps = vim.api.nvim_get_keymap(mode)
 	for _, keymap in ipairs(keymaps) do
 		if keymap.lhs == lhs then
@@ -50,7 +50,7 @@ vim.fn.iskeymapset = function(mode, lhs)
 end
 
 -- Check if a diff window is open
-vim.fn.isdiffopen = function()
+vim.fn.is_diff_open = function()
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
 		if vim.api.nvim_get_option_value("diff", { win = win }) then
 			return true

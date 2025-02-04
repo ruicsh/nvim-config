@@ -58,7 +58,7 @@ return {
 			{ "<leader>nk", snacks.picker.keymaps, "Search: Keymaps" },
 			{ "<leader>no", snacks.notifier.show_history, "Notifications: Show history" },
 		}
-		return vim.fn.getlazykeysconf(mappings)
+		return vim.fn.get_lazy_keys_conf(mappings)
 	end)(),
 	opts = {
 		picker = {
