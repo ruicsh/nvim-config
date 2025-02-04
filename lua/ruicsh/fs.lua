@@ -1,6 +1,6 @@
 -- Show only the last two segments of a path (parent/filename)
 vim.fs.get_short_path = function(path)
-	local path_separator = "/"
+	local path_separator = path:find("\\") and "\\" or "/"
 	local segments = vim.split(path, path_separator)
 
 	if #segments == 0 then
