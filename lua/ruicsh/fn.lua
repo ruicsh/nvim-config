@@ -57,3 +57,7 @@ vim.fn.isdiffopen = function()
 		end
 	end
 end
+
+vim.fn.is_windows = function()
+	return vim.fn.has("win32") == 1
+end
