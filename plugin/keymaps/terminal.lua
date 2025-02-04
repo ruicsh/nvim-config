@@ -11,7 +11,7 @@ k("§", function()
 end, {})
 
 -- Toggle terminal open/close
-k("<c-;>", function()
+k("<c-\\>", function()
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<c-\\><c-n>", true, true, true), "n", true)
 	vim.cmd("ToggleTerminal")
 end, { desc = "Toggle terminal" })
