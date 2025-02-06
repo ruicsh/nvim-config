@@ -16,3 +16,16 @@ end
 vim.fs.get_relative_path = function(filename)
 	return vim.fn.fnamemodify(filename, ":~:.")
 end
+
+-- Read the contents of a file
+vim.fs.read_file = function(filename)
+	local file = io.open(filename, "r")
+	if not file then
+		return nil
+	end
+
+	local content = file:read("*all")
+	file:close()
+
+	return content
+end

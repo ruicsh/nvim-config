@@ -1,6 +1,12 @@
 -- AI chat and inline assistant.
 -- https://codecompanion.olimorris.dev/
 
+local function read_prompt_file(basename)
+	local config_path = vim.fn.stdpath("config")
+	local file_path = config_path .. "/prompts/" .. basename .. ".txt"
+	return vim.fs.read_file(file_path)
+end
+
 return {
 	"olimorris/codecompanion.nvim",
 	keys = function()
@@ -18,6 +24,7 @@ return {
 			{ "<c-a>", ":CodeCompanionChat Toggle<cr>", "Chat", { mode = { "n", "v" } } },
 			{ "ga", ":CodeCompanionChat Add<cr>", "Add", { mode = { "v" } } },
 		}
+
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
 	end,
 	opts = {
@@ -52,6 +59,7 @@ return {
 				separator = "──",
 				show_header_separator = true,
 				show_references = true,
+				start_in_insert_mode = true,
 				window = {
 					layout = "buffer",
 					opts = {
@@ -69,7 +77,11 @@ return {
 				roles = {
 					user = "Me",
 					llm = function(adapter)
-						return adapter.formatted_name .. " ㋶"
+						return string.format(
+							"㋶ %s%s",
+							adapter.formatted_name,
+							adapter.schema.model.default and " (" .. adapter.schema.model.default .. ")" or ""
+						)
 					end,
 				},
 				keymaps = {
@@ -89,6 +101,41 @@ return {
 				adapter = "copilot",
 			},
 		},
+		prompt_library = (function()
+			local dev_prompts = {
+				{
+					short_name = "dev-angular",
+					description = "Ask a Angular expert",
+				},
+				{
+					short_name = "dev-react",
+					description = "Ask a React expert",
+				},
+			}
+
+			local config = {}
+			for _, prompt in ipairs(dev_prompts) do
+				config[prompt.short_name] = {
+					strategy = "chat",
+					description = prompt.description,
+					opts = {
+						is_slash_cmd = true,
+						short_name = prompt.short_name,
+					},
+					prompts = {
+						{
+							role = "system",
+							content = read_prompt_file(prompt.short_name),
+						},
+						{
+							role = "user",
+							content = "",
+						},
+					},
+				}
+			end
+			return config
+		end)(),
 	},
 	config = function(_, opts)
 		local cc = require("codecompanion")
@@ -106,5 +153,6 @@ return {
 	dependencies = {
 		{ "nvim-lua/plenary.nvim", branch = "master" },
 		"nvim-treesitter/nvim-treesitter",
+		{ "hrsh7th/nvim-cmp" },
 	},
 }
