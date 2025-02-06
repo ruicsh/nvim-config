@@ -31,14 +31,19 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "*",
 	callback = function()
 		local folds = list_folds()
+		local fold_file = get_fold_file()
 		if #folds > 0 then
-			local fold_file = get_fold_file()
 			local file = io.open(fold_dir .. "/" .. fold_file, "w")
 			if file then
 				for _, ln in ipairs(folds) do
 					file:write(ln .. " foldclose\n")
 				end
 				file:close()
+			end
+		elseif #folds == 0 then
+			-- delete the file if it exists
+			if vim.fn.filereadable(fold_dir .. "/" .. fold_file) == 1 then
+				vim.fn.delete(fold_dir .. "/" .. fold_file)
 			end
 		end
 	end,
