@@ -141,6 +141,16 @@ return {
 					short_name = "dev-microbit",
 					description = "Ask a micro:bit expert",
 				},
+				{
+					short_name = "dev-vim",
+					description = "Ask a vim/neovim expert",
+					references = {
+						{
+							type = "url",
+							content = "https://github.com/ruicsh/nvim-config",
+						},
+					},
+				},
 			}
 
 			local config = {}
@@ -162,6 +172,7 @@ return {
 							content = "",
 						},
 					},
+					references = prompt.references or {},
 				}
 			end
 			return config
