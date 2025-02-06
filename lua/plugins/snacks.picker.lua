@@ -32,7 +32,7 @@ local search_directory = function()
 	local cmd = "find . -type d \\( " .. exclude .. " \\) -prune -o -type d -print | sort"
 	local dirs = vim.fn.systemlist(cmd)
 
-	snacks.picker.select(dirs, {
+	vim.ui.select(dirs, {
 		prompt = "Select a directory",
 		format_item = function(item)
 			return item
