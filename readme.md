@@ -258,11 +258,6 @@ Random features added.
 - `<c-p>` previous suggestion
 - `<c-]>` dismiss suggestions
 
-### Snippets
-
-- `<tab>` jump to next placeholder
-- `<s-tab>` jump to previous placeholder
-
 #### Logging
 
 - `glv` insert variable log below
@@ -270,6 +265,9 @@ Random features added.
 - `glp` insert statement log below
 - `glP` insert statement log above
 - `glb` insert batch log below
+- `glt` insert timestamp below
+- `glT` insert timestamp below
+- `<leader>glt` insert timestamp above/below
 
 #### Syntax (AST)
 
