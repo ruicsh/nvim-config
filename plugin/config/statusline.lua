@@ -354,5 +354,3 @@ function _G.status_line_qf()
 		c_tabs(),
 	}, " ")
 end
-
-vim.o.statusline = "%!v:lua._G.status_line()"

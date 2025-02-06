@@ -38,6 +38,7 @@ o.termguicolors = true -- Enable true colors.
 o.laststatus = 3 -- Always show global statusline.
 o.splitbelow = true -- Open a new horizontal split below.
 o.splitright = true -- Open a new vertical split to the right.
+o.statusline = "%!v:lua._G.status_line()" -- statusline format
 -- }}}
 
 -- 7 multiple tab pages {{{
@@ -85,7 +86,7 @@ o.pumblend = 5 -- Transparent completion menu background.
 o.pumheight = 15 -- Maximum height of popup menu.
 o.showmatch = false -- Do not jump to matching brackets.
 o.undofile = true -- Automatically save and restore undo history.
--- }}
+-- }}}
 
 -- 13 tabs and editing {{{
 o.expandtab = true -- In insert mode, use the correct number of spaces to insert a tab.
@@ -101,6 +102,7 @@ o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding.
 o.foldlevel = 99 -- How many folds to close.
 o.foldlevelstart = 99 -- Start with all folds open.
 o.foldmethod = "expr" -- Use expr to determine fold level.
+o.foldtext = "v:lua.custom_fold_text()" -- What to display on fold
 -- }}}
 
 -- 15 diff mode {{{
