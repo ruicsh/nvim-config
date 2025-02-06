@@ -40,7 +40,10 @@ return {
 				return require("codecompanion.adapters").extend("copilot", {
 					schema = {
 						model = {
-							default = "gpt-4o-2024-08-06",
+							default = "o3-mini-2025-01-31",
+						},
+						max_tokens = {
+							default = 8192,
 						},
 					},
 				})
@@ -75,7 +78,7 @@ return {
 			chat = {
 				adapter = "copilot",
 				roles = {
-					user = "Me",
+					user = "ruic",
 					llm = function(adapter)
 						return string.format(
 							"㋶ %s%s",
@@ -93,6 +96,29 @@ return {
 					next_chat = {
 						modes = {
 							n = "<s-tab>",
+						},
+					},
+				},
+				slash_commands = {
+					["buffer"] = {
+						opts = {
+							provider = "snacks",
+						},
+					},
+					["help"] = {
+						opts = {
+							provider = "snacks",
+							max_lines = 1000,
+						},
+					},
+					["file"] = {
+						opts = {
+							provider = "snacks",
+						},
+					},
+					["symbols"] = {
+						opts = {
+							provider = "snacks",
 						},
 					},
 				},
