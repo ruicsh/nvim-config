@@ -17,4 +17,6 @@ return {
 			prefix = "<leader>s",
 		},
 	},
+
+	event = { "BufReadPre", "BufNewFile" },
 }

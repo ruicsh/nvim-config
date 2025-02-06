@@ -27,5 +27,5 @@ return {
 		}
 	end,
 
-	event = { "VeryLazy" },
+	event = { "BufReadPre", "BufNewFile" },
 }

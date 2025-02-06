@@ -20,5 +20,5 @@ return {
 		yank = { suffix = "y" },
 	},
 
-	event = { "VeryLazy" },
+	event = { "BufReadPre", "BufNewFile" },
 }

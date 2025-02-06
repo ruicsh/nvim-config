@@ -15,5 +15,5 @@ return {
 		},
 	},
 
-	event = { "VeryLazy" },
+	event = { "InsertEnter" },
 }
