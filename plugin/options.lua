@@ -2,15 +2,16 @@
 
 local o = vim.opt
 
--- 2 moving around, searching and patterns
+-- 2 moving around, searching and patterns {{{
 o.jumpoptions = { "stack" } -- https://www.reddit.com/r/neovim/comments/16nead7/comment/k1e1nj5/?context=3
 o.ignorecase = true -- Ignore case on search patterns.
 o.inccommand = "nosplit" -- Show live preview of substitution.
 o.path:append("**") -- Enable searching for files on subdirectories.
 o.smartcase = true -- Use case sensitive if keyword contains capital letters.
 o.startofline = true -- Move cursor to the first non-blank character.
+-- }}}
 
--- 4 displaying text
+-- 4 displaying text {{{
 o.cmdheight = 1 -- Show command line on 1 line.
 o.fillchars = {
 	eob = " ", -- End of buffer marker.
@@ -26,29 +27,35 @@ o.relativenumber = true -- Show relative line numbers.
 o.scrolloff = 6 -- Number of lines to keep up/down of the cursor.
 o.sidescrolloff = 10 -- Number of columns to keep left/right of the cursor.
 o.wrap = false -- Do not automatically wrap texts.
+-- }}}
 
--- 5 syntax, highlighting and spelling
+-- 5 syntax, highlighting and spelling {{{
 o.cursorline = true -- Highlight current line.
 o.termguicolors = true -- Enable true colors.
+-- }}}
 
--- 6 multiple windows
+-- 6 multiple windows {{{
 o.laststatus = 3 -- Always show global statusline.
 o.splitbelow = true -- Open a new horizontal split below.
 o.splitright = true -- Open a new vertical split to the right.
+-- }}}
 
--- 7 multiple tab pages
+-- 7 multiple tab pages {{{
 o.showtabline = 0 -- Never show tabline (tabs are shown on the statusline).
+-- }}}
 
--- 8 terminal
+-- 8 terminal {{{
 o.title = true -- Show info in the window title
 o.titlelen = 0 -- No limit on title length
 o.titlestring = "%f" -- Show relative path in terminal title
+-- }}}
 
--- 9 using the mouse
+-- 9 using the mouse {{{
 o.mouse = "nic" -- Don't enable mouse on Visual mode.
 o.mousescroll = "ver:1,hor:0" -- Disable horizonal scroll.
+-- }}}
 
--- 10 messages and info
+-- 10 messages and info {{{
 o.belloff = "all" -- Do not ring the bell for any event.
 o.report = 9999 -- Don't report number of changed lines.
 o.ruler = false -- Do not show the line and column number of the cursor position.
@@ -65,51 +72,63 @@ o.shortmess:append({ -- Don't show messages:
 })
 o.showcmd = false -- Do not show command on last line.
 o.showmode = false -- Do not show mode on last line.
+-- }}}
 
--- 11 selecting text
+-- 11 selecting text {{{
 o.clipboard = "unnamedplus" -- Use system clipboard.
+-- }}}
 
--- 12 editing text
+-- 12 editing text {{{
 o.complete = "" -- Disable native autocompletion (using nvim-cmp).
 o.completeopt = "" -- Disable native autocompletion (using nvim-cmp).
 o.pumblend = 5 -- Transparent completion menu background.
 o.pumheight = 15 -- Maximum height of popup menu.
 o.showmatch = false -- Do not jump to matching brackets.
 o.undofile = true -- Automatically save and restore undo history.
+-- }}
 
--- 13 tabs and editing
+-- 13 tabs and editing {{{
 o.expandtab = true -- In insert mode, use the correct number of spaces to insert a tab.
 o.shiftwidth = 2 -- Number of spaces to use for each step of (auto)indent.
 o.smartindent = true -- Smart indent.
 o.softtabstop = 2 -- Number of spaces that a <Tab> key in the file counts for.
 o.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for.
+-- }}}
 
--- 14 folding
+-- 14 folding {{{
 o.foldcolumn = "1" -- Show folding signs.
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding.
 o.foldlevel = 99 -- How many folds to close.
 o.foldlevelstart = 99 -- Start with all folds open.
 o.foldmethod = "expr" -- Use expr to determine fold level.
+-- }}}
 
--- 16 mapping
+-- 15 diff mode {{{
+o.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60"
+-- }}}
 
+-- 16 mapping {{{
 o.timeout = true -- Wait for mapped key sequence to be received
 o.timeoutlen = 350 -- Don't wait 1sec for a possible new key
+-- }}}
 
--- 17 reading and writing files
+-- 17 reading and writing files {{{
 o.backup = false -- Do not create backup files.
+-- }}}
 
--- 18 the swap file
+-- 18 the swap file {{{
 o.swapfile = false -- Stop creating swp files.
 o.updatetime = 250 -- Time in milliseconds to wait for CursorHold event.
+-- }}}
 
--- 19 command line editing
+-- 19 command line editing {{{
 o.wildignore:append({ -- Ignore on file name completion.
 	".DS_store",
 	"**/node_modules/**",
 })
+-- }}}
 
--- 24 various
+-- 24 various {{{
 o.gdefault = true -- Use g flag for ":substitute".
 o.shada = {
 	'"50', -- Max number of lines saved for each register.
@@ -131,3 +150,4 @@ o.shadafile = (function() -- Per project shadafile
 	return file
 end)()
 o.signcolumn = "yes" -- Always showed to prevent the screen from jumping.
+-- }}}

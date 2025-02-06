@@ -66,3 +66,11 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		end
 	end,
 })
+
+-- Some files have special folding rules
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = "plugin/options.lua",
+	callback = function()
+		vim.opt_local.foldmethod = "marker" -- use {{{-}}} to create folds
+	end,
+})
