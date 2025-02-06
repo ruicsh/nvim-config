@@ -117,6 +117,7 @@ New features built around autocmds (events).
 | [last-location](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/last-location.lua)                         | Jump to last location when opening a file                             |
 | [lsp-progress](https://github.com/ruicsh/nvim-config/blog/main/plugin/autocmds/lsp-progress.lua)                           | Show LSP installation progress                                        |
 | [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)               | If neovim is opened with a directory as argument open oil-filemanager |
+| [folds](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/folds.lua)                                         | Save and restore folds for each buffer                                |
 | [restore-changed-files](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/restore-changed-files.lua)         | On VimEnter, open all git changed files in current working directory  |
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                             | Keep buffers in tabs scoped to the tab they were opened in            |
 | [toggle-hlsearch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/toggle-hlsearch.lua)                     | Toogle off hlsearch when entering insert mode and the cursor is moved |

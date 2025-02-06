@@ -111,7 +111,6 @@ o.wildignore:append({ -- Ignore on file name completion.
 
 -- 24 various
 o.gdefault = true -- Use g flag for ":substitute".
-o.signcolumn = "yes" -- Always showed to prevent the screen from jumping.
 o.shada = {
 	'"50', -- Max number of lines saved for each register.
 	"'50", -- Remember marks for the last 10 edited files.
@@ -131,3 +130,4 @@ o.shadafile = (function() -- Per project shadafile
 	vim.fn.mkdir(vim.fs.dirname(file), "p")
 	return file
 end)()
+o.signcolumn = "yes" -- Always showed to prevent the screen from jumping.
