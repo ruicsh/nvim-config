@@ -137,6 +137,10 @@ return {
 					short_name = "dev-react",
 					description = "Ask a React expert",
 				},
+				{
+					short_name = "dev-microbit",
+					description = "Ask a micro:bit expert",
+				},
 			}
 
 			local config = {}
