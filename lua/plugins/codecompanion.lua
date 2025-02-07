@@ -137,6 +137,10 @@ return {
 					description = "Ask a Angular expert",
 				},
 				{
+					short_name = "dev-js",
+					description = "Ask a JavaScript expert",
+				},
+				{
 					short_name = "dev-microbit",
 					description = "Ask a micro:bit expert",
 				},
