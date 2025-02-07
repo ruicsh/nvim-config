@@ -149,7 +149,7 @@ return {
 					description = "Ask a React expert",
 				},
 				{
-					short_name = "dev-typescript",
+					short_name = "dev-ts",
 					description = "Ask a TypeScript expert",
 				},
 				{
