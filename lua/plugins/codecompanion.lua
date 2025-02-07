@@ -22,7 +22,7 @@ return {
 			{ "<leader>ae", switch_window("CodeCompanion /explain"), "Explain", { mode = { "v" } } },
 			{ "<leader>ac", ":CodeCompanionActions<cr>", "Actions", { mode = { "n", "v" } } },
 			{ "<c-a>", ":CodeCompanionChat Toggle<cr>", "Chat", { mode = { "n", "v" } } },
-			{ "ga", ":CodeCompanionChat Add<cr>", "Add", { mode = { "v" } } },
+			{ "ga", switch_window("CodeCompanionChat Add"), "Add", { mode = { "v" } } },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
@@ -40,7 +40,10 @@ return {
 				return require("codecompanion.adapters").extend("copilot", {
 					schema = {
 						model = {
-							default = "o3-mini-2025-01-31",
+							-- default = "claude-3.5-sonnet",
+							-- default = "o3-mini-2025-01-31",
+							default = "gemini-2.0-flash-001",
+							-- default = "gpt-4o-2024-08-06",
 						},
 						max_tokens = {
 							default = 8192,
@@ -134,12 +137,16 @@ return {
 					description = "Ask a Angular expert",
 				},
 				{
+					short_name = "dev-microbit",
+					description = "Ask a micro:bit expert",
+				},
+				{
 					short_name = "dev-react",
 					description = "Ask a React expert",
 				},
 				{
-					short_name = "dev-microbit",
-					description = "Ask a micro:bit expert",
+					short_name = "dev-typescript",
+					description = "Ask a TypeScript expert",
 				},
 				{
 					short_name = "dev-vim",
