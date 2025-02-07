@@ -129,6 +129,11 @@ return {
 			},
 		})
 
+		-- Disable diagnostics if env var is set
+		if vim.fn.getenv("DISABLE_LSP_DIAGNOSTICS") == "true" then
+			vim.diagnostic.enable(false)
+		end
+
 		-- LSP servers
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
