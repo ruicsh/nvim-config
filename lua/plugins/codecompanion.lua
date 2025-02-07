@@ -1,19 +1,36 @@
 -- AI chat and inline assistant.
 -- https://codecompanion.olimorris.dev/
 
+local augroup = vim.api.nvim_create_augroup("ruicsh/plugins/codecompanion", { clear = true })
+
 local function read_prompt_file(basename)
 	local config_path = vim.fn.stdpath("config")
 	local file_path = config_path .. "/prompts/" .. basename .. ".txt"
 	return vim.fs.read_file(file_path)
 end
 
+vim.api.nvim_create_autocmd({ "User" }, {
+	pattern = "CodeCompanion*",
+	group = augroup,
+	callback = function(request)
+		if request.match == "CodeCompanionChatHidden" or request.match == "CodeCompanionChatClosed" then
+			-- Restore the current window, that was maximized before opening the chat
+			vim.cmd("WindowToggleMaximize")
+		elseif request.match == "CodeCompanionInlineFinished" then
+			-- Format the buffer after the inline request has completed
+			require("conform").format({ bufnr = request.buf })
+		end
+	end,
+})
+
 return {
 	"olimorris/codecompanion.nvim",
 	keys = function()
 		local function switch_window(cmd)
 			return function()
-				vim.cmd.wincmd("w")
-				vim.cmd(cmd)
+				vim.cmd("WindowToggleMaximize") -- maximize the current window
+				vim.cmd("vsplit") -- open a vertical split
+				vim.cmd(cmd) -- issue the CodeCompanion command
 			end
 		end
 
@@ -21,7 +38,6 @@ return {
 			{ "<leader>aa", switch_window("CodeCompanionChat"), "Chat", { mode = { "n", "v" } } },
 			{ "<leader>ae", switch_window("CodeCompanion /explain"), "Explain", { mode = { "v" } } },
 			{ "<leader>ac", ":CodeCompanionActions<cr>", "Actions", { mode = { "n", "v" } } },
-			{ "<c-a>", ":CodeCompanionChat Toggle<cr>", "Chat", { mode = { "n", "v" } } },
 			{ "ga", switch_window("CodeCompanionChat Add"), "Add", { mode = { "v" } } },
 		}
 
@@ -76,6 +92,13 @@ return {
 					},
 				},
 			},
+			diff = {
+				enabled = true,
+				close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
+				layout = "horizontal", -- vertical|horizontal split for default provider
+				opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
+				provider = "mini_diff", -- default|mini_diff
+			},
 		},
 		strategies = {
 			chat = {
@@ -92,14 +115,10 @@ return {
 				},
 				keymaps = {
 					previous_chat = {
-						modes = {
-							n = "<tab>",
-						},
+						modes = { n = "<tab>" },
 					},
 					next_chat = {
-						modes = {
-							n = "<s-tab>",
-						},
+						modes = { n = "<s-tab>" },
 					},
 				},
 				slash_commands = {
