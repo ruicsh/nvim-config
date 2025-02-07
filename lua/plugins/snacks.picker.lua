@@ -1,4 +1,4 @@
--- Pickesrs.
+-- Pickers.
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 
 local dirs_to_exclude_from_search = {
@@ -56,6 +56,7 @@ return {
 			{ "<leader>nh", snacks.picker.help, "Search: Help" },
 			{ "<leader>nc", snacks.picker.commands, "Search: Commands" },
 			{ "<leader>nk", snacks.picker.keymaps, "Search: Keymaps" },
+			{ "<leader>uu", snacks.picker.undo, "Undo: Tree" },
 			{ "<leader>no", snacks.notifier.show_history, "Notifications: Show history" },
 		}
 		return vim.fn.get_lazy_keys_conf(mappings)
