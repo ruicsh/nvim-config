@@ -1,5 +1,7 @@
 -- Save and restore folds for each buffer
 
+local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/folds", { clear = true })
+
 -- Create a directory to store fold information
 local fold_dir = vim.fn.stdpath("data") .. "/folds"
 if vim.fn.isdirectory(fold_dir) == 0 then
@@ -28,6 +30,7 @@ end
 
 -- Save folds when closing a buffer
 vim.api.nvim_create_autocmd("BufWritePost", {
+	group = augroup,
 	pattern = "*",
 	callback = function()
 		local folds = list_folds()
@@ -51,6 +54,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 -- Restore folds when reading a buffer
 vim.api.nvim_create_autocmd("BufWinEnter", {
+	group = augroup,
 	pattern = "*",
 	callback = function()
 		local fold_file = get_fold_file()
@@ -74,6 +78,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 -- Some files have special folding rules
 vim.api.nvim_create_autocmd("BufReadPost", {
+	group = augroup,
 	pattern = "*/plugin/options.lua",
 	callback = function()
 		vim.opt_local.foldmethod = "marker" -- use {{{-}}} to create folds
