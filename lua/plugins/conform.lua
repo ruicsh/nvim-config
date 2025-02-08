@@ -13,6 +13,7 @@ return {
 			json = { "prettier" },
 			lua = { "stylua" },
 			markdown = { "prettierd" },
+			rust = { "rustfmt" },
 			scss = { "prettier" },
 			typescript = { "prettier" },
 			typescriptreact = { "prettier" },
@@ -33,8 +34,6 @@ return {
 	init = function()
 		-- Use conform for gq.
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-		-- Start auto-formatting by default (and disable with my ToggleFormat command).
-		vim.g.format_on_save = true
 	end,
 
 	event = { "BufWritePre" },
