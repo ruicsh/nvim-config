@@ -68,7 +68,8 @@ k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle", silent = true })
 k("ycc", "yy:normal gcc<cr>p") -- Duplicate a line and comment out the first line.
 k("J", "mzJ`z:delmarks z<cr>", { silent = true }) -- Keep cursor in place when joining lines
 k("<leader>w", ":silent! write<cr>", { silent = true, desc = "Save file" }) -- Save changes
-k("zk", "zk%^") -- Jump to start of previous fold.
+k("[z", "zk%^") -- Jump to start of previous fold.
+k("]z", "zj") -- Jump to start of next fold.
 
 k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
 -- k("<bs>", "<c-T>", { desc = "", unique = false, silent = false })

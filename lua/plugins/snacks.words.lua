@@ -4,14 +4,14 @@
 return {
 	"folke/snacks.nvim",
 	keys = (function()
-		local snacks = require("snacks")
+		local words = require("snacks.words")
 
 		local function jump_to_previous_reference()
-			snacks.words.jump(-1, true)
+			words.jump(-1, true)
 		end
 
 		local function jump_to_next_reference()
-			snacks.words.jump(1, true)
+			words.jump(1, true)
 		end
 
 		local mappings = {

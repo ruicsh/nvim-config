@@ -370,6 +370,8 @@ Random features added.
 
 #### Folds
 
+- `[z` jump to previous fold
+- `]z` jump to next fold
 - `zr` decrement foldlevel
 - `zm` increment foldlevel
 - `zR` decrement foldlevel to zero
@@ -380,9 +382,6 @@ Random features added.
 - `zC` close current fold recursively
 - `za` toggle fold
 - `zA` toggle fold recursively
-- `[z` jump to parent fold
-- `zk` jump to previous fold
-- `zj` jump to next fold
 
 #### Application
 
