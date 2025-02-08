@@ -1,21 +1,21 @@
--- LSP config
--- https://github.com/neovim/nvim-lspconfig
+-- Install LSP servers
+-- https://github.com/williamboman/mason.nvim
 
 local lspconf = require("config/lsp")
 
 return {
-	"neovim/nvim-lspconfig",
+	"williamboman/mason.nvim",
 	config = function()
-		-- LSP servers
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 		require("mason").setup()
 
 		require("mason-tool-installer").setup({
 			run_on_start = true,
 			ensure_installed = vim.tbl_keys(lspconf.tools or {}),
 		})
+
+		-- LSP servers
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 		require("mason-lspconfig").setup({
 			ensure_installed = vim.tbl_keys(lspconf.servers or {}),
@@ -40,9 +40,10 @@ return {
 
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ -- Install LSP servers
-			-- https://github.com/williamboman/mason.nvim
-			"williamboman/mason.nvim",
+		{
+			-- Quickstart configs for Nvim LSP
+			-- https://github.com/neovim/nvim-lspconfig
+			"neovim/nvim-lspconfig",
 		},
 		{ -- Install and upgrade 3rd party tools
 			-- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
@@ -51,10 +52,6 @@ return {
 		{ -- Easier to use lspconfig with mason
 			-- https://github.com/williamboman/mason-lspconfig.nvim
 			"williamboman/mason-lspconfig.nvim",
-		},
-		{ -- Pictograms for completion items (lspkind.nvim).
-			-- https://github.com/onsails/lspkind.nvim
-			"onsails/lspkind.nvim",
 		},
 	},
 }
