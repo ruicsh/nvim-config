@@ -52,6 +52,7 @@ return {
 			{ "<leader>ff", search_workspace, "Search: Workspace" },
 			{ "<leader>fd", search_directory, "Search: Directory" },
 			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
+			{ "<leader>e", snacks.picker.explorer, "Files Tree Explorer" },
 			{ "<leader>j", snacks.picker.jumps, "Search: Jumplist" },
 			{ "<leader>nh", snacks.picker.help, "Search: Help" },
 			{ "<leader>nc", snacks.picker.commands, "Search: Commands" },
@@ -62,6 +63,10 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings)
 	end)(),
 	opts = {
+		-- https://github.com/folke/snacks.nvim/blob/main/docs/explorer.md
+		explorer = {
+			enabled = true,
+		},
 		picker = {
 			enabled = true,
 			formatters = {
@@ -107,6 +112,11 @@ return {
 					on_show = function()
 						vim.cmd.stopinsert() -- start in normal mode
 					end,
+				},
+				explorer = {
+					layout = {
+						preset = "vertical",
+					},
 				},
 			},
 		},
