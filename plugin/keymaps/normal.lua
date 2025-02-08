@@ -22,7 +22,7 @@ k("x", '"_x')
 k("X", '"_X')
 
 -- Buffers
-k("<bs>", "<c-^>", { desc = "Buffers: Go to previous visited" })
+k("<bs>", ":JumpToLastVisitedBuffer<cr>", { desc = "Toggle to last buffer" })
 local bufdelete = require("snacks.bufdelete")
 k("<leader>bC", bufdelete.all, { desc = "Buffers: Close all" })
 k("<leader>bo", bufdelete.other, { desc = "Buffers: Close all other" })

@@ -80,13 +80,14 @@ Complex configuration options.
 
 Custom built commands to be invoked on the `cmdline` or with keymaps.
 
-|                                                                                                                            |                                             |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [CopyFilePathToClipboard](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/copy-file-path-to-clipboard.lua) | Copy current buffer's path to clipboard.    |
-| [WindowToggleMaximize](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/window-toggle-maximize.lua)         | Maximize and restore current window.        |
-| [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window |
-| [ToggleFormatOnSave](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-format-on-save.lua)            | Toggle on/off formatting on save.           |
-| [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                 |
+|                                                                                                                            |                                              |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [CopyFilePathToClipboard](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/copy-file-path-to-clipboard.lua) | Copy current buffer's path to clipboard.     |
+| [JumpToLastVisitedBuffer](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/jump-to-last-visited-buffer.lua) | Jump to last visited buffer (including Oil). |
+| [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window  |
+| [ToggleFormatOnSave](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-format-on-save.lua)            | Toggle on/off formatting on save.            |
+| [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                  |
+| [WindowToggleMaximize](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/window-toggle-maximize.lua)         | Maximize and restore current window.         |
 
 ## Ftplugins
 
