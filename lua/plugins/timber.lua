@@ -99,5 +99,5 @@ return {
 		},
 	},
 
-	event = { "VeryLazy" },
+	event = { "BufReadPre", "BufNewFile" },
 }

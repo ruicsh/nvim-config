@@ -20,5 +20,5 @@ return {
 		})
 	end,
 
-	event = { "VimEnter" },
+	event = { "BufReadPre", "BufNewFile" },
 }
