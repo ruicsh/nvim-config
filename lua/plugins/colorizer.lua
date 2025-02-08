@@ -1,24 +1,24 @@
 -- CSS colors
--- https://github.com/norcalli/nvim-colorizer.lua
+-- https://github.com/catgoose/nvim-colorizer.lua
 
 return {
-	"norcalli/nvim-colorizer.lua",
-	config = function()
-		local colorizer = require("colorizer")
-		colorizer.setup({
+	"catgoose/nvim-colorizer.lua",
+	opts = {
+		filetypes = {
 			"css",
-			"scss",
-			"lua",
+			"html",
 			"javascript",
+			"javascriptreact",
+			"jsx",
+			"lua",
+			"scss",
+			"svelte",
+			"tsx",
 			"typescript",
 			"typescriptreact",
-			"javascriptreact",
-		}, {
-			css = true,
-			css_fn = true,
-			mode = "background",
-		})
-	end,
+			"vue",
+		},
+	},
 
 	event = { "BufReadPre", "BufNewFile" },
 }

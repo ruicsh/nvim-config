@@ -44,7 +44,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 ### Coding
 
 - [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim) - AI Chat and inline assistant
-- [colorizer.lua](https://github.com/norcalli/nvim-colorizer.lua) - CSS Colors
+- [colorizer.lua](https://github.com/catgoose/nvim-colorizer.lua) - CSS Colors
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - Copilot suggestions
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs
