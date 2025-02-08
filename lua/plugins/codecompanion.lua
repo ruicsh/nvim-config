@@ -45,6 +45,9 @@ return {
 	end,
 	opts = {
 		adapters = {
+			opts = {
+				allow_insecure = true,
+			},
 			anthropic = function()
 				return require("codecompanion.adapters").extend("anthropic", {
 					env = {
