@@ -168,6 +168,10 @@ return {
 					description = "Ask a React expert",
 				},
 				{
+					short_name = "dev-rust",
+					description = "Ask a Rust expert",
+				},
+				{
 					short_name = "dev-ts",
 					description = "Ask a TypeScript expert",
 				},
