@@ -61,3 +61,13 @@ end
 vim.fn.is_windows = function()
 	return vim.fn.has("win32") == 1
 end
+
+vim.fn.get_lsp_client = function(client_id)
+	for _, client in pairs(vim.lsp.get_clients()) do
+		if client.id == client_id then
+			return client
+		end
+	end
+
+	return nil
+end
