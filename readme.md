@@ -51,10 +51,11 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Autocompletion
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
 
-#### LSP/Syntax
+### LSP/Syntax
 
 - [lazydev.nvim](https://github.com/folke/trouble.nvim) - Lua language server
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
+- [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - Fast navigation around the AST tree
@@ -141,6 +142,7 @@ Random features added.
 
 - `-` open directory explorer
 - `<leader><leader>` fuzzy find files
+- `<leader>fe` file tree explorer
 
 #### Directory explorer
 
