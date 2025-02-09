@@ -78,23 +78,3 @@ api.nvim_create_autocmd("FileType", {
 		k({ "n", "i" }, closeShortcut, ":q!<cr>", { buffer = event.buf })
 	end,
 })
-
--- Close diffview
-vim.api.nvim_create_autocmd({ "WinEnter" }, {
-	group = augroup,
-	callback = function()
-		if not vim.wo.diff then
-			return
-		end
-
-		k("n", closeShortcut, function()
-			for _, win in ipairs(vim.api.nvim_list_wins()) do
-				if vim.api.nvim_get_option_value("diff", { win = win }) then
-					vim.api.nvim_win_close(win, false)
-				end
-			end
-
-			vim.cmd("WindowToggleMaximize") -- minimize the current window
-		end)
-	end,
-})

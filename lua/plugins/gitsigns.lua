@@ -22,10 +22,6 @@ return {
 			changedelete = { text = icons.git.ChangeDelete },
 			untracked = { text = icons.git.Untracked },
 		},
-		current_line_blame_formatter = "<author> • <author_time:%R> • <summary>",
-		current_line_blame_opts = {
-			delay = 0,
-		},
 		on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")
 
@@ -65,11 +61,6 @@ return {
 			k("v", "gH", function()
 				gitsigns.reset_hunk({ vim.fn.line("'."), vim.fn.line("v") })
 			end, { desc = "Git: reset hunk" })
-
-			k("n", "<leader>hd", function()
-				vim.cmd("WindowToggleMaximize") -- maximize the current window
-				gitsigns.diffthis()
-			end)
 
 			-- Text object
 			k({ "o", "x" }, "h", ":<c-u>Gitsigns select_hunk<cr>", { unique = false })
