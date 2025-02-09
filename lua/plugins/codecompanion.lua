@@ -59,9 +59,9 @@ return {
 				return require("codecompanion.adapters").extend("copilot", {
 					schema = {
 						model = {
-							-- default = "claude-3.5-sonnet",
+							default = "claude-3.5-sonnet",
 							-- default = "o3-mini-2025-01-31",
-							default = "gemini-2.0-flash-001",
+							-- default = "gemini-2.0-flash-001",
 							-- default = "gpt-4o-2024-08-06",
 						},
 						max_tokens = {
@@ -100,7 +100,7 @@ return {
 				close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
 				layout = "horizontal", -- vertical|horizontal split for default provider
 				opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
-				provider = "mini_diff", -- default|mini_diff
+				provider = "default", -- default|mini_diff
 			},
 		},
 		strategies = {
