@@ -13,20 +13,25 @@ return {
 			{ "<s-right>", tw.move_in, "Jump to child", { mode = { "n", "x" } } },
 		}
 
+		local keymaps_swap = {}
 		if vim.fn.is_windows() then
-			keymaps = vim.tbl_extend("force", keymaps, {
+			keymaps_swap = {
 				{ "<c-K>", tw.swap_up, "Swap up" },
 				{ "<c-J>", tw.swap_down, "Swap down" },
 				{ "<c-H>", tw.swap_left, "Swap left" },
 				{ "<c-L>", tw.swap_right, "Swap right" },
-			})
+			}
 		else
-			keymaps = vim.tbl_extend("force", keymaps, {
+			keymaps_swap = {
 				{ "<c-s-k>", tw.swap_up, "Swap up" },
 				{ "<c-s-j>", tw.swap_down, "Swap down" },
 				{ "<c-s-h>", tw.swap_left, "Swap left" },
 				{ "<c-s-l>", tw.swap_right, "Swap right" },
-			})
+			}
+		end
+
+		for _, k in ipairs(keymaps_swap) do
+			table.insert(keymaps, k)
 		end
 
 		return vim.fn.get_lazy_keys_conf(keymaps, "AST")
