@@ -66,8 +66,10 @@ return {
 				gitsigns.reset_hunk({ vim.fn.line("'."), vim.fn.line("v") })
 			end, { desc = "Git: reset hunk" })
 
-			k("n", "<leader>hb", gitsigns.toggle_current_line_blame, { desc = "Git: [b]lame line" })
-			k("n", "<leader>hd", gitsigns.diffthis)
+			k("n", "<leader>hd", function()
+				vim.cmd("WindowToggleMaximize") -- maximize the current window
+				gitsigns.diffthis()
+			end)
 
 			-- Text object
 			k({ "o", "x" }, "h", ":<c-u>Gitsigns select_hunk<cr>", { unique = false })

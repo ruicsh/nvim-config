@@ -93,6 +93,8 @@ vim.api.nvim_create_autocmd({ "WinEnter" }, {
 					vim.api.nvim_win_close(win, false)
 				end
 			end
+
+			vim.cmd("WindowToggleMaximize") -- minimize the current window
 		end)
 	end,
 })
