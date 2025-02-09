@@ -331,11 +331,12 @@ Random features added.
 - `gH` reset hunk
 - `<leader>hb` toggle blame line
 - `<leader>hd` diff
-- `<leader>hg` diff files
+- `<leader>hL` log
+- `<leader>hl` log file
 - `<leader>hh` status
-- `<leader>hj` log
 - `<leader>ho` push set-upstream origin HEAD
 - `<leader>hp` push
+- `<leader>hx` git open in browser
 
 #### Merge Conflicts
 

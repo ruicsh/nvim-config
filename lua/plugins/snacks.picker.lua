@@ -54,12 +54,14 @@ return {
 			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
 			{ "<leader>e", snacks.picker.explorer, "Files Tree Explorer" },
 			{ "<leader>j", snacks.picker.jumps, "Search: Jumplist" },
+
 			{ "<leader>nh", snacks.picker.help, "Search: Help" },
 			{ "<leader>nc", snacks.picker.commands, "Search: Commands" },
 			{ "<leader>nk", snacks.picker.keymaps, "Search: Keymaps" },
 			{ "<leader>uu", snacks.picker.undo, "Undo: Tree" },
 			{ "<leader>no", snacks.notifier.show_history, "Notifications: Show history" },
 		}
+
 		return vim.fn.get_lazy_keys_conf(mappings)
 	end)(),
 	opts = {
