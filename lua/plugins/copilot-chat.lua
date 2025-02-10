@@ -35,6 +35,31 @@ return {
 			require("CopilotChat.integrations.snacks").pick(actions.prompt_actions())
 		end
 
+		local function ask_question()
+			require("snacks").input({
+				prompt = " Copilot",
+			}, function(question)
+				if question ~= "" then
+					local cmd = "CopilotChat " .. question
+					switch_window(cmd)()
+				end
+			end)
+		end
+
+		local function inline_chat()
+			require("CopilotChat").open({
+				window = {
+					col = 1,
+					height = 0.4,
+					layout = "float",
+					relative = "cursor",
+					row = 1,
+					title = "  Copilot",
+					width = 0.3,
+				},
+			})
+		end
+
 		local function switch_custom_prompt()
 			vim.ui.select(custom_prompts, {
 				prompt = "Select a custom prompt",
@@ -54,9 +79,11 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>aa", switch_window("CopilotChatToggle"), "Chat", { mode = { "n", "v" } } },
+			{ "<leader>aa", switch_window("CopilotChatToggle"), "Chat", { mode = { "n", "x" } } },
 			{ "<leader>ac", show_actions, "Actions", { mode = { "n", "v" } } },
-			{ "<leader>ae", switch_window("CopilotChatExplain"), "Explain", { mode = { "v" } } },
+			{ "<leader>ae", switch_window("CopilotChatExplain"), "Explain", { mode = { "x" } } },
+			{ "<leader>aq", ask_question, "Ask" },
+			{ "<leader>ax", inline_chat, "Inline", { mode = { "n", "x" } } },
 			{ "<leader>am", ":CopilotChatModels<cr>", "Models" },
 			{ "<leader>as", switch_custom_prompt, "Switch prompt" },
 		}
@@ -64,14 +91,16 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
 	end,
 	opts = {
-		answer_header = " Copilot",
+		answer_header = "  Copilot ",
 		auto_insert_mode = true,
+		error_header = "  Error ",
 		mappings = {
 			close = {
 				normal = "<c-]>",
 				insert = "<c-]>",
 			},
 		},
+		question_header = " ruicsh ",
 		prompts = (function()
 			local prompts = {}
 			for _, prompt in ipairs(custom_prompts) do
@@ -79,6 +108,7 @@ return {
 			end
 			return prompts
 		end)(),
+		show_help = false,
 		window = {
 			layout = "replace",
 		},
