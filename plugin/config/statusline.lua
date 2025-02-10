@@ -175,13 +175,13 @@ end
 
 -- Show git status
 local function c_git_status()
-	local status = vim.b.gitsigns_status_dict
+	local status = vim.b.minidiff_summary
 	if not status or status == "" then
 		return ""
 	end
 
 	local n_changes = 0
-	local keys = { "added", "changed", "removed" }
+	local keys = { "add", "change", "delete" }
 	local entries = {}
 	for _, k in ipairs(keys) do
 		local count = (status[k] or 0)
@@ -206,7 +206,7 @@ local function c_git_branch()
 		return ""
 	end
 
-	local head = vim.b.gitsigns_head
+	local head = vim.b.git_branch_name
 	if not head or head == "" then
 		return ""
 	end

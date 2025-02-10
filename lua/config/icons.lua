@@ -8,9 +8,9 @@ M = {
 		hint = "",
 	},
 	git = {
-		added = "",
-		changed = "",
-		removed = "",
+		add = "",
+		change = "",
+		delete = "",
 		Add = "┃",
 		Change = "┋",
 		Delete = "",

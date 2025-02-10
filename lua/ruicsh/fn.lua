@@ -33,8 +33,20 @@ vim.fn.get_lazy_keys_conf = function(mappings, desc_prefix)
 		local desc = desc_prefix and desc_prefix .. ": " .. mapping[3] or mapping[3]
 		local opts = mapping[4]
 		local mode = opts and opts.mode or "n"
+		local expr = opts and opts.expr or false
+		local remap = opts and opts.remap or false
 
-		return { lhs, rhs, silent = true, mode = mode, noremap = true, unique = true, desc = desc }
+		return {
+			lhs,
+			rhs,
+			silent = true,
+			mode = mode,
+			noremap = true,
+			unique = true,
+			desc = desc,
+			expr = expr,
+			remap = remap,
+		}
 	end, mappings)
 end
 

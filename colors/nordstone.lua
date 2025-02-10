@@ -237,18 +237,11 @@ loadColorSet({
 	fugitiveUntrackedHeading = { fg = c.nord11 },
 })
 
--- GitSigns
+-- mini.diff
 loadColorSet({
-	GitSignsAdd = { fg = c.nord14 },
-	GitSignsAddNr = { fg = c.nord14 },
-	GitSignsAddLn = { fg = c.nord14 },
-	GitSignsChange = { fg = c.nord13 },
-	GitSignsChangeNr = { fg = c.nord13 },
-	GitSignsChangeLn = { fg = c.nord13 },
-	GitSignsDelete = { fg = c.nord11 },
-	GitSignsDeleteNr = { fg = c.nord11 },
-	GitSignsDeleteLn = { fg = c.nord11 },
-	GitSignsCurrentLineBlame = { fg = c.nord3_500, style = "bold" },
+	MiniDiffSignAdd = { fg = c.nord14 },
+	MiniDiffSignChange = { fg = c.nord13 },
+	MiniDiffSignDelete = { fg = c.nord11 },
 })
 
 -- LSP

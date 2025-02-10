@@ -65,7 +65,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - [diffview](https://github.com/sindrets/diffview.nvim) - Diffview/Git log
 - [fugitive.vim](https://github.com/tpope/vim-fugitive) - Git wrapper
-- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git buffer integration
+- [mini.diff](https://github.com/echasnovski/mini.diff) - Git diff/hunks
 
 ## Config
 
@@ -116,6 +116,7 @@ New features built around autocmds (events).
 | [create-intermediate-dirs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/create-intermediate-dirs.lua)       | Create intermediate directories                                       |
 | [disable-new-line-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-new-line-comments.lua)     | Disable new line comments                                             |
 | [folds](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/folds.lua)                                             | Save and restore folds for each buffer                                |
+| [git-branch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/git-branch.lua)                                   | Keep the git branch updated on a buffer local variable                |
 | [last-location](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/last-location.lua)                             | Jump to last location when opening a file                             |
 | [load-env-vars](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/load-env-vars.lua)                             | Load environment variables, global and project scoped.                |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps and custom handlers                          |
@@ -325,16 +326,17 @@ Random features added.
 
 ### Git
 
-- `[c` previous change
-- `]c` next change
+- `[h` previous hunk
+- `]h` next hunk
 - `gh` stage hunk
 - `gH` reset hunk
-- `<leader>hb` toggle blame line
-- `<leader>hd` diff
-- `<leader>hL` log
-- `<leader>hl` log file
+- `<leader>hb` blame line
+- `<leader>hd` diff buffer
+- `<leader>hD` diff workspace
 - `<leader>hh` status
-- `<leader>ho` push set-upstream origin HEAD
+- `<leader>hl` log file/selection
+- `<leader>hL` log
+- `<leader>ho` push -u origin HEAD
 - `<leader>hp` push
 - `<leader>hx` git open in browser
 

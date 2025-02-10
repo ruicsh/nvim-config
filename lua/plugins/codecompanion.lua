@@ -100,7 +100,7 @@ return {
 				close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
 				layout = "horizontal", -- vertical|horizontal split for default provider
 				opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
-				provider = "default", -- default|mini_diff
+				provider = "mini_diff", -- default|mini_diff
 			},
 		},
 		strategies = {
