@@ -200,6 +200,11 @@ loadColorSet({
 })
 
 -- PLUGINS
+-- CopilotChat.nvim
+loadColorSet({
+	CopilotChatSelection = { bg = c.nord0 },
+})
+
 -- csvview.nvim
 loadColorSet({
 	CsvViewDelimiter = { fg = c.nord1 },

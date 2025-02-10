@@ -253,18 +253,21 @@ Random features added.
 - `<c-p>` select previous entry
 - `<c-]>` abort
 
-#### AI Assistant
+#### AI assistant
 
 - `<leader>aa` new chat
 - `<leader>ac` actions
 - `<leader>ae` explain
-- `<c-a>` toggle chat
-- `ga` add selection to chat
-- `<c-l>` accept whole suggestion
-- `<tab>` accept word in suggestion
-- `<c-n>` next suggestion
-- `<c-p>` previous suggestion
-- `<c-]>` dismiss suggestions
+- `<leader>am` pick model
+- `<leader>as` switch prompts
+
+#### AI suggestions
+
+- `<c-l>` accept whole
+- `<tab>` accept word
+- `<c-n>` next
+- `<c-p>` previous
+- `<c-]>` dismiss
 
 #### Logging
 
