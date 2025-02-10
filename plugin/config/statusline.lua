@@ -81,7 +81,7 @@ local function c_mode()
 	end
 
 	-- return string.format("%%#StatusLineMode%s#  %%#StatusLineModeText# %s", hl, mode)
-	return string.format("%%#StatusLineMode%s# %%#StatusLineMode%sText# %s", hl, hl, mode)
+	return string.format("%%#StatusLineMode%s# %%#StatusLineMode%sText# %s %%#StatusLine#", hl, hl, mode)
 end
 
 -- Show the current filename
