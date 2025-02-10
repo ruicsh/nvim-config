@@ -9,7 +9,7 @@ local function read_prompt_file(basename)
 	return vim.fs.read_file(file_path)
 end
 
-vim.api.nvim_create_autocmd({ "User" }, {
+vim.api.nvim_create_autocmd("User", {
 	pattern = "CodeCompanion*",
 	group = augroup,
 	callback = function(request)
@@ -25,6 +25,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 
 return {
 	"olimorris/codecompanion.nvim",
+	enabled = false,
 	keys = function()
 		local function switch_window(cmd)
 			return function()
@@ -60,9 +61,9 @@ return {
 					schema = {
 						-- https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/adapters/copilot.lua#L201
 						model = {
-							default = "claude-3.5-sonnet",
+							-- default = "claude-3.5-sonnet",
 							-- default = "gemini-2.0-flash-001",
-							-- default = "gpt-4o-2024-08-06",
+							default = "gpt-4o-2024-08-06",
 							-- default = "o1-2024-12-17",
 							-- default = "o1-mini-2024-09-12",
 							-- default = "o3-mini-2025-01-31",

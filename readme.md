@@ -47,6 +47,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [colorizer.lua](https://github.com/catgoose/nvim-colorizer.lua) - CSS Colors
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - Copilot suggestions
+- [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - Copilot chat
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Autocompletion
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements

@@ -61,7 +61,11 @@ api.nvim_create_autocmd("FileType", {
 -- Close panels that open in a maximized current window
 api.nvim_create_autocmd("FileType", {
 	group = augroup,
-	pattern = { "help", "fugitive" },
+	pattern = {
+		"copilot-chat",
+		"fugitive",
+		"help",
+	},
 	callback = function(event)
 		k("n", closeShortcut, ":close | WindowToggleMaximize<cr>", { buffer = event.buf })
 	end,
