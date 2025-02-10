@@ -58,11 +58,14 @@ return {
 			copilot = function()
 				return require("codecompanion.adapters").extend("copilot", {
 					schema = {
+						-- https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/adapters/copilot.lua#L201
 						model = {
 							default = "claude-3.5-sonnet",
-							-- default = "o3-mini-2025-01-31",
 							-- default = "gemini-2.0-flash-001",
 							-- default = "gpt-4o-2024-08-06",
+							-- default = "o1-2024-12-17",
+							-- default = "o1-mini-2024-09-12",
+							-- default = "o3-mini-2025-01-31",
 						},
 						max_tokens = {
 							default = 8192,
