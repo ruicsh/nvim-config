@@ -19,3 +19,15 @@ vim.api.nvim_create_autocmd("FileType", {
 		k("n", "<bs>", "<c-T>", opts)
 	end,
 })
+
+-- Maximize current window before opening help (when :help)
+vim.api.nvim_create_autocmd("CmdLineLeave", {
+	group = augroup,
+	pattern = ":",
+	callback = function()
+		local cmd = vim.fn.getcmdline()
+		if cmd:match("^help%s") or cmd == "help" then
+			vim.cmd("WindowToggleMaximize")
+		end
+	end,
+})

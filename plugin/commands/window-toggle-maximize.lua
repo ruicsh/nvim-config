@@ -1,6 +1,6 @@
 -- Maximizes the current window, or restores the layout if it is already maximized.
 
-local maximized = false
+local is_maximized = false
 local saved_layout = {}
 local maximized_buf = nil
 
@@ -44,8 +44,16 @@ local function restore_layout()
 	restore_node(saved_layout, saved_layout.buffers, buf_index)
 end
 
-vim.api.nvim_create_user_command("WindowToggleMaximize", function()
-	if maximized then
+vim.api.nvim_create_user_command("WindowToggleMaximize", function(opts)
+	local target_win = tonumber(opts.args) or vim.api.nvim_get_current_win() -- Default to current window
+
+	-- The target window is floating, use window that opened it
+	if vim.api.nvim_win_get_config(target_win).relative ~= "" then
+		vim.cmd("close") -- close floating window
+		target_win = vim.api.nvim_get_current_win()
+	end
+
+	if is_maximized then
 		restore_layout()
 		-- Move the cursor back to the window with the previously maximized buffer
 		local wins = vim.api.nvim_tabpage_list_wins(0)
@@ -55,10 +63,11 @@ vim.api.nvim_create_user_command("WindowToggleMaximize", function()
 				break
 			end
 		end
-		maximized = false
+		is_maximized = false
 	else
 		save_layout()
+		vim.api.nvim_set_current_win(target_win)
 		vim.cmd("only") -- Maximize the current window
-		maximized = true
+		is_maximized = true
 	end
 end, {})

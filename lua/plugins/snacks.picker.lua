@@ -120,6 +120,12 @@ return {
 						preset = "vertical",
 					},
 				},
+				help = {
+					confirm = function()
+						vim.cmd("WindowToggleMaximize") -- maximize current window
+						vim.cmd("help")
+					end,
+				},
 			},
 		},
 	},

@@ -29,7 +29,6 @@ api.nvim_create_autocmd("FileType", {
 	pattern = {
 		"checkhealth",
 		"git",
-		"help",
 		"lspinfo",
 		"man",
 		"qf",
@@ -59,9 +58,10 @@ api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Close panels that open in a maximized current window
 api.nvim_create_autocmd("FileType", {
 	group = augroup,
-	pattern = "fugitive",
+	pattern = { "help", "fugitive" },
 	callback = function(event)
 		k("n", closeShortcut, ":close | WindowToggleMaximize<cr>", { buffer = event.buf })
 	end,
