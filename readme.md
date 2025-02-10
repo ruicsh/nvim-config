@@ -328,8 +328,10 @@ Random features added.
 
 - `[h` previous hunk
 - `]h` next hunk
-- `gh` stage hunk
-- `gH` reset hunk
+- `ghh` stage hunk
+- `gHh` reset hunk
+- `gh_` stage line
+- `gH_` reset line
 - `<leader>hb` blame line
 - `<leader>hd` diff buffer
 - `<leader>hD` diff workspace

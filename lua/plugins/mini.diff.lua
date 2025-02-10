@@ -8,15 +8,7 @@ return {
 	keys = function()
 		local diff = require("mini.diff")
 
-		local function operator(mode)
-			return function()
-				return diff.operator(mode) .. "h"
-			end
-		end
-
 		local mappings = {
-			{ "gh", operator("apply"), "Stage hunk", { expr = true, remap = true } },
-			{ "gH", operator("reset"), "Reset hunk", { expr = true, remap = true } },
 			{ "<leader>hd", diff.toggle_overlay, "Toggle diff overlay" },
 		}
 
@@ -32,8 +24,6 @@ return {
 			},
 		},
 		mappings = {
-			apply = "",
-			reset = "",
 			textobject = "h",
 		},
 	},
