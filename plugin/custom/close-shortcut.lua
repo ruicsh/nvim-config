@@ -28,7 +28,6 @@ api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = {
 		"checkhealth",
-		"fugitive",
 		"git",
 		"help",
 		"lspinfo",
@@ -54,9 +53,25 @@ api.nvim_create_autocmd("FileType", {
 
 api.nvim_create_autocmd("FileType", {
 	group = augroup,
-	pattern = { "oil" },
+	pattern = "oil",
 	callback = function(event)
 		k("n", closeShortcut, ":lua require('oil.actions').close.callback()<cr>", { buffer = event.buf })
+	end,
+})
+
+api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = "fugitive",
+	callback = function(event)
+		k("n", closeShortcut, ":close | WindowToggleMaximize<cr>", { buffer = event.buf })
+	end,
+})
+
+api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = "gitcommit",
+	callback = function(event)
+		k({ "n", "i" }, closeShortcut, ":q!<cr>", { buffer = event.buf })
 	end,
 })
 
@@ -68,13 +83,5 @@ api.nvim_create_autocmd("FileType", {
 	},
 	callback = function(event)
 		k("n", closeShortcut, ":tabclose<cr>", { buffer = event.buf })
-	end,
-})
-
-api.nvim_create_autocmd("FileType", {
-	group = augroup,
-	pattern = { "gitcommit" },
-	callback = function(event)
-		k({ "n", "i" }, closeShortcut, ":q!<cr>", { buffer = event.buf })
 	end,
 })

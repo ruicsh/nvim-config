@@ -49,9 +49,6 @@ k("<leader>qj", ":OpenJumpsInQuickfix<cr>", { desc = "Quickfix: open jumps list"
 k("[<c-q>", ":cpfile<cr>", { desc = "Quickfix: Previous file" }) -- FIXME: will be default in v0.11
 k("]<c-q>", ":cnfile<cr>", { desc = "Quickfix: Next file" }) -- FIXME: will be default in v0.11
 
--- Git
-k("<leader>hh", ":vertical Git<cr>", { desc = "Git: Status" })
-
 -- Don't store empty lines in register.
 -- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
 k("dd", function()
