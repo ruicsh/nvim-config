@@ -4,9 +4,24 @@
 return {
 	"sindrets/diffview.nvim",
 	keys = function()
+		local function git_blame_line()
+			local line = vim.fn.line(".")
+			local blame = vim.fn.systemlist("git blame -L " .. line .. "," .. line .. " " .. vim.fn.expand("%"))
+			local hash = blame[1]:match("%w+")
+			if hash == "00000000" or hash == "fatal" then
+				return
+			end
+
+			local cmd = "DiffviewOpen " .. hash .. "^! --selected-file=" .. vim.fn.expand("%")
+			vim.cmd(cmd)
+		end
+
 		local mappings = {
-			{ "<leader>hg", ":DiffviewOpen<cr>", "Open diffview" },
-			{ "<leader>hj", ":DiffviewFileHistory<cr>", "Log" },
+			{ "<leader>hD", ":DiffviewOpen<cr>", "Open diffview" },
+			{ "<leader>hL", ":DiffviewFileHistory<cr>", "Log" },
+			{ "<leader>hl", ":DiffviewFileHistory %<cr>", "Log file" },
+			{ "<leader>hl", ":'<,'>DiffviewFileHistory<cr>", "Log visual selection", { mode = "v" } },
+			{ "<leader>hb", git_blame_line, "Blame line" },
 		}
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
 	end,
