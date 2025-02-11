@@ -25,6 +25,7 @@ vim.api.nvim_create_user_command("CopilotChatGenCommitMessage", function()
 
 	chat.ask(config.prompts.Commit.prompt, {
 		clear_chat_on_new_prompt = true,
+		model = "gemini-2.0-flash-001",
 		window = {
 			col = 1,
 			height = 20,
