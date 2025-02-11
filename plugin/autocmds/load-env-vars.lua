@@ -12,7 +12,8 @@ local function load_env_file(dir)
 
 	for line in env_file:lines() do
 		if not line:match("^%s*#") then -- Skip comments
-			for key, value in string.gmatch(line, "([%w_]+)=([%w_-.,]+)") do -- varname=value
+			for key, value in string.gmatch(line, "([%w_]+)%s*=%s*([^#]+)") do -- varname=value
+				value = value:gsub("^%s*(.-)%s*$", "%1") -- Trim whitespace
 				vim.fn.setenv(key, value)
 			end
 		end
