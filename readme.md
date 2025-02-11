@@ -163,7 +163,6 @@ Random features added.
 
 #### Buffers
 
-- `§` list buffers
 - `<bs>` next opened buffer
 - `<s-bs>` previous opened buffer
 - `<c-]>` close buffer
@@ -185,7 +184,6 @@ Random features added.
 - `{number}gt` jump to tab {number}
 - `<leader>tc` close tab
 - `<leader>tn` new tab
-- `<leader>to` close all other
 
 ### Editor
 

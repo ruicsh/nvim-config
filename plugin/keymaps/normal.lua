@@ -37,9 +37,8 @@ k("<c-w>]", "<c-w>x<c-w>w", { desc = "Windows: Move file to the right" })
 k("<c-w>m", ":WindowToggleMaximize<cr>", { desc = "Windows: Maximize" })
 
 -- Tabs
-k("<leader>tc", ":tabclose<cr>", { desc = "Tabs: Close" })
-k("<leader>tn", ":tabnew<cr>", { desc = "Tabs: New" })
-k("<leader>to", ":tabonly<cr>", { desc = "Tabs: Close all other" })
+k("<leader>tc", ":tabclose<cr>", { desc = "Tabs: Close", silent = true })
+k("<leader>tn", ":tabnew<cr>", { desc = "Tabs: New", silent = true })
 
 -- Quickfix
 k("<leader>qq", ":copen<cr>", { desc = "Quickfix: Open quickfix" })
@@ -64,7 +63,7 @@ k("<c-t>", ":terminal<cr>", { desc = "Terminal: Open" })
 k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 k("ycc", "yy:normal gcc<cr>p") -- Duplicate a line and comment out the first line.
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
-k("<leader>w", ":write<cr>", { desc = "Save file" }) -- Save changes
+k("<leader>w", ":write<cr>", { desc = "Save file", silent = true }) -- Save changes
 k("[z", "zk%^") -- Jump to start of previous fold.
 k("]z", "zj") -- Jump to start of next fold.
 
