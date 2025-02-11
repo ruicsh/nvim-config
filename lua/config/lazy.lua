@@ -19,7 +19,7 @@ end
 -- Add lazy to the `runtimepath`, this allows us to `require` it.
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+require("lazy").setup("plugins", {
 	change_detection = {
 		enabled = false,
 		notify = false,
@@ -30,6 +30,8 @@ require("lazy").setup({
 		rtp = {
 			disabled_plugins = {
 				"gzip",
+				"matchit",
+				"matchparen",
 				"netrwPlugin",
 				"rplugin",
 				"tarPlugin",
