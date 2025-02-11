@@ -85,6 +85,11 @@ api.nvim_create_autocmd("FileType", {
 		"DiffviewFileHistory",
 	},
 	callback = function(event)
-		k("n", closeShortcut, ":tabclose<cr>", { buffer = event.buf })
+		local function close_diffview()
+			_G.diffview_blame = nil -- reset any blame info
+			vim.cmd("tabclose")
+		end
+
+		k("n", closeShortcut, close_diffview, { buffer = event.buf })
 	end,
 })

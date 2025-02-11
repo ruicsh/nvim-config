@@ -340,10 +340,10 @@ Random features added.
 - `gH_` reset line
 - `<leader>hb` blame line
 - `<leader>hd` diff buffer
-- `<leader>hD` diff workspace
+- `<leader>hdd` diff workspace
 - `<leader>hh` status
 - `<leader>hl` log file/selection
-- `<leader>hL` log
+- `<leader>hll` log
 - `<leader>ho` push -u origin HEAD
 - `<leader>hp` push
 - `<leader>hx` git open in browser

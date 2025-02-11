@@ -269,6 +269,24 @@ local function c_copilot_chat()
 	return table.concat(status, " ")
 end
 
+local function c_diffview_blame()
+	local ft = vim.bo.filetype
+	if not ft:match("Diffview") then
+		return ""
+	end
+
+	if not _G.diffview_blame then
+		return ""
+	end
+
+	return "%#StatusLine#"
+		.. table.concat({
+			_G.diffview_blame.author,
+			os.date("%Y-%m-%d %H:%M", _G.diffview_blame.author_time),
+			_G.diffview_blame.summary,
+		}, " - ")
+end
+
 -- Construct the statusline (default)
 function _G.status_line()
 	local hl = "%#StatusLine#"
@@ -278,6 +296,7 @@ function _G.status_line()
 		c_mode(),
 		c_filename(),
 		c_copilot_chat(),
+		c_diffview_blame(),
 		c_search_count(),
 		"%=",
 		"%=",
