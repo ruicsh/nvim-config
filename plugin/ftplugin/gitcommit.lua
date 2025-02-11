@@ -6,11 +6,13 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "gitcommit",
 	callback = function(event)
+		vim.bo.modifiable = true
+
 		vim.cmd("startinsert", { silent = true }) -- Start on insert mode.
 
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }
-		-- Use <c-s> to save the commit message.
-		k("i", "<c-s>", "<esc>:w<cr><c-w>q", opts)
+		k({ "n", "i" }, "<c-m>", "<esc>:CopilotChatGenCommitMessage<cr>", opts) -- Generate commit message.
+		k("i", "<c-s>", "<esc>:w<cr><c-w>q", opts) -- Save commit message.
 	end,
 })

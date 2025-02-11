@@ -255,11 +255,14 @@ Random features added.
 
 #### AI assistant
 
-- `<leader>aa` new chat
+- `<leader>aa` chat
 - `<leader>ac` actions
 - `<leader>ae` explain
-- `<leader>am` pick model
-- `<leader>as` switch prompts
+- `<leader>ai` inline
+- `<leader>am` models
+- `<leader>ap` prompts
+- `<leader>ax` reset
+- `<c-m>` generate commit message
 
 #### AI suggestions
 

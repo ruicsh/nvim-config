@@ -19,9 +19,31 @@ local function read_prompt_file(basename)
 	return vim.fs.read_file(string.lower(file_path))
 end
 
+vim.api.nvim_create_user_command("CopilotChatGenCommitMessage", function()
+	local chat = require("CopilotChat")
+	local config = require("CopilotChat.config")
+
+	chat.ask(config.prompts.Commit.prompt, {
+		clear_chat_on_new_prompt = true,
+		window = {
+			col = 1,
+			height = 20,
+			layout = "float",
+			relative = "cursor",
+			row = 1,
+			title = "  Commit message",
+			width = 80,
+		},
+	})
+end, {})
+
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	keys = function()
+		local chat = require("CopilotChat")
+		local actions = require("CopilotChat.actions")
+		local select = require("CopilotChat.select")
+
 		local function switch_window(cmd)
 			return function()
 				vim.cmd("WindowToggleMaximize") -- maximize the current window
@@ -31,36 +53,37 @@ return {
 		end
 
 		local function show_actions()
-			local actions = require("CopilotChat.actions")
 			require("CopilotChat.integrations.snacks").pick(actions.prompt_actions())
 		end
 
 		local function ask_question()
 			require("snacks").input({
 				prompt = " Copilot",
-			}, function(question)
-				if question ~= "" then
-					local cmd = "CopilotChat " .. question
+			}, function(input)
+				if input ~= "" then
+					local cmd = "CopilotChat " .. input
 					switch_window(cmd)()
 				end
 			end)
 		end
 
 		local function inline_chat()
-			require("CopilotChat").open({
+			chat.open({
+				clear_chat_on_new_prompt = true,
+				selection = select.visual,
 				window = {
 					col = 1,
 					height = 0.4,
 					layout = "float",
 					relative = "cursor",
 					row = 1,
-					title = "  Copilot",
+					title = "  Inline",
 					width = 0.3,
 				},
 			})
 		end
 
-		local function switch_custom_prompt()
+		local function switch_prompt()
 			vim.ui.select(custom_prompts, {
 				prompt = "Select a custom prompt",
 				format_item = function(item)
@@ -79,13 +102,16 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>aa", switch_window("CopilotChatToggle"), "Chat", { mode = { "n", "x" } } },
-			{ "<leader>ac", show_actions, "Actions", { mode = { "n", "v" } } },
+			{ "<leader>aa", switch_window("CopilotChatOpen"), "Chat", { mode = "x" } },
+			{ "<leader>aa", switch_window("CopilotChatToggle"), "Chat" },
+			{ "<leader>ac", show_actions, "Actions", { mode = { "n", "x" } } },
 			{ "<leader>ae", switch_window("CopilotChatExplain"), "Explain", { mode = { "x" } } },
+			{ "<leader>ai", inline_chat, "Inline", { mode = { "n", "x" } } },
+			{ "<leader>am", chat.select_model, "Models" },
+			{ "<leader>ap", switch_prompt, "Switch prompt" },
 			{ "<leader>aq", ask_question, "Ask" },
-			{ "<leader>ax", inline_chat, "Inline", { mode = { "n", "x" } } },
-			{ "<leader>am", ":CopilotChatModels<cr>", "Models" },
-			{ "<leader>as", switch_custom_prompt, "Switch prompt" },
+			{ "<leader>as", chat.stop, "Stop" },
+			{ "<leader>ax", chat.reset, "Reset" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
@@ -93,14 +119,32 @@ return {
 	opts = {
 		answer_header = "  Copilot ",
 		auto_insert_mode = true,
+		chat_autocomplete = false,
 		error_header = "  Error ",
+		insert_at_end = true,
 		mappings = {
+			accept_diff = {
+				normal = "<c-l>",
+				insert = "<c-l>",
+			},
 			close = {
 				normal = "<c-]>",
 				insert = "<c-]>",
 			},
+			reset = {
+				normal = "<c-x>",
+				insert = "<c-x>",
+			},
+			show_diff = {
+				full_diff = true,
+			},
+			yank_diff = {
+				normal = "gy",
+				register = "+",
+			},
 		},
-		question_header = " ruicsh ",
+		model = "claude-3.5-sonnet",
+		question_header = "  ruicsh ",
 		prompts = (function()
 			local prompts = {}
 			for _, prompt in ipairs(custom_prompts) do
@@ -109,17 +153,15 @@ return {
 			return prompts
 		end)(),
 		show_help = false,
+		sticky = {
+			"/COPILOT_GENERATE",
+		},
 		window = {
 			layout = "replace",
 		},
 	},
 
-	cmd = {
-		"CopilotChatOpen",
-		"CopilotChatClose",
-		"CopilotChatToggle",
-		"CopilotChatModels",
-	},
+	lazy = false,
 	dependencies = {
 		{ "zbirenbaum/copilot.lua" },
 		{ "nvim-lua/plenary.nvim" },
