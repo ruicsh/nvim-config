@@ -1,6 +1,6 @@
 local function k(lhs, rhs, opts)
 	local options = vim.tbl_extend("force", { noremap = true, silent = true, unique = true }, opts or {})
-	vim.keymap.set("x", lhs, rhs, options)
+	vim.keymap.set("v", lhs, rhs, options)
 end
 
 -- Keep visual selection after indenting.

@@ -7,10 +7,10 @@ return {
 		local tw = require("treewalker")
 
 		local keymaps = {
-			{ "<s-down>", tw.move_down, "Jump to next sibling node", { mode = { "n", "x" } } },
-			{ "<s-up>", tw.move_up, "Jump to previous sibling node", { mode = { "n", "x" } } },
-			{ "<s-left>", tw.move_out, "Jump to parent", { mode = { "n", "x" } } },
-			{ "<s-right>", tw.move_in, "Jump to child", { mode = { "n", "x" } } },
+			{ "<s-down>", tw.move_down, "Jump to next sibling node", { mode = { "n", "v" } } },
+			{ "<s-up>", tw.move_up, "Jump to previous sibling node", { mode = { "n", "v" } } },
+			{ "<s-left>", tw.move_out, "Jump to parent", { mode = { "n", "v" } } },
+			{ "<s-right>", tw.move_in, "Jump to child", { mode = { "n", "v" } } },
 		}
 
 		local keymaps_swap = {}

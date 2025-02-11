@@ -4,7 +4,7 @@
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/yank_keep_cursor_position", { clear = true })
 
 local cursorPreYank
-vim.keymap.set({ "n", "x" }, "y", function()
+vim.keymap.set({ "n", "v" }, "y", function()
 	cursorPreYank = vim.api.nvim_win_get_cursor(0)
 	return "y"
 end, { expr = true, silent = true, unique = true })

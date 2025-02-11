@@ -11,7 +11,7 @@ return {
 			end
 		end
 
-		local opts = { mode = { "n", "o", "x" } }
+		local opts = { mode = { "n", "o", "v" } }
 
 		local mappings = {
 			{ "w", motion("w"), "word", opts },

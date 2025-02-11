@@ -102,11 +102,11 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>aa", switch_window("CopilotChatOpen"), "Chat", { mode = "x" } },
+			{ "<leader>aa", switch_window("CopilotChatOpen"), "Chat", { mode = "v" } },
 			{ "<leader>aa", switch_window("CopilotChatToggle"), "Chat" },
-			{ "<leader>ac", show_actions, "Actions", { mode = { "n", "x" } } },
-			{ "<leader>ae", switch_window("CopilotChatExplain"), "Explain", { mode = { "x" } } },
-			{ "<leader>ai", inline_chat, "Inline", { mode = { "n", "x" } } },
+			{ "<leader>ac", show_actions, "Actions", { mode = { "n", "v" } } },
+			{ "<leader>ae", switch_window("CopilotChatExplain"), "Explain", { mode = { "v" } } },
+			{ "<leader>ai", inline_chat, "Inline", { mode = { "n", "v" } } },
 			{ "<leader>am", chat.select_model, "Models" },
 			{ "<leader>ap", switch_prompt, "Switch prompt" },
 			{ "<leader>aq", ask_question, "Ask" },

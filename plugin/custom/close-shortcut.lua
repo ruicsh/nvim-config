@@ -21,7 +21,7 @@ local function close_buffer_or_window_or_quit()
 end
 k("n", closeShortcut, close_buffer_or_window_or_quit)
 
-k("x", closeShortcut, "<esc>") -- Use it to exit visual mode
+k("v", closeShortcut, "<esc>") -- Use it to exit visual mode
 k("t", closeShortcut, "<c-\\><c-n>") -- Return to normal mode in the terminal
 
 api.nvim_create_autocmd("FileType", {

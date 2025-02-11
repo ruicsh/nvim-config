@@ -69,7 +69,7 @@ local function keymaps(bufnr, client)
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
 	k("K", vim.lsp.buf.hover, "Hover") -- FIXME: will be default in v0.11
 	k("grn", vim.lsp.buf.rename, "Rename symbol") -- FIXME: will be default in v0.11
-	k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "x" }) -- FIXME: will be default in v0.11
+	k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" }) -- FIXME: will be default in v0.11
 	k("grr", vim.lsp.buf.references, "List [r]eferences") -- FIXME: will be default in v0.11
 	k("gri", vim.lsp.buf.implementation, "List [i]mplementations") -- FIXME: will be default in v0.11
 	k("gO", vim.lsp.buf.document_symbol, "Document Symbol") -- FIXME: will be default in v0.11
