@@ -332,8 +332,8 @@ Random features added.
 
 ### Git
 
-- `[h` previous hunk
-- `]h` next hunk
+- `[c` previous hunk
+- `]c` next hunk
 - `ghh` stage hunk
 - `gHh` reset hunk
 - `gh_` stage line

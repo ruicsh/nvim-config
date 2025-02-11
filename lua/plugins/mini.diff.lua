@@ -25,6 +25,11 @@ return {
 		},
 		mappings = {
 			textobject = "h",
+			-- make it as in 'jumpto-diffs'
+			goto_first = "[C",
+			goto_prev = "[c",
+			goto_next = "]c",
+			goto_last = "]C",
 		},
 	},
 
