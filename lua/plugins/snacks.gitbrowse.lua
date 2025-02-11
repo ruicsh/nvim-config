@@ -7,14 +7,22 @@ return {
 		local snacks = require("snacks")
 
 		local mappings = {
-			{ "<leader>hx", snacks.gitbrowse.open, "Git: Open in browser" },
+			{ "<leader>hx", snacks.gitbrowse.open, "Open in browser" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings)
+		return vim.fn.get_lazy_keys_conf(mappings, "Git")
 	end)(),
 	opts = {
 		gitbrowse = {
 			enabled = true,
+			url_patterns = {
+				["github%.rebarsys%.corp"] = {
+					branch = "/tree/{branch}",
+					file = "/blob/{branch}/{file}#L{line_start}-L{line_end}",
+					permalink = "/blob/{commit}/{file}#L{line_start}-L{line_end}",
+					commit = "/commit/{commit}",
+				},
+			},
 		},
 	},
 }
