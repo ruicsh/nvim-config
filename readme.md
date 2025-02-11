@@ -25,7 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### UI
 
-- [mini.clue](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-clue.md) - Keybidings helper
+- [mini.clue](https://github.com/echasnovski/mini.clue) - Keybidings helper
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
 - [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit filesystem like a buffer
 - [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers, statuscolumn, indent lines

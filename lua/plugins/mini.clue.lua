@@ -1,5 +1,5 @@
 -- Show next key clues.
--- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-clue.md
+-- https://github.com/echasnovski/mini.clue
 
 return {
 	"echasnovski/mini.clue",
