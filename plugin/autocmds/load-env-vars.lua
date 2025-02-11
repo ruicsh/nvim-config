@@ -4,6 +4,10 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/load_env_vars", { c
 
 -- Load environment variables from .env file
 local function load_env_file(dir)
+	if not dir or not vim.fn.isdirectory(dir) then
+		return
+	end
+
 	local file = dir .. "/.env"
 	local env_file = io.open(file, "r")
 	if not env_file then

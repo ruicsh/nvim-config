@@ -58,10 +58,20 @@ end
 
 -- List files changed on git status.
 local function get_changed_files()
+	-- Check if we're in a git repo first
+	if not vim.git.is_git() then
+		return {}
+	end
+
 	local git_root = vim.git.root()
-	local tracked_files = vim.fn.systemlist("git diff --name-only")
-	local staged_files = vim.fn.systemlist("git diff --cached --name-only")
-	local untracked_files = vim.fn.systemlist("git ls-files --others --exclude-standard")
+	if not git_root then
+		return {}
+	end
+
+	local git_cmd = "git -C " .. vim.fn.shellescape(git_root)
+	local tracked_files = vim.fn.systemlist(git_cmd .. " diff --name-only")
+	local staged_files = vim.fn.systemlist(git_cmd .. " diff --cached --name-only")
+	local untracked_files = vim.fn.systemlist(git_cmd .. " ls-files --others --exclude-standard")
 	local changed_files = vim.list_extend(tracked_files, staged_files)
 	changed_files = vim.list_extend(changed_files, untracked_files)
 
