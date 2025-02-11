@@ -48,7 +48,7 @@ return {
 			return function()
 				vim.cmd("WindowToggleMaximize") -- maximize the current window
 				vim.cmd("vsplit") -- open a vertical split
-				vim.cmd(cmd) -- issue the CodeCompanion command
+				vim.cmd(cmd) -- issue the command
 			end
 		end
 
