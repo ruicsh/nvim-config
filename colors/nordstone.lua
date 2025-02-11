@@ -200,6 +200,7 @@ loadColorSet({
 })
 
 -- PLUGINS
+
 -- CopilotChat.nvim
 loadColorSet({
 	CopilotChatSelection = { bg = c.nord0 },
@@ -240,13 +241,6 @@ loadColorSet({
 	fugitiveUnmergedHeading = { fg = c.nord13 },
 	fugitiveUnstagedHeading = { fg = c.nord13 },
 	fugitiveUntrackedHeading = { fg = c.nord11 },
-})
-
--- mini.diff
-loadColorSet({
-	MiniDiffSignAdd = { fg = c.nord14 },
-	MiniDiffSignChange = { fg = c.nord13 },
-	MiniDiffSignDelete = { fg = c.nord11 },
 })
 
 -- LSP
@@ -297,6 +291,18 @@ loadColorSet({
 	DiagnosticVirtualTextInfo = { link = "LspDiagnosticsVirtualTextInformation" },
 	DiagnosticVirtualTextWarn = { link = "LspDiagnosticsVirtualTextWarning" },
 	DiagnosticWarn = { link = "LspDiagnosticsDefaultWarning" },
+})
+
+-- mini.diff
+loadColorSet({
+	MiniDiffSignAdd = { fg = c.nord14 },
+	MiniDiffSignChange = { fg = c.nord13 },
+	MiniDiffSignDelete = { fg = c.nord11 },
+})
+
+-- mini.jump
+loadColorSet({
+	MiniJump = { style = "underline" },
 })
 
 -- snacks.nvim
