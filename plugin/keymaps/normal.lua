@@ -1,11 +1,11 @@
 local function k(lhs, rhs, opts)
-	local options = vim.tbl_extend("force", { noremap = true, silent = true, unique = true }, opts or {})
+	local options = vim.tbl_extend("force", { noremap = true, unique = true }, opts or {})
 	vim.keymap.set("n", lhs, rhs, options)
 end
 
 -- Navigation
-k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines" })
-k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines" })
+k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines", silent = true })
+k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines", silent = true })
 
 -- Editing
 k("[<space>", ":call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = "Put empty line above" }) -- FIXME: will be default in v0.11
@@ -60,13 +60,13 @@ k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode
 
 -- Miscellaneous
-k("<c-t>", ":terminal<cr>", { desc = "Terminal: Open", silent = true })
-k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle", silent = true })
+k("<c-t>", ":terminal<cr>", { desc = "Terminal: Open" })
+k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 k("ycc", "yy:normal gcc<cr>p") -- Duplicate a line and comment out the first line.
-k("J", "mzJ`z:delmarks z<cr>", { silent = true }) -- Keep cursor in place when joining lines
-k("<leader>w", ":silent! write<cr>", { silent = true, desc = "Save file" }) -- Save changes
+k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
+k("<leader>w", ":write<cr>", { desc = "Save file" }) -- Save changes
 k("[z", "zk%^") -- Jump to start of previous fold.
 k("]z", "zj") -- Jump to start of next fold.
 
 k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
--- k("<bs>", "<c-T>", { desc = "", unique = false, silent = false })
+-- k("<bs>", "<c-T>", { desc = "", unique = false })

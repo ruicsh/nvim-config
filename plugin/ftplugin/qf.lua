@@ -107,7 +107,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.wo.cursorline = true
 
 		local k = vim.keymap.set
-		local opts = { buffer = event.buf, silent = true }
+		local opts = { buffer = event.buf }
 
 		k("n", "<cr>", mappings.open(), opts)
 

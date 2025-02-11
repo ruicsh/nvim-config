@@ -39,7 +39,6 @@ vim.fn.get_lazy_keys_conf = function(mappings, desc_prefix)
 		return {
 			lhs,
 			rhs,
-			silent = true,
 			mode = mode,
 			noremap = true,
 			unique = true,

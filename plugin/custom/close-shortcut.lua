@@ -44,7 +44,6 @@ api.nvim_create_autocmd("FileType", {
 				pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
 			end, {
 				buffer = event.buf,
-				silent = true,
 			})
 		end)
 	end,

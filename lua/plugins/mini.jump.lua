@@ -15,7 +15,6 @@ return {
 			highlight = 250,
 			idle_stop = 10000000,
 		},
-		silent = false,
 	},
 
 	event = { "BufRead", "BufNewFile" },

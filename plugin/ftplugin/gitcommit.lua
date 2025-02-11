@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function(event)
 		vim.bo.modifiable = true
 
-		vim.cmd("startinsert", { silent = true }) -- Start on insert mode.
+		vim.cmd("startinsert") -- Start on insert mode.
 
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }

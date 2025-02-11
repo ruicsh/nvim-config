@@ -15,5 +15,5 @@ vim.api.nvim_create_user_command("JumpToLastVisitedBuffer", function()
 		return
 	end
 
-	vim.api.nvim_command("silent! buffer #")
+	vim.api.nvim_command("buffer #")
 end, {})
