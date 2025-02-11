@@ -37,33 +37,6 @@ M = {
 			focus = true,
 			max_width = 80,
 		}),
-		["$/progress"] = function(_, result, ctx)
-			local client_id = ctx.client_id
-			local token = result.token
-			local value = result.value
-
-			-- initialize client entry
-			if not _G.lsp_progress[client_id] then
-				_G.lsp_progress[client_id] = {}
-			end
-
-			if value.kind == "begin" or value.kind == "report" then
-				-- Update progress message
-				_G.lsp_progress[client_id][token] = {
-					title = value.title or "",
-				}
-				if value.message and value.message ~= "" then
-					_G.lsp_progress[client_id][token].message = value.message
-				end
-			elseif value.kind == "end" then
-				vim.defer_fn(function()
-					_G.lsp_progress[client_id][token] = nil
-					vim.cmd("redrawstatus")
-				end, 3000)
-			end
-
-			vim.cmd("redrawstatus")
-		end,
 	},
 }
 

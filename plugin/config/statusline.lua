@@ -255,29 +255,6 @@ local c_quickfix = function()
 	return "%#StatusLine#" .. title .. " [%l/%L] %p%%"
 end
 
--- Show LSP progress
-_G.lsp_progress = {}
-local c_lsp_progress = function()
-	local status = {}
-	for client_id, client_progress in pairs(_G.lsp_progress) do
-		for _, progress in pairs(client_progress) do
-			local client_name = vim.lsp.get_client_by_id(client_id).name
-			local parts = { client_name }
-
-			if progress.title and progress.title ~= "" then
-				table.insert(parts, progress.title)
-			end
-			if progress.message and progress.message ~= "" then
-				table.insert(parts, progress.message)
-			end
-
-			table.insert(status, table.concat(parts, " - "))
-		end
-	end
-
-	return status and table.concat(status, " ") or ""
-end
-
 local function c_copilot_chat()
 	local ft = vim.bo.filetype
 	if ft ~= "copilot-chat" then
@@ -303,7 +280,6 @@ function _G.status_line()
 		c_copilot_chat(),
 		c_search_count(),
 		"%=",
-		c_lsp_progress(),
 		"%=",
 		c_lsp_diagnostics(),
 		c_git_status(),
