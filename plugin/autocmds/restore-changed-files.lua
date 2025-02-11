@@ -42,6 +42,17 @@ local function is_file_to_ignore(file)
 		end
 	end
 
+	-- ignore by .env
+	local env_ignore_files = vim.fn.getenv("RESTORE_CHANGED_FILES_IGNORE")
+	if env_ignore_files ~= vim.NIL and env_ignore_files ~= "" then
+		local ignore_files = vim.split(env_ignore_files, ",")
+		for _, ignore_file in ipairs(ignore_files) do
+			if file:lower():find(ignore_file:lower()) then
+				return true
+			end
+		end
+	end
+
 	return false
 end
 

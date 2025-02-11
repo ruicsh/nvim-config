@@ -11,8 +11,10 @@ local function load_env_file(dir)
 	end
 
 	for line in env_file:lines() do
-		for key, value in string.gmatch(line, "([%w_]+)=([%w_-]+)") do
-			vim.fn.setenv(key, value)
+		if not line:match("^%s*#") then -- Skip comments
+			for key, value in string.gmatch(line, "([%w_]+)=([%w_-.,]+)") do -- varname=value
+				vim.fn.setenv(key, value)
+			end
 		end
 	end
 
