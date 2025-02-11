@@ -30,5 +30,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 		-- Load environment variables from .env file in current working directory
 		load_env_file(vim.fn.getcwd())
+
+		-- Load environment variables from .env file in git root
+		load_env_file(vim.git.root())
 	end,
 })
