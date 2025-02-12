@@ -4,6 +4,7 @@
 -- Custom prompts to be used with the `:CopilotChat` command
 local custom_prompts = {
 	"angular",
+	"communication",
 	"js",
 	"lua",
 	"microbit",
@@ -214,15 +215,10 @@ return {
 		question_header = "  ruicsh ",
 		prompts = (function()
 			local prompts = {}
-
 			-- Load custom prompts
 			for _, prompt in ipairs(custom_prompts) do
 				prompts[prompt] = read_prompt_file(prompt)
 			end
-
-			prompts.communication =
-				"Assume I am an experienced developer. Avoid beginner explanations unless absolutely necessary for context. Prioritize practical solutions with minimal but effective code snippets. If multiple approaches exist, compare them and explain their trade-offs. Use my communication style, which is direct, efficient, and focused on actionable insights. Keep responses concise but informative, avoiding unnecessary fluff."
-
 			return prompts
 		end)(),
 		show_help = false,
