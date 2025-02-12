@@ -23,7 +23,8 @@ end
 
 vim.api.nvim_create_user_command("CopilotChatGenCommitMessage", function()
 	local chat = require("CopilotChat")
-	local prompt = read_prompt_file("commit")
+	local filename = vim.fn.getenv("IS_WORK") == "true" and "commit-work" or "commit"
+	local prompt = read_prompt_file(filename)
 
 	chat.ask(prompt, {
 		clear_chat_on_new_prompt = true,

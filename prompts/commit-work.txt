@@ -1,0 +1,6 @@
+> #git:staged
+
+Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters. Wrap the whole message in code block with language gitcommit.
+
+Start the title with the ticket number in the form RD-xxxxx. You can find the ticket number in the start of the current branch name. You can find the module by using the first word after the ticket on the branch name. For example, RD-12345: feat(module) Add new feature. 
+
