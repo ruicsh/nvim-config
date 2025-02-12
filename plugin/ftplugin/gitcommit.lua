@@ -17,7 +17,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }
-		k({ "n", "i" }, "<c-m>", "<esc>:CopilotChatGenCommitMessage<cr>", opts) -- Generate commit message.
+		k({ "n", "i" }, "<c-m>", "<esc>:CopilotCommitMessage<cr>", opts) -- Generate commit message.
 		k({ "n", "i" }, "<c-s>", save_commit_message, opts)
 	end,
 })

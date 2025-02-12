@@ -12,5 +12,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		local opts = { buffer = event.buf }
 		k("n", "<leader>hp", ":Git push<cr>", opts)
 		k("n", "<leader>ho", ":Git push --set-upstream origin HEAD<cr>", opts)
+		k("n", "<leader>ar", ":CopilotCodeReview<cr>", opts)
 	end,
 })

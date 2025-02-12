@@ -21,14 +21,13 @@ local function read_prompt_file(basename)
 	return vim.fs.read_file(string.lower(file_path))
 end
 
-vim.api.nvim_create_user_command("CopilotChatGenCommitMessage", function()
+vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local chat = require("CopilotChat")
-	local filename = vim.fn.getenv("IS_WORK") == "true" and "commit-work" or "commit"
+	local filename = vim.fn.getenv("IS_WORK") == "true" and "commit_message_work" or "commit_message"
 	local prompt = read_prompt_file(filename)
 
 	chat.ask(prompt, {
 		clear_chat_on_new_prompt = true,
-		model = "gemini-2.0-flash-001",
 		window = {
 			col = 1,
 			height = 20,
@@ -38,6 +37,15 @@ vim.api.nvim_create_user_command("CopilotChatGenCommitMessage", function()
 			title = "  Commit message",
 			width = 80,
 		},
+	})
+end, {})
+
+vim.api.nvim_create_user_command("CopilotCodeReview", function()
+	local chat = require("CopilotChat")
+	local prompt = read_prompt_file("code_review")
+
+	chat.ask(prompt, {
+		clear_chat_on_new_prompt = true,
 	})
 end, {})
 
@@ -178,8 +186,8 @@ return {
 			{ "<leader>af", inline("Fix"), "Fix", { mode = "v" } },
 			{ "<leader>ai", inline("Implement"), "Implement", { mode = "v" } },
 			{ "<leader>ao", inline("Optimize"), "Optimize", { mode = "v" } },
-			{ "<leader>ar", inline("Refactor"), "Refactor", { mode = "v" } },
-			{ "<leader>av", inline("Review"), "Review", { mode = "v" } },
+			-- { "<leader>ar", inline("Refactor"), "Refactor", { mode = "v" } },
+			-- { "<leader>av", inline("Review"), "Review", { mode = "v" } },
 			{ "<leader>as", inline("Simplify"), "Simplify", { mode = "v" } },
 		}
 
