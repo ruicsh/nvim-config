@@ -252,16 +252,26 @@ Random features added.
 - `<c-p>` select previous entry
 - `<c-]>` abort
 
-#### AI assistant
+#### AI chat
 
-- `<leader>aa` chat
+- `<leader>aa` open
 - `<leader>ac` actions
-- `<leader>ae` explain
-- `<leader>ai` inline
 - `<leader>am` models
 - `<leader>ap` prompts
+- `<leader>aq` ask question
 - `<leader>ax` reset
-- `<c-m>` generate commit message
+- `<c-]>` stop request
+
+#### AI inline
+
+- `<leader>ae` explain
+- `<leader>af` fix
+- `<leader>ai` implement
+- `<leader>ao` optimize
+- `<leader>ar` refactor
+- `<leader>av` review
+- `<leader>as` simplify
+- `<c-m>` commit
 
 #### AI suggestions
 

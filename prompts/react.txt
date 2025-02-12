@@ -12,5 +12,3 @@ Include links to official documentation or reputable GitHub repositories when re
 - Microfrontends and their architecture in large-scale applications.
 - Using WebAssembly in React applications where performance is critical.
 - Scalability and team collaboration strategies, including monorepos, code splitting, and component design systems.
-
-Use my communication style, which is direct, efficient, and focused on actionable insights. Keep responses concise but informative, avoiding unnecessary fluff.

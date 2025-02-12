@@ -5,6 +5,7 @@
 local custom_prompts = {
 	"angular",
 	"js",
+	"lua",
 	"microbit",
 	"react",
 	"rust",
@@ -43,7 +44,7 @@ return {
 	keys = function()
 		local chat = require("CopilotChat")
 		local actions = require("CopilotChat.actions")
-		local select = require("CopilotChat.select")
+		local config = require("CopilotChat.config")
 
 		local function switch_window(cmd)
 			return function()
@@ -68,22 +69,6 @@ return {
 			end)
 		end
 
-		local function inline_chat()
-			chat.open({
-				clear_chat_on_new_prompt = true,
-				selection = select.visual,
-				window = {
-					col = 1,
-					height = 0.4,
-					layout = "float",
-					relative = "cursor",
-					row = 1,
-					title = "  Inline",
-					width = 0.3,
-				},
-			})
-		end
-
 		local function switch_prompt()
 			vim.ui.select(custom_prompts, {
 				prompt = "Select a custom prompt",
@@ -102,17 +87,98 @@ return {
 			end)
 		end
 
+		local function inline(action)
+			return function()
+				local ft = vim.bo.filetype
+				local filename = vim.fn.expand("%:t")
+				local ft_prompts = {}
+				if
+					filename:match("%.component%.ts$")
+					or filename:match("%.component%.html$")
+					or filename:match("%.module%.ts$")
+					or ft == "htmlangular"
+				then
+					table.insert(ft_prompts, "angular")
+					table.insert(ft_prompts, "js")
+					table.insert(ft_prompts, "ts")
+				elseif ft == "javascript" then
+					table.insert(ft_prompts, "js")
+				elseif ft == "typescript" then
+					table.insert(ft_prompts, "js")
+					table.insert(ft_prompts, "ts")
+				elseif ft == "vim" or ft == "lua" then
+					table.insert(ft_prompts, "vim")
+					table.insert(ft_prompts, "lua")
+				elseif ft == "rust" then
+					table.insert(ft_prompts, "rust")
+				elseif ft == "typescriptreact" then
+					table.insert(ft_prompts, "react")
+					table.insert(ft_prompts, "js")
+					table.insert(ft_prompts, "ts")
+				end
+
+				local sticky_prompts = { "communication" }
+				for _, ft_prompt in ipairs(ft_prompts) do
+					table.insert(sticky_prompts, ft_prompt)
+				end
+
+				local prompt = ""
+				if action == "Explain" then
+					prompt = config.prompts.Explain.prompt
+				elseif action == "Fix" then
+					prompt = config.prompts.Fix.prompt
+				elseif action == "Implement" then
+					-- prompt = config.prompts.Implement.prompt
+				elseif action == "Optimize" then
+					prompt = config.prompts.Optimize.prompt
+				elseif action == "Refactor" then
+					-- prompt = config.prompts.Refactor.prompt
+				elseif action == "Review" then
+					prompt = config.prompts.Review.prompt
+				elseif action == "Simplify" then
+					-- prompt = config.prompts.Simplify.prompt
+				end
+
+				for _, sticky in ipairs(sticky_prompts) do
+					prompt = "> /" .. sticky .. "\n\n" .. prompt
+				end
+
+				chat.ask(prompt, {
+					auto_insert_mode = false,
+					clear_chat_on_new_prompt = true,
+					model = "claude-3.5-sonnet",
+					window = {
+						col = 1,
+						height = 20,
+						layout = "float",
+						relative = "cursor",
+						row = 1,
+						title = "  " .. action,
+						width = 80,
+					},
+				})
+			end
+		end
+
 		local mappings = {
+			-- chat
 			{ "<leader>aa", switch_window("CopilotChatOpen"), "Chat", { mode = "v" } },
 			{ "<leader>aa", switch_window("CopilotChatToggle"), "Chat" },
-			{ "<leader>ac", show_actions, "Actions", { mode = { "n", "v" } } },
-			{ "<leader>ae", switch_window("CopilotChatExplain"), "Explain", { mode = { "v" } } },
-			{ "<leader>ai", inline_chat, "Inline", { mode = { "n", "v" } } },
+			{ "<leader>ac", show_actions, "Chat" },
 			{ "<leader>am", chat.select_model, "Models" },
 			{ "<leader>ap", switch_prompt, "Switch prompt" },
 			{ "<leader>aq", ask_question, "Ask" },
-			{ "<leader>as", chat.stop, "Stop" },
 			{ "<leader>ax", chat.reset, "Reset" },
+			{ "<c-]>", chat.stop, "Stop" },
+
+			-- inline
+			{ "<leader>ae", inline("Explain"), "Explain", { mode = "v" } },
+			{ "<leader>af", inline("Fix"), "Fix", { mode = "v" } },
+			{ "<leader>ai", inline("Implement"), "Implement", { mode = "v" } },
+			{ "<leader>ao", inline("Optimize"), "Optimize", { mode = "v" } },
+			{ "<leader>ar", inline("Refactor"), "Refactor", { mode = "v" } },
+			{ "<leader>av", inline("Review"), "Review", { mode = "v" } },
+			{ "<leader>as", inline("Simplify"), "Simplify", { mode = "v" } },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
@@ -148,9 +214,15 @@ return {
 		question_header = "  ruicsh ",
 		prompts = (function()
 			local prompts = {}
+
+			-- Load custom prompts
 			for _, prompt in ipairs(custom_prompts) do
-				prompts[prompt] = read_prompt_file("dev-" .. prompt)
+				prompts[prompt] = read_prompt_file(prompt)
 			end
+
+			prompts.communication =
+				"Assume I am an experienced developer. Avoid beginner explanations unless absolutely necessary for context. Prioritize practical solutions with minimal but effective code snippets. If multiple approaches exist, compare them and explain their trade-offs. Use my communication style, which is direct, efficient, and focused on actionable insights. Keep responses concise but informative, avoiding unnecessary fluff."
+
 			return prompts
 		end)(),
 		show_help = false,

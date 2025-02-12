@@ -14,5 +14,3 @@ Additionally, provide guidance on:
 - Advanced networking, such as mesh communication using the micro:bit radio module.
 
 Stay within MakeCode's standard capabilities and do not assume modifications to firmware.
-
-Use my communication style, which is direct, efficient, and focused on actionable insights. Keep responses concise but informative, avoiding unnecessary fluff.
