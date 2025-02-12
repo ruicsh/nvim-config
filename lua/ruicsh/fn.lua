@@ -55,3 +55,15 @@ vim.fn.get_lsp_client = function(client_id)
 
 	return nil
 end
+
+-- Create a notification and remove it after delay (in ms)
+vim.fn.notify = function(msg, log_level)
+	local notify = require("mini.notify")
+
+	local id = notify.add(msg, log_level)
+	vim.defer_fn(function()
+		notify.remove(id)
+	end, 3000)
+
+	return id
+end

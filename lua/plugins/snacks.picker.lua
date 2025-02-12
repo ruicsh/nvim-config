@@ -18,19 +18,40 @@ end
 local search_directory = function()
 	local snacks = require("snacks")
 
+	local dirs = {}
 	local conditions = {}
 	local gitignore_dirs = vim.fn.systemlist("git ls-files --others --ignored --exclude-standard --directory")
-	for _, dir in ipairs(gitignore_dirs) do
-		-- anwywhere in the path
-		table.insert(conditions, "-path '*" .. dir .. "*'")
+
+	local cmd = ""
+	if vim.fn.has("win32") == 1 then
+		for _, dir in ipairs(gitignore_dirs) do
+			dir = dir:gsub("/", "\\")
+			table.insert(conditions, "Not-Match '.+\\" .. dir .. ".*'")
+		end
+		for _, dir in ipairs(dirs_to_exclude_from_search) do
+			dir = dir:gsub("/", "\\")
+			table.insert(conditions, "Not-Name '" .. dir .. "'")
+		end
+		local exclude = table.concat(conditions, " -and ")
+		cmd = 'powershell -Command "&{Get-ChildItem -Directory -Recurse | Where-Object {'
+			.. exclude
+			.. '} | Select-Object -ExpandProperty FullName | ForEach-Object { $_.Substring($pwd.Path.Length + 1) } | Sort-Object}"'
+	else
+		for _, dir in ipairs(gitignore_dirs) do
+			table.insert(conditions, "-path '*" .. dir .. "*'")
+		end
+		for _, dir in ipairs(dirs_to_exclude_from_search) do
+			table.insert(conditions, "-name " .. dir)
+		end
+		local exclude = table.concat(conditions, " -o ")
+		cmd = "find . -type d \\( " .. exclude .. " \\) -prune -o -type d -print | sort"
 	end
-	for _, dir in ipairs(dirs_to_exclude_from_search) do
-		-- exclude by name, exact match
-		table.insert(conditions, "-name " .. dir)
+
+	dirs = vim.fn.systemlist(cmd)
+	if #dirs == 0 then
+		vim.fn.notify("No directories found", "WARN")
+		return
 	end
-	local exclude = table.concat(conditions, " -o ")
-	local cmd = "find . -type d \\( " .. exclude .. " \\) -prune -o -type d -print | sort"
-	local dirs = vim.fn.systemlist(cmd)
 
 	vim.ui.select(dirs, {
 		prompt = "Select a directory",
