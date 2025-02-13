@@ -4,7 +4,6 @@
 -- Custom prompts to be used with the `:CopilotChat` command
 local custom_prompts = {
 	"angular",
-	"communication",
 	"js",
 	"lua",
 	"microbit",
@@ -19,6 +18,48 @@ local function read_prompt_file(basename)
 	local config_path = vim.fn.stdpath("config")
 	local file_path = config_path .. "/prompts/" .. basename .. ".txt"
 	return vim.fs.read_file(string.lower(file_path))
+end
+
+-- Build a system prompt based on the current file type
+local function get_system_prompt()
+	local ft = vim.bo.filetype
+	local filename = vim.fn.expand("%:t")
+	local prompts = {}
+
+	if
+		filename:match("%.component%.ts$")
+		or filename:match("%.component%.html$")
+		or filename:match("%.module%.ts$")
+		or ft == "htmlangular"
+	then
+		table.insert(prompts, "angular")
+		table.insert(prompts, "js")
+		table.insert(prompts, "ts")
+	elseif ft == "javascript" then
+		table.insert(prompts, "js")
+	elseif ft == "typescript" then
+		table.insert(prompts, "js")
+		table.insert(prompts, "ts")
+	elseif ft == "vim" or ft == "lua" then
+		table.insert(prompts, "vim")
+		table.insert(prompts, "lua")
+	elseif ft == "rust" then
+		table.insert(prompts, "rust")
+	elseif ft == "typescriptreact" then
+		table.insert(prompts, "react")
+		table.insert(prompts, "js")
+		table.insert(prompts, "ts")
+	end
+
+	table.insert(prompts, "communication")
+
+	local system_prompt = ""
+	for _, prompt in ipairs(prompts) do
+		system_prompt = system_prompt .. "\n\n" .. "> /" .. prompt
+		-- system_prompt = system_prompt .. "\n\n" .. read_prompt_file(prompt)
+	end
+
+	return system_prompt
 end
 
 vim.api.nvim_create_user_command("CopilotCommitMessage", function()
@@ -42,10 +83,19 @@ end, {})
 
 vim.api.nvim_create_user_command("CopilotCodeReview", function()
 	local chat = require("CopilotChat")
-	local prompt = read_prompt_file("code_review")
+	local config = require("CopilotChat.config")
+
+	local system_prompt = read_prompt_file("code_review")
+	local prompt = [[
+> #git:staged
+
+Review my staged code files before I commit them.
+  ]]
 
 	chat.ask(prompt, {
+		callback = config.prompts.Review.callback,
 		clear_chat_on_new_prompt = true,
+		system_prompt = system_prompt,
 	})
 end, {})
 
@@ -99,64 +149,31 @@ return {
 
 		local function inline(action)
 			return function()
-				local ft = vim.bo.filetype
-				local filename = vim.fn.expand("%:t")
-				local ft_prompts = {}
-				if
-					filename:match("%.component%.ts$")
-					or filename:match("%.component%.html$")
-					or filename:match("%.module%.ts$")
-					or ft == "htmlangular"
-				then
-					table.insert(ft_prompts, "angular")
-					table.insert(ft_prompts, "js")
-					table.insert(ft_prompts, "ts")
-				elseif ft == "javascript" then
-					table.insert(ft_prompts, "js")
-				elseif ft == "typescript" then
-					table.insert(ft_prompts, "js")
-					table.insert(ft_prompts, "ts")
-				elseif ft == "vim" or ft == "lua" then
-					table.insert(ft_prompts, "vim")
-					table.insert(ft_prompts, "lua")
-				elseif ft == "rust" then
-					table.insert(ft_prompts, "rust")
-				elseif ft == "typescriptreact" then
-					table.insert(ft_prompts, "react")
-					table.insert(ft_prompts, "js")
-					table.insert(ft_prompts, "ts")
-				end
-
-				local sticky_prompts = { "communication" }
-				for _, ft_prompt in ipairs(ft_prompts) do
-					table.insert(sticky_prompts, ft_prompt)
-				end
+				local system_prompt = get_system_prompt()
 
 				local prompt = ""
 				if action == "Explain" then
-					prompt = config.prompts.Explain.prompt
+					prompt = "Write an explanation for the selected code as paragraphs of text."
+					system_prompt = config.prompts.COPILOT_EXPLAIN.system_prompt .. system_prompt
 				elseif action == "Fix" then
-					prompt = config.prompts.Fix.prompt
+					prompt = "There is a problem in this code. Rewrite the code to show it with the bug fixed."
+					system_prompt = config.prompts.COPILOT_GENERATE.system_prompt .. system_prompt
 				elseif action == "Implement" then
 					-- prompt = config.prompts.Implement.prompt
 				elseif action == "Optimize" then
-					prompt = config.prompts.Optimize.prompt
+					prompt = "Optimize the selected code to improve performance and readability."
+					system_prompt = config.prompts.COPILOT_GENERATE.system_prompt .. system_prompt
 				elseif action == "Refactor" then
 					-- prompt = config.prompts.Refactor.prompt
-				elseif action == "Review" then
-					prompt = config.prompts.Review.prompt
 				elseif action == "Simplify" then
 					-- prompt = config.prompts.Simplify.prompt
-				end
-
-				for _, sticky in ipairs(sticky_prompts) do
-					prompt = "> /" .. sticky .. "\n\n" .. prompt
 				end
 
 				chat.ask(prompt, {
 					auto_insert_mode = false,
 					clear_chat_on_new_prompt = true,
 					model = "claude-3.5-sonnet",
+					system_prompt = system_prompt,
 					window = {
 						col = 1,
 						height = 20,
@@ -172,8 +189,9 @@ return {
 
 		local mappings = {
 			-- chat
-			{ "<leader>aa", switch_window("CopilotChatOpen"), "Chat", { mode = "v" } },
+			{ "<leader>aA", switch_window("CopilotChatOpen"), "Chat" },
 			{ "<leader>aa", switch_window("CopilotChatToggle"), "Chat" },
+			-- TODO: remove this mapping, after it's all done
 			{ "<leader>ac", show_actions, "Chat" },
 			{ "<leader>am", chat.select_model, "Models" },
 			{ "<leader>ap", switch_prompt, "Switch prompt" },
@@ -186,8 +204,7 @@ return {
 			{ "<leader>af", inline("Fix"), "Fix", { mode = "v" } },
 			{ "<leader>ai", inline("Implement"), "Implement", { mode = "v" } },
 			{ "<leader>ao", inline("Optimize"), "Optimize", { mode = "v" } },
-			-- { "<leader>ar", inline("Refactor"), "Refactor", { mode = "v" } },
-			-- { "<leader>av", inline("Review"), "Review", { mode = "v" } },
+			{ "<leader>ar", inline("Refactor"), "Refactor", { mode = "v" } },
 			{ "<leader>as", inline("Simplify"), "Simplify", { mode = "v" } },
 		}
 
