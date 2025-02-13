@@ -1,8 +1,7 @@
 -- GitHub Copilot Chat
 -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
 
--- Custom prompts to be used with the `:CopilotChat` command
-local custom_prompts = {
+local CUSTOM_PROMPTS = {
 	"angular",
 	"js",
 	"lua",
@@ -13,71 +12,111 @@ local custom_prompts = {
 	"vim",
 }
 
--- Read the contents of a prompt file given its basename
+local FILETYPE_PROMPTS = {
+	angular = {
+		patterns = {
+			"%.component%.ts$",
+			"%.component%.html$",
+			"%.module%.ts$",
+		},
+		filetypes = { "htmlangular" },
+		prompts = { "angular", "js", "ts" },
+	},
+	javascript = {
+		filetypes = { "javascript" },
+		prompts = { "js" },
+	},
+	typescript = {
+		filetypes = { "typescript" },
+		prompts = { "js", "ts" },
+	},
+	vim = {
+		filetypes = { "vim", "lua" },
+		prompts = { "vim", "lua" },
+	},
+	rust = {
+		filetypes = { "rust" },
+		prompts = { "rust" },
+	},
+	react = {
+		filetypes = { "typescriptreact" },
+		prompts = { "react", "js", "ts" },
+	},
+}
+
 local function read_prompt_file(basename)
-	local config_path = vim.fn.stdpath("config")
-	local file_path = config_path .. "/prompts/" .. basename .. ".txt"
-	return vim.fs.read_file(string.lower(file_path))
+	local prompt_dir = vim.fs.joinpath(vim.fn.stdpath("config"), "prompts")
+	local file_path = vim.fs.joinpath(prompt_dir, string.format("%s.txt", string.lower(basename)))
+
+	local content = vim.fs.read_file(file_path)
+	return content or ""
 end
 
--- Build a system prompt based on the current file type
-local function get_system_prompt()
+local function get_system_prompt_by_filetype()
 	local ft = vim.bo.filetype
 	local filename = vim.fn.expand("%:t")
 	local prompts = {}
 
-	if
-		filename:match("%.component%.ts$")
-		or filename:match("%.component%.html$")
-		or filename:match("%.module%.ts$")
-		or ft == "htmlangular"
-	then
-		table.insert(prompts, "angular")
-		table.insert(prompts, "js")
-		table.insert(prompts, "ts")
-	elseif ft == "javascript" then
-		table.insert(prompts, "js")
-	elseif ft == "typescript" then
-		table.insert(prompts, "js")
-		table.insert(prompts, "ts")
-	elseif ft == "vim" or ft == "lua" then
-		table.insert(prompts, "vim")
-		table.insert(prompts, "lua")
-	elseif ft == "rust" then
-		table.insert(prompts, "rust")
-	elseif ft == "typescriptreact" then
-		table.insert(prompts, "react")
-		table.insert(prompts, "js")
-		table.insert(prompts, "ts")
+	for _, config in pairs(FILETYPE_PROMPTS) do
+		local matches = false
+
+		-- Check file patterns if defined
+		if config.patterns then
+			for _, pattern in ipairs(config.patterns) do
+				if filename:match(pattern) then
+					matches = true
+					break
+				end
+			end
+		end
+
+		-- Check filetypes
+		if config.filetypes and vim.tbl_contains(config.filetypes, ft) then
+			matches = true
+		end
+
+		if matches then
+			vim.list_extend(prompts, config.prompts)
+		end
 	end
 
+	-- Always add communication prompt
 	table.insert(prompts, "communication")
 
-	local system_prompt = ""
-	for _, prompt in ipairs(prompts) do
-		system_prompt = system_prompt .. "\n\n" .. "> /" .. prompt
-		-- system_prompt = system_prompt .. "\n\n" .. read_prompt_file(prompt)
-	end
+	-- Construct final prompt
+	return table.concat(
+		vim.tbl_map(function(p)
+			return "\n\n> /" .. p
+		end, prompts),
+		""
+	)
+end
 
-	return system_prompt
+local function switch_window(cmd)
+	return function()
+		vim.cmd("WindowToggleMaximize") -- maximize the current window
+		vim.cmd("vsplit") -- open a vertical split
+		vim.cmd(cmd) -- issue the command
+	end
 end
 
 vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local chat = require("CopilotChat")
-	local filename = vim.fn.getenv("IS_WORK") == "true" and "commit_message_work" or "commit_message"
-	local prompt = read_prompt_file(filename)
+	local config = require("CopilotChat.config")
+
+	-- Determine which prompt file to use based on work environment
+	local is_work_env = vim.fn.getenv("IS_WORK") == "true"
+	local prompt_filename = is_work_env and "commit_message_work" or "commit_message"
+
+	local ok, prompt = pcall(read_prompt_file, prompt_filename)
+	if not ok then
+		vim.notify("Failed to read prompt file: " .. prompt_filename, vim.log.levels.ERROR)
+		return
+	end
 
 	chat.ask(prompt, {
 		clear_chat_on_new_prompt = true,
-		window = {
-			col = 1,
-			height = 20,
-			layout = "float",
-			relative = "cursor",
-			row = 1,
-			title = "  Commit message",
-			width = 80,
-		},
+		system_prompt = config.prompts.COPILOT_INSTRUCTIONS.system_prompt,
 	})
 end, {})
 
@@ -103,20 +142,7 @@ return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	keys = function()
 		local chat = require("CopilotChat")
-		local actions = require("CopilotChat.actions")
 		local config = require("CopilotChat.config")
-
-		local function switch_window(cmd)
-			return function()
-				vim.cmd("WindowToggleMaximize") -- maximize the current window
-				vim.cmd("vsplit") -- open a vertical split
-				vim.cmd(cmd) -- issue the command
-			end
-		end
-
-		local function show_actions()
-			require("CopilotChat.integrations.snacks").pick(actions.prompt_actions())
-		end
 
 		local function ask_question()
 			require("snacks").input({
@@ -130,7 +156,7 @@ return {
 		end
 
 		local function switch_prompt()
-			vim.ui.select(custom_prompts, {
+			vim.ui.select(CUSTOM_PROMPTS, {
 				prompt = "Select a custom prompt",
 				format_item = function(item)
 					return item
@@ -147,65 +173,44 @@ return {
 			end)
 		end
 
-		local function inline(action)
-			return function()
-				local system_prompt = get_system_prompt()
+		local function get_chat_system_prompt(action)
+			local base_prompt = get_system_prompt_by_filetype()
+			local prompt_type = (action == "Explain") and "COPILOT_EXPLAIN" or "COPILOT_GENERATE"
 
-				local prompt = ""
-				if action == "Explain" then
-					prompt = "Write an explanation for the selected code as paragraphs of text."
-					system_prompt = config.prompts.COPILOT_EXPLAIN.system_prompt .. system_prompt
-				elseif action == "Fix" then
-					prompt = "There is a problem in this code. Rewrite the code to show it with the bug fixed."
-					system_prompt = config.prompts.COPILOT_GENERATE.system_prompt .. system_prompt
-				elseif action == "Implement" then
-					-- prompt = config.prompts.Implement.prompt
-				elseif action == "Optimize" then
-					prompt = "Optimize the selected code to improve performance and readability."
-					system_prompt = config.prompts.COPILOT_GENERATE.system_prompt .. system_prompt
-				elseif action == "Refactor" then
-					-- prompt = config.prompts.Refactor.prompt
-				elseif action == "Simplify" then
-					-- prompt = config.prompts.Simplify.prompt
+			return config.prompts[prompt_type].system_prompt .. base_prompt
+		end
+
+		local function operation(op)
+			return function()
+				local ok, prompt = pcall(read_prompt_file, op:lower())
+				if not ok then
+					vim.notify("Failed to read prompt file: " .. op:lower(), vim.log.levels.ERROR)
+					return
 				end
 
 				chat.ask(prompt, {
 					auto_insert_mode = false,
 					clear_chat_on_new_prompt = true,
 					model = "claude-3.5-sonnet",
-					system_prompt = system_prompt,
-					window = {
-						col = 1,
-						height = 20,
-						layout = "float",
-						relative = "cursor",
-						row = 1,
-						title = "  " .. action,
-						width = 80,
-					},
+					system_prompt = get_chat_system_prompt(op),
 				})
 			end
 		end
 
 		local mappings = {
 			-- chat
-			{ "<leader>aA", switch_window("CopilotChatOpen"), "Chat" },
 			{ "<leader>aa", switch_window("CopilotChatToggle"), "Chat" },
-			-- TODO: remove this mapping, after it's all done
-			{ "<leader>ac", show_actions, "Chat" },
 			{ "<leader>am", chat.select_model, "Models" },
 			{ "<leader>ap", switch_prompt, "Switch prompt" },
 			{ "<leader>aq", ask_question, "Ask" },
-			{ "<leader>ax", chat.reset, "Reset" },
 			{ "<c-]>", chat.stop, "Stop" },
 
-			-- inline
-			{ "<leader>ae", inline("Explain"), "Explain", { mode = "v" } },
-			{ "<leader>af", inline("Fix"), "Fix", { mode = "v" } },
-			{ "<leader>ai", inline("Implement"), "Implement", { mode = "v" } },
-			{ "<leader>ao", inline("Optimize"), "Optimize", { mode = "v" } },
-			{ "<leader>ar", inline("Refactor"), "Refactor", { mode = "v" } },
-			{ "<leader>as", inline("Simplify"), "Simplify", { mode = "v" } },
+			-- predefined prompts
+			{ "<leader>ae", operation("Explain"), "Explain", { mode = "v" } },
+			{ "<leader>af", operation("Fix"), "Fix", { mode = "v" } },
+			{ "<leader>ai", operation("Implement"), "Implement", { mode = "v" } },
+			{ "<leader>ao", operation("Optimize"), "Optimize", { mode = "v" } },
+			{ "<leader>ar", operation("Refactor"), "Refactor", { mode = "v" } },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
@@ -242,15 +247,12 @@ return {
 		prompts = (function()
 			local prompts = {}
 			-- Load custom prompts
-			for _, prompt in ipairs(custom_prompts) do
+			for _, prompt in ipairs(CUSTOM_PROMPTS) do
 				prompts[prompt] = read_prompt_file(prompt)
 			end
 			return prompts
 		end)(),
 		show_help = false,
-		sticky = {
-			"/COPILOT_GENERATE",
-		},
 		window = {
 			layout = "replace",
 		},

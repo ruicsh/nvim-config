@@ -1,0 +1,5 @@
+Please review the following code and identify the cause of the bug. Provide a corrected version of the code along with a brief explanation of what was wrong and how you fixed it.
+
+1. The code should correctly perform the intended operation.
+2. Maintain code readability and best practices.
+3. Provide a brief explanation of the issue and the fix.
