@@ -14,6 +14,7 @@ return {
 			{ "-", ":Oil<cr>", "Open parent" },
 			{ "_", open_cwd, "Open cwd" },
 		}
+
 		return vim.fn.get_lazy_keys_conf(mappings, "Oil")
 	end,
 	opts = {

@@ -18,11 +18,6 @@ M = {
 		ChangeDelete = "┃",
 		Untracked = "┃",
 	},
-	buffers = {
-		alternate = "",
-		current = "",
-		pinned = "",
-	},
 }
 
 return M

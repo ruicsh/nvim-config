@@ -27,8 +27,8 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>hdd", ":DiffviewOpen<cr>", "Diffview" },
-			{ "<leader>hll", ":DiffviewFileHistory<cr>", "Log" },
+			{ "<leader>hD", ":DiffviewOpen<cr>", "Diffview" },
+			{ "<leader>hL", ":DiffviewFileHistory<cr>", "Log" },
 			{ "<leader>hl", ":DiffviewFileHistory %<cr>", "Log for file" },
 			{ "<leader>hl", ":'<,'>DiffviewFileHistory<cr>", "Log visual selection", { mode = "v" } },
 			{ "<leader>hb", git_blame_line, "Blame line" },
