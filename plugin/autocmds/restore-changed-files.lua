@@ -69,25 +69,31 @@ local function get_changed_files()
 	end
 
 	local git_cmd = "git -C " .. vim.fn.shellescape(git_root)
-	local tracked_files = vim.fn.systemlist(git_cmd .. " diff --name-only")
-	local staged_files = vim.fn.systemlist(git_cmd .. " diff --cached --name-only")
-	local untracked_files = vim.fn.systemlist(git_cmd .. " ls-files --others --exclude-standard")
-	local changed_files = vim.list_extend(tracked_files, staged_files)
-	changed_files = vim.list_extend(changed_files, untracked_files)
+	local status_cmd = git_cmd .. " status --porcelain=v1"
+	local status_output = vim.fn.systemlist(status_cmd)
 
 	local files = {}
-	-- Generate absolute path for each file (relative to the git repo root)
-	for _, file in ipairs(changed_files) do
-		local filepath = vim.fs.normalize(git_root .. "/" .. file)
-		if vim.fn.isdirectory(filepath) ~= 0 then
-			for dirfile, type in vim.fs.dir(filepath, { depth = 9999 }) do
-				if type == "file" then
-					local dirfilepath = vim.fs.joinpath(filepath, dirfile)
-					table.insert(files, dirfilepath)
+	-- Process each status line
+	for _, line in ipairs(status_output) do
+		if line ~= "" then
+			-- Extract filename from status output (starts at position 4)
+			local file = line:sub(4)
+			local filepath = vim.fs.normalize(git_root .. "/" .. file)
+
+			if vim.fn.isdirectory(filepath) == 1 then
+				-- Handle directories
+				local ok, dir_files = pcall(vim.fs.dir, filepath, { depth = 9999 })
+				if ok then
+					for dirfile, type in dir_files do
+						if type == "file" then
+							local dirfilepath = vim.fs.joinpath(filepath, dirfile)
+							table.insert(files, dirfilepath)
+						end
+					end
 				end
+			else
+				table.insert(files, filepath)
 			end
-		else
-			table.insert(files, filepath)
 		end
 	end
 
