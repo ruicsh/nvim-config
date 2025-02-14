@@ -20,6 +20,9 @@ return {
 		modes = {
 			char = {
 				enabled = true,
+				highlight = {
+					backdrop = false,
+				},
 			},
 			treesitter = {
 				jump = {

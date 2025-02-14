@@ -9,7 +9,14 @@ local function hl(group, color)
 	local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
 	local sp = color.sp and "guisp=" .. color.sp or ""
 
-	local h = "highlight " .. group .. " " .. style .. " " .. fg .. " " .. bg .. " " .. sp
+	local h = table.concat({
+		"highlight",
+		group,
+		style,
+		fg,
+		bg,
+		sp,
+	}, " ")
 
 	vim.cmd(h)
 	if color.link then
@@ -226,7 +233,7 @@ loadColorSet({
 
 -- flash.nvim
 loadColorSet({
-	FlashLabel = { style = "reverse" },
+	FlashLabel = { fg = c.nord9, bg = c.nord1, style = "reverse" },
 })
 
 -- Fugitive
@@ -298,11 +305,6 @@ loadColorSet({
 	MiniDiffSignAdd = { fg = c.nord14 },
 	MiniDiffSignChange = { fg = c.nord13 },
 	MiniDiffSignDelete = { fg = c.nord11 },
-})
-
--- mini.jump
-loadColorSet({
-	MiniJump = { style = "underline" },
 })
 
 -- snacks.nvim
