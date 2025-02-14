@@ -2,6 +2,7 @@
 -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
 
 local CUSTOM_PROMPTS = {
+	-- filetypes
 	"angular",
 	"js",
 	"lua",
@@ -10,6 +11,16 @@ local CUSTOM_PROMPTS = {
 	"rust",
 	"ts",
 	"vim",
+	-- operations
+	"explain",
+	"fix",
+	"implement",
+	"optimize",
+	"refactor",
+	-- git
+	"commit",
+	"commitwork",
+	"codereview",
 }
 
 local FILETYPE_PROMPTS = {
@@ -86,7 +97,7 @@ local function get_system_prompt_by_filetype()
 	-- Construct final prompt
 	return table.concat(
 		vim.tbl_map(function(p)
-			return "\n\n> /" .. p
+			return "\n> /" .. p
 		end, prompts),
 		""
 	)
@@ -104,19 +115,22 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local chat = require("CopilotChat")
 	local config = require("CopilotChat.config")
 
-	-- Determine which prompt file to use based on work environment
+	-- Determine which prompt command to use based on work environment
 	local is_work_env = vim.fn.getenv("IS_WORK") == "true"
-	local prompt_filename = is_work_env and "commit_message_work" or "commit_message"
-
-	local ok, prompt = pcall(read_prompt_file, prompt_filename)
-	if not ok then
-		vim.notify("Failed to read prompt file: " .. prompt_filename, vim.log.levels.ERROR)
-		return
-	end
+	local prompt = "/" .. (is_work_env and "commitwork" or "commit")
 
 	chat.ask(prompt, {
 		clear_chat_on_new_prompt = true,
 		system_prompt = config.prompts.COPILOT_INSTRUCTIONS.system_prompt,
+		window = {
+			col = 1,
+			height = 20,
+			layout = "float",
+			relative = "cursor",
+			row = 1,
+			title = "  Commit",
+			width = 80,
+		},
 	})
 end, {})
 
@@ -142,7 +156,6 @@ return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	keys = function()
 		local chat = require("CopilotChat")
-		local config = require("CopilotChat.config")
 
 		local function ask_question()
 			require("snacks").input({
@@ -162,8 +175,11 @@ return {
 					return item
 				end,
 			}, function(choice)
-				local cmd = "CopilotChat" .. choice
+				if not choice then
+					return
+				end
 
+				local cmd = "CopilotChat" .. choice
 				local ft = vim.bo.filetype
 				if ft ~= "copilot-chat" then
 					switch_window(cmd)()
@@ -174,26 +190,30 @@ return {
 		end
 
 		local function get_chat_system_prompt(action)
-			local base_prompt = get_system_prompt_by_filetype()
-			local prompt_type = (action == "Explain") and "COPILOT_EXPLAIN" or "COPILOT_GENERATE"
+			local ft_prompt = get_system_prompt_by_filetype()
+			local prompt_type = (action == "explain") and "COPILOT_EXPLAIN" or "COPILOT_GENERATE"
 
-			return config.prompts[prompt_type].system_prompt .. base_prompt
+			return "> /" .. prompt_type .. ft_prompt
 		end
 
-		local function operation(op)
+		local function operation(operation_type)
 			return function()
-				local ok, prompt = pcall(read_prompt_file, op:lower())
-				if not ok then
-					vim.notify("Failed to read prompt file: " .. op:lower(), vim.log.levels.ERROR)
-					return
-				end
+				vim.cmd("WindowToggleMaximize") -- maximize the current window
+				vim.cmd("vsplit") -- open a vertical split
 
-				chat.ask(prompt, {
-					auto_insert_mode = false,
-					clear_chat_on_new_prompt = true,
-					model = "claude-3.5-sonnet",
-					system_prompt = get_chat_system_prompt(op),
-				})
+				-- Configure chat parameters
+				local chat_config = {
+					prompt = "/" .. operation_type,
+					options = {
+						auto_insert_mode = false,
+						clear_chat_on_new_prompt = true,
+						model = "claude-3.5-sonnet",
+						system_prompt = get_chat_system_prompt(operation_type),
+					},
+				}
+
+				-- Initialize chat with error handling
+				chat.ask(chat_config.prompt, chat_config.options)
 			end
 		end
 
@@ -206,11 +226,11 @@ return {
 			{ "<c-]>", chat.stop, "Stop" },
 
 			-- predefined prompts
-			{ "<leader>ae", operation("Explain"), "Explain", { mode = "v" } },
-			{ "<leader>af", operation("Fix"), "Fix", { mode = "v" } },
-			{ "<leader>ai", operation("Implement"), "Implement", { mode = "v" } },
-			{ "<leader>ao", operation("Optimize"), "Optimize", { mode = "v" } },
-			{ "<leader>ar", operation("Refactor"), "Refactor", { mode = "v" } },
+			{ "<leader>ae", operation("explain"), "Explain", { mode = "v" } },
+			{ "<leader>af", operation("fix"), "Fix", { mode = "v" } },
+			{ "<leader>ai", operation("implement"), "Implement", { mode = "v" } },
+			{ "<leader>ao", operation("optimize"), "Optimize", { mode = "v" } },
+			{ "<leader>ar", operation("refactor"), "Refactor", { mode = "v" } },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
