@@ -23,7 +23,7 @@ local CUSTOM_PROMPTS = {
 	"commitwork",
 }
 
-local FILETYPE_PROMPTS = {
+local FILETYPE_CONFIGS = {
 	angular = {
 		patterns = {
 			"%.component%.ts$",
@@ -44,6 +44,7 @@ local FILETYPE_PROMPTS = {
 	vim = {
 		filetypes = { "vim", "lua" },
 		prompts = { "vim", "lua" },
+		contexts = { "url:https://github.com/ruicsh/nvim-config" },
 	},
 	rust = {
 		filetypes = { "rust" },
@@ -63,12 +64,11 @@ local function read_prompt_file(basename)
 	return content or ""
 end
 
-local function get_system_prompt_by_filetype()
+local function get_config_by_filetype()
 	local ft = vim.bo.filetype
 	local filename = vim.fn.expand("%:t")
-	local prompts = {}
 
-	for _, config in pairs(FILETYPE_PROMPTS) do
+	for _, config in pairs(FILETYPE_CONFIGS) do
 		local matches = false
 
 		-- Check file patterns if defined
@@ -87,27 +87,37 @@ local function get_system_prompt_by_filetype()
 		end
 
 		if matches then
-			vim.list_extend(prompts, config.prompts)
+			return config
 		end
 	end
+end
 
-	-- Always add communication prompt
-	table.insert(prompts, "communication")
-
-	-- Construct final prompt
+local function concat_prompts(commands)
 	return table.concat(
 		vim.tbl_map(function(p)
+			-- Add sticky commands
 			return "\n> /" .. p
-		end, prompts),
+		end, commands),
 		""
 	)
 end
 
-local function get_system_prompt(action)
-	local ft_prompt = get_system_prompt_by_filetype()
-	local prompt_type = (action == "explain") and "COPILOT_EXPLAIN" or "COPILOT_GENERATE"
+local function get_system_prompts(action)
+	local base_prompt = (action == "explain") and "COPILOT_EXPLAIN"
+		or (action == "generic" and "COPILOT_INSTRUCTIONS")
+		or "COPILOT_GENERATE"
 
-	return "> /" .. prompt_type .. ft_prompt
+	-- Get filetype-specific prompts
+	local ft_config = get_config_by_filetype()
+	local ft_prompts = ft_config and ft_config.prompts or {}
+
+	-- Build list of prompts
+	local prompts = { base_prompt }
+	vim.list_extend(prompts, ft_prompts)
+	-- Always add communication prompt
+	table.insert(prompts, "communication")
+
+	return prompts
 end
 
 local function open_chat()
@@ -119,10 +129,13 @@ local function open_chat()
 	vim.cmd("WindowToggleMaximize") -- maximize the current window
 	vim.cmd("vsplit") -- open a vertical split
 
-	local system_prompt = "> /COPILOT_INSTRUCTIONS" .. get_system_prompt_by_filetype()
+	local ft_config = get_config_by_filetype()
+	local prompts = get_system_prompts("generic")
+	local system_prompt = concat_prompts(prompts)
 
 	chat.ask("", {
 		clear_chat_on_new_prompt = true,
+		contexts = ft_config and ft_config.contexts or {},
 		-- if there's something selected use it, if not, use a blank context
 		selection = is_visual_mode and select.visual or false,
 		system_prompt = system_prompt,
@@ -137,6 +150,9 @@ local function operation(operation_type)
 		vim.cmd("WindowToggleMaximize") -- maximize the current window
 		vim.cmd("vsplit") -- open a vertical split
 
+		local prompts = get_system_prompts(operation_type)
+		local system_prompt = concat_prompts(prompts)
+
 		-- Configure chat parameters
 		local chat_config = {
 			prompt = "/" .. operation_type,
@@ -144,7 +160,7 @@ local function operation(operation_type)
 				auto_insert_mode = false,
 				clear_chat_on_new_prompt = true,
 				selection = select.visual,
-				system_prompt = get_system_prompt(operation_type),
+				system_prompt = system_prompt,
 			},
 		}
 
