@@ -143,7 +143,7 @@ return {
 				},
 				help = {
 					confirm = function()
-						vim.cmd("WindowToggleMaximize") -- maximize current window
+						vim.cmd("WindowToggleMaximize forceOpen") -- maximize current window
 						vim.cmd("help")
 					end,
 				},

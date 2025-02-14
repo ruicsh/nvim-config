@@ -5,7 +5,7 @@ return {
 	"tpope/vim-fugitive",
 	keys = function()
 		local function open_git_status()
-			vim.cmd("WindowToggleMaximize") -- maximize the current window
+			vim.cmd("WindowToggleMaximize forceOpen") -- maximize the current window
 			vim.cmd("vertical Git")
 		end
 

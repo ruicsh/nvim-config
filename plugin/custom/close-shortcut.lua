@@ -66,7 +66,7 @@ api.nvim_create_autocmd("FileType", {
 		"help",
 	},
 	callback = function(event)
-		k("n", closeShortcut, ":close | WindowToggleMaximize<cr>", { buffer = event.buf })
+		k("n", closeShortcut, ":close | WindowToggleMaximize forceClose<cr>", { buffer = event.buf })
 	end,
 })
 

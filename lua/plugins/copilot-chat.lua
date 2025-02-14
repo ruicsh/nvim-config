@@ -126,7 +126,7 @@ local function open_chat()
 
 	local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
 
-	vim.cmd("WindowToggleMaximize") -- maximize the current window
+	vim.cmd("WindowToggleMaximize forceOpen") -- maximize the current window
 	vim.cmd("vsplit") -- open a vertical split
 
 	local ft_config = get_config_by_filetype()
@@ -147,7 +147,7 @@ local function operation(operation_type)
 	local select = require("CopilotChat.select")
 
 	return function()
-		vim.cmd("WindowToggleMaximize") -- maximize the current window
+		vim.cmd("WindowToggleMaximize forceOpen") -- maximize the current window
 		vim.cmd("vsplit") -- open a vertical split
 
 		local prompts = get_system_prompts(operation_type)

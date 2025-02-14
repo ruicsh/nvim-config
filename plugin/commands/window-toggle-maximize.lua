@@ -44,8 +44,11 @@ local function restore_layout()
 	restore_node(saved_layout, saved_layout.buffers, buf_index)
 end
 
+-- Trailing characters: forceOpen: WindowToggleMaximize forceOpen
 vim.api.nvim_create_user_command("WindowToggleMaximize", function(opts)
-	local target_win = tonumber(opts.args) or vim.api.nvim_get_current_win() -- Default to current window
+	local forceOpen = opts.args == "forceOpen"
+	local forceClose = opts.args == "forceClose"
+	local target_win = vim.api.nvim_get_current_win()
 
 	-- The target window is floating, use window that opened it
 	if vim.api.nvim_win_get_config(target_win).relative ~= "" then
@@ -53,7 +56,7 @@ vim.api.nvim_create_user_command("WindowToggleMaximize", function(opts)
 		target_win = vim.api.nvim_get_current_win()
 	end
 
-	if is_maximized then
+	if (is_maximized and not forceOpen) or forceClose then
 		restore_layout()
 		-- Move the cursor back to the window with the previously maximized buffer
 		local wins = vim.api.nvim_tabpage_list_wins(0)
@@ -64,10 +67,15 @@ vim.api.nvim_create_user_command("WindowToggleMaximize", function(opts)
 			end
 		end
 		is_maximized = false
-	else
+	elseif not is_maximized or forceOpen then
 		save_layout()
 		vim.api.nvim_set_current_win(target_win)
 		vim.cmd("only") -- Maximize the current window
 		is_maximized = true
 	end
-end, {})
+end, {
+	nargs = "?", -- Allow optional argument
+	complete = function()
+		return { "forceOpen", "forceClose" }
+	end,
+})

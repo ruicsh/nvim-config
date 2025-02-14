@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("CmdLineLeave", {
 	callback = function()
 		local cmd = vim.fn.getcmdline()
 		if cmd:match("^help%s") or cmd:match("^h%s") or cmd == "help" then
-			vim.cmd("WindowToggleMaximize")
+			vim.cmd("WindowToggleMaximize forceOpen")
 		end
 	end,
 })
