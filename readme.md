@@ -255,23 +255,19 @@ Random features added.
 #### AI chat
 
 - `<leader>aa` open
-- `<leader>ac` actions
 - `<leader>am` models
-- `<leader>ap` prompts
-- `<leader>aq` ask question
-- `<leader>ax` reset
-- `<c-]>` stop request
+- `<c-l>` accept diff
+- `<c-x>` reset
 
-#### AI inline
+#### AI operations
 
 - `<leader>ae` explain
 - `<leader>af` fix
 - `<leader>ai` implement
 - `<leader>ao` optimize
 - `<leader>ar` refactor
-- `<leader>av` review
-- `<leader>as` simplify
-- `<c-m>` commit
+- `<leader>ar` review (ft:fugitive)
+- `<c-m>` commit (ft:gitcommit)
 
 #### AI suggestions
 
