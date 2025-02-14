@@ -33,9 +33,8 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 ### Editing
 
 - [csvview.nvim](https://github.com/hat0uma/csvview.nvim) - CSV editing
-- [flash.nvim](https://github.com/folke/flash.nvim) - Navigate with labels
+- [flash.nvim](https://github.com/folke/flash.nvim) - Search labels, enhanced character motions
 - [mini.ai](https://github.com/echasnovski/mini.ai) - around/inside textobjects
-- [mini.jump](https://github.com/echasnovski/mini.jump) - Jump next/previous single character
 - [mini.move](https://github.com/echasnovski/mini.move) - move lines/selection
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround pairs
