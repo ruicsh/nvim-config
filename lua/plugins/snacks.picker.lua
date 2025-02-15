@@ -53,14 +53,37 @@ local search_directory = function()
 		return
 	end
 
-	vim.ui.select(dirs, {
-		prompt = "Select a directory",
-		format_item = function(item)
-			return item
+	snacks.picker({
+		finder = function()
+			local items = {}
+			for i, item in ipairs(dirs) do
+				table.insert(items, {
+					idx = i,
+					file = item,
+					text = item,
+				})
+			end
+			return items
 		end,
-	}, function(choice)
-		snacks.picker.grep({ search = vim.fn.expand("<cword>"), dirs = { choice } })
-	end)
+		format = function(item, _)
+			local file = item.file
+			local ret = {}
+			local a = Snacks.picker.util.align
+			local icon, icon_hl = Snacks.util.icon(file.ft, "directory")
+			ret[#ret + 1] = { a(icon, 3), icon_hl }
+			ret[#ret + 1] = { " " }
+			ret[#ret + 1] = { a(file, 20) }
+
+			return ret
+		end,
+		confirm = function(picker, item)
+			picker:close()
+			snacks.picker.grep({
+				search = vim.fn.expand("<cword>"),
+				dirs = { item.file },
+			})
+		end,
+	})
 end
 
 return {
@@ -69,18 +92,22 @@ return {
 		local snacks = require("snacks")
 
 		local mappings = {
+			-- pickers
 			{ "<leader><space>", snacks.picker.files, "Search: Files" },
 			{ "<leader>ff", search_workspace, "Search: Workspace" },
 			{ "<leader>fd", search_directory, "Search: Directory" },
-			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
+			{ "<leader>/", snacks.picker.buffers, "Search: Buffers" },
 			{ "<leader>e", snacks.picker.explorer, "Files Tree Explorer" },
 			{ "<leader>j", snacks.picker.jumps, "Search: Jumplist" },
 
+			-- neovim application
 			{ "<leader>nh", snacks.picker.help, "Search: Help" },
 			{ "<leader>nc", snacks.picker.commands, "Search: Commands" },
 			{ "<leader>nk", snacks.picker.keymaps, "Search: Keymaps" },
+			{ "<leader>na", snacks.picker.autocmds, "Search: autocmds" },
+
 			{ "<leader>uu", snacks.picker.undo, "Undo: Tree" },
-			{ "<leader>no", snacks.notifier.show_history, "Notifications: Show history" },
+			{ "<leader>oo", snacks.notifier.show_history, "Notifications: Show history" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings)

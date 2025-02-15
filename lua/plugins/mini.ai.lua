@@ -1,7 +1,7 @@
 -- Extend and create a/i textobjects.
 -- https://github.com/echasnovski/mini.ai
 
--- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/mini.lua
+-- https://github.com/echasnovski/mini.extra/blob/main/lua/mini/extra.lua#L131
 local function ai_buffer(ai_type)
 	local start_line, end_line = 1, vim.fn.line("$")
 
@@ -27,6 +27,7 @@ return {
 	"echasnovski/mini.ai",
 	opts = function()
 		local ai = require("mini.ai")
+
 		return {
 			n_lines = 500,
 			custom_textobjects = {
