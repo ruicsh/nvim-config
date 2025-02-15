@@ -21,6 +21,10 @@ k("cc", '"_cc')
 k("x", '"_x')
 k("X", '"_X')
 
+-- Folds
+k("[z", "zk%^") -- Jump to start of previous fold.
+k("]z", "zj") -- Jump to start of next fold.
+
 -- Buffers
 k("<bs>", ":JumpToLastVisitedBuffer<cr>", { desc = "Toggle to last buffer" })
 local bufdelete = require("snacks.bufdelete")
@@ -64,8 +68,7 @@ k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 k("ycc", "yy:normal gcc<cr>p") -- Duplicate a line and comment out the first line.
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
 k("<leader>w", ":write<cr>", { desc = "Save file", silent = true }) -- Save changes
-k("[z", "zk%^") -- Jump to start of previous fold.
-k("]z", "zj") -- Jump to start of next fold.
+k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
 
 k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
 -- k("<bs>", "<c-T>", { desc = "", unique = false })

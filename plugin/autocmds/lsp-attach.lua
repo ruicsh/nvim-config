@@ -60,6 +60,8 @@ end
 
 -- Set keymaps for LSP
 local function keymaps(bufnr, client)
+	local snacks = require("snacks")
+
 	local k = function(keys, func, desc, mode)
 		mode = mode or "n"
 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
@@ -72,7 +74,7 @@ local function keymaps(bufnr, client)
 	k("gra", vim.lsp.buf.code_action, "Code actions", { "n", "v" }) -- FIXME: will be default in v0.11
 	k("grr", vim.lsp.buf.references, "List [r]eferences") -- FIXME: will be default in v0.11
 	k("gri", vim.lsp.buf.implementation, "List [i]mplementations") -- FIXME: will be default in v0.11
-	k("gO", vim.lsp.buf.document_symbol, "Document Symbol") -- FIXME: will be default in v0.11
+	k("gO", snacks.picker.lsp_symbols, "LSP: Symbols")
 	k("<c-s>", vim.lsp.buf.signature_help, "Signature help", { "i", "s" }) -- FIXME: will be default in v0.11
 	k("<leader>dd", vim.diagnostic.setqflist, "Diagnostics")
 

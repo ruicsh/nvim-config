@@ -36,11 +36,10 @@ return {
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
 	end,
-	config = function()
-		local diffview = require("diffview")
+	opts = function()
 		local actions = require("diffview.actions")
 
-		diffview.setup({
+		return {
 			enhanced_diff_hl = true,
 			keymaps = {
 				file_panel = {
@@ -67,7 +66,7 @@ return {
 					vim.wo.relativenumber = false -- Disable relative numbers.
 				end,
 			},
-		})
+		}
 	end,
 
 	cmd = { "DiffviewOpen", "DiffviewFileHistory" },

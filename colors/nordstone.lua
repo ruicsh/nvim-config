@@ -233,7 +233,7 @@ loadColorSet({
 
 -- flash.nvim
 loadColorSet({
-	FlashLabel = { fg = c.nord9, bg = c.nord1, style = "reverse" },
+	FlashLabel = { link = "Cursor" },
 })
 
 -- Fugitive

@@ -113,7 +113,6 @@ return {
 
 		cmp.setup({
 			completion = { completeopt = "menu,menuone,noinsert" },
-
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
 				format = function(entry, item)
@@ -125,7 +124,6 @@ return {
 						menu = {
 							buffer = "[buf]",
 							cmdline = "[cmd]",
-							cmdline_history = "[hst]",
 							nvim_lsp = "[lsp]",
 							nvim_lsp_signature_help = "[sig]",
 							nvim_lua = "[lua]",
@@ -137,7 +135,6 @@ return {
 				end,
 				expandable_indicator = true,
 			},
-
 			mapping = vim.tbl_extend("force", mapping(), {
 				-- confirm completion
 				["<c-l>"] = cmp.mapping(function(fallback)
@@ -178,21 +175,17 @@ return {
 					end
 				end, { "i", "s" }),
 			}),
-
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp_signature_help", group_index = 0 },
 				{ name = "path", group_index = 3 },
 				{ name = "buffer", group_index = 4 },
 				{ name = "nvim_lsp", group_index = 5 },
 			}),
-
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
 			},
-
 			selection_order = "near_cursor",
-
 			experimental = {
 				-- see also `setup_ghost_text()` above.
 				ghost_text = true,

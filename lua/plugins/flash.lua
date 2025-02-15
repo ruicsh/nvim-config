@@ -14,6 +14,9 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "Flash")
 	end,
 	opts = {
+		search = {
+			wrap = false,
+		},
 		highlight = {
 			backdrop = false,
 		},
@@ -23,6 +26,9 @@ return {
 				highlight = {
 					backdrop = false,
 				},
+			},
+			search = {
+				enabled = true,
 			},
 			treesitter = {
 				jump = {

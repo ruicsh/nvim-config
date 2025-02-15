@@ -24,7 +24,7 @@ o.fillchars = {
 o.number = true -- Show line numbers.
 o.numberwidth = 5 -- More space on the gutter column.
 o.relativenumber = true -- Show relative line numbers.
-o.scrolloff = 6 -- Number of lines to keep up/down of the cursor.
+o.scrolloff = 999 -- Number of lines to keep up/down of the cursor.
 o.sidescrolloff = 10 -- Number of columns to keep left/right of the cursor.
 o.wrap = false -- Do not automatically wrap texts.
 -- }}}
@@ -144,7 +144,7 @@ o.shada = {
 }
 -- https://www.reddit.com/r/neovim/comments/1hkpgar/a_per_project_shadafile/
 o.shadafile = (function() -- Per project shadafile
-	local data = vim.fn.stdpath("data")
+	local data = tostring(vim.fn.stdpath("data"))
 	local cwd = vim.git.root() or vim.fn.getcwd()
 	local cwd_b64 = vim.base64.encode(cwd)
 	local file = vim.fs.joinpath(data, "project_shada", cwd_b64)

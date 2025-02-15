@@ -57,7 +57,8 @@ local FILETYPE_CONFIGS = {
 }
 
 local function read_prompt_file(basename)
-	local prompt_dir = vim.fs.joinpath(tostring(vim.fn.stdpath("config")), "prompts")
+	local config_dir = tostring(vim.fn.stdpath("config"))
+	local prompt_dir = vim.fs.joinpath(config_dir, "prompts")
 	local file_path = vim.fs.joinpath(prompt_dir, string.format("%s.txt", string.lower(basename)))
 
 	local content = vim.fs.read_file(file_path)

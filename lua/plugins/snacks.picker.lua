@@ -1,7 +1,7 @@
 -- Pickers.
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 
-local dirs_to_exclude_from_search = {
+local DIRS_TO_EXCLUDE_FROM_SEARCH = {
 	".git",
 	".requests",
 	".turbo",
@@ -28,7 +28,7 @@ local search_directory = function()
 			dir = dir:gsub("/", "\\")
 			table.insert(conditions, "Not-Match '.+\\" .. dir .. ".*'")
 		end
-		for _, dir in ipairs(dirs_to_exclude_from_search) do
+		for _, dir in ipairs(DIRS_TO_EXCLUDE_FROM_SEARCH) do
 			dir = dir:gsub("/", "\\")
 			table.insert(conditions, "Not-Name '" .. dir .. "'")
 		end
@@ -40,7 +40,7 @@ local search_directory = function()
 		for _, dir in ipairs(gitignore_dirs) do
 			table.insert(conditions, "-path '*" .. dir .. "*'")
 		end
-		for _, dir in ipairs(dirs_to_exclude_from_search) do
+		for _, dir in ipairs(DIRS_TO_EXCLUDE_FROM_SEARCH) do
 			table.insert(conditions, "-name " .. dir)
 		end
 		local exclude = table.concat(conditions, " -o ")
