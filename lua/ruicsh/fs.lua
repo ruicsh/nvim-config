@@ -29,3 +29,18 @@ vim.fs.read_file = function(filename)
 
 	return content
 end
+
+vim.fs.list_dir = function(path)
+	local files = {}
+
+	if not vim.fn.isdirectory(path) then
+		vim.notify("Directory does not exist", vim.log.levels.WARN)
+		return files
+	end
+
+	for _, file in ipairs(vim.fn.readdir(path)) do
+		table.insert(files, file)
+	end
+
+	return files
+end

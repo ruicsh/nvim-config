@@ -1,6 +1,8 @@
 -- GitHub Copilot Chat
 -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
 
+local CHAT_HISTORY_DIR = vim.fn.stdpath("data") .. "/copilot-chats"
+
 local CUSTOM_PROMPTS = {
 	-- filetypes
 	"angular",
@@ -121,6 +123,33 @@ local function get_system_prompts(action)
 	return prompts
 end
 
+local function reset_chat()
+	local chat = require("CopilotChat")
+	vim.g.copilot_chat_title = nil
+	chat.reset()
+end
+
+local function save_chat(response)
+	local chat = require("CopilotChat")
+
+	if vim.g.copilot_chat_title then
+		chat.save(vim.g.copilot_chat_title)
+		return
+	end
+
+	-- use AI to generate prompt title based on first AI response to user question
+	local prompt = read_prompt_file("chattitle")
+	chat.ask(vim.trim(prompt:format(response)), {
+		headless = true, -- disable updating chat buffer and history with this question
+		callback = function(gen_response)
+			-- Generate timestamp in format YYYYMMDD_HHMMSS
+			local timestamp = os.date("%Y%m%d_%H%M%S")
+			vim.g.copilot_chat_title = timestamp .. "_" .. vim.trim(gen_response)
+			chat.save(vim.g.copilot_chat_title)
+		end,
+	})
+end
+
 local function open_chat()
 	local chat = require("CopilotChat")
 	local select = require("CopilotChat.select")
@@ -134,7 +163,7 @@ local function open_chat()
 	local prompts = get_system_prompts("generic")
 	local system_prompt = concat_prompts(prompts)
 
-	chat.reset() -- Reset previous chat state
+	reset_chat()
 
 	chat.ask("", {
 		contexts = ft_config and ft_config.contexts or {},
@@ -165,11 +194,110 @@ local function operation(operation_type)
 			},
 		}
 
-		chat.reset() -- Reset previous chat state
+		reset_chat()
 
 		-- Initialize chat with error handling
 		chat.ask(chat_config.prompt, chat_config.options)
 	end
+end
+
+local function list_chat_history()
+	local snacks = require("snacks")
+	local chat = require("CopilotChat")
+
+	local files = vim.fs.list_dir(CHAT_HISTORY_DIR) or {}
+	if #files == 0 then
+		vim.notify("No chat history found", vim.log.levels.INFO)
+		return
+	end
+
+	local items = {}
+	for i, item in ipairs(files) do
+		-- Only include .json files
+		if item:match("%.json$") then
+			local basename = item:gsub("%.json$", "")
+			table.insert(items, {
+				idx = i,
+				file = CHAT_HISTORY_DIR .. "/" .. item,
+				basename = basename,
+				text = basename,
+			})
+		end
+	end
+
+	-- Check if we have any valid items
+	if #items == 0 then
+		vim.notify("No valid chat history files found", vim.log.levels.INFO)
+		return
+	end
+
+	snacks.picker({
+		confirm = function(picker, item)
+			picker:close()
+
+			-- Verify file exists before loading
+			if not vim.fn.filereadable(item.file) then
+				vim.notify("Chat history file not found: " .. item.file, vim.log.levels.ERROR)
+				return
+			end
+
+			vim.g.copilot_chat_title = item.basename
+			vim.cmd("WindowToggleMaximize forceOpen")
+			vim.cmd("vsplit")
+			chat.open()
+			chat.load(item.basename)
+		end,
+		items = items,
+		sort = {
+			fields = { "text:desc" },
+		},
+		format = function(item)
+			local prompt = item.file:match("[0-9]*_[0-9]*_(.+)%.json$")
+			local display = " " .. prompt:gsub("[-_]", " "):gsub("^%l", string.upper)
+
+			local mtime = vim.fn.getftime(item.file)
+			local date = os.date("%a %d %H:%M", mtime)
+
+			return {
+				{ date, "SnacksPickerLabel" },
+				{ display },
+			}
+		end,
+		preview = function(ctx)
+			local file = io.open(ctx.item.file, "r")
+			if not file then
+				ctx.preview:set_lines({ "Unable to read file" })
+				return
+			end
+
+			local content = file:read("*a")
+			file:close()
+
+			local ok, messages = pcall(vim.json.decode, content, {
+				luanil = {
+					object = true,
+					array = true,
+				},
+			})
+
+			if not ok then
+				ctx.preview:set_lines({ "vim.fn.json_decode error" })
+				return
+			end
+
+			local config = chat.config
+			local preview = {}
+			for _, message in ipairs(messages or {}) do
+				local header = message.role == "user" and config.question_header or config.answer_header
+				table.insert(preview, header .. config.separator .. "\n")
+				table.insert(preview, message.content .. "\n")
+			end
+
+			ctx.preview:highlight({ ft = "copilot-chat" })
+			ctx.preview:set_lines(preview)
+		end,
+		title = "Copilot Chat History",
+	})
 end
 
 vim.api.nvim_create_user_command("CopilotCommitMessage", function()
@@ -183,6 +311,7 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	chat.reset() -- Reset previous chat state
 
 	chat.ask(prompt, {
+		callback = nil,
 		clear_chat_on_new_prompt = true,
 		selection = select.buffer,
 		system_prompt = "/COPILOT_INSTRUCTIONS",
@@ -204,6 +333,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 	chat.reset() -- Reset previous chat state
 
 	chat.ask("/codereview", {
+		callback = nil,
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
 	})
@@ -217,6 +347,7 @@ return {
 		local mappings = {
 			-- chat
 			{ "<leader>aa", open_chat, "Chat", { mode = { "n", "v" } } },
+			{ "<leader>ah", list_chat_history, "List chat history" },
 			{ "<leader>am", chat.select_model, "Models" },
 
 			-- predefined prompts
@@ -230,11 +361,17 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
 	end,
 	opts = {
-		answer_header = "  Copilot ",
+		answer_header = " Copilot ",
+		question_header = " ruicsh ",
 		auto_insert_mode = true,
+		callback = function(response)
+			save_chat(response)
+		end,
 		chat_autocomplete = false,
 		error_header = "  Error ",
 		insert_at_end = true,
+		history_path = CHAT_HISTORY_DIR, -- Default path to stored history
+		log_level = "warn",
 		mappings = {
 			accept_diff = {
 				normal = "<c-l>",
@@ -253,7 +390,6 @@ return {
 			},
 		},
 		model = "claude-3.5-sonnet",
-		question_header = "  ruicsh ",
 		prompts = (function()
 			local prompts = {}
 			-- Load custom prompts
@@ -262,7 +398,7 @@ return {
 			end
 			return prompts
 		end)(),
-		selection = false,
+		selection = false, -- by default, have no predefined context
 		show_help = false,
 		window = {
 			layout = "replace",
