@@ -134,8 +134,9 @@ local function open_chat()
 	local prompts = get_system_prompts("generic")
 	local system_prompt = concat_prompts(prompts)
 
+	chat.reset() -- Reset previous chat state
+
 	chat.ask("", {
-		clear_chat_on_new_prompt = true,
 		contexts = ft_config and ft_config.contexts or {},
 		-- if there's something selected use it, if not, use a blank context
 		selection = is_visual_mode and select.visual or false,
@@ -159,11 +160,12 @@ local function operation(operation_type)
 			prompt = "/" .. operation_type,
 			options = {
 				auto_insert_mode = false,
-				clear_chat_on_new_prompt = true,
 				selection = select.visual,
 				system_prompt = system_prompt,
 			},
 		}
+
+		chat.reset() -- Reset previous chat state
 
 		-- Initialize chat with error handling
 		chat.ask(chat_config.prompt, chat_config.options)
@@ -177,6 +179,8 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	-- Determine which prompt command to use based on work environment
 	local is_work_env = vim.fn.getenv("IS_WORK") == "true"
 	local prompt = "/" .. (is_work_env and "commitwork" or "commit")
+
+	chat.reset() -- Reset previous chat state
 
 	chat.ask(prompt, {
 		clear_chat_on_new_prompt = true,
@@ -197,8 +201,9 @@ end, {})
 vim.api.nvim_create_user_command("CopilotCodeReview", function()
 	local chat = require("CopilotChat")
 
+	chat.reset() -- Reset previous chat state
+
 	chat.ask("/codereview", {
-		clear_chat_on_new_prompt = true,
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
 	})

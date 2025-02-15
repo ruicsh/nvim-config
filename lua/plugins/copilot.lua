@@ -3,18 +3,6 @@
 
 return {
 	"zbirenbaum/copilot.lua",
-	keys = function()
-		local function cancel_cmp()
-			require("cmp").mapping.abort()
-			require("copilot").suggestion.accept()
-		end
-
-		local mappings = {
-			{ "<c-s-e>", cancel_cmp, "Accept suggestion" },
-		}
-
-		return vim.fn.get_lazy_keys_conf(mappings, "AI")
-	end,
 	opts = {
 		panel = {
 			enabled = false,
