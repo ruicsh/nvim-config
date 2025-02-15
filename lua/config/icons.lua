@@ -18,6 +18,7 @@ M = {
 		ChangeDelete = "┃",
 		Untracked = "┃",
 	},
+	spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
 }
 
 return M

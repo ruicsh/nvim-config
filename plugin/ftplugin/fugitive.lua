@@ -6,6 +6,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "fugitive",
 	callback = function(event)
+		vim.wo.wrap = true
 		vim.bo.buflisted = false
 
 		local k = vim.keymap.set
