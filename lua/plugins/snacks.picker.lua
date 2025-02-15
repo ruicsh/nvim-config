@@ -175,6 +175,7 @@ return {
 					end,
 				},
 			},
+			ui_select = true,
 		},
 	},
 

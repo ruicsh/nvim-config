@@ -145,7 +145,7 @@ Random features added.
 - `<leader><leader>` fuzzy find files
 - `<leader>e` file tree explorer
 
-#### Directory explorer
+### Directory explorer
 
 - `<enter>` open
 - `<c-v>` open entry in vertical split
@@ -157,9 +157,7 @@ Random features added.
 - `g\` toggle trash
 - `<c-]>` close explorer
 
-### Buffers, Windows and Tabs
-
-#### Buffers
+### Buffers
 
 - `<bs>` next opened buffer
 - `<s-bs>` previous opened buffer
@@ -168,7 +166,7 @@ Random features added.
 - `<leader>bo` close the other buffers
 - `<leader>/` search open buffers
 
-#### Windows
+### Windows
 
 - `|` switch windows
 - `<c-w>[` move buffer to window on the left
@@ -176,7 +174,7 @@ Random features added.
 - `<c-]>` close window
 - `<c-w>m` maximize window
 
-#### Tabs
+### Tabs
 
 - `gt` jump to next tab
 - `gT` jump to previous tab
@@ -184,16 +182,14 @@ Random features added.
 - `<leader>tc` close tab
 - `<leader>tn` new tab
 
-### Editor
-
-#### Navigation
+### Navigation
 
 - `s` jump with search labels
 - `{` jump up 6 lines
 - `}` jump down 6 lines
 - `'0` jump to position where last exited Vim
 
-#### Editing
+### Editing
 
 - `[<space>` add blank line above cursor
 - `]<space>` add blank line below cursor
@@ -204,7 +200,7 @@ Random features added.
 - `ycc` duplicate a line, comment out the first line.
 - `U` redo
 
-#### Insert mode navigation
+### Insert mode navigation
 
 - `<c-a>` jump to beginning of line
 - `<c-b>` jump backwards one character
@@ -215,7 +211,7 @@ Random features added.
 - `<c-u>` delete before the cursor in current line
 - `<c-w>` delete word before
 
-#### Text objects
+### Text objects
 
 - `a` function argument
 - `b` brackets ({}, (), [])
@@ -227,7 +223,7 @@ Random features added.
 - `q` quotes ("", '', ``)
 - `t` tags
 
-#### Operators
+### Operators
 
 - `gsa{motion}{char}` add surrounding character
 - `gsd{char}` delete surrounding character
@@ -236,29 +232,27 @@ Random features added.
 - `<leader>m{motion}` multiply
 - `<leader>s{motion}` sort
 
-#### Search
+### Search
 
 - `/` find in document forward
 - `?` find in document backward
 - `<leader>f` fuzzy find in workspace
 
-### Coding
-
-#### Autocompletion
+### Autocompletion
 
 - `<c-l>` confirm
 - `<c-n>` select next entry
 - `<c-p>` select previous entry
 - `<c-]>` abort
 
-#### AI chat
+### AI chat
 
 - `<leader>aa` open
 - `<leader>am` models
 - `<c-l>` accept diff
 - `<c-x>` reset
 
-#### AI operations
+### AI operations
 
 - `<leader>ae` explain
 - `<leader>af` fix
@@ -268,7 +262,7 @@ Random features added.
 - `<leader>ar` review (ft:fugitive)
 - `<c-m>` commit (ft:gitcommit)
 
-#### AI suggestions
+### AI suggestions
 
 - `<c-l>` accept whole
 - `<tab>` accept word
@@ -276,7 +270,7 @@ Random features added.
 - `<c-p>` previous
 - `<c-]>` dismiss
 
-#### Logging
+### Logging
 
 - `glv` insert variable log below
 - `glV` insert variable log above
@@ -287,7 +281,7 @@ Random features added.
 - `glT` insert timestamp below
 - `<leader>glt` insert timestamp above/below
 
-#### Syntax (AST)
+### Syntax (AST)
 
 - `<s-left>` jump to parent node
 - `<s-right>` jump to child node
@@ -302,7 +296,7 @@ Random features added.
 - `<c-s-k>` swap with vertical previous node
 - `<c-s-j>` swap with vertical next node
 
-#### LSP
+### LSP
 
 - `K` display hover information for symbol
 - `gO` list symbols in document
@@ -321,7 +315,7 @@ Random features added.
 - `]r` jump to next symbol reference
 - `<c-s>` display signature help
 
-#### TypeScript
+### TypeScript
 
 - `<leader>tso` organize imports
 - `<leader>tss` sort imports
@@ -329,7 +323,7 @@ Random features added.
 - `<leader>tsd` jump to source definition
 - `<leader>tsr` rename file and update changes to connected files
 
-#### Diagnostics
+### Diagnostics
 
 - `<leader>dd` open diagnostics for buffer
 - `[d` jump to previous diagnostic
@@ -353,7 +347,7 @@ Random features added.
 - `<leader>hp` push
 - `<leader>hx` git open in browser
 
-#### Merge Conflicts
+### Merge Conflicts
 
 - `co` choose ours
 - `ct` choose theirs
@@ -362,9 +356,7 @@ Random features added.
 - `]x` jump to next conflict
 - `[x` jump to previous conflict
 
-### UI
-
-#### Quickfix
+### Quickfix
 
 - `<leader>qq` toggle quickfix list
 - `<leader>ql` toggle location list
@@ -379,7 +371,7 @@ Random features added.
 - `<c-p>` open previous list
 - `<c-n>` open next list
 
-#### Marks
+### Marks
 
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
@@ -388,7 +380,7 @@ Random features added.
 - `'{A-Z}` jump to line in global mark
 - `'{0-9}` jump to last lines when last exited Vim
 
-#### Folds
+### Folds
 
 - `[z` jump to previous fold
 - `]z` jump to next fold
@@ -403,7 +395,7 @@ Random features added.
 - `za` toggle fold
 - `zA` toggle fold recursively
 
-#### Application
+### Application
 
 - `<leader>nc` show commands
 - `<leader>nh` help
