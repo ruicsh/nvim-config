@@ -169,6 +169,12 @@ local function open_chat()
 
 	chat.ask("", {
 		contexts = ft_config and ft_config.contexts or {},
+		mappings = {
+			accept_diff = {
+				normal = "<c-l>",
+				insert = "<c-l>",
+			},
+		},
 		-- if there's something selected use it, if not, use a blank context
 		selection = is_visual_mode and select.visual or false,
 		system_prompt = system_prompt,
@@ -191,6 +197,12 @@ local function operation(operation_type)
 			prompt = "/" .. operation_type,
 			options = {
 				auto_insert_mode = false,
+				mappings = {
+					accept_diff = {
+						normal = "<c-l>",
+						insert = "<c-l>",
+					},
+				},
 				selection = select.visual,
 				system_prompt = system_prompt,
 			},
@@ -372,7 +384,22 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 	chat.reset() -- Reset previous chat state
 
 	chat.ask("/codereview", {
-		callback = nil,
+		callback = function()
+			local function accept_code_review()
+				chat.close()
+				vim.cmd("WindowToggleMaximize forceOpen")
+				vim.cmd("vertical Git")
+				vim.cmd("Git commit")
+			end
+
+			vim.keymap.set({ "n", "i" }, "<c-l>", accept_code_review, { buffer = true })
+		end,
+		mappings = {
+			accept_diff = {
+				normal = "",
+				insert = "",
+			},
+		},
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
 	})
