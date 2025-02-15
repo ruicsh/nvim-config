@@ -239,6 +239,10 @@ local function list_chat_history()
 		end
 	end
 
+	table.sort(items, function(a, b)
+		return a.file > b.file
+	end)
+
 	-- Check if we have any valid items
 	if #items == 0 then
 		vim.notify("No valid chat history files found", vim.log.levels.INFO)
