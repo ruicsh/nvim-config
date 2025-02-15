@@ -59,20 +59,25 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	callback = function()
 		local fold_file = get_fold_file()
 		local file_path = fold_dir .. "/" .. fold_file
-		if vim.fn.filereadable(file_path) == 1 then
-			-- Read file and apply commands
-			local file = io.open(file_path, "r")
-			if file then
-				for cmd in file:lines() do
-					local ln = tonumber(cmd:match("^(%d+)"))
-					-- if the fold is already closed, don't close it again
-					if vim.fn.foldclosed(ln) == -1 then
-						vim.cmd(cmd)
-					end
-				end
-				file:close()
+		if vim.fn.filereadable(file_path) ~= 1 then
+			return
+		end
+
+		-- Read file and apply commands with pcall for safety
+		local file = io.open(file_path, "r")
+		if not file then
+			return
+		end
+
+		for cmd in file:lines() do
+			local ln = tonumber(cmd:match("^(%d+)"))
+			-- Check if line number is valid for current buffer
+			if ln and ln <= vim.fn.line("$") and vim.fn.foldclosed(ln) == -1 then
+				vim.cmd(cmd)
 			end
 		end
+
+		file:close()
 	end,
 })
 
