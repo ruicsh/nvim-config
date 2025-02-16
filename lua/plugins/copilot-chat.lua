@@ -197,9 +197,39 @@ local function operation(operation_type)
 	end
 end
 
+local function delete_old_chat_files()
+	local files = vim.fs.list_dir(CHAT_HISTORY_DIR) or {}
+	local current_time = os.time()
+	local one_month_ago = current_time - (30 * 24 * 60 * 60) -- 30 days in seconds
+	local deleted_count = 0
+
+	for _, file in ipairs(files) do
+		if file:match("%.json$") then
+			local full_path = CHAT_HISTORY_DIR .. "/" .. file
+			local mtime = vim.fn.getftime(full_path)
+
+			if mtime < one_month_ago then
+				local success, err = os.remove(full_path)
+				if success then
+					deleted_count = deleted_count + 1
+				else
+					vim.notify("Failed to delete old chat file: " .. err, vim.log.levels.WARN)
+				end
+			end
+		end
+	end
+
+	if deleted_count > 0 then
+		vim.notify("Deleted " .. deleted_count .. " old chat files", vim.log.levels.INFO)
+	end
+end
+
 local function list_chat_history()
 	local snacks = require("snacks")
 	local chat = require("CopilotChat")
+
+	-- Delete old chat files first
+	delete_old_chat_files()
 
 	local files = vim.fs.list_dir(CHAT_HISTORY_DIR) or {}
 	if #files == 0 then
