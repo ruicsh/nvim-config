@@ -18,53 +18,34 @@ end
 local search_directory = function()
 	local snacks = require("snacks")
 
-	local dirs = {}
-	local conditions = {}
-	local gitignore_dirs = vim.fn.systemlist("git ls-files --others --ignored --exclude-standard --directory")
+	local dirs = vim.fs.list_dirs({
+		ignore_git_dirs = true,
+		dirs_to_exclude = DIRS_TO_EXCLUDE_FROM_SEARCH,
+	})
 
-	local cmd = ""
-	if vim.fn.has("win32") == 1 then
-		for _, dir in ipairs(gitignore_dirs) do
-			dir = dir:gsub("/", "\\")
-			table.insert(conditions, "Not-Match '.+\\" .. dir .. ".*'")
-		end
-		for _, dir in ipairs(DIRS_TO_EXCLUDE_FROM_SEARCH) do
-			dir = dir:gsub("/", "\\")
-			table.insert(conditions, "Not-Name '" .. dir .. "'")
-		end
-		local exclude = table.concat(conditions, " -and ")
-		cmd = 'powershell -Command "&{Get-ChildItem -Directory -Recurse | Where-Object {'
-			.. exclude
-			.. '} | Select-Object -ExpandProperty FullName | ForEach-Object { $_.Substring($pwd.Path.Length + 1) } | Sort-Object}"'
-	else
-		for _, dir in ipairs(gitignore_dirs) do
-			table.insert(conditions, "-path '*" .. dir .. "*'")
-		end
-		for _, dir in ipairs(DIRS_TO_EXCLUDE_FROM_SEARCH) do
-			table.insert(conditions, "-name " .. dir)
-		end
-		local exclude = table.concat(conditions, " -o ")
-		cmd = "find . -type d \\( " .. exclude .. " \\) -prune -o -type d -print | sort"
-	end
-
-	dirs = vim.fn.systemlist(cmd)
 	if #dirs == 0 then
 		vim.fn.notify("No directories found", "WARN")
 		return
 	end
 
+	local items = {}
+	for i, item in ipairs(dirs) do
+		table.insert(items, {
+			idx = i,
+			file = item,
+			text = item,
+		})
+	end
+
 	snacks.picker({
-		finder = function()
-			local items = {}
-			for i, item in ipairs(dirs) do
-				table.insert(items, {
-					idx = i,
-					file = item,
-					text = item,
-				})
-			end
-			return items
+		confirm = function(picker, item)
+			picker:close()
+			snacks.picker.grep({
+				search = vim.fn.expand("<cword>"),
+				dirs = { item.file },
+			})
 		end,
+		items = items,
 		format = function(item, _)
 			local file = item.file
 			local ret = {}
@@ -72,16 +53,9 @@ local search_directory = function()
 			local icon, icon_hl = Snacks.util.icon(file.ft, "directory")
 			ret[#ret + 1] = { a(icon, 3), icon_hl }
 			ret[#ret + 1] = { " " }
-			ret[#ret + 1] = { a(file, 20) }
+			ret[#ret + 1] = { a(file, 20), "Directory" }
 
 			return ret
-		end,
-		confirm = function(picker, item)
-			picker:close()
-			snacks.picker.grep({
-				search = vim.fn.expand("<cword>"),
-				dirs = { item.file },
-			})
 		end,
 	})
 end

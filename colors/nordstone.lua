@@ -88,7 +88,7 @@ loadColorSet({
 	DiffChange = { bg = c.nord0 },
 	DiffDelete = { bg = c.nord11_900 },
 	DiffText = { bg = c.nord3 },
-	Directory = { fg = c.nord4 },
+	Directory = { fg = c.nord9 },
 	EndOfBuffer = { fg = c.nord1 },
 	ErrorMsg = { fg = "NONE" },
 	FloatBorder = { fg = c.nord4, bg = "NONE" },
