@@ -260,7 +260,6 @@ Random features added.
 - `<leader>ao` optimize
 - `<leader>ar` refactor
 - `<leader>ar` review (ft:fugitive)
-- `<c-m>` commit (ft:gitcommit)
 
 ### AI suggestions
 

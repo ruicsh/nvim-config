@@ -368,7 +368,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 				vim.cmd("Git commit")
 			end
 
-			vim.keymap.set({ "n", "i" }, "<c-s>", accept_code_review, { buffer = true })
+			vim.keymap.set({ "n", "i" }, "<c-y>", accept_code_review, { buffer = true })
 		end,
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
