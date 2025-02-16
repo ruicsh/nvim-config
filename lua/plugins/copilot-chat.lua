@@ -198,23 +198,26 @@ local function operation(operation_type)
 end
 
 local function delete_old_chat_files()
-	local files = vim.fs.list_dir(CHAT_HISTORY_DIR) or {}
+	local scandir = require("plenary.scandir")
+
+	local files = scandir.scan_dir(CHAT_HISTORY_DIR, {
+		search_pattern = "%.json$",
+		depth = 1,
+	})
+
 	local current_time = os.time()
 	local one_month_ago = current_time - (30 * 24 * 60 * 60) -- 30 days in seconds
 	local deleted_count = 0
 
 	for _, file in ipairs(files) do
-		if file:match("%.json$") then
-			local full_path = CHAT_HISTORY_DIR .. "/" .. file
-			local mtime = vim.fn.getftime(full_path)
+		local mtime = vim.fn.getftime(file)
 
-			if mtime < one_month_ago then
-				local success, err = os.remove(full_path)
-				if success then
-					deleted_count = deleted_count + 1
-				else
-					vim.notify("Failed to delete old chat file: " .. err, vim.log.levels.WARN)
-				end
+		if mtime < one_month_ago then
+			local success, err = os.remove(file)
+			if success then
+				deleted_count = deleted_count + 1
+			else
+				vim.notify("Failed to delete old chat file: " .. err, vim.log.levels.WARN)
 			end
 		end
 	end
@@ -227,11 +230,16 @@ end
 local function list_chat_history()
 	local snacks = require("snacks")
 	local chat = require("CopilotChat")
+	local scandir = require("plenary.scandir")
 
 	-- Delete old chat files first
 	delete_old_chat_files()
 
-	local files = vim.fs.list_dir(CHAT_HISTORY_DIR) or {}
+	local files = scandir.scan_dir(CHAT_HISTORY_DIR, {
+		search_pattern = "%.json$",
+		depth = 1,
+	})
+
 	if #files == 0 then
 		vim.notify("No chat history found", vim.log.levels.INFO)
 		return
@@ -239,16 +247,13 @@ local function list_chat_history()
 
 	local items = {}
 	for i, item in ipairs(files) do
-		-- Only include .json files
-		if item:match("%.json$") then
-			local basename = item:gsub("%.json$", "")
-			table.insert(items, {
-				idx = i,
-				file = CHAT_HISTORY_DIR .. "/" .. item,
-				basename = basename,
-				text = basename,
-			})
-		end
+		local basename = item:gsub("%.json$", "")
+		table.insert(items, {
+			idx = i,
+			file = item,
+			basename = basename,
+			text = basename,
+		})
 	end
 
 	table.sort(items, function(a, b)
@@ -427,8 +432,8 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
 	end,
 	opts = {
-		answer_header = " Copilot ",
-		question_header = " ruicsh ",
+		answer_header = "  Copilot ",
+		question_header = "  ruicsh ",
 		auto_insert_mode = true,
 		callback = function(response)
 			save_chat(response)

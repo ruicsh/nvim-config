@@ -17,10 +17,12 @@ end
 -- Open a ui.select to search for a directory to search in
 local search_directory = function()
 	local snacks = require("snacks")
+	local scandir = require("plenary.scandir")
 
-	local dirs = vim.fs.list_dirs({
-		ignore_git_dirs = true,
-		dirs_to_exclude = DIRS_TO_EXCLUDE_FROM_SEARCH,
+	local cwd = vim.fn.getcwd()
+	local dirs = scandir.scan_dir(cwd, {
+		only_dirs = true,
+		respect_gitignore = true,
 	})
 
 	if #dirs == 0 then
@@ -53,7 +55,8 @@ local search_directory = function()
 			local icon, icon_hl = Snacks.util.icon(file.ft, "directory")
 			ret[#ret + 1] = { a(icon, 3), icon_hl }
 			ret[#ret + 1] = { " " }
-			ret[#ret + 1] = { a(file, 20), "Directory" }
+			local path = file:gsub("^" .. vim.pesc(cwd) .. "/", "")
+			ret[#ret + 1] = { a(path, 20), "Directory" }
 
 			return ret
 		end,
@@ -154,4 +157,7 @@ return {
 	},
 
 	lazy = false,
+	dependencies = {
+		{ "nvim-lua/plenary.nvim" },
+	},
 }
