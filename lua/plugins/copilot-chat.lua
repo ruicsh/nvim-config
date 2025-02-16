@@ -167,14 +167,8 @@ local function open_chat()
 
 	reset_chat()
 
-	chat.ask("", {
+	chat.open({
 		contexts = ft_config and ft_config.contexts or {},
-		mappings = {
-			accept_diff = {
-				normal = "<c-l>",
-				insert = "<c-l>",
-			},
-		},
 		-- if there's something selected use it, if not, use a blank context
 		selection = is_visual_mode and select.visual or false,
 		system_prompt = system_prompt,
@@ -191,27 +185,15 @@ local function operation(operation_type)
 
 		local prompts = get_system_prompts(operation_type)
 		local system_prompt = concat_prompts(prompts)
-
-		-- Configure chat parameters
-		local chat_config = {
-			prompt = "/" .. operation_type,
-			options = {
-				auto_insert_mode = false,
-				mappings = {
-					accept_diff = {
-						normal = "<c-l>",
-						insert = "<c-l>",
-					},
-				},
-				selection = select.visual,
-				system_prompt = system_prompt,
-			},
-		}
+		local prompt = "/" .. operation_type
 
 		reset_chat()
 
-		-- Initialize chat with error handling
-		chat.ask(chat_config.prompt, chat_config.options)
+		chat.ask(prompt, {
+			auto_insert_mode = false,
+			selection = select.visual,
+			system_prompt = system_prompt,
+		})
 	end
 end
 
@@ -320,7 +302,6 @@ end
 
 vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local chat = require("CopilotChat")
-	local select = require("CopilotChat.select")
 
 	-- Determine which prompt command to use based on work environment
 	local is_work_env = vim.fn.getenv("IS_WORK") == "true"
@@ -368,17 +349,8 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 			vim.cmd("normal! G")
 		end,
 		headless = true,
-		selection = select.buffer,
+		selection = false,
 		system_prompt = "/COPILOT_INSTRUCTIONS",
-		window = {
-			col = 1,
-			height = 20,
-			layout = "float",
-			relative = "cursor",
-			row = 1,
-			title = "  Commit",
-			width = 80,
-		},
 	})
 end, {})
 
@@ -396,14 +368,8 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 				vim.cmd("Git commit")
 			end
 
-			vim.keymap.set({ "n", "i" }, "<c-l>", accept_code_review, { buffer = true })
+			vim.keymap.set({ "n", "i" }, "<c-s>", accept_code_review, { buffer = true })
 		end,
-		mappings = {
-			accept_diff = {
-				normal = "",
-				insert = "",
-			},
-		},
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
 	})
