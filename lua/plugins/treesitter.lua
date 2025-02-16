@@ -42,7 +42,7 @@ return {
 		auto_install = true, -- autoinstall languages that are not installed
 		highlight = {
 			enable = true,
-			disable = function(lang, buf)
+			disable = function(_, buf)
 				local max_filesize = 1024 * 1024 -- 1 MB threshold
 				local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 				if ok and stats and stats.size > max_filesize then
@@ -67,4 +67,5 @@ return {
 
 	main = "nvim-treesitter.configs",
 	build = ":TSUpdate",
+	event = { "BufReadPost", "BufNewFile" },
 }

@@ -46,8 +46,12 @@ local function diagnostics()
 				[vim.diagnostic.severity.N] = "DiagnosticSignInfo",
 			},
 		},
+		underline = true,
+		update_in_insert = false,
 		virtual_text = {
-			prefix = "",
+			spacing = 4,
+			source = "if_many",
+			prefix = "●",
 			severity = vim.diagnostic.severity.ERROR,
 		},
 	})

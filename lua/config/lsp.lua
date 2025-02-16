@@ -29,8 +29,10 @@ M = {
 	handlers = {
 		["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 			border = "rounded",
+			cache = true,
 			focus = true,
 			max_width = 80,
+			update_in_insert = false,
 		}),
 		["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 			border = "rounded",

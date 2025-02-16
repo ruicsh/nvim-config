@@ -421,9 +421,6 @@ return {
 				normal = "<c-x>",
 				insert = "<c-x>",
 			},
-			show_diff = {
-				full_diff = true,
-			},
 		},
 		model = "claude-3.5-sonnet",
 		prompts = (function()

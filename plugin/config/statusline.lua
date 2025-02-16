@@ -174,7 +174,13 @@ local function c_lsp_diagnostics()
 end
 
 -- Show git status
+local cache_git_status = {}
 local function c_git_status()
+	local bufnr = vim.api.nvim_get_current_buf()
+	if cache_git_status[bufnr] and cache_git_status[bufnr].time > vim.loop.now() - 1000 then
+		return cache_git_status[bufnr].value
+	end
+
 	local status = vim.b.minidiff_summary
 	if not status or status == "" then
 		return ""
@@ -191,12 +197,12 @@ local function c_git_status()
 		n_changes = n_changes + count
 	end
 
-	-- don't show anything if there are no changes
-	if n_changes == 0 then
-		return ""
-	end
+	-- Don't show anything if there are no changes
+	local git_status = n_changes == 0 and "" or " " .. table.concat(entries, " ") .. " " .. sep()
 
-	return " " .. table.concat(entries, " ") .. " " .. sep()
+	cache_git_status[bufnr] = { time = vim.loop.now(), value = git_status }
+
+	return git_status
 end
 
 -- Show the current git branch
