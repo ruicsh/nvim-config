@@ -27,9 +27,6 @@ return {
 					backdrop = false,
 				},
 			},
-			search = {
-				enabled = true,
-			},
 			treesitter = {
 				jump = {
 					autojump = false,
