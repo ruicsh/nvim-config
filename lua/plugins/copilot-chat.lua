@@ -247,7 +247,10 @@ local function list_chat_history()
 
 	local items = {}
 	for i, item in ipairs(files) do
-		local basename = item:gsub("%.json$", "")
+		-- Extract basename from file's full path without extension
+		local filename = item:match("^.+/(.+)$") or item
+		local basename = filename:match("^(.+)%.[^%.]*$") or filename
+
 		table.insert(items, {
 			idx = i,
 			file = item,
@@ -432,6 +435,7 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
 	end,
 	opts = {
+		agent = "copilot",
 		answer_header = "  Copilot ",
 		question_header = "  ruicsh ",
 		auto_insert_mode = true,
