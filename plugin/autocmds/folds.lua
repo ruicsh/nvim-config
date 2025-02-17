@@ -52,6 +52,19 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	end,
 })
 
+-- Apply fold commands to the buffer
+local function process_folds(file)
+	for cmd in file:lines() do
+		local ok, ln = pcall(function()
+			return tonumber(cmd:match("^(%d+)"))
+		end)
+
+		if ok and ln and ln <= vim.fn.line("$") and vim.fn.foldclosed(ln) == -1 then
+			pcall(vim.cmd, cmd)
+		end
+	end
+end
+
 -- Restore folds when reading a buffer
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	group = augroup,
@@ -69,15 +82,11 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			return
 		end
 
-		for cmd in file:lines() do
-			local ln = tonumber(cmd:match("^(%d+)"))
-			-- Check if line number is valid for current buffer
-			if ln and ln <= vim.fn.line("$") and vim.fn.foldclosed(ln) == -1 then
-				vim.cmd(cmd)
-			end
-		end
-
-		file:close()
+		-- Defer fold operations to ensure buffer is ready
+		vim.schedule(function()
+			process_folds(file)
+			file:close()
+		end)
 	end,
 })
 
