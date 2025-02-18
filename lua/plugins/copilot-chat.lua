@@ -175,6 +175,22 @@ local function open_chat()
 	})
 end
 
+local function open_generic_chat()
+	local chat = require("CopilotChat")
+
+	vim.cmd("WindowToggleMaximize forceOpen") -- maximize the current window
+	vim.cmd("vsplit") -- open a vertical split
+
+	reset_chat()
+
+	chat.open({
+		auto_insert_mode = true,
+		model = "o3-mini",
+		selection = false,
+		system_prompt = concat_prompts({ "COPILOT_INSTRUCTIONS", "communication" }),
+	})
+end
+
 local function operation(operation_type)
 	local chat = require("CopilotChat")
 	local select = require("CopilotChat.select")
@@ -422,7 +438,8 @@ return {
 
 		local mappings = {
 			-- chat
-			{ "<leader>aa", open_chat, "Chat", { mode = { "n", "v" } } },
+			{ "<leader>aa", open_chat, "Programming Chat", { mode = { "n", "v" } } },
+			{ "<leader>ag", open_generic_chat, "Generic Chat" },
 			{ "<leader>ah", list_chat_history, "List chat history" },
 			{ "<leader>am", chat.select_model, "Models" },
 
