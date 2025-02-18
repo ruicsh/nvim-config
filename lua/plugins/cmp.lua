@@ -29,20 +29,21 @@ return {
 			},
 			mapping = {
 				["<tab>"] = cmp.mapping(function(fallback)
-					if has_words_before() then
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif has_words_before() then
 						cmp.complete()
 					else
 						fallback()
 					end
 				end, { "i", "s", "c" }),
-				-- select item
-				["<c-j>"] = cmp.mapping(function()
-					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+				["<s-tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					else
+						fallback()
+					end
 				end, { "i", "s", "c" }),
-				["<c-k>"] = cmp.mapping(function()
-					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-				end, { "i", "s", "c" }),
-				-- confirm
 				["<c-l>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.confirm({ select = true })
@@ -50,17 +51,27 @@ return {
 						fallback()
 					end
 				end, { "i", "s", "c" }),
-				-- abort
-				["<c-e>"] = cmp.mapping(function(fallback)
+				["<c-]>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.abort()
 					else
 						fallback()
 					end
 				end, { "i", "s", "c" }),
-				-- scroll docs
-				["<c-u>"] = cmp.mapping.scroll_docs(-4),
-				["<c-d>"] = cmp.mapping.scroll_docs(4),
+				["<c-u>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.scroll_docs(-4)
+					else
+						fallback()
+					end
+				end, { "i", "c", "s" }),
+				["<c-d>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.scroll_docs(4)
+					else
+						fallback()
+					end
+				end, { "i", "c", "s" }),
 			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp_signature_help", group_index = 0 },
@@ -74,29 +85,37 @@ return {
 			selection_order = "near_cursor",
 		})
 
-		cmp.setup.cmdline({ "/", "?" }, {
+		local cmdline_options = {
 			completion = {
 				autocomplete = { cmp.TriggerEvent.TextChanged },
 			},
-			sources = {
-				{ name = "buffer" },
+			formatting = {
+				format = function(_, vim_item)
+					vim_item.kind = ""
+					return vim_item
+				end,
 			},
 			selection_order = "near_cursor",
-		})
+		}
 
-		cmp.setup.cmdline(":", {
-			completion = {
-				autocomplete = { cmp.TriggerEvent.TextChanged },
-			},
-			sources = cmp.config.sources({
-				{ name = "path" },
-				{ name = "cmdline" },
-			}),
-			matching = {
-				disallow_symbol_nonprefix_matching = false,
-			},
-			selection_order = "near_cursor",
-		})
+		cmp.setup.cmdline(
+			{ "/", "?" },
+			vim.tbl_extend("force", cmdline_options, {
+				sources = {
+					{ name = "buffer" },
+				},
+			})
+		)
+
+		cmp.setup.cmdline(
+			":",
+			vim.tbl_extend("force", cmdline_options, {
+				sources = {
+					{ name = "path" },
+					{ name = "cmdline" },
+				},
+			})
+		)
 	end,
 
 	event = { "InsertEnter", "CmdlineEnter" },

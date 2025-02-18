@@ -16,7 +16,7 @@ return {
 				accept_line = false,
 				next = "<c-j>",
 				prev = "<c-k>",
-				dismiss = "<c-e>",
+				dismiss = "<c-]>",
 			},
 		},
 		filetypes = {
