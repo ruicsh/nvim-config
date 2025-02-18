@@ -243,6 +243,32 @@ local function delete_old_chat_files()
 	end
 end
 
+local function format_timestamp(timestamp)
+	-- Convert Unix timestamp to a table containing date/time components
+	local date = os.date("*t", timestamp)
+
+	-- Get current timestamp for relative time calculations
+	local now = os.time()
+	local diff = now - timestamp
+
+	-- Format different time ranges
+	if diff < 60 then
+		return "just now"
+	elseif diff < 3600 then
+		local mins = math.floor(diff / 60)
+		return string.format("%d %s ago", mins, mins == 1 and "minute" or "minutes")
+	elseif diff < 86400 then
+		local hours = math.floor(diff / 3600)
+		return string.format("%d %s ago", hours, hours == 1 and "hour" or "hours")
+	elseif diff < 604800 then
+		local days = math.floor(diff / 86400)
+		return string.format("%d %s ago", days, days == 1 and "day" or "days")
+	else
+		-- For older dates, return full date format
+		return os.date("%Y-%m-%d %H:%M", timestamp)
+	end
+end
+
 local function list_chat_history()
 	local snacks = require("snacks")
 	local chat = require("CopilotChat")
@@ -310,7 +336,7 @@ local function list_chat_history()
 			local display = " " .. prompt:gsub("[-_]", " "):gsub("^%l", string.upper)
 
 			local mtime = vim.fn.getftime(item.file)
-			local date = os.date("%a %d %H:%M", mtime)
+			local date = format_timestamp(mtime)
 
 			return {
 				{ date, "SnacksPickerLabel" },

@@ -1,14 +1,6 @@
 -- Pickers.
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 
-local DIRS_TO_EXCLUDE_FROM_SEARCH = {
-	".git",
-	".requests",
-	".turbo",
-	"__data__",
-	"node_modules",
-}
-
 local search_workspace = function()
 	local snacks = require("snacks")
 	snacks.picker.grep({ search = vim.fn.expand("<cword>") })
@@ -73,9 +65,9 @@ return {
 			{ "<leader><space>", snacks.picker.files, "Search: Files" },
 			{ "<leader>ff", search_workspace, "Search: Workspace" },
 			{ "<leader>fd", search_directory, "Search: Directory" },
-			{ "<leader>/", snacks.picker.buffers, "Search: Buffers" },
-			{ "<leader>e", snacks.picker.explorer, "Files Tree Explorer" },
-			{ "<leader>j", snacks.picker.jumps, "Search: Jumplist" },
+			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
+			{ "<leader>ee", snacks.picker.explorer, "Files Tree Explorer" },
+			{ "<leader>jj", snacks.picker.jumps, "Search: Jumplist" },
 
 			-- neovim application
 			{ "<leader>nh", snacks.picker.help, "Search: Help" },

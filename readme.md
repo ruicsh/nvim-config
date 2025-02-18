@@ -142,7 +142,7 @@ Random features added.
 
 - `-` open directory explorer
 - `<leader><leader>` fuzzy find files
-- `<leader>e` file tree explorer
+- `<leader>ee` file tree explorer
 
 ### Directory explorer
 
@@ -163,7 +163,7 @@ Random features added.
 - `<c-]>` close buffer
 - `<leader>bC` close all buffers
 - `<leader>bo` close the other buffers
-- `<leader>/` search open buffers
+- `<leader>,` search open buffers
 
 ### Windows
 
