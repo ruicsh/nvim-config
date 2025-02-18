@@ -115,9 +115,8 @@ New features built around autocmds (events).
 | [cleanup-cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cleanup-cmdline.lua)                         | Cleanup command line after use                                        |
 | [create-intermediate-dirs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/create-intermediate-dirs.lua)       | Create intermediate directories                                       |
 | [disable-new-line-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-new-line-comments.lua)     | Disable new line comments                                             |
-| [folds](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/folds.lua)                                             | Save and restore folds for each buffer                                |
+| [views](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/views.lua)                                             | Save and restore views for each buffer                                |
 | [git-branch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/git-branch.lua)                                   | Keep the git branch updated on a buffer local variable                |
-| [last-location](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/last-location.lua)                             | Jump to last location when opening a file                             |
 | [load-env-vars](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/load-env-vars.lua)                             | Load environment variables, global and project scoped.                |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps and custom handlers                          |
 | [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)                   | If neovim is opened with a directory as argument open oil-filemanager |

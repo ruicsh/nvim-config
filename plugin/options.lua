@@ -152,4 +152,5 @@ o.shadafile = (function() -- Per project shadafile
 	return file
 end)()
 o.signcolumn = "yes" -- Always showed to prevent the screen from jumping.
+o.viewoptions = "cursor,folds" -- Save cursor position and folds.
 -- }}}
