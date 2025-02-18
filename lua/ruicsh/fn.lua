@@ -42,6 +42,7 @@ vim.fn.is_diff_open = function()
 	end
 end
 
+-- Check if it's running on Windows
 vim.fn.is_windows = function()
 	return vim.fn.has("win32") == 1
 end
@@ -66,4 +67,30 @@ vim.fn.notify = function(msg, log_level)
 	end, 3000)
 
 	return id
+end
+
+-- Read .env files on a given directory
+vim.fn.load_env_file = function(dir)
+	dir = dir and dir or vim.fn.stdpath("config")
+
+	if not dir or not vim.fn.isdirectory(dir) then
+		return
+	end
+
+	local file = dir .. "/.env"
+	local env_file = io.open(file, "r")
+	if not env_file then
+		return
+	end
+
+	for line in env_file:lines() do
+		if not line:match("^%s*#") then -- Skip comments
+			for key, value in string.gmatch(line, "([%w_]+)%s*=%s*([^#]+)") do -- varname=value
+				value = value:gsub("^%s*(.-)%s*$", "%1") -- Trim whitespace
+				vim.fn.setenv(key, value)
+			end
+		end
+	end
+
+	env_file:close()
 end

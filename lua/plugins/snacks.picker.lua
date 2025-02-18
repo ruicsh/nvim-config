@@ -55,6 +55,19 @@ local search_directory = function()
 	})
 end
 
+-- Get the project directories from the environment variable
+local function get_project_dirs()
+	vim.fn.load_env_file() -- make sure the env file is loaded
+
+	local project_dirs = {}
+	local project_dirs_env = vim.fn.getenv("PROJECTS_DIRS")
+	if project_dirs_env ~= vim.NIL and project_dirs_env ~= "" then
+		project_dirs = vim.split(project_dirs_env, ",")
+	end
+
+	return project_dirs
+end
+
 return {
 	"folke/snacks.nvim",
 	keys = (function()
@@ -65,8 +78,9 @@ return {
 			{ "<leader><space>", snacks.picker.files, "Search: Files" },
 			{ "<leader>ff", search_workspace, "Search: Workspace" },
 			{ "<leader>fd", search_directory, "Search: Directory" },
-			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
+			{ "<leader>pp", snacks.picker.projects, "Search: Projects" },
 			{ "<leader>ee", snacks.picker.explorer, "Files Tree Explorer" },
+			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
 			{ "<leader>jj", snacks.picker.jumps, "Search: Jumplist" },
 
 			-- neovim application
@@ -88,23 +102,6 @@ return {
 		},
 		picker = {
 			enabled = true,
-			formatters = {
-				file = {
-					filename_first = true,
-				},
-			},
-			matcher = {
-				frecency = true,
-			},
-			win = {
-				input = {
-					keys = {
-						["<c-]>"] = { "close", mode = { "n", "i" } },
-						["<c-s>"] = { "flash", mode = { "n", "i" } },
-						["s"] = { "flash" },
-					},
-				},
-			},
 			actions = {
 				flash = function(picker)
 					require("flash").jump({
@@ -125,12 +122,23 @@ return {
 					})
 				end,
 			},
+			formatters = {
+				file = {
+					filename_first = true,
+				},
+			},
+			matcher = {
+				frecency = true,
+			},
 			sources = {
 				buffers = {
 					sort_lastused = true,
 					on_show = function()
 						vim.cmd.stopinsert() -- start in normal mode
 					end,
+				},
+				files = {
+					hidden = true,
 				},
 				explorer = {
 					layout = {
@@ -143,8 +151,20 @@ return {
 						vim.cmd("help")
 					end,
 				},
+				projects = {
+					dev = get_project_dirs(),
+				},
 			},
 			ui_select = true,
+			win = {
+				input = {
+					keys = {
+						["<c-]>"] = { "close", mode = { "n", "i" } },
+						["<c-s>"] = { "flash", mode = { "n", "i" } },
+						["s"] = { "flash" },
+					},
+				},
+			},
 		},
 	},
 

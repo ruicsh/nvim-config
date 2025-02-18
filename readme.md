@@ -143,6 +143,7 @@ Random features added.
 - `-` open directory explorer
 - `<leader><leader>` fuzzy find files
 - `<leader>ee` file tree explorer
+- `<leader>pp` projects
 
 ### Directory explorer
 

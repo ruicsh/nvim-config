@@ -25,4 +25,6 @@ return {
 			},
 		},
 	},
+
+	event = { "BufReadPre", "BufNewFile" },
 }
