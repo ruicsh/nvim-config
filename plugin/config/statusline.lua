@@ -285,10 +285,12 @@ local function c_diffview_blame()
 		return ""
 	end
 
+	local author_time = os.date("%Y-%m-%d %H:%M", _G.diffview_blame.date)
+
 	return "%#StatusLine#"
 		.. table.concat({
 			_G.diffview_blame.author,
-			os.date("%Y-%m-%d %H:%M", _G.diffview_blame.author_time),
+			author_time,
 			_G.diffview_blame.summary,
 		}, " - ")
 end
