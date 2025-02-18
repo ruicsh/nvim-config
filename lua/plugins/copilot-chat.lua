@@ -340,15 +340,17 @@ end
 
 vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local chat = require("CopilotChat")
+	local select = require("CopilotChat.select")
+	local bufnr = vim.api.nvim_get_current_buf()
+
+	-- yank everything in the buffer, to feed into the chat later
+	vim.cmd("normal! ggVGy")
 
 	-- Determine which prompt command to use based on work environment
 	local is_work_env = vim.fn.getenv("IS_WORK") == "true"
 	local prompt = "/" .. (is_work_env and "commitwork" or "commit")
 
 	chat.reset() -- Reset previous chat state
-
-	-- Get the current buffer
-	local bufnr = vim.api.nvim_get_current_buf()
 
 	-- Start spinner animation
 	local spinner_idx = 1
@@ -387,7 +389,7 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 			vim.cmd("normal! G")
 		end,
 		headless = true,
-		selection = false,
+		selection = select.unnamed,
 		system_prompt = "/COPILOT_INSTRUCTIONS",
 	})
 end, {})
