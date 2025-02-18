@@ -12,10 +12,10 @@ return {
 			auto_trigger = true,
 			keymap = {
 				accept = "<c-l>",
-				accept_word = "<tab>",
+				accept_word = false,
 				accept_line = false,
-				next = "<c-n>",
-				prev = "<c-p>",
+				next = "<c-j>",
+				prev = "<c-k>",
 				dismiss = "<c-e>",
 			},
 		},

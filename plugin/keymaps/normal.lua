@@ -62,12 +62,14 @@ end, { expr = true })
 k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode
 
+k("<leader>w", ":write<cr>", { desc = "Save file", silent = true }) -- Save changes
+k("<s-z><s-z>", ":wqa!<cr>", { desc = "Quit file", silent = true }) -- Quit and save all
+
 -- Miscellaneous
 k("<c-t>", ":terminal<cr>", { desc = "Terminal: Open" })
 k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 k("ycc", "yy:normal gcc<cr>p") -- Duplicate a line and comment out the first line.
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
-k("<leader>w", ":write<cr>", { desc = "Save file", silent = true }) -- Save changes
 k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
 
 k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
