@@ -243,7 +243,7 @@ Random features added.
 - `<c-l>` confirm
 - `<c-j>` select next entry
 - `<c-k>` select previous entry
-- `<c-e>` abort
+- `<c-]>` abort
 
 ### AI chat
 
@@ -266,7 +266,7 @@ Random features added.
 - `<c-l>` accept
 - `<c-j>` next
 - `<c-k>` previous
-- `<c-e>` dismiss
+- `<c-]>` dismiss
 
 ### Logging
 
