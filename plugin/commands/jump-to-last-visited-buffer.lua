@@ -16,6 +16,11 @@ vim.api.nvim_create_user_command("JumpToLastVisitedBuffer", function()
 		return
 	end
 
+	if last_buf_ft == "neo-tree" then
+		vim.cmd("Neotree source=filesystem toggle reveal")
+		return
+	end
+
 	-- only switch to last buffer if it exists
 	if vim.fn.bufexists(0) == 1 then
 		vim.cmd("buffer #")

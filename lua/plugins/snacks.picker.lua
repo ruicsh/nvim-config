@@ -79,7 +79,6 @@ return {
 			{ "<leader>ff", search_workspace, "Search: Workspace" },
 			{ "<leader>fd", search_directory, "Search: Directory" },
 			{ "<leader>pp", snacks.picker.projects, "Search: Projects" },
-			{ "<leader>ee", snacks.picker.explorer, "Files Tree Explorer" },
 			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
 			{ "<leader>jj", snacks.picker.jumps, "Search: Jumplist" },
 
@@ -96,10 +95,6 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings)
 	end)(),
 	opts = {
-		-- https://github.com/folke/snacks.nvim/blob/main/docs/explorer.md
-		explorer = {
-			enabled = true,
-		},
 		picker = {
 			enabled = true,
 			actions = {

@@ -57,6 +57,14 @@ api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = { "neo-tree" },
+	callback = function(event)
+		k("n", closeShortcut, ":Neotree action=close<cr>", { buffer = event.buf })
+	end,
+})
+
 -- Close panels that open in a maximized current window
 api.nvim_create_autocmd("FileType", {
 	group = augroup,

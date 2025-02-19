@@ -162,6 +162,7 @@ vim.g.terminal_color_14 = c.nord7
 vim.g.terminal_color_15 = c.nord6
 
 -- CUSTOM
+
 -- inline-search-count
 loadColorSet({
 	InlineSearchCount = { fg = c.nord3_500, bg = "NONE" },
@@ -178,6 +179,56 @@ loadColorSet({
 loadColorSet({
 	BuffersSignCurrent = { link = "Normal" },
 	BuffersSignAlternate = { link = "Normal" },
+})
+
+-- LSP
+loadColorSet({
+	LspDiagnosticsDefaultError = { fg = c.nord11 },
+	LspDiagnosticsDefaultHint = { fg = c.nord9 },
+	LspDiagnosticsDefaultInformation = { fg = c.nord10 },
+	LspDiagnosticsDefaultWarning = { fg = c.nord15 },
+	LspDiagnosticsFloatingError = { fg = c.nord11 },
+	LspDiagnosticsFloatingHint = { fg = c.nord9 },
+	LspDiagnosticsFloatingInformation = { fg = c.nord10 },
+	LspDiagnosticsFloatingWarning = { fg = c.nord15 },
+	LspDiagnosticsSignError = { fg = c.nord11 },
+	LspDiagnosticsSignHint = { fg = c.nord9 },
+	LspDiagnosticsSignInformation = { fg = c.nord10 },
+	LspDiagnosticsSignWarning = { fg = c.nord15 },
+	LspDiagnosticsUnderlineError = { style = "undercurl", sp = c.nord11 },
+	LspDiagnosticsUnderlineHint = { style = "undercurl", sp = c.nord10 },
+	LspDiagnosticsUnderlineInformation = { style = "undercurl", sp = c.nord10 },
+	LspDiagnosticsUnderlineWarning = { style = "undercurl", sp = c.nord15 },
+	LspDiagnosticsVirtualTextError = { fg = c.nord11 },
+	LspDiagnosticsVirtualTextHint = { fg = c.nord9 },
+	LspDiagnosticsVirtualTextInformation = { fg = c.nord10 },
+	LspDiagnosticsVirtualTextWarning = { fg = c.nord15 },
+	LspInlayHint = { fg = c.nord3_500 },
+	LspReferenceRead = { bg = c.nord2 },
+	LspReferenceText = { bg = c.nord2 },
+	LspReferenceWrite = { bg = c.nord2 },
+	LspSignatureActiveParameter = { fg = c.nord4, bg = c.nord1 },
+
+	DiagnosticError = { link = "LspDiagnosticsDefaultError" },
+	DiagnosticFloatingError = { link = "LspDiagnosticsFloatingError" },
+	DiagnosticFloatingHint = { link = "LspDiagnosticsFloatingHint" },
+	DiagnosticFloatingInfo = { link = "LspDiagnosticsFloatingInformation" },
+	DiagnosticFloatingWarn = { link = "LspDiagnosticsFloatingWarning" },
+	DiagnosticHint = { link = "LspDiagnosticsDefaultHint" },
+	DiagnosticInfo = { link = "LspDiagnosticsDefaultInformation" },
+	DiagnosticSignError = { link = "LspDiagnosticsSignError" },
+	DiagnosticSignHint = { link = "LspDiagnosticsSignHint" },
+	DiagnosticSignInfo = { link = "LspDiagnosticsSignInformation" },
+	DiagnosticSignWarn = { link = "LspDiagnosticsSignWarning" },
+	DiagnosticUnderlineError = { link = "LspDiagnosticsUnderlineError" },
+	DiagnosticUnderlineHint = { link = "LspDiagnosticsUnderlineHint" },
+	DiagnosticUnderlineInfo = { link = "LspDiagnosticsUnderlineInformation" },
+	DiagnosticUnderlineWarn = { link = "LspDiagnosticsUnderlineWarning" },
+	DiagnosticVirtualTextError = { link = "LspDiagnosticsVirtualTextError" },
+	DiagnosticVirtualTextHint = { link = "LspDiagnosticsVirtualTextHint" },
+	DiagnosticVirtualTextInfo = { link = "LspDiagnosticsVirtualTextInformation" },
+	DiagnosticVirtualTextWarn = { link = "LspDiagnosticsVirtualTextWarning" },
+	DiagnosticWarn = { link = "LspDiagnosticsDefaultWarning" },
 })
 
 -- status-line
@@ -250,61 +301,21 @@ loadColorSet({
 	fugitiveUntrackedHeading = { fg = c.nord11 },
 })
 
--- LSP
-loadColorSet({
-	LspDiagnosticsDefaultError = { fg = c.nord11 },
-	LspDiagnosticsDefaultHint = { fg = c.nord9 },
-	LspDiagnosticsDefaultInformation = { fg = c.nord10 },
-	LspDiagnosticsDefaultWarning = { fg = c.nord15 },
-	LspDiagnosticsFloatingError = { fg = c.nord11 },
-	LspDiagnosticsFloatingHint = { fg = c.nord9 },
-	LspDiagnosticsFloatingInformation = { fg = c.nord10 },
-	LspDiagnosticsFloatingWarning = { fg = c.nord15 },
-	LspDiagnosticsSignError = { fg = c.nord11 },
-	LspDiagnosticsSignHint = { fg = c.nord9 },
-	LspDiagnosticsSignInformation = { fg = c.nord10 },
-	LspDiagnosticsSignWarning = { fg = c.nord15 },
-	LspDiagnosticsUnderlineError = { style = "undercurl", sp = c.nord11 },
-	LspDiagnosticsUnderlineHint = { style = "undercurl", sp = c.nord10 },
-	LspDiagnosticsUnderlineInformation = { style = "undercurl", sp = c.nord10 },
-	LspDiagnosticsUnderlineWarning = { style = "undercurl", sp = c.nord15 },
-	LspDiagnosticsVirtualTextError = { fg = c.nord11 },
-	LspDiagnosticsVirtualTextHint = { fg = c.nord9 },
-	LspDiagnosticsVirtualTextInformation = { fg = c.nord10 },
-	LspDiagnosticsVirtualTextWarning = { fg = c.nord15 },
-	LspInlayHint = { fg = c.nord3_500 },
-	LspReferenceRead = { bg = c.nord2 },
-	LspReferenceText = { bg = c.nord2 },
-	LspReferenceWrite = { bg = c.nord2 },
-	LspSignatureActiveParameter = { fg = c.nord4, bg = c.nord1 },
-
-	DiagnosticError = { link = "LspDiagnosticsDefaultError" },
-	DiagnosticFloatingError = { link = "LspDiagnosticsFloatingError" },
-	DiagnosticFloatingHint = { link = "LspDiagnosticsFloatingHint" },
-	DiagnosticFloatingInfo = { link = "LspDiagnosticsFloatingInformation" },
-	DiagnosticFloatingWarn = { link = "LspDiagnosticsFloatingWarning" },
-	DiagnosticHint = { link = "LspDiagnosticsDefaultHint" },
-	DiagnosticInfo = { link = "LspDiagnosticsDefaultInformation" },
-	DiagnosticSignError = { link = "LspDiagnosticsSignError" },
-	DiagnosticSignHint = { link = "LspDiagnosticsSignHint" },
-	DiagnosticSignInfo = { link = "LspDiagnosticsSignInformation" },
-	DiagnosticSignWarn = { link = "LspDiagnosticsSignWarning" },
-	DiagnosticUnderlineError = { link = "LspDiagnosticsUnderlineError" },
-	DiagnosticUnderlineHint = { link = "LspDiagnosticsUnderlineHint" },
-	DiagnosticUnderlineInfo = { link = "LspDiagnosticsUnderlineInformation" },
-	DiagnosticUnderlineWarn = { link = "LspDiagnosticsUnderlineWarning" },
-	DiagnosticVirtualTextError = { link = "LspDiagnosticsVirtualTextError" },
-	DiagnosticVirtualTextHint = { link = "LspDiagnosticsVirtualTextHint" },
-	DiagnosticVirtualTextInfo = { link = "LspDiagnosticsVirtualTextInformation" },
-	DiagnosticVirtualTextWarn = { link = "LspDiagnosticsVirtualTextWarning" },
-	DiagnosticWarn = { link = "LspDiagnosticsDefaultWarning" },
-})
-
 -- mini.diff
 loadColorSet({
 	MiniDiffSignAdd = { fg = c.nord14 },
 	MiniDiffSignChange = { fg = c.nord13 },
 	MiniDiffSignDelete = { fg = c.nord11 },
+})
+
+-- neo-tree.nvim
+loadColorSet({
+	NeoTreeGitDirty = { fg = c.nord13 },
+	NeoTreeGitStaged = { fg = c.nord14 },
+	NeoTreeGitMerge = { fg = c.nord8 },
+	NeoTreeGitRenamed = { fg = c.nord12 },
+	NeoTreeGitNew = { fg = c.nord14 },
+	NeoTreeGitUntracked = { fg = c.nord14 },
 })
 
 -- snacks.nvim
