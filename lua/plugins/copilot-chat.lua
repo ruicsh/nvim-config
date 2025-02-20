@@ -185,7 +185,7 @@ local function open_generic_chat()
 
 	chat.open({
 		auto_insert_mode = true,
-		model = "o3-mini",
+		model = vim.fn.getenv("COPILOT_GENERIC_MODEL") or "o1",
 		selection = false,
 		system_prompt = concat_prompts({ "COPILOT_INSTRUCTIONS", "communication" }),
 	})
@@ -380,6 +380,11 @@ local function list_chat_history()
 	})
 end
 
+local function get_default_model()
+	vim.fn.load_env_file() -- make sure the env file is loaded
+	return vim.fn.getenv("COPILOT_CODER_MODEL")
+end
+
 vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local chat = require("CopilotChat")
 	local select = require("CopilotChat.select")
@@ -506,7 +511,7 @@ return {
 				insert = "<c-x>",
 			},
 		},
-		model = "claude-3.5-sonnet",
+		model = get_default_model(),
 		prompts = (function()
 			local prompts = {}
 			-- Load custom prompts
@@ -515,6 +520,42 @@ return {
 			end
 			return prompts
 		end)(),
+		providers = {
+			lmstudio = {
+				embed = "copilot_embeddings",
+				prepare_input = function(inputs, opts)
+					return {
+						model = opts.model,
+						messages = inputs,
+						stream = true,
+					}
+				end,
+				get_headers = function()
+					return {
+						["Content-Type"] = "application/json",
+					}
+				end,
+				get_models = function(headers)
+					local utils = require("CopilotChat.utils")
+					local response = utils.curl_get("http://localhost:5946/v1/models", { headers = headers })
+					if not response or response.status ~= 200 then
+						error("Failed to fetch models: " .. tostring(response and response.status))
+					end
+
+					local models = {}
+					for _, model in ipairs(vim.json.decode(response.body)["data"]) do
+						table.insert(models, {
+							id = model.id,
+							name = model.id,
+						})
+					end
+					return models
+				end,
+				get_url = function()
+					return "http://localhost:5946/v1/chat/completions"
+				end,
+			},
+		},
 		selection = false, -- by default, have no predefined context
 		show_help = false,
 		window = {
