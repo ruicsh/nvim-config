@@ -40,7 +40,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround pairs
 - [nvim-spider](https://github.com/chrisgrieser/nvim-spider) - Move by subwords (camelCase, ...)
-- [rsi.vim](https://github.com/tpope/vim-rsi) - Insert mode navigation
 
 ### Coding
 
@@ -136,6 +135,7 @@ Random features added.
 | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
 | [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)           | Use the same shortcut to close different panels |
 | [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua) | Search count inline indicator                   |
+| [readline](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/readline.lua)                       | Readline style insertion                        |
 
 # Mappings
 
