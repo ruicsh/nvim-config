@@ -380,11 +380,6 @@ local function list_chat_history()
 	})
 end
 
-local function get_default_model()
-	vim.fn.load_env_file() -- make sure the env file is loaded
-	return vim.fn.getenv("COPILOT_CODER_MODEL")
-end
-
 vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local chat = require("CopilotChat")
 	local select = require("CopilotChat.select")
@@ -457,6 +452,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 
 			vim.keymap.set({ "n", "i" }, "<c-l>", accept_code_review, { buffer = true })
 		end,
+		model = "claude-3.5-sonnet",
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
 	})
@@ -484,86 +480,90 @@ return {
 
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
 	end,
-	opts = {
-		agent = "copilot",
-		answer_header = "  Copilot ",
-		question_header = "  ruicsh ",
-		auto_insert_mode = true,
-		callback = function(response)
-			save_chat(response)
-		end,
-		chat_autocomplete = false,
-		error_header = "  Error ",
-		insert_at_end = true,
-		history_path = CHAT_HISTORY_DIR, -- Default path to stored history
-		log_level = "warn",
-		mappings = {
-			accept_diff = {
-				normal = "<c-l>",
-				insert = "<c-l>",
-			},
-			close = {
-				normal = "<c-]>",
-				insert = "<c-]>",
-			},
-			reset = {
-				normal = "<c-x>",
-				insert = "<c-x>",
-			},
-		},
-		model = get_default_model(),
-		prompts = (function()
-			local prompts = {}
-			-- Load custom prompts
-			for _, prompt in ipairs(CUSTOM_PROMPTS) do
-				prompts[prompt] = read_prompt_file(prompt)
-			end
-			return prompts
-		end)(),
-		providers = {
-			lmstudio = {
-				embed = "copilot_embeddings",
-				prepare_input = function(inputs, opts)
-					return {
-						model = opts.model,
-						messages = inputs,
-						stream = true,
-					}
-				end,
-				get_headers = function()
-					return {
-						["Content-Type"] = "application/json",
-					}
-				end,
-				get_models = function(headers)
-					local utils = require("CopilotChat.utils")
-					local response = utils.curl_get("http://localhost:5946/v1/models", { headers = headers })
-					if not response or response.status ~= 200 then
-						error("Failed to fetch models: " .. tostring(response and response.status))
-					end
+	config = function()
+		local chat = require("CopilotChat")
+		local providers = require("CopilotChat.config.providers")
 
-					local models = {}
-					for _, model in ipairs(vim.json.decode(response.body)["data"]) do
-						table.insert(models, {
-							id = model.id,
-							name = model.id,
-						})
-					end
-					return models
-				end,
-				get_url = function()
-					return "http://localhost:5946/v1/chat/completions"
-				end,
-			},
-		},
-		selection = false, -- by default, have no predefined context
-		show_help = false,
-		window = {
-			layout = "replace",
-		},
-	},
+		vim.fn.load_env_file() -- make sure the env file is loaded
+		local base_url = vim.fn.getenv("COPILOT_LMSTUDIO_BASE_URL")
 
-	lazy = false,
+		chat.setup({
+			agent = "copilot",
+			answer_header = " Copilot ",
+			question_header = " ruicsh ",
+			auto_insert_mode = true,
+			callback = function(response)
+				save_chat(response)
+			end,
+			chat_autocomplete = false,
+			error_header = "  Error ",
+			insert_at_end = true,
+			history_path = CHAT_HISTORY_DIR, -- Default path to stored history
+			log_level = "warn",
+			mappings = {
+				accept_diff = {
+					normal = "<c-l>",
+					insert = "<c-l>",
+				},
+				close = {
+					normal = "<c-]>",
+					insert = "<c-]>",
+				},
+				reset = {
+					normal = "<c-x>",
+					insert = "<c-x>",
+				},
+			},
+			model = vim.fn.getenv("COPILOT_CODER_MODEL"),
+			prompts = (function()
+				local prompts = {}
+				-- Load custom prompts
+				for _, prompt in ipairs(CUSTOM_PROMPTS) do
+					prompts[prompt] = read_prompt_file(prompt)
+				end
+				return prompts
+			end)(),
+			providers = {
+				lmstudio = {
+					embed = "copilot_embeddings",
+					prepare_input = providers.copilot.prepare_input,
+					prepare_output = providers.copilot.prepare_output,
+					get_headers = function()
+						return {
+							["Content-Type"] = "application/json",
+						}
+					end,
+					get_models = function(headers)
+						local utils = require("CopilotChat.utils")
+
+						local response = utils.curl_get(base_url .. "/v1/models", { headers = headers })
+						if not response or response.status ~= 200 then
+							error("Failed to fetch models: " .. tostring(response and response.status))
+						end
+
+						local models = {}
+						for _, model in ipairs(vim.json.decode(response.body)["data"]) do
+							table.insert(models, {
+								id = model.id,
+								name = model.id,
+							})
+						end
+						return models
+					end,
+					get_url = function()
+						local base_url = vim.fn.getenv("COPILOT_LMSTUDIO_BASE_URL")
+						return base_url .. "/v1/chat/completions"
+					end,
+				},
+			},
+			selection = false, -- by default, have no predefined context
+			show_help = false,
+			window = {
+				layout = "replace",
+			},
+		})
+	end,
+
 	dependencies = {
 		{ "zbirenbaum/copilot.lua" },
 		{ "nvim-lua/plenary.nvim" },
