@@ -24,14 +24,18 @@ k("X", '"_X')
 -- Folds
 k("[z", "zk%^") -- Jump to start of previous fold.
 k("]z", "zj") -- Jump to start of next fold.
+k("<tab>", function()
+	local line = vim.fn.line(".")
+	-- Open recursively if closed, close (not recursively) if open.
+	local cmd = vim.fn.foldclosed(line) == -1 and "zc" or "zO"
+	vim.cmd("normal! " .. cmd)
+end, { noremap = true, silent = true, desc = "Folds: Toggle" })
 
 -- Buffers
 k("<bs>", ":JumpToLastVisitedBuffer<cr>", { desc = "Toggle to last buffer" })
 local bufdelete = require("snacks.bufdelete")
 k("<leader>bC", bufdelete.all, { desc = "Buffers: Close all" })
 k("<leader>bo", bufdelete.other, { desc = "Buffers: Close all other" })
-k("<tab>", ":bnext<cr>", { desc = "Buffers: Next" })
-k("<s-tab>", ":bprev<cr>", { desc = "Buffers: Previous" })
 
 -- Windows
 k("|", "<c-w>w", { desc = "Windows: Switch" })

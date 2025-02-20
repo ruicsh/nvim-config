@@ -382,6 +382,7 @@ Random features added.
 
 ### Folds
 
+- `<tab>` toggle
 - `[z` jump to previous fold
 - `]z` jump to next fold
 - `zr` decrement foldlevel
