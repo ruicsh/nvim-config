@@ -81,6 +81,7 @@ return {
 			{ "<leader>pp", snacks.picker.projects, "Search: Projects" },
 			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
 			{ "<leader>jj", snacks.picker.jumps, "Search: Jumplist" },
+			{ "<leader>rg", snacks.picker.registers, "Search: Registers" },
 
 			-- neovim application
 			{ "<leader>nh", snacks.picker.help, "Search: Help" },
