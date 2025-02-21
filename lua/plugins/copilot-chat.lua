@@ -185,7 +185,7 @@ local function open_generic_chat()
 
 	chat.open({
 		auto_insert_mode = true,
-		model = vim.fn.getenv("COPILOT_GENERIC_MODEL") or "o1",
+		model = vim.fn.getenv("COPILOT_MODEL_GENERIC"),
 		selection = false,
 		system_prompt = concat_prompts({ "COPILOT_INSTRUCTIONS", "communication" }),
 	})
@@ -431,7 +431,6 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 			vim.cmd("normal! G")
 		end,
 		headless = true,
-		model = "o3-mini",
 		selection = select.unnamed,
 		system_prompt = "/COPILOT_INSTRUCTIONS",
 	})
@@ -453,7 +452,6 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 
 			vim.keymap.set({ "n", "i" }, "<c-l>", accept_code_review, { buffer = true })
 		end,
-		model = "claude-3.5-sonnet",
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
 	})
@@ -486,7 +484,8 @@ return {
 		local providers = require("CopilotChat.config.providers")
 
 		vim.fn.load_env_file() -- make sure the env file is loaded
-		local env_lmstudio = vim.fn.getenv("COPILOT_LMSTUDIO_BASE_URL")
+
+		local env_lmstudio = vim.fn.getenv("COPILOT_URL_LMSTUDIO")
 		local lmstudio_base_url = env_lmstudio ~= vim.NIL and env_lmstudio or ""
 
 		chat.setup({
@@ -516,7 +515,7 @@ return {
 					insert = "<c-x>",
 				},
 			},
-			model = vim.fn.getenv("COPILOT_CODER_MODEL"),
+			model = vim.fn.getenv("COPILOT_MODEL_CODER"),
 			prompts = (function()
 				local prompts = {}
 				-- Load custom prompts
@@ -557,7 +556,7 @@ return {
 						return models
 					end,
 					get_url = function()
-						local base_url = vim.fn.getenv("COPILOT_LMSTUDIO_BASE_URL")
+						local base_url = vim.fn.getenv("COPILOT_URL_LMSTUDIO")
 						return base_url .. "/v1/chat/completions"
 					end,
 				},
