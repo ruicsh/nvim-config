@@ -3,7 +3,7 @@
 
 return {
 	"echasnovski/mini.hipatterns",
-	OPts = function()
+	opts = function()
 		local hi = require("mini.hipatterns")
 
 		return {
