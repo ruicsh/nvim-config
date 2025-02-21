@@ -431,6 +431,7 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 			vim.cmd("normal! G")
 		end,
 		headless = true,
+		model = "o3-mini",
 		selection = select.unnamed,
 		system_prompt = "/COPILOT_INSTRUCTIONS",
 	})
@@ -485,7 +486,8 @@ return {
 		local providers = require("CopilotChat.config.providers")
 
 		vim.fn.load_env_file() -- make sure the env file is loaded
-		local base_url = vim.fn.getenv("COPILOT_LMSTUDIO_BASE_URL")
+		local env_lmstudio = vim.fn.getenv("COPILOT_LMSTUDIO_BASE_URL")
+		local lmstudio_base_url = env_lmstudio ~= vim.NIL and env_lmstudio or ""
 
 		chat.setup({
 			agent = "copilot",
@@ -534,9 +536,13 @@ return {
 						}
 					end,
 					get_models = function(headers)
+						if lmstudio_base_url == "" then
+							return {}
+						end
+
 						local utils = require("CopilotChat.utils")
 
-						local response = utils.curl_get(base_url .. "/v1/models", { headers = headers })
+						local response = utils.curl_get(lmstudio_base_url .. "/v1/models", { headers = headers })
 						if not response or response.status ~= 200 then
 							error("Failed to fetch models: " .. tostring(response and response.status))
 						end
