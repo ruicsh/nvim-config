@@ -216,11 +216,9 @@ Random features added.
 
 - `a` function argument
 - `b` brackets ({}, (), [])
-- `c` class
 - `f` function
 - `g` buffer
 - `h` git hunk
-- `o` code blocks (if, while, for, ...)
 - `q` quotes ("", '', ``)
 - `t` tags
 
