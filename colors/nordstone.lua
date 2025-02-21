@@ -93,7 +93,7 @@ loadColorSet({
 	ErrorMsg = { fg = "NONE" },
 	FloatBorder = { fg = c.nord4, bg = "NONE" },
 	FoldColumn = { fg = c.nord3_500 },
-	Folded = { fg = c.nord3_700, style = "italic" },
+	Folded = { fg = c.nord9, style = "italic" },
 	Function = { fg = c.nord8 },
 	IncSearch = { link = "CurSearch" },
 	InsertMode = { fg = c.nord14, bg = "NONE", style = "reverse" },
@@ -173,12 +173,6 @@ loadColorSet({
 	qfDirectory = { fg = c.nord9 },
 	qfFileName = { fg = c.nord4 },
 	qfSnippet = { fg = c.nord3_900 },
-})
-
--- buffers
-loadColorSet({
-	BuffersSignCurrent = { link = "Normal" },
-	BuffersSignAlternate = { link = "Normal" },
 })
 
 -- LSP
