@@ -225,7 +225,7 @@ loadColorSet({
 	DiagnosticWarn = { link = "LspDiagnosticsDefaultWarning" },
 })
 
--- status-line
+-- status-line (mode)
 local cmode = {
 	c = c.nord14, -- #a3be8c
 	i = c.nord4, -- #d8dee9
@@ -235,6 +235,7 @@ local cmode = {
 	_ = c.nord11, -- #bf616a
 }
 
+-- status-line
 loadColorSet({
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
@@ -337,7 +338,7 @@ loadColorSet({
 	["@attribute"] = { fg = c.nord7 },
 	["@boolean"] = { fg = c.nord9 },
 	["@character"] = { fg = c.nord14 },
-	["@comment"] = { fg = c.nord3_500 },
+	["@comment"] = { fg = c.nord3_700 },
 	["@conditional"] = { fg = c.nord9 },
 	["@constant"] = { fg = c.nord13 },
 	["@constant.builtin"] = { fg = c.nord7 },
