@@ -28,7 +28,7 @@ return {
 				completeopt = "menu,menuone,noinsert",
 			},
 			mapping = {
-				["<tab>"] = cmp.mapping(function(fallback)
+				["<c-n>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
 					elseif has_words_before() then
@@ -37,7 +37,7 @@ return {
 						fallback()
 					end
 				end, { "i", "s", "c" }),
-				["<s-tab>"] = cmp.mapping(function(fallback)
+				["<c-p>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
 					else
