@@ -5,18 +5,21 @@ return {
 	"echasnovski/mini.pairs",
 	opts = {
 		mappings = {
-			-- Don't close pairs if there's a character on the right
-			["("] = { action = "open", pair = "()", neigh_pattern = "[^\\][%W]" },
-			["["] = { action = "open", pair = "[]", neigh_pattern = "[^\\][%W]" },
-			["{"] = { action = "open", pair = "{}", neigh_pattern = "[^\\][%W]" },
+			-- https://gist.github.com/tmerse/dc21ec932860013e56882f23ee9ad8d2
 
-			[")"] = { action = "close", pair = "()", neigh_pattern = "[^\\][%W]" },
-			["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\][%W]" },
-			["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\][%W]" },
+			-- Only opens pairs when followed by spaces or closing brackets
+			["("] = { action = "open", pair = "()", neigh_pattern = ".[%s%z%)}%]]" },
+			["["] = { action = "open", pair = "[]", neigh_pattern = ".[%s%z%)}%]]" },
+			["{"] = { action = "open", pair = "{}", neigh_pattern = ".[%s%z%)}%]]" },
 
-			['"'] = { action = "closeopen", pair = '""', neigh_pattern = "[^\\][%W]", register = { cr = false } },
-			["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^%a\\][%W]", register = { cr = false } },
-			["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\][%W]", register = { cr = false } },
+			[")"] = { action = "close", pair = "()", neigh_pattern = "[^\\]." },
+			["]"] = { action = "close", pair = "[]", neigh_pattern = "[^\\]." },
+			["}"] = { action = "close", pair = "{}", neigh_pattern = "[^\\]." },
+
+			-- Prevent pairing if either side is a letter
+			['"'] = { action = "closeopen", pair = '""', neigh_pattern = "[^%w\\][^%w]", register = { cr = false } },
+			["'"] = { action = "closeopen", pair = "''", neigh_pattern = "[^%w\\][^%w]", register = { cr = false } },
+			["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^%w\\][^%w]", register = { cr = false } },
 		},
 	},
 
