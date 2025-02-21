@@ -105,10 +105,12 @@ loadColorSet({
 	Normal = { fg = c.nord4, bg = c.neutral_900 },
 	NormalFloat = { fg = c.nord4, bg = "NONE" },
 	NormalMode = { fg = c.nord4, bg = "NONE", style = "reverse" },
-	Pmenu = { fg = c.nord4, bg = c.nord2 },
-	PmenuSbar = { fg = c.nord4, bg = c.nord2 },
-	PmenuSel = { fg = c.nord4, bg = c.nord10 },
-	PmenuThumb = { fg = c.nord4, bg = c.nord4 },
+	Pmenu = { fg = c.nord4, bg = "NONE" },
+	PmenuExtra = { fg = c.nord8 },
+	PmenuExtraSel = { fg = c.nord2, bg = c.nord5 },
+	PmenuSbar = { bg = c.nord0 },
+	PmenuSel = { fg = c.nord1, bg = c.nord9 },
+	PmenuThumb = { bg = c.nord4 },
 	Question = { fg = c.nord14 },
 	QuickFixLine = {},
 	ReplacelMode = { fg = c.nord11, bg = "NONE", style = "reverse" },
@@ -264,7 +266,7 @@ loadColorSet({
 	CsvViewDelimiter = { fg = c.nord1 },
 })
 
--- Diff
+-- diffview
 loadColorSet({
 	diffAdded = { fg = c.nord14 },
 	diffChanged = { fg = c.nord15 },

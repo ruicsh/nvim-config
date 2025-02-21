@@ -239,9 +239,9 @@ Random features added.
 
 ### Autocompletion
 
-- `<c-n>` complete/next entry
-- `<c-p>` previous entry
-- `<c-l>` confirm
+- `<tab>` complete/next entry
+- `<s-tab>` previous entry
+- `<cr>` confirm
 - `<c-]>` abort
 
 ### AI chat
@@ -263,8 +263,8 @@ Random features added.
 ### AI suggestions
 
 - `<c-l>` accept
-- `<c-n>` next
-- `<c-p>` previous
+- `<c-j>` next
+- `<c-k>` previous
 - `<c-]>` dismiss
 
 ### Logging

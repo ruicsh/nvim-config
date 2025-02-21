@@ -80,10 +80,10 @@ o.clipboard = "unnamedplus" -- Use system clipboard.
 -- }}}
 
 -- 12 editing text {{{
-o.complete = "" -- Disable native autocompletion (using nvim-cmp).
-o.completeopt = "" -- Disable native autocompletion (using nvim-cmp).
-o.pumblend = 5 -- Transparent completion menu background.
-o.pumheight = 15 -- Maximum height of popup menu.
+o.complete = ".,t" -- How keyword completion works.
+o.completeopt = "menu,menuone,noinsert,preview" -- Disable native autocompletion (using nvim-cmp).
+o.pumblend = 5 -- Opaque completion menu background.
+o.pumheight = 5 -- Maximum height of popup menu.
 o.showmatch = false -- Do not jump to matching brackets.
 o.undofile = true -- Automatically save and restore undo history.
 -- }}}
