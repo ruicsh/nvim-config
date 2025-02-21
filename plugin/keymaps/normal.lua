@@ -25,9 +25,14 @@ k("X", '"_X')
 k("[z", "zk%^") -- Jump to start of previous fold.
 k("]z", "zj") -- Jump to start of next fold.
 k("<tab>", function()
-	local line = vim.fn.line(".")
+	local linenr = vim.fn.line(".")
+	-- If there's no fold to be opened/closed, do nothing.
+	if vim.fn.foldlevel(linenr) == 0 then
+		return
+	end
+
 	-- Open recursively if closed, close (not recursively) if open.
-	local cmd = vim.fn.foldclosed(line) == -1 and "zc" or "zO"
+	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
 	vim.cmd("normal! " .. cmd)
 end, { noremap = true, silent = true, desc = "Folds: Toggle" })
 
