@@ -24,7 +24,7 @@ o.fillchars = {
 o.number = true -- Show line numbers.
 o.numberwidth = 5 -- More space on the gutter column.
 o.relativenumber = true -- Show relative line numbers.
-o.scrolloff = 999 -- Always center the current line.
+o.scrolloff = math.floor(vim.fn.winheight(0) / 2) -- Always center the current line.
 o.sidescrolloff = 10 -- Number of columns to keep left/right of the cursor.
 o.wrap = false -- Do not automatically wrap texts.
 -- }}}

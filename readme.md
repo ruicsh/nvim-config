@@ -115,15 +115,16 @@ New features built around autocmds (events).
 | [cleanup-cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cleanup-cmdline.lua)                         | Cleanup command line after use                                        |
 | [create-intermediate-dirs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/create-intermediate-dirs.lua)       | Create intermediate directories                                       |
 | [disable-new-line-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-new-line-comments.lua)     | Disable new line comments                                             |
-| [views](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/views.lua)                                             | Save and restore views for each buffer                                |
 | [git-branch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/git-branch.lua)                                   | Keep the git branch updated on a buffer local variable                |
 | [load-env-vars](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/load-env-vars.lua)                             | Load environment variables, global and project scoped.                |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps and custom handlers                          |
 | [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)                   | If neovim is opened with a directory as argument open oil-filemanager |
 | [restore-changed-files](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/restore-changed-files.lua)             | On VimEnter, open all git changed files in current working directory  |
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                                 | Keep buffers in tabs scoped to the tab they were opened in            |
+| [scroll-eof](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scroll-eof.lua)                                   | Scroll past the end of file with scrolloff                            |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua) | Show cursorline only on active window.                                |
 | [toggle-hlsearch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/toggle-hlsearch.lua)                         | Toogle off hlsearch when entering insert mode and the cursor is moved |
+| [views](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/views.lua)                                             | Save and restore views for each buffer                                |
 | [yank-highlight](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-highlight.lua)                           | Highlight selection when yanking                                      |
 | [yank-keep-cursor-position](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-keep-cursor-position.lua)     | Keep cursor position on yank                                          |
 
