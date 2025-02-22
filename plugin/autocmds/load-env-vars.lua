@@ -1,6 +1,6 @@
 -- Load environment variables from .env files
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/load_env_vars", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/load-env-vars", { clear = true })
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = augroup,

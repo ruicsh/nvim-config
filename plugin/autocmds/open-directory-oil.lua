@@ -1,6 +1,6 @@
 -- If neovim is opened with a directory as argument open oil-filemanager.
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/open_directory_oil", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/open-directory-oil", { clear = true })
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = augroup,

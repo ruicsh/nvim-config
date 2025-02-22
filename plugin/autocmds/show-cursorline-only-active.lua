@@ -1,7 +1,7 @@
 -- Show cursor line only in active window.
 -- https://github.com/folke/dot/blob/master/nvim/lua/config/autocmds.lua
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/show_cursorline_only_active", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/show-cursorline-only-active", { clear = true })
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 	group = augroup,

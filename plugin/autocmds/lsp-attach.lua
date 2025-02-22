@@ -1,6 +1,6 @@
 -- Autocmds for LSP attach/detach events
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/lsp_attach", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/lsp-attach", { clear = true })
 
 local icons = require("config/icons")
 local lspconf = require("config/lsp")
