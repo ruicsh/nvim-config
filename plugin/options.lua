@@ -24,7 +24,7 @@ o.fillchars = {
 o.number = true -- Show line numbers.
 o.numberwidth = 5 -- More space on the gutter column.
 o.relativenumber = true -- Show relative line numbers.
-o.scrolloff = 8 -- Number of lines to keep up/down of the cursor.
+o.scrolloff = 999 -- Always center the current line.
 o.sidescrolloff = 10 -- Number of columns to keep left/right of the cursor.
 o.wrap = false -- Do not automatically wrap texts.
 -- }}}
