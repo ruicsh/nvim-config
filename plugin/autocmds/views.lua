@@ -2,6 +2,21 @@
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/views", { clear = true })
 
+local IGNORE_FILETYPES = {
+	"DiffviewFileHistory",
+	"DiffviewFiles",
+	"copilot-chat",
+	"diff",
+	"fugitive",
+	"gitcommit",
+	"gitrebase",
+	"help",
+	"neo-tree",
+	"oil",
+	"qf",
+	"svg",
+}
+
 --- Some files have special folding rules
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup,
@@ -28,8 +43,12 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		if not vim.b[args.buf].view_activated then
 			local filetype = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
 			local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
-			local ignore_filetypes = { "gitcommit", "gitrebase", "svg", "hgcommit" }
-			if buftype == "" and filetype and filetype ~= "" and not vim.tbl_contains(ignore_filetypes, filetype) then
+
+			if vim.tbl_contains(IGNORE_FILETYPES, filetype) then
+				return
+			end
+
+			if buftype == "" and filetype and filetype ~= "" then
 				vim.b[args.buf].view_activated = true
 				vim.cmd.loadview({ mods = { emsg_silent = true } })
 			end

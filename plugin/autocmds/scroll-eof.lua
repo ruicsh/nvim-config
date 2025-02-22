@@ -1,5 +1,5 @@
 -- Scroll past the end of file just like scrolloff option.
--- https://github.com/Aasim-A/scrollEOF.nvim
+-- simplified version of https://github.com/Aasim-A/scrollEOF.nvim
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/scroll-eof", { clear = true })
 
