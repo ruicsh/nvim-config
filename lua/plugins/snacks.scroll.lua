@@ -6,12 +6,6 @@ return {
 	opts = {
 		scroll = {
 			enabled = true,
-			animate = {
-				duration = { step = 50, total = 50 },
-			},
-			animate_repeat = {
-				duration = { step = 50, total = 10 },
-			},
 		},
 	},
 
