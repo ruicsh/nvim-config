@@ -1,6 +1,25 @@
 -- Autocomplete
 -- https://github.com/hrsh7th/nvim-cmp
 
+local DISABLED_FILETYPES = {
+	"DiffviewFileHistory",
+	"DiffviewFiles",
+	"checkhealth",
+	"copilot-chat",
+	"fugitive",
+	"git",
+	"gitcommit",
+	"help",
+	"lspinfo",
+	"man",
+	"neo-tree",
+	"oil",
+	"qf",
+	"query",
+	"scratch",
+	"startuptime",
+}
+
 local has_words_before = function()
 	unpack = unpack or table.unpack
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -29,6 +48,10 @@ return {
 			},
 			mapping = {
 				["<tab>"] = cmp.mapping(function(fallback)
+					if vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype) then
+						return fallback()
+					end
+
 					if cmp.visible() then
 						cmp.select_next_item()
 					elseif has_words_before() then
@@ -38,6 +61,10 @@ return {
 					end
 				end),
 				["<s-tab>"] = cmp.mapping(function(fallback)
+					if vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype) then
+						return fallback()
+					end
+
 					if cmp.visible() then
 						cmp.select_prev_item()
 					else
@@ -45,6 +72,10 @@ return {
 					end
 				end),
 				["<cr>"] = cmp.mapping(function(fallback)
+					if vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype) then
+						return fallback()
+					end
+
 					if cmp.visible() and cmp.get_active_entry() then
 						cmp.confirm({ select = true })
 					else
@@ -52,6 +83,10 @@ return {
 					end
 				end),
 				["<c-]>"] = cmp.mapping(function(fallback)
+					if vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype) then
+						return fallback()
+					end
+
 					if cmp.visible() then
 						cmp.abort()
 					else
@@ -59,6 +94,10 @@ return {
 					end
 				end),
 				["<c-u>"] = cmp.mapping(function(fallback)
+					if vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype) then
+						return fallback()
+					end
+
 					if cmp.visible() then
 						cmp.scroll_docs(-4)
 					else
@@ -66,6 +105,10 @@ return {
 					end
 				end),
 				["<c-d>"] = cmp.mapping(function(fallback)
+					if vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype) then
+						return fallback()
+					end
+
 					if cmp.visible() then
 						cmp.scroll_docs(4)
 					else
