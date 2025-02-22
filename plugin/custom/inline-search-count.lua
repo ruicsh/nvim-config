@@ -1,7 +1,7 @@
 -- Search count indicator
 -- https://github.com/chrisgrieser/.config/blob/main/nvim/lua/config/autocmds.lua
 
-local ns = vim.api.nvim_create_namespace("ruicsh/auto_nohl_inline_search_count")
+local ns = vim.api.nvim_create_namespace("ruicsh/custom/inline_search_count")
 
 local function searchCountIndicator(mode)
 	local signColumnPlusScrollbarWidth = 2 + 3 -- CONFIG

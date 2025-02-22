@@ -168,7 +168,7 @@ vim.g.terminal_color_15 = c.nord6
 
 -- inline-search-count
 loadColorSet({
-	InlineSearchCount = { fg = c.nord3_500, bg = "NONE" },
+	InlineSearchCount = { fg = c.nord3_700, bg = c.nord0 },
 })
 
 -- quickfix
@@ -282,7 +282,7 @@ loadColorSet({
 
 -- flash.nvim
 loadColorSet({
-	FlashLabel = { link = "Cursor" },
+	FlashLabel = { fg = c.nord0, bg = c.nord12 },
 })
 
 -- Fugitive
@@ -341,7 +341,7 @@ loadColorSet({
 	["@attribute"] = { fg = c.nord7 },
 	["@boolean"] = { fg = c.nord9 },
 	["@character"] = { fg = c.nord14 },
-	["@comment"] = { fg = c.nord3_700 },
+	["@comment"] = { fg = c.nord3_500 },
 	["@conditional"] = { fg = c.nord9 },
 	["@constant"] = { fg = c.nord13 },
 	["@constant.builtin"] = { fg = c.nord7 },
