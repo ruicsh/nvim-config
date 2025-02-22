@@ -104,15 +104,12 @@ local function c_filename()
 	elseif ft == "" or ft == "copilot-chat" then
 		return ""
 	else
-		local cwd = vim.fn.getcwd()
 		local path = vim.fn.expand("%:p:~")
 
 		if ft == "oil" or ft == "neo-tree" then
-			-- show full path
-			line = line .. " " .. path:sub(#cwd + 3)
+			line = line .. " " .. path:sub(7)
 		else
-			-- show only parent/filename
-			line = line .. " " .. vim.fs.get_short_path(path)
+			line = line .. " " .. path
 		end
 	end
 
