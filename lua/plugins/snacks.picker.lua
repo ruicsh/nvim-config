@@ -80,6 +80,7 @@ return {
 			{ "<leader>fd", search_directory, "Search: Directory" },
 			{ "<leader>pp", snacks.picker.projects, "Search: Projects" },
 			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
+			{ "<leader>.", snacks.picker.recent, "Search: Recent" },
 			{ "<leader>jj", snacks.picker.jumps, "Search: Jumplist" },
 			{ "<leader>rg", snacks.picker.registers, "Search: Registers" },
 

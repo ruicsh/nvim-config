@@ -160,12 +160,11 @@ Random features added.
 
 ### Buffers
 
-- `<bs>` next opened buffer
-- `<s-bs>` previous opened buffer
-- `<c-]>` close buffer
-- `<leader>bC` close all buffers
-- `<leader>bo` close the other buffers
-- `<leader>,` search open buffers
+- `<c-]>` close
+- `<leader>bC` close all
+- `<leader>bo` close the other
+- `<leader>,` open
+- `<leader>.` recent
 
 ### Windows
 
