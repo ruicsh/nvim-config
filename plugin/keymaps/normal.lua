@@ -14,6 +14,10 @@ k("[p", ":pu!<cr>==", { desc = "Paste on new line above" })
 k("]p", ":pu<cr>==", { desc = "Paste on new line below" })
 k("U", "<C-r>", { desc = "Redo" })
 
+-- Move lines
+k("]e", ":m .+1<cr>==", { desc = "Move line down" })
+k("[e", ":m .-2<cr>==", { desc = "Move line up" })
+
 -- Don't place on register when deleting/changing.
 k("C", '"_C')
 k("c", '"_c')

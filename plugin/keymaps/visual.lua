@@ -20,4 +20,8 @@ k("}", "6j")
 k("H", "0^")
 k("L", "$")
 
+-- Move lines
+k("]e", ":m '>+1<cr>gv=gv", { desc = "Move line down" })
+k("[e", ":m '<-2<cr>gv=gv", { desc = "Move line up" })
+
 k("|", "<c-w>w", { desc = "Windows: Switch" })
