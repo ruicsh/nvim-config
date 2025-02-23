@@ -132,10 +132,11 @@ New features built around autocmds (events).
 
 Random features added.
 
-|                                                                                                              |                                                 |
-| ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
-| [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)           | Use the same shortcut to close different panels |
-| [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua) | Search count inline indicator                   |
+|                                                                                                                  |                                                 |
+| ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)               | Use the same shortcut to close different panels |
+| [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua)     | Search count inline indicator                   |
+| [pause-folds-on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/pause-folds-on-search.lua) | Pause folds on search                           |
 
 # Mappings
 

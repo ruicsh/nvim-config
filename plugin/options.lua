@@ -103,6 +103,7 @@ o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding.
 o.foldlevel = 99 -- How many folds to close.
 o.foldlevelstart = 99 -- Start with all folds open.
 o.foldmethod = "expr" -- Use expr to determine fold level.
+o.foldopen = "" -- Which commands open folds if the cursor moves into a closed fold.
 o.foldtext = "v:lua.custom_fold_text()" -- What to display on fold
 -- }}}
 
