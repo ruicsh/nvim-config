@@ -7,5 +7,5 @@ function _G.custom_fold_text()
 	-- perserve indentation (replace tabs with spaces)
 	line = line:gsub("\t", string.rep(" ", vim.bo.tabstop))
 
-	return line .. ": " .. line_count .. " lines "
+	return line .. ": " .. line_count .. " lines ------"
 end
