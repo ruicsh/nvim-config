@@ -380,7 +380,7 @@ Random features added.
 ### Folds
 
 - `<tab>` toggle
-- `<s-tab>` open 1 foldlevel
+- `<s-tab>` toggle one foldlevel
 - `[z` more
 - `]z` reduce
 - `zR` set foldlevel to zero
