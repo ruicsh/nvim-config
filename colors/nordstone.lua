@@ -93,7 +93,7 @@ loadColorSet({
 	ErrorMsg = { fg = "NONE" },
 	FloatBorder = { fg = c.nord4, bg = "NONE" },
 	FoldColumn = { fg = c.nord3_500 },
-	Folded = { fg = c.nord9, style = "italic" },
+	Folded = { fg = c.nord9 },
 	Function = { fg = c.nord8 },
 	IncSearch = { link = "CurSearch" },
 	InsertMode = { fg = c.nord14, bg = "NONE", style = "reverse" },
