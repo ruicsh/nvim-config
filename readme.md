@@ -380,18 +380,11 @@ Random features added.
 ### Folds
 
 - `<tab>` toggle
-- `[z` jump to previous fold
-- `]z` jump to next fold
-- `zr` decrement foldlevel
-- `zm` increment foldlevel
-- `zR` decrement foldlevel to zero
-- `zM` increment foldlevel to maximum
-- `zo` open current fold
-- `zc` close current fold
-- `zO` open current fold recursively
-- `zC` close current fold recursively
-- `za` toggle fold
-- `zA` toggle fold recursively
+- `<s-tab>` open 1 foldlevel
+- `[z` more
+- `]z` reduce
+- `zR` set foldlevel to zero
+- `zM` set foldlevel to maximum
 
 ### Application
 

@@ -26,8 +26,8 @@ k("x", '"_x')
 k("X", '"_X')
 
 -- Folds
-k("[z", "zk%^") -- Jump to start of previous fold.
-k("]z", "zj") -- Jump to start of next fold.
+k("[z", "zm", { desc = "Folds: More" })
+k("]z", "zr", { desc = "Folds: Reduce" })
 k("<tab>", function()
 	local linenr = vim.fn.line(".")
 	-- If there's no fold to be opened/closed, do nothing.
@@ -39,7 +39,7 @@ k("<tab>", function()
 	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
 	vim.cmd("normal! " .. cmd)
 end, { noremap = true, silent = true, desc = "Folds: Toggle" })
-k("<s-tab>", "zo", { desc = "Folds: open" })
+k("<s-tab>", "zo", { desc = "Folds: Open foldlevel" })
 
 -- Buffers
 k("<bs>", ":JumpToLastVisitedBuffer<cr>", { desc = "Toggle to last buffer" })
