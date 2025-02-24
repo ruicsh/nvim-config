@@ -93,7 +93,7 @@ loadColorSet({
 	ErrorMsg = { fg = "NONE" },
 	FloatBorder = { fg = c.nord4, bg = "NONE" },
 	FoldColumn = { fg = c.nord3_500 },
-	Folded = { fg = c.nord9 },
+	Folded = { fg = c.nord9, style = "italic" },
 	Function = { fg = c.nord8 },
 	IncSearch = { link = "CurSearch" },
 	InsertMode = { fg = c.nord14, bg = "NONE", style = "reverse" },
@@ -169,6 +169,11 @@ vim.g.terminal_color_15 = c.nord6
 -- inline-search-count
 loadColorSet({
 	InlineSearchCount = { fg = c.nord3_700, bg = c.nord0 },
+})
+
+-- folds
+loadColorSet({
+	FoldedHeading = { fg = c.nord4 },
 })
 
 -- quickfix
