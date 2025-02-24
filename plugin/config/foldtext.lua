@@ -1,12 +1,47 @@
 -- Custom fold text.
 -- https://www.reddit.com/r/neovim/comments/16sqyjz/finally_we_can_have_highlighted_folds/
 
-local NODES_TO_HIGHLIGHT = { "function", "method", "class" }
+local NODES_TO_HIGHLIGHT = {
+	css = { "type" },
+	html = { "tag" },
+	js = { "function" },
+	lua = { "function" },
+	scss = { "type" },
+	typescript = { "constructor", "function", "function.method" },
+	typescriptreact = { "function" },
+}
+
+-- Cache highlight groups by filetype and node name for better performance
+local highlight_cache = {}
+
+local function get_hl_group(name)
+	local ft = vim.bo.filetype
+
+	-- Create cache key
+	local cache_key = ft .. "_" .. name
+
+	-- Return cached result if available
+	if highlight_cache[cache_key] then
+		return highlight_cache[cache_key]
+	end
+
+	-- Get nodes to highlight for current filetype, or empty table if none
+	local nodes_to_highlight = NODES_TO_HIGHLIGHT[ft]
+
+	-- Determine highlight group
+	local hl = (nodes_to_highlight and vim.tbl_contains(nodes_to_highlight, name)) and "FoldedHeading" or "Folded"
+
+	-- Cache the result
+	highlight_cache[cache_key] = hl
+
+	return hl
+end
 
 function _G.custom_fold_text()
+	local ft = vim.bo.filetype
 	local pos = vim.v.foldstart
 	local line = vim.api.nvim_buf_get_lines(0, pos - 1, pos, false)[1]
-	local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+	local lang = vim.treesitter.language.get_lang(ft)
 	local parser = vim.treesitter.get_parser(0, lang)
 	local query = vim.treesitter.query.get(parser:lang(), "highlights")
 
@@ -31,11 +66,11 @@ function _G.custom_fold_text()
 			end
 			line_pos = end_col
 			local text = vim.treesitter.get_node_text(node, 0)
-			local hl_group = vim.tbl_contains(NODES_TO_HIGHLIGHT, name) and "FoldedHeading" or "Folded"
+			local hl = get_hl_group(name)
 			if prev_range ~= nil and range[1] == prev_range[1] and range[2] == prev_range[2] then
-				result[#result] = { text, hl_group }
+				result[#result] = { text, hl }
 			else
-				table.insert(result, { text, hl_group })
+				table.insert(result, { text, hl })
 			end
 			prev_range = range
 		end

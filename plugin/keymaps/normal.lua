@@ -39,6 +39,7 @@ k("<tab>", function()
 	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
 	vim.cmd("normal! " .. cmd)
 end, { noremap = true, silent = true, desc = "Folds: Toggle" })
+k("<s-tab>", "zo", { desc = "Folds: open" })
 
 -- Buffers
 k("<bs>", ":JumpToLastVisitedBuffer<cr>", { desc = "Toggle to last buffer" })
