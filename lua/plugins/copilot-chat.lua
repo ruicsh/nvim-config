@@ -37,6 +37,15 @@ local FILETYPE_CONFIGS = {
 		filetypes = { "htmlangular" },
 		prompts = { "angular", "js", "ts" },
 	},
+	css = {
+		filetypes = { "css", "scss", "less" },
+		prompts = { "css" },
+		patterns = {
+			"%.css$",
+			"%.scss$",
+			"%.module%.css$",
+		},
+	},
 	javascript = {
 		filetypes = { "javascript" },
 		prompts = { "js" },
@@ -125,12 +134,6 @@ local function get_system_prompts(action)
 	return prompts
 end
 
-local function reset_chat()
-	local chat = require("CopilotChat")
-	vim.g.copilot_chat_title = nil
-	chat.reset()
-end
-
 local function save_chat(response)
 	local chat = require("CopilotChat")
 
@@ -152,22 +155,32 @@ local function save_chat(response)
 	})
 end
 
-local function open_chat()
+local function new_chat_window(prompt, opts)
 	local chat = require("CopilotChat")
-	local select = require("CopilotChat.select")
-
-	local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
 
 	vim.cmd("WindowToggleMaximize forceOpen") -- maximize the current window
 	vim.cmd("vsplit") -- open a vertical split
+
+	vim.g.copilot_chat_title = nil -- reset chat title used for saving chat history
+	chat.reset()
+
+	if prompt ~= "" then
+		chat.ask(prompt, opts)
+	else
+		chat.open(opts)
+	end
+end
+
+local function open_chat()
+	local select = require("CopilotChat.select")
+
+	local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
 
 	local ft_config = get_config_by_filetype()
 	local prompts = get_system_prompts("generic")
 	local system_prompt = concat_prompts(prompts)
 
-	reset_chat()
-
-	chat.open({
+	new_chat_window("", {
 		contexts = ft_config and ft_config.contexts or {},
 		-- if there's something selected use it, if not, use a blank context
 		selection = is_visual_mode and select.visual or false,
@@ -176,14 +189,7 @@ local function open_chat()
 end
 
 local function open_generic_chat()
-	local chat = require("CopilotChat")
-
-	vim.cmd("WindowToggleMaximize forceOpen") -- maximize the current window
-	vim.cmd("vsplit") -- open a vertical split
-
-	reset_chat()
-
-	chat.open({
+	new_chat_window("", {
 		auto_insert_mode = true,
 		model = vim.fn.getenv("COPILOT_MODEL_GENERIC"),
 		selection = false,
@@ -191,21 +197,22 @@ local function open_generic_chat()
 	})
 end
 
+local function open_search_chat()
+	new_chat_window("", {
+		agent = "perplexityai",
+		auto_insert_mode = true,
+		selection = false,
+	})
+end
+
 local function operation(operation_type)
-	local chat = require("CopilotChat")
-	local select = require("CopilotChat.select")
-
 	return function()
-		vim.cmd("WindowToggleMaximize forceOpen") -- maximize the current window
-		vim.cmd("vsplit") -- open a vertical split
-
+		local select = require("CopilotChat.select")
 		local prompts = get_system_prompts(operation_type)
 		local system_prompt = concat_prompts(prompts)
 		local prompt = "/" .. operation_type
 
-		reset_chat()
-
-		chat.ask(prompt, {
+		new_chat_window(prompt, {
 			auto_insert_mode = false,
 			selection = select.visual,
 			system_prompt = system_prompt,
@@ -244,9 +251,6 @@ local function delete_old_chat_files()
 end
 
 local function format_timestamp(timestamp)
-	-- Convert Unix timestamp to a table containing date/time components
-	local date = os.date("*t", timestamp)
-
 	-- Get current timestamp for relative time calculations
 	local now = os.time()
 	local diff = now - timestamp
@@ -468,6 +472,7 @@ return {
 			{ "<leader>ag", open_generic_chat, "Generic Chat" },
 			{ "<leader>ah", list_chat_history, "List chat history" },
 			{ "<leader>am", chat.select_model, "Models" },
+			{ "<leader>as", open_search_chat, "Search Chat" },
 
 			-- predefined prompts
 			{ "<leader>ae", operation("explain"), "Explain", { mode = "v" } },
