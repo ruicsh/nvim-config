@@ -398,30 +398,11 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 
 	chat.reset() -- Reset previous chat state
 
-	-- Start spinner animation
-	local spinner_idx = 1
-	local spinner_timer = vim.uv.new_timer()
-	spinner_timer:start(
-		0,
-		100,
-		vim.schedule_wrap(function()
-			spinner_idx = (spinner_idx % #icons.spinner) + 1
-			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {
-				icons.spinner[spinner_idx] .. " Generating commit message...",
-				"",
-			})
-			vim.cmd("normal! G") -- set cursor on the last line
-		end)
-	)
+	vim.fn.start_spinner(bufnr, "Generating commit message...")
 
 	chat.ask(prompt, {
 		callback = function(response)
-			-- Stop spinner animation
-			if spinner_timer then
-				spinner_timer:stop()
-				spinner_timer:close()
-				spinner_timer = nil
-			end
+			vim.fn.stop_spinner(bufnr)
 
 			-- Convert response to table of lines and ensure it's always an array
 			local lines = type(response) == "string" and vim.split(response, "\n")
