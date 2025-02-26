@@ -271,8 +271,8 @@ Random features added.
 
 - `glv` insert variable log below
 - `glV` insert variable log above
-- `glp` insert statement log below
-- `glP` insert statement log above
+- `glp` insert plain log below
+- `glP` insert plain log above
 - `glb` insert batch log below
 - `glt` insert timestamp below
 - `glT` insert timestamp below

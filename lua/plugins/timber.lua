@@ -33,9 +33,9 @@ return {
 		end
 
 		local mappings = {
-			{ "glt", insert_time_log("below"), "Timestamp below" },
-			{ "glT", insert_time_log("above"), "Timestamp above" },
-			{ "<leader>glt", insert_time_log("surround"), "Timestamp above/below" },
+			{ "glt", insert_time_log("below"), "Timestamp below", { expr = true } },
+			{ "glT", insert_time_log("above"), "Timestamp above", { expr = true } },
+			{ "<leader>glt", insert_time_log("surround"), "Timestamp above/below", { expr = true } },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Logs")
@@ -46,8 +46,10 @@ return {
 			insert_log_above = "glV",
 			insert_plain_log_below = "glp",
 			insert_plain_log_above = "glP",
-			add_log_targets_to_batch = "gla",
 			insert_batch_log = "glb",
+			insert_batch_log_operator = false,
+			insert_log_below_operator = "glo",
+			insert_log_above_operator = "glO",
 		},
 		template_placeholders = {
 			print_tag = function()
