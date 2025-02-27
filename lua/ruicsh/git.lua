@@ -54,22 +54,6 @@ vim.git.blame = function(opts)
 	return info
 end
 
-vim.git.get_repo_url = function()
-	local result = vim.fn.exec("git config --get remote.origin.url")
-	if not result then
-		return nil, "Error with remote.origin.url"
-	end
-
-	result = result:gsub("^%s*(.-)%s*$", "%1")
-	if result == "" then
-		return nil, "No remote URL found"
-	end
-
-	result = result:gsub("%.git$", "")
-
-	return result
-end
-
 vim.git.get_default_branch = function()
 	-- Use `git symbolic-ref` to directly get the default branch name
 	local result = vim.fn.exec("git symbolic-ref refs/remotes/origin/HEAD --short")
@@ -133,102 +117,60 @@ vim.git.list_branches = function()
 	return branches
 end
 
-vim.git.gen_diff_between_branches = function(opts, callback)
-	local job = require("plenary.job")
-
-	local repo_dir = opts.repo_dir
-	local base = opts.base
-	local head = opts.head
-	local ref = string.format("origin/%s...origin/%s", base, head)
-
-	local diff_lines = {}
-
-	job:new({
-		command = "git",
-		args = { "-C", repo_dir, "fetch", "origin" },
-		on_start = function()
-			print("Fetching branches ...")
-		end,
-		on_exit = function(_, exit_code)
-			if exit_code ~= 0 then
-				return
-			end
-
-			-- Diff base..head
-			job:new({
-				command = "git",
-				args = { "-C", repo_dir, "diff", ref },
-				on_start = function()
-					print("Generating diff: " .. ref)
-				end,
-				on_stdout = function(_, data)
-					if data then
-						table.insert(diff_lines, data)
-					end
-				end,
-				on_exit = function(_, exit_code2)
-					if exit_code2 ~= 0 then
-						return
-					end
-
-					local commit_lines = {}
-
-					-- Commit messages
-					job:new({
-						command = "git",
-						args = { "-C", repo_dir, "log", ref },
-						on_start = function()
-							print("Listing commit messages on " .. head .. " ...")
-						end,
-						on_stdout = vim.schedule_wrap(function(_, line)
-							if line then
-								table.insert(commit_lines, line)
-								return
-							end
-
-							-- Clean up
-							vim.fs.rmdir(repo_dir)
-
-							callback({
-								diff_lines = diff_lines,
-								commit_lines = commit_lines,
-							})
-						end),
-					}):start()
-				end,
-			}):start()
-		end,
-	}):start()
-end
-
 vim.git.get_branch_diff = function(branch_name, callback)
+	if not branch_name or not callback then
+		return
+	end
+
 	local job = require("plenary.job")
+	local base = vim.git.get_default_branch()
+	if not base then
+		return
+	end
 
-	local temp_dir = vim.fn.tempname()
-	local repo_url = vim.git.get_repo_url()
+	local ref = string.format("origin/%s...origin/%s", base, branch_name)
 
+	-- Create jobs upfront to avoid nested declarations
+	local diff_lines = {}
+	local commit_lines = {}
+
+	-- Create log job
+	local log_job = job:new({
+		command = "git",
+		args = { "log", ref },
+		on_start = function()
+			print(string.format("Listing commit messages on %s ...", branch_name))
+		end,
+		on_stdout = vim.schedule_wrap(function(_, line)
+			if line then
+				table.insert(commit_lines, line)
+			end
+		end),
+		on_exit = vim.schedule_wrap(function()
+			-- return back the results
+			callback({
+				diff_lines = diff_lines,
+				commit_lines = commit_lines,
+			})
+		end),
+	})
+
+	-- Execute diff job
 	job:new({
 		command = "git",
-		args = { "clone", "--no-checkout", "--filter=blob:none", repo_url, temp_dir },
+		args = { "diff", ref },
 		on_start = function()
-			print("Cloning repository: " .. repo_url .. " ...")
+			print(string.format("Generating diff: %s", ref))
+		end,
+		on_stdout = function(_, data)
+			if data then
+				table.insert(diff_lines, data)
+			end
 		end,
 		on_exit = function(_, exit_code)
-			if exit_code ~= 0 then
-				return
+			if exit_code == 0 then
+				log_job:start()
 			end
-
-			local default_branch = vim.git.get_default_branch()
-			if not default_branch then
-				return
-			end
-			local head_branch = branch_name
-
-			vim.git.gen_diff_between_branches({
-				repo_dir = temp_dir,
-				base = default_branch,
-				head = head_branch,
-			}, callback)
 		end,
 	}):start()
 end
