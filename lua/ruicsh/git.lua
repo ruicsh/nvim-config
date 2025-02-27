@@ -91,41 +91,45 @@ vim.git.list_branches = function()
 		return {}
 	end
 
+	-- Calculate date 15 days ago in seconds since epoch
+	local fifteen_days_ago = os.time() - (15 * 24 * 60 * 60)
+
 	-- Get all branches and their last commit dates
 	local cmd = "git for-each-ref "
 		.. "refs/remotes/ "
 		.. "--sort=-committerdate "
 		.. "--format='%(refname:short),%(committerdate:iso8601)' "
 		.. string.format("--no-contains=refs/remotes/origin/%s ", default_branch)
-	local output = vim.fn.exec(cmd)
-	if not output then
+
+	local branches = {}
+	local handle = io.popen(cmd)
+	if not handle then
 		return {}
 	end
 
-	local branches = {}
-	local current_time = os.time()
-	local fifteen_days = 15 * 24 * 60 * 60
-
-	for line in output:gmatch("[^\r\n]+") do
+	for line in handle:lines() do
 		local branch_name, date = line:match("'?([^,]+),([^']*)")
 		local branch_time = os.time({
-			year = tonumber(date:sub(1, 4)),
-			month = tonumber(date:sub(6, 7)),
-			day = tonumber(date:sub(9, 10)),
+			year = tonumber(date:sub(1, 4)) or 0,
+			month = tonumber(date:sub(6, 7)) or 0,
+			day = tonumber(date:sub(9, 10)) or 0,
 			hour = tonumber(date:sub(12, 13)),
 			min = tonumber(date:sub(15, 16)),
 			sec = tonumber(date:sub(18, 19)),
 		})
 
-		-- Only include branches updated within last 15 days
-		if (current_time - branch_time) <= fifteen_days then
-			table.insert(branches, {
-				name = branch_name,
-				time = branch_time,
-			})
+		-- Stop reading when we hit branches older than 15 days
+		if branch_time < fifteen_days_ago then
+			break
 		end
+
+		table.insert(branches, {
+			name = branch_name:gsub("^origin/", ""),
+			time = branch_time,
+		})
 	end
 
+	handle:close()
 	return branches
 end
 
