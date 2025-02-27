@@ -11,9 +11,9 @@ return {
 			enabled = true,
 			auto_trigger = true,
 			keymap = {
-				accept = "<c-l>",
-				accept_word = false,
-				accept_line = false,
+				accept = false,
+				accept_word = "<c-w>",
+				accept_line = "<c-l>",
 				next = "<c-j>",
 				prev = "<c-k>",
 				dismiss = "<c-]>",

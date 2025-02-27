@@ -263,7 +263,8 @@ Random features added.
 
 ### AI suggestions
 
-- `<c-l>` accept
+- `<c-l>` accept line
+- `<c-w>` accept word
 - `<c-j>` next
 - `<c-k>` previous
 - `<c-]>` dismiss
