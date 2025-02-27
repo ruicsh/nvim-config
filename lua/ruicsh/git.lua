@@ -65,30 +65,38 @@ vim.git.get_repo_url = function()
 		return nil, "No remote URL found"
 	end
 
-	if result:match("^git@") then
-		result = result:gsub("^git@([^:]+):", "https://%1/")
-	end
-
 	result = result:gsub("%.git$", "")
 
 	return result
 end
 
 vim.git.get_default_branch = function()
-	local result = vim.fn.exec("git remote show origin | grep 'HEAD branch' | cut -d' ' -f5")
+	-- Use `git symbolic-ref` to directly get the default branch name
+	local result = vim.fn.exec("git symbolic-ref refs/remotes/origin/HEAD --short")
 	if not result then
-		return
+		return nil, "Failed to execute git command"
 	end
 
-	result = result:gsub("%s+$", "")
+	if result then
+		-- Remove 'origin/' prefix from the branch name and remove the trailing newline
+		return result:gsub("^origin/", ""):gsub("%s+$", "")
+	end
 
-	return #result > 0 and result or "main"
+	return nil, "Could not find HEAD branch"
 end
 
 vim.git.list_branches = function()
+	local default_branch = vim.git.get_default_branch()
+	if not default_branch then
+		return {}
+	end
+
 	-- Get all branches and their last commit dates
-	local cmd =
-		[[git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short),%(committerdate:iso8601)']]
+	local cmd = "git for-each-ref "
+		.. "refs/remotes/ "
+		.. "--sort=-committerdate "
+		.. "--format='%(refname:short),%(committerdate:iso8601)' "
+		.. string.format("--no-contains=refs/remotes/origin/%s ", default_branch)
 	local output = vim.fn.exec(cmd)
 	if not output then
 		return {}
@@ -99,7 +107,7 @@ vim.git.list_branches = function()
 	local fifteen_days = 15 * 24 * 60 * 60
 
 	for line in output:gmatch("[^\r\n]+") do
-		local branch_name, date = line:match("([^,]+),(.*)")
+		local branch_name, date = line:match("'?([^,]+),([^']*)")
 		local branch_time = os.time({
 			year = tonumber(date:sub(1, 4)),
 			month = tonumber(date:sub(6, 7)),
@@ -212,6 +220,9 @@ vim.git.get_branch_diff = function(branch_name, callback)
 			end
 
 			local default_branch = vim.git.get_default_branch()
+			if not default_branch then
+				return
+			end
 			local head_branch = branch_name
 
 			vim.git.gen_diff_between_branches({

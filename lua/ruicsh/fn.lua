@@ -130,7 +130,7 @@ end
 vim.fn.exec = function(cmd)
 	local handle = io.popen(cmd, "r")
 	if not handle then
-		vim.notify("Could not execute command: " .. cmd, "error")
+		vim.notify("Could not execute command: " .. cmd)
 		return nil
 	end
 
