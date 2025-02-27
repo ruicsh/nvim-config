@@ -187,12 +187,7 @@ vim.git.gen_diff_between_branches = function(opts, callback)
 							end
 
 							-- Clean up
-							if repo_dir and repo_dir ~= "" then
-								job:new({
-									command = "rm",
-									args = { "-rf", repo_dir },
-								}):start()
-							end
+							vim.fs.rmdir(repo_dir)
 
 							callback({
 								diff_lines = diff_lines,

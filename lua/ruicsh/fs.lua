@@ -29,3 +29,22 @@ vim.fs.read_file = function(filename)
 
 	return content
 end
+
+vim.fs.rmdir = function(dir)
+	local job = require("plenary.job")
+	if dir and dir ~= "" then
+		if vim.fn.has("win32") == 1 then
+			-- Windows command
+			job:new({
+				command = "cmd",
+				args = { "/c", "rmdir", "/s", "/q", dir },
+			}):start()
+		else
+			-- Unix command
+			job:new({
+				command = "rm",
+				args = { "-rf", dir },
+			}):start()
+		end
+	end
+end
