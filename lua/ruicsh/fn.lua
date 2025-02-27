@@ -154,7 +154,7 @@ vim.fn.fmt_relative_time = function(timestamp)
 	elseif diff < 86400 then
 		local hours = math.floor(diff / 3600)
 		return string.format("%dh", hours)
-	elseif diff < 604800 then
+	elseif diff < 30 * 24 * 60 * 60 then
 		local days = math.floor(diff / 86400)
 		return string.format("%dd", days)
 	else

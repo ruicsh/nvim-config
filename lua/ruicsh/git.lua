@@ -91,8 +91,8 @@ vim.git.list_branches = function()
 		return {}
 	end
 
-	-- Calculate date 15 days ago in seconds since epoch
-	local fifteen_days_ago = os.time() - (15 * 24 * 60 * 60)
+	-- Calculate date 30 days ago in seconds since epoch
+	local a_month_ago = os.time() - (30 * 24 * 60 * 60)
 
 	-- Get all branches and their last commit dates
 	local cmd = "git for-each-ref "
@@ -118,8 +118,8 @@ vim.git.list_branches = function()
 			sec = tonumber(date:sub(18, 19)),
 		})
 
-		-- Stop reading when we hit branches older than 15 days
-		if branch_time < fifteen_days_ago then
+		-- Stop reading when we hit branches older than 30 days
+		if branch_time < a_month_ago then
 			break
 		end
 
