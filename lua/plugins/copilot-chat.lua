@@ -1,8 +1,6 @@
 -- GitHub Copilot Chat
 -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
 
-local icons = require("config.icons")
-
 local CHAT_HISTORY_DIR = vim.fn.stdpath("data") .. "/copilot-chats"
 
 local CUSTOM_PROMPTS = {
@@ -25,6 +23,7 @@ local CUSTOM_PROMPTS = {
 	"codereview",
 	"commit",
 	"commitwork",
+	"prreview",
 }
 
 local FILETYPE_CONFIGS = {
@@ -442,6 +441,26 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 	})
 end, {})
 
+vim.api.nvim_create_user_command("CopilotPrReview", function()
+	vim.git.get_branch_diff(function(diff)
+		local prompt = table.concat({
+			"```gitcommit",
+			table.concat(diff.commit_lines, "\n"),
+			"```",
+			"```diff",
+			table.concat(diff.diff_lines, "\n"),
+			"```",
+		}, "\n")
+
+		vim.schedule(function()
+			new_chat_window(prompt, {
+				selection = false,
+				system_prompt = concat_prompts({ "COPILOT_INSTRUCTIONS", "/prreview", "communication" }),
+			})
+		end)
+	end)
+end, {})
+
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	keys = function()
@@ -461,6 +480,9 @@ return {
 			{ "<leader>ai", operation("implement"), "Implement", { mode = "v" } },
 			{ "<leader>ao", operation("optimize"), "Optimize", { mode = "v" } },
 			{ "<leader>ar", operation("refactor"), "Refactor", { mode = "v" } },
+
+			-- git
+			{ "<leader>ap", ":CopilotPrReview<cr>", "PR review" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")

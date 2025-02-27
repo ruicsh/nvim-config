@@ -352,9 +352,9 @@ loadColorSet({
 	["@constant.builtin"] = { fg = c.nord7 },
 	["@constant.macro"] = { fg = c.nord7 },
 	["@constructor"] = { fg = c.nord7 },
-	["@diff.delta"] = { link = "DiffChange" },
-	["@diff.minus"] = { link = "DiffDelete" },
-	["@diff.plus"] = { link = "DiffAdd" },
+	["@diff.delta"] = { link = "diffChanged" },
+	["@diff.minus"] = { link = "diffRemoved" },
+	["@diff.plus"] = { link = "diffAdded" },
 	["@error"] = { fg = c.nord11 },
 	["@exception"] = { fg = c.nord15 },
 	["@field"] = { fg = c.nord4 },
@@ -430,6 +430,12 @@ loadColorSet({
 	["@markup.heading.5.markdown"] = { fg = c.nord9 },
 	["@markup.heading.6.markdown"] = { fg = c.nord9 },
 	["@punctuation.special.markdown"] = { fg = c.nord3 },
+	["@markup.raw.block.markdown"] = { fg = c.nord3_900 },
+
+	-- diff
+	["@attribute.diff"] = { fg = c.nord13 },
+	["@string.special.path.diff"] = { fg = c.nord3_900 },
+	["@constant.diff"] = { fg = c.nord3_500 },
 
 	-- scss
 	["@keyword.import.scss"] = { fg = c.nord7 },
