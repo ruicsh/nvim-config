@@ -251,12 +251,13 @@ Random features added.
 - `<c-l>` accept diff
 - `<c-x>` reset
 
-### AI operations
+### AI assistant
 
 - `<leader>ae` explain
 - `<leader>af` fix
 - `<leader>ai` implement
 - `<leader>ao` optimize
+- `<leader>ap` pull request review
 - `<leader>ar` refactor
 - `<leader>ar` review (ft:fugitive)
 

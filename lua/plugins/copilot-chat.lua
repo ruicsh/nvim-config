@@ -249,29 +249,6 @@ local function delete_old_chat_files()
 	end
 end
 
-local function format_timestamp(timestamp)
-	-- Get current timestamp for relative time calculations
-	local now = os.time()
-	local diff = now - timestamp
-
-	-- Format different time ranges
-	if diff < 60 then
-		return "just now"
-	elseif diff < 3600 then
-		local mins = math.floor(diff / 60)
-		return string.format("%d %s ago", mins, mins == 1 and "minute" or "minutes")
-	elseif diff < 86400 then
-		local hours = math.floor(diff / 3600)
-		return string.format("%d %s ago", hours, hours == 1 and "hour" or "hours")
-	elseif diff < 604800 then
-		local days = math.floor(diff / 86400)
-		return string.format("%d %s ago", days, days == 1 and "day" or "days")
-	else
-		-- For older dates, return full date format
-		return os.date("%Y-%m-%d %H:%M", timestamp)
-	end
-end
-
 local function list_chat_history()
 	local snacks = require("snacks")
 	local chat = require("CopilotChat")
@@ -339,10 +316,10 @@ local function list_chat_history()
 			local display = " " .. prompt:gsub("[-_]", " "):gsub("^%l", string.upper)
 
 			local mtime = vim.fn.getftime(item.file)
-			local date = format_timestamp(mtime)
+			local date = vim.fn.fmt_relative_time(mtime)
 
 			return {
-				{ date, "SnacksPickerLabel" },
+				{ string.format("%-5s", date), "SnacksPickerLabel" },
 				{ display },
 			}
 		end,
@@ -442,23 +419,56 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 end, {})
 
 vim.api.nvim_create_user_command("CopilotPrReview", function()
-	vim.git.get_branch_diff(function(diff)
-		local prompt = table.concat({
-			"```gitcommit",
-			table.concat(diff.commit_lines, "\n"),
-			"```",
-			"```diff",
-			table.concat(diff.diff_lines, "\n"),
-			"```",
-		}, "\n")
+	local snacks = require("snacks")
+	local branches = vim.git.list_branches()
 
-		vim.schedule(function()
-			new_chat_window(prompt, {
-				selection = false,
-				system_prompt = concat_prompts({ "COPILOT_INSTRUCTIONS", "/prreview", "communication" }),
-			})
-		end)
-	end)
+	local items = {}
+	for i, branch in ipairs(branches) do
+		table.insert(items, {
+			idx = i,
+			file = branch.name,
+			text = branch.name,
+			time = branch.time,
+		})
+	end
+
+	snacks.picker({
+		title = "Select a branch to review",
+		items = items,
+		layout = {
+			preset = "vertical",
+			hidden = { "preview" },
+		},
+		format = function(item)
+			local time = vim.fn.fmt_relative_time(item.time)
+
+			return {
+				{ string.format("%-5s", time), "SnacksPickerLabel" },
+				{ item.file },
+			}
+		end,
+		confirm = function(picker, item)
+			picker:close()
+
+			vim.git.get_branch_diff(item.text, function(diff)
+				local prompt = table.concat({
+					"```gitcommit",
+					table.concat(diff.commit_lines, "\n"),
+					"```",
+					"```diff",
+					table.concat(diff.diff_lines, "\n"),
+					"```",
+				}, "\n")
+
+				vim.schedule(function()
+					new_chat_window(prompt, {
+						selection = false,
+						system_prompt = concat_prompts({ "COPILOT_INSTRUCTIONS", "/prreview", "communication" }),
+					})
+				end)
+			end)
+		end,
+	})
 end, {})
 
 return {

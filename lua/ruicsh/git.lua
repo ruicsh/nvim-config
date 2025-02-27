@@ -55,13 +55,10 @@ vim.git.blame = function(opts)
 end
 
 vim.git.get_repo_url = function()
-	local handle = io.popen("git config --get remote.origin.url")
-	if not handle then
-		return nil, "Could not execute git command"
+	local result = vim.fn.exec("git config --get remote.origin.url")
+	if not result then
+		return nil, "Error with remote.origin.url"
 	end
-
-	local result = handle:read("*a")
-	handle:close()
 
 	result = result:gsub("^%s*(.-)%s*$", "%1")
 	if result == "" then
@@ -77,22 +74,57 @@ vim.git.get_repo_url = function()
 	return result
 end
 
-vim.git.get_base_branch = function()
-	local handle = io.popen("git remote show origin | grep 'HEAD branch' | cut -d' ' -f5")
-	if not handle then
-		return "main"
+vim.git.get_default_branch = function()
+	local result = vim.fn.exec("git remote show origin | grep 'HEAD branch' | cut -d' ' -f5")
+	if not result then
+		return
 	end
 
-	local result = handle:read("*a"):gsub("%s+$", "")
-	handle:close()
+	result = result:gsub("%s+$", "")
 
 	return #result > 0 and result or "main"
+end
+
+vim.git.list_branches = function()
+	-- Get all branches and their last commit dates
+	local cmd =
+		[[git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short),%(committerdate:iso8601)']]
+	local output = vim.fn.exec(cmd)
+	if not output then
+		return {}
+	end
+
+	local branches = {}
+	local current_time = os.time()
+	local fifteen_days = 15 * 24 * 60 * 60
+
+	for line in output:gmatch("[^\r\n]+") do
+		local branch_name, date = line:match("([^,]+),(.*)")
+		local branch_time = os.time({
+			year = tonumber(date:sub(1, 4)),
+			month = tonumber(date:sub(6, 7)),
+			day = tonumber(date:sub(9, 10)),
+			hour = tonumber(date:sub(12, 13)),
+			min = tonumber(date:sub(15, 16)),
+			sec = tonumber(date:sub(18, 19)),
+		})
+
+		-- Only include branches updated within last 15 days
+		if (current_time - branch_time) <= fifteen_days then
+			table.insert(branches, {
+				name = branch_name,
+				time = branch_time,
+			})
+		end
+	end
+
+	return branches
 end
 
 vim.git.gen_diff_between_branches = function(opts, callback)
 	local job = require("plenary.job")
 
-	local dest_dir = opts.dest_dir
+	local repo_dir = opts.repo_dir
 	local base = opts.base
 	local head = opts.head
 	local ref = string.format("origin/%s...origin/%s", base, head)
@@ -101,7 +133,7 @@ vim.git.gen_diff_between_branches = function(opts, callback)
 
 	job:new({
 		command = "git",
-		args = { "-C", dest_dir, "fetch", "origin" },
+		args = { "-C", repo_dir, "fetch", "origin" },
 		on_start = function()
 			print("Fetching branches ...")
 		end,
@@ -113,7 +145,7 @@ vim.git.gen_diff_between_branches = function(opts, callback)
 			-- Diff base..head
 			job:new({
 				command = "git",
-				args = { "-C", dest_dir, "diff", ref },
+				args = { "-C", repo_dir, "diff", ref },
 				on_start = function()
 					print("Generating diff: " .. ref)
 				end,
@@ -132,7 +164,7 @@ vim.git.gen_diff_between_branches = function(opts, callback)
 					-- Commit messages
 					job:new({
 						command = "git",
-						args = { "-C", dest_dir, "log", ref },
+						args = { "-C", repo_dir, "log", ref },
 						on_start = function()
 							print("Listing commit messages on " .. head .. " ...")
 						end,
@@ -143,10 +175,12 @@ vim.git.gen_diff_between_branches = function(opts, callback)
 							end
 
 							-- Clean up
-							job:new({
-								command = "rm",
-								args = { "-rf", dest_dir },
-							}):start()
+							if repo_dir and repo_dir ~= "" then
+								job:new({
+									command = "rm",
+									args = { "-rf", repo_dir },
+								}):start()
+							end
 
 							callback({
 								diff_lines = diff_lines,
@@ -160,36 +194,31 @@ vim.git.gen_diff_between_branches = function(opts, callback)
 	}):start()
 end
 
-vim.git.get_branch_diff = function(callback)
-	local snacks = require("snacks")
+vim.git.get_branch_diff = function(branch_name, callback)
+	local job = require("plenary.job")
 
-	snacks.input({
-		prompt = "Enter branch name to review:",
-	}, function(branch)
-		local job = require("plenary.job")
+	local temp_dir = vim.fn.tempname()
+	local repo_url = vim.git.get_repo_url()
 
-		local temp_dir = vim.fn.tempname()
-		local repo_url = vim.git.get_repo_url()
-		local head = branch
-		local base = vim.git.get_base_branch()
+	job:new({
+		command = "git",
+		args = { "clone", "--no-checkout", "--filter=blob:none", repo_url, temp_dir },
+		on_start = function()
+			print("Cloning repository: " .. repo_url .. " ...")
+		end,
+		on_exit = function(_, exit_code)
+			if exit_code ~= 0 then
+				return
+			end
 
-		job:new({
-			command = "git",
-			args = { "clone", "--no-checkout", "--filter=blob:none", repo_url, temp_dir },
-			on_start = function()
-				print("Cloning repository: " .. repo_url .. " ...")
-			end,
-			on_exit = function(_, exit_code)
-				if exit_code ~= 0 then
-					return
-				end
+			local default_branch = vim.git.get_default_branch()
+			local head_branch = branch_name
 
-				vim.git.gen_diff_between_branches({
-					dest_dir = temp_dir,
-					base = base,
-					head = head,
-				}, callback)
-			end,
-		}):start()
-	end)
+			vim.git.gen_diff_between_branches({
+				repo_dir = temp_dir,
+				base = default_branch,
+				head = head_branch,
+			}, callback)
+		end,
+	}):start()
 end

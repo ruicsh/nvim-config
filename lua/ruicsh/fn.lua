@@ -126,3 +126,39 @@ vim.fn.stop_spinner = function(bufnr)
 		spinners[bufnr] = nil
 	end
 end
+
+vim.fn.exec = function(cmd)
+	local handle = io.popen(cmd, "r")
+	if not handle then
+		vim.notify("Could not execute command: " .. cmd, "error")
+		return nil
+	end
+
+	local result = handle:read("*a")
+	handle:close()
+
+	return result
+end
+
+vim.fn.fmt_relative_time = function(timestamp)
+	-- Get current timestamp for relative time calculations
+	local now = os.time()
+	local diff = now - timestamp
+
+	-- Format different time ranges
+	if diff < 60 then
+		return "now"
+	elseif diff < 3600 then
+		local mins = math.floor(diff / 60)
+		return string.format("%dm", mins)
+	elseif diff < 86400 then
+		local hours = math.floor(diff / 3600)
+		return string.format("%dh", hours)
+	elseif diff < 604800 then
+		local days = math.floor(diff / 86400)
+		return string.format("%dd", days)
+	else
+		-- For older dates, return full date format
+		return os.date("%Y-%m-%d", timestamp)
+	end
+end
