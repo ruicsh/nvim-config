@@ -22,3 +22,11 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.cmd("CopilotCommitMessage")
 	end,
 })
+
+vim.api.nvim_create_autocmd("WinLeave", {
+	group = augroup,
+	pattern = "gitcommit",
+	callback = function(event)
+		vim.keymap.del({ "n", "i" }, "<c-l>", { buffer = event.buf })
+	end,
+})
