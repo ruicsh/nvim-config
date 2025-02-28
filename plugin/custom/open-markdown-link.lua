@@ -6,7 +6,7 @@ local function get_opener()
 	elseif vim.fn.has("unix") == 1 then
 		return "xdg-open"
 	elseif vim.fn.has("win32") == 1 then
-		return "start"
+		return "cmd.exe"
 	end
 end
 
@@ -22,12 +22,23 @@ local function open_markdown_url()
 		local text_start = start_idx + 1
 		local text_end = text_start + #text - 1
 
-		if col >= text_start - 1 and col <= text_end - 1 then
-			local opener = get_opener()
-			vim.system({ opener, url }):wait()
+		local opener = get_opener()
+		local cmd
+		if vim.fn.has("win32") == 1 then
+			if col >= text_start - 1 and col <= text_end - 1 then
+				cmd = { opener, "/c", "start", "", url }
+			else
+				cmd = { opener, "/c", "start", "", vim.fn.expand("<cfile>") }
+			end
 		else
-			vim.system({ "open", vim.fn.expand("<cfile>") })
+			if col >= text_start - 1 and col <= text_end - 1 then
+				cmd = { opener, url }
+			else
+				cmd = { opener, vim.fn.expand("<cfile>") }
+			end
 		end
+
+		vim.system(cmd):wait()
 	end
 end
 
