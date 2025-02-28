@@ -182,6 +182,7 @@ local function open_chat()
 	local system_prompt = concat_prompts(prompts)
 
 	new_chat_window("", {
+		auto_insert_mode = true,
 		contexts = ft_config and ft_config.contexts or {},
 		-- if there's something selected use it, if not, use a blank context
 		selection = is_visual_mode and select.visual or false,
@@ -214,7 +215,7 @@ local function operation(operation_type)
 		local prompt = "/" .. operation_type
 
 		new_chat_window(prompt, {
-			auto_insert_mode = false,
+			auto_insert_mode = true,
 			selection = select.visual,
 			system_prompt = system_prompt,
 		})
@@ -407,13 +408,15 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 	chat.ask("/codereview", {
 		callback = function()
 			local function accept_code_review()
+				vim.keymap.del("n", "<c-l>", { buffer = true })
+
 				chat.close()
 				vim.cmd("WindowToggleMaximize forceOpen")
 				vim.cmd("vertical Git")
 				vim.cmd("Git commit")
 			end
 
-			vim.keymap.set({ "n", "i" }, "<c-l>", accept_code_review, { buffer = true })
+			vim.keymap.set("n", "<c-l>", accept_code_review, { buffer = true })
 		end,
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
@@ -529,7 +532,6 @@ return {
 			answer_header = " Copilot ",
 			auto_follow_cursor = false, -- Don't follow cursor in chat buffer
 			question_header = " ruicsh ",
-			auto_insert_mode = true,
 			callback = function(response)
 				save_chat(response)
 			end,
