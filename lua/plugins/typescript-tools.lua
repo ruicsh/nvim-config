@@ -14,6 +14,7 @@ return {
 			{ "<leader>tss", ":TSToolsSortImports<cr>", "Sort imports" },
 			{ "<leader>tsu", ":TSToolsRemoveUnusedImports<cr>", "Remove unused imports" },
 		}
+
 		return vim.fn.get_lazy_keys_conf(mappings, "TypeScript")
 	end,
 	opts = {

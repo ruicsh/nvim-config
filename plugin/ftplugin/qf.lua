@@ -115,10 +115,10 @@ vim.api.nvim_create_autocmd("FileType", {
 		k("n", "<c-n>", ":cnewer<cr>", opts) -- Open next list.
 
 		-- Preview the file under the cursor in the preview window.
-		for _, key in pairs({ "j", "<down>", "]q" }) do
+		for _, key in pairs({ "<c-j>", "<down>", "]q" }) do
 			k("n", key, mappings.select("next"), opts)
 		end
-		for _, key in pairs({ "k", "<up>", "[q" }) do
+		for _, key in pairs({ "<c-k>", "<up>", "[q" }) do
 			k("n", key, mappings.select("previous"), opts)
 		end
 

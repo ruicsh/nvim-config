@@ -19,12 +19,12 @@ end
 
 -- List changes
 local function get_changes_list()
-	local buffers = vim.tbl_reverse(get_buffers_sorted_by_last_accessed())
+	local buffers = vim.tbl.reverse(get_buffers_sorted_by_last_accessed())
 
 	local qf_list = {}
 	for _, bufnr in ipairs(buffers) do
 		-- Sort the changelist time descending
-		local changelist = vim.tbl_reverse(vim.fn.getchangelist(bufnr)[1])
+		local changelist = vim.tbl.reverse(vim.fn.getchangelist(bufnr)[1])
 		local seen = {}
 		for _, v in ipairs(changelist) do
 			local text = vim.api.nvim_buf_get_lines(bufnr, v.lnum - 1, v.lnum, false)[1]
