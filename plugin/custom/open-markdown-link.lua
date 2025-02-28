@@ -1,50 +1,40 @@
--- Open Markdown links in browser
+-- Open Markdown links in vim/browser
 
-local function get_opener()
-	if vim.fn.has("mac") == 1 then
-		return "open"
-	elseif vim.fn.has("unix") == 1 then
-		return "xdg-open"
-	elseif vim.fn.has("win32") == 1 then
-		return "cmd.exe"
-	end
-end
-
-local function open_markdown_url()
+local function open_markdown_link()
 	local line = vim.api.nvim_get_current_line()
-	local col = vim.api.nvim_win_get_cursor(0)[2]
 
 	-- Pattern to match Markdown links [text](url)
-	local start_idx, _, text, url = string.find(line, "%[([^%]]+)%]%(([^%)]+)%)")
+	local start_idx, _, _, url = string.find(line, "%[([^%]]+)%]%(([^%)]+)%)")
+
+	-- If no inline link found, try reference-style links [text][reference]
+	if not start_idx then
+		start_idx, _, _, url = string.find(line, "%[([^%]]+)%]%[([^%]]+)%]")
+	end
 
 	if start_idx then
-		-- Check if cursor is within the text portion of the link
-		local text_start = start_idx + 1
-		local text_end = text_start + #text - 1
-
-		local opener = get_opener()
-		local cmd
-		if vim.fn.has("win32") == 1 then
-			if col >= text_start - 1 and col <= text_end - 1 then
-				cmd = { opener, "/c", "start", "", url }
-			else
-				cmd = { opener, "/c", "start", "", vim.fn.expand("<cfile>") }
+		local target = (url or vim.fn.expand("<cfile>"))
+		if target:match("^https?://") then
+			-- Handle URLs with vim.ui.open
+			local success, err = pcall(vim.ui.open, target)
+			if not success then
+				vim.notify("Failed to open URL: " .. err, vim.log.levels.ERROR)
 			end
 		else
-			if col >= text_start - 1 and col <= text_end - 1 then
-				cmd = { opener, url }
+			-- Handle local files with vim commands
+			target = vim.fn.fnamemodify(target, ":p")
+			if vim.fn.filereadable(target) == 1 then
+				-- Use edit command to open the file
+				vim.cmd("edit " .. vim.fn.fnameescape(target))
 			else
-				cmd = { opener, vim.fn.expand("<cfile>") }
+				vim.notify("File not found: " .. target, vim.log.levels.WARN)
 			end
 		end
-
-		vim.system(cmd):wait()
 	end
 end
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "markdown", "copilot-chat" },
 	callback = function()
-		vim.keymap.set("n", "gx", open_markdown_url, { buffer = true, silent = true })
+		vim.keymap.set("n", "gx", open_markdown_link, { buffer = true, silent = true })
 	end,
 })
