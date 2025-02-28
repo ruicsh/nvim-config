@@ -420,7 +420,7 @@ end, {})
 
 vim.api.nvim_create_user_command("CopilotPrReview", function()
 	local snacks = require("snacks")
-	local branches = vim.git.list_branches()
+	local branches = vim.git.list_remote_branches()
 
 	local items = {}
 	for i, branch in ipairs(branches) do
@@ -450,7 +450,7 @@ vim.api.nvim_create_user_command("CopilotPrReview", function()
 		confirm = function(picker, item)
 			picker:close()
 
-			vim.git.get_branch_diff(item.text, function(diff)
+			vim.git.diff_branch(item.text, function(diff)
 				local prompt = table.concat({
 					"```gitcommit",
 					table.concat(diff.commit_lines, "\n"),

@@ -1,18 +1,14 @@
 vim.git = {}
 
 vim.git.is_git = function()
-	local output = vim.fn.system("git rev-parse --is-inside-work-tree")
-	return output:match("^true")
+	local result = vim.system({ "git", "rev-parse", "--is-inside-work-tree" }):wait()
+	return result.stdout:match("^true")
 end
 
 -- Finds the root dir for the current git repo
 vim.git.root = function()
-	local git_root = vim.fn.system("git rev-parse --show-toplevel"):gsub("\n", "")
-	if vim.v.shell_error ~= 0 then
-		return
-	end
-
-	return git_root
+	local result = vim.system({ "git", "rev-parse", "--show-toplevel" }):wait()
+	return result.stdout:gsub("\n", "")
 end
 
 -- Get blame info for a file/line
@@ -54,22 +50,21 @@ vim.git.blame = function(opts)
 	return info
 end
 
-vim.git.get_default_branch = function()
+vim.git.default_branch = function()
 	-- Use `git symbolic-ref` to directly get the default branch name
-	local result = vim.fn.exec("git symbolic-ref refs/remotes/origin/HEAD --short")
-	if not result then
-		return nil, "Failed to execute git command"
+	local result = vim.system({ "git", "symbolic-ref", "refs/remotes/origin/HEAD", "--short" }):wait()
+	if not result or not result.stdout then
+		return nil, "Could not find HEAD branch"
 	end
 
-	if result then
-		-- Remove 'origin/' prefix from the branch name and remove the trailing newline
-		return result:gsub("^origin/", ""):gsub("%s+$", "")
-	end
-
-	return nil, "Could not find HEAD branch"
+	-- Remove 'origin/' prefix from the branch name and remove the trailing newline
+	return result.stdout:gsub("^origin/", ""):gsub("%s+$", "")
 end
 
-vim.git.list_branches = function()
+vim.git.list_remote_branches = function()
+	-- Make sure we have the latest branches
+	vim.system({ "git", "fetch", "--prune", "--all" }):wait()
+
 	-- Get all branches and their last commit dates
 	local cmd = "git for-each-ref "
 		.. "refs/remotes/ "
@@ -111,13 +106,13 @@ vim.git.list_branches = function()
 	return branches
 end
 
-vim.git.get_branch_diff = function(branch_name, callback)
+vim.git.diff_branch = function(branch_name, callback)
 	if not branch_name or not callback then
 		return
 	end
 
 	local job = require("plenary.job")
-	local base = vim.git.get_default_branch()
+	local base = vim.git.default_branch()
 	if not base then
 		return
 	end
