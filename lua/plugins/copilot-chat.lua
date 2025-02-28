@@ -579,7 +579,8 @@ return {
 					end,
 				},
 			},
-			selection = false, -- by default, have no predefined context
+			references_display = "write", -- Display references as md links
+			selection = false, -- Have no predefined context by default
 			show_help = false,
 			window = {
 				layout = "replace",

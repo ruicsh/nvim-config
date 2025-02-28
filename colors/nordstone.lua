@@ -432,16 +432,25 @@ loadColorSet({
 	["@punctuation.special.markdown"] = { fg = c.nord3 },
 	["@markup.raw.block.markdown"] = { fg = c.nord3_900 },
 
+	-- markdown_inline
+	["@markup.link.label.markdown_inline"] = { fg = c.nord4 },
+	["@markup.link.url.markdown_inline"] = { fg = c.nord3_700 },
+	["@markup.link.markdown_inline"] = { fg = c.nord3_700 },
+
 	-- diff
 	["@attribute.diff"] = { fg = c.nord13 },
 	["@string.special.path.diff"] = { fg = c.nord3_900 },
 	["@constant.diff"] = { fg = c.nord3_500 },
 
 	-- scss
-	["@keyword.import.scss"] = { fg = c.nord7 },
-	["@string.scss"] = { fg = c.nord9 },
-	["@type.scss"] = { fg = c.nord7 },
+	["@keyword.import.scss"] = { link = "@keyword.import.css" },
+	["@string.scss"] = { link = "@string.css" },
+	["@type.scss"] = { link = "@type.css" },
 
 	-- vue
 	["@none.vue"] = { fg = c.nord4 },
+
+	["markdownLinkText"] = { link = "@markup.link.label.markdown_inline" },
+	["markdownLinkDelimiter"] = { link = "@markup.link.markdown_inline" },
+	["markdownLinkUrl"] = { link = "@markup.link.url.markdown_inline" },
 })

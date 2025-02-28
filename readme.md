@@ -136,6 +136,7 @@ Random features added.
 | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
 | [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)               | Use the same shortcut to close different panels |
 | [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua)     | Search count inline indicator                   |
+| [open-markdown-link](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/open-markdown-link.lua)       | Open Markdown links in the browser              |
 | [pause-folds-on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/pause-folds-on-search.lua) | Pause folds on search                           |
 
 # Mappings

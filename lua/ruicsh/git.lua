@@ -145,6 +145,7 @@ vim.git.diff_branch = function(branch_name, callback)
 	})
 
 	-- Execute diff job
+	-- to ignore files (ex. package-lock.json) add 'package-lock.json -diff' to .gitattributes
 	job:new({
 		command = "git",
 		args = { "diff", ref },
