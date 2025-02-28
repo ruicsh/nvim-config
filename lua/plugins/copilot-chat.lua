@@ -1,6 +1,8 @@
 -- GitHub Copilot Chat
 -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
 
+local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/copilot-chat", { clear = true })
+
 local CHAT_HISTORY_DIR = vim.fn.stdpath("data") .. "/copilot-chats"
 
 local CUSTOM_PROMPTS = {
@@ -470,6 +472,22 @@ vim.api.nvim_create_user_command("CopilotPrReview", function()
 		end,
 	})
 end, {})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = augroup,
+	pattern = "copilot-chat",
+	callback = function()
+		local ft = vim.bo.filetype
+		if ft == "copilot-chat" then
+			vim.opt_local.foldenable = false -- Never fold
+			vim.opt_local.foldmethod = "manual" -- Disable folding
+			vim.opt_local.foldlevel = 0 -- Don't fold anything
+			vim.opt_local.foldcolumn = "0" -- Don't show fold column
+			vim.opt_local.foldlevelstart = -1 -- Don't fold anything
+			vim.opt_local.conceallevel = 0 -- Don't conceal markdown links
+		end
+	end,
+})
 
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",

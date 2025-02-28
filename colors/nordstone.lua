@@ -433,9 +433,10 @@ loadColorSet({
 	["@markup.raw.block.markdown"] = { fg = c.nord3_900 },
 
 	-- markdown_inline
-	["@markup.link.label.markdown_inline"] = { fg = c.nord4 },
+	["@markup.link.label.markdown_inline"] = { fg = c.nord8 },
 	["@markup.link.url.markdown_inline"] = { fg = c.nord3_700 },
 	["@markup.link.markdown_inline"] = { fg = c.nord3_700 },
+	["@conceal.markdown_inline"] = { fg = c.nord3 },
 
 	-- diff
 	["@attribute.diff"] = { fg = c.nord13 },

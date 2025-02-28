@@ -100,8 +100,8 @@ o.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for.
 o.foldenable = true -- Enable folding.
 o.foldcolumn = "1" -- Show folding signs.
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding.
-o.foldlevel = 0 -- How many folds to close.
-o.foldlevelstart = 0 -- Start with all folds open.
+o.foldlevel = 0 -- Close all folds.
+o.foldlevelstart = 0 -- Start with all folds closed.
 o.foldmethod = "expr" -- Use expr to determine fold level.
 o.foldopen = "" -- Which commands open folds if the cursor moves into a closed fold.
 o.foldtext = "v:lua.custom_fold_text()" -- What to display on fold
@@ -133,6 +133,7 @@ o.wildignore:append({ -- Ignore on file name completion.
 -- }}}
 
 -- 24 various {{{
+o.conceallevel = 0 -- Text is shown normally.
 o.gdefault = true -- Use g flag for ":substitute".
 o.shada = {
 	'"50', -- Max number of lines saved for each register.

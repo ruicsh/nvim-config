@@ -1,5 +1,5 @@
 {
-  "CopilotChat.nvim": { "branch": "main", "commit": "f8d47ce9adace3c1fe9fa7737bc1fde861bb8317" },
+  "CopilotChat.nvim": { "branch": "main", "commit": "630a74739e946390ffb183682a86ec370a5ae294" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "99290b3ec1322070bcfb9e846450a46f6efa50f0" },
   "cmp-nvim-lsp-signature-help": { "branch": "main", "commit": "031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7" },
   "conform.nvim": { "branch": "master", "commit": "a6f5bdb78caa305496357d17e962bbc4c0b392e2" },
@@ -27,7 +27,7 @@
   "nvim-lspconfig": { "branch": "master", "commit": "62c5fac4c59be9e41b92ef62f3bb0fbdae3e2d9e" },
   "nvim-spider": { "branch": "main", "commit": "2b38e3e95e143313d78ca098eeecda7aebfce925" },
   "nvim-treesitter": { "branch": "master", "commit": "99487eb34a397befce8182ff63347a21c5f4b881" },
-  "nvim-treesitter-textobjects": { "branch": "master", "commit": "88fce4e6496950dab867a7c63a819df0ead56751" },
+  "nvim-treesitter-textobjects": { "branch": "master", "commit": "ab0950c53d1ae04da8e488aa762b450d5241dca2" },
   "nvim-ts-autotag": { "branch": "main", "commit": "a1d526af391f6aebb25a8795cbc05351ed3620b5" },
   "nvim-web-devicons": { "branch": "master", "commit": "1020869742ecb191f260818234517f4a1515cfe8" },
   "oil.nvim": { "branch": "master", "commit": "975a77cce3c8cb742bc1b3629f4328f5ca977dad" },
