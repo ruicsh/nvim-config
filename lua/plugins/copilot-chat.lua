@@ -527,6 +527,7 @@ return {
 		chat.setup({
 			agent = "copilot",
 			answer_header = " Copilot ",
+			auto_follow_cursor = false, -- Don't follow cursor in chat buffer
 			question_header = " ruicsh ",
 			auto_insert_mode = true,
 			callback = function(response)
