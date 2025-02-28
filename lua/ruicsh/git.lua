@@ -70,27 +70,21 @@ vim.git.get_default_branch = function()
 end
 
 vim.git.list_branches = function()
-	local default_branch = vim.git.get_default_branch()
-	if not default_branch then
+	-- Get all branches and their last commit dates
+	local cmd = "git for-each-ref "
+		.. "refs/remotes/ "
+		.. "--sort=-committerdate "
+		.. "--format='%(refname:short),%(committerdate:iso8601)' "
+
+	local handle = io.popen(cmd)
+	if not handle then
 		return {}
 	end
 
 	-- Calculate date 30 days ago in seconds since epoch
 	local a_month_ago = os.time() - (30 * 24 * 60 * 60)
 
-	-- Get all branches and their last commit dates
-	local cmd = "git for-each-ref "
-		.. "refs/remotes/ "
-		.. "--sort=-committerdate "
-		.. "--format='%(refname:short),%(committerdate:iso8601)' "
-		.. string.format("--no-contains=refs/remotes/origin/%s ", default_branch)
-
 	local branches = {}
-	local handle = io.popen(cmd)
-	if not handle then
-		return {}
-	end
-
 	for line in handle:lines() do
 		local branch_name, date = line:match("'?([^,]+),([^']*)")
 		local branch_time = os.time({
