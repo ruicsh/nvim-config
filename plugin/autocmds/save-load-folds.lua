@@ -39,6 +39,17 @@ vim.api.nvim_create_user_command("ResetView", function()
 		vim.fn.delete(view_file)
 	end
 
+	-- Reset all fold settings to default
+	local o = vim.opt
+	o.foldenable = true
+	o.foldcolumn = "1"
+	o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+	o.foldlevel = 0
+	o.foldlevelstart = 0
+	o.foldmethod = "expr"
+	o.foldopen = ""
+	o.foldtext = "v:lua.custom_fold_text()"
+
 	-- Create a new view
 	vim.cmd("mkview")
 end, {})
