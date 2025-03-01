@@ -1,11 +1,6 @@
 -- Pickers.
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 
-local search_workspace = function()
-	local snacks = require("snacks")
-	snacks.picker.grep({ search = vim.fn.expand("<cword>") })
-end
-
 -- Open a ui.select to search for a directory to search in
 local search_directory = function()
 	local snacks = require("snacks")
@@ -35,7 +30,6 @@ local search_directory = function()
 		confirm = function(picker, item)
 			picker:close()
 			snacks.picker.grep({
-				search = vim.fn.expand("<cword>"),
 				dirs = { item.file },
 			})
 		end,
@@ -76,7 +70,7 @@ return {
 		local mappings = {
 			-- pickers
 			{ "<leader><space>", snacks.picker.files, "Search: Files" },
-			{ "<leader>ff", search_workspace, "Search: Workspace" },
+			{ "<leader>ff", snacks.picker.grep, "Search: Workspace" },
 			{ "<leader>fd", search_directory, "Search: Directory" },
 			{ "<leader>pp", snacks.picker.projects, "Search: Projects" },
 			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
