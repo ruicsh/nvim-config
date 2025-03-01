@@ -26,6 +26,23 @@ local function is_ignored()
 	return false
 end
 
+-- Command to delete the saved view file
+vim.api.nvim_create_user_command("ResetView", function()
+	-- Get the correct view directory from Neovim's viewdir option
+	-- '~=+dotfiles=+.config=+nvim=+plugin=+autocmds=+save-load-folds.lua='
+	local view_dir = vim.fn.fnamemodify(vim.o.viewdir, ":p"):gsub("/$", "")
+	local current_file = vim.fn.expand("%:p:~"):gsub("/", "=+")
+	local view_file = view_dir .. current_file .. "="
+
+	-- Remove existing view file if it exists
+	if vim.fn.filereadable(view_file) == 1 then
+		vim.fn.delete(view_file)
+	end
+
+	-- Create a new view
+	vim.cmd("mkview")
+end, {})
+
 --- Some files have special folding rules
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup,

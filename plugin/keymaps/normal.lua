@@ -28,6 +28,7 @@ k("X", '"_X')
 -- Folds
 k("[z", "zm", { desc = "Folds: More" })
 k("]z", "zr", { desc = "Folds: Reduce" })
+k("<c-s-z>", ":ResetView<cr>", { desc = "Folds: Reset saved view" })
 
 local function toggle_fold()
 	local linenr = vim.fn.line(".")

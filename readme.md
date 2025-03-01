@@ -389,6 +389,7 @@ Random features added.
 - `]z` reduce
 - `zR` set foldlevel to zero
 - `zM` set foldlevel to maximum
+- `<c-s-z>` reset saved folds
 
 ### Application
 
