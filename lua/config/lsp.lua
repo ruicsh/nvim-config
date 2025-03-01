@@ -20,10 +20,24 @@ M = {
 				},
 			},
 		},
+		pyright = {
+			settings = {
+				python = {
+					analysis = {
+						typeCheckingMode = "basic",
+						autoSearchPaths = true,
+						useLibraryCodeForTypes = true,
+					},
+				},
+			},
+		},
 		vuels = {},
 	},
 	tools = {
+		black = {},
+		flake8 = {},
 		prettierd = {},
+		pylint = {},
 		stylua = {},
 	},
 	handlers = {

@@ -27,6 +27,7 @@ return {
 			"nginx",
 			"powershell",
 			"pug",
+			"python",
 			"regex",
 			"rust",
 			"scss",

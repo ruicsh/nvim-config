@@ -11,6 +11,7 @@ local CUSTOM_PROMPTS = {
 	"js",
 	"lua",
 	"microbit",
+	"python",
 	"react",
 	"rust",
 	"ts",
@@ -50,6 +51,10 @@ local FILETYPE_CONFIGS = {
 	javascript = {
 		filetypes = { "javascript" },
 		prompts = { "js" },
+	},
+	python = {
+		filetypes = { "python" },
+		prompts = { "python" },
 	},
 	typescript = {
 		filetypes = { "typescript" },
@@ -214,11 +219,13 @@ local function operation(operation_type)
 		local system_prompt = concat_prompts(prompts)
 		local prompt = "/" .. operation_type
 
-		new_chat_window(prompt, {
+		local opts = {
 			auto_insert_mode = true,
 			selection = select.visual,
 			system_prompt = system_prompt,
-		})
+		}
+
+		new_chat_window(prompt, opts)
 	end
 end
 

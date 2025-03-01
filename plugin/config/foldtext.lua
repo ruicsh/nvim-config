@@ -6,6 +6,7 @@ local NODES_TO_HIGHLIGHT = {
 	html = { "tag" },
 	js = { "function" },
 	lua = { "function", "string" },
+	python = { "function" },
 	scss = { "type" },
 	typescript = { "constructor", "function", "function.method" },
 	typescriptreact = { "function" },
