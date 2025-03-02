@@ -1,7 +1,0 @@
-Write an explanation for the selected code as paragraphs of text. 
-
-1. High-level overview of what the code does.
-2. Key functions or classes and their roles.
-3. Important algorithms or logic flow.
-4. Any notable or complex lines or segments.
-5. Expected input and output.

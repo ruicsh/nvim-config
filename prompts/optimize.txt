@@ -1,6 +1,0 @@
-Improve the performance and readability of the given code.
-
-1. Reduce time complexity and/or space complexity.
-2. Simplify logic and eliminate redundant operations.
-3. Enhance code readability and maintainability.
-4. Preserve the current functionality and outputs.

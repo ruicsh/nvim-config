@@ -11,11 +11,11 @@ local CUSTOM_PROMPTS = {
 	"js",
 	"lua",
 	"microbit",
+	"neovim",
 	"python",
 	"react",
 	"rust",
 	"ts",
-	"vim",
 	-- operations
 	"explain",
 	"fix",
@@ -60,9 +60,9 @@ local FILETYPE_CONFIGS = {
 		filetypes = { "typescript" },
 		prompts = { "js", "ts" },
 	},
-	vim = {
+	neovim = {
 		filetypes = { "vim", "lua" },
-		prompts = { "vim", "lua" },
+		prompts = { "neovim", "lua" },
 		contexts = { "url:https://github.com/ruicsh/nvim-config" },
 	},
 	rust = {
@@ -78,10 +78,12 @@ local FILETYPE_CONFIGS = {
 local function read_prompt_file(basename)
 	local config_dir = tostring(vim.fn.stdpath("config"))
 	local prompt_dir = vim.fs.joinpath(config_dir, "prompts")
-	local file_path = vim.fs.joinpath(prompt_dir, string.format("%s.txt", string.lower(basename)))
+	local file_path = vim.fs.joinpath(prompt_dir, string.format("%s.md", string.lower(basename)))
+	if not vim.fn.filereadable(file_path) then
+		return ""
+	end
 
-	local content = vim.fs.read_file(file_path)
-	return content or ""
+	return vim.fs.read_file(file_path)
 end
 
 local function get_config_by_filetype()
@@ -134,8 +136,6 @@ local function get_system_prompts(action)
 	-- Build list of prompts
 	local prompts = { base_prompt }
 	vim.list_extend(prompts, ft_prompts)
-	-- Always add communication prompt
-	table.insert(prompts, "communication")
 
 	return prompts
 end
