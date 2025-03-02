@@ -4,8 +4,8 @@ local function k(lhs, rhs, opts)
 end
 
 -- Keep visual selection after indenting.
-k("<<", "<gv")
-k(">>", ">gv")
+k("<", "<gv")
+k(">", ">gv")
 
 -- Paste over currently selected text without yanking it.
 k("P", '"_dP')
