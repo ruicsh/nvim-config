@@ -34,6 +34,28 @@ return {
 					end
 				end,
 			},
+			-- Python packages: pkg==version
+			python_requirements = {
+				name = "python_requirements",
+				filename = "requirements.txt",
+				handle = function(_, line, _)
+					local package = line:match("^([^%s=]+)")
+					if package then
+						return "https://pypi.org/project/" .. package
+					end
+				end,
+			},
+			-- Python imports: from pkg import module / import pkg
+			python_imports = {
+				name = "python_imports",
+				filetype = { "python" },
+				handle = function(_, line, _)
+					local package = line:match("^from%s+([^%s]+)") or line:match("^import%s+([^%s]+)")
+					if package then
+						return "https://pypi.org/project/" .. package
+					end
+				end,
+			},
 		},
 	},
 	init = function()
