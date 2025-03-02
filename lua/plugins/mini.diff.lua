@@ -24,6 +24,8 @@ return {
 			},
 		},
 		mappings = {
+			apply = "gh",
+			reset = "gH",
 			textobject = "h",
 			-- make it as in 'jumpto-diffs'
 			goto_first = "[C",

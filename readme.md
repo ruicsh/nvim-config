@@ -315,6 +315,7 @@ Random features added.
 - `[r` jump to previous symbol reference
 - `]r` jump to next symbol reference
 - `<c-s>` display signature help
+- `<leader>dd` open diagnostics for buffer
 
 ### TypeScript
 
@@ -323,12 +324,6 @@ Random features added.
 - `<leader>tsu` remove unused imports
 - `<leader>tsd` jump to source definition
 - `<leader>tsr` rename file and update changes to connected files
-
-### Diagnostics
-
-- `<leader>dd` open diagnostics for buffer
-- `[d` jump to previous diagnostic
-- `]d` jump to next diagnostic
 
 ### Git
 
