@@ -64,9 +64,9 @@ return {
 					return false
 				end,
 			},
-			markdown = {
+			markdown_link = {
 				-- Markdown links: [text](url)
-				name = "markdown",
+				name = "markdown_link",
 				filetype = { "markdown", "copilot-chat" },
 				handle = function(mode, line, _)
 					local pattern = "%[[%a%d%s.,?!:;@_{}~]*%]%((https?://[a-zA-Z0-9_/%-%.~@\\+#=?&]+)%)"
