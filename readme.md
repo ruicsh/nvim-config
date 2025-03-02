@@ -25,6 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### UI
 
+- [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.clue](https://github.com/echasnovski/mini.clue) - Keybidings helper
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
 - [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - Files tree explorer
@@ -137,7 +138,6 @@ Random features added.
 | [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)               | Use the same shortcut to close different panels |
 | [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)           | AST aware indentation                           |
 | [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua)     | Search count inline indicator                   |
-| [open-markdown-link](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/open-markdown-link.lua)       | Open Markdown links in the browser              |
 | [pause-folds-on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/pause-folds-on-search.lua) | Pause folds on search                           |
 
 # Mappings
