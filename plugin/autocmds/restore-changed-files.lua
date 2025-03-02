@@ -57,47 +57,117 @@ local function is_file_to_ignore(file)
 end
 
 -- List files changed on git status.
-local function get_changed_files()
-	-- Check if we're in a git repo first
+local function get_changed_files(callback)
+	-- Early return if not in a git repo
 	if not vim.git.is_git() then
-		return {}
+		return callback({})
 	end
 
 	local git_root = vim.git.root()
 	if not git_root then
-		return {}
+		return callback({})
 	end
 
-	local git_cmd = "git -C " .. vim.fn.shellescape(git_root)
-	local status_cmd = git_cmd .. " status --porcelain=v1"
-	local status_output = vim.fn.systemlist(status_cmd)
+	-- Pre-allocate table with expected size
+	local files = table.new and table.new(64, 0) or {}
 
-	local files = {}
-	-- Process each status line
-	for _, line in ipairs(status_output) do
-		if line ~= "" then
-			-- Extract filename from status output (starts at position 4)
-			local file = line:sub(4)
-			local filepath = vim.fs.normalize(git_root .. "/" .. file)
+	-- Use local references for better performance
+	local job = require("plenary.job")
+	local normalize = vim.fs.normalize
+	local isdirectory = vim.fn.isdirectory
 
-			if vim.fn.isdirectory(filepath) == 1 then
-				-- Handle directories
-				local ok, dir_files = pcall(vim.fs.dir, filepath, { depth = 9999 })
-				if ok then
-					for dirfile, type in dir_files do
-						if type == "file" then
-							local dirfilepath = vim.fs.joinpath(filepath, dirfile)
-							table.insert(files, dirfilepath)
-						end
-					end
-				end
-			else
-				table.insert(files, filepath)
-			end
+	-- Track pending async operations
+	local pending_operations = 0
+	local completed = false
+
+	-- Helper function to check if all operations are done
+	local function check_completion()
+		if completed and pending_operations == 0 then
+			vim.schedule(function()
+				callback(files)
+			end)
 		end
 	end
 
-	return files
+	-- Run git status asynchronously using plenary.job
+	job:new({
+		command = "git",
+		args = { "-C", git_root, "status", "--porcelain=v1" },
+		on_exit = function(j, return_code)
+			if return_code ~= 0 then
+				callback({})
+				return
+			end
+
+			-- Process the output
+			local function process_files()
+				local stdout = j:result()
+
+				for _, line in ipairs(stdout) do
+					if line ~= "" then
+						local file = normalize(git_root .. "/" .. line:sub(4))
+
+						if isdirectory(file) == 1 then
+							-- Process directory contents asynchronously
+							pending_operations = pending_operations + 1
+							job:new({
+								command = "find",
+								args = { file, "-type", "f" },
+								on_exit = function(find_j, find_return_code)
+									-- Handle find command errors
+									if find_return_code ~= 0 then
+										vim.schedule(function()
+											vim.notify(
+												string.format(
+													"Error processing directory: %s (find command failed)",
+													file
+												),
+												vim.log.levels.WARN
+											)
+										end)
+										pending_operations = pending_operations - 1
+										check_completion()
+										return
+									end
+
+									local found_files = find_j:result()
+									for _, found_file in ipairs(found_files) do
+										files[#files + 1] = normalize(found_file)
+									end
+									pending_operations = pending_operations - 1
+									check_completion()
+								end,
+								on_stderr = function(_, data)
+									-- Log stderr output if any
+									if data and #data > 0 then
+										vim.schedule(function()
+											vim.notify(
+												string.format(
+													"Find command error for %s: %s",
+													file,
+													type(data) == "table" and table.concat(data, "\n") or tostring(data)
+												),
+												vim.log.levels.WARN
+											)
+										end)
+									end
+								end,
+							}):start()
+						else
+							files[#files + 1] = file
+						end
+					end
+				end
+
+				-- Mark initial processing as complete
+				completed = true
+				check_completion()
+			end
+
+			-- Schedule the processing to avoid blocking
+			vim.schedule(process_files)
+		end,
+	}):start()
 end
 
 -- Prune list of files from files to ignore or unreadable.
@@ -142,12 +212,11 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			end
 		end
 
-		vim.schedule(function()
-			local files = get_changed_files()
+		get_changed_files(function(files)
 			files = prune_list(files)
 			files = sort_by_mtime(files)
 
-			-- always open a vertical split and focus on the left
+			-- open a vertical split and focus on the left, even if there's no files
 			vim.cmd.vsplit()
 			vim.cmd.wincmd("h")
 
