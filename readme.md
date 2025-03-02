@@ -25,6 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### UI
 
+- [flash.nvim](https://github.com/folke/flash.nvim) - Search labels, enhanced character motions
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.clue](https://github.com/echasnovski/mini.clue) - Keybidings helper
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
@@ -34,33 +35,32 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### Editing
 
-- [csvview.nvim](https://github.com/hat0uma/csvview.nvim) - CSV editing
-- [flash.nvim](https://github.com/folke/flash.nvim) - Search labels, enhanced character motions
 - [mini.ai](https://github.com/echasnovski/mini.ai) - around/inside textobjects
 - [mini.move](https://github.com/echasnovski/mini.move) - move lines/selection
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
+- [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround pairs
 - [nvim-spider](https://github.com/chrisgrieser/nvim-spider) - Move by subwords (camelCase, ...)
 
 ### Coding
 
-- [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
+- [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
+- [csvview.nvim](https://github.com/hat0uma/csvview.nvim) - CSV editing
 - [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - CSS Colors
-- [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Autocompletion
+- [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
+- [ts-comments.nvim](https://github.com/folke/ts-comments.nvim) - Custom comments configurations per language
 
 ### LSP/Syntax
 
 - [lazydev.nvim](https://github.com/folke/trouble.nvim) - Lua language server
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - LSP autocomplete
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
-- [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - Fast navigation around the AST tree
-- [ts-comments.nvim](https://github.com/folke/ts-comments.nvim) - Custom comments configurations per language
 
 ### Git
 
@@ -70,6 +70,8 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ## Config
 
+### Config
+
 Complex configuration options.
 
 |                                                                                                        |                                                           |
@@ -78,7 +80,7 @@ Complex configuration options.
 | [quickfixtextfunc](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/quickfixtextfunc.lua) | Text to display in the quickfix and location list windows |
 | [statusline](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/statusline.lua)             | Content of the status line                                |
 
-## Commands
+### Commands
 
 Custom built commands to be invoked on the `cmdline` or with keymaps.
 
@@ -90,7 +92,7 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 | [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                  |
 | [WindowToggleMaximize](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/window-toggle-maximize.lua)         | Maximize and restore current window.         |
 
-## Ftplugins
+### Ftplugins
 
 Custom configuration, keymaps and features dependent on the file's type.
 
@@ -106,7 +108,7 @@ Custom configuration, keymaps and features dependent on the file's type.
 | [terminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/terminal.lua)       | Terminal windows   |
 | [text](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/text.lua)               | Text, Markdown     |
 
-## Autocmds
+### Autocmds
 
 New features built around autocmds (events).
 
@@ -129,7 +131,7 @@ New features built around autocmds (events).
 | [yank-highlight](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-highlight.lua)                           | Highlight selection when yanking                                      |
 | [yank-keep-cursor-position](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-keep-cursor-position.lua)     | Keep cursor position on yank                                          |
 
-## Custom
+### Custom
 
 Random features added.
 
@@ -140,7 +142,7 @@ Random features added.
 | [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua)     | Search count inline indicator                   |
 | [pause-folds-on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/pause-folds-on-search.lua) | Pause folds on search                           |
 
-# Mappings
+## Keymaps
 
 ### Files explorer
 
