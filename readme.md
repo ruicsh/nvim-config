@@ -223,6 +223,7 @@ Random features added.
 - `f` function
 - `g` buffer
 - `h` git hunk
+- `i` scope
 - `q` quotes ("", '', ``)
 - `t` tags
 
