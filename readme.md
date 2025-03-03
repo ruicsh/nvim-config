@@ -189,7 +189,7 @@ Random features added.
 
 ### Navigation
 
-- `s` jump with search labels
+- `m` jump with search labels
 - `{` jump up 6 lines
 - `}` jump down 6 lines
 - `'0` jump to position where last exited Vim
@@ -229,9 +229,9 @@ Random features added.
 
 ### Operators
 
-- `gsa{motion}{char}` add surrounding character
-- `gsd{char}` delete surrounding character
-- `gsr{target}{replacement}` replace surrounding character
+- `sa{motion}{char}` add surrounding character
+- `sd{char}` delete surrounding character
+- `sr{target}{replacement}` replace surrounding character
 - `<leader>r{motion}` replace with last yank
 - `<leader>m{motion}` multiply
 - `<leader>s{motion}` sort

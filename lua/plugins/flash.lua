@@ -7,7 +7,7 @@ return {
 		local flash = require("flash")
 
 		local mappings = {
-			{ "s", flash.jump, "Jump", { mode = { "n", "o", "v" } } },
+			{ "m", flash.jump, "Jump", { mode = { "n", "o", "v" } } },
 			{ "<leader>v", flash.treesitter, "Treesitter", { mode = { "n", "x", "o" } } },
 		}
 
