@@ -280,7 +280,7 @@ local function list_chat_history()
 	local items = {}
 	for i, item in ipairs(files) do
 		-- Extract basename from file's full path without extension
-		local filename = item:match("^.+/(.+)$") or item
+		local filename = item:match("^.+[/\\](.+)$") or item
 		local basename = filename:match("^(.+)%.[^%.]*$") or filename
 
 		table.insert(items, {
