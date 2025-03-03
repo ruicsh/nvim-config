@@ -328,6 +328,12 @@ loadColorSet({
 	SnacksPickerMatch = { fg = c.nord4, bg = c.nord3 },
 })
 
+-- treesitter-context
+loadColorSet({
+	TreesitterContextLineNumber = { fg = c.nord2 },
+	TreesitterContextSeparator = { fg = c.nord2 },
+})
+
 -- WhichKey
 loadColorSet({
 	WhichKey = { fg = c.nord8, style = "bold" },

@@ -59,6 +59,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - LSP autocomplete
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
+- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Show code context
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - Fast navigation around the AST tree
 

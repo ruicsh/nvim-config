@@ -344,6 +344,7 @@ local function list_chat_history()
 			vim.g.copilot_chat_title = item.basename
 			vim.cmd("WindowToggleMaximize forceOpen")
 			vim.cmd("vsplit")
+
 			chat.open()
 			chat.load(item.basename)
 		end,
