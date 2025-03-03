@@ -302,6 +302,36 @@ local function list_chat_history()
 	end
 
 	snacks.picker({
+		actions = {
+			delete_history_file = function(picker, item)
+				if not item or not item.file then
+					vim.notify("No file selected", vim.log.levels.WARN)
+					return
+				end
+
+				-- Confirm deletion
+				vim.ui.select(
+					{ "Yes", "No" },
+					{ prompt = "Delete " .. vim.fn.fnamemodify(item.file, ":t") .. "?" },
+					function(choice)
+						if choice == "Yes" then
+							-- Delete the file
+							local success, err = os.remove(item.file)
+							if success then
+								vim.notify("Deleted: " .. item.file, vim.log.levels.INFO)
+								-- Refresh the picker to show updated list
+								picker:close()
+								vim.schedule(function()
+									list_chat_history()
+								end)
+							else
+								vim.notify("Failed to delete: " .. (err or "unknown error"), vim.log.levels.ERROR)
+							end
+						end
+					end
+				)
+			end,
+		},
 		confirm = function(picker, item)
 			picker:close()
 
@@ -318,9 +348,6 @@ local function list_chat_history()
 			chat.load(item.basename)
 		end,
 		items = items,
-		sort = {
-			fields = { "text:desc" },
-		},
 		format = function(item)
 			local prompt = item.file:match("[0-9]*_[0-9]*_(.+)%.json$")
 			local display = " " .. prompt:gsub("[-_]", " "):gsub("^%l", string.upper)
@@ -366,7 +393,17 @@ local function list_chat_history()
 			ctx.preview:highlight({ ft = "copilot-chat" })
 			ctx.preview:set_lines(preview)
 		end,
+		sort = {
+			fields = { "text:desc" },
+		},
 		title = "Copilot Chat History",
+		win = {
+			input = {
+				keys = {
+					["dd"] = "delete_history_file", -- Use our custom action
+				},
+			},
+		},
 	})
 end
 
