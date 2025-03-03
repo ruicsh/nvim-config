@@ -415,7 +415,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 	chat.ask("/codereview", {
 		callback = function()
 			local function accept_code_review()
-				vim.keymap.del("n", "<c-,>", { buffer = true })
+				vim.keymap.del("n", "<c-y>", { buffer = true })
 
 				chat.close()
 				vim.cmd("WindowToggleMaximize forceOpen")
@@ -423,7 +423,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 				vim.cmd("Git commit")
 			end
 
-			vim.keymap.set("n", "<c-,>", accept_code_review, { buffer = true })
+			vim.keymap.set("n", "<c-y>", accept_code_review, { buffer = true })
 		end,
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
@@ -549,8 +549,8 @@ return {
 			log_level = "warn",
 			mappings = {
 				accept_diff = {
-					normal = "<c-,>",
-					insert = "<c-,>",
+					normal = "<c-y>",
+					insert = "<c-y>",
 				},
 				close = {
 					normal = "<c-]>",

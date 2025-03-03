@@ -252,7 +252,7 @@ Random features added.
 
 - `<leader>aa` open
 - `<leader>am` models
-- `<c-,>` accept diff
+- `<c-y>` accept diff
 - `<c-x>` reset
 
 ### AI assistant
@@ -268,8 +268,7 @@ Random features added.
 ### AI suggestions
 
 - `<c-y>` accept
-- `<c-,>` accept line
-- `<c-w>` accept word
+- `<c-l>` accept line
 - `<c-j>` next
 - `<c-k>` previous
 - `<c-]>` dismiss
