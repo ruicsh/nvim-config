@@ -64,10 +64,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "<c-s-left>",
-					node_incremental = "<c-s-left>",
+					init_selection = "<m-s-j>",
+					node_incremental = "<m-s-j>",
 					scope_incremental = false,
-					node_decremental = "<c-s-right>",
+					node_decremental = "<m-s-k>",
 				},
 			},
 			indent = {
