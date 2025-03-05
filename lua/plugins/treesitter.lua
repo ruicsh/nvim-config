@@ -64,10 +64,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "<m-s-j>",
-					node_incremental = "<m-s-j>",
+					init_selection = vim.fn.is_windows() and "<c-J>" or "<c-s-j>",
+					node_incremental = vim.fn.is_windows() and "<c-J>" or "<c-s-j>",
 					scope_incremental = false,
-					node_decremental = "<m-s-k>",
+					node_decremental = vim.fn.is_windows() and "<c-K>" or "<c-s-k>",
 				},
 			},
 			indent = {

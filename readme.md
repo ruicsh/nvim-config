@@ -293,13 +293,13 @@ Random features added.
 - `<m-k>` jump to previous sibling node
 - `<m-j>` jump to next sibling node
 - `<leader>v` start node target mode (with search labels)
-- `<m-s-j>` select current node
-- `<m-s-j>` increase selection (on node selection mode)
-- `<m-s-k>` decrease selection (on node selection mode)
-- `<c-s-h>` swap with lateral previous node
-- `<c-s-l>` swap with lateral next node
-- `<c-s-k>` swap with vertical previous node
-- `<c-s-j>` swap with vertical next node
+- `<c-J>` select current node
+- `<c-J>` increase selection (on node selection mode)
+- `<c-K>` decrease selection (on node selection mode)
+- `<m-H>` swap with lateral previous node
+- `<m-L>` swap with lateral next node
+- `<m-K>` swap with vertical previous node
+- `<m-J>` swap with vertical next node
 
 ### LSP
 
@@ -388,7 +388,7 @@ Random features added.
 - `]z` reduce
 - `zR` set foldlevel to zero
 - `zM` set foldlevel to maximum
-- `<c-s-z>` reset saved folds
+- `<c-Z>` reset saved folds
 
 ### Application
 
