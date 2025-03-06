@@ -169,8 +169,8 @@ Random features added.
 - `<c-]>` close
 - `<leader>bC` close all
 - `<leader>bo` close the other
-- `<leader>,` open
-- `<leader>.` recent
+- `<leader>,` pick opened
+- `<leader>.` pick recent
 
 ### Windows
 
