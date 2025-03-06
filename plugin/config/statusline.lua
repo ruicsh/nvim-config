@@ -264,11 +264,21 @@ local function c_copilot_chat()
 		return ""
 	end
 
+	local async = require("plenary.async")
 	local chat = require("CopilotChat")
 	local config = chat.config
+	local model = config.model
 
-	local status = { " Copilot", "%#StatusLine#", config.model }
+	async.run(function()
+		local resolved_model = chat.resolve_model()
+		if resolved_model then
+			model = resolved_model
+		end
+	end, function(_, _)
+		-- Nothing to do here since we're just updating a local variable
+	end)
 
+	local status = { " Copilot", "%#StatusLine#", model }
 	return table.concat(status, " ")
 end
 
