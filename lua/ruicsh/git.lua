@@ -8,7 +8,11 @@ end
 -- Finds the root dir for the current git repo
 vim.git.root = function()
 	local result = vim.system({ "git", "rev-parse", "--show-toplevel" }):wait()
-	return result.stdout:gsub("\n", "")
+	local root = result.stdout:gsub("\n", "")
+	if root == "" then
+		return nil
+	end
+	return root
 end
 
 -- Get blame info for a file/line
