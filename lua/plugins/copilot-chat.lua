@@ -456,6 +456,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 				vim.keymap.del("n", "<c-y>", { buffer = true })
 
 				chat.close()
+
 				vim.cmd("WindowToggleMaximize forceOpen")
 				vim.cmd("vertical Git")
 				vim.cmd("Git commit")
@@ -566,6 +567,7 @@ return {
 	config = function()
 		local chat = require("CopilotChat")
 		local providers = require("CopilotChat.config.providers")
+		local user = vim.env.USER or "User"
 
 		vim.fn.load_env_file() -- make sure the env file is loaded
 
@@ -576,7 +578,7 @@ return {
 			agent = "copilot",
 			answer_header = " Copilot ",
 			auto_follow_cursor = false, -- Don't follow cursor in chat buffer
-			question_header = " ruicsh ",
+			question_header = " " .. user .. " ",
 			callback = function(response)
 				save_chat(response)
 			end,

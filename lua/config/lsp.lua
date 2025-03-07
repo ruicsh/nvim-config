@@ -24,13 +24,14 @@ M = {
 			settings = {
 				python = {
 					analysis = {
-						typeCheckingMode = "basic",
 						autoSearchPaths = true,
+						diagnosticMode = "openFilesOnly",
 						useLibraryCodeForTypes = true,
 					},
 				},
 			},
 		},
+		rust_analyzer = {},
 		vuels = {},
 	},
 	tools = {
