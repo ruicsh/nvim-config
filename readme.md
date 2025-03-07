@@ -25,7 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 ### UI
 
-- [flash.nvim](https://github.com/folke/flash.nvim) - Search labels, enhanced character motions
+- [flash.nvim](https://github.com/folke/flash.nvim) - Search labels
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.clue](https://github.com/echasnovski/mini.clue) - Keybidings helper
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
@@ -148,6 +148,9 @@ Random features added.
 ### Files explorer
 
 - `-` open directory explorer
+- `<c-s>` open in horizontal split
+- `<c-v>` open in vertical split
+- `<c-m>` search labels
 - `<leader><leader>` fuzzy find files
 - `<leader>ee` file tree explorer
 - `<leader>pp` projects

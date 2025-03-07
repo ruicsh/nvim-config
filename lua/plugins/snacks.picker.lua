@@ -158,8 +158,8 @@ return {
 				input = {
 					keys = {
 						["<c-]>"] = { "close", mode = { "n", "i" } },
-						["<c-s>"] = { "flash", mode = { "n", "i" } },
-						["s"] = { "flash" },
+						["<c-m>"] = { "flash", mode = { "n", "i" } },
+						["m"] = { "flash" },
 					},
 				},
 			},
