@@ -22,6 +22,7 @@ local CUSTOM_PROMPTS = {
 	"implement",
 	"optimize",
 	"refactor",
+	"tests",
 	-- git
 	"codereview",
 	"commit",
@@ -557,6 +558,7 @@ return {
 			{ "<leader>ai", operation("implement"), "Implement", { mode = "v" } },
 			{ "<leader>ao", operation("optimize"), "Optimize", { mode = "v" } },
 			{ "<leader>ar", operation("refactor"), "Refactor", { mode = "v" } },
+			{ "<leader>at", operation("tests"), "Tests", { mode = "v" } },
 
 			-- git
 			{ "<leader>ap", ":CopilotPrReview<cr>", "PR review" },
