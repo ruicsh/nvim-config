@@ -3,31 +3,63 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/ft/python", { clear = true }
 -- Find virtual environment in current project
 local function find_venv()
 	local cwd = vim.fn.getcwd()
-	local possible_venvs = {
-		cwd .. "/venv",
-		cwd .. "/.venv",
-		cwd .. "/env",
-		cwd .. "/.env",
-		cwd .. "/.virtualenv",
-	}
+	local buf_dir = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":h")
+	local check_dirs = { buf_dir }
 
-	for _, venv in ipairs(possible_venvs) do
-		-- Check for bin/activate (Unix) or Scripts/activate.bat (Windows)
-		local is_windows = vim.fn.has("win32") == 1
-		local activation_script = is_windows and "Scripts/activate.bat" or "bin/activate"
-		local venv_path = venv .. "/" .. activation_script
-
-		if vim.fn.filereadable(venv_path) == 1 then
-			return venv
-		end
+	-- Add parent directories of the buffer directory
+	local current_dir = buf_dir
+	while current_dir ~= "/" and current_dir ~= cwd do
+		current_dir = vim.fn.fnamemodify(current_dir, ":h")
+		table.insert(check_dirs, current_dir)
 	end
 
-	-- Also check for poetry virtual environment
-	local poetry_toml = cwd .. "/pyproject.toml"
-	if vim.fn.filereadable(poetry_toml) == 1 then
-		local poetry_venv = vim.fn.trim(vim.fn.system("poetry env info -p"))
-		if vim.v.shell_error == 0 then
-			return poetry_venv
+	-- Add cwd if it's not already in the list
+	if not vim.tbl_contains(check_dirs, cwd) then
+		table.insert(check_dirs, cwd)
+	end
+
+	-- Function to check for venv in a directory
+	local function check_venv_in_dir(dir)
+		local possible_venvs = {
+			dir .. "/venv",
+			dir .. "/.venv",
+			dir .. "/env",
+			dir .. "/.env",
+			dir .. "/.virtualenv",
+		}
+
+		for _, venv in ipairs(possible_venvs) do
+			-- Check for bin/activate (Unix) or Scripts/activate.bat (Windows)
+			local is_windows = vim.fn.has("win32") == 1
+			local activation_script = is_windows and "Scripts/activate.bat" or "bin/activate"
+			local venv_path = venv .. "/" .. activation_script
+
+			if vim.fn.filereadable(venv_path) == 1 then
+				return venv
+			end
+		end
+
+		-- Check for poetry virtual environment
+		local poetry_toml = dir .. "/pyproject.toml"
+		if vim.fn.filereadable(poetry_toml) == 1 then
+			local poetry_cmd_output = vim.fn.system("poetry env info -p")
+			if vim.v.shell_error == 0 and poetry_cmd_output ~= "" then
+				local poetry_venv = vim.fn.trim(poetry_cmd_output)
+				-- Verify the path actually exists before returning it
+				if vim.fn.isdirectory(poetry_venv) == 1 then
+					return poetry_venv
+				end
+			end
+		end
+
+		return nil
+	end
+
+	-- Check each directory in the list
+	for _, dir in ipairs(check_dirs) do
+		local venv = check_venv_in_dir(dir)
+		if venv then
+			return venv
 		end
 	end
 
@@ -107,6 +139,8 @@ local function auto_activate_venv()
 
 	vim.fn.notify("Activated venv: " .. venv)
 end
+
+vim.g.venv_configured = false
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
