@@ -1,6 +1,6 @@
 # Neovim IDE configuration
 
-This is my configuration for [Neovim](https://neovim.io/), I mostly work on web frontend development (TypeScript, Python).
+This is my configuration for [Neovim](https://neovim.io/), mostly for web frontend development (ts, tsx, py).
 
 - **Editor** - enhanced vim motions, extended text objects, folding
 - **Code** - formatter, comments, code completion, AI powered suggestions
@@ -112,6 +112,7 @@ Custom configuration, keymaps and features dependent on the file's type.
 | [gitcommit](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/gitcommit.lua)     | git commit message |
 | [help](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/help.lua)               | help               |
 | [htmlangular](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/htmlangular.lua) | Angular Templates  |
+| [python](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/python.lua)           | Python             |
 | [qf](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/qf.lua)                   | Quickfix           |
 | [scss](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/scss.lua)               | Sass               |
 | [terminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/terminal.lua)       | Terminal windows   |
