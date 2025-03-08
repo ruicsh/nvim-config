@@ -34,6 +34,58 @@ local function find_venv()
 	return nil
 end
 
+-- Setup LSP for Python
+local function setup_lsp(venv, python_path)
+	local lspconfig = require("lspconfig")
+	lspconfig.pyright.setup({
+		settings = {
+			python = {
+				pythonPath = python_path,
+				venvPath = vim.fn.fnamemodify(venv, ":h"),
+				venv = vim.fn.fnamemodify(venv, ":t"),
+			},
+		},
+	})
+end
+
+-- Setup DAP for Python
+-- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#python
+local function setup_dap(python_path)
+	local dap = require("dap")
+
+	dap.adapters.python = function(cb, config)
+		cb({
+			type = "executable",
+			command = python_path,
+			args = { "-m", "debugpy.adapter" },
+			options = {
+				source_filetype = "python",
+			},
+		})
+	end
+
+	dap.configurations.python = {
+		{
+			type = "python",
+			request = "launch",
+			name = "Launch file",
+			program = "${file}",
+			console = "integratedTerminal",
+			justMyCode = false,
+			cwd = "${workspaceFolder}",
+		},
+		{
+			type = "python",
+			request = "launch",
+			name = "Run pytest current file",
+			module = "pytest",
+			args = { "${file}", "-v" },
+			console = "integratedTerminal",
+			cwd = "${workspaceFolder}",
+		},
+	}
+end
+
 -- Activate virtual environment and configure LSP/DAP
 local function auto_activate_venv()
 	local venv = find_venv()
@@ -49,34 +101,9 @@ local function auto_activate_venv()
 	-- Update Neovim Python provider
 	vim.g.python3_host_prog = python_path
 
-	-- Configure LSP (assuming nvim-lspconfig is used)
-	local lspconfig = require("lspconfig")
-	lspconfig.pyright.setup({
-		settings = {
-			python = {
-				pythonPath = python_path,
-				venvPath = vim.fn.fnamemodify(venv, ":h"),
-				venv = vim.fn.fnamemodify(venv, ":t"),
-			},
-		},
-	})
+	setup_lsp(venv, python_path)
 
-	-- Configure DAP for Python
-	local dap_python = require("dap-python")
-	dap_python.setup(python_path)
-	dap_python.test_runner = "pytest"
-
-	local dap = require("dap")
-	table.insert(dap.configurations.python, {
-		console = "integratedTerminal",
-		cwd = "${workspaceFolder}",
-		justMyCode = true,
-		module = "pytest",
-		name = "Run pytest",
-		pythonPath = python_path,
-		request = "launch",
-		type = "python",
-	})
+	setup_dap(python_path)
 
 	vim.fn.notify("Activated venv: " .. venv)
 end
@@ -86,9 +113,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "python",
 	callback = function()
 		-- Only run once per session
-		if not vim.g.venv_configured then
-			vim.g.venv_configured = true
-			auto_activate_venv()
+		if vim.g.venv_configured then
+			return
 		end
+
+		vim.g.venv_configured = true
+		auto_activate_venv()
 	end,
 })
