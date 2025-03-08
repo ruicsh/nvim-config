@@ -24,5 +24,5 @@ return {
 		}
 	end,
 
-	event = { "BufReadPre", "BufNewFile" },
+	event = "BufRead",
 }

@@ -19,7 +19,7 @@ return {
 	end,
 
 	ft = { "html", "htmlangular", "typescript", "typescriptreact", "vue" },
-	event = { "VeryLazy" },
+	event = "BufRead",
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter" },
 	},

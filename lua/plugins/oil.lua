@@ -43,7 +43,7 @@ return {
 		},
 	},
 
-	cmd = { "Oil" },
+	cmd = "Oil",
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons" },
 	},

@@ -26,5 +26,5 @@ return {
 		},
 	},
 
-	event = { "LspAttach" },
+	event = "LspAttach",
 }

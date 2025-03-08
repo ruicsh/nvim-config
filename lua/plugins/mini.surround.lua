@@ -15,5 +15,5 @@ return {
 		},
 	},
 
-	event = { "InsertEnter" },
+	event = "BufRead",
 }

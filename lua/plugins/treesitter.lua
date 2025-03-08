@@ -89,7 +89,7 @@ return {
 
 	main = "nvim-treesitter.configs",
 	build = ":TSUpdate",
-	event = { "BufReadPost", "BufNewFile" },
+	event = "BufRead",
 	dependencies = {
 		{
 			-- Syntax aware text objects.

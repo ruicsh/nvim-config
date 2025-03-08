@@ -62,6 +62,7 @@ return {
 		end
 	end,
 
+	event = "BufRead",
 	dependencies = {
 		{ -- User interface (nvim-dap-ui).
 			-- https://github.com/rcarriga/nvim-dap-ui
