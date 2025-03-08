@@ -74,5 +74,10 @@ return {
 			-- https://github.com/mfussenegger/nvim-dap-python
 			"mfussenegger/nvim-dap-python",
 		},
+		{ -- Virtual text for DAP
+			-- https://github.com/theHamsta/nvim-dap-virtual-text
+			"theHamsta/nvim-dap-virtual-text",
+			opts = {},
+		},
 	},
 }

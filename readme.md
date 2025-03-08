@@ -4,8 +4,10 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - **Editor** - enhanced vim motions, extended text objects, folding
 - **Code** - formatter, comments, code completion, AI powered suggestions
+- **AI Assistant** - suggestions, chat, system propmts, operations, chat history
 - **LSP** - Language Server Protocol client, symbols navigation, diagnostics
 - **Syntax** - highlighting, syntax aware motions and text objects
+- **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
 - **Git integration** - status, diffview, commit message editor, buffer integration
 - **Search** - fuzzy find anything, file and workspace scoped search and replace
 - **Application** - files and directory explorer, notifications, command palette
@@ -50,7 +52,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [csvview.nvim](https://github.com/hat0uma/csvview.nvim) - CSV editing
 - [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - CSS Colors
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
-- [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [ts-comments.nvim](https://github.com/folke/ts-comments.nvim) - Custom comments configurations per language
 
 ### LSP/Syntax
@@ -62,6 +63,14 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Show code context
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - Fast navigation around the AST tree
+
+### Debugging
+
+- [nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python) - Python configuration
+- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) - Debugger
+- [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text) - Virtual text
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap) - Debugger Adapter Protocol
+- [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
 
 ### Git
 
@@ -323,6 +332,15 @@ Random features added.
 - `]r` jump to next symbol reference
 - `<c-s>` display signature help
 - `<leader>dd` open diagnostics for buffer
+
+### Debugger:
+
+- `<c-9>` toggle breakpoint
+- `<c-5>` continue
+- `<c-%>` stop
+- `<c-0>` step over
+- `<c-->` step into
+- `<c-_>` step out
 
 ### TypeScript
 
