@@ -19,6 +19,13 @@ M = {
 		Untracked = "┃",
 	},
 	spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+	dap = {
+		Stopped = "󰁕 ",
+		Breakpoint = "",
+		BreakpointCondition = " ",
+		BreakpointRejected = " ",
+		LogPoint = ".>",
+	},
 }
 
 return M
