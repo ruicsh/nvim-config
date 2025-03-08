@@ -1,4 +1,4 @@
-local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/python-auto-venv", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/ft/python", { clear = true })
 
 -- Find virtual environment in current project
 local function find_venv()
@@ -81,14 +81,14 @@ local function auto_activate_venv()
 	vim.fn.notify("Activated venv: " .. venv)
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufNew" }, {
+vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
-	pattern = { "*.py" },
+	pattern = "python",
 	callback = function()
-		-- Only run once per project
+		-- Only run once per session
 		if not vim.g.venv_configured then
-			auto_activate_venv()
 			vim.g.venv_configured = true
+			auto_activate_venv()
 		end
 	end,
 })
