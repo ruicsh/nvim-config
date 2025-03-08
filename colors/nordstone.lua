@@ -327,12 +327,12 @@ loadColorSet({
 	DapBreakpointCondition = {},
 	DapBreakpointRejected = {},
 	DapLogPoint = {},
-	DapStopped = { bg = c.nord11 },
+	DapStopped = { fg = c.nord4, bg = c.nord11 },
 })
 
 --nvim-dap-ui
 loadColorSet({
-	DapUIBreakpointsCurrentLine = { fg = c.nord8, style = "bold" },
+	DapUIBreakpointsCurrentLine = { fg = c.nord8 },
 	DapUIBreakpointsDisabledLine = {},
 	DapUIBreakpointsInfo = { fg = c.nord8 },
 	DapUIBreakpointsLine = { fg = c.nord8 },

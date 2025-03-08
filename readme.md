@@ -68,7 +68,6 @@ This is my configuration for [Neovim](https://neovim.io/), I mostly work on web 
 
 - [nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python) - Python configuration
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) - Debugger
-- [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text) - Virtual text
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap) - Debugger Adapter Protocol
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
 

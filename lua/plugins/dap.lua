@@ -50,12 +50,14 @@ return {
 
 		-- Auto-open dapui when debugging session starts
 		dap.listeners.after.event_initialized["dapui_config"] = function()
+			vim.cmd("tabnew")
 			require("dapui").open()
 		end
 		dap.listeners.before.event_terminated["dapui_config"] = function()
 			require("dapui").close()
 		end
 		dap.listeners.before.event_exited["dapui_config"] = function()
+			vim.cmd("tabclose")
 			require("dapui").close()
 		end
 	end,
@@ -64,7 +66,21 @@ return {
 		{ -- User interface (nvim-dap-ui).
 			-- https://github.com/rcarriga/nvim-dap-ui
 			"rcarriga/nvim-dap-ui",
-			opts = {},
+			opts = {
+				expand_lines = false,
+				layouts = {
+					{
+						elements = {
+							{ id = "scopes", size = 0.50 },
+							{ id = "breakpoints", size = 0.2 },
+							{ id = "stacks", size = 0.2 },
+							{ id = "console", size = 0.1 },
+						},
+						position = "right",
+						size = 0.5,
+					},
+				},
+			},
 
 			dependencies = {
 				"nvim-neotest/nvim-nio",
@@ -73,11 +89,6 @@ return {
 		{ -- Default configurations for python
 			-- https://github.com/mfussenegger/nvim-dap-python
 			"mfussenegger/nvim-dap-python",
-		},
-		{ -- Virtual text for DAP
-			-- https://github.com/theHamsta/nvim-dap-virtual-text
-			"theHamsta/nvim-dap-virtual-text",
-			opts = {},
 		},
 	},
 }
