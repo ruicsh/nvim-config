@@ -45,7 +45,12 @@ return {
 		-- Setup icons
 		for name, sign in pairs(icons.dap) do
 			name = "Dap" .. name
-			vim.fn.sign_define(name, { text = sign, texthl = name, linehl = "", numhl = "" })
+			vim.fn.sign_define(name, {
+				text = sign,
+				texthl = name,
+				linehl = name .. "Line",
+				numhl = name .. "LineNr",
+			})
 		end
 
 		-- Auto-open dapui when debugging session starts
@@ -72,9 +77,9 @@ return {
 				layouts = {
 					{
 						elements = {
-							{ id = "scopes", size = 0.50 },
-							{ id = "breakpoints", size = 0.2 },
+							{ id = "scopes", size = 0.60 },
 							{ id = "stacks", size = 0.2 },
+							{ id = "breakpoints", size = 0.1 },
 							{ id = "console", size = 0.1 },
 						},
 						position = "right",

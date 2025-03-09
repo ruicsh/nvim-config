@@ -69,6 +69,7 @@ end
 -- Setup LSP for Python
 local function setup_lsp(venv, python_path)
 	local lspconfig = require("lspconfig")
+	-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#environment-options
 	lspconfig.pyright.setup({
 		settings = {
 			python = {

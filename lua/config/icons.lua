@@ -20,11 +20,8 @@ M = {
 	},
 	spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
 	dap = {
-		Stopped = "󰁕 ",
-		Breakpoint = "",
-		BreakpointCondition = " ",
-		BreakpointRejected = " ",
-		LogPoint = ".>",
+		Stopped = " ",
+		Breakpoint = " ",
 	},
 }
 
