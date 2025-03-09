@@ -56,6 +56,7 @@ local function open_preview()
 	})
 	vim.api.nvim_set_option_value("winhighlight", "", { win = preview_winid })
 	vim.api.nvim_set_option_value("previewwindow", true, { win = preview_winid })
+	vim.api.nvim_set_option_value("foldenable", false, { win = preview_winid })
 
 	local bufnr = vim.api.nvim_get_current_buf()
 
