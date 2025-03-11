@@ -107,6 +107,7 @@ Custom configuration, keymaps and features dependent on the file's type.
 
 |                                                                                                |                    |
 | ---------------------------------------------------------------------------------------------- | ------------------ |
+| [dockerfile](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/dockerfile.lua)   | Dockerfile         |
 | [csv](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/csv.lua)                 | CSV                |
 | [fugitive](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/fugitive.lua)       | fugitive           |
 | [gitcommit](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/gitcommit.lua)     | git commit message |
