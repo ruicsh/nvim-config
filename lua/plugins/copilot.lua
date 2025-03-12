@@ -11,7 +11,7 @@ return {
 			enabled = true,
 			auto_trigger = true,
 			keymap = {
-				accept = "<c-y>",
+				accept = "<tab>",
 				accept_word = "<c-w>",
 				accept_line = "<c-l>",
 				next = "<c-j>",

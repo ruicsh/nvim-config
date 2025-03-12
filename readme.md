@@ -254,14 +254,16 @@ Random features added.
 
 - `/` find in document forward
 - `?` find in document backward
-- `<leader>f` fuzzy find in workspace
+- `<leader>ff` fuzzy find in workspace
 
-### Autocompletion
+### Completion
 
-- `<tab>` complete/next entry
-- `<s-tab>` previous entry
+- `<c-n>` complete/next entry
+- `<c-p>` previous entry
 - `<cr>` confirm
 - `<c-]>` abort
+- `<c-u>` scroll docs up
+- `<c-d>` scroll docs down
 
 ### AI chat
 
@@ -282,7 +284,7 @@ Random features added.
 
 ### AI suggestions
 
-- `<c-y>` accept
+- `<tab>` accept
 - `<c-l>` accept line
 - `<c-j>` next
 - `<c-k>` previous

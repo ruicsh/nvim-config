@@ -47,7 +47,7 @@ return {
 				completeopt = "menu,menuone,noinsert",
 			},
 			mapping = {
-				["<tab>"] = cmp.mapping(function(fallback)
+				["<c-n>"] = cmp.mapping(function(fallback)
 					if vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype) then
 						return fallback()
 					end
@@ -60,7 +60,7 @@ return {
 						fallback()
 					end
 				end),
-				["<s-tab>"] = cmp.mapping(function(fallback)
+				["<c-p>"] = cmp.mapping(function(fallback)
 					if vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype) then
 						return fallback()
 					end
