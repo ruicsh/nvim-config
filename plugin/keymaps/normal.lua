@@ -84,8 +84,8 @@ k("<leader>bo", bufdelete.other, { desc = "Buffers: Close all other" })
 -- Windows
 k("|", "<c-w>w", { desc = "Windows: Switch" })
 k("<c-w>|", "<c-w>v", { desc = "Windows: Split vertically" })
-k("<c-w>[", "<c-w>x<c-w>w", { desc = "Windows: Move file to the left" })
-k("<c-w>]", "<c-w>x<c-w>w", { desc = "Windows: Move file to the right" })
+k("<c-w>[", ":SendBufferToWindow h<cr>", { desc = "Windows: Send to left window" })
+k("<c-w>]", ":SendBufferToWindow l<cr>", { desc = "Windows: Send to right window" })
 k("<c-w>m", ":WindowToggleMaximize<cr>", { desc = "Windows: Maximize" })
 
 -- Tabs
