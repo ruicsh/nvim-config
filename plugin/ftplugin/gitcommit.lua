@@ -13,20 +13,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function(event)
 		vim.bo.modifiable = true
 
-		vim.api.nvim_buf_set_lines(event.buf, 0, -1, false, { "" }) -- empty the buffer
-
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }
+
 		k({ "n", "i" }, "<c-y>", accept_commit_message, opts)
 		k({ "n", "i" }, "<leader>ac", ":CopilotCommitMessage<cr>", opts)
-	end,
-})
-
-vim.api.nvim_create_autocmd("WinLeave", {
-	group = augroup,
-	pattern = "gitcommit",
-	callback = function(event)
-		vim.keymap.del({ "n", "i" }, "<c-y>", { buffer = event.buf })
-		vim.keymap.del({ "n", "i" }, "<leader>ac", { buffer = event.buf })
 	end,
 })

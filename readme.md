@@ -276,6 +276,7 @@ Random features added.
 
 ### AI assistant
 
+- `<leader>ac` commit message (ft:gitcommit)
 - `<leader>ae` explain
 - `<leader>af` fix
 - `<leader>ai` implement
