@@ -114,11 +114,11 @@ k("<leader>w", ":write<cr>", { desc = "Save file", silent = true }) -- Save chan
 k("<s-z><s-z>", ":wqa!<cr>", { desc = "Quit file", silent = true }) -- Quit and save all
 
 -- Miscellaneous
-k("<c-t>", ":terminal<cr>", { desc = "Terminal: Open" })
 k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+k("<c-s-\\>", ":terminal<cr>", { desc = "Terminal: Open" })
 k("ycc", "yygccp", { remap = true }) -- Duplicate a line and comment out the first line.
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
 k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
 
 k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
--- k("<bs>", "<c-T>", { desc = "", unique = false })
+k("<s-cr>", "<c-T>", { desc = "LSP: Jump back from definition" })

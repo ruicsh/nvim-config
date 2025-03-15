@@ -11,6 +11,10 @@ o.smartcase = true -- Use case sensitive if keyword contains capital letters.
 o.startofline = true -- Move cursor to the first non-blank character.
 -- }}}
 
+-- 3 tags {{{
+o.tagstack = true -- Enable tagstack.
+-- }}}
+
 -- 4 displaying text {{{
 o.cmdheight = 1 -- Show command line on 1 line.
 o.fillchars = {
