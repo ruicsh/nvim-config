@@ -5,31 +5,6 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/copilot-chat", { clea
 
 local CHAT_HISTORY_DIR = vim.fn.stdpath("data") .. "/copilot-chats"
 
-local CUSTOM_PROMPTS = {
-	-- filetypes
-	"angular",
-	"js",
-	"lua",
-	"microbit",
-	"neovim",
-	"python",
-	"react",
-	"rust",
-	"ts",
-	-- operations
-	"explain",
-	"fix",
-	"implement",
-	"optimize",
-	"refactor",
-	"tests",
-	-- git
-	"codereview",
-	"commit",
-	"commitwork",
-	"prreview",
-}
-
 local FILETYPE_CONFIGS = {
 	angular = {
 		patterns = {
@@ -84,7 +59,21 @@ local function read_prompt_file(basename)
 		return ""
 	end
 
-	return vim.fs.read_file(file_path)
+	return table.concat(vim.fn.readfile(file_path), "\n")
+end
+
+local function load_prompts(prompt_dir)
+	local prompts = {}
+	local prompt_files = vim.fn.glob(prompt_dir .. "/*.md", false, true)
+
+	for _, file_path in ipairs(prompt_files) do
+		-- Extract filename without extension
+		local basename = vim.fn.fnamemodify(file_path, ":t:r")
+		-- Use the read_prompt_file function to read the file
+		prompts[basename] = read_prompt_file(basename)
+	end
+
+	return prompts
 end
 
 local function get_config_by_filetype()
@@ -604,14 +593,7 @@ return {
 				},
 			},
 			model = vim.fn.getenv("COPILOT_MODEL_CODER"),
-			prompts = (function()
-				local prompts = {}
-				-- Load custom prompts
-				for _, prompt in ipairs(CUSTOM_PROMPTS) do
-					prompts[prompt] = read_prompt_file(prompt)
-				end
-				return prompts
-			end)(),
+			prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts"),
 			providers = {
 				lmstudio = {
 					embed = "copilot_embeddings",
