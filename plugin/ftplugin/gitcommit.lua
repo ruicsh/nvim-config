@@ -18,8 +18,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }
 		k({ "n", "i" }, "<c-y>", accept_commit_message, opts)
-
-		vim.cmd("CopilotCommitMessage")
+		k({ "n", "i" }, "<leader>ac", ":CopilotCommitMessage<cr>", opts)
 	end,
 })
 
@@ -28,5 +27,6 @@ vim.api.nvim_create_autocmd("WinLeave", {
 	pattern = "gitcommit",
 	callback = function(event)
 		vim.keymap.del({ "n", "i" }, "<c-y>", { buffer = event.buf })
+		vim.keymap.del({ "n", "i" }, "<leader>ac", { buffer = event.buf })
 	end,
 })
