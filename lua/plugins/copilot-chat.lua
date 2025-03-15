@@ -15,6 +15,10 @@ local FILETYPE_CONFIGS = {
 		filetypes = { "htmlangular" },
 		prompts = { "angular", "js", "ts" },
 	},
+	ansible = {
+		filetypes = { "yaml" },
+		prompts = { "ansible" },
+	},
 	css = {
 		filetypes = { "css", "scss", "less" },
 		prompts = { "css" },
@@ -23,6 +27,10 @@ local FILETYPE_CONFIGS = {
 			"%.scss$",
 			"%.module%.css$",
 		},
+	},
+	dockerfile = {
+		filetypes = { "dockerfile" },
+		prompts = { "docker" },
 	},
 	javascript = {
 		filetypes = { "javascript" },
