@@ -274,14 +274,11 @@ loadColorSet({
 
 -- diffview
 loadColorSet({
-	diffAdded = { fg = c.nord14 },
-	diffChanged = { fg = c.nord15 },
 	diffFile = { fg = c.nord7 },
 	diffIndexLine = { fg = c.nord9 },
 	diffLine = { fg = c.nord3 },
 	diffNewFile = { fg = c.nord12 },
 	diffOldFile = { fg = c.nord13 },
-	diffRemoved = { fg = c.nord11 },
 	diffSubname = { fg = c.nord3_900, style = "bold" },
 })
 
@@ -292,6 +289,9 @@ loadColorSet({
 
 -- Fugitive
 loadColorSet({
+	diffAdded = { fg = c.nord14 },
+	diffChanged = { fg = c.nord15 },
+	diffRemoved = { fg = c.nord11 },
 	fugitiveHunk = { fg = c.nord3_900 },
 	fugitiveIgnoredHeading = { fg = c.nord3 },
 	fugitiveMergedHeading = { fg = c.nord8 },

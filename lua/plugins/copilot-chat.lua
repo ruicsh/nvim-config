@@ -577,7 +577,6 @@ return {
 			agent = "copilot",
 			answer_header = " Copilot ",
 			auto_follow_cursor = false, -- Don't follow cursor in chat buffer
-			question_header = " " .. user .. " ",
 			callback = function(response)
 				save_chat(response)
 			end,
@@ -640,6 +639,7 @@ return {
 				},
 			},
 			references_display = "write", -- Display references as md links
+			question_header = " " .. user .. " ",
 			selection = false, -- Have no predefined context by default
 			show_help = false,
 			window = {
