@@ -109,6 +109,12 @@ vim.fn.start_spinner = function(bufnr, msg)
 		0,
 		100,
 		vim.schedule_wrap(function()
+			-- Check if the buffer is still valid before updating it
+			if not vim.api.nvim_buf_is_valid(bufnr) then
+				vim.fn.stop_spinner(bufnr)
+				return
+			end
+
 			spinners[bufnr].idx = (spinners[bufnr].idx % #icons.spinner) + 1
 			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {
 				icons.spinner[spinners[bufnr].idx] .. " " .. msg,

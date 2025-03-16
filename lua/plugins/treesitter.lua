@@ -13,6 +13,7 @@ return {
 
 		return {
 			auto_install = true, -- autoinstall languages that are not installed
+			-- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
 			ensure_installed = {
 				"angular",
 				"bash",
@@ -35,7 +36,6 @@ return {
 				"markdown",
 				"nginx",
 				"powershell",
-				"pug",
 				"python",
 				"regex",
 				"rust",
@@ -95,25 +95,6 @@ return {
 			-- Syntax aware text objects.
 			-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-		{
-			-- Show code context.
-			-- https://github.com/nvim-treesitter/nvim-treesitter-context
-			"nvim-treesitter/nvim-treesitter-context",
-			keys = function()
-				local function jump_to_context()
-					require("treesitter-context").go_to_context(vim.v.count1)
-				end
-
-				local mappings = {
-					{ "[s", jump_to_context, "Jump to previous context" },
-				}
-
-				return vim.fn.get_lazy_keys_conf(mappings, "AST")
-			end,
-			opts = {
-				separator = "─",
-			},
 		},
 	},
 }

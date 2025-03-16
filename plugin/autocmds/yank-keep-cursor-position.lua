@@ -18,7 +18,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup,
 	callback = function()
 		if vim.v.event.operator == "y" and cursorPreYank then
-			vim.api.nvim_win_set_cursor(0, cursorPreYank)
+			local bufnr = vim.api.nvim_get_current_buf()
+			local line_count = vim.api.nvim_buf_line_count(bufnr)
+			-- Check if cursor position is valid before setting it
+			if cursorPreYank[1] <= line_count then
+				vim.api.nvim_win_set_cursor(0, cursorPreYank)
+			end
 		end
 	end,
 })
