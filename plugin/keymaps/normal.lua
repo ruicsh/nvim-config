@@ -115,7 +115,6 @@ k("<s-z><s-z>", ":wqa!<cr>", { desc = "Quit file", silent = true }) -- Quit and 
 
 -- Miscellaneous
 k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
-k("<c-s-\\>", ":terminal<cr>", { desc = "Terminal: Open" })
 k("ycc", "yygccp", { remap = true }) -- Duplicate a line and comment out the first line.
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
 k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.

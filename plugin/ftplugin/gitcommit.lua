@@ -13,6 +13,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function(event)
 		vim.bo.modifiable = true
 
+		vim.opt_local.textwidth = 0 -- Disable text width
+		vim.opt_local.wrapmargin = 0 -- Disable wrap margin
+		vim.opt_local.formatoptions:remove("t") -- Remove auto-wrap option
+
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }
 
