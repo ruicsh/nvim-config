@@ -608,43 +608,6 @@ return {
 			},
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
 			prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts"),
-			providers = {
-				lmstudio = {
-					embed = "copilot_embeddings",
-					prepare_input = providers.copilot.prepare_input,
-					prepare_output = providers.copilot.prepare_output,
-					get_headers = function()
-						return {
-							["Content-Type"] = "application/json",
-						}
-					end,
-					get_models = function(headers)
-						if lmstudio_base_url == "" then
-							return {}
-						end
-
-						local utils = require("CopilotChat.utils")
-
-						local response = utils.curl_get(lmstudio_base_url .. "/v1/models", { headers = headers })
-						if not response or response.status ~= 200 then
-							error("Failed to fetch models: " .. tostring(response and response.status))
-						end
-
-						local models = {}
-						for _, model in ipairs(vim.json.decode(response.body)["data"]) do
-							table.insert(models, {
-								id = model.id,
-								name = model.id,
-							})
-						end
-						return models
-					end,
-					get_url = function()
-						local base_url = vim.fn.getenv("COPILOT_URL_LMSTUDIO")
-						return base_url .. "/v1/chat/completions"
-					end,
-				},
-			},
 			references_display = "write", -- Display references as md links
 			question_header = " " .. user .. " ",
 			selection = false, -- Have no predefined context by default
