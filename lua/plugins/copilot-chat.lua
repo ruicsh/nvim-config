@@ -149,13 +149,14 @@ local function save_chat(response)
 	-- use AI to generate prompt title based on first AI response to user question
 	local prompt = read_prompt_file("chattitle")
 	chat.ask(vim.trim(prompt:format(response)), {
-		headless = true, -- disable updating chat buffer and history with this question
 		callback = function(gen_response)
 			-- Generate timestamp in format YYYYMMDD_HHMMSS
 			local timestamp = os.date("%Y%m%d_%H%M%S")
 			vim.g.copilot_chat_title = timestamp .. "_" .. vim.trim(gen_response)
 			chat.save(vim.g.copilot_chat_title)
 		end,
+		headless = true, -- disable updating chat buffer and history with this question
+		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
 	})
 end
 
@@ -216,9 +217,12 @@ local function operation(operation_type)
 		local prompts = get_system_prompts(operation_type)
 		local system_prompt = concat_prompts(prompts)
 		local prompt = "/" .. operation_type
+		local model = operation_type == "explain" and vim.fn.getenv("COPILOT_MODEL_CODEREAD")
+			or vim.fn.getenv("COPILOT_MODEL_CODEGEN")
 
 		local opts = {
 			auto_insert_mode = true,
+			model,
 			selection = select.visual,
 			system_prompt = system_prompt,
 		}
@@ -438,6 +442,7 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 			vim.cmd("normal! G")
 		end,
 		headless = true,
+		model = vim.fn.getenv("COPILOT_MODEL_CODEREAD"),
 		selection = select.unnamed,
 		system_prompt = "/COPILOT_INSTRUCTIONS",
 	})
@@ -462,6 +467,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 
 			vim.keymap.set("n", "<c-y>", accept_code_review, { buffer = true })
 		end,
+		model = vim.fn.getenv("COPILOT_MODEL_CODEREAD"),
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
 	})
@@ -511,6 +517,7 @@ vim.api.nvim_create_user_command("CopilotPrReview", function()
 
 				vim.schedule(function()
 					new_chat_window(prompt, {
+						model = vim.fn.getenv("COPILOT_MODEL_CODEREAD"),
 						selection = false,
 						system_prompt = concat_prompts({ "COPILOT_INSTRUCTIONS", "/prreview", "communication" }),
 					})
@@ -599,7 +606,7 @@ return {
 					insert = "<c-x>",
 				},
 			},
-			model = vim.fn.getenv("COPILOT_MODEL_CODER"),
+			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
 			prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts"),
 			providers = {
 				lmstudio = {
