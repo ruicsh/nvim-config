@@ -572,13 +572,9 @@ return {
 	end,
 	config = function()
 		local chat = require("CopilotChat")
-		local providers = require("CopilotChat.config.providers")
 		local user = vim.env.USER or "User"
 
 		vim.fn.load_env_file() -- make sure the env file is loaded
-
-		local env_lmstudio = vim.fn.getenv("COPILOT_URL_LMSTUDIO")
-		local lmstudio_base_url = env_lmstudio ~= vim.NIL and env_lmstudio or ""
 
 		chat.setup({
 			agent = "copilot",
@@ -604,6 +600,10 @@ return {
 				reset = {
 					normal = "<c-x>",
 					insert = "<c-x>",
+				},
+				submit_prompt = {
+					normal = "<c-s>",
+					insert = "<c-s>",
 				},
 			},
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
