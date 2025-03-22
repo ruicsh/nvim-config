@@ -83,7 +83,6 @@ k("<leader>bo", bufdelete.other, { desc = "Buffers: Close all other" })
 
 -- Windows
 k("|", "<c-w>w", { desc = "Windows: Switch" })
-k("<c-w>|", "<c-w>v", { desc = "Windows: Split vertically" })
 k("<c-w>[", ":SendBufferToWindow h<cr>", { desc = "Windows: Send to left window" })
 k("<c-w>]", ":SendBufferToWindow l<cr>", { desc = "Windows: Send to right window" })
 k("<c-w>m", ":WindowToggleMaximize<cr>", { desc = "Windows: Maximize" })
@@ -121,3 +120,13 @@ k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
 
 k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
 k("<s-cr>", "<c-T>", { desc = "LSP: Jump back from definition" })
+
+k("<leader>yf", function()
+	local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
+	vim.fn.setreg("+", path)
+end, { desc = "Copy relative file path" })
+
+k("<leader>yd", function()
+	local path = vim.fn.fnamemodify(vim.fn.expand("%:p:h"), ":~:.")
+	vim.fn.setreg("+", path)
+end, { desc = "Copy directory path" })

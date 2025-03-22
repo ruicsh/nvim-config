@@ -220,6 +220,8 @@ Random features added.
 - `]p` paste to new line below
 - `ycc` duplicate a line, comment out the first line.
 - `U` redo
+- `<leader>yf` copy relative filename
+- `<leader>yd` copy relative directory
 
 ### Insert mode navigation
 
