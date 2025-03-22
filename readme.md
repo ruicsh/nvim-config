@@ -1,6 +1,6 @@
 # Neovim IDE configuration
 
-This is my configuration for [Neovim](https://neovim.io/), mostly for web frontend development (ts, tsx, py).
+This is my configuration for [Neovim](https://neovim.io/), mostly for web frontend development (typescript, css, python, rust).
 
 - **Editor** - enhanced vim motions, extended text objects, folding
 - **Code** - formatter, comments, code completion, AI powered suggestions
@@ -56,13 +56,15 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for web fronte
 
 ### LSP/Syntax
 
-- [lazydev.nvim](https://github.com/folke/trouble.nvim) - Lua language server
+- [lazydev.nvim](https://github.com/folke/lazydev.nvim) - Lua language server
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - LSP autocomplete
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Show code context
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
+- [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - Fast navigation around the AST tree
+- [typescript-tools](https://github.com/pmizio/typescript-tools.nvim) - TypeScript LSP
 
 ### Debugging
 

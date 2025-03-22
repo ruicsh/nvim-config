@@ -31,11 +31,11 @@ M = {
 				},
 			},
 		},
-		rust_analyzer = {},
 		vuels = {},
 	},
 	tools = {
 		black = {},
+		codelldb = {},
 		flake8 = {},
 		prettierd = {},
 		pylint = {},

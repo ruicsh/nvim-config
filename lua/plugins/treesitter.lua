@@ -38,7 +38,6 @@ return {
 				"powershell",
 				"python",
 				"regex",
-				"rust",
 				"scss",
 				"sql",
 				"styled",
