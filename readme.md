@@ -314,7 +314,7 @@ Random features added.
 - `<m-l>` jump to child node
 - `<m-k>` jump to previous sibling node
 - `<m-j>` jump to next sibling node
-- `<leader>v` start node target mode (with search labels)
+- `<leader>v` select node with search labels
 - `<c-J>` select current node
 - `<c-J>` increase selection (on node selection mode)
 - `<c-K>` decrease selection (on node selection mode)
