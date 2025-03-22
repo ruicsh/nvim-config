@@ -188,8 +188,7 @@ local function open_chat()
 	new_chat_window("", {
 		auto_insert_mode = true,
 		contexts = ft_config and ft_config.contexts or {},
-		-- if there's something selected use it, if not, use a blank context
-		selection = is_visual_mode and select.visual or false,
+		selection = is_visual_mode and select.visual or select.buffer,
 		system_prompt = system_prompt,
 	})
 end
