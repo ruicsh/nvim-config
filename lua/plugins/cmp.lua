@@ -71,18 +71,18 @@ return {
 						fallback()
 					end
 				end),
-				["<cr>"] = cmp.mapping(function(fallback)
+				["<c-y>"] = cmp.mapping(function(fallback)
 					if vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype) then
 						return fallback()
 					end
 
-					if cmp.visible() and cmp.get_active_entry() then
+					if cmp.visible() then
 						cmp.confirm({ select = true })
 					else
 						fallback()
 					end
 				end),
-				["<c-]>"] = cmp.mapping(function(fallback)
+				["<c-e>"] = cmp.mapping(function(fallback)
 					if vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype) then
 						return fallback()
 					end

@@ -266,8 +266,8 @@ Random features added.
 
 - `<c-n>` complete/next entry
 - `<c-p>` previous entry
-- `<cr>` confirm
-- `<c-]>` abort
+- `<c-y>` confirm
+- `<c-e>` abort
 - `<c-u>` scroll docs up
 - `<c-d>` scroll docs down
 
