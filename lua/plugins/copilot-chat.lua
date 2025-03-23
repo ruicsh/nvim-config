@@ -154,6 +154,7 @@ local function save_chat(response)
 			local timestamp = os.date("%Y%m%d_%H%M%S")
 			vim.g.copilot_chat_title = timestamp .. "_" .. vim.trim(gen_response)
 			chat.save(vim.g.copilot_chat_title)
+			return gen_response
 		end,
 		headless = true, -- disable updating chat buffer and history with this question
 		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
@@ -213,16 +214,20 @@ end
 local function operation(operation_type)
 	return function()
 		local select = require("CopilotChat.select")
+
+		local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
+
 		local prompts = get_system_prompts(operation_type)
 		local system_prompt = concat_prompts(prompts)
 		local prompt = "/" .. operation_type
-		local model = operation_type == "explain" and vim.fn.getenv("COPILOT_MODEL_CODEREAD")
+		local read_code_prompts = { "explain", "review" }
+		local model = vim.tbl_contains(read_code_prompts, operation_type) and vim.fn.getenv("COPILOT_MODEL_CODEREAD")
 			or vim.fn.getenv("COPILOT_MODEL_CODEGEN")
 
 		local opts = {
 			auto_insert_mode = true,
-			model,
-			selection = select.visual,
+			model = model,
+			selection = is_visual_mode and select.visual or select.buffer,
 			system_prompt = system_prompt,
 		}
 
@@ -439,7 +444,9 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 
 			-- Set cursor on the last line
 			vim.cmd("normal! G")
+			return response
 		end,
+		context = { "git:staged" },
 		headless = true,
 		model = vim.fn.getenv("COPILOT_MODEL_CODEREAD"),
 		selection = select.unnamed,
@@ -452,8 +459,8 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 
 	chat.reset() -- Reset previous chat state
 
-	chat.ask("/codereview", {
-		callback = function()
+	chat.ask("/review", {
+		callback = function(response)
 			local function accept_code_review()
 				vim.keymap.del("n", "<c-y>", { buffer = true })
 
@@ -465,7 +472,9 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 			end
 
 			vim.keymap.set("n", "<c-y>", accept_code_review, { buffer = true })
+			return response
 		end,
+		context = { "git:staged" },
 		model = vim.fn.getenv("COPILOT_MODEL_CODEREAD"),
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
@@ -506,9 +515,12 @@ vim.api.nvim_create_user_command("CopilotPrReview", function()
 
 			vim.git.diff_branch(item.text, function(diff)
 				local prompt = table.concat({
+					"> /review",
+					" ",
 					"```gitcommit",
 					table.concat(diff.commit_lines, "\n"),
 					"```",
+					" ",
 					"```diff",
 					table.concat(diff.diff_lines, "\n"),
 					"```",
@@ -518,7 +530,7 @@ vim.api.nvim_create_user_command("CopilotPrReview", function()
 					new_chat_window(prompt, {
 						model = vim.fn.getenv("COPILOT_MODEL_CODEREAD"),
 						selection = false,
-						system_prompt = concat_prompts({ "COPILOT_INSTRUCTIONS", "/prreview", "communication" }),
+						system_prompt = "/COPILOT_INSTRUCTIONS",
 					})
 				end)
 			end)
@@ -557,10 +569,10 @@ return {
 
 			-- predefined prompts
 			{ "<leader>ae", operation("explain"), "Explain", { mode = "v" } },
-			{ "<leader>af", operation("fix"), "Fix", { mode = "v" } },
+			{ "<leader>af", operation("fix"), "Fix", { mode = { "n", "v" } } },
 			{ "<leader>ai", operation("implement"), "Implement", { mode = "v" } },
 			{ "<leader>ao", operation("optimize"), "Optimize", { mode = "v" } },
-			{ "<leader>ar", operation("refactor"), "Refactor", { mode = "v" } },
+			{ "<leader>ar", operation("review"), "Review", { mode = { "n", "v" } } },
 			{ "<leader>at", operation("tests"), "Tests", { mode = "v" } },
 
 			-- git
@@ -581,6 +593,7 @@ return {
 			auto_follow_cursor = false, -- Don't follow cursor in chat buffer
 			callback = function(response)
 				save_chat(response)
+				return response
 			end,
 			chat_autocomplete = false,
 			error_header = "  Error ",
