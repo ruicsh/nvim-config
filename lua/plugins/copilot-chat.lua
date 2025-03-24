@@ -203,6 +203,44 @@ local function open_search_chat()
 	})
 end
 
+local function get_model_for_operation(operation_type)
+	-- Define model environment variables in a central configuration
+	local MODEL_ENV_VARS = {
+		reason = "COPILOT_MODEL_REASON", -- Used for analysis operations
+		architect = "COPILOT_MODEL_ARCHITECT", -- Used for high-level design
+		codegen = "COPILOT_MODEL_CODEGEN", -- Default for code generation
+	}
+
+	-- Use a Set for faster lookups of analysis operations
+	local ANALYSIS_OPERATIONS = {
+		explain = true,
+		review = true,
+		-- Have refactor here to act as second opinion to codegen
+		refactor = true,
+	}
+
+	-- Determine appropriate model type with fallbacks
+	local env_var = MODEL_ENV_VARS.codegen -- Default to codegen model
+
+	if ANALYSIS_OPERATIONS[operation_type] then
+		env_var = MODEL_ENV_VARS.reason
+	elseif operation_type == "architect" then
+		env_var = MODEL_ENV_VARS.architect
+	end
+
+	-- Retrieve model with safety checks
+	local selected_model = vim.fn.getenv(env_var)
+	if not selected_model or selected_model == vim.NIL then
+		vim.notify(
+			string.format("Warning: Environment variable %s not set for operation '%s'", env_var, operation_type),
+			vim.log.levels.WARN
+		)
+		return nil -- Could add default fallback here
+	end
+
+	return selected_model
+end
+
 local function operation(operation_type)
 	return function()
 		local select = require("CopilotChat.select")
@@ -210,17 +248,6 @@ local function operation(operation_type)
 		local prompts = get_system_prompts(operation_type)
 		local system_prompt = concat_prompts(prompts)
 		local prompt = "/" .. operation_type
-
-		local model = nil
-		-- Have refactor here to act as second opinion to codegen
-		local reason_prompts = { "explain", "review", "refactor" }
-		if vim.tbl_contains(reason_prompts, operation_type) then
-			model = vim.fn.getenv("COPILOT_MODEL_REASON")
-		elseif operation_type == "architect" then
-			model = vim.fn.getenv("COPILOT_MODEL_ARCHITECT")
-		else
-			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN")
-		end
 
 		local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
 		local selection = nil
@@ -234,7 +261,7 @@ local function operation(operation_type)
 
 		local opts = {
 			auto_insert_mode = true,
-			model = model,
+			model = get_model_for_operation(operation_type),
 			selection = selection,
 			system_prompt = system_prompt,
 		}
