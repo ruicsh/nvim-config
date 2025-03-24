@@ -189,17 +189,9 @@ local function open_chat()
 	new_chat_window("", {
 		auto_insert_mode = true,
 		contexts = ft_config and ft_config.contexts or {},
+		-- leave the model empty to use the default or the one picked by the user
 		selection = is_visual_mode and select.visual or select.buffer,
 		system_prompt = system_prompt,
-	})
-end
-
-local function open_generic_chat()
-	new_chat_window("", {
-		auto_insert_mode = true,
-		model = vim.fn.getenv("COPILOT_MODEL_GENERIC"),
-		selection = false,
-		system_prompt = concat_prompts({ "COPILOT_INSTRUCTIONS", "communication" }),
 	})
 end
 
@@ -215,19 +207,35 @@ local function operation(operation_type)
 	return function()
 		local select = require("CopilotChat.select")
 
-		local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
-
 		local prompts = get_system_prompts(operation_type)
 		local system_prompt = concat_prompts(prompts)
 		local prompt = "/" .. operation_type
-		local read_code_prompts = { "explain", "review" }
-		local model = vim.tbl_contains(read_code_prompts, operation_type) and vim.fn.getenv("COPILOT_MODEL_CODEREAD")
-			or vim.fn.getenv("COPILOT_MODEL_CODEGEN")
+
+		local model = nil
+		-- Have refactor here to act as second opinion to codegen
+		local reason_prompts = { "explain", "review", "refactor" }
+		if vim.tbl_contains(reason_prompts, operation_type) then
+			model = vim.fn.getenv("COPILOT_MODEL_REASON")
+		elseif operation_type == "architect" then
+			model = vim.fn.getenv("COPILOT_MODEL_ARCHITECT")
+		else
+			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN")
+		end
+
+		local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
+		local selection = nil
+		if operation_type == "architect" then
+			selection = nil
+		elseif is_visual_mode then
+			selection = select.visual
+		else
+			selection = select.buffer
+		end
 
 		local opts = {
 			auto_insert_mode = true,
 			model = model,
-			selection = is_visual_mode and select.visual or select.buffer,
+			selection = selection,
 			system_prompt = system_prompt,
 		}
 
@@ -448,7 +456,7 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 		end,
 		context = { "git:staged" },
 		headless = true,
-		model = vim.fn.getenv("COPILOT_MODEL_CODEREAD"),
+		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
 		selection = select.unnamed,
 		system_prompt = "/COPILOT_INSTRUCTIONS",
 	})
@@ -475,7 +483,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 			return response
 		end,
 		context = { "git:staged" },
-		model = vim.fn.getenv("COPILOT_MODEL_CODEREAD"),
+		model = vim.fn.getenv("COPILOT_MODEL_REASON"),
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
 	})
@@ -528,7 +536,7 @@ vim.api.nvim_create_user_command("CopilotPrReview", function()
 
 				vim.schedule(function()
 					new_chat_window(prompt, {
-						model = vim.fn.getenv("COPILOT_MODEL_CODEREAD"),
+						model = vim.fn.getenv("COPILOT_MODEL_REASON"),
 						selection = false,
 						system_prompt = "/COPILOT_INSTRUCTIONS",
 					})
@@ -562,7 +570,6 @@ return {
 		local mappings = {
 			-- chat
 			{ "<leader>aa", open_chat, "Programming Chat", { mode = { "n", "v" } } },
-			{ "<leader>ag", open_generic_chat, "Generic Chat" },
 			{ "<leader>ah", list_chat_history, "List chat history" },
 			{ "<leader>am", chat.select_model, "Models" },
 			{ "<leader>as", open_search_chat, "Search Chat" },
@@ -572,8 +579,10 @@ return {
 			{ "<leader>af", operation("fix"), "Fix", { mode = { "n", "v" } } },
 			{ "<leader>ai", operation("implement"), "Implement", { mode = "v" } },
 			{ "<leader>ao", operation("optimize"), "Optimize", { mode = "v" } },
+			{ "<leader>aq", operation("architect"), "Architect" },
 			{ "<leader>ar", operation("review"), "Review", { mode = { "n", "v" } } },
 			{ "<leader>at", operation("tests"), "Tests", { mode = "v" } },
+			{ "<leader>aw", operation("refactor"), "Refactor", { mode = "v" } },
 
 			-- git
 			{ "<leader>ap", ":CopilotPrReview<cr>", "PR review" },

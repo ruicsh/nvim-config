@@ -286,13 +286,16 @@ Random features added.
 - `<leader>ai` implement
 - `<leader>ao` optimize
 - `<leader>ap` pull request review
-- `<leader>ar` refactor
-- `<leader>ar` review (ft:fugitive)
+- `<leader>aq` architect
+- `<leader>ar` review
+- `<leader>at` tests
+- `<leader>aw` refactor
 
 ### AI suggestions
 
 - `<tab>` accept
 - `<c-l>` accept line
+- `<c-w>` accept word
 - `<c-j>` next
 - `<c-k>` previous
 - `<c-]>` dismiss
