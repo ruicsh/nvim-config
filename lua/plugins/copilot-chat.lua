@@ -632,6 +632,63 @@ return {
 				return response
 			end,
 			chat_autocomplete = false,
+			contexts = {
+				parent = {
+					description = "Includes all files from the parent directory of current file in chat context.",
+					resolve = function(_, source)
+						-- Get file path in a way that's safe for loop callbacks
+						local current_buf = source.bufnr
+						local current_file
+
+						-- Use pcall to safely get the buffer name
+						local ok, path = pcall(function()
+							return vim.api.nvim_buf_get_name(current_buf)
+						end)
+
+						if ok and path and path ~= "" then
+							current_file = path
+						else
+							return {}
+						end
+
+						local abs_parent_dir = vim.fn.fnamemodify(current_file, ":p:h")
+						local parent_dir = vim.fn.fnamemodify(abs_parent_dir, ":.:.")
+
+						-- Load all files in the directory
+						local scandir = require("plenary.scandir")
+						local files = scandir.scan_dir(parent_dir, {
+							depth = 1,
+							add_dirs = false,
+						})
+
+						if not files or #files == 0 then
+							return {}
+						end
+
+						-- Get file list using synchronous functions
+						local max_size = 1024 * 100 -- 100KB
+						local file_list = {}
+
+						for _, file_path in ipairs(files) do
+							if vim.fn.getfsize(file_path) <= max_size then
+								local name = vim.fn.fnamemodify(file_path, ":t")
+								local ft = vim.filetype.match({ filename = file_path })
+
+								-- Only include text files with detectable filetype
+								if ft then
+									table.insert(file_list, {
+										content = table.concat(vim.fn.readfile(file_path), "\n"),
+										filename = name,
+										filetype = ft,
+									})
+								end
+							end
+						end
+
+						return file_list
+					end,
+				},
+			},
 			error_header = "  Error ",
 			insert_at_end = true,
 			history_path = CHAT_HISTORY_DIR, -- Default path to stored history
