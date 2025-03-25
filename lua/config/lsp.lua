@@ -31,6 +31,7 @@ M = {
 				},
 			},
 		},
+		rust_analyzer = {},
 		vuels = {},
 	},
 	tools = {

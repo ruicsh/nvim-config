@@ -62,7 +62,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for web fronte
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Show code context
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
-- [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - Fast navigation around the AST tree
 - [typescript-tools](https://github.com/pmizio/typescript-tools.nvim) - TypeScript LSP
 
