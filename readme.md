@@ -12,7 +12,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for web fronte
 - **Search** - fuzzy find anything, file and workspace scoped search and replace
 - **Application** - files and directory explorer, notifications, command palette
 
-<sub>Works on Neovim v0.10.4</sub>
+<sub>Works on Neovim v0.11</sub>
 
 ## Screenshots
 
@@ -96,7 +96,6 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 
 |                                                                                                                            |                                              |
 | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [CopyFilePathToClipboard](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/copy-file-path-to-clipboard.lua) | Copy current buffer's path to clipboard.     |
 | [JumpToLastVisitedBuffer](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/jump-to-last-visited-buffer.lua) | Jump to last visited buffer (including Oil). |
 | [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window  |
 | [SendBufferToWindow](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/send-buffer-to-window.lua)            | Send buffer to adjacent window               |

@@ -9,8 +9,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	callback = function()
 		if vim.opt.buftype:get() == "terminal" then
 			local set = vim.opt_local
-			set.number = false -- Don't show numbers
-			set.relativenumber = false -- Don't show relativenumbers
 			set.scrolloff = 0 -- Don't scroll when at the top or bottom of the terminal buffer
 			vim.opt.filetype = "terminal"
 			vim.opt.hidden = true -- Hide the terminal buffer when switching to another buffer
