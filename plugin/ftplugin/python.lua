@@ -63,11 +63,18 @@ local function find_venv()
 		end
 	end
 
+	vim.fn.notify("No virtual environment found.")
+
 	return nil
 end
 
--- Setup LSP for Python
-local function setup_lsp(venv, python_path)
+-- Setup LSP
+local function setup_lsp(python_path)
+	local venv = find_venv()
+	if not venv then
+		return
+	end
+
 	local lspconfig = require("lspconfig")
 	-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#environment-options
 	lspconfig.pyright.setup({
@@ -81,7 +88,7 @@ local function setup_lsp(venv, python_path)
 	})
 end
 
--- Setup DAP for Python
+-- Setup DAP
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#python
 local function setup_dap(python_path)
 	local dap = require("dap")
@@ -123,7 +130,6 @@ end
 local function auto_activate_venv()
 	local venv = find_venv()
 	if not venv then
-		vim.fn.notify("No virtual environment found.")
 		return
 	end
 
@@ -134,11 +140,9 @@ local function auto_activate_venv()
 	-- Update Neovim Python provider
 	vim.g.python3_host_prog = python_path
 
-	setup_lsp(venv, python_path)
-
-	setup_dap(python_path)
-
 	vim.fn.notify("Activated venv: " .. venv)
+
+	return python_path
 end
 
 vim.g.venv_configured = false
@@ -153,6 +157,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		end
 
 		vim.g.venv_configured = true
-		auto_activate_venv()
+		local python_path = auto_activate_venv()
+		setup_lsp(python_path)
+		setup_dap(python_path)
 	end,
 })

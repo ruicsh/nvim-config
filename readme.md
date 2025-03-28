@@ -117,8 +117,9 @@ Custom configuration, keymaps and features dependent on the file's type.
 | [htmlangular](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/htmlangular.lua) | Angular Templates  |
 | [python](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/python.lua)           | Python             |
 | [qf](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/qf.lua)                   | Quickfix           |
+| [rust](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/rust.lua)               | Rust               |
 | [scss](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/scss.lua)               | Sass               |
-| [terminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/terminal.lua)       | Terminal windows   |
+| [terminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/terminal.lua)       | Terminal           |
 | [text](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/text.lua)               | Text, Markdown     |
 
 ### Autocmds
