@@ -160,4 +160,5 @@ o.shadafile = (function() -- Per project shadafile
 end)()
 o.signcolumn = "yes" -- Always showed to prevent the screen from jumping.
 o.viewoptions = "cursor,folds" -- Save cursor position and folds.
+o.winborder = "single" -- Use single border for floating windows.
 -- }}}

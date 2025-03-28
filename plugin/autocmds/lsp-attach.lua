@@ -45,7 +45,6 @@ local function diagnostics()
 		},
 		underline = true,
 		update_in_insert = false,
-		virtual_lines = true,
 		virtual_text = {
 			spacing = 4,
 			source = "if_many",

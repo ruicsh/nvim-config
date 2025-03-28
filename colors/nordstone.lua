@@ -111,7 +111,7 @@ loadColorSet({
 	PmenuKindSel = { fg = c.nord1, bg = c.nord9 },
 	PmenuSbar = { bg = c.nord0 },
 	PmenuSel = { fg = c.nord0, bg = c.nord9 },
-	PmenuThumb = { bg = c.nord4 },
+	PmenuThumb = { bg = c.nord3_500 },
 	Question = { fg = c.nord14 },
 	QuickFixLine = {},
 	ReplacelMode = { fg = c.nord11, bg = "NONE", style = "reverse" },
@@ -261,6 +261,13 @@ loadColorSet({
 })
 
 -- PLUGINS
+
+-- blink.cmp
+loadColorSet({
+	BlinkCmpMenuBorder = { fg = c.nord3_500 },
+	BlinkCmpDocBorder = { link = "BlinkCmpMenuBorder" },
+	BlinkCmpSignatureHelpBorder = { link = "BlinkCmpMenuBorder" },
+})
 
 -- CopilotChat.nvim
 loadColorSet({

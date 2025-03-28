@@ -46,6 +46,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for web fronte
 
 ### Coding
 
+- [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
 - [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
@@ -57,7 +58,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for web fronte
 ### LSP/Syntax
 
 - [lazydev.nvim](https://github.com/folke/lazydev.nvim) - Lua language server
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - LSP autocomplete
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Show code context
