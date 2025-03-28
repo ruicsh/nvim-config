@@ -205,10 +205,11 @@ Random features added.
 
 ### Navigation
 
-- `m` jump with search labels
 - `{` jump up 6 lines
 - `}` jump down 6 lines
-- `'0` jump to position where last exited Vim
+- `/` find in document
+- `?` find in document with labels
+- `<leader>ff` fuzzy find in workspace
 
 ### Editing
 
@@ -253,12 +254,6 @@ Random features added.
 - `<leader>r{motion}` replace with last yank
 - `<leader>m{motion}` multiply
 - `<leader>s{motion}` sort
-
-### Search
-
-- `/` find in document forward
-- `?` find in document backward
-- `<leader>ff` fuzzy find in workspace
 
 ### Completion
 
