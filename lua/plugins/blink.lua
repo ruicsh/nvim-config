@@ -1,6 +1,8 @@
 -- Autocomplete
 -- https://cmp.saghen.dev
 
+local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/blink.cmp", { clear = true })
+
 local DISABLED_FILETYPES = {
 	"DiffviewFileHistory",
 	"DiffviewFiles",
@@ -19,6 +21,24 @@ local DISABLED_FILETYPES = {
 	"scratch",
 	"startuptime",
 }
+
+vim.api.nvim_create_autocmd("User", {
+	group = augroup,
+	pattern = "BlinkCmpMenuOpen",
+	callback = function()
+		local copilot = require("copilot.suggestion")
+		vim.b.copilot_suggestion_hidden = true
+		copilot.dismiss()
+	end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+	group = augroup,
+	pattern = "BlinkCmpMenuClose",
+	callback = function()
+		vim.b.copilot_suggestion_hidden = false
+	end,
+})
 
 return {
 	"saghen/blink.cmp",
@@ -63,34 +83,14 @@ return {
 		end,
 		fuzzy = {
 			implementation = "prefer_rust_with_warning",
+			sorts = { "exact", "score", "sort_text" },
 		},
 		keymap = {
 			preset = "default",
-			["<c-n>"] = {
-				function()
-					local copilot = require("copilot.suggestion")
-					vim.b.copilot_suggestion_hidden = true
-					copilot.dismiss()
-				end,
-				"select_next",
-				"show",
-				"fallback",
-			},
+			["<c-n>"] = { "select_next", "show", "fallback" },
 			["<c-p>"] = { "select_prev", "fallback" },
-			["<c-y>"] = {
-				function()
-					vim.b.copilot_suggestion_hidden = false
-				end,
-				"select_and_accept",
-				"fallback",
-			},
-			["<c-e>"] = {
-				function()
-					vim.b.copilot_suggestion_hidden = false
-				end,
-				"hide",
-				"fallback",
-			},
+			["<c-y>"] = { "select_and_accept" },
+			["<c-e>"] = { "hide" },
 			["<c-u>"] = { "scroll_documentation_up", "fallback" },
 			["<c-d>"] = { "scroll_documentation_down", "fallback" },
 		},
