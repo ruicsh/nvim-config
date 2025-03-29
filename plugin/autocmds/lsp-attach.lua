@@ -53,10 +53,19 @@ local function diagnostics()
 		},
 	})
 
-	-- Disable diagnostics if env var is set
-	if vim.fn.getenv("DISABLE_LSP_DIAGNOSTICS") == "true" then
-		vim.diagnostic.enable(false)
-	end
+	-- Toggle diagnostics on current line
+	vim.keymap.set("n", "<c-w>d", function()
+		vim.diagnostic.config({ virtual_lines = { current_line = true }, virtual_text = false })
+
+		-- Toggle diagnostics off all lines when cursor moves
+		vim.api.nvim_create_autocmd("CursorMoved", {
+			group = vim.api.nvim_create_augroup("line-diagnostics", { clear = true }),
+			callback = function()
+				vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
+				return true
+			end,
+		})
+	end, { desc = "Toggle diagnostics on current line" })
 end
 
 -- Set keymaps for LSP
