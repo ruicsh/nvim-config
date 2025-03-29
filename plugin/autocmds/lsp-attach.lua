@@ -3,30 +3,11 @@
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/lsp-attach", { clear = true })
 
 local icons = require("config/icons")
-local lspconf = require("config/lsp")
 
 -- Configure diagnostics
 local function diagnostics()
 	vim.diagnostic.config({
-		float = {
-			border = "rounded",
-			prefix = function(diagnostic)
-				local iconsMap = {
-					Error = icons.diagnostics.error,
-					Warn = icons.diagnostics.warning,
-					Info = icons.diagnostics.information,
-					Hint = icons.diagnostics.hint,
-				}
-				local hl = {
-					"DiagnosticSignError",
-					"DiagnosticSignWarn",
-					"DiagnosticSignInfo",
-					"DiagnosticSignHint",
-				}
-				return iconsMap[diagnostic.severity], hl[diagnostic.severity]
-			end,
-		},
-		severity_sort = true,
+		heverity_sort = true,
 		signs = {
 			text = {
 				[vim.diagnostic.severity.ERROR] = icons.diagnostics.error,
@@ -82,20 +63,8 @@ local function keymaps(bufnr, client)
 	k("gO", snacks.picker.lsp_symbols, "LSP: Symbols")
 	k("<leader>dd", vim.diagnostic.setqflist, "Diagnostics")
 
-	if client.supports_method(methods.textDocument_definition) then
-		k("gd", vim.lsp.buf.definition, "Jump to [d]efinition")
-	end
-	if client.supports_method(methods.textDocument_declaration) then
-		k("gD", vim.lsp.buf.declaration, "Jump to [D]eclaration")
-	end
 	if client.supports_method(methods.textDocument_typeDefinition) then
 		k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
-	end
-	if client.supports_method(methods.callHierarchy_incomingCalls) then
-		k("grj", vim.lsp.buf.incoming_calls, "Incoming calls")
-	end
-	if client.supports_method(methods.callHierarchy_outgoingCalls) then
-		k("grk", vim.lsp.buf.outgoing_calls, "Outgoing calls")
 	end
 end
 
@@ -120,16 +89,7 @@ local function highlight_references(bufnr, client)
 	end
 end
 
--- Set custom handlers for LSP methods
-local function custom_handlers(client)
-	for method, handler in pairs(lspconf.handlers) do
-		if client.supports_method(method) then
-			vim.lsp.handlers[method] = handler
-		end
-	end
-end
-
--- Clear highlight references event handlers when detaching LSP client
+-- Clear highlight references event handlers
 local function clear_highlight_references(bufnr, client)
 	local methods = vim.lsp.protocol.Methods
 
@@ -155,7 +115,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		diagnostics()
 		keymaps(bufnr, client)
 		highlight_references(bufnr, client)
-		custom_handlers(client)
 	end,
 })
 

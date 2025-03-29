@@ -329,8 +329,6 @@ Random features added.
 - `gra` code actions
 - `grt` jump to type definition
 - `gri` jump to implementation
-- `grj` incoming calls
-- `grk` outgoing calls
 - `grn` rename symbol
 - `grr` list references
 - `grI` toggle inlay hints
