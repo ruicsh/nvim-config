@@ -504,7 +504,7 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 			vim.cmd("normal! G")
 			return response
 		end,
-		context = { "git:staged" },
+		context = { "git_staged" },
 		headless = true,
 		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
 		selection = select.unnamed,
@@ -532,7 +532,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 			vim.keymap.set("n", "<c-y>", accept_code_review, { buffer = true })
 			return response
 		end,
-		context = { "git:staged" },
+		context = { "git_staged" },
 		model = vim.fn.getenv("COPILOT_MODEL_REASON"),
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
@@ -695,6 +695,29 @@ return {
 						end
 
 						return file_list
+					end,
+				},
+				git_staged = {
+					description = "Includes all staged files in the git repository in chat context.",
+					resolve = function(_, source)
+						local utils = require("CopilotChat.utils")
+
+						-- List files staged for commit, excluding lock files
+						local cmd = { "git", "-C", source.cwd(), "diff", "--no-color", "--no-ext-diff", "--staged" }
+						local EXCLUDE_FILES = { "package-lock.json", "lazy-lock.json", "Cargo.lock" }
+						for _, file in ipairs(EXCLUDE_FILES) do
+							table.insert(cmd, ":(exclude)" .. file)
+						end
+
+						local out = utils.system(cmd)
+
+						return {
+							{
+								content = out.stdout,
+								filename = "git_diff_staged",
+								filetype = "diff",
+							},
+						}
 					end,
 				},
 			},
