@@ -83,7 +83,6 @@ k("<leader>bo", bufdelete.other, { desc = "Buffers: Close all other" })
 k("|", "<c-w>w", { desc = "Windows: Switch" })
 k("<c-w>[", ":SendBufferToWindow h<cr>", { desc = "Windows: Send to left window" })
 k("<c-w>]", ":SendBufferToWindow l<cr>", { desc = "Windows: Send to right window" })
-k("<c-w>m", ":WindowToggleMaximize<cr>", { desc = "Windows: Maximize" })
 
 -- Tabs
 k("<leader>tc", ":tabclose<cr>", { desc = "Tabs: Close", silent = true })

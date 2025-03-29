@@ -161,12 +161,25 @@ local function save_chat(response)
 	})
 end
 
+local function openInAdjacentWindow()
+	local current_win = vim.api.nvim_get_current_win()
+	if not current_win then
+		return
+	end
+
+	local col = vim.api.nvim_win_get_position(0)[2]
+	local is_left_edge = col <= (vim.o.columns * 0.5)
+
+	vim.cmd("only")
+	vim.cmd("vsplit")
+
+	vim.cmd.wincmd(is_left_edge and "L" or "H")
+end
+
 local function new_chat_window(prompt, opts)
 	local chat = require("CopilotChat")
 
-	vim.cmd("WindowToggleMaximize forceOpen") -- maximize the current window
-	vim.cmd("vsplit") -- open a vertical split
-
+	openInAdjacentWindow()
 	vim.g.copilot_chat_title = nil -- reset chat title used for saving chat history
 	chat.reset()
 
@@ -175,6 +188,17 @@ local function new_chat_window(prompt, opts)
 	else
 		chat.open(opts)
 	end
+end
+
+local function customize_chat_window()
+	vim.api.nvim_create_autocmd("BufEnter", {
+		group = augroup,
+		pattern = "copilot-chat",
+		callback = function()
+			vim.opt_local.foldlevel = 99 -- Open all folds
+			vim.opt_local.conceallevel = 0 -- Text is shown normally
+		end,
+	})
 end
 
 local function open_chat()
@@ -383,8 +407,7 @@ local function list_chat_history()
 			end
 
 			vim.g.copilot_chat_title = item.basename
-			vim.cmd("WindowToggleMaximize forceOpen")
-			vim.cmd("vsplit")
+			openInAdjacentWindow()
 
 			chat.open()
 			chat.load(item.basename)
@@ -501,7 +524,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 
 				chat.close()
 
-				vim.cmd("WindowToggleMaximize forceOpen")
+				vim.cmd("only")
 				vim.cmd("vertical Git")
 				vim.cmd("Git commit")
 			end
@@ -573,22 +596,6 @@ vim.api.nvim_create_user_command("CopilotPrReview", function()
 	})
 end, {})
 
-vim.api.nvim_create_autocmd("BufEnter", {
-	group = augroup,
-	pattern = "copilot-chat",
-	callback = function()
-		local ft = vim.bo.filetype
-		if ft == "copilot-chat" then
-			vim.opt_local.foldenable = false -- Never fold
-			vim.opt_local.foldmethod = "manual" -- Disable folding
-			vim.opt_local.foldlevel = 0 -- Don't fold anything
-			vim.opt_local.foldcolumn = "0" -- Don't show fold column
-			vim.opt_local.foldlevelstart = -1 -- Don't fold anything
-			vim.opt_local.conceallevel = 0 -- Don't conceal markdown links
-		end
-	end,
-})
-
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	keys = function()
@@ -622,6 +629,8 @@ return {
 		local user = vim.env.USER or "User"
 
 		vim.fn.load_env_file() -- make sure the env file is loaded
+
+		customize_chat_window()
 
 		chat.setup({
 			agent = "copilot",
@@ -753,6 +762,7 @@ return {
 			question_header = " " .. user .. " ",
 			selection = false, -- Have no predefined context by default
 			show_help = false,
+			show_folds = false,
 			window = {
 				layout = "replace",
 			},

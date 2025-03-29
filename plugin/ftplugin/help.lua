@@ -14,20 +14,21 @@ vim.api.nvim_create_autocmd("FileType", {
 
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }
+
 		-- Better navigation.
 		-- https://vim.fandom.com/wiki/Learn_to_use_help#Simplify_help_navigation
 		k("n", "<bs>", "<c-T>", opts)
 	end,
 })
 
--- Maximize current window before opening help (when :help)
+-- Open help on a vertical split.
 vim.api.nvim_create_autocmd("CmdLineLeave", {
 	group = augroup,
 	pattern = ":",
 	callback = function()
 		local cmd = vim.fn.getcmdline()
-		if cmd:match("^help%s") or cmd:match("^h%s") or cmd == "help" then
-			vim.cmd("WindowToggleMaximize forceOpen")
+		if cmd:match("^help%s") or cmd:match("^h%s") or cmd == "h" or cmd == "help" then
+			vim.cmd("only")
 		end
 	end,
 })

@@ -100,7 +100,6 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 | [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window  |
 | [SendBufferToWindow](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/send-buffer-to-window.lua)            | Send buffer to adjacent window               |
 | [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                  |
-| [WindowToggleMaximize](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/window-toggle-maximize.lua)         | Maximize and restore current window.         |
 
 ### Ftplugins
 

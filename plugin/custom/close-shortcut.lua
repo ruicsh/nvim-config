@@ -59,22 +59,21 @@ api.nvim_create_autocmd("FileType", {
 
 api.nvim_create_autocmd("FileType", {
 	group = augroup,
-	pattern = { "neo-tree" },
+	pattern = "neo-tree",
 	callback = function(event)
 		k("n", closeShortcut, ":Neotree action=close<cr>", { buffer = event.buf })
 	end,
 })
 
--- Close panels that open in a maximized current window
+-- Close panels that open in a vertical split
 api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = {
-		"copilot-chat",
 		"fugitive",
 		"help",
 	},
 	callback = function(event)
-		k("n", closeShortcut, ":close | WindowToggleMaximize forceClose<cr>", { buffer = event.buf })
+		k("n", closeShortcut, ":close | :vsplit | :blast<cr>", { buffer = event.buf, silent = true })
 	end,
 })
 

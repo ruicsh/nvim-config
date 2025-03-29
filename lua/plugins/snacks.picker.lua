@@ -144,9 +144,10 @@ return {
 					},
 				},
 				help = {
-					confirm = function()
-						vim.cmd("WindowToggleMaximize forceOpen") -- maximize current window
-						vim.cmd("help")
+					confirm = function(picker, item)
+						picker:close()
+						vim.cmd("only")
+						vim.cmd("vertical help " .. item.tag)
 					end,
 				},
 				projects = {
