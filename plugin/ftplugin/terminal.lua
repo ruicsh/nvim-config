@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 			vim.opt.filetype = "terminal"
 			vim.opt.hidden = true -- Hide the terminal buffer when switching to another buffer
 			vim.opt.buflisted = false -- Don't show terminal buffers in the buffer list
+			vim.opt.signcolumn = "yes" -- Show sign column (add some padding)
 			vim.cmd.startinsert() -- Start in insert mode
 		end
 	end,
