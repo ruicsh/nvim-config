@@ -39,9 +39,9 @@ return {
 	end,
 
 	event = { "BufReadPre", "BufNewFile" },
+	enabled = not vim.g.vscode,
 	dependencies = {
-		{
-			-- Quickstart configs for Nvim LSP
+		{ -- Quickstart configs for Nvim LSP
 			-- https://github.com/neovim/nvim-lspconfig
 			"neovim/nvim-lspconfig",
 		},

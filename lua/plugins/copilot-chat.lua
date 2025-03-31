@@ -792,6 +792,7 @@ return {
 		})
 	end,
 
+	enabled = not vim.g.vscode,
 	dependencies = {
 		{ "zbirenbaum/copilot.lua" },
 		{ "nvim-lua/plenary.nvim" },

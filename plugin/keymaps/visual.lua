@@ -17,8 +17,6 @@ k("x", '"_x')
 -- Navigation
 k("{", "6k")
 k("}", "6j")
-k("H", "0^")
-k("L", "$")
 
 -- Move lines
 k("]e", ":m '>+1<cr>gv=gv", { desc = "Move line down" })

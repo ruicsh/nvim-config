@@ -109,7 +109,11 @@ local function c_filename()
 		if ft == "oil" or ft == "neo-tree" then
 			line = line .. " " .. path:sub(7)
 		else
-			line = line .. " " .. path
+			if vim.g.vscode then
+				line = line .. path
+			else
+				line = line .. " " .. path
+			end
 		end
 	end
 
@@ -304,6 +308,13 @@ end
 
 -- Construct the statusline (default)
 function _G.status_line()
+	if vim.g.vscode then
+		return table.concat({
+			c_mode(),
+			c_filename(),
+		})
+	end
+
 	local hl = "%#StatusLine#"
 
 	return table.concat({

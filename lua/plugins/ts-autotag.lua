@@ -20,6 +20,7 @@ return {
 
 	ft = { "html", "htmlangular", "typescript", "typescriptreact", "vue" },
 	event = "BufRead",
+	enabled = not vim.g.vscode,
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter" },
 	},

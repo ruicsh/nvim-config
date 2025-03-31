@@ -11,6 +11,9 @@ k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines", silent = true }
 k("[p", ":pu!<cr>==", { desc = "Paste on new line above" })
 k("]p", ":pu<cr>==", { desc = "Paste on new line below" })
 k("U", "<C-r>", { desc = "Redo" })
+k("<leader>w", ":write<cr>", { desc = "Save file", silent = true }) -- Save changes
+k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
+k("ycc", "yygccp", { remap = true }) -- Duplicate a line and comment out the first line.
 
 -- Move lines
 k("]e", ":m .+1<cr>==", { desc = "Move line down" })
@@ -22,6 +25,33 @@ k("c", '"_c')
 k("cc", '"_cc')
 k("x", '"_x')
 k("X", '"_X')
+
+-- Don't store empty lines in register.
+-- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
+k("dd", function()
+	return vim.fn.getline(".") == "" and '"_dd' or "dd"
+end, { expr = true })
+
+-- Keep same logic from y/c/d on v for selection
+k("V", "v$") -- Select until end of line
+k("vv", "V") -- Enter visual linewise mode
+
+k("<leader>yf", function()
+	local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
+	vim.fn.setreg("+", path)
+end, { desc = "Copy relative file path" })
+
+k("<leader>yd", function()
+	local path = vim.fn.fnamemodify(vim.fn.expand("%:p:h"), ":~:.")
+	vim.fn.setreg("+", path)
+end, { desc = "Copy directory path" })
+
+---
+-- Stop setting keymaps incompatible with vscode
+---
+if vim.g.vscode then
+	return
+end
 
 -- Folds
 k("[z", "zm", { desc = "Folds: More" })
@@ -94,34 +124,10 @@ k("<leader>ql", ":lopen<cr>", { desc = "Quickfix: Open location list" })
 k("<leader>qc", ":OpenChangesInQuickfix<cr>", { desc = "Quickfix: open changes list" })
 k("<leader>qj", ":OpenJumpsInQuickfix<cr>", { desc = "Quickfix: open jumps list" })
 
--- Don't store empty lines in register.
--- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
-k("dd", function()
-	return vim.fn.getline(".") == "" and '"_dd' or "dd"
-end, { expr = true })
-
--- Keep same logic from y/c/d on v for selection
-k("V", "v$") -- Select until end of line
-k("vv", "V") -- Enter visual linewise mode
-
-k("<leader>w", ":write<cr>", { desc = "Save file", silent = true }) -- Save changes
-k("<s-z><s-z>", ":wqa!<cr>", { desc = "Quit file", silent = true }) -- Quit and save all
-
--- Miscellaneous
-k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
-k("ycc", "yygccp", { remap = true }) -- Duplicate a line and comment out the first line.
-k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
-k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
-
+-- LSP navigation
 k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
 k("<s-cr>", "<c-T>", { desc = "LSP: Jump back from definition" })
 
-k("<leader>yf", function()
-	local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
-	vim.fn.setreg("+", path)
-end, { desc = "Copy relative file path" })
-
-k("<leader>yd", function()
-	local path = vim.fn.fnamemodify(vim.fn.expand("%:p:h"), ":~:.")
-	vim.fn.setreg("+", path)
-end, { desc = "Copy directory path" })
+-- Miscellaneous
+k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.

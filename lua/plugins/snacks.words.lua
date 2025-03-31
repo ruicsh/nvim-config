@@ -27,4 +27,5 @@ return {
 	},
 
 	event = "LspAttach",
+	enabled = not vim.g.vscode,
 }

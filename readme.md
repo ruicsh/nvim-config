@@ -1,6 +1,6 @@
 # Neovim IDE configuration
 
-This is my configuration for [Neovim](https://neovim.io/), mostly for web frontend development (typescript, css, python, rust).
+This is my configuration for [Neovim](https://neovim.io/), mostly for frontend development (typescript, css, python, rust).
 
 - **Editor** - enhanced vim motions, extended text objects, folding
 - **Code** - formatter, comments, code completion, AI powered suggestions
@@ -12,7 +12,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for web fronte
 - **Search** - fuzzy find anything, file and workspace scoped search and replace
 - **Application** - files and directory explorer, notifications, command palette
 
-<sub>Works on Neovim v0.11</sub>
+<sub>Works on Neovim v0.11 (and vscode-neovim)</sub>
 
 ## Screenshots
 

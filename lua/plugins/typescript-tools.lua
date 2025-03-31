@@ -34,6 +34,7 @@ return {
 	},
 
 	ft = { "typescript", "typescriptreact" },
+	enabled = not vim.g.vscode,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"neovim/nvim-lspconfig",

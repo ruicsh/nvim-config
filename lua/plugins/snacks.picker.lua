@@ -168,6 +168,7 @@ return {
 	},
 
 	lazy = false,
+	enabled = not vim.g.vscode,
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 	},

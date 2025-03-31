@@ -9,5 +9,6 @@ return {
 		},
 	},
 
-	event = { "VeryLazy" },
+	event = "VeryLazy",
+	enabled = not vim.g.vscode,
 }

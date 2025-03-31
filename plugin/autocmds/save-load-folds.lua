@@ -19,6 +19,10 @@ local IGNORE_FILETYPES = {
 }
 
 local function is_ignored()
+	if vim.g.vscode then
+		return true
+	end
+
 	if vim.tbl_contains(IGNORE_FILETYPES, vim.bo.ft) or vim.bo.buftype ~= "" or not vim.bo.modifiable then
 		return true
 	end
