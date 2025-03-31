@@ -52,7 +52,7 @@ o.showtabline = 0 -- Never show tabline (tabs are shown on the statusline).
 -- 8 terminal {{{
 o.title = true -- Show info in the window title
 o.titlelen = 0 -- No limit on title length
-o.titlestring = "%f" -- Show relative path in terminal title
+o.titlestring = "%t" -- Show relative path in terminal title
 -- }}}
 
 -- 9 using the mouse {{{
