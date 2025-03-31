@@ -91,7 +91,7 @@ loadColorSet({
 	Directory = { fg = c.nord9 },
 	EndOfBuffer = { fg = c.nord1 },
 	ErrorMsg = { fg = "NONE" },
-	FloatBorder = { fg = c.nord4, bg = "NONE" },
+	FloatBorder = { fg = c.nord3_700, bg = "NONE" },
 	FoldColumn = { fg = c.nord3_500 },
 	Folded = { fg = c.nord9, style = "italic" },
 	Function = { fg = c.nord8 },

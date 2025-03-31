@@ -93,16 +93,14 @@ end
 local function setup_dap(python_path)
 	local dap = require("dap")
 
-	dap.adapters.python = function(cb, config)
-		cb({
-			type = "executable",
-			command = python_path,
-			args = { "-m", "debugpy.adapter" },
-			options = {
-				source_filetype = "python",
-			},
-		})
-	end
+	dap.adapters.python = {
+		type = "executable",
+		command = python_path,
+		args = { "-m", "debugpy.adapter" },
+		options = {
+			source_filetype = "python",
+		},
+	}
 
 	dap.configurations.python = {
 		{

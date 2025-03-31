@@ -69,7 +69,7 @@ return {
 
 	event = "BufRead",
 	dependencies = {
-		{ -- User interface (nvim-dap-ui).
+		{ -- User interface
 			-- https://github.com/rcarriga/nvim-dap-ui
 			"rcarriga/nvim-dap-ui",
 			opts = {
@@ -88,9 +88,13 @@ return {
 				},
 			},
 
-			dependencies = {
-				"nvim-neotest/nvim-nio",
-			},
+			dependencies = { "nvim-neotest/nvim-nio" },
+		},
+		{ -- DAP-compatible JavaScript debugger
+			-- https://github.com/microsoft/vscode-js-debug
+			"microsoft/vscode-js-debug",
+			build = "npm install --legacy-peer-deps --no-save && npx gulp dapDebugServer && rm -rf out && mv dist out",
+			version = "1.*",
 		},
 	},
 }
