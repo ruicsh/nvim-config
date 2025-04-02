@@ -3,15 +3,20 @@
 
 local LSP_SERVERS = {
 	"angular-language-server@18.2.0",
+	"ansible-language-server",
 	"css-lsp",
 	"cssmodules-language-server",
+	"css-variables-language-server",
+	"ockerfile-language-server",
 	"eslint-lsp",
+	"harper-ls",
 	"html-lsp",
 	"json-lsp",
 	"lua-language-server",
 	"pyright",
 	"rust-analyzer",
 	"typescript-language-server",
+	"yaml-language-server",
 }
 
 local TOOLS = {

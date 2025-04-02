@@ -35,6 +35,7 @@ o.wrap = false -- Do not automatically wrap texts.
 
 -- 5 syntax, highlighting and spelling {{{
 o.cursorline = true -- Highlight current line.
+o.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add" -- Custom spellfile.
 o.termguicolors = true -- Enable true colors.
 -- }}}
 

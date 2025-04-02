@@ -4,7 +4,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 - **Editor** - enhanced vim motions, extended text objects, folding
 - **Code** - formatter, comments, code completion, AI powered suggestions
-- **AI Assistant** - suggestions, chat, system propmts, operations, chat history
+- **AI Assistant** - suggestions, chat, system prompts, operations, chat history
 - **LSP** - Language Server Protocol client, symbols navigation, diagnostics
 - **Syntax** - highlighting, syntax aware motions and text objects
 - **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
@@ -29,7 +29,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 - [flash.nvim](https://github.com/folke/flash.nvim) - Search labels
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
-- [mini.clue](https://github.com/echasnovski/mini.clue) - Keybidings helper
+- [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
 - [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - Files tree explorer
 - [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit filesystem like a buffer
@@ -58,19 +58,17 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 ### LSP/Syntax
 
 - [lazydev.nvim](https://github.com/folke/lazydev.nvim) - Lua language server
-- [mason](https://github.com/williamboman/mason.nvim) - Package manager
+- [mason](https://github.com/williamboman/mason.nvim) - LSP package manager
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
-- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Show code context
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - Fast navigation around the AST tree
-- [typescript-tools](https://github.com/pmizio/typescript-tools.nvim) - TypeScript LSP
 
 ### Debugging
 
-- [nvim-dap-python](https://github.com/mfussenegger/nvim-dap-python) - Python configuration
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) - Debugger
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap) - Debugger Adapter Protocol
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
+- [vscode-js-debug](https://github.com/microsoft/vscode-js-debug) - JS debugger
 
 ### Git
 
@@ -139,7 +137,7 @@ New features built around autocmds (events).
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                                 | Keep buffers in tabs scoped to the tab they were opened in            |
 | [scroll-eof](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scroll-eof.lua)                                   | Scroll past the end of file with scrolloff                            |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua) | Show cursorline only on active window.                                |
-| [toggle-hlsearch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/toggle-hlsearch.lua)                         | Toogle off hlsearch when entering insert mode and the cursor is moved |
+| [toggle-hlsearch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/toggle-hlsearch.lua)                         | Toggle off hlsearch when entering insert mode and the cursor is moved |
 | [views](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/views.lua)                                             | Save and restore views for each buffer                                |
 | [yank-highlight](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-highlight.lua)                           | Highlight selection when yanking                                      |
 | [yank-keep-cursor-position](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-keep-cursor-position.lua)     | Keep cursor position on yank                                          |

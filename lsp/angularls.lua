@@ -51,4 +51,21 @@ return {
 		"package.json",
 		".git",
 	},
+
+	on_new_config = function(new_config, new_root_dir)
+		local new_probe_dir = get_probe_dir(new_root_dir)
+		local angular_core_version = get_angular_core_version(new_root_dir)
+
+		-- We need to check our probe directories because they may have changed.
+		new_config.cmd = {
+			vim.fn.exepath("ngserver"),
+			"--stdio",
+			"--tsProbeLocations",
+			new_probe_dir,
+			"--ngProbeLocations",
+			new_probe_dir,
+			"--angularCoreVersion",
+			angular_core_version,
+		}
+	end,
 }
