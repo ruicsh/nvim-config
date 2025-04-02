@@ -72,21 +72,23 @@ end
 local function highlight_references(bufnr, client)
 	local methods = vim.lsp.protocol.Methods
 
-	if client.supports_method(methods.textDocument_documentHighlight) then
-		vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
-			callback = vim.lsp.buf.document_highlight,
-			buffer = bufnr,
-			group = augroup,
-			desc = "Highlight references under the cursor",
-		})
-
-		vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
-			callback = vim.lsp.buf.clear_references,
-			buffer = bufnr,
-			group = augroup,
-			desc = "Clear highlight references",
-		})
+	if not client.supports_method(methods.textDocument_documentHighlight) then
+		return
 	end
+
+	vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
+		buffer = bufnr,
+		group = augroup,
+		callback = vim.lsp.buf.document_highlight,
+		desc = "Highlight references under the cursor",
+	})
+
+	vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
+		buffer = bufnr,
+		group = augroup,
+		callback = vim.lsp.buf.clear_references,
+		desc = "Clear highlight references",
+	})
 end
 
 -- Clear highlight references event handlers
@@ -111,7 +113,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		local bufnr = event.buf
-		local client = vim.fn.get_lsp_client(event.data.client_id)
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if not client then
 			return
 		end

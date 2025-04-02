@@ -17,8 +17,11 @@ return {
 		"pyrightconfig.json",
 		".git",
 	},
-	single_file_support = true,
+	-- https://microsoft.github.io/pyright/#/settings?id=pyright-settings
 	settings = {
+		pyright = {
+			strict = true,
+		},
 		python = {
 			analysis = {
 				autoSearchPaths = true,
@@ -27,4 +30,6 @@ return {
 			},
 		},
 	},
+
+	single_file_support = true,
 }

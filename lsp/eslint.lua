@@ -30,7 +30,7 @@ return {
 		"eslint.config.mts",
 		"eslint.config.cts",
 	},
-	-- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
+	-- https://github.com/Microsoft/vscode-eslint#settings-options
 	settings = {
 		validate = "on",
 		packageManager = nil,

@@ -11,6 +11,7 @@ return {
 		"Cargo.toml",
 		".git",
 	},
+
 	single_file_support = true,
 	capabilities = {
 		experimental = {

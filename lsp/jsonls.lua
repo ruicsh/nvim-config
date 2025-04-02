@@ -12,8 +12,7 @@ return {
 	root_markers = {
 		".git",
 	},
-	init_options = {
-		provideFormatter = true,
-	},
+
+	init_options = { provideFormatter = true },
 	single_file_support = true,
 }
