@@ -1,57 +1,72 @@
 -- Install LSP servers
 -- https://github.com/williamboman/mason.nvim
 
-local lspconf = require("config/lsp")
+local LSP_SERVERS = {
+	"angularls@18.2.0",
+	"cssls",
+	"cssmodules_ls",
+	"eslint",
+	"html",
+	"jsonls",
+	"lua_ls",
+	"pyright",
+	"rust_analyzer",
+	"ts_ls",
+}
+
+local TOOLS = {
+	"black",
+	"codelldb",
+	"flake8",
+	"prettierd",
+	"pylint",
+	"stylua",
+}
+
+-- LSP config
+local function setup_lsp_configs()
+	local lsp_dir = vim.fn.stdpath("config") .. "/lsp"
+	local lsp_servers = {}
+
+	if vim.fn.isdirectory(lsp_dir) == 1 then
+		for _, file in ipairs(vim.fn.readdir(lsp_dir)) do
+			if file:match("%.lua$") and file ~= "init.lua" then
+				local server_name = file:gsub("%.lua$", "")
+				table.insert(lsp_servers, server_name)
+			end
+		end
+	end
+
+	vim.lsp.enable(lsp_servers)
+end
 
 return {
 	"williamboman/mason.nvim",
 	config = function()
 		require("mason").setup()
 
-		require("mason-tool-installer").setup({
-			run_on_start = true,
-			ensure_installed = vim.tbl_keys(lspconf.tools or {}),
-		})
-
-		-- LSP servers
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 		require("mason-lspconfig").setup({
-			ensure_installed = vim.tbl_keys(lspconf.servers or {}),
-			handlers = {
-				function(server_name)
-					-- Don't setup ts_ls, we're using tsserver from typescript-tools
-					if server_name == "ts_ls" then
-						return
-					end
-
-					local server = lspconf.servers[server_name] or {}
-
-					local conf = vim.tbl_deep_extend("force", server, {
-						capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
-					})
-
-					require("lspconfig")[server_name].setup(conf)
-				end,
-			},
+			ensure_installed = LSP_SERVERS,
 		})
+
+		require("mason-tool-installer").setup({
+			ensure_installed = TOOLS,
+		})
+
+		-- only after mason added bin dir to nvim's runtimepath
+		setup_lsp_configs()
 	end,
 
 	event = { "BufReadPre", "BufNewFile" },
 	enabled = not vim.g.vscode,
 	dependencies = {
-		{ -- Quickstart configs for Nvim LSP
-			-- https://github.com/neovim/nvim-lspconfig
-			"neovim/nvim-lspconfig",
+		{ -- Easier to use lspconfig with mason
+			-- https://github.com/williamboman/mason-lspconfig.nvim
+			"williamboman/mason-lspconfig.nvim",
 		},
 		{ -- Install and upgrade 3rd party tools
 			-- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-		},
-		{ -- Easier to use lspconfig with mason
-			-- https://github.com/williamboman/mason-lspconfig.nvim
-			"williamboman/mason-lspconfig.nvim",
 		},
 	},
 }

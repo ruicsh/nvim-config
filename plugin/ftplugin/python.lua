@@ -75,9 +75,8 @@ local function setup_lsp(python_path)
 		return
 	end
 
-	local lspconfig = require("lspconfig")
 	-- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#environment-options
-	lspconfig.pyright.setup({
+	vim.lsp.config("pyright", {
 		settings = {
 			python = {
 				pythonPath = python_path,
