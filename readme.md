@@ -58,7 +58,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 ### LSP/Syntax
 
 - [lazydev.nvim](https://github.com/folke/lazydev.nvim) - Lua language server
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - Config
+- [mason](https://github.com/williamboman/mason.nvim) - Package manager
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Show code context
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers

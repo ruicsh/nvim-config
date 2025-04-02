@@ -1,17 +1,17 @@
--- Install LSP servers
+-- Install LSP servers and 3rd-party tools
 -- https://github.com/williamboman/mason.nvim
 
 local LSP_SERVERS = {
-	"angularls@18.2.0",
-	"cssls",
-	"cssmodules_ls",
-	"eslint",
-	"html",
-	"jsonls",
-	"lua_ls",
+	"angular-language-server@18.2.0",
+	"css-lsp",
+	"cssmodules-language-server",
+	"eslint-lsp",
+	"html-lsp",
+	"json-lsp",
+	"lua-language-server",
 	"pyright",
-	"rust_analyzer",
-	"ts_ls",
+	"rust-analyzer",
+	"typescript-language-server",
 }
 
 local TOOLS = {
@@ -23,50 +23,107 @@ local TOOLS = {
 	"stylua",
 }
 
--- LSP config
-local function setup_lsp_configs()
-	local lsp_dir = vim.fn.stdpath("config") .. "/lsp"
-	local lsp_servers = {}
+local function install(pack, version)
+	local notifyOpts = { title = "Mason", icon = "", id = "mason.install" }
 
-	if vim.fn.isdirectory(lsp_dir) == 1 then
-		for _, file in ipairs(vim.fn.readdir(lsp_dir)) do
-			if file:match("%.lua$") and file ~= "init.lua" then
-				local server_name = file:gsub("%.lua$", "")
-				table.insert(lsp_servers, server_name)
+	local msg = version and ("[%s] updating to %s…"):format(pack.name, version)
+		or ("[%s] installing…"):format(pack.name)
+	vim.defer_fn(function()
+		vim.notify(msg, nil, notifyOpts)
+	end, 0)
+
+	pack:once("install:success", function()
+		local msg2 = ("[%s] %s"):format(pack.name, version and "updated." or "installed.")
+		notifyOpts.icon = " "
+		vim.defer_fn(function()
+			vim.notify(msg2, nil, notifyOpts)
+		end, 0)
+	end)
+
+	pack:once("install:failed", function()
+		local error = "Failed to install [" .. pack.name .. "]"
+		vim.defer_fn(function()
+			vim.notify(error, vim.log.levels.ERROR, notifyOpts)
+		end, 0)
+	end)
+
+	pack:install({ version = version })
+end
+
+local function syncPackages(ensurePacks)
+	local masonReg = require("mason-registry")
+
+	local function refreshCallback()
+		-- auto-install missing packages & auto-update installed ones
+		vim.iter(ensurePacks):each(function(packName)
+			-- Extract package name and pinned version if specified
+			local name, pinnedVersion = packName:match("([^@]+)@?(.*)")
+			if not masonReg.has_package(name) then
+				return
 			end
-		end
+			local pack = masonReg.get_package(name)
+			if pack:is_installed() then
+				-- Only check for updates if no version was pinned
+				if pinnedVersion == "" then
+					pack:check_new_version(function(hasNewVersion, version)
+						if not hasNewVersion then
+							return
+						end
+						install(pack, version.latest_version)
+					end)
+				end
+			else
+				-- Install with pinned version if specified
+				install(pack, pinnedVersion ~= "" and pinnedVersion or nil)
+			end
+		end)
+
+		-- auto-clean unused packages
+		local installedPackages = masonReg.get_installed_package_names()
+		vim.iter(installedPackages):each(function(packName)
+			-- Check if installed package is in our ensure list (without version suffix)
+			local isEnsured = vim.iter(ensurePacks):any(function(ensurePack)
+				local name = ensurePack:match("([^@]+)")
+				return name == packName
+			end)
+
+			if not isEnsured then
+				masonReg.get_package(packName):uninstall()
+				local msg = ("[%s] uninstalled."):format(packName)
+				vim.defer_fn(function()
+					vim.notify(msg, nil, { title = "Mason", icon = "󰅗" })
+				end, 0)
+			end
+		end)
 	end
 
-	vim.lsp.enable(lsp_servers)
+	masonReg.refresh(refreshCallback)
 end
 
 return {
 	"williamboman/mason.nvim",
-	config = function()
-		require("mason").setup()
-
-		require("mason-lspconfig").setup({
-			ensure_installed = LSP_SERVERS,
-		})
-
-		require("mason-tool-installer").setup({
-			ensure_installed = TOOLS,
-		})
-
-		-- only after mason added bin dir to nvim's runtimepath
-		setup_lsp_configs()
+	init = function()
+		-- Make mason packages available before loading it; allows to lazy-load mason.
+		vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+		-- do not crowd home directory with npm cache folder
+		vim.env.npm_config_cache = vim.env.HOME .. "/.cache/npm"
 	end,
-
-	event = { "BufReadPre", "BufNewFile" },
-	enabled = not vim.g.vscode,
-	dependencies = {
-		{ -- Easier to use lspconfig with mason
-			-- https://github.com/williamboman/mason-lspconfig.nvim
-			"williamboman/mason-lspconfig.nvim",
-		},
-		{ -- Install and upgrade 3rd party tools
-			-- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
+	opts = {
+		ui = {
+			border = "single",
+			height = 0.85,
+			width = 0.8,
 		},
 	},
+	config = function(_, opts)
+		require("mason").setup(opts)
+
+		local ensureInstalled = vim.list_extend(LSP_SERVERS, TOOLS)
+		vim.defer_fn(function()
+			syncPackages(ensureInstalled)
+		end, 3000)
+	end,
+
+	enabled = not vim.g.vscode,
+	event = { "VeryLazy" },
 }
