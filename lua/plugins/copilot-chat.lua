@@ -75,9 +75,7 @@ local function load_prompts(prompt_dir)
 	local prompt_files = vim.fn.glob(prompt_dir .. "/*.md", false, true)
 
 	for _, file_path in ipairs(prompt_files) do
-		-- Extract filename without extension
 		local basename = vim.fn.fnamemodify(file_path, ":t:r")
-		-- Use the read_prompt_file function to read the file
 		prompts[basename] = read_prompt_file(basename)
 	end
 
@@ -265,17 +263,17 @@ local function get_model_for_operation(operation_type)
 	return selected_model
 end
 
-local function operation(operation_type)
+local function action(type)
 	return function()
 		local select = require("CopilotChat.select")
 
-		local prompts = get_system_prompts(operation_type)
+		local prompts = get_system_prompts(type)
 		local system_prompt = concat_prompts(prompts)
-		local prompt = "/" .. operation_type
+		local prompt = "/" .. type
 
 		local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
 		local selection = nil
-		if operation_type == "architect" then
+		if type == "architect" then
 			selection = nil
 		elseif is_visual_mode then
 			selection = select.visual
@@ -285,7 +283,7 @@ local function operation(operation_type)
 
 		local opts = {
 			auto_insert_mode = true,
-			model = get_model_for_operation(operation_type),
+			model = get_model_for_operation(type),
 			selection = selection,
 			system_prompt = system_prompt,
 		}
@@ -609,14 +607,14 @@ return {
 			{ "<leader>as", open_search_chat, "Search Chat" },
 
 			-- predefined prompts
-			{ "<leader>ae", operation("explain"), "Explain", { mode = "v" } },
-			{ "<leader>af", operation("fix"), "Fix", { mode = { "n", "v" } } },
-			{ "<leader>ai", operation("implement"), "Implement", { mode = "v" } },
-			{ "<leader>ao", operation("optimize"), "Optimize", { mode = "v" } },
-			{ "<leader>aq", operation("architect"), "Architect" },
-			{ "<leader>ar", operation("review"), "Review", { mode = { "n", "v" } } },
-			{ "<leader>at", operation("tests"), "Tests", { mode = "v" } },
-			{ "<leader>aw", operation("refactor"), "Refactor", { mode = "v" } },
+			{ "<leader>ae", action("explain"), "Explain", { mode = "v" } },
+			{ "<leader>af", action("fix"), "Fix", { mode = { "n", "v" } } },
+			{ "<leader>ai", action("implement"), "Implement", { mode = "v" } },
+			{ "<leader>ao", action("optimize"), "Optimize", { mode = "v" } },
+			{ "<leader>aq", action("architect"), "Architect" },
+			{ "<leader>ar", action("review"), "Review", { mode = { "n", "v" } } },
+			{ "<leader>at", action("tests"), "Tests", { mode = "v" } },
+			{ "<leader>aw", action("refactor"), "Refactor", { mode = "v" } },
 
 			-- git
 			{ "<leader>ap", ":CopilotPrReview<cr>", "PR review" },
@@ -626,7 +624,6 @@ return {
 	end,
 	config = function()
 		local chat = require("CopilotChat")
-		local user = vim.env.USER or "User"
 
 		vim.fn.load_env_file() -- make sure the env file is loaded
 
@@ -634,7 +631,7 @@ return {
 
 		chat.setup({
 			agent = "copilot",
-			answer_header = " Copilot ",
+			answer_header = "꠵ Assistant ",
 			auto_follow_cursor = false, -- Don't follow cursor in chat buffer
 			callback = function(response)
 				save_chat(response)
@@ -782,7 +779,7 @@ return {
 				},
 			},
 			references_display = "write", -- Display references as md links
-			question_header = " " .. user .. " ",
+			question_header = "꠵ User ",
 			selection = false, -- Have no predefined context by default
 			show_help = false,
 			show_folds = false,
