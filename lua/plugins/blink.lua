@@ -26,9 +26,12 @@ vim.api.nvim_create_autocmd("User", {
 	group = augroup,
 	pattern = "BlinkCmpMenuOpen",
 	callback = function()
-		local copilot = require("copilot.suggestion")
-		vim.b.copilot_suggestion_hidden = true
-		copilot.dismiss()
+		-- Hide copilot suggestions when menu opens
+		local ok, copilot = pcall(require, "copilot.suggestion")
+		if ok then
+			vim.b.copilot_suggestion_hidden = true
+			copilot.dismiss()
+		end
 	end,
 })
 
@@ -36,7 +39,11 @@ vim.api.nvim_create_autocmd("User", {
 	group = augroup,
 	pattern = "BlinkCmpMenuClose",
 	callback = function()
-		vim.b.copilot_suggestion_hidden = false
+		-- Enable back copilot suggestions when menu closes
+		local ok = pcall(require, "copilot.suggestion")
+		if ok then
+			vim.b.copilot_suggestion_hidden = false
+		end
 	end,
 })
 
