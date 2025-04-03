@@ -126,6 +126,7 @@ New features built around autocmds (events).
 |                                                                                                                                |                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
 | [auto-resize-splits](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-resize-splits.lua)                   | Auto resize splits when window is resized                             |
+| [cmdline-hit-enter](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline-hit-enter.lua)                     | Hit-enter on cmdline, auto-toggle on messages                         |
 | [cleanup-cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cleanup-cmdline.lua)                         | Cleanup command line after use                                        |
 | [create-intermediate-dirs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/create-intermediate-dirs.lua)       | Create intermediate directories                                       |
 | [disable-new-line-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-new-line-comments.lua)     | Disable new line comments                                             |

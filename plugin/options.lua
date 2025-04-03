@@ -25,6 +25,7 @@ o.fillchars = {
 	fold = " ", -- Filling foldtext.
 	foldsep = " ", -- Open fold middle marker
 }
+o.messagesopt = "wait:500,history:1000" -- Option settings for outputting messages.
 o.number = true -- Show line numbers.
 o.numberwidth = 5 -- More space on the gutter column.
 o.relativenumber = true -- Show relative line numbers.
