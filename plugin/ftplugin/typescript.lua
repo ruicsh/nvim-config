@@ -4,18 +4,34 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/ft/typescript", { clear = tr
 local function setup_dap()
 	local dap = require("dap")
 
-	dap.adapters["pwa-node"] = {
-		type = "server",
-		host = "localhost",
-		port = "${port}",
-		executable = {
-			command = "node",
-			args = {
-				vim.fn.stdpath("data") .. "/lazy/vscode-js-debug/out/src/dapDebugServer.js",
-				"${port}",
+	if not dap.adapters["pwa-node"] then
+		dap.adapters["pwa-node"] = {
+			type = "server",
+			host = "localhost",
+			port = "${port}",
+			executable = {
+				command = "node",
+				args = {
+					vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+					"${port}",
+				},
 			},
-		},
-	}
+		}
+	end
+
+	if not dap.adapters["node"] then
+		dap.adapters["node"] = function(cb, config)
+			if config.type == "node" then
+				config.type = "pwa-node"
+			end
+			local nativeAdapter = dap.adapters["pwa-node"]
+			if type(nativeAdapter) == "function" then
+				nativeAdapter(cb, config)
+			else
+				cb(nativeAdapter)
+			end
+		end
+	end
 
 	dap.configurations.typescript = {
 		{
@@ -25,17 +41,17 @@ local function setup_dap()
 			program = "${file}",
 			cwd = "${workspaceFolder}",
 			args = { "${file}" },
-			sourceMaps = true,
-			sourceMapPathOverrides = {
-				["./*"] = "${workspaceFolder}/src/*",
-			},
+			-- sourceMaps = true,
+			-- sourceMapPathOverrides = {
+			-- 	["./*"] = "${workspaceFolder}/src/*",
+			-- },
 		},
 	}
 end
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
-	pattern = "typescript",
+	pattern = { "typescript", "typescriptreact", "typescript.tsx" },
 	callback = function()
 		setup_dap()
 	end,

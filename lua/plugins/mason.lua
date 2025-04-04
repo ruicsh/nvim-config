@@ -23,6 +23,7 @@ local TOOLS = {
 	"black",
 	"codelldb",
 	"flake8",
+	"js-debug-adapter",
 	"prettierd",
 	"pylint",
 	"stylua",
@@ -110,7 +111,7 @@ return {
 	init = function()
 		-- Make mason packages available before loading it; allows to lazy-load mason.
 		vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
-		-- do not crowd home directory with npm cache folder
+		-- Do not crowd home directory with NPM cache folder
 		vim.env.npm_config_cache = vim.env.HOME .. "/.cache/npm"
 	end,
 	opts = {
