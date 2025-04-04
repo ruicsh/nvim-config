@@ -8,7 +8,7 @@ return {
 
 		local mappings = {
 			{ "?", flash.jump, "Jump", { mode = { "n", "o", "v" } } },
-			{ "<leader>v", flash.treesitter, "Treesitter", { mode = { "n", "x", "o" } } },
+			{ "<leader>V", flash.treesitter, "Treesitter", { mode = { "n", "x", "o" } } },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Flash")

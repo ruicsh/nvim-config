@@ -310,10 +310,10 @@ Random features added.
 - `<m-l>` jump to child node
 - `<m-k>` jump to previous sibling node
 - `<m-j>` jump to next sibling node
-- `<leader>v` select node with search labels
-- `<c-J>` select current node
-- `<c-J>` increase selection (on node selection mode)
-- `<c-K>` decrease selection (on node selection mode)
+- `<leader>v` select current node
+- `<tab>` increase selection (on node selection mode)
+- `<s-tab>` decrease selection (on node selection mode)
+- `<leader>V` select node with search labels
 - `<m-H>` swap with lateral previous node
 - `<m-L>` swap with lateral next node
 - `<m-K>` swap with vertical previous node
