@@ -97,7 +97,7 @@ return {
 			["<c-n>"] = { "select_next", "show", "fallback" },
 			["<c-p>"] = { "select_prev", "fallback" },
 			["<c-y>"] = { "select_and_accept" },
-			["<cr>"] = { "select_and_accept" },
+			["<cr>"] = { "select_and_accept", "fallback" },
 			["<c-e>"] = { "hide" },
 			["<c-]>"] = { "hide" },
 			["<c-u>"] = { "scroll_documentation_up", "fallback" },
