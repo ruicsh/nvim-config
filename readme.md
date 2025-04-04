@@ -194,6 +194,7 @@ Random features added.
 - `<c-w>]` move buffer to window on the right
 - `<c-]>` close window
 - `<c-w>m` maximize window
+- `<leader>zm` toggle zen mode
 
 ### Tabs
 
