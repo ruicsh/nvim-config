@@ -1,7 +1,7 @@
 -- Terminal windows.
 -- https://github.com/tjdevries/config.nvim/blob/master/plugin/terminal.lua
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/ftplugin/terminal", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/terminal", { clear = true })
 
 vim.api.nvim_create_autocmd("TermOpen", {
 	group = augroup,

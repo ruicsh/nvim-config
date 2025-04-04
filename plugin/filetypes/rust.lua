@@ -1,4 +1,4 @@
-local augroup = vim.api.nvim_create_augroup("ruicsh/ft/rust", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/filetype/rust", { clear = true })
 
 -- Setup DAP
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#ccrust-via-codelldb

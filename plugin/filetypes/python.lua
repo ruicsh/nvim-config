@@ -1,4 +1,4 @@
-local augroup = vim.api.nvim_create_augroup("ruicsh/ft/python", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/filetype/python", { clear = true })
 
 -- Find virtual environment in current project
 local function find_venv()

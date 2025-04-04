@@ -1,4 +1,4 @@
-local augroup = vim.api.nvim_create_augroup("ruicsh/ft/typescript", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/filetype/typescript", { clear = true })
 
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#javascript
 local function setup_dap()

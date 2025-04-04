@@ -1,8 +1,8 @@
 -- Quickfix.
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/ftplugin/qf", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/qf", { clear = true })
 
--- hold the window id for the preview window
+-- Hold the window id for the preview window
 local preview_winid = nil
 
 local function close_preview_window()
@@ -84,15 +84,15 @@ local mappings = {
 			end
 
 			local key = direction == "next" and "j" or "k"
-			vim.cmd("normal! " .. key) -- move to next/previous line
+			vim.cmd("normal! " .. key) -- Move to next/previous line
 
 			preview_file()
 		end
 	end,
 	open = function()
 		return function()
-			close_preview_window() -- close before opening the file, so it doesn't open in the preview window
-			local line = vim.fn.line(".") -- get the current line
+			close_preview_window() -- Close before opening the file, so it doesn't open in the preview window
+			local line = vim.fn.line(".") -- Get the current line
 			vim.cmd("cc " .. line)
 			vim.cmd.cclose()
 		end
@@ -103,10 +103,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "qf",
 	callback = function(event)
-		vim.wo.relativenumber = false
-		vim.wo.statusline = "%!v:lua._G.status_line_qf()"
-		vim.wo.cursorline = true
-
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }
 
@@ -129,7 +125,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			k("n", tostring(i), ":cc " .. i .. "<cr>:cclose<cr>", opts)
 		end
 
-		-- Search and replace on quickfix files.
+		-- Search and replace on Quickfix files.
 		-- https://github.com/theHamsta/dotfiles/blob/master/.config/nvim/ftplugin/qf.lua
 		vim.cmd.packadd("cfilter") -- Install package to filter entries.
 		k("n", "<leader>r", function()
@@ -145,7 +141,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			group = augroup,
 			buffer = event.buf,
 			callback = function()
-				-- Always close the preview window when leaving the quickfix window
+				-- Always close the preview window when leaving the Quickfix window
 				close_preview_window()
 			end,
 		})
