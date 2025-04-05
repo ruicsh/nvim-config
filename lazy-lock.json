@@ -2,7 +2,7 @@
   "CopilotChat.nvim": { "branch": "main", "commit": "e7cd79a2ac05a32a1ce0995a82bd630598619d0b" },
   "blink.cmp": { "branch": "main", "commit": "cb5e346d9e0efa7a3eee7fd4da0b690c48d2a98e" },
   "conform.nvim": { "branch": "master", "commit": "b1a75324ddf96b7bb84963a297b1ed334db087c0" },
-  "copilot.lua": { "branch": "master", "commit": "b8fc1a573013ce461b4d4deedea5636e8517ac72" },
+  "copilot.lua": { "branch": "master", "commit": "075e845de715654454940c7f754b70f42c9f3cb9" },
   "csvview.nvim": { "branch": "main", "commit": "4058ccbb3099c5aeebacb00e963b44b2a0bbd45e" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
@@ -32,7 +32,7 @@
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "timber.nvim": { "branch": "main", "commit": "202ffb359717bdf3282be045228af4ad11be6fb5" },
-  "treewalker.nvim": { "branch": "main", "commit": "7ff3efc7f9e78186e83d3294b6773f951ba78b1d" },
+  "treewalker.nvim": { "branch": "main", "commit": "7d993149867ea05898626bf19df8b7d020de10ef" },
   "ts-comments.nvim": { "branch": "main", "commit": "1bd9d0ba1d8b336c3db50692ffd0955fe1bb9f0c" },
   "vim-fugitive": { "branch": "master", "commit": "4a745ea72fa93bb15dd077109afbb3d1809383f2" }
 }

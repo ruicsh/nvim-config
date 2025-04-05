@@ -199,30 +199,38 @@ local function customize_chat_window()
 	})
 end
 
-local function open_chat()
+local function open_chat(type)
 	local select = require("CopilotChat.select")
 
-	local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
+	return function()
+		local model
+		local selection
+		local ft_config
+		local system_prompt = ""
 
-	local ft_config = get_config_by_filetype()
-	local prompts = get_system_prompts("generic")
-	local system_prompt = concat_prompts(prompts)
+		if type == "assistance" then
+			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN")
+			local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
+			selection = is_visual_mode and select.visual or select.buffer
+			ft_config = get_config_by_filetype()
+			local prompts = get_system_prompts("generic")
+			system_prompt = concat_prompts(prompts)
+		elseif type == "architect" then
+			model = vim.fn.getenv("COPILOT_MODEL_ARCHITECT")
+			selection = false
+		elseif type == "search" then
+			model = "perplexityai"
+			selection = false
+		end
 
-	new_chat_window("", {
-		auto_insert_mode = true,
-		contexts = ft_config and ft_config.contexts or {},
-		-- leave the model empty to use the default or the one picked by the user
-		selection = is_visual_mode and select.visual or select.buffer,
-		system_prompt = system_prompt,
-	})
-end
-
-local function open_search_chat()
-	new_chat_window("", {
-		agent = "perplexityai",
-		auto_insert_mode = true,
-		selection = false,
-	})
+		new_chat_window("", {
+			auto_insert_mode = true,
+			contexts = ft_config and ft_config.contexts or {},
+			model = model,
+			selection = selection,
+			system_prompt = system_prompt,
+		})
+	end
 end
 
 local function get_model_for_operation(operation_type)
@@ -263,18 +271,32 @@ local function get_model_for_operation(operation_type)
 	return selected_model
 end
 
+local function get_visual_selection()
+	-- Yank the visual selection
+	vim.cmd('normal! "zy')
+	local selection = vim.fn.getreg("z")
+	-- Remove leading non-alphanumeric characters
+	selection = vim.trim(selection:gsub("^[^a-zA-Z0-9]+", ""))
+
+	return selection
+end
+
 local function action(type)
 	return function()
 		local select = require("CopilotChat.select")
 
 		local prompts = get_system_prompts(type)
 		local system_prompt = concat_prompts(prompts)
-		local prompt = "/" .. type
+		local prompt = "> /" .. type
 
 		local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
 		local selection = nil
-		if type == "architect" then
+
+		if type == "generic" then
 			selection = nil
+		elseif type == "implement" then
+			prompt = table.concat({ "> /" .. type, get_visual_selection() }, "\n\n")
+			selection = select.buffer
 		elseif is_visual_mode then
 			selection = select.visual
 		else
@@ -601,29 +623,34 @@ return {
 
 		local mappings = {
 			-- chat
-			{ "<leader>aa", open_chat, "Programming Chat", { mode = { "n", "v" } } },
-			{ "<leader>ah", list_chat_history, "List chat history" },
-			{ "<leader>am", chat.select_model, "Models" },
-			{ "<leader>as", open_search_chat, "Search Chat" },
+			{ "<leader>aa", open_chat("assistance"), "Assistance", { mode = { "n", "v" } } },
+			{ "<leader>ag", open_chat("generic"), "Assistance" },
+			{ "<leader>as", open_chat("search"), "Search" },
+			{ "<leader>aq", open_chat("architect"), "Architect" },
 
-			-- predefined prompts
+			-- actions
 			{ "<leader>ae", action("explain"), "Explain", { mode = "v" } },
 			{ "<leader>af", action("fix"), "Fix", { mode = { "n", "v" } } },
 			{ "<leader>ai", action("implement"), "Implement", { mode = "v" } },
 			{ "<leader>ao", action("optimize"), "Optimize", { mode = "v" } },
-			{ "<leader>aq", action("architect"), "Architect" },
 			{ "<leader>ar", action("review"), "Review", { mode = { "n", "v" } } },
 			{ "<leader>at", action("tests"), "Tests", { mode = "v" } },
 			{ "<leader>aw", action("refactor"), "Refactor", { mode = "v" } },
 
 			-- git
 			{ "<leader>ap", ":CopilotPrReview<cr>", "PR review" },
+
+			-- utilities
+			{ "<leader>ah", list_chat_history, "List chat history" },
+			{ "<leader>am", chat.select_model, "Models" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
 	end,
 	config = function()
 		local chat = require("CopilotChat")
+		local utils = require("CopilotChat.utils")
+		local context = require("CopilotChat.context")
 
 		vim.fn.load_env_file() -- make sure the env file is loaded
 
@@ -639,6 +666,54 @@ return {
 			end,
 			chat_autocomplete = false,
 			contexts = {
+				buffer = {
+					description = "Pick a buffer to include in chat context.",
+					input = function(callback)
+						local chat_winid = vim.api.nvim_get_current_win()
+						Snacks.picker.buffers({
+							confirm = function(picker, item)
+								picker:close()
+								-- Return focus to the chat window
+								if vim.api.nvim_win_is_valid(chat_winid) then
+									vim.api.nvim_set_current_win(chat_winid)
+									vim.cmd("normal! a")
+								end
+								vim.schedule(function()
+									callback(item.buf)
+								end)
+							end,
+						})
+					end,
+				},
+				file = {
+					description = "Pick a file to include in chat context.",
+					input = function(callback)
+						local chat_winid = vim.api.nvim_get_current_win()
+						Snacks.picker.files({
+							confirm = function(picker, item)
+								picker:close()
+								-- Return focus to the chat window
+								if vim.api.nvim_win_is_valid(chat_winid) then
+									vim.api.nvim_set_current_win(chat_winid)
+									vim.cmd("normal! a")
+								end
+								vim.schedule(function()
+									callback(item.file)
+								end)
+							end,
+						})
+					end,
+					resolve = function(input)
+						if not input or input == "" then
+							return {}
+						end
+
+						utils.schedule_main()
+						return {
+							context.get_file(utils.filepath(input), utils.filetype(input)),
+						}
+					end,
+				},
 				parent = {
 					description = "Includes all files from the parent directory of current file in chat context.",
 					resolve = function(_, source)
@@ -742,42 +817,6 @@ return {
 			},
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
 			prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts"),
-			providers = {
-				openrouter = {
-					prepare_input = require("CopilotChat.config.providers").copilot.prepare_input,
-					prepare_output = require("CopilotChat.config.providers").copilot.prepare_output,
-					get_headers = function()
-						local api_key = assert(os.getenv("OPENROUTER_API_KEY"), "OPENROUTER_API_KEY env not set")
-						return {
-							Authorization = "Bearer " .. api_key,
-							["Content-Type"] = "application/json",
-						}
-					end,
-					get_models = function(headers)
-						local response, err =
-							require("CopilotChat.utils").curl_get("https://openrouter.ai/api/v1/models", {
-								headers = headers,
-								json_response = true,
-							})
-
-						if err then
-							error(err)
-						end
-
-						return vim.iter(response.body.data)
-							:map(function(model)
-								return {
-									id = model.id,
-									name = model.name,
-								}
-							end)
-							:totable()
-					end,
-					get_url = function()
-						return "https://openrouter.ai/api/v1/chat/completions"
-					end,
-				},
-			},
 			references_display = "write", -- Display references as md links
 			question_header = "꠵ User ",
 			selection = false, -- Have no predefined context by default
