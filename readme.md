@@ -186,6 +186,9 @@ Random features added.
 - `<leader>bo` close the other
 - `<leader>,` pick opened
 - `<leader>.` pick recent
+- `<leader>bb` toggle bookmarks
+- `<leader>ba` add bookmark
+- `<leader>{n}` go to bookmark {n}
 
 ### Windows
 
