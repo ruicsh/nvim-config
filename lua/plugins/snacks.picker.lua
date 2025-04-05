@@ -88,7 +88,7 @@ return {
 			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
 			{ "<leader>.", snacks.picker.recent, "Search: Recent" },
 			{ "<leader>jj", snacks.picker.jumps, "Search: Jumplist" },
-			{ "<leader>rg", snacks.picker.registers, "Search: Registers" },
+			{ "<leader>gg", snacks.picker.registers, "Search: Registers" },
 			{ "<leader>bb", bookmarks, "Search: Bookmarks" },
 
 			-- neovim application
@@ -160,14 +160,46 @@ return {
 					dev = get_project_dirs(),
 				},
 				marks = {
-					transform = function(item)
+					transform = function(item, ctx)
+						local init_opts = ctx.picker.init_opts or {}
 						-- Only show bookmarks [A-I]
-						if item.label and item.label:match("^[A-I]$") and item then
-							-- Convert the label to [1-9]
-							item.label = "" .. string.byte(item.label) - string.byte("A") + 1 .. ""
-							return item
+						if init_opts.filter_marks == "A-I" then
+							return item.label and item.label:match("^[A-I]$") and true or false
 						end
-						return false
+
+						return true
+					end,
+					format = function(item, picker)
+						local init_opts = picker.init_opts or {}
+						local ret = {}
+
+						if item.label then
+							local label = item.label
+							-- Show the label as a number
+							if init_opts.filter_marks == "A-I" then
+								label = "" .. string.byte(item.label) - string.byte("A") + 1 .. ""
+							end
+							ret[#ret + 1] = { label, "SnacksPickerLabel" }
+							ret[#ret + 1] = { " ", virtual = true }
+						end
+
+						local path = Snacks.picker.util.path(item) or item.file
+						local dir, base = path:match("^(.*)/(.+)$")
+						local base_hl = item.dir and "SnacksPickerDirectory" or "SnacksPickerFile"
+						local dir_hl = "SnacksPickerDir"
+
+						-- Get the current working directory
+						local cwd = vim.fn.getcwd() .. "/"
+						-- Make dir relative to cwd if it starts with cwd
+						if dir and dir:sub(1, #cwd) == cwd then
+							dir = dir:sub(#cwd + 1)
+						end
+
+						ret[#ret + 1] = { base, base_hl, field = "file" }
+						ret[#ret + 1] = { " " }
+						ret[#ret + 1] = { dir, dir_hl, field = "file" }
+
+						return ret
 					end,
 				},
 			},
