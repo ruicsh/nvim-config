@@ -1,6 +1,10 @@
+Caddyfile
+htmlangular
 neovim
 Quickfix
-htmlangular
-autocmds
+vscode
 dockerfile
-Caddyfile
+css
+typescript
+autocmds
+VimEnter

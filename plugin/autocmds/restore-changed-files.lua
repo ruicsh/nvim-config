@@ -1,16 +1,16 @@
--- On VimEnter, open all git changed files in current working directory.
+-- On VimEnter open all git changed files in current working directory.
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/restore-changed-files", { clear = true })
 
 -- ignore files with these basenames
-local ignore_basenames = {
+local IGNORE_BASENAMES = {
 	"lazy-lock.json",
 	"package-lock.json",
 	"yarn.lock",
 }
 
 -- ignore files with these extensions
-local ignore_extensions = {
+local IGNORE_EXTENSIONS = {
 	".bmp",
 	".bru",
 	".gif",
@@ -24,30 +24,30 @@ local ignore_extensions = {
 }
 
 local function is_file_to_ignore(file)
-	-- ignore by extension
+	-- Ignore by extension
 	local extension = file:match("^.+(%..+)$")
 	if extension then
-		for _, ignore_extension in ipairs(ignore_extensions) do
+		for _, ignore_extension in ipairs(IGNORE_EXTENSIONS) do
 			if extension:lower() == ignore_extension:lower() then
 				return true
 			end
 		end
 	end
 
-	-- ignore by basename
+	-- Ignore by basename
 	local basename = vim.fs.basename(file)
-	for _, ignore_basename in ipairs(ignore_basenames) do
+	for _, ignore_basename in ipairs(IGNORE_BASENAMES) do
 		if basename:lower() == ignore_basename:lower() then
 			return true
 		end
 	end
 
-	-- ignore by .env
+	-- Ignore by .env
 	local env_ignore_files = vim.fn.getenv("RESTORE_CHANGED_FILES_IGNORE")
 	if env_ignore_files ~= vim.NIL and env_ignore_files ~= "" then
 		local ignore_files = vim.split(env_ignore_files, ",")
 		for _, ignore_file in ipairs(ignore_files) do
-			if file:lower():find(ignore_file:lower()) then
+			if file:lower():find(ignore_file:lower(), 1, true) then
 				return true
 			end
 		end
@@ -198,12 +198,12 @@ end
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
 	group = augroup,
 	callback = function()
-		-- no need to run this if running in vscode
+		-- No need to run this if running in vscode
 		if vim.g.vscode then
 			return
 		end
 
-		-- if vim was opened with files, don't open changed files
+		-- If vim was opened with files, don't open changed files
 		if #vim.fn.argv() > 0 then
 			return
 		end
@@ -221,7 +221,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			files = prune_list(files)
 			files = sort_by_mtime(files)
 
-			-- open a vertical split and focus on the left, even if there's no files
+			-- Open a vertical split and focus on the left, even if there's no files
 			vim.cmd.vsplit()
 			vim.cmd.wincmd("h")
 
@@ -229,10 +229,10 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 				return
 			end
 
-			-- open the last modified on the left
+			-- Open the last modified on the left
 			vim.cmd.edit(files[#files])
 
-			-- if there's more than one file, open them all
+			-- If there's more than one file, open them all
 			if #files > 1 then
 				vim.cmd.wincmd("l")
 				for i = 1, #files - 1 do
