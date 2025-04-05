@@ -6,7 +6,7 @@ return {
 	opts = {
 		statuscolumn = {
 			left = { "sign", "git" },
-			right = { "mark", "fold" },
+			right = { "fold" },
 		},
 	},
 

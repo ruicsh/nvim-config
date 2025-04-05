@@ -245,6 +245,7 @@ local cmode = {
 
 -- status-line
 loadColorSet({
+	StatusLineBookmarkText = { fg = c.nord12 },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
 	StatusLineModeInsert = { bg = cmode.i },

@@ -117,6 +117,13 @@ local function c_filename()
 		end
 	end
 
+	-- Check if the file is bookmarked with a global mark
+	local bufnr = vim.api.nvim_get_current_buf()
+	local bookmark = _G.buffer_bookmarks[bufnr]
+	if bookmark then
+		line = line .. " %#StatusLineBookmarkText##" .. bookmark .. "%#StatusLine#"
+	end
+
 	return line .. " %m"
 end
 
@@ -256,7 +263,7 @@ local function c_tabs()
 	return table.concat(tabs, "")
 end
 
--- Show quickfix status
+-- Show Quickfix status
 local c_quickfix = function()
 	local title = vim.fn.getqflist({ title = 1 }).title
 	return "%#StatusLine#" .. title .. " [%l/%L] %p%%"
@@ -334,7 +341,7 @@ function _G.status_line()
 	}, " ")
 end
 
--- Used on quickfix window
+-- Used on Quickfix window
 function _G.status_line_qf()
 	local hl = "%#StatusLine#"
 

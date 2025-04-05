@@ -10,7 +10,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
 - **Git integration** - status, diffview, commit message editor, buffer integration
 - **Search** - fuzzy find anything, file and workspace scoped search and replace
-- **Application** - files and directory explorer, notifications, command palette
+- **UI** - files and directory explorer, notifications, command palette, bookmarks
 
 <sub>Works on Neovim v0.11 (and vscode-neovim)</sub>
 
@@ -149,6 +149,7 @@ Random features added.
 
 |                                                                                                                  |                                                 |
 | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| [bookmarks](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/bookmarks.lua)                         | Buffer global bookmarks (harpoon)               |
 | [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)               | Use the same shortcut to close different panels |
 | [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)           | AST aware indentation                           |
 | [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua)     | Search count inline indicator                   |
@@ -186,9 +187,13 @@ Random features added.
 - `<leader>bo` close the other
 - `<leader>,` pick opened
 - `<leader>.` pick recent
-- `<leader>bb` toggle bookmarks
-- `<leader>ba` add bookmark
-- `<leader>{n}` go to bookmark {n}
+
+### Bookmarks:
+
+- `<leader>{1-9}` jump/add bookmark
+- `<leader>bb` list bookmarks
+- `<leader>bd` delete bookmark
+- `<leader>bD` delete all bookmarks
 
 ### Windows
 

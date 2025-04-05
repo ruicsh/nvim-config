@@ -69,6 +69,11 @@ local function get_project_dirs()
 	return project_dirs
 end
 
+local function bookmarks()
+	local snacks = require("snacks")
+	return snacks.picker.marks({ filter_marks = "A-I" })
+end
+
 return {
 	"folke/snacks.nvim",
 	keys = (function()
@@ -84,6 +89,7 @@ return {
 			{ "<leader>.", snacks.picker.recent, "Search: Recent" },
 			{ "<leader>jj", snacks.picker.jumps, "Search: Jumplist" },
 			{ "<leader>rg", snacks.picker.registers, "Search: Registers" },
+			{ "<leader>bb", bookmarks, "Search: Bookmarks" },
 
 			-- neovim application
 			{ "<leader>nh", snacks.picker.help, "Search: Help" },
@@ -152,6 +158,17 @@ return {
 				},
 				projects = {
 					dev = get_project_dirs(),
+				},
+				marks = {
+					transform = function(item)
+						-- Only show bookmarks [A-I]
+						if item.label and item.label:match("^[A-I]$") and item then
+							-- Convert the label to [1-9]
+							item.label = "" .. string.byte(item.label) - string.byte("A") + 1 .. ""
+							return item
+						end
+						return false
+					end,
 				},
 			},
 			ui_select = true,
