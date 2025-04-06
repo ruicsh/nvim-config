@@ -312,11 +312,18 @@ loadColorSet({
 	fugitiveUntrackedHeading = { fg = c.nord11 },
 })
 
--- mini.diff
+-- gitsigns.nvim
 loadColorSet({
-	MiniDiffSignAdd = { fg = c.nord14 },
-	MiniDiffSignChange = { fg = c.nord13 },
-	MiniDiffSignDelete = { fg = c.nord11 },
+	GitSignsAdd = { fg = c.nord14 },
+	GitSignsAddNr = { fg = c.nord14 },
+	GitSignsAddLn = { fg = c.nord14 },
+	GitSignsChange = { fg = c.nord13 },
+	GitSignsChangeNr = { fg = c.nord13 },
+	GitSignsChangeLn = { fg = c.nord13 },
+	GitSignsDelete = { fg = c.nord11 },
+	GitSignsDeleteNr = { fg = c.nord11 },
+	GitSignsDeleteLn = { fg = c.nord11 },
+	GitSignsCurrentLineBlame = { fg = c.nord3_500, style = "bold" },
 })
 
 -- neo-tree.nvim
@@ -380,23 +387,6 @@ loadColorSet({
 	SnacksIndentScope = { fg = c.nord3_500 },
 	SnacksPickerDir = { fg = c.nord3_500 },
 	SnacksPickerMatch = { fg = c.nord4, bg = c.nord3 },
-})
-
--- treesitter-context
-loadColorSet({
-	TreesitterContextLineNumber = { fg = c.nord2 },
-	TreesitterContextSeparator = { fg = c.nord2 },
-})
-
--- WhichKey
-loadColorSet({
-	WhichKey = { fg = c.nord8, style = "bold" },
-	WhichKeyGroup = { fg = c.nord5 },
-	WhichKeyDesc = { fg = c.nord7, style = "italic" },
-	WhichKeySeperator = { fg = c.nord9 },
-	WhichKeyFloating = { bg = c.nord1 },
-	WhichKeyFloat = { bg = c.nord1 },
-	WhichKeyValue = { fg = c.nord7 },
 })
 
 -- SYNTAX

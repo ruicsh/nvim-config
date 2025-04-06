@@ -73,7 +73,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 - [diffview](https://github.com/sindrets/diffview.nvim) - Diffview/Git log
 - [fugitive.vim](https://github.com/tpope/vim-fugitive) - Git wrapper
-- [mini.diff](https://github.com/echasnovski/mini.diff) - Git diff/hunks
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git diff/hunks
 
 ## Config
 
@@ -123,7 +123,6 @@ New features built around autocmds (events).
 | [cleanup-cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cleanup-cmdline.lua)                         | Cleanup command line after use                                        |
 | [create-intermediate-dirs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/create-intermediate-dirs.lua)       | Create intermediate directories                                       |
 | [disable-new-line-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-new-line-comments.lua)     | Disable new line comments                                             |
-| [git-branch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/git-branch.lua)                                   | Keep the git branch updated on a buffer local variable                |
 | [load-env-vars](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/load-env-vars.lua)                             | Load environment variables, global and project scoped.                |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps and custom handlers                          |
 | [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)                   | If neovim is opened with a directory as argument open oil-filemanager |
@@ -364,19 +363,18 @@ Random features added.
 
 - `[c` previous hunk
 - `]c` next hunk
-- `ghh` stage hunk
-- `gHh` reset hunk
-- `gh_` stage line
-- `gH_` reset line
-- `<leader>hb` blame line
-- `<leader>hd` diff buffer
-- `<leader>hdd` diff workspace
+- `gh` stage hunk
+- `gH` reset hunk
+- `<leader>hb` open blame in browser
+- `<leader>hB` blame diff
+- `<leader>hd` diff hunk
+- `<leader>hD` diff workspace
 - `<leader>hh` status
 - `<leader>hl` log file/selection
-- `<leader>hll` log
+- `<leader>hl` log
 - `<leader>ho` push -u origin HEAD
 - `<leader>hp` push
-- `<leader>hx` git open in browser
+- `<leader>hx` open file in browser
 
 ### Merge Conflicts
 

@@ -189,13 +189,13 @@ local function c_git_status()
 		return cache_git_status[bufnr].value
 	end
 
-	local status = vim.b.minidiff_summary
+	local status = vim.b.gitsigns_status_dict
 	if not status or status == "" then
 		return ""
 	end
 
 	local n_changes = 0
-	local keys = { "add", "change", "delete" }
+	local keys = { "added", "changed", "removed" }
 	local entries = {}
 	for _, k in ipairs(keys) do
 		local count = (status[k] or 0)
@@ -220,7 +220,7 @@ local function c_git_branch()
 		return ""
 	end
 
-	local head = vim.b.git_branch_name
+	local head = vim.b.gitsigns_head
 	if not head or head == "" then
 		return ""
 	end
