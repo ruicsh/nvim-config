@@ -1,5 +1,4 @@
--- Save and restore views for each buffer
--- https://github.com/chrisgrieser/nvim-origami/blob/main/lua/origami/keep-folds-across-sessions.lua
+-- Save and restore folds for each buffer
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/save-load-folds", { clear = true })
 

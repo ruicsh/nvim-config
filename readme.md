@@ -99,25 +99,19 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 | [SendBufferToWindow](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/send-buffer-to-window.lua)            | Send buffer to adjacent window               |
 | [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                  |
 
-### Ftplugins
+### Filetypes
 
 Custom configuration, keymaps and features dependent on the file's type.
 
-|                                                                                                |                    |
-| ---------------------------------------------------------------------------------------------- | ------------------ |
-| [dockerfile](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/dockerfile.lua)   | Dockerfile         |
-| [caddyfile](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/caddyfile.lua)     | Caddyfile          |
-| [csv](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/csv.lua)                 | CSV                |
-| [fugitive](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/fugitive.lua)       | fugitive           |
-| [gitcommit](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/gitcommit.lua)     | git commit message |
-| [help](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/help.lua)               | help               |
-| [htmlangular](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/htmlangular.lua) | Angular Templates  |
-| [python](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/python.lua)           | Python             |
-| [qf](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/qf.lua)                   | Quickfix           |
-| [rust](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/rust.lua)               | Rust               |
-| [scss](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/scss.lua)               | Sass               |
-| [terminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/terminal.lua)       | Terminal           |
-| [text](https://github.com/ruicsh/nvim-config/blob/main/plugin/ftplugin/text.lua)               | Text, Markdown     |
+|                                                                                               |            |
+| --------------------------------------------------------------------------------------------- | ---------- |
+| [dockerfile](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/dockerfile.lua) | Dockerfile |
+| [help](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/help.lua)             | help       |
+| [python](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/python.lua)         | Python     |
+| [qf](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/qf.lua)                 | Quickfix   |
+| [rust](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/rust.lua)             | Rust       |
+| [terminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/terminal.lua)     | Terminal   |
+| [typescript](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/typescript.lua) | TypeScript |
 
 ### Autocmds
 
@@ -135,11 +129,11 @@ New features built around autocmds (events).
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps and custom handlers                          |
 | [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)                   | If neovim is opened with a directory as argument open oil-filemanager |
 | [restore-changed-files](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/restore-changed-files.lua)             | On VimEnter, open all git changed files in current working directory  |
+| [save-load-folds](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/save-load-folds.lua)                         | Save and restore views for each buffer                                |
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                                 | Keep buffers in tabs scoped to the tab they were opened in            |
 | [scroll-eof](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scroll-eof.lua)                                   | Scroll past the end of file with scrolloff                            |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua) | Show cursorline only on active window.                                |
 | [toggle-hlsearch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/toggle-hlsearch.lua)                         | Toggle off hlsearch when entering insert mode and the cursor is moved |
-| [views](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/views.lua)                                             | Save and restore views for each buffer                                |
 | [yank-highlight](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-highlight.lua)                           | Highlight selection when yanking                                      |
 | [yank-keep-cursor-position](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-keep-cursor-position.lua)     | Keep cursor position on yank                                          |
 
