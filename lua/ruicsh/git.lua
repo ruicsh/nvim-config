@@ -5,7 +5,7 @@ vim.git.is_git = function()
 	return result.stdout:match("^true")
 end
 
--- Finds the root dir for the current git repo
+-- Finds the root directory for the current git repo
 vim.git.root = function()
 	local result = vim.system({ "git", "rev-parse", "--show-toplevel" }):wait()
 	local root = result.stdout:gsub("\n", "")
@@ -16,21 +16,36 @@ vim.git.root = function()
 end
 
 -- Get blame info for a file/line
-vim.git.blame = function(opts)
+vim.git.blame = function(o)
+	local opts = o or {}
 	local cmd_parts = {}
 	table.insert(cmd_parts, "git blame --porcelain")
-	if opts.line then
-		table.insert(cmd_parts, "-L " .. opts.line .. "," .. opts.line)
+
+	local line = opts.line or vim.fn.line(".")
+	if line then
+		table.insert(cmd_parts, "-L " .. line .. "," .. line)
 	end
-	if opts.filename then
-		table.insert(cmd_parts, opts.filename)
+
+	local filename = opts.filename or vim.fn.expand("%")
+	if filename then
+		table.insert(cmd_parts, filename)
 	end
+
 	-- git blame --porcelain -L 10,10 src/file.lua
 	local cmd = table.concat(cmd_parts, " ")
 	local output = vim.fn.systemlist(cmd)
 
 	local info = {}
-	info.hash = output[1]:match("%w+")
+
+	info.commit = output[1]:match("%w+")
+
+	local url_cmd = "git config --get remote.origin.url"
+	local handle = io.popen(url_cmd)
+	if handle then
+		local repo_url = handle:read("*a"):gsub("\n", "")
+		handle:close()
+		info.repo_url = repo_url:gsub("git@([^:]+):", "https://%1/"):gsub("%.git$", "")
+	end
 
 	for _, line in ipairs(output) do
 		if line:match("^author ") then

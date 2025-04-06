@@ -68,7 +68,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) - Debugger
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap) - Debugger Adapter Protocol
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
-- [vscode-js-debug](https://github.com/microsoft/vscode-js-debug) - JS debugger
 
 ### Git
 

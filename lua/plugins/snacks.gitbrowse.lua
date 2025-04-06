@@ -6,8 +6,25 @@ return {
 	keys = (function()
 		local snacks = require("snacks")
 
+		local function open_commit_url()
+			local notify = require("mini.notify")
+			local blame = vim.git.blame()
+
+			if blame.commit:match("^00000000") or blame.commit == "fatal" then
+				local id = notify.add("Not commited yet.", "WARN")
+				vim.defer_fn(function()
+					notify.remove(id)
+				end, 3000)
+				return
+			end
+
+			local url = string.format("%s/commit/%s", blame.repo_url, blame.commit)
+			vim.ui.open(url)
+		end
+
 		local mappings = {
-			{ "<leader>hx", snacks.gitbrowse.open, "Open in browser" },
+			{ "<leader>hx", snacks.gitbrowse.open, "Open file in browser" },
+			{ "<leader>hb", open_commit_url, "Open commit in browser" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")

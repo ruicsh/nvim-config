@@ -6,12 +6,9 @@ return {
 	keys = function()
 		local function git_blame_line()
 			local notify = require("mini.notify")
-			local blame = vim.git.blame({
-				line = vim.fn.line("."),
-				filename = vim.fn.expand("%"),
-			})
+			local blame = vim.git.blame()
 
-			if blame.hash:match("^00000000") or blame.hash == "fatal" then
+			if blame.commit:match("^00000000") or blame.commit == "fatal" then
 				local id = notify.add("Not commited yet.", "WARN")
 				vim.defer_fn(function()
 					notify.remove(id)
@@ -22,7 +19,7 @@ return {
 
 			_G.diffview_blame = blame
 
-			local cmd = "DiffviewOpen " .. blame.hash .. "^! --selected-file=" .. vim.fn.expand("%")
+			local cmd = "DiffviewOpen " .. blame.commit .. "^! --selected-file=" .. vim.fn.expand("%")
 			vim.cmd(cmd)
 		end
 
@@ -31,7 +28,7 @@ return {
 			{ "<leader>hL", ":DiffviewFileHistory<cr>", "Log" },
 			{ "<leader>hl", ":DiffviewFileHistory %<cr>", "Log for file" },
 			{ "<leader>hl", ":'<,'>DiffviewFileHistory<cr>", "Log visual selection", { mode = "v" } },
-			{ "<leader>hb", git_blame_line, "Blame line" },
+			{ "<leader>hB", git_blame_line, "Blame line" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
