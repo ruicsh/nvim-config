@@ -80,25 +80,27 @@ return {
 		local snacks = require("snacks")
 
 		local mappings = {
-			-- pickers
-			{ "<leader><space>", snacks.picker.files, "Search: Files" },
-			{ "<leader>ff", grep, "Search: Workspace" },
-			{ "<leader>fd", search_directory, "Search: Directory" },
-			{ "<leader>pp", snacks.picker.projects, "Search: Projects" },
-			{ "<leader>,", snacks.picker.buffers, "Search: Buffers" },
-			{ "<leader>.", snacks.picker.recent, "Search: Recent" },
-			{ "<leader>jj", snacks.picker.jumps, "Search: Jumplist" },
-			{ "<leader>gg", snacks.picker.registers, "Search: Registers" },
-			{ "<leader>bb", bookmarks, "Search: Bookmarks" },
+			-- search
+			{ "<leader><space>", snacks.picker.smart, "Search: Files" },
+			{ "<leader>/", grep, "Search: Workspace" },
+			{ "<leader>?", search_directory, "Search: Directory" },
+			{ "<leader>*", snacks.picker.grep_word, "Search: Directory" },
 
-			-- neovim application
-			{ "<leader>nh", snacks.picker.help, "Search: Help" },
-			{ "<leader>nc", snacks.picker.commands, "Search: Commands" },
-			{ "<leader>nk", snacks.picker.keymaps, "Search: Keymaps" },
-			{ "<leader>na", snacks.picker.autocmds, "Search: autocmds" },
+			-- current state
+			{ "<leader>,", snacks.picker.buffers, "Buffers" },
+			{ "<leader>.", snacks.picker.resume, "Recent buffers" },
+			{ "<leader>:", snacks.picker.command_history, "Command history" },
+			{ "<leader>jj", snacks.picker.jumps, "Jumplist" },
+			{ "<leader>bb", bookmarks, "Bookmarks" },
+			{ "<leader>uu", snacks.picker.undo, "Undotree" },
 
-			{ "<leader>uu", snacks.picker.undo, "Undo: Tree" },
-			{ "<leader>oo", snacks.notifier.show_history, "Notifications: Show history" },
+			-- neovim
+			{ "<leader>nH", snacks.picker.highlights, "Highlights" },
+			{ "<leader>na", snacks.picker.autocmds, "Autocmds" },
+			{ "<leader>nc", snacks.picker.commands, "Commands" },
+			{ "<leader>nh", snacks.picker.help, "Help" },
+			{ "<leader>nk", snacks.picker.keymaps, "Keymaps" },
+			{ "<leader>nn", snacks.picker.notifications, "Notifications" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings)
@@ -106,26 +108,6 @@ return {
 	opts = {
 		picker = {
 			enabled = true,
-			actions = {
-				flash = function(picker)
-					require("flash").jump({
-						pattern = "^",
-						label = { after = { 0, 0 } },
-						search = {
-							mode = "search",
-							exclude = {
-								function(win)
-									return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
-								end,
-							},
-						},
-						action = function(match)
-							local idx = picker.list:row2idx(match.pos[1])
-							picker.list:_move(idx, true, true)
-						end,
-					})
-				end,
-			},
 			formatters = {
 				file = {
 					filename_first = true,
@@ -140,6 +122,12 @@ return {
 					on_show = function()
 						vim.cmd.stopinsert() -- start in normal mode
 					end,
+				},
+				command_history = {
+					layout = {
+						preview = false,
+						preset = "vertical",
+					},
 				},
 				files = {
 					hidden = true,
@@ -210,6 +198,8 @@ return {
 						["<c-]>"] = { "close", mode = { "n", "i" } },
 						["<c-m>"] = { "flash", mode = { "n", "i" } },
 						["m"] = { "flash" },
+						["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+						["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
 					},
 				},
 			},

@@ -11,7 +11,7 @@ k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines", silent = true }
 k("[p", ":pu!<cr>==", { desc = "Paste on new line above" })
 k("]p", ":pu<cr>==", { desc = "Paste on new line below" })
 k("U", "<C-r>", { desc = "Redo" })
-k("<leader>w", ":write<cr>", { desc = "Save file", silent = true }) -- Save changes
+k("<leader>w", vim.cmd.write, { desc = "Save file", silent = true }) -- Save changes
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
 k("ycc", "yygccp", { remap = true }) -- Duplicate a line and comment out the first line.
 
@@ -115,12 +115,12 @@ k("<c-w>[", ":SendBufferToWindow h<cr>", { desc = "Windows: Send to left window"
 k("<c-w>]", ":SendBufferToWindow l<cr>", { desc = "Windows: Send to right window" })
 
 -- Tabs
-k("<leader>tc", ":tabclose<cr>", { desc = "Tabs: Close", silent = true })
-k("<leader>tn", ":tabnew<cr>", { desc = "Tabs: New", silent = true })
+k("<leader>tc", vim.cmd.tabclose, { desc = "Tabs: Close", silent = true })
+k("<leader>tn", vim.cmd.tabnew, { desc = "Tabs: New", silent = true })
 
 -- Quickfix
-k("<leader>qq", ":copen<cr>", { desc = "Quickfix: Open quickfix" })
-k("<leader>ql", ":lopen<cr>", { desc = "Quickfix: Open location list" })
+k("<leader>qq", vim.cmd.copen, { desc = "Quickfix: Open quickfix" })
+k("<leader>ql", vim.cmd.lopen, { desc = "Quickfix: Open location list" })
 k("<leader>qc", ":OpenChangesInQuickfix<cr>", { desc = "Quickfix: open changes list" })
 k("<leader>qj", ":OpenJumpsInQuickfix<cr>", { desc = "Quickfix: open jumps list" })
 

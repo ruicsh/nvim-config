@@ -53,6 +53,7 @@ local function keymaps(bufnr, client)
 	local methods = vim.lsp.protocol.Methods
 
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
+	k("grr", snacks.picker.lsp_references, "LSP: References")
 	k("gO", snacks.picker.lsp_symbols, "LSP: Symbols")
 	k("<leader>dd", vim.diagnostic.setqflist, "Diagnostics")
 

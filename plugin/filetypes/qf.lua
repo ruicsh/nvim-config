@@ -108,8 +108,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 		k("n", "<cr>", mappings.open(), opts)
 
-		k("n", "<c-p>", ":colder<cr>", opts) -- Open previous list.
-		k("n", "<c-n>", ":cnewer<cr>", opts) -- Open next list.
+		k("n", "<c-p>", vim.cmd.colder, opts) -- Open previous list.
+		k("n", "<c-n>", vim.cmd.cnewer, opts) -- Open next list.
 
 		-- Preview the file under the cursor in the preview window.
 		for _, key in pairs({ "<c-j>", "<down>", "]q" }) do

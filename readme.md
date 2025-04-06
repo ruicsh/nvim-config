@@ -160,7 +160,7 @@ Random features added.
 - `<c-m>` search labels
 - `<leader><leader>` fuzzy find files
 - `<leader>ee` file tree explorer
-- `<leader>pp` projects
+- `<leader>.` last picker
 
 ### Directory explorer
 
@@ -180,7 +180,6 @@ Random features added.
 - `<leader>bC` close all
 - `<leader>bo` close the other
 - `<leader>,` pick opened
-- `<leader>.` pick recent
 
 ### Bookmarks:
 
@@ -212,7 +211,10 @@ Random features added.
 - `}` jump down 6 lines
 - `/` find in document
 - `?` find in document with labels
-- `<leader>ff` fuzzy find in workspace
+- `*` find work in document
+- `<leader>/` find in workspace
+- `<leader>?` find in directory
+- `<leader>*` find word in workspace
 
 ### Editing
 
