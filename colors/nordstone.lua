@@ -166,6 +166,11 @@ vim.g.terminal_color_15 = c.nord6
 
 -- CUSTOM
 
+-- bookmarks
+loadColorSet({
+	BookmarkNotification = { fg = c.nord12 },
+})
+
 -- inline-search-count
 loadColorSet({
 	InlineSearchCount = { fg = c.nord3_700, bg = c.nord0 },
@@ -245,7 +250,7 @@ local cmode = {
 
 -- status-line
 loadColorSet({
-	StatusLineBookmarkText = { fg = c.nord12 },
+	StatusLineBookmarkText = { link = "BookmarkNotification" },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
 	StatusLineModeInsert = { bg = cmode.i },

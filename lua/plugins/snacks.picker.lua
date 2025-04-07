@@ -91,7 +91,7 @@ return {
 			{ "<leader>.", snacks.picker.resume, "Recent buffers" },
 			{ "<leader>:", snacks.picker.command_history, "Command history" },
 			{ "<leader>jj", snacks.picker.jumps, "Jumplist" },
-			{ "<leader>bb", bookmarks, "Bookmarks" },
+			{ "<leader>'", bookmarks, "Bookmarks" },
 			{ "<leader>uu", snacks.picker.undo, "Undotree" },
 
 			-- neovim

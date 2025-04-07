@@ -181,10 +181,11 @@ Random features added.
 
 ### Bookmarks:
 
-- `<leader>{1-9}` jump/add bookmark
-- `<leader>bb` list bookmarks
-- `<leader>bd` delete bookmark
-- `<leader>bD` delete all bookmarks
+- `'{1-9}` jump to bookmark
+- `m{1-9}` set bookmark
+- `<leader>md` delete bookmark
+- `<leader>mD` delete all bookmarks
+- `<leader>'` list bookmarks
 
 ### Windows
 
