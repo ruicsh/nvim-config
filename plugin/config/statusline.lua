@@ -122,13 +122,13 @@ end
 
 -- Show the current bookmark
 local function c_bookmark()
-	local line = ""
+	local line = "  "
 
 	-- Check if the file is bookmarked with a global mark
 	local bufnr = vim.api.nvim_get_current_buf()
 	local bookmark = _G.buffer_bookmarks[bufnr]
 	if bookmark then
-		line = line .. " %#StatusLineBookmarkText##" .. bookmark .. " " .. sep()
+		line = "%#StatusLineBookmarkText##" .. bookmark
 	end
 
 	return line
@@ -325,8 +325,8 @@ function _G.status_line()
 	if vim.g.vscode then
 		return table.concat({
 			c_mode(),
-			c_filename(),
 			c_bookmark(),
+			c_filename(),
 		})
 	end
 
@@ -335,13 +335,13 @@ function _G.status_line()
 	return table.concat({
 		hl,
 		c_mode(),
+		c_bookmark(),
 		c_filename(),
 		c_copilot_chat(),
 		c_diffview_blame(),
 		c_search_count(),
 		"%=",
 		"%=",
-		c_bookmark(),
 		c_lsp_diagnostics(),
 		c_git_status(),
 		c_git_branch(),
