@@ -41,6 +41,7 @@ return {
 	end,
 	config = function()
 		local dap = require("dap")
+		local dapui = require("dapui")
 
 		-- Setup icons
 		for name, sign in pairs(icons.dap) do
@@ -54,16 +55,22 @@ return {
 		end
 
 		-- Auto-open dapui when debugging session starts
-		dap.listeners.after.event_initialized["dapui_config"] = function()
-			vim.cmd("tabnew")
-			require("dapui").open()
+		local is_dapui_open = false
+		dap.listeners.before.launch.dapui_config = function()
+			if not is_dapui_open then
+				vim.cmd.tabnew()
+				dapui.open()
+				is_dapui_open = true
+			end
 		end
-		dap.listeners.before.event_terminated["dapui_config"] = function()
-			require("dapui").close()
-		end
-		dap.listeners.before.event_exited["dapui_config"] = function()
-			vim.cmd("tabclose")
-			require("dapui").close()
+
+		-- Auto-close dapui when debugging session ends
+		dap.listeners.before.event_terminated.dapui_config = function()
+			if is_dapui_open then
+				dapui.close()
+				vim.cmd.tabclose()
+				is_dapui_open = false
+			end
 		end
 	end,
 
