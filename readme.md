@@ -362,8 +362,8 @@ Random features added.
 
 ### Git
 
-- `[c` previous hunk
-- `]c` next hunk
+- `[h` previous hunk
+- `]h` next hunk
 - `gh` stage hunk
 - `gH` reset hunk
 - `<leader>hb` open blame in browser

@@ -23,9 +23,8 @@ return {
 			untracked = { text = icons.git.Untracked },
 		},
 		attach_to_untracked = true,
-		current_line_blame = true,
+		current_line_blame = false,
 		current_line_blame_formatter = "<author> • <author_time:%R> • <summary>",
-		current_line_blame_opts = { delay = 2000 },
 		on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")
 
@@ -53,8 +52,8 @@ return {
 				return fn
 			end
 
-			k("n", "]c", nav_hunk("]c", "next"))
-			k("n", "[c", nav_hunk("[c", "prev"))
+			k("n", "]h", nav_hunk("]c", "next"))
+			k("n", "[h", nav_hunk("[c", "prev"))
 
 			-- Actions
 			k("n", "gh", gitsigns.stage_hunk, { desc = "Git: stage hunk" })
