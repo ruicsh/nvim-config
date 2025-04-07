@@ -185,7 +185,7 @@ local function c_lsp_diagnostics()
 		return ""
 	end
 
-	return " " .. table.concat(lines, " ") .. " " .. sep()
+	return "%#StatusLine# " .. table.concat(lines, " ") .. " " .. sep()
 end
 
 -- Show git status
@@ -247,6 +247,15 @@ local function c_cursor_position()
 	local has_tabs = vim.fn.tabpagenr("$") > 1
 
 	return " %l:%c %p%% " .. (has_tabs and sep() or "")
+end
+
+-- Show git blame info
+local function c_git_blame()
+	if not vim.b.gitsigns_blame_line then
+		return ""
+	end
+
+	return "%#StatusLineGitBlameText#" .. vim.b.gitsigns_blame_line .. " " .. sep()
 end
 
 -- Show tabs (only if there are more than one)
@@ -342,6 +351,7 @@ function _G.status_line()
 		c_search_count(),
 		"%=",
 		"%=",
+		c_git_blame(),
 		c_lsp_diagnostics(),
 		c_git_status(),
 		c_git_branch(),

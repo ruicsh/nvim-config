@@ -24,6 +24,7 @@ k("n", closeShortcut, close_buffer_or_window_or_quit)
 k("v", closeShortcut, "<esc>") -- Use it to exit visual mode
 k("t", closeShortcut, "<c-\\><c-n>") -- Return to normal mode in the terminal
 
+-- Custom buffers
 api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = {
@@ -49,23 +50,7 @@ api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-api.nvim_create_autocmd("FileType", {
-	group = augroup,
-	pattern = "oil",
-	callback = function(event)
-		k("n", closeShortcut, ":lua require('oil.actions').close.callback()<cr>", { buffer = event.buf })
-	end,
-})
-
-api.nvim_create_autocmd("FileType", {
-	group = augroup,
-	pattern = "neo-tree",
-	callback = function(event)
-		k("n", closeShortcut, ":Neotree action=close<cr>", { buffer = event.buf })
-	end,
-})
-
--- Close panels that open in a vertical split
+-- Vertical splits
 api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = {
@@ -77,14 +62,25 @@ api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Oil
 api.nvim_create_autocmd("FileType", {
 	group = augroup,
-	pattern = "gitcommit",
+	pattern = "oil",
 	callback = function(event)
-		k({ "n", "i" }, closeShortcut, ":q!<cr>", { buffer = event.buf })
+		k("n", closeShortcut, ":lua require('oil.actions').close.callback()<cr>", { buffer = event.buf })
 	end,
 })
 
+-- neo-tree
+api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = "neo-tree",
+	callback = function(event)
+		k("n", closeShortcut, ":Neotree action=close<cr>", { buffer = event.buf })
+	end,
+})
+
+-- Diffview
 api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = {
@@ -94,7 +90,7 @@ api.nvim_create_autocmd("FileType", {
 	callback = function(event)
 		local function close_diffview()
 			_G.diffview_blame = nil -- reset any blame info
-			vim.cmd("tabclose")
+			vim.cmd.tabclose()
 		end
 
 		k("n", closeShortcut, close_diffview, { buffer = event.buf })

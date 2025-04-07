@@ -366,16 +366,18 @@ Random features added.
 - `]h` next hunk
 - `gh` stage hunk
 - `gH` reset hunk
-- `<leader>hb` open blame in browser
-- `<leader>hB` blame diff
+- `<leader>hb` blame line
+- `<leader>hB` blame file
 - `<leader>hd` diff hunk
 - `<leader>hD` diff workspace
 - `<leader>hh` status
 - `<leader>hl` log file/selection
-- `<leader>hl` log
-- `<leader>ho` push -u origin HEAD
-- `<leader>hp` push
-- `<leader>hx` open file in browser
+- `<leader>hL` log
+- `<leader>hps` push
+- `<leader>hpu` push -u origin HEAD
+- `<leader>hpf` push --force-with-lease
+- `<leader>hxb` open blame in browser
+- `<leader>hxf` open file in browser
 
 ### Merge Conflicts
 

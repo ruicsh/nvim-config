@@ -23,8 +23,8 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>hx", snacks.gitbrowse.open, "Open file in browser" },
-			{ "<leader>hb", open_commit_url, "Open commit in browser" },
+			{ "<leader>hxf", snacks.gitbrowse.open, "Open file in browser" },
+			{ "<leader>hxb", open_commit_url, "Open commit in browser" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")

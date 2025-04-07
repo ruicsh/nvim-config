@@ -28,7 +28,7 @@ return {
 			{ "<leader>hL", ":DiffviewFileHistory<cr>", "Log" },
 			{ "<leader>hl", ":DiffviewFileHistory %<cr>", "Log for file" },
 			{ "<leader>hl", ":'<,'>DiffviewFileHistory<cr>", "Log visual selection", { mode = "v" } },
-			{ "<leader>hB", git_blame_line, "Blame line" },
+			{ "<leader>hb", git_blame_line, "Blame line" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")

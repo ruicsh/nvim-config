@@ -73,7 +73,7 @@ local function delete_bookmark()
 		-- Check if mark is in current buffer
 		if mark_pos[1] ~= 0 and vim.api.nvim_get_current_buf() == mark_pos[3] then
 			vim.cmd("delmarks " .. mark_char)
-			bookmark_notification("Delete mark " .. i)
+			bookmark_notification("Delete mark #" .. i)
 			marks_deleted = true
 		end
 	end
@@ -98,7 +98,7 @@ vim.keymap.set("n", "m", function()
 		local mark_char = string.char(64 + tonumber(mark)) -- A=65, B=66, etc.
 		vim.cmd("mark " .. mark_char)
 		refresh_bookmark_cache()
-		bookmark_notification("Mark " .. mark .. " set")
+		bookmark_notification("Mark #" .. mark .. " set")
 	else
 		-- Pass through the 'm' command followed by the key
 		vim.fn.feedkeys("m" .. mark, "n")
@@ -118,11 +118,11 @@ vim.keymap.set("n", "'", function()
 		local mark_char = string.char(64 + tonumber(mark))
 		local mark_pos = vim.api.nvim_get_mark(mark_char, {})
 		if mark_pos[1] == 0 then
-			bookmark_notification("Mark " .. mark .. " not set")
+			bookmark_notification("Mark #" .. mark .. " not set")
 			return
 		end
 
-		bookmark_notification("Jump to mark " .. mark)
+		bookmark_notification("Jump to mark #" .. mark)
 
 		-- Mark exists in another buffer, check if it's displayed in a window
 		local target_buf = mark_pos[3]

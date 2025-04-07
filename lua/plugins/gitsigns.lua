@@ -23,8 +23,12 @@ return {
 			untracked = { text = icons.git.Untracked },
 		},
 		attach_to_untracked = true,
-		current_line_blame = false,
+		current_line_blame = true,
 		current_line_blame_formatter = "<author> • <author_time:%R> • <summary>",
+		current_line_blame_opts = {
+			delay = 100,
+			virt_text = false,
+		},
 		on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")
 
@@ -55,17 +59,25 @@ return {
 			k("n", "]h", nav_hunk("]c", "next"))
 			k("n", "[h", nav_hunk("[c", "prev"))
 
-			-- Actions
+			-- Hunks (stage, reset)
 			k("n", "gh", gitsigns.stage_hunk, { desc = "Git: stage hunk" })
 			k("n", "gH", gitsigns.reset_hunk, { desc = "Git: reset hunk" })
 			k("v", "gh", function()
 				gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 			end, { desc = "Git: stage hunk" })
-
 			k("v", "gH", function()
 				gitsigns.reset_hunk({ vim.fn.line("'."), vim.fn.line("v") })
 			end, { desc = "Git: reset hunk" })
 
+			-- Blame
+			k("n", "<leader>hB", function()
+				local file = vim.fn.expand("%")
+				vim.cmd.tabnew()
+				vim.cmd.edit(file)
+				gitsigns.blame()
+			end, { desc = "Git: blame line" })
+
+			-- Diff
 			k("n", "<leader>hd", function()
 				vim.wo.foldenable = false
 				gitsigns.preview_hunk_inline()
