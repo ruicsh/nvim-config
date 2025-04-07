@@ -18,26 +18,28 @@ return {
 			dap.continue({ before = "get_args" })
 		end
 
-		return {
-			{ "<c-9>", dap.toggle_breakpoint, desc = "Debug: Toggle Breakpoint" },
-			{ "<c-5>", dap.continue, desc = "Debug: Run/Continue" },
-			{ "<c-s-5>", dap.terminate, desc = "Debug: Stop" },
-			{ "<c-->", dap.step_into, desc = "Step Into" },
-			{ "<c-s-->", dap.step_out, desc = "Step Out" },
-			{ "<c-0>", dap.step_over, desc = "Step Over" },
-			{ "<c-k><c-i>", widgets.hover, desc = "Widgets" },
+		local mappings = {
+			{ "<f5>", dap.continue, "Run/Continue" },
+			{ "<f6>", dap.terminate, "Stop" },
+			{ "<f9>", dap.toggle_breakpoint, "Toggle Breakpoint" },
+			{ "<f10>", dap.step_over, "Step Over" },
+			{ "<f11>", dap.step_into, "Step Into" },
+			{ "<f12>", dap.step_out, "Step Out" },
 
-			{ "<leader>dB", set_breakpoint_condition, desc = "Debug: Breakpoint Condition" },
-			{ "<leader>dC", dap.run_to_cursor, desc = "Debug: Run to Cursor" },
-			{ "<leader>da", start_with_args, desc = "Debug: Run with args" },
-			{ "<leader>dg", dap.goto_, desc = "Debug: Go to Line (No Execute)" },
-			{ "<leader>dj", dap.down, desc = "Debug: Down" },
-			{ "<leader>dk", dap.up, desc = "Debug: Up" },
-			{ "<leader>dl", dap.run_last, desc = "Debug: Run Last" },
-			{ "<leader>dp", dap.pause, desc = "Debug: Pause" },
-			{ "<leader>dr", dap.repl.toggle, desc = "Debug: Toggle REPL" },
-			{ "<leader>ds", dap.session, desc = "Debug: Session" },
+			{ "<c-k><c-i>", widgets.hover, "Widgets" },
+			{ "<leader>dB", set_breakpoint_condition, "Breakpoint Condition" },
+			{ "<leader>dC", dap.run_to_cursor, "Run to Cursor" },
+			{ "<leader>da", start_with_args, "Run with args" },
+			{ "<leader>dg", dap.goto_, "Go to Line (No Execute)" },
+			{ "<leader>dj", dap.down, "Down" },
+			{ "<leader>dk", dap.up, "Up" },
+			{ "<leader>dl", dap.run_last, "Run Last" },
+			{ "<leader>dp", dap.pause, "Pause" },
+			{ "<leader>dr", dap.repl.toggle, "Toggle REPL" },
+			{ "<leader>ds", dap.session, "Session" },
 		}
+
+		return vim.fn.get_lazy_keys_conf(mappings, "Debug")
 	end,
 	config = function()
 		local dap = require("dap")
@@ -68,7 +70,10 @@ return {
 		dap.listeners.before.event_terminated.dapui_config = function()
 			if is_dapui_open then
 				dapui.close()
-				vim.cmd.tabclose()
+				-- Only close the tab if it's not the last one
+				if vim.fn.tabpagenr("$") > 1 then
+					vim.cmd.tabclose()
+				end
 				is_dapui_open = false
 			end
 		end

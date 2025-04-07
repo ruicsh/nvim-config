@@ -345,12 +345,12 @@ Random features added.
 
 ### Debugger:
 
-- `<c-9>` toggle breakpoint
-- `<c-5>` continue
-- `<c-%>` stop
-- `<c-0>` step over
-- `<c-->` step into
-- `<c-_>` step out
+- `<f5>` continue
+- `<f6>` stop
+- `<f9>` toggle breakpoint
+- `<f10>` step over
+- `<f11>` step into
+- `<f12>` step out
 
 ### TypeScript
 
