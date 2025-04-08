@@ -126,9 +126,11 @@ local function c_bookmark()
 
 	-- Check if the file is bookmarked with a global mark
 	local bufnr = vim.api.nvim_get_current_buf()
-	local bookmark = _G.buffer_bookmarks[bufnr]
-	if bookmark then
-		line = "%#StatusLineBookmarkText##" .. bookmark
+	local file = vim.api.nvim_buf_get_name(bufnr)
+	local file_path = vim.fn.fnamemodify(file, ":p")
+	local mark = _G.file_bookmarks[file_path]
+	if mark then
+		line = "%#StatusLineBookmarkText##" .. mark
 	end
 
 	return line
