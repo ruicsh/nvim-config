@@ -42,13 +42,22 @@ return {
 					{ target = "%1.spec.ts", context = "test" },
 				},
 			},
-			{ -- angular
+			{ -- angular (component)
 				pattern = "(.*).component.ts$",
 				target = {
 					{ target = "%1.component.html", context = "template" },
 					{ target = "%1.component.scss", context = "style" },
 					{ target = "%1.component.less", context = "style" },
 					{ target = "%1.component.css", context = "style" },
+					{ target = "%1.component.spec.ts", context = "test" },
+					{ target = "%1.component.test.ts", context = "test" },
+				},
+			},
+			{ -- angular (style)
+				pattern = "(.*).component.scss$",
+				target = {
+					{ target = "%1.component.html", context = "template" },
+					{ target = "%1.component.ts", context = "component" },
 					{ target = "%1.component.spec.ts", context = "test" },
 					{ target = "%1.component.test.ts", context = "test" },
 				},
