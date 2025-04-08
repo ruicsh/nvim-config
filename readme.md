@@ -25,6 +25,8 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
+<sub>37 plugins</sub>
+
 ### UI
 
 - [flash.nvim](https://github.com/folke/flash.nvim) - Search labels
@@ -33,6 +35,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
 - [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - Files tree explorer
 - [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit filesystem like a buffer
+- [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
 - [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers, statuscolumn, indent lines
 
 ### Editing
@@ -178,6 +181,11 @@ Random features added.
 - `<leader>bC` close all
 - `<leader>bo` close the other
 - `<leader>,` pick opened
+- `=` open alternate
+- `<leader>=s` open alternate css
+- `<leader>=t` open alternate test
+- `<leader>=h` open alternate html
+- `<leader>=c` open alternate component
 
 ### Bookmarks:
 

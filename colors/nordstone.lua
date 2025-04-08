@@ -168,7 +168,7 @@ vim.g.terminal_color_15 = c.nord6
 
 -- bookmarks
 loadColorSet({
-	BookmarkNotification = { fg = c.nord3_900 },
+	BookmarkNotification = { fg = c.nord13 },
 })
 
 -- inline-search-count
@@ -386,6 +386,11 @@ loadColorSet({
 	DapUIWatchesError = { fg = c.nord11 },
 	DapUIWatchesValue = { fg = c.nord8 },
 	DapUIWinSelect = { fg = c.nord8, style = "bold" },
+})
+
+-- other.nvim
+loadColorSet({
+	OtherUnderlined = { fg = c.nord12, bg = c.neutral_900 },
 })
 
 -- snacks.nvim
