@@ -1,14 +1,14 @@
 -- Install LSP servers and 3rd-party tools
 -- https://github.com/williamboman/mason.nvim
 
-local LSP_SERVERS = {
+local PACKAGES = {
+	-- LSP
 	"angular-language-server@18.2.0",
 	"ansible-language-server",
 	"css-lsp",
 	"cssmodules-language-server",
 	"css-variables-language-server",
-	"ockerfile-language-server",
-	"eslint-lsp",
+	"dockerfile-language-server",
 	"harper-ls",
 	"html-lsp",
 	"json-lsp",
@@ -17,16 +17,17 @@ local LSP_SERVERS = {
 	"rust-analyzer",
 	"typescript-language-server",
 	"yaml-language-server",
-}
-
-local TOOLS = {
-	"black",
+	-- DAP
 	"codelldb",
-	"flake8",
 	"js-debug-adapter",
+	-- Format
+	"black",
+	"flake8",
 	"prettierd",
-	"pylint",
 	"stylua",
+	-- Lint
+	"eslint-lsp",
+	"pylint",
 }
 
 local function install(pack, version)
@@ -60,7 +61,7 @@ local function syncPackages(ensurePacks)
 	local masonReg = require("mason-registry")
 
 	local function refreshCallback()
-		-- auto-install missing packages & auto-update installed ones
+		-- Auto-install missing packages & auto-update installed ones
 		vim.iter(ensurePacks):each(function(packName)
 			-- Extract package name and pinned version if specified
 			local name, pinnedVersion = packName:match("([^@]+)@?(.*)")
@@ -84,7 +85,7 @@ local function syncPackages(ensurePacks)
 			end
 		end)
 
-		-- auto-clean unused packages
+		-- Auto-clean unused packages
 		local installedPackages = masonReg.get_installed_package_names()
 		vim.iter(installedPackages):each(function(packName)
 			-- Check if installed package is in our ensure list (without version suffix)
@@ -123,10 +124,8 @@ return {
 	},
 	config = function(_, opts)
 		require("mason").setup(opts)
-
-		local ensureInstalled = vim.list_extend(LSP_SERVERS, TOOLS)
 		vim.defer_fn(function()
-			syncPackages(ensureInstalled)
+			syncPackages(PACKAGES)
 		end, 3000)
 	end,
 

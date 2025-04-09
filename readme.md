@@ -201,16 +201,7 @@ Random features added.
 - `<c-w>[` move buffer to window on the left
 - `<c-w>]` move buffer to window on the right
 - `<c-]>` close window
-- `<c-w>m` maximize window
-- `<leader>zm` toggle zen mode
-
-### Tabs
-
-- `gt` jump to next tab
-- `gT` jump to previous tab
-- `{number}gt` jump to tab {number}
-- `<leader>tc` close tab
-- `<leader>tn` new tab
+- `<leader>z` toggle zen mode
 
 ### Navigation
 
@@ -255,8 +246,8 @@ Random features added.
 - `g` buffer
 - `h` git hunk
 - `i` scope
-- `q` quotes ("", '', ``)
-- `t` tags
+- `q` quotes (", ', `)
+- `t` html tags
 
 ### Operators
 
@@ -354,11 +345,11 @@ Random features added.
 ### Debugger:
 
 - `<f5>` continue
-- `<f6>` stop
+- `<s-f5>` stop
 - `<f9>` toggle breakpoint
 - `<f10>` step over
 - `<f11>` step into
-- `<f12>` step out
+- `<s-f11>` step out
 
 ### TypeScript
 

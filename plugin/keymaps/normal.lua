@@ -6,6 +6,8 @@ end
 -- Navigation
 k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines", silent = true })
 k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines", silent = true })
+k("j", "gj", { desc = "Jump down 1 line" })
+k("k", "gk", { desc = "Jump up 1 line" })
 
 -- Editing
 k("[p", ":pu!<cr>==", { desc = "Paste on new line above" })
@@ -113,10 +115,6 @@ k("<leader>bo", bufdelete.other, { desc = "Buffers: Close all other" })
 k("|", "<c-w>w", { desc = "Windows: Switch" })
 k("<c-w>[", ":SendBufferToWindow h<cr>", { desc = "Windows: Send to left window" })
 k("<c-w>]", ":SendBufferToWindow l<cr>", { desc = "Windows: Send to right window" })
-
--- Tabs
-k("<leader>tc", vim.cmd.tabclose, { desc = "Tabs: Close", silent = true })
-k("<leader>tn", vim.cmd.tabnew, { desc = "Tabs: New", silent = true })
 
 -- Quickfix
 k("<leader>qq", vim.cmd.copen, { desc = "Quickfix: Open quickfix" })

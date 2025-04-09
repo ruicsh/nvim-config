@@ -49,6 +49,7 @@ o.statusline = "%!v:lua._G.status_line()" -- statusline format
 
 -- 7 multiple tab pages {{{
 o.showtabline = 0 -- Never show tabline (tabs are shown on the statusline).
+o.tabclose = "uselast" -- Close tab and go to last used tab.
 -- }}}
 
 -- 8 terminal {{{

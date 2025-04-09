@@ -20,11 +20,11 @@ return {
 
 		local mappings = {
 			{ "<f5>", dap.continue, "Run/Continue" },
-			{ "<f6>", dap.terminate, "Stop" },
+			{ "<f17>", dap.terminate, "Stop" }, -- <s-f5>
 			{ "<f9>", dap.toggle_breakpoint, "Toggle Breakpoint" },
 			{ "<f10>", dap.step_over, "Step Over" },
 			{ "<f11>", dap.step_into, "Step Into" },
-			{ "<f12>", dap.step_out, "Step Out" },
+			{ "<f23>", dap.step_out, "Step Out" }, -- <s-f11>
 
 			{ "<c-k><c-i>", widgets.hover, "Widgets" },
 			{ "<leader>dB", set_breakpoint_condition, "Breakpoint Condition" },
@@ -88,14 +88,21 @@ return {
 				expand_lines = false,
 				layouts = {
 					{
-						elements = {
-							{ id = "scopes", size = 0.60 },
-							{ id = "stacks", size = 0.2 },
-							{ id = "breakpoints", size = 0.1 },
-							{ id = "console", size = 0.1 },
-						},
 						position = "right",
 						size = 0.5,
+						elements = {
+							{ id = "scopes", size = 0.5 },
+							{ id = "stacks", size = 0.2 },
+							{ id = "watches", size = 0.2 },
+							{ id = "breakpoints", size = 0.1 },
+						},
+					},
+					{
+						position = "bottom",
+						size = 10,
+						elements = {
+							{ id = "repl" },
+						},
 					},
 				},
 			},
