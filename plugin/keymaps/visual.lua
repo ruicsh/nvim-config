@@ -23,3 +23,13 @@ k("]e", ":m '>+1<cr>gv=gv", { desc = "Move line down" })
 k("[e", ":m '<-2<cr>gv=gv", { desc = "Move line up" })
 
 k("|", "<c-w>w", { desc = "Windows: Switch" })
+
+-- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
+local function replace_selection(direction)
+	vim.g.mc = vim.api.nvim_replace_termcodes("y/\\V<C-r>=escape(@\", '/')<CR><CR>", true, true, true)
+	return function()
+		return vim.g.mc .. "``cg" .. direction
+	end
+end
+k("cn", replace_selection("n"), { expr = true, desc = "Change selection (forward)" })
+k("cN", replace_selection("N"), { expr = true, desc = "Change selection (backward)" })
