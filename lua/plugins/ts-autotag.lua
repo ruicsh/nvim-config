@@ -3,7 +3,7 @@
 
 return {
 	"windwp/nvim-ts-autotag",
-	options = {
+	opts = {
 		opts = {
 			enable_close = true,
 			enable_rename = true,
@@ -13,14 +13,10 @@ return {
 			["htmlangular"] = "html",
 		},
 	},
-	config = function(_, opts)
-		local autotag = require("nvim-ts-autotag")
-		autotag.setup(opts)
-	end,
 
 	ft = { "html", "htmlangular", "typescript", "typescriptreact", "vue" },
+	main = "nvim-ts-autotag",
 	event = "BufRead",
-	enabled = not vim.g.vscode,
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter" },
 	},

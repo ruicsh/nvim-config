@@ -21,6 +21,4 @@ return {
 		}
 		return vim.fn.get_lazy_keys_conf(mappings, "Spider")
 	end,
-
-	event = "BufRead",
 }

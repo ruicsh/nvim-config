@@ -3,7 +3,7 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/filetype/rust", { clear = tr
 -- Setup DAP
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#ccrust-via-codelldb
 local function setup_dap()
-	local dap = require("dap")
+	local dap = package.loaded.dap
 
 	dap.adapters.codelldb = {
 		type = "server",

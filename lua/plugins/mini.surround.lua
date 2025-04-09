@@ -14,6 +14,4 @@ return {
 			update_n_lines = "",
 		},
 	},
-
-	event = "BufRead",
 }

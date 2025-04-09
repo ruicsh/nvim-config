@@ -30,7 +30,7 @@ return {
 			virt_text = false,
 		},
 		on_attach = function(bufnr)
-			local gitsigns = require("gitsigns")
+			local gs = package.loaded.gitsigns
 
 			-- Set keymap, but only if it's not already set
 			local function k(mode, l, r, opts)
@@ -49,7 +49,7 @@ return {
 					if vim.wo.diff then
 						vim.cmd.normal({ diff_cmd, bang = true })
 					else
-						gitsigns.nav_hunk(direction)
+						gs.nav_hunk(direction)
 					end
 				end
 
@@ -60,13 +60,13 @@ return {
 			k("n", "[h", nav_hunk("[c", "prev"))
 
 			-- Hunks (stage, reset)
-			k("n", "gh", gitsigns.stage_hunk, { desc = "Git: stage hunk" })
-			k("n", "gH", gitsigns.reset_hunk, { desc = "Git: reset hunk" })
+			k("n", "gh", gs.stage_hunk, { desc = "Git: stage hunk" })
+			k("n", "gH", gs.reset_hunk, { desc = "Git: reset hunk" })
 			k("v", "gh", function()
-				gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+				gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 			end, { desc = "Git: stage hunk" })
 			k("v", "gH", function()
-				gitsigns.reset_hunk({ vim.fn.line("'."), vim.fn.line("v") })
+				gs.reset_hunk({ vim.fn.line("'."), vim.fn.line("v") })
 			end, { desc = "Git: reset hunk" })
 
 			-- Blame
@@ -74,13 +74,13 @@ return {
 				local file = vim.fn.expand("%")
 				vim.cmd.tabnew()
 				vim.cmd.edit(file)
-				gitsigns.blame()
+				gs.blame()
 			end, { desc = "Git: blame line" })
 
 			-- Diff
 			k("n", "<leader>hd", function()
 				vim.wo.foldenable = false
-				gitsigns.preview_hunk_inline()
+				gs.preview_hunk_inline()
 
 				-- reenable foldenable after preview
 				vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter" }, {
@@ -96,5 +96,5 @@ return {
 		end,
 	},
 
-	event = { "VeryLazy" },
+	event = { "BufReadPost", "BufNewFile" },
 }

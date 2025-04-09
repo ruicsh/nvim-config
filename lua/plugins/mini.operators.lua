@@ -17,6 +17,4 @@ return {
 			prefix = "<leader>s",
 		},
 	},
-
-	event = "BufRead",
 }

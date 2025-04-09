@@ -42,8 +42,8 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "Debug")
 	end,
 	config = function()
-		local dap = require("dap")
-		local dapui = require("dapui")
+		local dap = package.loaded.dap
+		local dapui = package.loaded.dapui
 
 		-- Setup icons
 		for name, sign in pairs(icons.dap) do
@@ -79,7 +79,6 @@ return {
 		end
 	end,
 
-	event = "BufRead",
 	dependencies = {
 		{ -- User interface
 			-- https://github.com/rcarriga/nvim-dap-ui

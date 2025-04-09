@@ -2,7 +2,7 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/filetype/typescript", { clea
 
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#javascript
 local function setup_dap()
-	local dap = require("dap")
+	local dap = package.loaded.dap
 
 	if not dap.adapters["pwa-node"] then
 		dap.adapters["pwa-node"] = {

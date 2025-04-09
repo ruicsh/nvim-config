@@ -89,11 +89,10 @@ return {
 
 	main = "nvim-treesitter.configs",
 	build = ":TSUpdate",
-	event = "BufRead",
+	event = "BufReadPost",
 	enabled = not vim.g.vscode,
 	dependencies = {
-		{
-			-- Syntax aware text objects.
+		{ -- Syntax aware text objects.
 			-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},

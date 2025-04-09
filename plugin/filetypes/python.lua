@@ -90,7 +90,7 @@ end
 -- Setup DAP
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#python
 local function setup_dap(python_path)
-	local dap = require("dap")
+	local dap = package.loaded.dap
 
 	dap.adapters.python = {
 		type = "executable",

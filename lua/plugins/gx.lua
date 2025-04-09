@@ -113,6 +113,4 @@ return {
 	init = function()
 		vim.g.netrw_nogx = 1
 	end,
-
-	cmd = "Browse",
 }

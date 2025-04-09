@@ -648,9 +648,9 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
 	end,
 	config = function()
-		local chat = require("CopilotChat")
-		local utils = require("CopilotChat.utils")
-		local context = require("CopilotChat.context")
+		local chat = package.loaded.CopilotChat
+		local utils = package.loaded["CopilotChat.utils"]
+		local context = package.loaded["CopilotChat.context"]
 
 		vim.fn.load_env_file() -- make sure the env file is loaded
 

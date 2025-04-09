@@ -66,6 +66,5 @@ return {
 		}
 	end,
 
-	cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 	enabled = not vim.g.vscode,
 }

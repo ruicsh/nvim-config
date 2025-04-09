@@ -44,6 +44,4 @@ return {
 			},
 		},
 	},
-
-	event = { "BufReadPre", "BufNewFile" },
 }

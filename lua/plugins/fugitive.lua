@@ -15,7 +15,4 @@ return {
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
 	end,
-
-	lazy = true,
-	cmd = { "Git" },
 }
