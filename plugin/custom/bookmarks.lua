@@ -14,7 +14,11 @@ end
 
 -- Convert a mark number (1-9) to its corresponding character (A-I)
 local function mark2char(mark)
-	return string.char(mark + 64)
+	mark = tostring(mark)
+	if mark:match("[1-9]") then
+		return string.char(tonumber(mark) + 64)
+	end
+	return mark
 end
 
 -- Get the key for the current buffer's bookmarks
@@ -73,76 +77,64 @@ local function delete_bookmark()
 	local mark = _G.file_bookmarks[key]
 
 	if not mark then
-		bookmark_notification("No bookmarks found")
+		bookmark_notification("No bookmark found")
 		return
 	end
 
 	-- Delete any bookmark from the current buffer
 	local char = mark2char(mark)
 	vim.cmd("delmarks " .. char)
-	bookmark_notification("Delete mark #" .. mark)
+	bookmark_notification("Deleted bookmark #" .. mark)
 	_G.file_bookmarks[key] = nil
 end
 
 -- Delete all bookmarks accross all buffers
 local function delete_all_bookmarks()
-	bookmark_notification("Delete all bookmarks")
+	bookmark_notification("Deleted all bookmarks")
 	vim.cmd("delmarks A-I")
 	_G.file_bookmarks = {}
 end
 
--- Get the input mark from the user
-local function get_input_mark()
-	local nr = vim.fn.getchar()
-	if type(nr) == "string" then
-		nr = string.byte(nr)
-	end
-
-	local mark = vim.fn.nr2char(nr)
-	-- Check if it's a number from 1-9
-	if mark:match("[1-9]") then
-		return mark
-	end
-end
-
 -- Set keymaps to set marks [1-9] in the current buffer
 vim.keymap.set("n", "m", function()
-	local mark = get_input_mark()
-	if not mark then
-		vim.fn.feedkeys("m" .. mark, "n")
-		return
-	end
-
-	local key = get_bookmark_key()
+	local mark = vim.fn.getcharstr()
 	local char = mark2char(mark)
+	local key = get_bookmark_key()
 	vim.cmd("mark " .. char)
-	_G.file_bookmarks[key] = mark
 
-	bookmark_notification("Mark #" .. mark .. " set")
+	if not mark:match("[1-9]") then
+		bookmark_notification("Set mark " .. mark)
+	else
+		_G.file_bookmarks[key] = char
+		bookmark_notification("Set bookmark #" .. mark)
+	end
 end, { desc = "Set mark or handle custom marks" })
 
 -- jump to marks [1-9]
 vim.keymap.set("n", "'", function()
-	local mark = get_input_mark()
-	if not mark then
+	local mark = vim.fn.getcharstr()
+
+	-- Default behavior for marks [a-z]
+	if not mark:match("[1-9]") then
 		vim.fn.feedkeys("'" .. mark, "n")
 		return
 	end
 
+	-- If the buffer is displayed in a window, switch to it
 	local char = mark2char(mark)
 	local mark_pos = vim.api.nvim_get_mark(char, {})
 	if mark_pos[1] == 0 then
-		bookmark_notification("Mark #" .. mark .. " not set")
+		bookmark_notification("Bookmark #" .. mark .. " not set")
 		return
 	end
 
-	-- If the buffer is displayed in a window, switch to it
 	local target_buf = mark_pos[3]
 	local found_window = false
 	local wins = vim.fn.win_findbuf(target_buf)
 	if #wins > 0 then
 		vim.api.nvim_set_current_win(wins[1])
 		found_window = true
+		return
 	end
 
 	-- Jump to it in the current window
@@ -150,7 +142,7 @@ vim.keymap.set("n", "'", function()
 		vim.cmd("normal! `" .. char)
 	end
 
-	bookmark_notification("Jump to mark #" .. mark)
+	bookmark_notification("Jump to bookmark #" .. mark)
 end)
 
 -- Delete mark from current buffer
