@@ -182,10 +182,10 @@ Random features added.
 - `<leader>bo` close the other
 - `<leader>,` pick opened
 - `=` open alternate
-- `<leader>=s` open alternate css
-- `<leader>=t` open alternate test
-- `<leader>=h` open alternate html
-- `<leader>=c` open alternate component
+- `=s` open alternate css
+- `=t` open alternate test
+- `=h` open alternate html
+- `=c` open alternate component
 
 ### Bookmarks:
 

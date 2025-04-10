@@ -5,11 +5,11 @@ return {
 	"rgroli/other.nvim",
 	keys = function()
 		local mappings = {
-			{ "=", "<cmd>:Other<cr>", "" },
-			{ "<leader>=c", "<cmd>:Other component<cr>", "" },
-			{ "<leader>=s", "<cmd>:Other style<cr>", "" },
-			{ "<leader>=t", "<cmd>:Other test<cr>", "" },
-			{ "<leader>=h", "<cmd>:Other html<cr>", "" },
+			{ "==", "<cmd>:Other<cr>", "" },
+			{ "=c", "<cmd>:Other component<cr>", "" },
+			{ "=s", "<cmd>:Other style<cr>", "" },
+			{ "=t", "<cmd>:Other test<cr>", "" },
+			{ "=h", "<cmd>:Other html<cr>", "" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Alternate")
@@ -36,7 +36,7 @@ return {
 				},
 			},
 			{ -- typescript
-				pattern = "(.*).*.ts$",
+				pattern = "(.*).ts$",
 				target = {
 					{ target = "%1.test.ts", context = "test" },
 					{ target = "%1.spec.ts", context = "test" },
@@ -45,7 +45,7 @@ return {
 			{ -- angular (component)
 				pattern = "(.*).component.ts$",
 				target = {
-					{ target = "%1.component.html", context = "template" },
+					{ target = "%1.component.html", context = "html" },
 					{ target = "%1.component.scss", context = "style" },
 					{ target = "%1.component.less", context = "style" },
 					{ target = "%1.component.css", context = "style" },
@@ -57,6 +57,15 @@ return {
 				pattern = "(.*).component.scss$",
 				target = {
 					{ target = "%1.component.html", context = "template" },
+					{ target = "%1.component.ts", context = "component" },
+					{ target = "%1.component.spec.ts", context = "test" },
+					{ target = "%1.component.test.ts", context = "test" },
+				},
+			},
+			{ -- angular (html)
+				pattern = "(.*).component.html$",
+				target = {
+					{ target = "%1.component.scss", context = "style" },
 					{ target = "%1.component.ts", context = "component" },
 					{ target = "%1.component.spec.ts", context = "test" },
 					{ target = "%1.component.test.ts", context = "test" },
