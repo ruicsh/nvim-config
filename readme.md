@@ -194,6 +194,7 @@ Random features added.
 - `<leader>md` delete bookmark
 - `<leader>mD` delete all bookmarks
 - `<leader>'` list bookmarks
+- `M{a-z}` delete mark
 
 ### Windows
 

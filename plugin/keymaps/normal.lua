@@ -52,6 +52,12 @@ end, { desc = "Copy directory path" })
 k("cn", "*``cgn", { desc = "Change word (forward)" })
 k("cN", "*``cgN", { desc = "Change word (backward)" })
 
+-- Delete marks
+k("M", function()
+	local mark = vim.fn.getcharstr()
+	vim.cmd.delmark(mark)
+end, { desc = "Delete mark" })
+
 ---
 -- Stop setting keymaps incompatible with vscode
 ---
