@@ -109,10 +109,13 @@ local function c_filename()
 		if ft == "oil" or ft == "neo-tree" then
 			line = line .. " " .. path:sub(7)
 		else
+			local parent = vim.fn.fnamemodify(path, ":h:t")
+			local filename = vim.fn.fnamemodify(path, ":t")
+			local display = parent == filename and filename or parent .. "/" .. filename
 			if vim.g.vscode then
-				line = line .. path
+				line = line .. display
 			else
-				line = line .. " " .. path
+				line = line .. " " .. display
 			end
 		end
 	end
