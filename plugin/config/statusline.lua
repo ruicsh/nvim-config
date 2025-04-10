@@ -251,7 +251,7 @@ local function c_cursor_position()
 
 	local has_tabs = vim.fn.tabpagenr("$") > 1
 
-	return " %l:%c %p%% " .. (has_tabs and sep() or "")
+	return "%4l %3p%% " .. (has_tabs and sep() or "")
 end
 
 -- Show git blame info

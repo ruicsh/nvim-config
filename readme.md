@@ -64,7 +64,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [mason](https://github.com/williamboman/mason.nvim) - LSP package manager
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
-- [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - Fast navigation around the AST tree
+- [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - AST aware navigation
 
 ### Debugging
 
@@ -74,9 +74,9 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ### Git
 
-- [diffview](https://github.com/sindrets/diffview.nvim) - Diffview/Git log
-- [fugitive.vim](https://github.com/tpope/vim-fugitive) - Git wrapper
-- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - Git diff/hunks
+- [diffview](https://github.com/sindrets/diffview.nvim) - diff, log
+- [fugitive.vim](https://github.com/tpope/vim-fugitive) - status, commit, push
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
 
 ## Config
 
@@ -158,7 +158,6 @@ Random features added.
 - `-` open directory explorer
 - `<c-s>` open in horizontal split
 - `<c-v>` open in vertical split
-- `<c-m>` search labels
 - `<leader><leader>` fuzzy find files
 - `<leader>ee` file tree explorer
 - `<leader>.` last picker

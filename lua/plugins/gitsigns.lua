@@ -24,7 +24,7 @@ return {
 		},
 		attach_to_untracked = true,
 		current_line_blame = true,
-		current_line_blame_formatter = "<summary> | <author_time:%x>",
+		current_line_blame_formatter = "<summary> | <author_time:%d-%b-%y>",
 		current_line_blame_opts = {
 			delay = 100,
 			virt_text = false,
