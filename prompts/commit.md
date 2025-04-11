@@ -1,1 +1,1 @@
-Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters. Just respond with the commit message formatted and ready to be saved. Don't wrap lines. Don't use emojis.
+Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters. Just respond with the commit message formatted and ready to be saved. Don't wrap the content with backticks. Don't wrap lines. Don't use emojis.

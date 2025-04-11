@@ -144,22 +144,24 @@ local function save_chat(response)
 		return
 	end
 
-	-- use AI to generate prompt title based on first AI response to user question
+	-- Use AI to generate prompt title based on first AI response to user question
 	local prompt = read_prompt_file("chattitle")
 	chat.ask(vim.trim(prompt:format(response)), {
 		callback = function(gen_response)
 			-- Generate timestamp in format YYYYMMDD_HHMMSS
 			local timestamp = os.date("%Y%m%d_%H%M%S")
-			vim.g.copilot_chat_title = timestamp .. "_" .. vim.trim(gen_response)
+			-- Encode the generated title to make it safe as a filename
+			local safe_title = vim.base64.encode(gen_response):gsub("/", "_"):gsub("+", "-"):gsub("=", "")
+			vim.g.copilot_chat_title = timestamp .. "_" .. vim.trim(safe_title)
 			chat.save(vim.g.copilot_chat_title)
 			return gen_response
 		end,
-		headless = true, -- disable updating chat buffer and history with this question
+		headless = true, -- Disable updating chat buffer and history with this question
 		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
 	})
 end
 
-local function openInAdjacentWindow()
+local function open_in_adjacent_window()
 	local current_win = vim.api.nvim_get_current_win()
 	if not current_win then
 		return
@@ -177,7 +179,7 @@ end
 local function new_chat_window(prompt, opts)
 	local chat = require("CopilotChat")
 
-	openInAdjacentWindow()
+	open_in_adjacent_window()
 	vim.g.copilot_chat_title = nil -- reset chat title used for saving chat history
 	chat.reset()
 
@@ -344,6 +346,28 @@ local function delete_old_chat_files()
 	end
 end
 
+local function decode_title(encoded_title)
+	-- Extract the timestamp part (before first underscore)
+	local timestamp, encoded = encoded_title:match("^(%d%d%d%d%d%d%d%d_%d%d%d%d%d%d)_(.+)$")
+
+	-- Restore base64 padding characters
+	local padding_len = 4 - (#encoded % 4)
+	if padding_len < 4 then
+		encoded = encoded .. string.rep("=", padding_len)
+	end
+
+	-- Restore original base64 characters
+	encoded = encoded:gsub("_", "/"):gsub("-", "+")
+
+	-- Decode and return with timestamp if successful
+	local success, decoded = pcall(vim.base64.decode, encoded)
+	if success and timestamp then
+		return timestamp .. ": " .. decoded
+	else
+		return encoded_title -- Fallback to encoded if decoding fails
+	end
+end
+
 local function list_chat_history()
 	local snacks = require("snacks")
 	local chat = require("CopilotChat")
@@ -427,15 +451,17 @@ local function list_chat_history()
 			end
 
 			vim.g.copilot_chat_title = item.basename
-			openInAdjacentWindow()
+			open_in_adjacent_window()
 
 			chat.open()
 			chat.load(item.basename)
 		end,
 		items = items,
 		format = function(item)
-			local prompt = item.file:match("[0-9]*_[0-9]*_(.+)%.json$")
-			local display = " " .. prompt:gsub("[-_]", " "):gsub("^%l", string.upper)
+			-- local prompt = item.file:match("[0-9]*_[0-9]*_(.+)%.json$")
+			-- local display = " " .. prompt:gsub("_", " "):gsub("^%l", string.upper)
+			local formatted_title = decode_title(item.basename)
+			local display = " " .. formatted_title
 
 			local mtime = vim.fn.getftime(item.file)
 			local date = vim.fn.fmt_relative_time(mtime)
@@ -497,7 +523,7 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local select = require("CopilotChat.select")
 	local bufnr = vim.api.nvim_get_current_buf()
 
-	-- yank everything in the buffer, to feed into the chat later
+	-- Yank everything in the buffer, to feed into the chat later
 	vim.cmd("normal! ggVGy")
 
 	-- Determine which prompt command to use based on work environment
