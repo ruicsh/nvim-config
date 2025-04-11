@@ -630,10 +630,10 @@ return {
 
 			-- actions
 			{ "<leader>ae", action("explain"), "Explain", { mode = "v" } },
-			{ "<leader>af", action("fix"), "Fix", { mode = { "n", "v" } } },
+			{ "<leader>af", action("fix"), "Fix", { mode = { "v" } } },
 			{ "<leader>ai", action("implement"), "Implement", { mode = "v" } },
 			{ "<leader>ao", action("optimize"), "Optimize", { mode = "v" } },
-			{ "<leader>ar", action("review"), "Review", { mode = { "n", "v" } } },
+			{ "<leader>ar", action("review"), "Review", { mode = { "v" } } },
 			{ "<leader>at", action("tests"), "Tests", { mode = "v" } },
 			{ "<leader>aw", action("refactor"), "Refactor", { mode = "v" } },
 
