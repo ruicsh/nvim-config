@@ -1,8 +1,6 @@
--- On VimEnter open all git changed files in current working directory.
+-- Open all git changed files
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/restore-changed-files", { clear = true })
-
--- ignore files with these basenames
+-- ignore files with this basename
 local IGNORE_BASENAMES = {
 	"lazy-lock.json",
 	"package-lock.json",
