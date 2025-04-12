@@ -180,7 +180,7 @@ local function new_chat_window(prompt, opts)
 	local chat = require("CopilotChat")
 
 	open_in_adjacent_window()
-	vim.g.copilot_chat_title = nil -- reset chat title used for saving chat history
+	vim.g.copilot_chat_title = nil -- Reset chat title used for saving chat history
 	chat.reset()
 
 	if prompt ~= "" then

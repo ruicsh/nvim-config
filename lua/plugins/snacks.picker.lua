@@ -87,13 +87,14 @@ return {
 			{ "<leader>*", snacks.picker.grep_word, "Search: Directory" },
 
 			-- current state
+			{ "<leader>'", bookmarks, "Bookmarks" },
 			{ "<leader>,", snacks.picker.buffers, "Buffers" },
 			{ "<leader>.", snacks.picker.resume, "Recent buffers" },
 			{ "<leader>:", snacks.picker.command_history, "Command history" },
 			{ "<leader>jj", snacks.picker.jumps, "Jumplist" },
-			{ "<leader>'", bookmarks, "Bookmarks" },
-			{ "<leader>uu", snacks.picker.undo, "Undotree" },
+			{ "<leader>mm", snacks.picker.marks, "Marks" },
 			{ "<leader>pp", snacks.picker.projects, "Projects" },
+			{ "<leader>uu", snacks.picker.undo, "Undotree" },
 
 			-- neovim
 			{ "<leader>nH", snacks.picker.highlights, "Highlights" },

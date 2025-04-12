@@ -257,7 +257,6 @@ Random features added.
 - `sd{char}` delete surrounding character
 - `sr{target}{replacement}` replace surrounding character
 - `<leader>r{motion}` replace with last yank
-- `<leader>m{motion}` multiply
 - `<leader>s{motion}` sort
 
 ### Completion
