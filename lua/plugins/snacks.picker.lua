@@ -216,6 +216,7 @@ return {
 
 						-- Change cwd to the selected project, only for this tab
 						vim.cmd("tcd " .. vim.fn.fnameescape(item.file))
+						vim.cmd("LoadEnvVars")
 						vim.cmd("RestoreChangedFiles")
 					end,
 				},

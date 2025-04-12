@@ -416,8 +416,6 @@ Random features added.
 
 - `<tab>` toggle
 - `<s-tab>` toggle one foldlevel
-- `[z` more
-- `]z` reduce
 - `zR` set foldlevel to zero
 - `zM` set foldlevel to maximum
 - `<c-Z>` reset saved folds

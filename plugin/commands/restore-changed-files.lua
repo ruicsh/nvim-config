@@ -198,9 +198,9 @@ vim.api.nvim_create_user_command("RestoreChangedFiles", function()
 		files = prune_list(files)
 		files = sort_by_mtime(files)
 
-		-- Open a vertical split and focus on the left, even if there's no files
-		vim.cmd.vsplit()
-		vim.cmd.wincmd("h")
+		vim.cmd("silent only!") -- Close all other windows
+		vim.cmd.vsplit() -- Open a vertical split
+		vim.cmd.wincmd("h") -- Focus on the left window
 
 		if #files == 0 then
 			return

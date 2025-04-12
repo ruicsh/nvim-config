@@ -66,8 +66,6 @@ k("M", function()
 end, { desc = "Delete mark" })
 
 -- Folds
-k("[z", "zm", { desc = "Folds: More" })
-k("]z", "zr", { desc = "Folds: Reduce" })
 k(vim.fn.is_windows() and "<c-Z>" or "<c-s-z>", ":ResetView<cr>", { desc = "Folds: Reset saved view" })
 
 local function toggle_fold()
@@ -137,5 +135,12 @@ k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
 k("<s-cr>", "<c-T>", { desc = "LSP: Jump back from definition" })
 
 -- Miscellaneous
-k("<c-;>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
+
+-- Taba: Go to #{1..9}
+for i = 1, 9 do
+	k("§" .. i, function()
+		vim.cmd.tabnext(i)
+	end, { desc = "Tabs: Go to #" .. i })
+end
