@@ -3,6 +3,9 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/vim-enter", { clear
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
 	group = augroup,
 	callback = function()
+		-- Load env vars from config
+		vim.cmd("LoadEnvVars")
+
 		-- No need to run this if running in vscode
 		if vim.g.vscode then
 			return
@@ -24,7 +27,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 
 		local is_project = vim.fn.isdirectory(vim.fn.getcwd() .. "/.git") == 1
 		if is_project then
-			-- Restore changed files in a vertical split.
+			-- Restore all git changed files in current project
 			vim.cmd("RestoreChangedFiles")
 		end
 	end,

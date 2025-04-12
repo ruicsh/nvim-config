@@ -35,6 +35,9 @@ vim.api.nvim_create_autocmd("TabNewEntered", {
 vim.api.nvim_create_autocmd("TabEnter", {
 	group = augroup,
 	callback = function()
+		-- Load env vars scoped to the current cwd
+		vim.cmd("LoadEnvVars")
+
 		local tab = vim.api.nvim_get_current_tabpage()
 		local buf_nums = cache[tab]
 		if buf_nums then
