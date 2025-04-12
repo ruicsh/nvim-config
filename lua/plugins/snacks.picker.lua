@@ -150,30 +150,33 @@ return {
 					dev = get_project_dirs(),
 					confirm = function(picker, item)
 						picker:close()
-						if item and item.file then
-							-- Check if the project is already open by checking the cwd of each tab
-							local tabpages = vim.api.nvim_list_tabpages()
-							for _, tabpage in ipairs(tabpages) do
-								local tab_cwd = vim.fn.getcwd(-1, tabpage)
-								if tab_cwd == item.file then
-									-- Change to the tab
-									vim.api.nvim_set_current_tabpage(tabpage)
-									return
-								end
-							end
-
-							-- If there are already opened buffers, open a new tab
-							for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-								if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_get_name(bufnr) ~= "" then
-									vim.cmd("tabnew")
-									break
-								end
-							end
-
-							-- Change cwd to the selected project, only for this tab
-							vim.cmd("tcd " .. vim.fn.fnameescape(item.file))
-							Snacks.picker.smart()
+						if not item or not item.file then
+							vim.notify("No project selected", "WARN")
+							return
 						end
+
+						-- Check if the project is already open by checking the cwd of each tab
+						local tabpages = vim.api.nvim_list_tabpages()
+						for _, tabpage in ipairs(tabpages) do
+							local tab_cwd = vim.fn.getcwd(-1, tabpage)
+							if tab_cwd == item.file then
+								-- Change to the tab
+								vim.api.nvim_set_current_tabpage(tabpage)
+								return
+							end
+						end
+
+						-- If there are already opened buffers, open a new tab
+						for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+							if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_get_name(bufnr) ~= "" then
+								vim.cmd("tabnew")
+								break
+							end
+						end
+
+						-- Change cwd to the selected project, only for this tab
+						vim.cmd("tcd " .. vim.fn.fnameescape(item.file))
+						Snacks.picker.smart()
 					end,
 				},
 				marks = {
