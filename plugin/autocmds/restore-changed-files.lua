@@ -195,52 +195,30 @@ local function sort_by_mtime(filepaths)
 	return filepaths
 end
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-	group = augroup,
-	callback = function()
-		-- No need to run this if running in vscode
-		if vim.g.vscode then
+vim.api.nvim_create_user_command("RestoreChangedFiles", function()
+	get_changed_files(function(files)
+		files = prune_list(files)
+		files = sort_by_mtime(files)
+
+		-- Open a vertical split and focus on the left, even if there's no files
+		vim.cmd.vsplit()
+		vim.cmd.wincmd("h")
+
+		if #files == 0 then
 			return
 		end
 
-		-- If vim was opened with files, don't open changed files
-		if #vim.fn.argv() > 0 then
-			return
-		end
+		-- Open the last modified on the left
+		vim.cmd.edit(files[#files])
 
-		-- Check if Lazy is open
-		for _, win in ipairs(vim.api.nvim_list_wins()) do
-			local buf = vim.api.nvim_win_get_buf(win)
-			local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
-			if filetype == "lazy" then
-				return -- Exit the callback if Lazy is open
+		-- If there's more than one file, open them all
+		if #files > 1 then
+			vim.cmd.wincmd("l")
+			for i = 1, #files - 1 do
+				vim.cmd.edit(files[i])
 			end
-		end
-
-		get_changed_files(function(files)
-			files = prune_list(files)
-			files = sort_by_mtime(files)
-
-			-- Open a vertical split and focus on the left, even if there's no files
-			vim.cmd.vsplit()
+			-- Focus on the left window
 			vim.cmd.wincmd("h")
-
-			if #files == 0 then
-				return
-			end
-
-			-- Open the last modified on the left
-			vim.cmd.edit(files[#files])
-
-			-- If there's more than one file, open them all
-			if #files > 1 then
-				vim.cmd.wincmd("l")
-				for i = 1, #files - 1 do
-					vim.cmd.edit(files[i])
-				end
-				-- Focus on the left window
-				vim.cmd.wincmd("h")
-			end
-		end)
-	end,
-})
+		end
+	end)
+end, {})

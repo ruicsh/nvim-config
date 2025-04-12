@@ -95,12 +95,13 @@ Complex configuration options.
 
 Custom built commands to be invoked on the `cmdline` or with keymaps.
 
-|                                                                                                                            |                                              |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [JumpToLastVisitedBuffer](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/jump-to-last-visited-buffer.lua) | Jump to last visited buffer (including Oil). |
-| [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window  |
-| [SendBufferToWindow](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/send-buffer-to-window.lua)            | Send buffer to adjacent window               |
-| [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                  |
+|                                                                                                                            |                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [JumpToLastVisitedBuffer](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/jump-to-last-visited-buffer.lua) | Jump to last visited buffer (including Oil).                         |
+| [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window                          |
+| [RestoreChangedFiles](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/restore-changed-files.lua)           | On VimEnter, open all git changed files in current working directory |
+| [SendBufferToWindow](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/send-buffer-to-window.lua)            | Send buffer to adjacent window                                       |
+| [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                                          |
 
 ### Filetypes
 
@@ -130,7 +131,6 @@ New features built around autocmds (events).
 | [load-env-vars](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/load-env-vars.lua)                             | Load environment variables, global and project scoped.                |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps and custom handlers                          |
 | [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)                   | If neovim is opened with a directory as argument open oil-filemanager |
-| [restore-changed-files](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/restore-changed-files.lua)             | On VimEnter, open all git changed files in current working directory  |
 | [save-load-folds](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/save-load-folds.lua)                         | Save and restore views for each buffer                                |
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                                 | Keep buffers in tabs scoped to the tab they were opened in            |
 | [scroll-eof](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scroll-eof.lua)                                   | Scroll past the end of file with scrolloff                            |
