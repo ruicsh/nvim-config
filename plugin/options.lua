@@ -53,9 +53,9 @@ o.tabclose = "uselast" -- Close tab and go to last used tab.
 -- }}}
 
 -- 8 terminal {{{
-o.title = true -- Show info in the window title
-o.titlelen = 0 -- No limit on title length
-o.titlestring = "%t" -- Show relative path in terminal title
+o.title = false -- Show info in the window title
+o.titlelen = 1 -- No limit on title length
+o.titlestring = "" -- Show relative path in terminal title
 -- }}}
 
 -- 9 using the mouse {{{
