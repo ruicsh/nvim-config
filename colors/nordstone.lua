@@ -262,6 +262,7 @@ loadColorSet({
 	StatusLineModeOtherText = { fg = cmode._ },
 	StatusLineModePending = { bg = cmode.o },
 	StatusLineModePendingText = { fg = cmode.o },
+	StatusLineProject = { fg = c.nord3_700 },
 	StatusLineModeVisual = { bg = cmode.x },
 	StatusLineModeVisualText = { fg = cmode.x },
 	StatusLineSeparator = { fg = c.nord3 },

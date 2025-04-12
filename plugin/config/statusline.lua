@@ -84,6 +84,24 @@ local function c_mode()
 	return string.format("%%#StatusLineMode%s# %%#StatusLineMode%sText# %s %%#StatusLine#", hl, hl, mode)
 end
 
+local function c_project()
+	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+	local hl = "%#StatusLineProject#"
+	local line = hl .. " "
+
+	if project_name == "" then
+		return ""
+	end
+
+	if vim.g.vscode then
+		line = line .. project_name .. ": "
+	else
+		line = line .. " " .. project_name
+	end
+
+	return line
+end
+
 -- Show the current filename
 local function c_filename()
 	local hl = "%#StatusLineFilename#"
@@ -112,11 +130,7 @@ local function c_filename()
 			local parent = vim.fn.fnamemodify(path, ":h:t")
 			local filename = vim.fn.fnamemodify(path, ":t")
 			local display = parent == filename and filename or parent .. "/" .. filename
-			if vim.g.vscode then
-				line = line .. display
-			else
-				line = line .. " " .. display
-			end
+			line = line .. display
 		end
 	end
 
@@ -339,8 +353,9 @@ function _G.status_line()
 	if vim.g.vscode then
 		return table.concat({
 			c_mode(),
-			c_bookmark(),
+			c_project(),
 			c_filename(),
+			c_bookmark(),
 		})
 	end
 
@@ -349,8 +364,9 @@ function _G.status_line()
 	return table.concat({
 		hl,
 		c_mode(),
-		c_bookmark(),
+		c_project(),
 		c_filename(),
+		c_bookmark(),
 		c_copilot_chat(),
 		c_diffview_blame(),
 		c_search_count(),
