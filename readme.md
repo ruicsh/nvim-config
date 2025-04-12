@@ -162,6 +162,7 @@ Random features added.
 - `<leader><leader>` fuzzy find files
 - `<leader>ee` file tree explorer
 - `<leader>.` last picker
+- `<leader>pp` projects
 
 ### Directory explorer
 
