@@ -137,5 +137,5 @@ k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
 k("<s-cr>", "<c-T>", { desc = "LSP: Jump back from definition" })
 
 -- Miscellaneous
-k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+k("<c-;>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
