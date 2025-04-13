@@ -678,7 +678,7 @@ return {
 		local utils = package.loaded["CopilotChat.utils"]
 		local context = package.loaded["CopilotChat.context"]
 
-		vim.fn.load_env_file() -- make sure the env file is loaded
+		vim.fn.load_env_file() -- Make sure the env file is loaded
 
 		customize_chat_window()
 

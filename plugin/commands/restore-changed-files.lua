@@ -198,25 +198,21 @@ vim.api.nvim_create_user_command("RestoreChangedFiles", function()
 		files = prune_list(files)
 		files = sort_by_mtime(files)
 
-		vim.cmd("silent only!") -- Close all other windows
-		vim.cmd.vsplit() -- Open a vertical split
-		vim.cmd.wincmd("h") -- Focus on the left window
-
 		if #files == 0 then
 			return
 		end
 
-		-- Open the last modified on the left
-		vim.cmd.edit(files[#files])
+		vim.cmd("silent only!") -- Close all other windows
 
-		-- If there's more than one file, open them all
+		-- Open all but the last file in the right window
 		if #files > 1 then
-			vim.cmd.wincmd("l")
+			vim.cmd.vsplit() -- Open a vertical split
 			for i = 1, #files - 1 do
 				vim.cmd.edit(files[i])
 			end
-			-- Focus on the left window
-			vim.cmd.wincmd("h")
 		end
+
+		vim.cmd.wincmd("h") -- Focus on the left window
+		vim.cmd.edit(files[#files]) -- Open the last file
 	end)
 end, {})
