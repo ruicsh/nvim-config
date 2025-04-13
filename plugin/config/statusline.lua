@@ -189,18 +189,16 @@ local function c_lsp_diagnostics()
 
 	local lines = {}
 	local keys = { "error", "warning", "information", "hint" }
-	local total_count = 0
 	for i, k in ipairs(keys) do
 		local ki = vim.diagnostic.severity[i]
 		local severity = vim.diagnostic.severity[ki]
 		local count = vim.diagnostic.count(0, { severity = severity })[severity]
 		if count and count > 0 then
-			total_count = total_count + count
 			table.insert(lines, icons.diagnostics[k] .. " " .. count)
 		end
 	end
 
-	if total_count == 0 then
+	if #lines == 0 then
 		return ""
 	end
 
@@ -236,7 +234,7 @@ local function c_git_status()
 
 	cache_git_status[bufnr] = { time = vim.loop.now(), value = git_status }
 
-	return git_status
+	return "%#StatusLine#" .. git_status
 end
 
 -- Show the current git branch
@@ -268,6 +266,16 @@ local function c_cursor_position()
 	return "%4l %3p%% " .. (has_tabs and sep() or "")
 end
 
+-- Show the currently running terminal process
+local function c_terminal_process()
+	local process = _G.get_tab_terminal_process()
+	if not process then
+		return ""
+	end
+
+	return "%#StatusLineTerminalProcess# " .. process
+end
+
 -- Show git blame info
 local function c_git_blame()
 	if not vim.b.gitsigns_blame_line then
@@ -281,7 +289,7 @@ end
 local function c_tabs()
 	local n_tabs = vim.fn.tabpagenr("$")
 
-	-- only show tabs if there are more than one
+	-- Only show tabs if there are more than one
 	if n_tabs == 1 then
 		return ""
 	end
@@ -304,6 +312,7 @@ local c_quickfix = function()
 	return "%#StatusLine#" .. title .. " [%l/%L] %p%%"
 end
 
+-- Show AI Assistant model
 local function c_copilot_chat()
 	local ft = vim.bo.filetype
 	if ft ~= "copilot-chat" then
@@ -328,6 +337,7 @@ local function c_copilot_chat()
 	return table.concat(status, " ")
 end
 
+-- Show git blame on diffview screen
 local function c_diffview_blame()
 	local ft = vim.bo.filetype
 	if not ft:match("Diffview") then
@@ -361,7 +371,7 @@ function _G.status_line()
 
 	local hl = "%#StatusLine#"
 
-	return table.concat({
+	local components = {
 		hl,
 		c_mode(),
 		c_project(),
@@ -370,6 +380,7 @@ function _G.status_line()
 		c_copilot_chat(),
 		c_diffview_blame(),
 		c_search_count(),
+		c_terminal_process(),
 		"%=",
 		"%=",
 		c_git_blame(),
@@ -378,7 +389,16 @@ function _G.status_line()
 		c_git_branch(),
 		c_cursor_position(),
 		c_tabs(),
-	}, " ")
+	}
+
+	local filtered_components = {}
+	for _, component in ipairs(components) do
+		if component ~= "" then
+			table.insert(filtered_components, component)
+		end
+	end
+
+	return table.concat(filtered_components, " ")
 end
 
 -- Used on Quickfix window

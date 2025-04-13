@@ -250,7 +250,7 @@ local cmode = {
 
 -- status-line
 loadColorSet({
-	StatusLineBookmarkText = { fg = c.nord12 },
+	StatusLineBookmarkText = { fg = c.nord7 },
 	StatusLineGitBlameText = { fg = c.nord3_500 },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
@@ -266,6 +266,7 @@ loadColorSet({
 	StatusLineModeVisual = { bg = cmode.x },
 	StatusLineModeVisualText = { fg = cmode.x },
 	StatusLineSeparator = { fg = c.nord3 },
+	StatusLineTerminalProcess = { fg = c.nord11 },
 })
 
 -- PLUGINS
