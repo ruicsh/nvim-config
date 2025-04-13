@@ -236,9 +236,13 @@ Random features added.
 - `<c-d>` delete character in front of cursor
 - `<c-e>` jump to end of line
 - `<c-f>` jump forward one character
-- `<c-r>` paste from clipboard
+- `<c-r>+` paste from clipboard
 - `<c-u>` delete before the cursor in current line
 - `<c-w>` delete word before
+- `<m-bs>` delete backward one word
+- `<m-b>` jump backward one word
+- `<m-d>` delete forward one word
+- `<m-f>` jump forward one word
 
 ### Text objects
 

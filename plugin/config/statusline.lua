@@ -274,12 +274,7 @@ local function c_git_blame()
 		return ""
 	end
 
-	local blame_text = vim.b.gitsigns_blame_line
-	if #blame_text > 60 then
-		blame_text = string.sub(blame_text, 1, 57) .. "..."
-	end
-
-	return "%#StatusLineGitBlameText#" .. blame_text .. " " .. sep()
+	return "%#StatusLineGitBlameText#" .. vim.b.gitsigns_blame_line .. " " .. sep()
 end
 
 -- Show tabs (only if there are more than one)
