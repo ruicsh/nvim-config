@@ -195,7 +195,6 @@ local function customize_chat_window()
 		group = augroup,
 		pattern = "copilot-chat",
 		callback = function()
-			vim.opt_local.foldlevel = 99 -- Open all folds
 			vim.opt_local.conceallevel = 0 -- Text is shown normally
 		end,
 	})

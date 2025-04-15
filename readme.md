@@ -131,7 +131,6 @@ New features built around autocmds (events).
 | [disable-newline-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-newline-comments.lua)       | Disable newline comments                                              |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps, and custom handlers                         |
 | [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)                   | If neovim is opened with a directory as argument open oil             |
-| [save-load-folds](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/save-load-folds.lua)                         | Save and restore views for each buffer                                |
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                                 | Keep buffers in tabs scoped to the tab they were opened in            |
 | [scroll-eof](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scroll-eof.lua)                                   | Scroll past the end of file with scrolloff                            |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua) | Show cursorline only on active window.                                |
@@ -147,6 +146,7 @@ Random features added.
 | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
 | [bookmarks](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/bookmarks.lua)                         | Buffer global bookmarks (harpoon)               |
 | [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)               | Use the same shortcut to close different panels |
+| [folds](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/folds.lua)                                 | Folding keymaps, autocmds and commands          |
 | [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)           | AST aware indentation                           |
 | [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua)     | Search count inline indicator                   |
 | [pause-folds-on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/pause-folds-on-search.lua) | Pause folds on search                           |
@@ -411,10 +411,13 @@ Random features added.
 ### Folds
 
 - `<tab>` toggle
-- `<s-tab>` toggle one foldlevel
+- `<s-tab>` close all other folds
+- `<leader><tab>` toggle one foldlevel
 - `zR` set foldlevel to zero
 - `zM` set foldlevel to maximum
 - `<c-Z>` reset saved folds
+- `[z` jump to previous fold
+- `]z` jump to next fold
 
 ### Application
 

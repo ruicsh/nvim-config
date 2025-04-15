@@ -70,54 +70,6 @@ k("M", function()
 	vim.cmd.delmark(mark)
 end, { desc = "Delete mark" })
 
--- Folds
-k(vim.fn.is_windows() and "<c-Z>" or "<c-s-z>", ":ResetView<cr>", { desc = "Folds: Reset saved view" })
-
-local function toggle_fold()
-	local linenr = vim.fn.line(".")
-	-- If there's no fold to be opened/closed, do nothing.
-	if vim.fn.foldlevel(linenr) == 0 then
-		return
-	end
-
-	-- Open if closed, close if open.
-	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
-	vim.cmd("normal! " .. cmd)
-end
-k("<tab>", toggle_fold, { noremap = true, silent = true, desc = "Folds: Toggle" })
-
-local function toggle_fold_one_level()
-	local linenr = vim.fn.line(".")
-	local current_fold_level = vim.fn.foldlevel(linenr)
-	-- If there's no fold to be opened/closed, do nothing.
-	if current_fold_level == 0 then
-		return
-	end
-
-	-- Open fold if closed (1 level only).
-	local is_open = vim.fn.foldclosed(linenr) == -1
-	if not is_open then
-		vim.cmd("normal! zo")
-		return
-	end
-
-	-- Close all direct children folds.
-	local next_line = linenr + 1
-	while next_line <= vim.fn.line("$") do
-		local next_foldlevel = vim.fn.foldlevel(next_line)
-
-		if next_foldlevel < current_fold_level then
-			return
-		elseif next_foldlevel > current_fold_level and vim.fn.foldclosed(next_line) == -1 then
-			vim.cmd(next_line .. "," .. next_line .. "foldclose")
-			next_line = vim.fn.foldclosedend(next_line) + 1
-		else
-			next_line = next_line + 1
-		end
-	end
-end
-k("<s-tab>", toggle_fold_one_level, { noremap = true, silent = true, desc = "Folds: Toggle (one foldlevel)" })
-
 -- Buffers
 k("<bs>", ":JumpToLastVisitedBuffer<cr>", { desc = "Toggle to last buffer" })
 local bufdelete = require("snacks.bufdelete")
