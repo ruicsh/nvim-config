@@ -62,9 +62,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup,
 	pattern = "*/plugin/options.lua",
 	callback = function()
-		vim.wo.foldmethod = "marker" -- use {{{-}}} to create folds
-		vim.wo.foldexpr = "" -- disable treesitter folding
-		vim.wo.foldmarker = "{{{,}}}" -- set the fold markers
+		vim.wo.foldmethod = "marker" -- Use {{{-}}} to create folds
+		vim.wo.foldexpr = "" -- Disable treesitter folding
+		vim.wo.foldmarker = "{{{,}}}" -- Set the fold markers
 	end,
 })
 

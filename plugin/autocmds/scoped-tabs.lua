@@ -10,6 +10,7 @@ local function is_valid_buffer(bufnr)
 	if not bufnr or bufnr < 1 then
 		return false
 	end
+
 	local exists = vim.api.nvim_buf_is_valid(bufnr)
 	return vim.bo[bufnr].buflisted and exists
 end

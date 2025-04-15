@@ -83,7 +83,7 @@ local function delete_bookmark()
 
 	-- Delete any bookmark from the current buffer
 	local char = mark2char(mark)
-	vim.cmd("delmarks " .. char)
+	vim.cmd.delmarks(char)
 	bookmark_notification("Deleted bookmark #" .. mark)
 	_G.file_bookmarks[key] = nil
 end
@@ -91,7 +91,7 @@ end
 -- Delete all bookmarks accross all buffers
 local function delete_all_bookmarks()
 	bookmark_notification("Deleted all bookmarks")
-	vim.cmd("delmarks A-I")
+	vim.cmd.delmarks("A-I")
 	_G.file_bookmarks = {}
 end
 
@@ -99,24 +99,22 @@ end
 vim.keymap.set("n", "m", function()
 	local mark = vim.fn.getcharstr()
 	local char = mark2char(mark)
-	local key = get_bookmark_key()
-	vim.cmd("mark " .. char)
+	vim.cmd("normal! m" .. char)
 
-	if not mark:match("[1-9]") then
-		bookmark_notification("Set mark " .. mark)
-	else
-		_G.file_bookmarks[key] = char
+	if mark:match("[1-9]") then
+		local key = get_bookmark_key()
+		_G.file_bookmarks[key] = mark
 		bookmark_notification("Set bookmark #" .. mark)
 	end
 end, { desc = "Set mark or handle custom marks" })
 
--- jump to marks [1-9]
+-- Jump to marks [1-9]
 vim.keymap.set("n", "'", function()
 	local mark = vim.fn.getcharstr()
 
 	-- Default behavior for marks [a-z]
 	if not mark:match("[1-9]") then
-		vim.fn.feedkeys("'" .. mark, "n")
+		vim.cmd("normal! `" .. mark)
 		return
 	end
 

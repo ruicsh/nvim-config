@@ -44,8 +44,11 @@ function _G.custom_fold_text()
 	local line = vim.api.nvim_buf_get_lines(0, pos - 1, pos, false)[1]
 	local lang = vim.treesitter.language.get_lang(ft)
 	local parser = vim.treesitter.get_parser(0, lang)
-	local query = vim.treesitter.query.get(parser:lang(), "highlights")
+	if parser == nil then
+		return vim.fn.foldtext()
+	end
 
+	local query = vim.treesitter.query.get(parser:lang(), "highlights")
 	if query == nil then
 		return vim.fn.foldtext()
 	end

@@ -1,4 +1,4 @@
-local icons = require("config.icons")
+local icons = require("config/icons")
 
 -- Takes a table of keys, returns a keymaps lazy config
 vim.fn.get_lazy_keys_conf = function(mappings, desc_prefix)
@@ -71,7 +71,7 @@ vim.fn.notify = function(msg, log_level)
 	return id
 end
 
--- Read .env files on a given directory
+-- Read env files on a given directory
 vim.fn.load_env_file = function(dir)
 	dir = dir and dir or vim.fn.stdpath("config")
 
@@ -100,7 +100,8 @@ end
 local spinners = {} -- Store spinner timers by buffer
 
 vim.fn.start_spinner = function(bufnr, msg)
-	local spinner_timer = vim.uv.new_timer()
+	local new_timer = vim.uv and vim.uv.new_timer or vim.loop.new_timer
+	local spinner_timer = new_timer()
 	if not spinners[bufnr] then
 		spinners[bufnr] = { idx = 1, timer = spinner_timer }
 	end
@@ -120,7 +121,7 @@ vim.fn.start_spinner = function(bufnr, msg)
 				icons.spinner[spinners[bufnr].idx] .. " " .. msg,
 				"",
 			})
-			vim.cmd("normal! G") -- set cursor on the last line
+			vim.cmd("normal! G") -- Set cursor on the last line
 		end)
 	)
 end

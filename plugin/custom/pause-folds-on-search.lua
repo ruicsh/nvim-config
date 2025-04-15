@@ -1,4 +1,4 @@
--- https://github.com/chrisgrieser/nvim-origami/blob/main/lua/origami/pause-folds-on-search.lua
+-- https://github.com/chrisgrieser/nvim-origami/blob/main/lua/origami/features/pause-folds-on-search.lua
 
 local ns = vim.api.nvim_create_namespace("ruicsh/custom/pause-folds-on-search")
 
@@ -24,6 +24,6 @@ vim.on_key(function(char)
 		vim.opt_local.foldenable = false
 	elseif unpauseFold then
 		vim.opt_local.foldenable = true
-		pcall(vim.cmd.foldopen, { bang = true }) -- after closing folds, keep the *current* fold open
+		pcall(vim.cmd.foldopen, { bang = true }) -- After closing folds, keep the *current* fold open
 	end
 end, ns)

@@ -6,8 +6,14 @@ end
 -- Navigation
 k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines", silent = true })
 k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines", silent = true })
-k("j", "gj", { desc = "Jump down 1 line" })
-k("k", "gk", { desc = "Jump up 1 line" })
+k("j", "gj", { desc = "Jump down 1 line" }) -- Always use visual lines
+k("k", "gk", { desc = "Jump up 1 line" }) -- Always use visual lines
+k("<up>", "<c-u>", { desc = "Scroll up half page" })
+k("<down>", "<c-d>", { desc = "Scroll down half page" })
+
+-- Mark position before search
+-- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L149
+k("/", "ms/", { desc = "Search forward" })
 
 -- Editing
 k("[p", ":pu!<cr>==", { desc = "Paste on new line above" })
@@ -16,10 +22,6 @@ k("U", "<C-r>", { desc = "Redo" })
 k("<leader>w", vim.cmd.write, { desc = "Save file", silent = true }) -- Save changes
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
 k("ycc", "yygccp", { remap = true }) -- Duplicate a line and comment out the first line.
-
--- Move lines
-k("]e", ":m .+1<cr>==", { desc = "Move line down" })
-k("[e", ":m .-2<cr>==", { desc = "Move line up" })
 
 -- Don't place on register when deleting/changing.
 k("C", '"_C')
@@ -38,11 +40,13 @@ end, { expr = true })
 k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode
 
+-- Copy relative file path
 k("<leader>yf", function()
 	local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
 	vim.fn.setreg("+", path)
 end, { desc = "Copy relative file path" })
 
+-- Copy directory path
 k("<leader>yd", function()
 	local path = vim.fn.fnamemodify(vim.fn.expand("%:p:h"), ":~:.")
 	vim.fn.setreg("+", path)
@@ -51,6 +55,9 @@ end, { desc = "Copy directory path" })
 -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 k("cn", "*``cgn", { desc = "Change word (forward)" })
 k("cN", "*``cgN", { desc = "Change word (backward)" })
+
+-- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L214C18-L215C1
+k("gV", "`[v`]", { desc = "Select last insert text" })
 
 ---
 -- Stop setting keymaps incompatible with vscode

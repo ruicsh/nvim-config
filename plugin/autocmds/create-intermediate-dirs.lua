@@ -9,7 +9,9 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 		if event.match:match("^%w%w+:[\\/][\\/]") then
 			return
 		end
-		local file = vim.uv.fs_realpath(event.match) or event.match
+
+		local fs_realpath = vim.uv and vim.uv.fs_realpath or vim.loop.fs_realpath
+		local file = fs_realpath(event.match) or event.match
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
 })

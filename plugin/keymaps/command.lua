@@ -3,27 +3,23 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("c", lhs, rhs, options)
 end
 
+-- bash shortcuts
 -- https://github.com/tpope/vim-rsi
 
--- Go to the beginning of the command line
-k("<c-a>", "<home>")
-
--- Access Vim's built-in |c_CTRL-A|.
-k("<c-x><c-a>", "<c-a>")
-
--- Go backwards one character.
+-- Jump back/forward one character.
 k("<c-b>", "<left>")
+k("<c-f>", "<right>")
 
--- Delete the character under the cursor.
-k("<c-d>", function()
-	local pos = vim.fn.getcmdpos()
-	local line = vim.fn.getcmdline()
-	return pos > #line and "<c-d>" or "<del>"
-end, { expr = true })
+-- Jump back/forward one word.
+k("<m-b>", "<s-left>")
+k("<m-f>", "<s-right>")
 
--- Move forward one character.
-k("<c-f>", function()
-	local pos = vim.fn.getcmdpos()
-	local line = vim.fn.getcmdline()
-	return pos > #line and vim.o.cedit or "<right>"
-end, { expr = true })
+-- Delete character in front of cursor
+k("<c-d>", "<del>")
+
+-- Delete back/forward one word.
+k("<m-bs>", "<c-s-w>")
+k("<m-d>", "<s-right><del>")
+
+-- Jump to biginning/end of line.
+k("<c-a>", "<home>")

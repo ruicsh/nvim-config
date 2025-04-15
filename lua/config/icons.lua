@@ -1,6 +1,10 @@
 local M = {}
 
 M = {
+	dap = {
+		Stopped = "",
+		Breakpoint = "",
+	},
 	diagnostics = {
 		error = "",
 		warning = "",
@@ -19,10 +23,6 @@ M = {
 		Untracked = "┃",
 	},
 	spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
-	dap = {
-		Stopped = " ",
-		Breakpoint = " ",
-	},
 }
 
 return M

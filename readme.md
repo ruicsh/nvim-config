@@ -6,10 +6,10 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - **Code** - formatter, comments, code completion, AI powered suggestions
 - **AI Assistant** - suggestions, chat, system prompts, operations, chat history
 - **LSP** - Language Server Protocol client, symbols navigation, diagnostics
-- **Syntax** - highlighting, syntax aware motions and text objects
+- **Syntax** - highlighting, syntax aware motions, text objects
 - **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
 - **Git integration** - status, diffview, commit message editor, buffer integration
-- **Search** - fuzzy find anything, file and workspace scoped search and replace
+- **Search** - fuzzy find anything, file, workspace scoped search and replace
 - **UI** - files and directory explorer, notifications, command palette, bookmarks
 
 <sub>Works on Neovim v0.11 (and vscode-neovim)</sub>
@@ -98,7 +98,7 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 |                                                                                                                            |                                                                      |
 | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | [JumpToLastVisitedBuffer](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/jump-to-last-visited-buffer.lua) | Jump to last visited buffer (including Oil).                         |
-| [LoadEnvVars](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/load-env-vars.lua)                           | Load environment variables, global and project scoped.               |
+| [LoadEnvVars](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/load-env-vars.lua)                           | Load environment variables, global, and project scoped.              |
 | [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window                          |
 | [RestoreChangedFiles](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/restore-changed-files.lua)           | On VimEnter, open all git changed files in current working directory |
 | [SendBufferToWindow](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/send-buffer-to-window.lua)            | Send buffer to adjacent window                                       |
@@ -106,7 +106,7 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 
 ### Filetypes
 
-Custom configuration, keymaps and features dependent on the file's type.
+Custom configuration, keymaps, and features dependent on the file's type.
 
 |                                                                                               |            |
 | --------------------------------------------------------------------------------------------- | ---------- |
@@ -128,9 +128,9 @@ New features built around autocmds (events).
 | [cmdline-hit-enter](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline-hit-enter.lua)                     | Hit-enter on cmdline, auto-toggle on messages                         |
 | [cleanup-cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cleanup-cmdline.lua)                         | Cleanup command line after use                                        |
 | [create-intermediate-dirs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/create-intermediate-dirs.lua)       | Create intermediate directories                                       |
-| [disable-new-line-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-new-line-comments.lua)     | Disable new line comments                                             |
-| [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps and custom handlers                          |
-| [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)                   | If neovim is opened with a directory as argument open oil-filemanager |
+| [disable-newline-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-newline-comments.lua)       | Disable newline comments                                              |
+| [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps, and custom handlers                         |
+| [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)                   | If neovim is opened with a directory as argument open oil             |
 | [save-load-folds](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/save-load-folds.lua)                         | Save and restore views for each buffer                                |
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                                 | Keep buffers in tabs scoped to the tab they were opened in            |
 | [scroll-eof](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scroll-eof.lua)                                   | Scroll past the end of file with scrolloff                            |
@@ -355,14 +355,6 @@ Random features added.
 - `<f10>` step over
 - `<f11>` step into
 - `<s-f11>` step out
-
-### TypeScript
-
-- `<leader>tso` organize imports
-- `<leader>tss` sort imports
-- `<leader>tsu` remove unused imports
-- `<leader>tsd` jump to source definition
-- `<leader>tsr` rename file and update changes to connected files
 
 ### Git
 

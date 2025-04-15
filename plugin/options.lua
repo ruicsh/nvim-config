@@ -7,7 +7,7 @@ o.jumpoptions = { "stack" } -- https://www.reddit.com/r/neovim/comments/16nead7/
 o.ignorecase = true -- Ignore case on search patterns.
 o.inccommand = "nosplit" -- Show live preview of substitution.
 o.path:append("**") -- Enable searching for files on subdirectories.
-o.smartcase = true -- Use case sensitive if keyword contains capital letters.
+o.smartcase = true -- Use case-sensitive if keyword contains capital letters.
 o.startofline = true -- Move cursor to the first non-blank character.
 -- }}}
 

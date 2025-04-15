@@ -1,5 +1,5 @@
 -- Scroll past the end of file just like scrolloff option.
--- simplified version of https://github.com/Aasim-A/scrollEOF.nvim
+-- Simplified version of https://github.com/Aasim-A/scrollEOF.nvim
 -- https://github.com/chrisgrieser/.config/blob/main/nvim/lua/config/autocmds.lua
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/scroll-eof", { clear = true })
@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "WinScrolled" }, {
 
 		if visual_distance_to_eof < scrolloff then
 			local topline = vim.fn.winsaveview().topline
-			-- topline is inaccurate if it is a folded line, thus add number of folded lines
+			-- Topline is inaccurate if it is a folded line, thus add number of folded lines
 			local toplineFoldAmount = vim.fn.foldclosedend(topline) - vim.fn.foldclosed(topline)
 			topline = topline + toplineFoldAmount
 

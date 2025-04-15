@@ -11,7 +11,7 @@ end, { expr = true, unique = true })
 
 vim.keymap.set("n", "Y", function()
 	cursorPreYank = vim.api.nvim_win_get_cursor(0)
-	return "yg_" -- don't include whitespaces at the end
+	return "yg_" -- Don't include whitespaces at the end
 end, { expr = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {

@@ -1,4 +1,4 @@
--- Toogle off hlsearch when entering insert mode and the cursor is moved
+-- Toggle off hlsearch when entering insert mode and the cursor is moved
 -- https://github.com/ibhagwan/nvim-lua/blob/main/lua/autocmd.lua
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/toggle-hlsearch", { clear = true })

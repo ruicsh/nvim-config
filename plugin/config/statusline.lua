@@ -80,7 +80,6 @@ local function c_mode()
 		mode = "GIT"
 	end
 
-	-- return string.format("%%#StatusLineMode%s#  %%#StatusLineModeText# %s", hl, mode)
 	return string.format("%%#StatusLineMode%s# %%#StatusLineMode%sText# %s %%#StatusLine#", hl, hl, mode)
 end
 
@@ -263,7 +262,7 @@ local function c_cursor_position()
 
 	local has_tabs = vim.fn.tabpagenr("$") > 1
 
-	return "%4l %3p%% " .. (has_tabs and sep() or "")
+	return "%#StatusLine#%4l %3p%% " .. (has_tabs and sep() or "")
 end
 
 -- Show the currently running terminal process
