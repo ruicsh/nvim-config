@@ -30,7 +30,7 @@ local function get_snippet(entry)
 	local qtype = get_qtype(entry)
 	local text = entry.text
 
-	-- if no text, return the line from the buffer
+	-- If no text, return the line from the buffer
 	if not text or text == "" then
 		local lnum = entry.lnum and entry.lnum or 1
 		local line = vim.api.nvim_buf_get_lines(entry.bufnr, lnum - 1, lnum, false)[1]
@@ -65,7 +65,7 @@ local typeHighlightMap = {
 
 -- Set the diagnostic signs in the status column
 local function set_statucolumn_signs(bufnr, entries)
-	-- reset all extmarks in the buffer first
+	-- Reset all extmarks in the buffer first
 	vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
 
 	for i, entry in ipairs(entries) do
@@ -135,7 +135,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "qf",
 	callback = function(event)
-		-- set the diagnostic signs in the status column async
+		-- Set the diagnostic signs in the status column async
 		local items = vim.fn.getqflist()
 		set_statucolumn_signs(event.buf, items)
 	end,

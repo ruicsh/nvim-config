@@ -1,13 +1,13 @@
 -- Open all git changed files
 
--- ignore files with this basename
+-- Ignore files with this basename
 local IGNORE_BASENAMES = {
 	"lazy-lock.json",
 	"package-lock.json",
 	"yarn.lock",
 }
 
--- ignore files with these extensions
+-- Ignore files with these extensions
 local IGNORE_EXTENSIONS = {
 	".bmp",
 	".bru",

@@ -21,7 +21,7 @@ vim.api.nvim_create_user_command("JumpToLastVisitedBuffer", function()
 		return
 	end
 
-	-- only switch to last buffer if it exists
+	-- Only switch to last buffer if it exists
 	if vim.fn.bufexists(0) == 1 then
 		vim.cmd("buffer #")
 	end

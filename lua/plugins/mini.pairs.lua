@@ -1,4 +1,4 @@
--- Autopairs.
+-- Auto-pairs.
 -- https://github.com/echasnovski/mini.pairs
 
 return {

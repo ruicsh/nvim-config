@@ -457,8 +457,6 @@ local function list_chat_history()
 		end,
 		items = items,
 		format = function(item)
-			-- local prompt = item.file:match("[0-9]*_[0-9]*_(.+)%.json$")
-			-- local display = " " .. prompt:gsub("_", " "):gsub("^%l", string.upper)
 			local formatted_title = decode_title(item.basename)
 			local display = " " .. formatted_title
 
@@ -714,7 +712,7 @@ return {
 					description = "Pick a file to include in chat context.",
 					input = function(callback)
 						local chat_winid = vim.api.nvim_get_current_win()
-						Snacks.picker.files({
+						Snacks.picker.smart({
 							confirm = function(picker, item)
 								picker:close()
 								-- Return focus to the chat window
@@ -772,7 +770,7 @@ return {
 						end
 
 						-- Get file list using synchronous functions
-						local max_size = 1024 * 100 -- 100KB
+						local max_size = 1024 * 100 -- 100Kb
 						local file_list = {}
 
 						for _, file_path in ipairs(files) do
@@ -797,8 +795,6 @@ return {
 				git_staged = {
 					description = "Includes all staged files in the git repository in chat context.",
 					resolve = function(_, source)
-						local utils = require("CopilotChat.utils")
-
 						-- List files staged for commit, excluding lock files
 						local cmd = { "git", "-C", source.cwd(), "diff", "--no-color", "--no-ext-diff", "--staged" }
 						local EXCLUDE_FILES = { "package-lock.json", "lazy-lock.json", "Cargo.lock" }
@@ -842,7 +838,7 @@ return {
 			},
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
 			prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts"),
-			references_display = "write", -- Display references as md links
+			references_display = "write", -- Display references as markdown links
 			question_header = "꠵ User ",
 			selection = false, -- Have no predefined context by default
 			show_help = false,

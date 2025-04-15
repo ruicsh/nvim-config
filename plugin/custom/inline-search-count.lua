@@ -26,7 +26,7 @@ local function searchCountIndicator(mode)
 	vim.api.nvim_buf_set_extmark(0, countNs, row - 1, 0, {
 		virt_text = { { text, "InlineSearchCount" }, margin },
 		virt_text_pos = lineFull and "right_align" or "eol",
-		priority = 200, -- so it comes in front of `nvim-lsp-endhints`
+		priority = 200, -- So it comes in front of `nvim-lsp-endhints`
 	})
 end
 
@@ -42,9 +42,9 @@ vim.on_key(function(key)
 		return
 	end
 
-	-- works for RHS, therefore no need to consider remaps
+	-- Works for RHS - therefore no need to consider remaps
 	local searchMovement = vim.tbl_contains({ "n", "N", "*", "#" }, key)
-	local shortPattern = vim.fn.getreg("/"):gsub([[\V\C]], ""):len() <= 1 -- for `fF` function
+	local shortPattern = vim.fn.getreg("/"):gsub([[\V\C]], ""):len() <= 1 -- For `fF` function
 
 	if searchCancelled or (not searchMovement and not searchConfirmed) then
 		searchCountIndicator("clear")

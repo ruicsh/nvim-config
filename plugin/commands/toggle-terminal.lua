@@ -90,7 +90,7 @@ local function enter_terminal()
 		terminals[tab_id] = vim.api.nvim_get_current_buf()
 	end
 
-	-- Update process info after a short delay to let terminal initialize
+	-- Update process info after a short delay to initialize terminal
 	vim.defer_fn(function()
 		local process = get_terminal_process(terminals[tab_id])
 		terminal_processes[tab_id] = process

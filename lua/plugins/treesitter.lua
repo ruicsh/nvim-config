@@ -12,7 +12,7 @@ return {
 		end
 
 		return {
-			auto_install = true, -- autoinstall languages that are not installed
+			auto_install = true, -- Auto-install languages that are not installed
 			-- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
 			ensure_installed = {
 				"angular",
@@ -52,7 +52,7 @@ return {
 			highlight = {
 				enable = true,
 				disable = function(_, buf)
-					local max_filesize = 1024 * 1024 -- 1 MB threshold
+					local max_filesize = 1024 * 1024 -- 1 Mb threshold
 					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 					if ok and stats and stats.size > max_filesize then
 						return true

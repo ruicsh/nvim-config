@@ -58,7 +58,7 @@ end
 
 -- Get the project directories from the environment variable
 local function get_project_dirs()
-	vim.fn.load_env_file() -- make sure the env file is loaded
+	vim.fn.load_env_file() -- Make sure the env file is loaded
 
 	local project_dirs = {}
 	local project_dirs_env = vim.fn.getenv("PROJECTS_DIRS")

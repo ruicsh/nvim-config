@@ -8,6 +8,8 @@ k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines", silent = true })
 k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines", silent = true })
 k("j", "gj", { desc = "Jump down 1 line" }) -- Always use visual lines
 k("k", "gk", { desc = "Jump up 1 line" }) -- Always use visual lines
+k("<up>", "gk", { desc = "Jump down 1 line" }) -- Always use visual lines
+k("<down>", "gj", { desc = "Jump up 1 line" }) -- Always use visual lines
 
 -- Mark position before search
 -- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L149
@@ -34,7 +36,7 @@ k("dd", function()
 	return vim.fn.getline(".") == "" and '"_dd' or "dd"
 end, { expr = true })
 
--- Keep same logic from y/c/d on v for selection
+-- Keep same logic from y/c/d on v
 k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode
 

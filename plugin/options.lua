@@ -9,6 +9,7 @@ o.inccommand = "nosplit" -- Show live preview of substitution.
 o.path:append("**") -- Enable searching for files on subdirectories.
 o.smartcase = true -- Use case-sensitive if keyword contains capital letters.
 o.startofline = true -- Move cursor to the first non-blank character.
+o.whichwrap = "b,s,<,>,[,]" -- Move cursor left/right to move to previous/next lines
 -- }}}
 
 -- 3 tags {{{
@@ -74,8 +75,8 @@ o.shortmess:append({ -- Don't show messages:
 	I = true, -- Skip intro message.
 	S = true, -- Search messages, using nvim-hlslens instead.
 	W = true, -- When writing a file.
-	a = true, -- use abbreviations
-	c = true, -- ins-completion-menu messages.
+	a = true, -- Use abbreviations
+	c = true, -- 'ins-completion-menu' messages.
 	s = true, -- Search hit BOTTOM/TOP messages.
 })
 o.showcmd = false -- Do not show command on last line.
@@ -120,7 +121,7 @@ o.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60
 
 -- 16 mapping {{{
 o.timeout = true -- Wait for mapped key sequence to be received
-o.timeoutlen = 350 -- Don't wait 1sec for a possible new key
+o.timeoutlen = 350 -- Don't wait 1 second for a possible new key
 -- }}}
 
 -- 17 reading and writing files {{{
@@ -133,7 +134,7 @@ o.updatetime = 250 -- Time in milliseconds to wait for CursorHold event.
 -- }}}
 
 -- 19 command line editing {{{
-o.wildignore:append({ -- Ignore on file name completion.
+o.wildignore:append({ -- Ignore on filename completion.
 	".DS_store",
 	"**/node_modules/**",
 })

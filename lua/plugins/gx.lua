@@ -33,19 +33,19 @@ return {
 						local package_name = line:match(pattern)
 						if package_name then
 							if package_name:match("^[.]/") then
-								-- the package is a local file
+								-- The package is a local file
 								local current_file = vim.fn.expand("%:p")
 								local current_dir = vim.fn.fnamemodify(current_file, ":h")
 								local path = current_dir .. "/" .. package_name
 								local file = vim.fn.fnameescape(path)
 
-								-- the file is already there
+								-- The file is already there
 								if vim.fn.filereadable(file) == 1 then
 									vim.cmd("edit " .. file)
 									return true
 								end
 
-								-- try out these extensions: .js, .ts, .jsx, .tsx
+								-- Try out these extensions: .js, .ts, .jsx, .tsx
 								local extensions = { ".js", ".ts", ".jsx", ".tsx" }
 								for _, ext in ipairs(extensions) do
 									if vim.fn.filereadable(file .. ext) == 1 then

@@ -4,7 +4,7 @@ end
 
 local k = vim.keymap.set
 
--- run vscode action
+-- Run vscode action
 local function ac(action)
 	return function()
 		require("vscode").action(action)

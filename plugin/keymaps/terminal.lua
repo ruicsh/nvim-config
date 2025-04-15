@@ -9,7 +9,7 @@ k("<c-\\>", function()
 	vim.cmd("ToggleTerminal")
 end, { desc = "Toggle terminal" })
 
--- Leave terminal window with <C-w>hjkl.
+-- Leave terminal window with <c-w>hjkl.
 local code_term_esc = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
 for _, key in ipairs({ "h", "j", "k", "l" }) do
 	k("<C-w>" .. key, function()
