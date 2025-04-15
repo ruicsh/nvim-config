@@ -8,8 +8,6 @@ k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines", silent = true })
 k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines", silent = true })
 k("j", "gj", { desc = "Jump down 1 line" }) -- Always use visual lines
 k("k", "gk", { desc = "Jump up 1 line" }) -- Always use visual lines
-k("<up>", "<c-u>", { desc = "Scroll up half page" })
-k("<down>", "<c-d>", { desc = "Scroll down half page" })
 
 -- Mark position before search
 -- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L149
