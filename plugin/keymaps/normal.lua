@@ -59,6 +59,12 @@ k("cN", "*``cgN", { desc = "Change word (backward)" })
 -- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L214C18-L215C1
 k("gV", "`[v`]", { desc = "Select last insert text" })
 
+-- Center cursor
+k("n", "nzz", { desc = "Search: Next" }) -- When jumping to next search result
+k("N", "Nzz", { desc = "Search: Previous" }) -- When jumping to previous search result
+k("<c-o>", "<c-o>zz", { desc = "Jump to older cursor position" }) -- When jumping to older cursor position
+k("<c-i>", "<tab>zz", { desc = "Jump to newer cursor position" }) -- When jumping to newer cursor position
+
 ---
 -- Stop setting keymaps incompatible with vscode
 ---
