@@ -5,6 +5,7 @@ if vim.g.vscode then
 end
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/custom/folds", { clear = true })
+local ns = vim.api.nvim_create_namespace("ruicsh/custom/folds")
 
 local IGNORE_FILETYPES = {
 	"DiffviewFileHistory",
@@ -148,21 +149,21 @@ k("<tab>", function()
 	-- Open if closed, close if open.
 	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
 	vim.cmd("normal! " .. cmd)
-end, { noremap = true, silent = true, desc = "Folds: Toggle" })
+end, { silent = true, desc = "Folds: Toggle" })
 
 -- Close all other folds
 k("<s-tab>", function()
 	local linenr = vim.fn.line(".")
 	if vim.fn.foldlevel(linenr) == 0 then
-		return "<s-tab>"
+		return
 	end
 
 	vim.cmd("normal! mt") -- Save the current position
-	vim.cmd("normal! zM") -- Close all folds
+	vim.cmd("normal! zM") -- Close all folds in buffer
 	vim.cmd("normal! `t") -- Return to original position
-	vim.cmd("normal! zO") -- Open all folds
+	vim.cmd("normal! zO") -- Open current fold
 	vim.cmd("delmarks t") -- Delete the mark
-end, { expr = true, silent = true, desc = "Folds: Close all other" })
+end, { silent = true, desc = "Folds: Close all other" })
 
 -- Toggle fold (one foldlevel)
 k("<leader><tab>", function()
@@ -184,7 +185,6 @@ k("<leader><tab>", function()
 	local next_line = linenr + 1
 	while next_line <= vim.fn.line("$") do
 		local next_foldlevel = vim.fn.foldlevel(next_line)
-
 		if next_foldlevel < current_fold_level then
 			return
 		elseif next_foldlevel > current_fold_level and vim.fn.foldclosed(next_line) == -1 then
