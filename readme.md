@@ -203,7 +203,6 @@ Random features added.
 - `<c-w>[` move buffer to window on the left
 - `<c-w>]` move buffer to window on the right
 - `<c-]>` close window
-- `<leader>z` toggle zen mode
 
 ### Navigation
 
@@ -411,8 +410,8 @@ Random features added.
 ### Folds
 
 - `<tab>` toggle
-- `<s-tab>` close all other folds
-- `<leader><tab>` toggle one foldlevel
+- `<leader><tab>` close all other folds
+- `<leader>zz` toggle one foldlevel
 - `zR` set foldlevel to zero
 - `zM` set foldlevel to maximum
 - `<c-Z>` reset saved folds

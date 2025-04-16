@@ -152,7 +152,7 @@ k("<tab>", function()
 end, { silent = true, desc = "Folds: Toggle" })
 
 -- Close all other folds
-k("<s-tab>", function()
+k("<leader><tab>", function()
 	local linenr = vim.fn.line(".")
 	if vim.fn.foldlevel(linenr) == 0 then
 		return
@@ -166,7 +166,7 @@ k("<s-tab>", function()
 end, { silent = true, desc = "Folds: Close all other" })
 
 -- Toggle fold (one foldlevel)
-k("<leader><tab>", function()
+k("<leader>zz", function()
 	local linenr = vim.fn.line(".")
 	local current_fold_level = vim.fn.foldlevel(linenr)
 	-- If there's no fold to be opened/closed, do nothing.
