@@ -6,14 +6,17 @@ end
 -- Navigation
 k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines", silent = true })
 k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines", silent = true })
-k("j", "gj", { desc = "Jump down 1 line" }) -- Always use visual lines
-k("k", "gk", { desc = "Jump up 1 line" }) -- Always use visual lines
-k("<up>", "gk", { desc = "Jump down 1 line" }) -- Always use visual lines
-k("<down>", "gj", { desc = "Jump up 1 line" }) -- Always use visual lines
-
--- Mark position before search
--- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L149
-k("/", "ms/", { desc = "Search forward" })
+-- Store relative line number jumps in the jumplist if they exceed a threshold.
+k("k", function()
+	return vim.v.count and (vim.v.count > 5 and "m'" .. vim.v.count or "") .. "k" or "gk"
+end, { expr = true })
+k("j", function()
+	return vim.v.count and (vim.v.count > 5 and "m'" .. vim.v.count or "") .. "j" or "gj"
+end, { expr = true })
+-- <c-i> would trigger the toggle fold because it's the same as <tab>
+-- ' as in jump to mark and ;, as used in the changelist (g;, g,).
+k("';", "<c-o>", { desc = "Older cursor position" })
+k("',", "<c-i>", { desc = "Newer cursor position" })
 
 -- Editing
 k("[p", ":pu!<cr>==", { desc = "Paste on new line above" })
@@ -62,8 +65,20 @@ k("gV", "`[v`]", { desc = "Select last insert text" })
 -- Center cursor
 k("n", "nzz", { desc = "Search: Next" }) -- When jumping to next search result
 k("N", "Nzz", { desc = "Search: Previous" }) -- When jumping to previous search result
-k("<c-o>", "<c-o>zz", { desc = "Jump to older cursor position" }) -- When jumping to older cursor position
-k("<c-i>", "<tab>zz", { desc = "Jump to newer cursor position" }) -- When jumping to newer cursor position
+
+-- Mark position before search
+-- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L149
+k("/", "ms/", { desc = "Search forward" })
+
+-- List messages in a buffer
+-- https://github.com/deathbeam/dotfiles/blob/master/vim/.vimrc#L178C1-L179C1
+k("<leader>nm", function()
+	vim.cmd("botright new +set\\ buftype=nofile\\ bufhidden=wipe\\ wrap")
+	vim.api.nvim_win_set_height(0, math.floor(vim.o.lines * 0.2)) -- Set height to 30% of screen
+	vim.cmd("put =execute('messages')")
+end, { desc = "Messages" })
+
+k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
 
 ---
 -- Stop setting keymaps incompatible with vscode
@@ -101,9 +116,8 @@ k("<s-cr>", "<c-T>", { desc = "LSP: Jump back from definition" })
 
 -- Miscellaneous
 k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
-k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
 
--- Taba: Go to #{1..9}
+-- Tabs: Go to #{1..9}
 for i = 1, 9 do
 	k("§" .. i, function()
 		vim.cmd.tabnext(i)

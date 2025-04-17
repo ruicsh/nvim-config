@@ -410,13 +410,11 @@ Random features added.
 ### Folds
 
 - `<tab>` toggle
-- `<leader><tab>` close all other folds
-- `<leader>zz` toggle one foldlevel
-- `zR` set foldlevel to zero
-- `zM` set foldlevel to maximum
-- `<c-Z>` reset saved folds
+- `z{0-9}` set foldlevel to {0-9}
 - `[z` jump to previous fold
 - `]z` jump to next fold
+- `<leader><tab>` toggle one foldlevel
+- `<c-Z>` reset saved folds
 
 ### Application
 

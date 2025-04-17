@@ -151,22 +151,8 @@ k("<tab>", function()
 	vim.cmd("normal! " .. cmd)
 end, { silent = true, desc = "Folds: Toggle" })
 
--- Close all other folds
-k("<leader><tab>", function()
-	local linenr = vim.fn.line(".")
-	if vim.fn.foldlevel(linenr) == 0 then
-		return
-	end
-
-	vim.cmd("normal! mt") -- Save the current position
-	vim.cmd("normal! zM") -- Close all folds in buffer
-	vim.cmd("normal! `t") -- Return to original position
-	vim.cmd("normal! zO") -- Open current fold
-	vim.cmd("delmarks t") -- Delete the mark
-end, { silent = true, desc = "Folds: Close all other" })
-
 -- Toggle fold (one foldlevel)
-k("<leader>zz", function()
+k("<leader><tab>", function()
 	local linenr = vim.fn.line(".")
 	local current_fold_level = vim.fn.foldlevel(linenr)
 	-- If there's no fold to be opened/closed, do nothing.
@@ -244,3 +230,13 @@ k("]z", function()
 		vim.api.nvim_win_set_cursor(0, { foldStart, 0 })
 	end
 end, { desc = "Folds: Jump to next" })
+
+-- Set foldlevel
+k("z§", function()
+	vim.wo.foldlevel = 0
+end, { desc = "Folds: Set foldlevel to 0" })
+for i = 1, 9 do
+	k("z" .. i, function()
+		vim.wo.foldlevel = i
+	end, { desc = "Folds: Set foldlevel to " .. i })
+end
