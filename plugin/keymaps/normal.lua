@@ -7,11 +7,12 @@ end
 k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines", silent = true })
 k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines", silent = true })
 -- Store relative line number jumps in the jumplist if they exceed a threshold.
+-- For small jumps, use visual lines.
 k("k", function()
-	return vim.v.count and (vim.v.count > 5 and "m'" .. vim.v.count or "") .. "k" or "gk"
+	return vim.v.count > 5 and "m'" .. vim.v.count .. "k" or "gk"
 end, { expr = true })
 k("j", function()
-	return vim.v.count and (vim.v.count > 5 and "m'" .. vim.v.count or "") .. "j" or "gj"
+	return vim.v.count > 5 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
 -- <c-i> would trigger the toggle fold because it's the same as <tab>
 -- ' as in jump to mark and ;, as used in the changelist (g;, g,).
@@ -26,7 +27,7 @@ k("<leader>w", vim.cmd.write, { desc = "Save file", silent = true }) -- Save cha
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
 k("ycc", "yygccp", { remap = true }) -- Duplicate a line and comment out the first line.
 
--- Don't place on register when deleting/changing.
+-- Don't place on register when changing text or deleting a character.
 k("C", '"_C')
 k("c", '"_c')
 k("cc", '"_cc')
@@ -39,7 +40,7 @@ k("dd", function()
 	return vim.fn.getline(".") == "" and '"_dd' or "dd"
 end, { expr = true })
 
--- Keep same logic from y/c/d on v
+-- Keep same logic from `y/c/d` on `v`
 k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode
 
@@ -67,8 +68,65 @@ k("n", "nzz", { desc = "Search: Next" }) -- When jumping to next search result
 k("N", "Nzz", { desc = "Search: Previous" }) -- When jumping to previous search result
 
 -- Mark position before search
--- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L149
-k("/", "ms/", { desc = "Search forward" })
+-- Use `'s` to go back to where search started
+-- https://github.com/justinmk/config/blob/master/.config/nvim/plugin/my/keymaps.lua#L51
+local mark_search_keys = {
+	["/"] = "Search forward",
+	["*"] = "Search current word (forward)",
+	["#"] = "Search current word (backward)",
+	["£"] = "Search current word (backward)",
+	["g*"] = "Search current word (forward, not whole word)",
+	["g#"] = "Search current word (backward, not whole word)",
+	["g£"] = "Search current word (backward, not whole word)",
+}
+for key, desc in pairs(mark_search_keys) do
+	k(key, function()
+		return "ms" .. key
+	end, { expr = true, desc = desc })
+end
+
+-- Split search
+-- Mimics the native behavior of `<c-w>i` :h CTRL-W_i
+local split_search_keys = {
+	["/"] = "Split window and search",
+	["*"] = "Split window and search current word (forward)",
+	["#"] = "Split window and search current word (backward)",
+	["£"] = "Split window and search current word (backward)",
+	["g*"] = "Split window and search current word (forward, not whole word)",
+	["g#"] = "Split window and search current word (backward, not whole word)",
+	["g£"] = "Split window and search current word (backward, not whole word)",
+}
+for key, desc in pairs(split_search_keys) do
+	k("<c-w>" .. key, function()
+		return "<c-w>s" .. key
+	end, { expr = true, desc = desc })
+end
+
+-- Make `<c-w><c-i>` work with `n` and `N`
+k("<c-w><c-i>", function()
+	local cword = vim.fn.expand("<cword>")
+	vim.cmd.split()
+	vim.cmd("normal! gg")
+	vim.cmd("/" .. vim.fn.escape(cword, "\\[]^$.*~/"))
+	vim.cmd("normal! n")
+end, { desc = "Split window and search current word from beginning of file" })
+
+-- This simulates the native `[<c-i>` behavior but doesn't include imported files.
+-- It also allows using `n` to jump to the next search result (native is `]<c-i>`).
+-- `<c-i>` is the same as `<tab>` :h [_CTRL-I
+k("[<c-i>", function()
+	local cword = vim.fn.expand("<cword>")
+	vim.cmd("normal! ms")
+	vim.cmd("normal! gg")
+	vim.cmd("/" .. vim.fn.escape(cword, "\\[]^$.*~/"))
+	vim.cmd("normal! n")
+end, { desc = "Search current word (from beginning of file)" })
+
+-- Clear search highlight when moving back to position before starting the search
+k("'s", function()
+	vim.cmd("normal! `s")
+	vim.cmd.nohlsearch()
+end, { desc = "Jump to last search" })
 
 -- List messages in a buffer
 -- https://github.com/deathbeam/dotfiles/blob/master/vim/.vimrc#L178C1-L179C1
