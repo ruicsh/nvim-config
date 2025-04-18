@@ -63,9 +63,9 @@ k("cN", "*``cgN", { desc = "Change word (backward)" })
 -- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L214C18-L215C1
 k("gV", "`[v`]", { desc = "Select last insert text" })
 
--- Center cursor
-k("n", "nzz", { desc = "Search: Next" }) -- When jumping to next search result
-k("N", "Nzz", { desc = "Search: Previous" }) -- When jumping to previous search result
+-- Don't store jumps when browsing search results
+k("n", ":keepjumps normal! n<cr>", { desc = "Search: Next" })
+k("N", ":keepjumps normal! N<cr>", { desc = "Search: Previous" })
 
 -- Mark position before search
 -- Use `'s` to go back to where search started
