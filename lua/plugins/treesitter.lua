@@ -1,16 +1,9 @@
 -- Code parser
 -- https://github.com/nvim-treesitter/nvim-treesitter
 
-local ts = require("config/treesitter")
-
 return {
 	"nvim-treesitter/nvim-treesitter",
 	opts = function()
-		local scopes_outer = {}
-		for _, scope in ipairs(ts.query.scope) do
-			table.insert(scopes_outer, scope .. ".outer")
-		end
-
 		return {
 			auto_install = true, -- Auto-install languages that are not installed
 			-- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
@@ -72,17 +65,6 @@ return {
 			},
 			indent = {
 				enable = true,
-			},
-			textobjects = {
-				move = {
-					enable = true,
-					goto_previous_start = { -- beginning of scope
-						["[i"] = { query = scopes_outer },
-					},
-					goto_next_end = { -- end of scope
-						["]i"] = { query = scopes_outer },
-					},
-				},
 			},
 		}
 	end,
