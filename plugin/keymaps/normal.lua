@@ -80,9 +80,7 @@ local mark_search_keys = {
 	["g£"] = "Search current word (backward, not whole word)",
 }
 for key, desc in pairs(mark_search_keys) do
-	k(key, function()
-		return "ms" .. key
-	end, { expr = true, desc = desc })
+	k(key, "ms" .. key, { desc = desc })
 end
 
 -- Split search
@@ -97,9 +95,7 @@ local split_search_keys = {
 	["g£"] = "Split window and search current word (backward, not whole word)",
 }
 for key, desc in pairs(split_search_keys) do
-	k("<c-w>" .. key, function()
-		return "<c-w>s" .. key
-	end, { expr = true, desc = desc })
+	k("<c-w>" .. key, "<c-w>s" .. key, { desc = desc })
 end
 
 -- Make `<c-w><c-i>` work with `n` and `N`
