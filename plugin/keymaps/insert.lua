@@ -23,4 +23,4 @@ k("<m-d>", "<c-o>dw")
 
 -- Jump to biginning/end of line.
 k("<c-a>", "<c-o>^")
-k("<c-e>", "<c-o>$")
+k("<c-e>", "<c-o>$", { unique = false })

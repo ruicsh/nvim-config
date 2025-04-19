@@ -1,7 +1,7 @@
 -- Use the same shortcut to close different panels.
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 
-local closeShortcut = "<c-]>"
+local closeShortcut = "<c-e>"
 local api = vim.api
 local k = vim.keymap.set
 

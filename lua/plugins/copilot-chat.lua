@@ -824,8 +824,8 @@ return {
 					insert = "<c-y>",
 				},
 				close = {
-					normal = "<c-]>",
-					insert = "<c-]>",
+					normal = "<c-e>",
+					insert = "<c-e>",
 				},
 				reset = {
 					normal = "<c-x>",

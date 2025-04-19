@@ -99,7 +99,6 @@ return {
 			["<c-y>"] = { "select_and_accept", "fallback" },
 			["<cr>"] = { "select_and_accept", "fallback" },
 			["<c-e>"] = { "hide", "fallback" },
-			["<c-]>"] = { "hide", "fallback" },
 			["<c-u>"] = { "scroll_documentation_up", "fallback" },
 			["<c-d>"] = { "scroll_documentation_down", "fallback" },
 		},

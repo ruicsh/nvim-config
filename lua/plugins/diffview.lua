@@ -54,7 +54,7 @@ return {
 					{ "n", "j", actions.select_next_entry, { desc = "Open the log for the next file" } },
 				},
 				help_panel = {
-					{ "n", "<c-]>", actions.close },
+					{ "n", "<c-e>", actions.close },
 				},
 			},
 			hooks = {

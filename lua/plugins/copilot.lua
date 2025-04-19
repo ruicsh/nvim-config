@@ -28,7 +28,7 @@ return {
 				accept_line = "<c-l>",
 				next = "<c-j>",
 				prev = "<c-k>",
-				dismiss = "<c-]>",
+				dismiss = "<c-e>",
 			},
 		},
 	},

@@ -174,11 +174,11 @@ Random features added.
 - `gs` change sort
 - `g.` toggle hidden
 - `g\` toggle trash
-- `<c-]>` close explorer
+- `<c-e>` close explorer
 
 ### Buffers
 
-- `<c-]>` close
+- `<c-e>` close
 - `<leader>bC` close all
 - `<leader>bo` close the other
 - `<leader>,` pick opened
@@ -202,7 +202,7 @@ Random features added.
 - `|` switch windows
 - `<c-w>[` move buffer to window on the left
 - `<c-w>]` move buffer to window on the right
-- `<c-]>` close window
+- `<c-e>` close window
 
 ### Navigation
 
@@ -298,7 +298,7 @@ Random features added.
 - `<c-w>` accept word
 - `<c-j>` next
 - `<c-k>` previous
-- `<c-]>` dismiss
+- `<c-e>` dismiss
 
 ### Logging
 

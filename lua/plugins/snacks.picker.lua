@@ -225,7 +225,7 @@ return {
 			win = {
 				input = {
 					keys = {
-						["<c-]>"] = { "close", mode = { "n", "i" } },
+						["<c-e>"] = { "close", mode = { "n", "i" } },
 						["<c-m>"] = { "flash", mode = { "n", "i" } },
 						["m"] = { "flash" },
 						["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
