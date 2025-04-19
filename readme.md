@@ -101,7 +101,6 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 | [LoadEnvVars](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/load-env-vars.lua)                           | Load environment variables, global, and project scoped.              |
 | [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window                          |
 | [RestoreChangedFiles](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/restore-changed-files.lua)           | On VimEnter, open all git changed files in current working directory |
-| [SendBufferToWindow](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/send-buffer-to-window.lua)            | Send buffer to adjacent window                                       |
 | [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                                          |
 
 ### Filetypes
@@ -200,8 +199,6 @@ Random features added.
 ### Windows
 
 - `|` switch windows
-- `<c-w>[` move buffer to window on the left
-- `<c-w>]` move buffer to window on the right
 - `<c-e>` close window
 
 ### Navigation

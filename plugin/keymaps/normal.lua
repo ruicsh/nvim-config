@@ -148,8 +148,6 @@ k("<leader>bo", bufdelete.other, { desc = "Buffers: Close all other" })
 
 -- Windows
 k("|", "<c-w>w", { desc = "Windows: Switch" })
-k("<c-w>[", ":SendBufferToWindow h<cr>", { desc = "Windows: Send to left window" })
-k("<c-w>]", ":SendBufferToWindow l<cr>", { desc = "Windows: Send to right window" })
 
 -- Quickfix
 -- Toggle
