@@ -179,10 +179,6 @@ k("<leader>ql", vim.cmd.lopen, { desc = "Quickfix: Open location list" })
 k("<leader>qc", ":OpenChangesInQuickfix<cr>", { desc = "Quickfix: open changes list" })
 k("<leader>qj", ":OpenJumpsInQuickfix<cr>", { desc = "Quickfix: open jumps list" })
 
--- LSP navigation
-k("<cr>", "<c-]>", { desc = "LSP: Jump to definition" })
-k("<s-cr>", "<c-T>", { desc = "LSP: Jump back from definition" })
-
 -- Miscellaneous
 k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 

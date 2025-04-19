@@ -340,8 +340,6 @@ Random features added.
 - `]r` jump to next symbol reference
 - `<c-s>` display signature help
 - `<leader>dd` open diagnostics for buffer
-- `<cr>` jump to definition
-- `<s-cr>` jump back from definition
 
 ### Debugger:
 
