@@ -95,13 +95,12 @@ Complex configuration options.
 
 Custom built commands to be invoked on the `cmdline` or with keymaps.
 
-|                                                                                                                            |                                                                      |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [JumpToLastVisitedBuffer](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/jump-to-last-visited-buffer.lua) | Jump to last visited buffer (including Oil).                         |
-| [LoadEnvVars](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/load-env-vars.lua)                           | Load environment variables, global, and project scoped.              |
-| [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)                | Open jumplist/changelist on quickfix window                          |
-| [RestoreChangedFiles](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/restore-changed-files.lua)           | On VimEnter, open all git changed files in current working directory |
-| [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)                      | Toggle terminal open/closed                                          |
+|                                                                                                                  |                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [LoadEnvVars](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/load-env-vars.lua)                 | Load environment variables, global, and project scoped.              |
+| [OpenChangesInQuickfix](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/quickfix-lists.lua)      | Open jumplist/changelist on quickfix window                          |
+| [RestoreChangedFiles](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/restore-changed-files.lua) | On VimEnter, open all git changed files in current working directory |
+| [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)            | Toggle terminal open/closed                                          |
 
 ### Filetypes
 
@@ -178,10 +177,9 @@ Random features added.
 
 ### Buffers
 
+- `<bs>` open last
 - `<c-e>` close
-- `<leader>bC` close all
-- `<leader>bo` close the other
-- `<leader>,` pick opened
+- `<leader>,` list
 - `=` open alternate
 - `=s` open alternate css
 - `=t` open alternate test

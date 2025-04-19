@@ -141,10 +141,6 @@ k("M", function()
 end, { desc = "Delete mark" })
 
 -- Buffers
-k("<bs>", ":JumpToLastVisitedBuffer<cr>", { desc = "Toggle to last buffer" })
-local bufdelete = require("snacks.bufdelete")
-k("<leader>bC", bufdelete.all, { desc = "Buffers: Close all" })
-k("<leader>bo", bufdelete.other, { desc = "Buffers: Close all other" })
 
 -- Windows
 k("|", "<c-w>w", { desc = "Windows: Switch" })
