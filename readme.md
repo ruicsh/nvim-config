@@ -412,6 +412,7 @@ Random features added.
 - `<leader>nc` show commands
 - `<leader>nh` help
 - `<leader>nk` keyboard shortcuts
+- `<leader>nm` messages
 
 <div style="margin-top:80px"></div>
 

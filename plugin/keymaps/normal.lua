@@ -124,13 +124,6 @@ k("'s", function()
 	vim.cmd.nohlsearch()
 end, { desc = "Jump to last search" })
 
--- List messages in a buffer
--- https://github.com/deathbeam/dotfiles/blob/master/vim/.vimrc#L178C1-L179C1
-k("<leader>nm", function()
-	vim.cmd("botright new +set\\ buftype=nofile\\ bufhidden=wipe\\ wrap")
-	vim.api.nvim_win_set_height(0, math.floor(vim.o.lines * 0.2)) -- Set height to 30% of screen
-	vim.cmd("put =execute('messages')")
-end, { desc = "Messages" })
 
 k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
 
