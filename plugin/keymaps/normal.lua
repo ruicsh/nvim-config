@@ -159,6 +159,30 @@ k("<c-w>[", ":SendBufferToWindow h<cr>", { desc = "Windows: Send to left window"
 k("<c-w>]", ":SendBufferToWindow l<cr>", { desc = "Windows: Send to right window" })
 
 -- Quickfix
+-- Toggle
+k("<tab>", function()
+	local linenr = vim.fn.line(".")
+	-- If there's no fold to be opened/closed, do nothing.
+	if vim.fn.foldlevel(linenr) == 0 then
+		return
+	end
+
+	-- Open if closed, close if open.
+	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
+	vim.cmd("normal! " .. cmd)
+end, { silent = true, desc = "Folds: Toggle" })
+
+-- Jump to previous section (fold)
+k("[[", function()
+	vim.cmd("normal! [z") -- This may fail if we're already at the start of a fold (keep it separate)
+	vim.cmd("normal! zk[z^") -- Jump to previous fold (end), then jump to start of that fold
+end, { desc = "Folds: Jump to previous" })
+
+-- Jump to next section (fold)
+k("]]", function()
+	vim.cmd("normal! ]z") -- This may fail if we're already at the end of a fold (keep it separate)
+	vim.cmd("normal! zj^") -- Jump to next fold (start),
+end, { desc = "Folds: Jump to next" })
 k("<leader>qq", vim.cmd.copen, { desc = "Quickfix: Open quickfix" })
 k("<leader>ql", vim.cmd.lopen, { desc = "Quickfix: Open location list" })
 k("<leader>qc", ":OpenChangesInQuickfix<cr>", { desc = "Quickfix: open changes list" })

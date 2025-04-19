@@ -163,5 +163,7 @@ o.shadafile = (function() -- Per project shadafile
 	return file
 end)()
 o.signcolumn = "yes" -- Always showed to prevent the screen from jumping.
-o.viewoptions = "cursor,folds" -- Save cursor position and folds.
+o.viewoptions = "cursor,folds,options" -- Save cursor position and folds.
 -- }}}
+
+-- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable

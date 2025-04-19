@@ -146,7 +146,7 @@ Random features added.
 | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
 | [bookmarks](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/bookmarks.lua)                         | Buffer global bookmarks (harpoon)               |
 | [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)               | Use the same shortcut to close different panels |
-| [folds](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/folds.lua)                                 | Folding keymaps, autocmds and commands          |
+| [pause-folds-on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/pause-folds-on-search.lua) | Pause folds on search                           |
 | [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)           | AST aware indentation                           |
 | [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua)     | Search count inline indicator                   |
 | [pause-folds-on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/pause-folds-on-search.lua) | Pause folds on search                           |
@@ -406,15 +406,6 @@ Random features added.
 - `'{a-z}` jump to line in local mark
 - `'{A-Z}` jump to line in global mark
 - `'{0-9}` jump to last lines when last exited Vim
-
-### Folds
-
-- `<tab>` toggle
-- `z{0-9}` set foldlevel to {0-9}
-- `[z` jump to previous fold
-- `]z` jump to next fold
-- `<leader><tab>` toggle one foldlevel
-- `<c-Z>` reset saved folds
 
 ### Application
 
