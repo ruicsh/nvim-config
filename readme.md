@@ -150,6 +150,7 @@ Random features added.
 | [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua)     | Search count inline indicator                   |
 | [pause-folds-on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/pause-folds-on-search.lua) | Pause folds on search                           |
 | [yank-ring](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/yank-ring.lua)                         | Yank ring                                       |
+| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)                   | Display :messages on a separate window          |
 
 ## Keymaps
 
@@ -404,10 +405,13 @@ Random features added.
 
 ### Application
 
-- `<leader>nc` show commands
-- `<leader>nh` help
-- `<leader>nk` keyboard shortcuts
-- `<leader>nm` messages
+- `<f1>` help
+- `<f2>` vim-messages
+- `<leader>na` autocmds
+- `<leader>nc` commands
+- `<leader>nh` highlights
+- `<leader>nk` keymaps
+- `<leader>nn` notifications
 
 <div style="margin-top:80px"></div>
 

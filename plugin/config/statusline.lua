@@ -78,6 +78,8 @@ local function c_mode()
 		mode = "VIM"
 	elseif ft == "fugitive" or ft == "gitcommit" or ft:match("Diffview") or vim.wo.diff then
 		mode = "GIT"
+	elseif ft == "messages" then
+		mode = "MESSAGES"
 	end
 
 	return string.format("%%#StatusLineMode%s# %%#StatusLineMode%sText# %s %%#StatusLine#", hl, hl, mode)
@@ -118,7 +120,7 @@ local function c_filename()
 		line = line .. "DIFF"
 	elseif ft == "DiffviewFileHistory" then
 		line = line .. "LOG"
-	elseif ft == "" or ft == "copilot-chat" then
+	elseif ft == "" or ft == "copilot-chat" or ft == "messages" then
 		return ""
 	else
 		local path = vim.fn.expand("%:p:~")
