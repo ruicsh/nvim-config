@@ -52,9 +52,21 @@ local function keymaps(bufnr, client)
 	end
 	local methods = vim.lsp.protocol.Methods
 
+	-- Open definition in a new vertical window
+	local function vsplit_and_definition()
+		vim.cmd("only")
+		vim.cmd("vsplit")
+		vim.cmd("wincmd L")
+		vim.lsp.buf.definition()
+	end
+
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
-	k("grr", snacks.picker.lsp_references, "LSP: References")
-	k("gO", snacks.picker.lsp_symbols, "LSP: Symbols")
+	k("gd", vim.lsp.buf.definition, "Jump to definition")
+	k("<c-]>", vim.lsp.buf.definition, "Jump to definition")
+	k("<c-w>]", vsplit_and_definition, "Jump to definition (vsplit)")
+	k("gD", vim.lsp.buf.declaration, "Jump to declaration")
+	k("grr", snacks.picker.lsp_references, "References")
+	k("gO", snacks.picker.lsp_symbols, "Symbols")
 	k("<leader>dd", vim.diagnostic.setqflist, "Diagnostics")
 
 	if client.supports_method(methods.textDocument_typeDefinition) then
