@@ -62,15 +62,6 @@ api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Oil
-api.nvim_create_autocmd("FileType", {
-	group = augroup,
-	pattern = "oil",
-	callback = function(event)
-		k("n", closeShortcut, ":lua require('oil.actions').close.callback()<cr>", { buffer = event.buf })
-	end,
-})
-
 -- Diffview
 api.nvim_create_autocmd("FileType", {
 	group = augroup,

@@ -33,7 +33,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
-- [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit filesystem like a buffer
 - [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
 - [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers, statuscolumn, indent lines
 
@@ -126,7 +125,6 @@ New features built around autocmds (events).
 | [create-intermediate-dirs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/create-intermediate-dirs.lua)       | Create intermediate directories                                       |
 | [disable-newline-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-newline-comments.lua)       | Disable newline comments                                              |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps, and custom handlers                         |
-| [open-directory-oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-directory-oil.lua)                   | If neovim is opened with a directory as argument open oil             |
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                                 | Keep buffers in tabs scoped to the tab they were opened in            |
 | [scroll-eof](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scroll-eof.lua)                                   | Scroll past the end of file with scrolloff                            |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua) | Show cursorline only on active window.                                |
