@@ -87,8 +87,8 @@ o.showmode = false -- Do not show mode on last line.
 o.clipboard = "unnamedplus" -- Use system clipboard.
 -- }}}
 
--- 12 editing text {{{
-o.complete = ".,t" -- How keyword completion works.
+-- 12 editing teindoxt {{{
+o.complete = ".,]" -- How keyword completion works.
 o.completeopt = "menu,menuone,noinsert,preview" -- Disable native autocompletion (using nvim-cmp).
 o.pumblend = 5 -- Opaque completion menu background.
 o.pumheight = 5 -- Maximum height of popup menu.

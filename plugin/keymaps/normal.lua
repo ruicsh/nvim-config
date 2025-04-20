@@ -3,7 +3,7 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("n", lhs, rhs, options)
 end
 
--- Navigation
+-- Navigation {{{
 
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
@@ -24,30 +24,32 @@ end, { expr = true })
 k("';", "<c-o>", { desc = "Older cursor position" })
 k("',", "<c-i>", { desc = "Newer cursor position" })
 
--- Editing
-k("[p", ":pu!<cr>==", { desc = "Paste on new line above" })
-k("]p", ":pu<cr>==", { desc = "Paste on new line below" })
-k("U", "<C-r>", { desc = "Redo" })
+-- }}}
+
+-- Editing {{{
+
+-- Keep same logic from `y/c/d` on `v`
+k("V", "v$") -- Select until end of line
+k("vv", "V") -- Enter visual linewise mode
+
+k("[p", ":put!<cr>==", { desc = "Paste on new line above" })
+k("]p", ":put<cr>==", { desc = "Paste on new line below" })
+k("U", "<c-r>", { desc = "Redo" })
 k("<leader>w", vim.cmd.write, { desc = "Save file", silent = true }) -- Save changes
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
 k("ycc", "yygccp", { remap = true }) -- Duplicate a line and comment out the first line.
 
--- Don't place on register when changing text or deleting a character.
-k("C", '"_C')
-k("c", '"_c')
-k("cc", '"_cc')
-k("x", '"_x')
-k("X", '"_X')
+-- Don't store on register when changing text or deleting a character.
+local black_hole_commands = { "C", "c", "cc", "x", "X" }
+for _, key in pairs(black_hole_commands) do
+	k(key, '"_' .. key)
+end
 
 -- Don't store empty lines in register.
 -- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
 k("dd", function()
 	return vim.fn.getline(".") == "" and '"_dd' or "dd"
 end, { expr = true })
-
--- Keep same logic from `y/c/d` on `v`
-k("V", "v$") -- Select until end of line
-k("vv", "V") -- Enter visual linewise mode
 
 -- Copy relative file path
 k("<leader>yf", function()
@@ -68,6 +70,9 @@ k("cN", "*``cgN", { desc = "Change word (backward)" })
 -- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L214C18-L215C1
 k("gV", "`[v`]", { desc = "Select last insert text" })
 
+-- }}}
+
+-- Search {{{
 
 -- Mark position before search
 -- Use `'s` to go back to where search started
@@ -126,21 +131,39 @@ k("'s", function()
 	vim.cmd.nohlsearch()
 end, { desc = "Jump to last search" })
 
+-- Don't store jumps when browsing search results
+k("n", ":keepjumps normal! n<cr>", { desc = "Search: Next" })
+k("N", ":keepjumps normal! N<cr>", { desc = "Search: Previous" })
 
-k("Q", "<nop>") -- Avoid unintentional switches to Ex mode.
+-- }}}
 
----
+-- NOOP {{{
+local noop_keys = {
+	"Q", -- Ex mode
+	"gQ", -- Ex mode
+	"q:", -- cmdline-window
+	"q/", -- cmdline-window
+	"q?", -- cmdline-window
+}
+for _, key in ipairs(noop_keys) do
+	k(key, "<nop>")
+end
+--}}}
+
 -- Stop setting keymaps incompatible with vscode
----
 if vim.g.vscode then
 	return
 end
 
+-- Buffers {{{
+k("<bs>", "<c-6>", { desc = "Toggle to last buffer" })
+-- }}}
 
--- Buffers
-
--- Windows
+-- Windows {{{
 k("|", "<c-w>w", { desc = "Windows: Switch" })
+-- }}}
+
+-- Folds {{{
 
 -- Toggle
 k("<tab>", function()
@@ -167,12 +190,19 @@ k("]]", function()
 	vim.cmd("normal! zj^") -- Jump to next fold (start),
 end, { desc = "Folds: Jump to next" })
 
--- Miscellaneous
-k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+-- }}}
 
+-- Terminal {{{
+k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+-- }}}
+
+-- Tabs {{{
 -- Tabs: Go to #{1..9}
 for i = 1, 9 do
 	k("§" .. i, function()
 		vim.cmd.tabnext(i)
 	end, { desc = "Tabs: Go to #" .. i })
 end
+-- }}}
+
+-- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0

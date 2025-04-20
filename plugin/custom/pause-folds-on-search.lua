@@ -16,7 +16,7 @@ vim.on_key(function(char)
 	local searchStarted = (key == "/" or key == "?") and isNormalMode
 	local searchConfirmed = (key == "<CR>" and isCmdlineSearch)
 	local searchCancelled = (key == "<Esc>" and isCmdlineSearch)
-	if not (searchStarted or searchConfirmed or searchCancelled or isNormalMode) then
+	if not (searchStarted or searchConfirmed or searchCancelled) then
 		return
 	end
 

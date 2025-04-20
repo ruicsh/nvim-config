@@ -214,8 +214,7 @@ vim.api.nvim_create_user_command("RestoreChangedFiles", function()
 
 		-- Open the second last changed file in a new window
 		if #files > 1 then
-			vim.api.nvim_command("vsplit")
-			vim.api.nvim_command("edit " .. files[#files - 1])
+			vim.api.nvim_command("vsplit" .. files[#files - 1])
 		end
 
 		-- Place cursor on the last changed file window

@@ -116,6 +116,10 @@ vim.fn.start_spinner = function(bufnr, msg)
 				return
 			end
 
+			if not spinners[bufnr] then
+				return
+			end
+
 			spinners[bufnr].idx = (spinners[bufnr].idx % #icons.spinner) + 1
 			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {
 				icons.spinner[spinners[bufnr].idx] .. " " .. msg,
