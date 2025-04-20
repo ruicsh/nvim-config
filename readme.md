@@ -132,6 +132,7 @@ New features built around autocmds (events).
 | [scroll-eof](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scroll-eof.lua)                                   | Scroll past the end of file with scrolloff                            |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua) | Show cursorline only on active window.                                |
 | [toggle-hlsearch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/toggle-hlsearch.lua)                         | Toggle off hlsearch when entering insert mode and the cursor is moved |
+| [views](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/views.lua)                                             | Save and load views for each file (marks, folds)                      |
 | [yank-highlight](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-highlight.lua)                           | Highlight selection when yanking                                      |
 | [yank-keep-cursor-position](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/yank-keep-cursor-position.lua)     | Keep cursor position on yank                                          |
 
@@ -313,9 +314,9 @@ Random features added.
 - `<m-k>` jump to previous sibling node
 - `<m-j>` jump to next sibling node
 - `<leader>v` select current node
+- `<leader>V` select node with search labels
 - `<tab>` increase selection (on node selection mode)
 - `<s-tab>` decrease selection (on node selection mode)
-- `<leader>V` select node with search labels
 - `<m-H>` swap with lateral previous node
 - `<m-L>` swap with lateral next node
 - `<m-K>` swap with vertical previous node
@@ -400,13 +401,13 @@ Random features added.
 
 ### Application
 
-- `<f1>` help
-- `<f2>` vim-messages
-- `<leader>na` autocmds
-- `<leader>nc` commands
-- `<leader>nh` highlights
-- `<leader>nk` keymaps
-- `<leader>nn` notifications
+- `<leader>va` autocmds
+- `<leader>vc` commands
+- `<leader>vh` help
+- `<leader>vH` highlights
+- `<leader>vk` keymaps
+- `<leader>vm` vim-messages
+- `<leader>vn` notifications
 
 <div style="margin-top:80px"></div>
 

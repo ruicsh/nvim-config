@@ -102,13 +102,13 @@ return {
 			{ "<leader>uu", snacks.picker.undo, "Undotree" },
 
 			-- neovim
-			{ "<f1>", snacks.picker.help, "Help" },
-			{ "<f2>", vim_messages, "Vim Messages" },
-			{ "<leader>na", snacks.picker.autocmds, "Autocmds" },
-			{ "<leader>nc", snacks.picker.commands, "Commands" },
-			{ "<leader>nh", snacks.picker.highlights, "Highlights" },
-			{ "<leader>nk", snacks.picker.keymaps, "Keymaps" },
-			{ "<leader>nn", snacks.picker.notifications, "Notifications" },
+			{ "<leader>vh", snacks.picker.help, "Help" },
+			{ "<leader>va", snacks.picker.autocmds, "Autocmds" },
+			{ "<leader>vc", snacks.picker.commands, "Commands" },
+			{ "<leader>vH", snacks.picker.highlights, "Highlights" },
+			{ "<leader>vk", snacks.picker.keymaps, "Keymaps" },
+			{ "<leader>vm", vim_messages, "Vim Messages" },
+			{ "<leader>vn", snacks.picker.notifications, "Notifications" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings)
