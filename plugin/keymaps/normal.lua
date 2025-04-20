@@ -145,7 +145,6 @@ end, { desc = "Delete mark" })
 -- Windows
 k("|", "<c-w>w", { desc = "Windows: Switch" })
 
--- Quickfix
 -- Toggle
 k("<tab>", function()
 	local linenr = vim.fn.line(".")
@@ -170,10 +169,6 @@ k("]]", function()
 	vim.cmd("normal! ]z") -- This may fail if we're already at the end of a fold (keep it separate)
 	vim.cmd("normal! zj^") -- Jump to next fold (start),
 end, { desc = "Folds: Jump to next" })
-k("<leader>qq", vim.cmd.copen, { desc = "Quickfix: Open quickfix" })
-k("<leader>ql", vim.cmd.lopen, { desc = "Quickfix: Open location list" })
-k("<leader>qc", ":OpenChangesInQuickfix<cr>", { desc = "Quickfix: open changes list" })
-k("<leader>qj", ":OpenJumpsInQuickfix<cr>", { desc = "Quickfix: open jumps list" })
 
 -- Miscellaneous
 k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })

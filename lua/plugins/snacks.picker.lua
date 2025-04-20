@@ -98,6 +98,7 @@ return {
 			{ "<leader>jj", snacks.picker.jumps, "Jumplist" },
 			{ "<leader>mm", snacks.picker.marks, "Marks" },
 			{ "<leader>pp", snacks.picker.projects, "Projects" },
+			{ "<leader>qq", snacks.picker.qflist, "Quickfix" },
 			{ "<leader>uu", snacks.picker.undo, "Undotree" },
 
 			-- neovim
