@@ -64,6 +64,7 @@ _G.NordStoneColors = {
 	nord14 = "#a3be8C",
 	nord15 = "#b48eaD",
 	neutral_900 = "#171717",
+	neutral_880 = "#1a1a1a",
 	neutral_800 = "#262626",
 	neutral_700 = "#404040",
 	neutral_600 = "#525252",
@@ -332,6 +333,13 @@ loadColorSet({
 	GitSignsDeleteNr = { fg = c.nord11 },
 	GitSignsDeleteLn = { fg = c.nord11 },
 	GitSignsCurrentLineBlame = { fg = c.nord3_500, style = "bold" },
+})
+
+-- mini.files
+loadColorSet({
+	MiniFilesBorder = { fg = c.neutral_600, bg = c.neutral_880 },
+	MiniFilesBorderModified = { fg = c.nord12 },
+	MiniFilesNormal = { fg = c.nord4, bg = c.neutral_880 },
 })
 
 -- nvim-dap

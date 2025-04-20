@@ -25,13 +25,14 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>37 plugins</sub>
+<sub>36 plugins</sub>
 
 ### UI
 
 - [flash.nvim](https://github.com/folke/flash.nvim) - Search labels
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
+- [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
 - [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
 - [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers, statuscolumn, indent lines
@@ -152,9 +153,6 @@ Random features added.
 
 ### Files explorer
 
-- `-` open directory explorer
-- `<c-s>` open in horizontal split
-- `<c-v>` open in vertical split
 - `<leader><leader>` fuzzy find files
 - `<leader>ee` file tree explorer
 - `<leader>.` last picker
