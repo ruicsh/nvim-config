@@ -4,16 +4,21 @@ local function k(lhs, rhs, opts)
 end
 
 -- Navigation
-k("{", ":keepjumps normal!6k<cr>", { desc = "Jump up 6 lines", silent = true })
-k("}", ":keepjumps normal!6j<cr>", { desc = "Jump down 6 lines", silent = true })
+
+-- More deterministic short distance jumps
+-- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
+k("{", ":keepjumps normal! 6k<cr>", { desc = "Jump up 6 lines", silent = true })
+k("}", ":keepjumps normal! 6j<cr>", { desc = "Jump down 6 lines", silent = true })
+
 -- Store relative line number jumps in the jumplist if they exceed a threshold.
 -- For small jumps, use visual lines.
 k("k", function()
-	return vim.v.count > 5 and "m'" .. vim.v.count .. "k" or "gk"
+	return vim.v.count > 0 and "m'" .. vim.v.count .. "k" or "gk"
 end, { expr = true })
 k("j", function()
-	return vim.v.count > 5 and "m'" .. vim.v.count .. "j" or "gj"
+	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
+
 -- <c-i> would trigger the toggle fold because it's the same as <tab>
 -- ' as in jump to mark and ;, as used in the changelist (g;, g,).
 k("';", "<c-o>", { desc = "Older cursor position" })
@@ -63,9 +68,6 @@ k("cN", "*``cgN", { desc = "Change word (backward)" })
 -- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L214C18-L215C1
 k("gV", "`[v`]", { desc = "Select last insert text" })
 
--- Don't store jumps when browsing search results
-k("n", ":keepjumps normal! n<cr>", { desc = "Search: Next" })
-k("N", ":keepjumps normal! N<cr>", { desc = "Search: Previous" })
 
 -- Mark position before search
 -- Use `'s` to go back to where search started

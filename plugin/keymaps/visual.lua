@@ -3,12 +3,18 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("v", lhs, rhs, options)
 end
 
+-- More deterministic short distance jumps
+-- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
+k("{", "6k")
+k("}", "6j")
+
 -- Store relative line number jumps in the jumplist if they exceed a threshold.
+-- For small jumps, use visual lines.
 k("k", function()
-	return vim.v.count and (vim.v.count > 5 and "m'" .. vim.v.count or "") .. "k" or "gk"
+	return vim.v.count > 0 and "m'" .. vim.v.count .. "k" or "gk"
 end, { expr = true })
 k("j", function()
-	return vim.v.count and (vim.v.count > 5 and "m'" .. vim.v.count or "") .. "j" or "gj"
+	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
 
 -- Paste over currently selected text without yanking it.
@@ -17,10 +23,6 @@ k("X", '"_X')
 k("c", '"_c')
 k("p", '"_dp')
 k("x", '"_x')
-
--- Navigation
-k("{", "6k")
-k("}", "6j")
 
 k("|", "<c-w>w", { desc = "Windows: Switch" })
 
