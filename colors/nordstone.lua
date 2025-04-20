@@ -334,16 +334,6 @@ loadColorSet({
 	GitSignsCurrentLineBlame = { fg = c.nord3_500, style = "bold" },
 })
 
--- neo-tree.nvim
-loadColorSet({
-	NeoTreeGitDirty = { fg = c.nord13 },
-	NeoTreeGitStaged = { fg = c.nord14 },
-	NeoTreeGitMerge = { fg = c.nord8 },
-	NeoTreeGitRenamed = { fg = c.nord12 },
-	NeoTreeGitNew = { fg = c.nord14 },
-	NeoTreeGitUntracked = { fg = c.nord14 },
-})
-
 -- nvim-dap
 loadColorSet({
 	DapBreakpoint = { fg = c.nord12 },

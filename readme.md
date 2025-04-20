@@ -33,7 +33,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
-- [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) - Files tree explorer
 - [oil.nvim](https://github.com/stevearc/oil.nvim) - Edit filesystem like a buffer
 - [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
 - [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers, statuscolumn, indent lines

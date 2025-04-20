@@ -14,7 +14,6 @@ local DISABLED_FILETYPES = {
 	"help",
 	"lspinfo",
 	"man",
-	"neo-tree",
 	"oil",
 	"qf",
 	"query",

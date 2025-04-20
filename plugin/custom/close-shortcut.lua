@@ -71,15 +71,6 @@ api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- neo-tree
-api.nvim_create_autocmd("FileType", {
-	group = augroup,
-	pattern = "neo-tree",
-	callback = function(event)
-		k("n", closeShortcut, ":Neotree action=close<cr>", { buffer = event.buf })
-	end,
-})
-
 -- Diffview
 api.nvim_create_autocmd("FileType", {
 	group = augroup,

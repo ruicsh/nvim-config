@@ -72,7 +72,7 @@ local function c_mode()
 		mode = "HELP"
 	elseif bt == "quickfix" then
 		mode = "QF"
-	elseif ft == "oil" or ft == "neo-tree" then
+	elseif ft == "oil" then
 		mode = "DIR"
 	elseif ft == "vim" then
 		mode = "VIM"
@@ -125,7 +125,7 @@ local function c_filename()
 	else
 		local path = vim.fn.expand("%:p:~")
 
-		if ft == "oil" or ft == "neo-tree" then
+		if ft == "oil" then
 			line = line .. " " .. path:sub(7)
 		else
 			local parent = vim.fn.fnamemodify(path, ":h:t")
