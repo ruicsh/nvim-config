@@ -395,10 +395,8 @@ Random features added.
 
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
-- `'0` jump to position when last exited Vim
-- `'{a-z}` jump to line in local mark
-- `'{A-Z}` jump to line in global mark
-- `'{0-9}` jump to last lines when last exited Vim
+- `'{1-9}` jump to bookmarks
+- `'{a-z}'` jump to marked position
 
 ### Application
 

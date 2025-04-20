@@ -134,11 +134,6 @@ if vim.g.vscode then
 	return
 end
 
--- Delete marks
-k("M", function()
-	local mark = vim.fn.getcharstr()
-	vim.cmd.delmark(mark)
-end, { desc = "Delete mark" })
 
 -- Buffers
 

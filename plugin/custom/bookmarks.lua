@@ -118,7 +118,6 @@ vim.keymap.set("n", "'", function()
 		return
 	end
 
-	-- If the buffer is displayed in a window, switch to it
 	local char = mark2char(mark)
 	local mark_pos = vim.api.nvim_get_mark(char, {})
 	if mark_pos[1] == 0 then
@@ -126,22 +125,19 @@ vim.keymap.set("n", "'", function()
 		return
 	end
 
+	bookmark_notification("Jump to bookmark #" .. mark)
+
+	-- If the buffer is displayed in a window, switch to it
 	local target_buf = mark_pos[3]
-	local found_window = false
 	local wins = vim.fn.win_findbuf(target_buf)
 	if #wins > 0 then
 		vim.api.nvim_set_current_win(wins[1])
-		found_window = true
-		return
+	else
+		vim.cmd("normal! `" .. char) -- Jump to it in the current window
 	end
 
-	-- Jump to it in the current window
-	if not found_window then
-		vim.cmd("normal! `" .. char)
-	end
-
-	bookmark_notification("Jump to bookmark #" .. mark)
-end)
+	vim.cmd("normal! zv") -- Make sure the line is visible
+end, { desc = "Jump to mark" })
 
 -- Delete mark from current buffer
 vim.keymap.set("n", "<leader>md", delete_bookmark, { desc = "Delete bookmark" })
