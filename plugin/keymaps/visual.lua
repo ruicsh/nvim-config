@@ -4,7 +4,6 @@ local function k(lhs, rhs, opts)
 end
 
 -- Navigation {{{
-
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
 k("{", "6k")
@@ -18,11 +17,9 @@ end, { expr = true })
 k("j", function()
 	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
-
 -- }}}
 
 -- Editing {{{
-
 k("Y", "y$") -- Make Y behave like normal mode
 
 -- Paste over currently selected text without yanking it.
@@ -34,14 +31,13 @@ k("x", '"_x')
 
 -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 local function replace_selection(direction)
-	vim.g.mc = vim.api.nvim_replace_termcodes("y/\\V<C-r>=escape(@\", '/')<CR><CR>", true, true, true)
+	vim.g.mc = vim.api.nvim_replace_termcodes("y/\\V<c-r>=escape(@\", '/')<cr><cr>", true, true, true)
 	return function()
 		return vim.g.mc .. "``cg" .. direction
 	end
 end
 k("cn", replace_selection("n"), { expr = true, desc = "Change selection (forward)" })
 k("cN", replace_selection("N"), { expr = true, desc = "Change selection (backward)" })
-
 -- }}}
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0

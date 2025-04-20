@@ -4,7 +4,6 @@ local function k(lhs, rhs, opts)
 end
 
 -- Navigation {{{
-
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
 k("{", ":keepjumps normal! 6k<cr>", { desc = "Jump up 6 lines", silent = true })
@@ -23,21 +22,18 @@ end, { expr = true })
 -- ' as in jump to mark and ;, as used in the changelist (g;, g,).
 k("';", "<c-o>", { desc = "Older cursor position" })
 k("',", "<c-i>", { desc = "Newer cursor position" })
-
 -- }}}
 
 -- Editing {{{
-
 -- Keep same logic from `y/c/d` on `v`
 k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode
 
 k("[p", ":put!<cr>==", { desc = "Paste on new line above" })
 k("]p", ":put<cr>==", { desc = "Paste on new line below" })
-k("U", "<c-r>", { desc = "Redo" })
-k("<leader>w", vim.cmd.write, { desc = "Save file", silent = true }) -- Save changes
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
-k("ycc", "yygccp", { remap = true }) -- Duplicate a line and comment out the first line.
+k("<c-s>", vim.cmd.write, { desc = "Save" }) -- Save file
+k("ycc", "yygccp", { desc = "Duplicate and comment line", remap = true }) -- Duplicate a line and comment out the first line.
 
 -- Don't store on register when changing text or deleting a character.
 local black_hole_commands = { "C", "c", "cc", "x", "X" }
@@ -57,23 +53,12 @@ k("<leader>yf", function()
 	vim.fn.setreg("+", path)
 end, { desc = "Copy relative file path" })
 
--- Copy directory path
-k("<leader>yd", function()
-	local path = vim.fn.fnamemodify(vim.fn.expand("%:p:h"), ":~:.")
-	vim.fn.setreg("+", path)
-end, { desc = "Copy directory path" })
-
 -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 k("cn", "*``cgn", { desc = "Change word (forward)" })
 k("cN", "*``cgN", { desc = "Change word (backward)" })
-
--- https://github.com/justinmk/config/blob/master/.config/nvim/init.vim#L214C18-L215C1
-k("gV", "`[v`]", { desc = "Select last insert text" })
-
 -- }}}
 
 -- Search {{{
-
 -- Mark position before search
 -- Use `'s` to go back to where search started
 -- https://github.com/justinmk/config/blob/master/.config/nvim/plugin/my/keymaps.lua#L51
@@ -134,7 +119,6 @@ end, { desc = "Jump to last search" })
 -- Don't store jumps when browsing search results
 k("n", ":keepjumps normal! n<cr>", { desc = "Search: Next" })
 k("N", ":keepjumps normal! N<cr>", { desc = "Search: Previous" })
-
 -- }}}
 
 -- NOOP {{{
@@ -159,12 +143,7 @@ end
 k("<bs>", "<c-6>", { desc = "Toggle to last buffer" })
 -- }}}
 
--- Windows {{{
-k("|", "<c-w>w", { desc = "Windows: Switch" })
--- }}}
-
 -- Folds {{{
-
 -- Toggle
 k("<tab>", function()
 	local linenr = vim.fn.line(".")
@@ -189,7 +168,6 @@ k("]]", function()
 	vim.cmd("normal! ]z") -- This may fail if we're already at the end of a fold (keep it separate)
 	vim.cmd("normal! zj^") -- Jump to next fold (start),
 end, { desc = "Folds: Jump to next" })
-
 -- }}}
 
 -- Terminal {{{

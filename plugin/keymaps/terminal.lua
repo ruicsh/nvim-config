@@ -10,10 +10,10 @@ k("<c-\\>", function()
 end, { desc = "Toggle terminal" })
 
 -- Leave terminal window with <c-w>hjkl.
-local code_term_esc = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, true, true)
+local code_term_esc = vim.api.nvim_replace_termcodes("<c-\\><c-n>", true, true, true)
 for _, key in ipairs({ "h", "j", "k", "l" }) do
-	k("<C-w>" .. key, function()
-		local code_dir = vim.api.nvim_replace_termcodes("<C-w>" .. key, true, true, true)
+	k("<c-w>" .. key, function()
+		local code_dir = vim.api.nvim_replace_termcodes("<c-w>" .. key, true, true, true)
 		vim.api.nvim_feedkeys(code_term_esc .. code_dir, "t", true)
 	end, {})
 end

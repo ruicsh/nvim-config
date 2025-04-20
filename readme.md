@@ -158,18 +158,6 @@ Random features added.
 - `<leader>.` last picker
 - `<leader>pp` projects
 
-### Directory explorer
-
-- `<enter>` open
-- `<c-v>` open entry in vertical split
-- `<c-p>` preview
-- `-` open parent directory
-- `_` open current working directory (root)
-- `gs` change sort
-- `g.` toggle hidden
-- `g\` toggle trash
-- `<c-e>` close explorer
-
 ### Buffers
 
 - `<bs>` open last
@@ -188,20 +176,16 @@ Random features added.
 - `<leader>md` delete bookmark
 - `<leader>mD` delete all bookmarks
 - `<leader>'` list bookmarks
-- `M{a-z}` delete mark
 
 ### Windows
 
-- `|` switch windows
 - `<c-e>` close window
 
 ### Navigation
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
-- `/` find in document
 - `?` find in document with labels
-- `*` find work in document
 - `<leader>/` find in workspace
 - `<leader>?` find in directory
 - `<leader>*` find word in workspace
@@ -215,9 +199,7 @@ Random features added.
 - `[p` paste to new line above
 - `]p` paste to new line below
 - `ycc` duplicate a line, comment out the first line.
-- `U` redo
 - `<leader>yf` copy relative filename
-- `<leader>yd` copy relative directory
 
 ### Insert mode navigation
 

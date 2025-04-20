@@ -16,19 +16,19 @@ k("n", "<leader><space>", ac("workbench.action.quickOpen"))
 k("n", "<leader>ee", ac("workbench.files.action.focusFilesExplorer"))
 
 -- Search
-k("n", "<leader>ff", ac("workbench.action.findInFiles"))
+k("n", "<leader>/", ac("workbench.action.findInFiles"))
 
 -- Buffers
 k("n", "<leader>,", ac("workbench.action.showAllEditors"))
 
 -- Splits
-k("n", "|", ac("workbench.action.focusNextGroup"))
+k("n", "<c-w>w", ac("workbench.action.focusNextGroup"))
 k("n", "<c-w>|", ac("workbench.action.toggleMaximizeEditorGroup"))
 k("n", "<c-w>[", ac("workbench.action.moveEditorToLeftGroup"))
 k("n", "<c-w>]", ac("workbench.action.moveEditorToRightGroup"))
 
 -- LSP
-k("n", "<cr>", ac("editor.action.revealDefinition"))
+k("n", "<c-]>", ac("editor.action.revealDefinition"))
 k("n", "grt", ac("editor.action.goToTypeDefinition"))
 k("n", "grr", ac("references-view.findReferences"))
 k("n", "gO", ac("workbench.action.gotoSymbol"))

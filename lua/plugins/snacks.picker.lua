@@ -233,6 +233,8 @@ return {
 					keys = {
 						["<c-e>"] = { "close", mode = { "n", "i" } },
 						["<c-m>"] = { "flash", mode = { "n", "i" } },
+						["<cr>"] = { "confirm", mode = { "n", "i" } },
+						["<c-y>"] = { "confirm", mode = { "n", "i" } },
 						["m"] = { "flash" },
 						["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
 						["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },

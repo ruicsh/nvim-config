@@ -12,6 +12,8 @@ vim.api.nvim_create_user_command("VimMessages", function()
 	local lines = messages and vim.split(messages, "\n") or {}
 	-- Filter out empty lines
 	lines = vim.tbl_filter(function(line)
+		-- trim whitespace
+		line = line:gsub("^%s*(.-)%s*$", "%1")
 		return line ~= ""
 	end, lines)
 
