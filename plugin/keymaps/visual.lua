@@ -40,4 +40,8 @@ k("cn", replace_selection("n"), { expr = true, desc = "Change selection (forward
 k("cN", replace_selection("N"), { expr = true, desc = "Change selection (backward)" })
 -- }}}
 
+-- Search {{{
+k("/", "<esc>/\\%V") -- Use very magic mode for search
+-- }}}
+
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0

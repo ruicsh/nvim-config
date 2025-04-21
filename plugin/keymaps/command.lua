@@ -23,3 +23,8 @@ k("<m-d>", "<s-right><del>")
 
 -- Jump to biginning/end of line.
 k("<c-a>", "<home>")
+
+-- Filter the command line history.
+-- Pratical Vim, pp 69
+k("<c-n>", "<down>")
+k("<c-p>", "<up>")

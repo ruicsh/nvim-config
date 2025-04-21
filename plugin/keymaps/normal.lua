@@ -40,11 +40,14 @@ end
 k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode
 
-k("[p", ":put!<cr>==", { desc = "Paste on new line above" })
-k("]p", ":put<cr>==", { desc = "Paste on new line below" })
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
 k("<c-s>", vim.cmd.write, { desc = "Save" }) -- Save file
-k("ycc", "yygccp", { desc = "Duplicate and comment line", remap = true }) -- Duplicate a line and comment out the first line.
+
+-- Duplicate and comment lines
+-- https://www.reddit.com/r/neovim/comments/1k4efz8/comment/mob2hwx/
+k("ycc", function()
+	return "yy" .. vim.v.count1 .. "gcc']p"
+end, { remap = true, expr = true, desc = "Duplicate and comment lines" })
 
 -- Don't store on register when changing text or deleting a character.
 local black_hole_commands = { "C", "c", "cc", "x", "X" }
@@ -127,7 +130,7 @@ k("'s", function()
 	vim.cmd.nohlsearch()
 end, { desc = "Jump to last search" })
 
--- Don't store jumps when browsing search results (also center screen)
+-- Don't store jumps when browsing search results
 k("n", ":keepjumps normal! n<cr>", { desc = "Search: Next" })
 k("N", ":keepjumps normal! N<cr>", { desc = "Search: Previous" })
 -- }}}
@@ -172,18 +175,9 @@ k("<tab>", function()
 	vim.cmd("normal! " .. cmd)
 end, { silent = true, desc = "Folds: Toggle" })
 
--- Jump to previous section (fold)
-k("[[", function()
-	vim.cmd("normal! [z") -- This may fail if we're already at the start of a fold (keep it separate)
-	vim.cmd("normal! zk[z^") -- Jump to previous fold (end), then jump to start of that fold
-end, { desc = "Folds: Jump to previous" })
-
--- Jump to next section (fold)
-k("]]", function()
-	vim.cmd("normal! ]z") -- This may fail if we're already at the end of a fold (keep it separate)
-	vim.cmd("normal! zj^") -- Jump to next fold (start),
-end, { desc = "Folds: Jump to next" })
--- }}}
+-- Jump to adjacent sections (fold)
+k("[[", "zczkzo%0", { desc = "Folds: Jump to previous" })
+k("]]", "zczjzo", { desc = "Folds: Jump to next" })
 
 -- Terminal {{{
 k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })

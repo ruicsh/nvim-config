@@ -147,3 +147,7 @@ vim.api.nvim_create_autocmd("LspDetach", {
 		clear_highlight_references(bufnr, client)
 	end,
 })
+
+vim.api.nvim_create_user_command("LspLog", function()
+	vim.cmd.edit(vim.lsp.log.get_filename())
+end, { desc = "Open lsp.log file" })

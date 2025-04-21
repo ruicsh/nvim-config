@@ -22,8 +22,13 @@ return {
 			end
 		end
 
+		local function open_cwd()
+			mf.open(vim.fn.getcwd())
+		end
+
 		local mappings = {
-			{ "-", open, "Open parent" },
+			{ "-", open, "Open parent dir" },
+			{ "_", open_cwd, "Open cwd" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Files")
@@ -37,9 +42,9 @@ return {
 		mappings = {
 			close = "<c-e>",
 			go_in = "",
-			go_in_plus = "l",
-			go_out = "h",
-			go_out_plus = "",
+			go_in_plus = "<cr>",
+			go_out = "",
+			go_out_plus = "-",
 			synchronize = "<c-s>",
 		},
 		windows = {
