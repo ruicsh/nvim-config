@@ -13,7 +13,7 @@ end
 
 -- Explorer
 k("n", "<leader><space>", ac("workbench.action.quickOpen"))
-k("n", "<leader>ee", ac("workbench.files.action.focusFilesExplorer"))
+k("n", "<leader>e", ac("workbench.files.action.focusFilesExplorer"))
 
 -- Search
 k("n", "<leader>/", ac("workbench.action.findInFiles"))
@@ -22,6 +22,7 @@ k("n", "<leader>/", ac("workbench.action.findInFiles"))
 k("n", "<leader>,", ac("workbench.action.showAllEditors"))
 
 -- Splits
+k("n", "|", ac("workbench.action.focusNextGroup"))
 k("n", "<c-w>w", ac("workbench.action.focusNextGroup"))
 k("n", "<c-w>|", ac("workbench.action.toggleMaximizeEditorGroup"))
 k("n", "<c-w>[", ac("workbench.action.moveEditorToLeftGroup"))

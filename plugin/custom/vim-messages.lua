@@ -1,5 +1,5 @@
 -- List :messages in a separate window
--- https://github.com/deathbeam/dotfiles/blob/master/vim/.vimrc#L178C1-L179C1
+-- https://github.com/deathbeam/dotfiles/blob/master/vim/.vimrc
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/vim-messages", { clear = true })
 
@@ -38,3 +38,5 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "<c-e>", "<c-w>q", { buffer = 0, desc = "Close messages window" })
 	end,
 })
+
+vim.keymap.set("n", "<leader>nn", "<cmd>VimMessages<cr>", { unique = true, desc = "Vim messages" })

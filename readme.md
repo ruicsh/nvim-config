@@ -179,13 +179,14 @@ Random features added.
 
 ### Windows
 
+- `|` switch
 - `<c-e>` close window
 
 ### Navigation
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
-- `s` find in document with labels
+- `<leader>f` find in document with labels
 - `<leader>/` find in workspace
 - `<leader>?` find in directory
 - `<leader>*` find word in workspace
@@ -229,9 +230,9 @@ Random features added.
 
 ### Operators
 
-- `ys{motion}{char}` add surrounding character
-- `ds{char}` delete surrounding character
-- `cs{target}{replacement}` replace surrounding character
+- `sa{motion}{char}` add surrounding character
+- `sd{char}` delete surrounding character
+- `sr{target}{replacement}` replace surrounding character
 - `<leader>r{motion}` replace with last yank
 - `<leader>s{motion}` sort
 

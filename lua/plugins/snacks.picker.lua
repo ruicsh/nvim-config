@@ -79,10 +79,6 @@ return {
 	keys = (function()
 		local snacks = require("snacks")
 
-		local vim_messages = function()
-			vim.cmd("VimMessages")
-		end
-
 		local mappings = {
 			-- search
 			{ "<leader><space>", snacks.picker.smart, "Search: Files" },
@@ -107,7 +103,6 @@ return {
 			{ "<leader>nc", snacks.picker.commands, "Commands" },
 			{ "<leader>nH", snacks.picker.highlights, "Highlights" },
 			{ "<leader>nk", snacks.picker.keymaps, "Keymaps" },
-			{ "<leader>nn", vim_messages, "Vim Messages" },
 			{ "<leader>no", snacks.picker.notifications, "Notifications" },
 		}
 

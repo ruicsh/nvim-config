@@ -154,6 +154,10 @@ end
 k("<bs>", "<c-6>", { desc = "Toggle to last buffer" })
 -- }}}
 
+-- Windows {{{
+k("|", "<c-w>w", { desc = "Windows: Switch" })
+-- }}}
+
 -- Folds {{{
 -- Toggle
 k("<tab>", function()

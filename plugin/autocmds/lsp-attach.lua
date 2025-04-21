@@ -62,6 +62,7 @@ local function keymaps(bufnr, client)
 
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
 	k("gd", vim.lsp.buf.definition, "Jump to definition")
+	k("<cr>", vim.lsp.buf.definition, "Jump to definition")
 	k("<c-]>", vim.lsp.buf.definition, "Jump to definition")
 	k("<c-w>]", vsplit_and_definition, "Jump to definition (vsplit)")
 	k("gD", vim.lsp.buf.declaration, "Jump to declaration")
