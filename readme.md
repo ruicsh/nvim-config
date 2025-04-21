@@ -138,16 +138,14 @@ New features built around autocmds (events).
 
 Random features added.
 
-|                                                                                                                  |                                                 |
-| ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [bookmarks](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/bookmarks.lua)                         | Buffer global bookmarks (harpoon)               |
-| [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)               | Use the same shortcut to close different panels |
-| [pause-folds-on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/pause-folds-on-search.lua) | Pause folds on search                           |
-| [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)           | AST aware indentation                           |
-| [inline-search-count](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/inline-search-count.lua)     | Search count inline indicator                   |
-| [pause-folds-on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/pause-folds-on-search.lua) | Pause folds on search                           |
-| [yank-ring](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/yank-ring.lua)                         | Yank ring                                       |
-| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)                   | Display :messages on a separate window          |
+|                                                                                                        |                                                 |
+| ------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| [bookmarks](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/bookmarks.lua)               | Buffer global bookmarks (harpoon)               |
+| [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)     | Use the same shortcut to close different panels |
+| [on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/on-search.lua)               | Pause folds, show results count on search       |
+| [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua) | AST aware indentation                           |
+| [yank-ring](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/yank-ring.lua)               | Yank ring                                       |
+| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)         | Display :messages on a separate window          |
 
 ## Keymaps
 
