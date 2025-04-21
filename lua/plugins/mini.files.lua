@@ -16,7 +16,7 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>ee", open, "Open parent" },
+			{ "<leader>e", open, "Open parent" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Files")

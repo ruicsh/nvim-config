@@ -185,7 +185,7 @@ Random features added.
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
-- `?` find in document with labels
+- `s` find in document with labels
 - `<leader>/` find in workspace
 - `<leader>?` find in directory
 - `<leader>*` find word in workspace
@@ -229,9 +229,9 @@ Random features added.
 
 ### Operators
 
-- `sa{motion}{char}` add surrounding character
-- `sd{char}` delete surrounding character
-- `sr{target}{replacement}` replace surrounding character
+- `ys{motion}{char}` add surrounding character
+- `ds{char}` delete surrounding character
+- `cs{target}{replacement}` replace surrounding character
 - `<leader>r{motion}` replace with last yank
 - `<leader>s{motion}` sort
 
@@ -378,13 +378,13 @@ Random features added.
 
 ### Application
 
-- `<leader>va` autocmds
-- `<leader>vc` commands
-- `<leader>vh` help
-- `<leader>vH` highlights
-- `<leader>vk` keymaps
-- `<leader>vm` vim-messages
-- `<leader>vn` notifications
+- `<leader>na` autocmds
+- `<leader>nc` commands
+- `<leader>nh` help
+- `<leader>nH` highlights
+- `<leader>nk` keymaps
+- `<leader>nn` vim-messages
+- `<leader>no` notifications
 
 <div style="margin-top:80px"></div>
 
