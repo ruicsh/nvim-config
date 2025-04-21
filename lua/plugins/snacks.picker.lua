@@ -53,6 +53,10 @@ local search_directory = function()
 
 			return ret
 		end,
+		layout = {
+			preview = false,
+			preset = "vertical",
+		},
 	})
 end
 
@@ -123,12 +127,22 @@ return {
 			},
 			sources = {
 				buffers = {
-					sort_lastused = true,
+					layout = {
+						preview = false,
+						preset = "vertical",
+					},
 					on_show = function()
 						vim.cmd.stopinsert() -- start in normal mode
 					end,
+					sort_lastused = true,
 				},
 				command_history = {
+					layout = {
+						preview = false,
+						preset = "vertical",
+					},
+				},
+				commands = {
 					layout = {
 						preview = false,
 						preset = "vertical",
@@ -220,6 +234,23 @@ return {
 						vim.cmd("LoadEnvVars")
 						vim.cmd("RestoreChangedFiles")
 					end,
+					layout = {
+						preview = false,
+						preset = "vertical",
+					},
+					win = {
+						input = {
+							keys = {
+								["<c-e>"] = { "close", mode = { "n", "i" } },
+							},
+						},
+					},
+				},
+				smart = {
+					layout = {
+						preview = false,
+						preset = "vertical",
+					},
 				},
 			},
 			ui_select = true,
