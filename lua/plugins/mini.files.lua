@@ -8,6 +8,13 @@ return {
 
 		local function open()
 			local ft = vim.bo.filetype
+
+			-- Already open, do nothing
+			if ft == "minifiles" then
+				return
+			end
+
+			-- Don't open current directory on these special buffers
 			if ft == "help" or ft == "fugitive" or ft == "gitcommit" or ft == "copilot-chat" then
 				mf.open()
 			else
@@ -16,7 +23,7 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>e", open, "Open parent" },
+			{ "-", open, "Open parent" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Files")
@@ -33,7 +40,7 @@ return {
 			go_in_plus = "l",
 			go_out = "h",
 			go_out_plus = "",
-			synchronize = "<leader>w",
+			synchronize = "<c-s>",
 		},
 		windows = {
 			width_focus = 50,

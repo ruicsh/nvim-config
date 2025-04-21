@@ -246,12 +246,6 @@ return {
 						},
 					},
 				},
-				smart = {
-					layout = {
-						preview = false,
-						preset = "vertical",
-					},
-				},
 			},
 			ui_select = true,
 			win = {

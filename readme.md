@@ -152,7 +152,7 @@ Random features added.
 ### Files explorer
 
 - `<leader><leader>` fuzzy find files
-- `<leader>ee` file tree explorer
+- `-` file tree explorer
 - `<leader>.` last picker
 - `<leader>pp` projects
 
