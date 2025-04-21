@@ -30,7 +30,7 @@ o.messagesopt = "wait:500,history:1000" -- Option settings for outputting messag
 o.number = true -- Show line numbers.
 o.numberwidth = 5 -- More space on the gutter column.
 o.relativenumber = true -- Show relative line numbers.
-o.scrolloff = math.floor(vim.fn.winheight(0) / 2) -- Always center the current line.
+o.scrolloff = 10 -- Number of lines to keep above/below the cursor.
 o.sidescrolloff = 10 -- Number of columns to keep left/right of the cursor.
 o.wrap = false -- Do not automatically wrap texts.
 -- }}}
@@ -87,7 +87,7 @@ o.showmode = false -- Do not show mode on last line.
 o.clipboard = "unnamedplus" -- Use system clipboard.
 -- }}}
 
--- 12 editing teindoxt {{{
+-- 12 editing text {{{
 o.complete = ".,]" -- How keyword completion works.
 o.completeopt = "menu,menuone,noinsert,preview" -- Disable native autocompletion (using nvim-cmp).
 o.pumblend = 5 -- Opaque completion menu background.

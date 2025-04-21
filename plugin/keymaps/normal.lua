@@ -22,6 +22,17 @@ end, { expr = true })
 -- ' as in jump to mark and ;, as used in the changelist (g;, g,).
 k("';", "<c-o>", { desc = "Older cursor position" })
 k("',", "<c-i>", { desc = "Newer cursor position" })
+
+-- Center cursor in the middle of the screen when scrolling
+local center_scroll_keys = {
+	["<c-u>"] = "Scroll up half a screen",
+	["<c-d>"] = "Scroll down half a screen",
+	["<c-b>"] = "Scroll up a full screen",
+	["<c-f>"] = "Scroll down a full screen",
+}
+for key, desc in pairs(center_scroll_keys) do
+	k(key, key .. "zz", { desc = desc })
+end
 -- }}}
 
 -- Editing {{{
@@ -116,7 +127,7 @@ k("'s", function()
 	vim.cmd.nohlsearch()
 end, { desc = "Jump to last search" })
 
--- Don't store jumps when browsing search results
+-- Don't store jumps when browsing search results (also center screen)
 k("n", ":keepjumps normal! n<cr>", { desc = "Search: Next" })
 k("N", ":keepjumps normal! N<cr>", { desc = "Search: Previous" })
 -- }}}
