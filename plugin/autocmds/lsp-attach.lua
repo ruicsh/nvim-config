@@ -8,7 +8,7 @@ local icons = require("config/icons")
 local function diagnostics()
 	vim.diagnostic.config({
 		float = {
-			border = "single",
+			border = "rounded",
 		},
 		jump = {
 			float = true,

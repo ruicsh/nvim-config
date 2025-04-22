@@ -1,13 +1,6 @@
 -- Pickers.
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 
--- Grep for a keyword in the workspace
-local function grep()
-	return require("snacks").picker.grep({
-		exclude = { "package-lock.json", "lazy-lock.json" },
-	})
-end
-
 -- Open a ui.select to search for a directory to search in
 local search_directory = function()
 	local snacks = require("snacks")
@@ -86,7 +79,7 @@ return {
 		local mappings = {
 			-- search
 			{ "<leader><space>", snacks.picker.smart, "Search: Files" },
-			{ "<leader>/", grep, "Search: Workspace" },
+			{ "<leader>/", snacks.picker.grep, "Search: Workspace" },
 			{ "<leader>?", search_directory, "Search: Directory" },
 			{ "<leader>*", snacks.picker.grep_word, "Search: Directory" },
 
@@ -150,6 +143,9 @@ return {
 				},
 				files = {
 					hidden = true,
+				},
+				grep = {
+					exclude = { "package-lock.json", "lazy-lock.json" },
 				},
 				help = {
 					confirm = function(picker, item)

@@ -74,7 +74,7 @@ return {
 		},
 		showMissingFiles = false,
 		style = {
-			border = "solid",
+			border = "rounded",
 		},
 	},
 

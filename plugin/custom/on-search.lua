@@ -115,6 +115,8 @@ vim.on_key(function(char)
 		end
 
 		stop_searching()
-		vim.cmd("normal! zO") -- Open fold at the cursor position
+		if vim.fn.foldclosed(vim.fn.line(".")) ~= -1 then
+			vim.cmd("normal! zO") -- Open fold at the cursor position
+		end
 	end
 end, ns)
