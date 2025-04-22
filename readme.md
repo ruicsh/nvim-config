@@ -338,9 +338,9 @@ Random features added.
 - `<leader>hh` status
 - `<leader>hl` log file/selection
 - `<leader>hL` log
-- `<leader>hps` push
-- `<leader>hpu` push -u origin HEAD
-- `<leader>hpf` push --force-with-lease
+- `<localleader>ps` push
+- `<localleader>pu` push -u origin HEAD
+- `<localleader>pf` push --force-with-lease
 - `<leader>hxb` open blame in browser
 - `<leader>hxf` open file in browser
 
