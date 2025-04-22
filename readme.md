@@ -29,7 +29,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ### UI
 
-- [flash.nvim](https://github.com/folke/flash.nvim) - Search labels
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
 - [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
@@ -40,6 +39,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 ### Editing
 
 - [mini.ai](https://github.com/echasnovski/mini.ai) - around/inside textobjects
+- [mini.jump](https://github.com/echasnovski/mini.jump) - Jump to single character
 - [mini.move](https://github.com/echasnovski/mini.move) - move lines/selection
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs
@@ -182,7 +182,6 @@ Random features added.
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
-- `<leader>f` find in document with labels
 - `<leader>/` find in workspace
 - `<leader>?` find in directory
 - `<leader>*` find word in workspace
@@ -288,7 +287,6 @@ Random features added.
 - `<m-k>` jump to previous sibling node
 - `<m-j>` jump to next sibling node
 - `<leader>v` select current node
-- `<leader>V` select node with search labels
 - `<tab>` increase selection (on node selection mode)
 - `<s-tab>` decrease selection (on node selection mode)
 - `<m-H>` swap with lateral previous node
