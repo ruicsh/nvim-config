@@ -58,8 +58,8 @@ return {
 				enable = true,
 				keymaps = {
 					init_selection = "<leader>v",
-					node_incremental = "<tab>",
-					node_decremental = "<s-tab>",
+					node_incremental = "<c-a>",
+					node_decremental = "<c-x>",
 					scope_incremental = false,
 				},
 			},

@@ -282,17 +282,17 @@ Random features added.
 
 ### Syntax (AST)
 
-- `<m-h>` jump to parent node
-- `<m-l>` jump to child node
-- `<m-k>` jump to previous sibling node
-- `<m-j>` jump to next sibling node
+- `<s-left>` jump to parent node
+- `<s-right>` jump to child node
+- `<s-up>` jump to previous sibling node
+- `<s-down>` jump to next sibling node
 - `<leader>v` select current node
-- `<tab>` increase selection (on node selection mode)
-- `<s-tab>` decrease selection (on node selection mode)
-- `<m-H>` swap with lateral previous node
-- `<m-L>` swap with lateral next node
-- `<m-K>` swap with vertical previous node
-- `<m-J>` swap with vertical next node
+- `<c-a>` increase selection (on node selection mode)
+- `<c-x>` decrease selection (on node selection mode)
+- `<m-right>` swap with lateral previous node
+- `<m-left>` swap with lateral next node
+- `<m-up>` swap with vertical previous node
+- `<m-down>` swap with vertical next node
 
 ### LSP
 

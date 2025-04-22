@@ -7,14 +7,14 @@ return {
 		local tw = require("treewalker")
 
 		local keymaps = {
-			{ "<m-j>", tw.move_down, "Jump to next sibling node", { mode = { "n", "v" } } },
-			{ "<m-k>", tw.move_up, "Jump to previous sibling node", { mode = { "n", "v" } } },
-			{ "<m-h>", tw.move_out, "Jump to parent", { mode = { "n", "v" } } },
-			{ "<m-l>", tw.move_in, "Jump to child", { mode = { "n", "v" } } },
-			{ vim.fn.is_windows() and "<m-K>" or "<m-s-k>", tw.swap_up, "Swap up" },
-			{ vim.fn.is_windows() and "<m-J>" or "<m-s-j>", tw.swap_down, "Swap down" },
-			{ vim.fn.is_windows() and "<m-H>" or "<m-s-h>", tw.swap_left, "Swap left" },
-			{ vim.fn.is_windows() and "<m-L>" or "<m-s-l>", tw.swap_right, "Swap right" },
+			{ "<s-down>", tw.move_down, "Jump to next sibling node", { mode = { "n", "v" } } },
+			{ "<s-up>", tw.move_up, "Jump to previous sibling node", { mode = { "n", "v" } } },
+			{ "<s-left>", tw.move_out, "Jump to parent", { mode = { "n", "v" } } },
+			{ "<s-right>", tw.move_in, "Jump to child", { mode = { "n", "v" } } },
+			{ "<m-up>", tw.swap_up, "Swap up" },
+			{ "<m-down>", tw.swap_down, "Swap down" },
+			{ "<m-left>", tw.swap_left, "Swap left" },
+			{ "<m-right>", tw.swap_right, "Swap right" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(keymaps, "AST")
