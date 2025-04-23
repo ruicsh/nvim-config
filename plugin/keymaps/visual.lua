@@ -38,7 +38,6 @@ local function replace_selection(direction)
 end
 k("cn", replace_selection("n"), { expr = true, desc = "Change selection (forward)" })
 k("cN", replace_selection("N"), { expr = true, desc = "Change selection (backward)" })
--- }}}
 
 -- Same behavior for `I`/`A` as in normal mode
 -- https://www.reddit.com/r/neovim/comments/1k4efz8/comment/moelhto/
@@ -48,7 +47,7 @@ end, { expr = true })
 k("A", function()
 	return vim.fn.mode() == "V" and "$<C-v>A" or "A"
 end, { expr = true })
-
+-- }}}
 
 -- Search {{{
 k("/", "<esc>/\\%V") -- Use very magic mode for search

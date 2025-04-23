@@ -3,6 +3,8 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("i", lhs, rhs, options)
 end
 
+k("<c-s>", vim.cmd.write, { unique = false, desc = "Save" }) -- Save file
+
 -- bash shortcuts
 -- https://github.com/tpope/vim-rsi
 
