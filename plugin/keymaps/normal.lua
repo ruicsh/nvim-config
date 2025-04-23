@@ -43,12 +43,6 @@ k("vv", "V") -- Enter visual linewise mode
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
 k("<c-s>", vim.cmd.write, { desc = "Save" }) -- Save file
 
--- Duplicate and comment lines
--- https://www.reddit.com/r/neovim/comments/1k4efz8/comment/mob2hwx/
-k("ycc", function()
-	return "yy" .. vim.v.count1 .. "gcc']p"
-end, { remap = true, expr = true, desc = "Duplicate and comment lines" })
-
 -- Don't store on register when changing text or deleting a character.
 local black_hole_commands = { "C", "c", "cc", "x", "X" }
 for _, key in pairs(black_hole_commands) do
