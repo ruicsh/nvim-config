@@ -169,10 +169,6 @@ k("<tab>", function()
 	vim.cmd("normal! " .. cmd)
 end, { silent = true, desc = "Folds: Toggle" })
 
--- Jump to adjacent sections (fold)
-k("[[", "zczkzo%0", { desc = "Folds: Jump to previous" })
-k("]]", "zczjzo", { desc = "Folds: Jump to next" })
-
 -- Terminal {{{
 k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 -- }}}
