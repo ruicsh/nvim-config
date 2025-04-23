@@ -267,7 +267,6 @@ loadColorSet({
 	StatusLineModeVisual = { bg = cmode.x },
 	StatusLineModeVisualText = { fg = cmode.x },
 	StatusLineSeparator = { fg = c.nord3 },
-	StatusLineTerminalProcess = { fg = c.nord14 },
 })
 
 -- PLUGINS

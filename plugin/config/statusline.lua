@@ -260,16 +260,6 @@ local function c_cursor_position()
 	return "%#StatusLine#%4l %3p%% " .. (has_tabs and sep() or "")
 end
 
--- Show the currently running terminal process
-local function c_terminal_process()
-	local process = _G.get_tab_terminal_process()
-	if not process then
-		return ""
-	end
-
-	return "%#StatusLineTerminalProcess# " .. process
-end
-
 -- Show git blame info
 local function c_git_blame()
 	if not vim.b.gitsigns_blame_line then
@@ -374,7 +364,6 @@ function _G.status_line()
 		c_copilot_chat(),
 		c_diffview_blame(),
 		c_search_count(),
-		c_terminal_process(),
 		"%=",
 		"%=",
 		c_git_blame(),
