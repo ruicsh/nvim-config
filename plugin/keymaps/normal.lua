@@ -168,6 +168,7 @@ k("<tab>", function()
 	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
 	vim.cmd("normal! " .. cmd)
 end, { silent = true, desc = "Folds: Toggle" })
+-- }}}
 
 -- Terminal {{{
 k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
