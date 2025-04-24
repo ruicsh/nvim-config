@@ -207,13 +207,13 @@ local function c_git_status()
 		return cache_git_status[bufnr].value
 	end
 
-	local status = vim.b.gitsigns_status_dict
+	local status = vim.b.minidiff_summary
 	if not status or status == "" then
 		return ""
 	end
 
 	local n_changes = 0
-	local keys = { "added", "changed", "removed" }
+	local keys = { "add", "change", "delete" }
 	local entries = {}
 	for _, k in ipairs(keys) do
 		local count = (status[k] or 0)
@@ -233,12 +233,7 @@ end
 
 -- Show the current git branch
 local function c_git_branch()
-	local ft = vim.bo.filetype
-	if ft == "fugitive" then
-		return ""
-	end
-
-	local head = vim.b.gitsigns_head
+	local head = vim.b.git_branch_name
 	if not head or head == "" then
 		return ""
 	end
@@ -258,15 +253,6 @@ local function c_cursor_position()
 	local has_tabs = vim.fn.tabpagenr("$") > 1
 
 	return "%#StatusLine#%4l %3p%% " .. (has_tabs and sep() or "")
-end
-
--- Show git blame info
-local function c_git_blame()
-	if not vim.b.gitsigns_blame_line then
-		return ""
-	end
-
-	return "%#StatusLineGitBlameText#" .. vim.b.gitsigns_blame_line .. " " .. sep()
 end
 
 -- Show tabs (only if there are more than one)
@@ -366,7 +352,6 @@ function _G.status_line()
 		c_search_count(),
 		"%=",
 		"%=",
-		c_git_blame(),
 		c_lsp_diagnostics(),
 		c_git_status(),
 		c_git_branch(),

@@ -75,7 +75,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 - [diffview](https://github.com/sindrets/diffview.nvim) - diff, log
 - [fugitive.vim](https://github.com/tpope/vim-fugitive) - status, commit, push
-- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
+- [mini.diff](https://github.com/echasnovski/mini.diff) - hunks
 
 ## Config
 
@@ -124,6 +124,7 @@ New features built around autocmds (events).
 | [cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline.lua)                                         | Cleanup after use, hide hit-enter messages on blur                    |
 | [create-intermediate-dirs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/create-intermediate-dirs.lua)       | Create intermediate directories                                       |
 | [disable-newline-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-newline-comments.lua)       | Disable newline comments                                              |
+| [git-branch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/git-branch.lua)                                   | Active git branch                                                     |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps, and custom handlers                         |
 | [scoped-tabs](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scoped-tabs.lua)                                 | Keep buffers in tabs scoped to the tab they were opened in            |
 | [scroll-eof](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/scroll-eof.lua)                                   | Scroll past the end of file with scrolloff                            |
