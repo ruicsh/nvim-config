@@ -4,8 +4,6 @@
 local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/blink.cmp", { clear = true })
 
 local DISABLED_FILETYPES = {
-	"DiffviewFileHistory",
-	"DiffviewFiles",
 	"checkhealth",
 	"copilot-chat",
 	"fugitive",

@@ -61,20 +61,3 @@ api.nvim_create_autocmd("FileType", {
 		k("n", closeShortcut, ":close | :vsplit | :blast<cr>", { buffer = event.buf, silent = true })
 	end,
 })
-
--- Diffview
-api.nvim_create_autocmd("FileType", {
-	group = augroup,
-	pattern = {
-		"DiffviewFiles",
-		"DiffviewFileHistory",
-	},
-	callback = function(event)
-		local function close_diffview()
-			_G.diffview_blame = nil -- reset any blame info
-			vim.cmd.tabclose()
-		end
-
-		k("n", closeShortcut, close_diffview, { buffer = event.buf })
-	end,
-})

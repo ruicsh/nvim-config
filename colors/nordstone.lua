@@ -287,16 +287,6 @@ loadColorSet({
 	CsvViewDelimiter = { fg = c.nord1 },
 })
 
--- diffview
-loadColorSet({
-	diffFile = { fg = c.nord7 },
-	diffIndexLine = { fg = c.nord9 },
-	diffLine = { fg = c.nord3 },
-	diffNewFile = { fg = c.nord12 },
-	diffOldFile = { fg = c.nord13 },
-	diffSubname = { fg = c.nord3_900, style = "bold" },
-})
-
 -- flash.nvim
 loadColorSet({
 	FlashLabel = { fg = c.nord0, bg = c.nord12 },

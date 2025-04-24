@@ -12,7 +12,6 @@ pcall
 tabline
 cmdline
 vscode
-diffview
 gx
 typescriptreact
 scrolloff

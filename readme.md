@@ -8,7 +8,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - **LSP** - Language Server Protocol client, symbols navigation, diagnostics
 - **Syntax** - highlighting, syntax aware motions, text objects
 - **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
-- **Git integration** - status, diffview, commit message editor, buffer integration
+- **Git integration** - status, commit message editor, buffer integration
 - **Search** - fuzzy find anything, file, workspace scoped search and replace
 - **UI** - files and directory explorer, notifications, command palette, bookmarks
 
@@ -25,7 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>36 plugins</sub>
+<sub>35 plugins</sub>
 
 ### UI
 
@@ -73,9 +73,9 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ### Git
 
-- [diffview](https://github.com/sindrets/diffview.nvim) - diff, log
 - [fugitive.vim](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [mini.diff](https://github.com/echasnovski/mini.diff) - hunks
+- [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote repo
 
 ## Config
 
@@ -329,13 +329,8 @@ Random features added.
 - `]h` next hunk
 - `gh` stage hunk
 - `gH` reset hunk
-- `<leader>hb` blame line
-- `<leader>hB` blame file
 - `<leader>hd` diff hunk
-- `<leader>hD` diff workspace
 - `<leader>hh` status
-- `<leader>hl` log file/selection
-- `<leader>hL` log
 - `<localleader>ps` push
 - `<localleader>pu` push -u origin HEAD
 - `<localleader>pf` push --force-with-lease

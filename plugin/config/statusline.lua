@@ -74,7 +74,7 @@ local function c_mode()
 		mode = "QF"
 	elseif ft == "vim" then
 		mode = "VIM"
-	elseif ft == "fugitive" or ft == "gitcommit" or ft:match("Diffview") or vim.wo.diff then
+	elseif ft == "fugitive" or ft == "gitcommit" or vim.wo.diff then
 		mode = "GIT"
 	elseif ft == "messages" then
 		mode = "MESSAGES"
@@ -114,10 +114,6 @@ local function c_filename()
 		line = line .. "STATUS"
 	elseif ft == "gitcommit" then
 		line = line .. "COMMIT"
-	elseif ft == "DiffviewFiles" then
-		line = line .. "DIFF"
-	elseif ft == "DiffviewFileHistory" then
-		line = line .. "LOG"
 	elseif ft == "" or ft == "copilot-chat" or ft == "messages" then
 		return ""
 	else
@@ -307,27 +303,6 @@ local function c_copilot_chat()
 	return table.concat(status, " ")
 end
 
--- Show git blame on diffview screen
-local function c_diffview_blame()
-	local ft = vim.bo.filetype
-	if not ft:match("Diffview") then
-		return ""
-	end
-
-	if not _G.diffview_blame then
-		return ""
-	end
-
-	local author_time = os.date("%Y-%m-%d %H:%M", _G.diffview_blame.date)
-
-	return "%#StatusLine#"
-		.. table.concat({
-			_G.diffview_blame.author,
-			author_time,
-			_G.diffview_blame.summary,
-		}, " - ")
-end
-
 -- Construct the statusline (default)
 function _G.status_line()
 	if vim.g.vscode then
@@ -348,7 +323,6 @@ function _G.status_line()
 		c_filename(),
 		c_bookmark(),
 		c_copilot_chat(),
-		c_diffview_blame(),
 		c_search_count(),
 		"%=",
 		"%=",
