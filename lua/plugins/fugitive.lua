@@ -21,10 +21,21 @@ return {
 			vim.cmd("wincmd L") -- Send current window (fugitive) to the right edge
 		end
 
+		local function open_git_log()
+			-- Fugitive is not open, so we need to open it
+			vim.cmd("only") -- Make sure we are in a single window
+			vim.cmd("vertical Git log") -- Open Git log in a vertical split
+			vim.cmd("wincmd L") -- Send current window (fugitive) to the right edge
+		end
+
 		local mappings = {
-			{ "<leader>hh", open_git_status, "Status" },
+			{ "<leader>hh", open_git_status, "status" },
+			{ "<leader>hl", open_git_log, "log" },
+			{ "<leader>hb", "<cmd>Git blame<cr>", "blame" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
 	end,
+
+	event = "VeryLazy",
 }

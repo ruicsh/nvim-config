@@ -7,5 +7,6 @@ local function k(mode, lhs, rhs, opts)
 end
 
 k("n", "<leader>ar", ":CopilotCodeReview<cr>", { desc = "Code Review" })
-k("n", "<localleader>ps", ":Git push<cr>", { desc = "Push to upstream" })
-k("n", "<localleader>pf", ":Git push --force-with-lease<cr>", { desc = "Force push" })
+k("n", "<leader>hps", ":Git push<cr>", { desc = "push" })
+k("n", "<leader>hpf", ":Git push --force-with-lease<cr>", { desc = "push --force-with-lease" })
+k("n", "<leader>hpu", ":Git push -u origin HEAD", { desc = "push -u origin HEAD" })

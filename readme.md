@@ -329,11 +329,13 @@ Random features added.
 - `]h` next hunk
 - `gh` stage hunk
 - `gH` reset hunk
+- `<leader>hb` blame
 - `<leader>hd` diff hunk
 - `<leader>hh` status
-- `<localleader>ps` push
-- `<localleader>pu` push -u origin HEAD
-- `<localleader>pf` push --force-with-lease
+- `<leader>hl` log
+- `<leader>hpf` push --force-with-lease
+- `<leader>hps` push
+- `<leader>hpu` push -u origin HEAD
 - `<leader>hxb` open blame in browser
 - `<leader>hxf` open file in browser
 

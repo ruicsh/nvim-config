@@ -294,9 +294,11 @@ loadColorSet({
 
 -- Fugitive
 loadColorSet({
+	-- git diff
 	diffAdded = { fg = c.nord14 },
 	diffChanged = { fg = c.nord15 },
 	diffRemoved = { fg = c.nord11 },
+	-- git status
 	fugitiveHunk = { fg = c.nord3_900 },
 	fugitiveIgnoredHeading = { fg = c.nord3 },
 	fugitiveMergedHeading = { fg = c.nord8 },
@@ -307,6 +309,23 @@ loadColorSet({
 	fugitiveUnmergedHeading = { fg = c.nord13 },
 	fugitiveUnstagedHeading = { fg = c.nord13 },
 	fugitiveUntrackedHeading = { fg = c.nord11 },
+	-- git show
+	diffFile = { fg = c.nord7 },
+	diffIndexLine = { fg = c.nord9 },
+	diffLine = { fg = c.nord9 },
+	diffNewFile = { fg = c.nord9 },
+	diffOldFile = { fg = c.nord9 },
+	gitDiff = { fg = c.nord4 },
+	-- git log
+	gitDate = { fg = c.nord9 },
+	gitDateHeader = { fg = c.nord3_700 },
+	gitEmail = { fg = c.nord9 },
+	gitHash = { fg = c.nord9 },
+	gitHashAbbrev = { fg = c.nord9 },
+	gitIdentity = { fg = c.nord9 },
+	gitIdentityHeader = { fg = c.nord3_700 },
+	gitIdentityKeyword = { fg = c.nord3_700 },
+	gitKeyword = { fg = c.nord3_700 },
 })
 
 -- mini.diff
