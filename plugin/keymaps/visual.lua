@@ -20,6 +20,7 @@ end, { expr = true })
 -- }}}
 
 -- Editing {{{
+k("<c-s>", "<esc><cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
 k("Y", "y$") -- Make Y behave like normal mode
 
 -- Paste over currently selected text without yanking it.
@@ -50,7 +51,7 @@ end, { expr = true })
 -- }}}
 
 -- Search {{{
-k("/", "<esc>/\\%V") -- Use very magic mode for search
+k("/", "<esc>/\\%V") -- Search within visual selection
 -- }}}
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0

@@ -41,7 +41,7 @@ k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode
 
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
-k("<c-s>", vim.cmd.write, { desc = "Save" }) -- Save file
+k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
 
 -- Don't store on register when changing text or deleting a character.
 local black_hole_commands = { "C", "c", "cc", "x", "X" }
