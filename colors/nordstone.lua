@@ -282,16 +282,6 @@ loadColorSet({
 	CopilotChatSelection = { bg = c.nord0 },
 })
 
--- csvview.nvim
-loadColorSet({
-	CsvViewDelimiter = { fg = c.nord1 },
-})
-
--- flash.nvim
-loadColorSet({
-	FlashLabel = { fg = c.nord0, bg = c.nord12 },
-})
-
 -- Fugitive
 loadColorSet({
 	-- git diff
@@ -351,7 +341,7 @@ loadColorSet({
 	DapStoppedLineNr = { link = "DapStopped" },
 })
 
---nvim-dap-ui
+-- nvim-dap-ui
 loadColorSet({
 	DapUIBreakpointsCurrentLine = { fg = c.nord8 },
 	DapUIBreakpointsDisabledLine = {},
