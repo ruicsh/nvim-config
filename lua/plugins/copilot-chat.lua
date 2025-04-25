@@ -179,7 +179,22 @@ end
 local function new_chat_window(prompt, opts)
 	local chat = require("CopilotChat")
 
-	open_in_adjacent_window()
+	if opts.inline then
+		opts.window = {
+			layout = "float",
+			relative = "cursor",
+			width = 80,
+			height = 20,
+			row = -21,
+			col = 3,
+		}
+	else
+		opts.window = {
+			layout = "replace",
+		}
+		open_in_adjacent_window()
+	end
+
 	vim.g.copilot_chat_title = nil -- Reset chat title used for saving chat history
 	chat.reset()
 
@@ -195,12 +210,15 @@ local function customize_chat_window()
 		group = augroup,
 		pattern = "copilot-chat",
 		callback = function()
-			vim.opt_local.conceallevel = 0 -- Text is shown normally
+			vim.opt_local.conceallevel = 0
+			vim.opt_local.relativenumber = false
+			vim.opt_local.signcolumn = "yes"
+			vim.opt_local.cursorline = false
 		end,
 	})
 end
 
-local function open_chat(type)
+local function open_chat(type, opts)
 	local select = require("CopilotChat.select")
 
 	return function()
@@ -230,6 +248,7 @@ local function open_chat(type)
 			model = model,
 			selection = selection,
 			system_prompt = system_prompt,
+			inline = opts and opts.inline or false,
 		})
 	end
 end
@@ -282,7 +301,7 @@ local function get_visual_selection()
 	return selection
 end
 
-local function action(type)
+local function action(type, opts)
 	return function()
 		local select = require("CopilotChat.select")
 
@@ -304,14 +323,13 @@ local function action(type)
 			selection = select.buffer
 		end
 
-		local opts = {
-			auto_insert_mode = true,
+		new_chat_window(prompt, {
+			auto_insert_mode = false,
 			model = get_model_for_operation(type),
 			selection = selection,
 			system_prompt = system_prompt,
-		}
-
-		new_chat_window(prompt, opts)
+			inline = opts and opts.inline or false,
+		})
 	end
 end
 
@@ -651,14 +669,29 @@ return {
 			{ "<leader>as", open_chat("search"), "Search" },
 			{ "<leader>aq", open_chat("architect"), "Architect" },
 
+			-- inline chat
+			{ "<leader>aA", open_chat("assistance", { inline = true }), "Assistance", { mode = { "n", "v" } } },
+			{ "<leader>aG", open_chat("generic", { inline = true }), "Assistance" },
+			{ "<leader>aS", open_chat("search", { inline = true }), "Search" },
+			{ "<leader>aQ", open_chat("architect", { inline = true }), "Architect" },
+
 			-- actions
-			{ "<leader>ae", action("explain"), "Explain", { mode = "v" } },
-			{ "<leader>af", action("fix"), "Fix", { mode = { "v" } } },
-			{ "<leader>ai", action("implement"), "Implement", { mode = "v" } },
-			{ "<leader>ao", action("optimize"), "Optimize", { mode = "v" } },
-			{ "<leader>ar", action("review"), "Review", { mode = { "v" } } },
-			{ "<leader>at", action("tests"), "Tests", { mode = "v" } },
-			{ "<leader>aw", action("refactor"), "Refactor", { mode = "v" } },
+			{ "<leader>aE", action("explain"), "Explain", { mode = "v" } },
+			{ "<leader>aF", action("fix"), "Fix", { mode = { "v" } } },
+			{ "<leader>aI", action("implement"), "Implement", { mode = "v" } },
+			{ "<leader>aO", action("optimize"), "Optimize", { mode = "v" } },
+			{ "<leader>aR", action("review"), "Review", { mode = { "v" } } },
+			{ "<leader>aT", action("tests"), "Tests", { mode = "v" } },
+			{ "<leader>aW", action("refactor"), "Refactor", { mode = "v" } },
+
+			-- actions inline
+			{ "<leader>ae", action("explain", { inline = true }), "Explain", { mode = "v" } },
+			{ "<leader>af", action("fix", { inline = true }), "Fix", { mode = { "v" } } },
+			{ "<leader>ai", action("implement", { inline = true }), "Implement", { mode = "v" } },
+			{ "<leader>ao", action("optimize", { inline = true }), "Optimize", { mode = "v" } },
+			{ "<leader>ar", action("review", { inline = true }), "Review", { mode = { "v" } } },
+			{ "<leader>at", action("tests", { inline = true }), "Tests", { mode = "v" } },
+			{ "<leader>aw", action("refactor", { inline = true }), "Refactor", { mode = "v" } },
 
 			-- git
 			{ "<leader>ap", ":CopilotPrReview<cr>", "PR review" },
@@ -841,10 +874,12 @@ return {
 			references_display = "write", -- Display references as markdown links
 			question_header = "꠵ User ",
 			selection = false, -- Have no predefined context by default
+			separator = " ",
 			show_help = false,
 			show_folds = false,
 			window = {
 				layout = "replace",
+				title = "",
 			},
 		})
 	end,

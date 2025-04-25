@@ -279,6 +279,7 @@ loadColorSet({
 
 -- CopilotChat.nvim
 loadColorSet({
+	CopilotChatHeader = { fg = c.nord14 },
 	CopilotChatSelection = { bg = c.nord0 },
 })
 
@@ -487,6 +488,7 @@ loadColorSet({
 	["@markup.heading.6.markdown"] = { fg = c.nord9 },
 	["@punctuation.special.markdown"] = { fg = c.nord3 },
 	["@markup.raw.block.markdown"] = { fg = c.nord3_900 },
+	["@markup.raw.markdown_inline"] = { fg = c.nord8 },
 
 	-- markdown_inline
 	["@markup.link.label.markdown_inline"] = { fg = c.nord8 },
