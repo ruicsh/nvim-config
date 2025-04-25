@@ -29,13 +29,15 @@ vim.api.nvim_create_user_command("VimMessages", function()
 		row = row,
 		style = "minimal",
 		border = "single",
-		title = " Messages ",
-		title_pos = "left",
 	})
 
 	vim.api.nvim_set_option_value("wrap", true, { win = win })
-	vim.cmd("setlocal filetype=vim-messages")
-	vim.cmd("normal! G") -- Jump to the end of the buffer
+	vim.api.nvim_set_option_value("number", true, { win = win })
+	vim.api.nvim_set_option_value("numberwidth", 3, { win = win })
+	vim.api.nvim_set_option_value("filetype", "vim-messages", { buf = buf })
+
+	-- Set cursor to the last line
+	vim.api.nvim_win_set_cursor(win, { vim.api.nvim_buf_line_count(buf), 0 })
 end, {})
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -47,7 +49,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.wo.wrap = true -- Enable line wrapping
 		vim.wo.relativenumber = false -- Disable relative line numbers
 
-		vim.keymap.set("n", "q", "<c-w>q", { buffer = 0, desc = "Close messages window" })
 		vim.keymap.set("n", "<c-e>", "<c-w>q", { buffer = 0, desc = "Close messages window" })
 	end,
 })

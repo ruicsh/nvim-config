@@ -133,7 +133,6 @@ o.backup = false -- Do not create backup files.
 
 -- 18 the swap file {{{
 o.swapfile = false -- Stop creating swp files.
-o.updatetime = 250 -- Time in milliseconds to wait for CursorHold event.
 -- }}}
 
 -- 19 command line editing {{{
