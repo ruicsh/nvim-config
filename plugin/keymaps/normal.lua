@@ -27,8 +27,6 @@ k("',", "<c-i>", { desc = "Newer cursor position" })
 local center_scroll_keys = {
 	["<c-u>"] = "Scroll up half a screen",
 	["<c-d>"] = "Scroll down half a screen",
-	["<c-b>"] = "Scroll up a full screen",
-	["<c-f>"] = "Scroll down a full screen",
 }
 for key, desc in pairs(center_scroll_keys) do
 	k(key, key .. "zz", { desc = desc })
