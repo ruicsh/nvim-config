@@ -229,6 +229,11 @@ end
 
 -- Show the current git branch
 local function c_git_branch()
+	local ft = vim.bo.filetype
+	if ft == "fugitive" or ft == "gitcommit" then
+		return ""
+	end
+
 	local head = vim.b.git_branch_name
 	if not head or head == "" then
 		return ""
