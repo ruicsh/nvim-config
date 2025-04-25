@@ -714,6 +714,7 @@ return {
 
 		chat.setup({
 			agent = "copilot",
+			allow_insecure = true,
 			answer_header = "꠵ Assistant ",
 			auto_follow_cursor = false, -- Don't follow cursor in chat buffer
 			callback = function(response)
