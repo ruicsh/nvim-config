@@ -25,7 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>35 plugins</sub>
+<sub>34 plugins</sub>
 
 ### UI
 
@@ -41,7 +41,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [flash.nvim](https://github.com/folke/flash.nvim) - Jump to single character
 - [mini.ai](https://github.com/echasnovski/mini.ai) - around/inside textobjects
 - [mini.align](https://github.com/echasnovski/mini.align) - align text interactively
-- [mini.move](https://github.com/echasnovski/mini.move) - move lines/selection
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround pairs

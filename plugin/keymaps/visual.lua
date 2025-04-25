@@ -23,6 +23,10 @@ end, { expr = true })
 k("<c-s>", "<esc><cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
 k("Y", "y$") -- Make Y behave like normal mode
 
+-- Move lines
+k("]e", ":m '>+1<cr>gv=gv", { desc = "Move line down", silent = true })
+k("[e", ":m '<-2<cr>gv=gv", { desc = "Move line up", silent = true })
+
 -- Paste over currently selected text without yanking it.
 k("P", '"_dP')
 k("X", '"_X')

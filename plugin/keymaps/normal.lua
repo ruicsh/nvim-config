@@ -38,6 +38,14 @@ end
 k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode
 
+-- Paste on adjacent line
+k("[p", ":put!<cr>==", { desc = "Paste on line above" })
+k("]p", ":put<cr>==", { desc = "Paste on line below" })
+
+-- Move lines
+k("]e", ":m .+1<cr>==", { desc = "Move line down", silent = true })
+k("[e", ":m .-2<cr>==", { desc = "Move line up", silent = true })
+
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
 k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
 
