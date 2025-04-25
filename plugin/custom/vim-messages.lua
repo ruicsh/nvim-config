@@ -4,25 +4,37 @@
 local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/vim-messages", { clear = true })
 
 vim.api.nvim_create_user_command("VimMessages", function()
-	local height = math.floor(vim.o.lines * 0.2) -- Set height to 20% of screen
-	vim.cmd(height .. "new +set\\ filetype=vim-messages")
-
 	-- List messages
 	local messages = vim.fn.execute("messages")
 	local lines = messages and vim.split(messages, "\n") or {}
+
 	-- Filter out empty lines
-	lines = vim.tbl_filter(function(line)
-		-- trim whitespace
-		line = line:gsub("^%s*(.-)%s*$", "%1")
-		return line ~= ""
-	end, lines)
+	lines = vim.fn.filter(lines, 'v:val =~ "\\S"')
 
-	if #lines == 0 then
-		vim.api.nvim_buf_set_lines(0, 0, -1, false, { "No messages to display", "" })
-	else
-		vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
-	end
+	-- Calculate dimensions for floating window
+	local width = math.floor(vim.o.columns * 0.3)
+	local height = vim.o.lines - 3
+	local col = vim.o.columns - width
+	local row = 0
 
+	-- Create floating window
+	local buf = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+	local win = vim.api.nvim_open_win(buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		col = col,
+		row = row,
+		style = "minimal",
+		border = "single",
+		title = " Messages ",
+		title_pos = "left",
+	})
+
+	vim.api.nvim_set_option_value("wrap", true, { win = win })
+	vim.cmd("setlocal filetype=vim-messages")
 	vim.cmd("normal! G") -- Jump to the end of the buffer
 end, {})
 
@@ -35,6 +47,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.wo.wrap = true -- Enable line wrapping
 		vim.wo.relativenumber = false -- Disable relative line numbers
 
+		vim.keymap.set("n", "q", "<c-w>q", { buffer = 0, desc = "Close messages window" })
 		vim.keymap.set("n", "<c-e>", "<c-w>q", { buffer = 0, desc = "Close messages window" })
 	end,
 })
