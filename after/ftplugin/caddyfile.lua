@@ -26,7 +26,7 @@ _G.get_caddyfile_indent = function(lnum)
 	return ind
 end
 
-vim.bo.lisp = false
-vim.bo.autoindent = true
-vim.bo.indentexpr = "v:lua.get_caddyfile_indent(v:lnum)"
-vim.bo.indentkeys = vim.bo.indentkeys .. ",<:>,0=},0=)"
+vim.opt_local.lisp = false
+vim.opt_local.autoindent = true
+vim.opt_local.indentexpr = "v:lua.get_caddyfile_indent(v:lnum)"
+vim.opt_local.indentkeys = vim.bo.indentkeys .. ",<:>,0=},0=)"

@@ -1,5 +1,5 @@
-vim.wo.wrap = true
-vim.bo.buflisted = false
+vim.opt_local.wrap = true
+vim.opt_local.buflisted = false
 
 local function k(mode, lhs, rhs, opts)
 	local options = vim.tbl_extend("force", { buffer = 0 }, opts or {})

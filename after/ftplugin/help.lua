@@ -1,4 +1,4 @@
-vim.bo.bufhidden = "unload"
+vim.opt_local.bufhidden = "unload"
 
 local k = vim.keymap.set
 local opts = { buffer = true }
