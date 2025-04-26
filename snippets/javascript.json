@@ -1,0 +1,103 @@
+{
+  "dow": {
+    "prefix": "dow-",
+    "body": [
+      "do {",
+      "\t$0",
+      "} while (${1:condition});"
+    ],
+    "description": "Do-while statement"
+  },
+  "forin": {
+    "prefix": "fin-",
+    "body": [
+      "for (const ${1:key} in ${2:object}) {",
+      "\tif (Object.prototype.hasOwnProperty.call(${2:object}, ${1:key})) {",
+      "\t\tconst ${3:element} = ${2:object}[${1:key}];",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "For-in loop"
+  },
+  "forof": {
+    "prefix": "fof-",
+    "body": [
+      "for (const ${1:iterator} of ${2:object}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "For-of loop"
+  },
+  "fna": {
+    "prefix": "fna-",
+    "body": [
+      "const ${1:name} = ($2) => {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Arrow function statement"
+  },
+  "fnc": {
+    "prefix": "fnc-",
+    "body": [
+      "const ${1:name} = function($2) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Function expression"
+  },
+  "fnm": {
+    "prefix": "fnm-",
+    "body": [
+      "${1:method}(${2:args}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Class method"
+  },
+  "fnn": {
+    "prefix": "fnn-",
+    "body": [
+      "function ${1:name}($2) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Named function statement"
+  },
+  "swi": {
+    "prefix": "swi-",
+    "body": [
+      "switch (${1:key}) {",
+      "\tcase ${2:value}: {",
+      "\t\t$0",
+      "\t\tbreak;",
+      "\t}",
+      "\tdefault: {",
+      "\t\tbreak;",
+      "\t}",
+      "}"
+    ],
+    "description": "Switch statement"
+  },
+  "try": {
+    "prefix": "try-",
+    "body": [
+      "try {",
+      "\t$0",
+      "} catch (${1:error}) {",
+      "\t",
+      "}"
+    ],
+    "description": "Try-catch statement"
+  },
+  "whi": {
+    "prefix": "whi-",
+    "body": [
+      "while (${1:condition}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "While statement"
+  }
+}

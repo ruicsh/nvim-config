@@ -1,0 +1,266 @@
+{
+  "align-items": {
+    "prefix": "ai-",
+    "body": "align-items: ${1|flex-start,flex-end,center,baseline,stretch,start,end,self-start,self-end,foobar|};",
+    "description": "initial value: stretch"
+  },
+  "animation": {
+    "prefix": "ani-",
+    "body": "animation: ${1:name} ${2:1s} ${3|linear,ease-in-out,ease,ease-in,ease-out,step-start,step-end,steps,cubic-bezier|};",
+    "description": "animation: name duration timing-function delay direction count fill-mode play-state"
+  },
+  "background-color": {
+    "prefix": "bg-",
+    "body": "background-color: ${0:#fff};",
+    "description": "background-color"
+  },
+  "border": {
+    "prefix": "b-",
+    "body": "border: ${1:1px} ${2|solid,dashed,dotted,double,groove,ridge,inset,outset,none,hidden|} ${0:#000};",
+    "description": "border"
+  },
+  "cursor": {
+    "prefix": "cur-",
+    "body": "cursor: ${1|auto,default,alias,cell,copy,crosshair,context-menu,help,grab,grabbing,move,none,no-drop,not-allowed,pointer,progress,e-resize,all-scroll,text,wait,vertical-text,zoom-in,zoom-out|};",
+    "description": "cursor"
+  },
+  "display": {
+    "prefix": "d-",
+    "body": "display: ${1|none,block,inline,inline-block,flex,inline-flex,list-item,table,inline-table,table-caption,table-cell,table-row,table-row-group,table-column|};",
+    "description": "display"
+  },
+  "flex": {
+    "prefix": "fl-",
+    "body": "flex: ${1:1} ${2:1} ${3:auto};",
+    "description": "flex: grow shrink basis"
+  },
+  "flex-direction": {
+    "prefix": "fld-",
+    "body": "flex-direction: ${1|row,row-reverse,column,column-reverse|};",
+    "description": "flex-direction"
+  },
+  "font-family": {
+    "prefix": "ff-",
+    "body": "font-family: ${0:arial};",
+    "description": "font-family"
+  },
+  "font-size": {
+    "prefix": "fz-",
+    "body": "font-size: ${0:12px};",
+    "description": "font-size"
+  },
+  "font-style": {
+    "prefix": "fs-",
+    "body": "font-style: ${1|italic,oblique,normal|};",
+    "description": "font-style: italic oblique normal"
+  },
+  "font-weight": {
+    "prefix": "fw-",
+    "body": "font-weight: ${0:|normal,bold,bolder,lighter,100,200,300,400,500,600,700,800,900|};",
+    "description": "font-weight: normal bold bolder lighter 100 200 300 400 500 600 700 800 900"
+  },
+  "height": {
+    "prefix": "h-",
+    "body": "height: ${0:1px};",
+    "description": "height"
+  },
+  "justify-content": {
+    "prefix": "jus-",
+    "body": "justify-content: ${1|flex-start,flex-end,center,space-between,space-around|};",
+    "description": "initial value: flex-start"
+  },
+  "list-style": {
+    "prefix": "ls-",
+    "body": "list-style: ${1|disc,circle,square,decimal,lower-roman,upper-roman,lower-alpha,upper-alpha,none,armenian,cjk-ideographic,georgian,lower-greek,hebrew,hiragana,hiragana-iroha,katakana,katakana-iroha,lower-latin,upper-latin|} ${2|outside,inside|};",
+    "description": "list-style: type position image"
+  },
+  "left": {
+    "prefix": "l-",
+    "body": "left: ${0:0};",
+    "description": "left"
+  },
+  "line-height": {
+    "prefix": "lh-",
+    "body": "line-height: ${0:1.5};",
+    "description": "line-height"
+  },
+  "letter-spacing": {
+    "prefix": "ls-",
+    "body": "letter-spacing: ${0:2px};",
+    "description": "letter-spacing"
+  },
+  "margin": {
+    "prefix": "m-",
+    "body": "margin: ${0:0};",
+    "description": "margin"
+  },
+  "margin-bottom": {
+    "prefix": "mb-",
+    "body": "margin-bottom: ${0:0};",
+    "description": "margin-bottom"
+  },
+  "margin-left": {
+    "prefix": "ml-",
+    "body": "margin-left: ${0:0};",
+    "description": "margin-left"
+  },
+  "margin-right": {
+    "prefix": "mr-",
+    "body": "margin-right: ${0:0};",
+    "description": "margin-right"
+  },
+  "margin-top": {
+    "prefix": "mt-",
+    "body": "margin-top: ${0:0};",
+    "description": "margin-top"
+  },
+  "min-height": {
+    "prefix": "mih-",
+    "body": "min-height: ${0:1px};",
+    "description": "min-height"
+  },
+  "min-width": {
+    "prefix": "miw-",
+    "body": "min-width: ${0:1px};",
+    "description": "min-width"
+  },
+  "max-height": {
+    "prefix": "mah-",
+    "body": "max-height: ${0:1px};",
+    "description": "max-height"
+  },
+  "max-width": {
+    "prefix": "maw-",
+    "body": "max-width: ${0:1px};",
+    "description": "max-width"
+  },
+  "opacity": {
+    "prefix": "op-",
+    "body": "opacity: ${0:0};",
+    "description": "opacity"
+  },
+  "overflow": {
+    "prefix": "ov-",
+    "body": "overflow: ${1|visible,hidden,scroll,auto,clip|};",
+    "description": "overflow: visible hidden scroll auto clip"
+  },
+  "padding": {
+    "prefix": "p-",
+    "body": "padding: ${0:0};",
+    "description": "padding"
+  },
+  "padding-bottom": {
+    "prefix": "pb-",
+    "body": "padding-bottom: ${0:0};",
+    "description": "padding-bottom"
+  },
+  "padding-left": {
+    "prefix": "pl-",
+    "body": "padding-left: ${0:0};",
+    "description": "padding-left"
+  },
+  "padding-right": {
+    "prefix": "pr-",
+    "body": "padding-right: ${0:0};",
+    "description": "padding-right"
+  },
+  "padding-top": {
+    "prefix": "pt-",
+    "body": "padding-top: ${0:0};",
+    "description": "padding-top"
+  },
+  "position": {
+    "prefix": "pos-",
+    "body": "position: ${1|relative,absolute,fixed,sticky,static|};",
+    "description": "position: relative absolute fixed sticky static"
+  },
+  "right": {
+    "prefix": "r-",
+    "body": "right: ${0:0};",
+    "description": "right"
+  },
+  "text-align": {
+    "prefix": "ta-",
+    "body": "text-align: ${1|center,left,right,justify,start,end|};",
+    "description": "text-align: center left right justify start end"
+  },
+  "text-decoration": {
+    "prefix": "td-",
+    "body": "text-decoration: ${1|none,underline,overline,line-through|};",
+    "description": "text-decoration: none underline overline line-through"
+  },
+  "text-indent": {
+    "prefix": "ti-",
+    "body": "text-indent: ${0:2em};",
+    "description": "text-indent"
+  },
+  "text-shadow": {
+    "prefix": "ts-",
+    "body": "text-shadow: ${1:1px} ${2:1px} ${3:1px} ${4:1px} ${0:rgba(0, 0, 0, .5)};",
+    "description": "text-shadow: x-offset y-offset blur spread color"
+  },
+  "text-transform": {
+    "prefix": "tt-",
+    "body": "text-transform: ${1|capitalize,uppercase,lowercase,full-width,none|};",
+    "description": "text-transform: capitalize uppercase lowercase full-width none"
+  },
+  "top": {
+    "prefix": "t-",
+    "body": "top: ${0:0};",
+    "description": "top"
+  },
+  "vertical-align": {
+    "prefix": "va-",
+    "body": "vertical-align: ${1|baseline,middle,top,bottom,sub,super,text-top,text-bottom|};",
+    "description": "vertical-align: baseline middle top bottom sub super text-top text-bottom"
+  },
+  "visibility": {
+    "prefix": "v-",
+    "body": "visibility: ${1|visible,hidden,collapse|};",
+    "description": "visibility: visible hidden collapse"
+  },
+  "width": {
+    "prefix": "w-",
+    "body": "width: ${0:0};",
+    "description": "width"
+  },
+  "white-space": {
+    "prefix": "ws-",
+    "body": "white-space: ${1|nowrap,pre,pre-wrap,pre-line,normal|};",
+    "description": "white-space: normal nowrap pre pre-wrap pre-line"
+  },
+  "word-wrap": {
+    "prefix": "ww-",
+    "body": "word-wrap: ${1|break-word,break-spaces,normal|};",
+    "description": "word-wrap: normal break-word break-spaces"
+  },
+  "z-index": {
+    "prefix": "zi-",
+    "body": "z-index: ${0:-1};",
+    "description": "z-index"
+  },
+  "@import": {
+    "prefix": "imp-",
+    "body": "@import '${0:filename}';"
+  },
+  "@mixin": {
+    "prefix": "mix-",
+    "body": "@mixin ${1:name} {\n  $0\n}"
+  },
+  "@include": {
+    "prefix": "inc-",
+    "body": "@include ${0:mixin};"
+  },
+  "@keyframes": {
+    "prefix": "key-",
+    "body": "@keyframes ${1:name} {\n  $0\n}"
+  },
+  "@media": {
+    "prefix": "med-",
+    "body": "@media screen and (${1:max-width: 300px}) {\n  $0\n}"
+  },
+  "!important": {
+    "prefix": "!-",
+    "body": "!important"
+  }
+}

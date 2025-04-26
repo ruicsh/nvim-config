@@ -25,7 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>34 plugins</sub>
+<sub>35 plugins</sub>
 
 ### UI
 
@@ -53,6 +53,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
 - [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
 - [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - CSS Colors
+- [mini.snipeets](https://github.com/echasnovski/mini.snippets) - Snippets
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
 - [ts-comments.nvim](https://github.com/folke/ts-comments.nvim) - Custom comments configurations per language
 
