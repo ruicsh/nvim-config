@@ -1,6 +1,19 @@
 -- Git client
 -- https://github.com/tpope/vim-fugitive
 
+local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/fugitive", { clear = true })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = augroup,
+	pattern = "fugitive://*",
+	callback = function()
+		-- Needs to be here because the ftplugin is loaded before these are set
+		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
+		vim.opt_local.signcolumn = "yes:2"
+	end,
+})
+
 return {
 	"tpope/vim-fugitive",
 	keys = function()
