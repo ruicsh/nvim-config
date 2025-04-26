@@ -18,6 +18,7 @@ local IGNORE_FILETYPES = {
 	lspinfo = true,
 	mason = true,
 	mininotify = true,
+	terminal = true,
 }
 
 -- Save view when leaving a buffer
@@ -25,7 +26,7 @@ vim.api.nvim_create_autocmd("BufWinLeave", {
 	group = augroup,
 	callback = function(ev)
 		local ft = vim.bo[ev.buf].filetype
-		if IGNORE_FILETYPES[ft] then
+		if ft == "" or IGNORE_FILETYPES[ft] then
 			return
 		end
 
@@ -38,7 +39,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	group = augroup,
 	callback = function(ev)
 		local ft = vim.bo[ev.buf].filetype
-		if IGNORE_FILETYPES[ft] then
+		if ft == "" or IGNORE_FILETYPES[ft] then
 			return
 		end
 
