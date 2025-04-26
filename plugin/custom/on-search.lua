@@ -16,8 +16,13 @@ local lines_cache = {}
 
 -- Show search count indicators with virtual text
 local function searchCountIndicator(mode)
-	local signColumnPlusScrollbarWidth = 2 + 3 -- CONFIG
+	local ft = vim.bo.filetype
+	-- Don't show in these filetypes
+	if ft == "snacks_picker_input" or ft == "gitcommit" then
+		return
+	end
 
+	local signColumnPlusScrollbarWidth = 2 + 3
 	vim.api.nvim_buf_clear_namespace(0, ns_count, 0, -1)
 	if mode == "clear" then
 		lines_cache = {}
