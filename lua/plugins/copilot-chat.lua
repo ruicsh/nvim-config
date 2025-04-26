@@ -161,21 +161,6 @@ local function save_chat(response)
 	})
 end
 
-local function open_in_adjacent_window()
-	local current_win = vim.api.nvim_get_current_win()
-	if not current_win then
-		return
-	end
-
-	local col = vim.api.nvim_win_get_position(0)[2]
-	local is_left_edge = col <= (vim.o.columns * 0.5)
-
-	vim.cmd("only")
-	vim.cmd("vsplit")
-
-	vim.cmd.wincmd(is_left_edge and "L" or "H")
-end
-
 local function new_chat_window(prompt, opts)
 	local chat = require("CopilotChat")
 
@@ -190,9 +175,9 @@ local function new_chat_window(prompt, opts)
 		}
 	else
 		opts.window = {
-			layout = "replace",
+			layout = "vertical",
 		}
-		open_in_adjacent_window()
+		vim.cmd("only")
 	end
 
 	vim.g.copilot_chat_title = nil -- Reset chat title used for saving chat history
@@ -208,12 +193,12 @@ end
 local function customize_chat_window()
 	vim.api.nvim_create_autocmd("BufEnter", {
 		group = augroup,
-		pattern = "copilot-chat",
+		pattern = "copilot-*",
 		callback = function()
 			vim.opt_local.conceallevel = 0
 			vim.opt_local.relativenumber = false
-			vim.opt_local.signcolumn = "yes"
 			vim.opt_local.cursorline = false
+			vim.opt_local.signcolumn = "yes:1"
 		end,
 	})
 end
@@ -468,7 +453,7 @@ local function list_chat_history()
 			end
 
 			vim.g.copilot_chat_title = item.basename
-			open_in_adjacent_window()
+			vim.cmd("only")
 
 			chat.open()
 			chat.load(item.basename)
@@ -570,6 +555,9 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
 		selection = select.unnamed,
 		system_prompt = "/COPILOT_INSTRUCTIONS",
+		window = {
+			layout = "vertical",
+		},
 	})
 end, {})
 
@@ -597,6 +585,9 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 		model = vim.fn.getenv("COPILOT_MODEL_REASON"),
 		selection = false,
 		system_prompt = "/COPILOT_REVIEW",
+		window = {
+			layout = "replace",
+		},
 	})
 end, {})
 
@@ -879,7 +870,7 @@ return {
 			show_help = false,
 			show_folds = false,
 			window = {
-				layout = "replace",
+				layout = "vertical",
 				title = "",
 			},
 		})
