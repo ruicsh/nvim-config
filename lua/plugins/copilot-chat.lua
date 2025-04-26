@@ -555,9 +555,6 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
 		selection = select.unnamed,
 		system_prompt = "/COPILOT_INSTRUCTIONS",
-		window = {
-			layout = "vertical",
-		},
 	})
 end, {})
 
