@@ -18,7 +18,7 @@ local lines_cache = {}
 local function searchCountIndicator(mode)
 	local ft = vim.bo.filetype
 	-- Don't show in these filetypes
-	if ft == "snacks_picker_input" or ft == "gitcommit" then
+	if ft == "snacks_picker_input" or ft == "gitcommit" or ft == "vim-messages" then
 		return
 	end
 

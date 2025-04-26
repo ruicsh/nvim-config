@@ -19,6 +19,7 @@ local IGNORE_FILETYPES = {
 	mason = true,
 	mininotify = true,
 	terminal = true,
+	vim = true,
 }
 
 -- Save view when leaving a buffer
