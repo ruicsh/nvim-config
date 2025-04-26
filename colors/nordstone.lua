@@ -329,6 +329,10 @@ loadColorSet({
 	MiniDiffSignAdd = { fg = c.nord14 },
 	MiniDiffSignChange = { fg = c.nord13 },
 	MiniDiffSignDelete = { fg = c.nord11 },
+	MiniDiffOverChange = { fg = c.nord13 },
+	MiniDiffOverChangeBuf = { link = "diffRemoved" },
+	MiniDiffOverContext = { link = "diffAdded" },
+	MiniDiffOverContextBuf = { link = "diffRemoved" },
 })
 
 -- mini.files
