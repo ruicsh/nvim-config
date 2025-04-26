@@ -9,8 +9,9 @@ return {
 		return {
 			n_lines = 500,
 			custom_textobjects = {
-				a = ai.gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }), -- function
-				f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }), -- function
+				a = ai.gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
+				c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
+				f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
 				g = function() -- whole file
 					local from = { line = 1, col = 1 }
 					local to = {

@@ -217,6 +217,7 @@ Random features added.
 
 - `a` function argument
 - `b` brackets ({}, (), [])
+- `c` comment
 - `f` function
 - `g` buffer
 - `h` git hunk
