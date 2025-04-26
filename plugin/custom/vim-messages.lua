@@ -9,7 +9,12 @@ vim.api.nvim_create_user_command("VimMessages", function()
 	local lines = messages and vim.split(messages, "\n") or {}
 
 	-- Filter out empty lines
-	lines = vim.fn.filter(lines, 'v:val =~ "\\S"')
+	local filtered_lines = {}
+	for _, line in ipairs(lines) do
+		if line:match("%S") then
+			table.insert(filtered_lines, line)
+		end
+	end
 
 	-- Calculate dimensions for floating window
 	local width = math.floor(vim.o.columns * 0.3)
@@ -19,7 +24,7 @@ vim.api.nvim_create_user_command("VimMessages", function()
 
 	-- Create floating window
 	local buf = vim.api.nvim_create_buf(false, true)
-	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+	vim.api.nvim_buf_set_lines(buf, 0, -1, false, filtered_lines)
 
 	local win = vim.api.nvim_open_win(buf, true, {
 		relative = "editor",
@@ -49,6 +54,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.wo.wrap = true -- Enable line wrapping
 		vim.wo.relativenumber = false -- Disable relative line numbers
 
+		vim.keymap.set("n", "q", "<c-w>q", { buffer = 0, desc = "Close messages window" })
 		vim.keymap.set("n", "<c-e>", "<c-w>q", { buffer = 0, desc = "Close messages window" })
 	end,
 })
