@@ -1,3 +1,5 @@
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/harper_ls.lua
+
 return {
 	cmd = {
 		"harper-ls",

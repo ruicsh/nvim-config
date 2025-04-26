@@ -9,13 +9,13 @@ return {
 		"python",
 	},
 	root_markers = {
-		"pyproject.toml",
-		"setup.py",
-		"setup.cfg",
-		"requirements.txt",
-		"Pipfile",
-		"pyrightconfig.json",
 		".git",
+		"Pipfile",
+		"pyproject.toml",
+		"pyrightconfig.json",
+		"requirements.txt",
+		"setup.cfg",
+		"setup.py",
 	},
 	-- https://microsoft.github.io/pyright/#/settings?id=pyright-settings
 	settings = {

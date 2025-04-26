@@ -9,8 +9,8 @@ return {
 		"yaml.ansible",
 	},
 	root_markers = {
-		"ansible.cfg",
 		".ansible-lint",
+		"ansible.cfg",
 	},
 	settings = {
 		ansible = {

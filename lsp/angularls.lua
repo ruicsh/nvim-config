@@ -43,13 +43,13 @@ return {
 		default_angular_core_version,
 	},
 	filetypes = {
-		"typescript",
 		"htmlangular",
+		"typescript",
 	},
 	root_markers = {
+		".git",
 		"angular.json",
 		"package.json",
-		".git",
 	},
 
 	on_new_config = function(new_config, new_root_dir)

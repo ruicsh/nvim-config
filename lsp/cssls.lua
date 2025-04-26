@@ -7,12 +7,12 @@ return {
 	},
 	filetypes = {
 		"css",
-		"scss",
 		"less",
+		"scss",
 	},
 	root_markers = {
-		"package.json",
 		".git",
+		"package.json",
 	},
 	settings = {
 		css = { validate = true },

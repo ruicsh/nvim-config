@@ -8,8 +8,8 @@ return {
 		"rust",
 	},
 	root_markers = {
-		"Cargo.toml",
 		".git",
+		"Cargo.toml",
 	},
 
 	single_file_support = true,

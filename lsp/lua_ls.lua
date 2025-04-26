@@ -8,14 +8,14 @@ return {
 		"lua",
 	},
 	root_markers = {
+		".git",
+		".luacheckrc",
 		".luarc.json",
 		".luarc.jsonc",
-		".luacheckrc",
 		".stylua.toml",
-		"stylua.toml",
 		"selene.toml",
 		"selene.yml",
-		".git",
+		"stylua.toml",
 	},
 	settings = {
 		Lua = {
