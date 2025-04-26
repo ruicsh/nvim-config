@@ -3,7 +3,11 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("i", lhs, rhs, options)
 end
 
-k("<c-s>", "<esc><cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
+-- Save file
+local save_keys = { "<c-s>", "<d-s>" }
+for _, key in ipairs(save_keys) do
+	k(key, "<cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
+end
 
 -- bash shortcuts
 -- https://github.com/tpope/vim-rsi

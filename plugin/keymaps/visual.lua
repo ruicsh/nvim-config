@@ -4,6 +4,7 @@ local function k(lhs, rhs, opts)
 end
 
 -- Navigation {{{
+
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
 k("{", "6k")
@@ -17,11 +18,17 @@ end, { expr = true })
 k("j", function()
 	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
+
 -- }}}
 
 -- Editing {{{
-k("<c-s>", "<esc><cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
 k("Y", "y$") -- Make Y behave like normal mode
+
+-- Save file
+local save_keys = { "<c-s>", "<d-s>" }
+for _, key in ipairs(save_keys) do
+	k(key, "<cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
+end
 
 -- Move lines
 k("]e", ":m '>+1<cr>gv=gv", { desc = "Move line down", silent = true })
@@ -52,6 +59,7 @@ end, { expr = true })
 k("A", function()
 	return vim.fn.mode() == "V" and "$<C-v>A" or "A"
 end, { expr = true })
+
 -- }}}
 
 -- Search {{{

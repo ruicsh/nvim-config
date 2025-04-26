@@ -47,7 +47,12 @@ k("]e", ":m .+1<cr>==", { desc = "Move line down", silent = true })
 k("[e", ":m .-2<cr>==", { desc = "Move line up", silent = true })
 
 k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
-k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
+
+-- Save file
+local save_keys = { "<c-s>", "<d-s>" }
+for _, key in ipairs(save_keys) do
+	k(key, "<cmd>silent! update | redraw<cr>", { desc = "Save" })
+end
 
 -- Don't store on register when changing text or deleting a character.
 local black_hole_commands = { "C", "c", "cc", "x", "X" }
@@ -134,9 +139,11 @@ end, { desc = "Jump to last search" })
 -- Don't store jumps when browsing search results
 k("n", ":keepjumps normal! n<cr>", { desc = "Search: Next" })
 k("N", ":keepjumps normal! N<cr>", { desc = "Search: Previous" })
+
 -- }}}
 
 -- NOOP {{{
+
 local noop_keys = {
 	"Q", -- Ex mode
 	"gQ", -- Ex mode
@@ -147,6 +154,7 @@ local noop_keys = {
 for _, key in ipairs(noop_keys) do
 	k(key, "<nop>")
 end
+
 --}}}
 
 -- Stop setting keymaps incompatible with vscode
@@ -163,6 +171,7 @@ k("|", "<c-w>w", { desc = "Windows: Switch" })
 -- }}}
 
 -- Folds {{{
+
 -- Toggle
 k("<tab>", function()
 	local linenr = vim.fn.line(".")
@@ -175,6 +184,7 @@ k("<tab>", function()
 	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
 	vim.cmd("normal! " .. cmd)
 end, { silent = true, desc = "Folds: Toggle" })
+
 -- }}}
 
 -- Terminal {{{
@@ -182,12 +192,14 @@ k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 -- }}}
 
 -- Tabs {{{
+
 -- Tabs: Go to #{1..9}
 for i = 1, 9 do
 	k("§" .. i, function()
 		vim.cmd.tabnext(i)
 	end, { desc = "Tabs: Go to #" .. i })
 end
+
 -- }}}
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0
