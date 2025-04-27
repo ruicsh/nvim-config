@@ -243,6 +243,13 @@ Random features added.
 - `<c-u>` scroll docs up
 - `<c-d>` scroll docs down
 
+### Snippets
+
+- `<c-x><c-x>` expand
+- `<c-;>` jump to next tabstop
+- `<c-,>` jump to previous tabstop
+- `<c-c>` stop
+
 ### AI chat
 
 - `<leader>aa` open

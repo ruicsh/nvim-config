@@ -1,103 +1,346 @@
 {
-  "dow": {
-    "prefix": "dow-",
+  "3": {
+    "prefix": "3",
+    "body": "${1:cond} ? ${2:true} : ${3:false}",
+    "description": "${1} ? ${2} : ${3}"
+  },
+  "3=": {
+    "prefix": "3=",
+    "body": "const ${0:var} = ${1:cond} ? ${2:true} : ${3:false}",
+    "description": "const ${0} = ${1} ? ${2} : ${3}"
+  },
+  "dw": {
+    "prefix": "dw",
     "body": [
       "do {",
       "\t$0",
       "} while (${1:condition});"
     ],
-    "description": "Do-while statement"
+    "description": "do { $0 } while (${1});"
   },
-  "forin": {
-    "prefix": "fin-",
-    "body": [
-      "for (const ${1:key} in ${2:object}) {",
-      "\tif (Object.prototype.hasOwnProperty.call(${2:object}, ${1:key})) {",
-      "\t\tconst ${3:element} = ${2:object}[${1:key}];",
-      "\t\t$0",
-      "\t}",
-      "}"
-    ],
-    "description": "For-in loop"
+  "e": {
+    "prefix": "e",
+    "body": "export $0",
+    "description": "export $0"
   },
-  "forof": {
-    "prefix": "fof-",
+  "e=": {
+    "prefix": "e=",
+    "body": "export const ${1:var}=$0",
+    "description": "export const ${1}=$0"
+  },
+  "ef": {
+    "prefix": "ef",
     "body": [
-      "for (const ${1:iterator} of ${2:object}) {",
+      "export function ${1:name}($2:args) {",
       "\t$0",
       "}"
     ],
-    "description": "For-of loop"
+    "description": "export const ${1}=$0"
   },
-  "fna": {
-    "prefix": "fna-",
+  "ef>": {
+    "prefix": "ef>",
+    "body": [
+      "export ($1:args) => {",
+      "\t$0",
+      "}"
+    ],
+    "description": "export ($2) => {"
+  },
+  "efa": {
+    "prefix": "efa",
+    "body": [
+      "export async function ${1:name}($2:args) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "export async function ${1:name}($2:args) {"
+  },
+  "efa>": {
+    "prefix": "efa>",
+    "body": [
+      "export async ($1:args) => {",
+      "\t$0",
+      "}"
+    ],
+    "description": "export ($2) => {"
+  },
+  "f": {
+    "prefix": "f",
+    "body": [
+      "function ${1:name}(${2:args}) {",
+      "\t${0:body}",
+      "}"
+    ],
+    "description": "function ${1}($2) {"
+  },
+  "f>": {
+    "prefix": "f>",
+    "body": [
+      "($1) => {",
+      "\t$0",
+      "}"
+    ],
+    "description": "($1) => { $0 }"
+  },
+  "f>=": {
+    "prefix": "f>=",
     "body": [
       "const ${1:name} = ($2) => {",
       "\t$0",
       "}"
     ],
-    "description": "Arrow function statement"
+    "description": "const ${1} = ($2) => {"
   },
-  "fnc": {
-    "prefix": "fnc-",
+  "fa": {
+    "prefix": "fa",
     "body": [
-      "const ${1:name} = function($2) {",
+      "async function ${1:name}($2) {",
       "\t$0",
       "}"
     ],
-    "description": "Function expression"
+    "description": "async function ${1}($2) {"
   },
-  "fnm": {
-    "prefix": "fnm-",
+  "fa>": {
+    "prefix": "fa>",
     "body": [
-      "${1:method}(${2:args}) {",
+      "async ($1) => {",
       "\t$0",
       "}"
     ],
-    "description": "Class method"
+    "description": "async ($1) => { $0 }"
   },
-  "fnn": {
-    "prefix": "fnn-",
+  "fa=": {
+    "prefix": "fa=",
     "body": [
-      "function ${1:name}($2) {",
+      "const ${1:name} = async function ${2:name}($3) {",
       "\t$0",
       "}"
     ],
-    "description": "Named function statement"
+    "description": "const ${1:name} = async function ${2:name}($3) {"
   },
-  "swi": {
-    "prefix": "swi-",
+  "fa>=": {
+    "prefix": "fa>=",
+    "body": [
+      "const ${1:name} = async ($2) => {",
+      "\t$0",
+      "}"
+    ],
+    "description": "const ${1} = async ($2) => {"
+  },
+  "f,": {
+    "prefix": "f,",
+    "body": [
+      "${1:name}($2) {",
+      "\t$0",
+      "},"
+    ],
+    "description": "${1}($2) { $0 },"
+  },
+  "f,a": {
+    "prefix": "f,a",
+    "body": [
+      "async ${1:name}($2) {",
+      "\t$0",
+      "},"
+    ],
+    "description": "${1}($2) { $0 },"
+  },
+  "f,>": {
+    "prefix": "f,>",
+    "body": [
+      "${1:name} = ($2) => {",
+      "\t$0",
+      "},"
+    ],
+    "description": "${1:name} = ($2) => { $0 },"
+  },
+  "f,a>": {
+    "prefix": "f,a>",
+    "body": [
+      "${1:name} = async ($2) => {",
+      "\t$0",
+      "},"
+    ],
+    "description": "${1:name} = async ($2) => { $0 },"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for (let ${1:i} = 0; ${1:i} < ${2:array}.length; ${1:i}++) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for (let ${1} = 0; ${1} < ${2}.length; ${1}++) {"
+  },
+  "foraof": {
+    "prefix": "foraof",
+    "body": [
+      "for await (const ${1:item} of ${2:object}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for await (const ${1} of ${2}) {"
+  },
+  "forin": {
+    "prefix": "forin",
+    "body": [
+      "for (const ${1:key} in ${2:object}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for (const ${1:key} in ${2:object}) {"
+  },
+  "forkv": {
+    "prefix": "forkv",
+    "body": [
+      "for (const [key, value] of Object.entries(${1:object})) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for (const [key, value] of Object.entries(${1})) {"
+  },
+  "forof": {
+    "prefix": "forof",
+    "body": [
+      "for (const ${1:item} of ${2:array}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for (const ${1} of ${2}) {"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "if (${1}) {"
+  },
+  "ife": {
+    "prefix": "ife",
+    "body": [
+      "if (${1:condition}) {",
+      "\t$2",
+      "} else {",
+      "\t$0",
+      "}"
+    ],
+    "description": "if (${1}) { $2 } else { $0 }"
+  },
+  "js": {
+    "prefix": "js",
+    "body": "JSON.stringify(${0:obj})",
+    "description": "JSON.stringify($0)"
+  },
+  "jp": {
+    "prefix": "jp",
+    "body": "JSON.parse(${0:obj})",
+    "description": "JSON.parse($0)"
+  },
+  "ok": {
+    "prefix": "ok",
+    "body": "Object.keys(${0:obj})",
+    "description": "Object.keys(${0})"
+  },
+  "ov": {
+    "prefix": "ov",
+    "body": "Object.values(${0:obj})",
+    "description": "Object.values(${0})"
+  },
+  "oe": {
+    "prefix": "oe",
+    "body": "Object.entries(${0:obj})",
+    "description": "Object.entries(${0})"
+  },
+  "r": {
+    "prefix": "r",
+    "body": "return"
+  },
+  "r.": {
+    "prefix": "r.",
+    "body": "return ${0}"
+  },
+  "r>": {
+    "prefix": "r>",
+    "body": "return (${1:arguments}) => ${2:statement}"
+  },
+  "rt": {
+    "prefix": "rt",
+    "body": "return ${0:this}"
+  },
+  "rn": {
+    "prefix": "rn",
+    "body": "return null"
+  },
+  "r{": {
+    "prefix": "r{",
+    "body": "return {\n\t${0}\n}"
+  },
+  "r[": {
+    "prefix": "r[",
+    "body": "return [\n\t${0}\n]"
+  },
+  "rp": {
+    "prefix": "rp",
+    "body": "return new Promise((resolve, reject) => {\n\t${0}\n})"
+  },
+  "s": {
+    "prefix": "s",
     "body": [
       "switch (${1:key}) {",
       "\tcase ${2:value}: {",
       "\t\t$0",
-      "\t\tbreak;",
-      "\t}",
+      "\tbreak;",
+      "}",
       "\tdefault: {",
       "\t\tbreak;",
       "\t}",
       "}"
     ],
-    "description": "Switch statement"
+    "description": "switch(${1}) {"
   },
-  "try": {
-    "prefix": "try-",
+  "st": {
+    "prefix": "st",
+    "body": [
+      "setTimeout(() => {",
+      "\t$0",
+      "}, ${1:timeout});"
+    ],
+    "description": "setTimeout(() => { $0 }, ${1});"
+  },
+  "si": {
+    "prefix": "si",
+    "body": [
+      "setInterval(() => {",
+      "\t$0",
+      "}, ${1:interval});"
+    ],
+    "description": "setInterval(() => { $0 }, ${1});"
+  },
+  "t": {
+    "prefix": "t",
     "body": [
       "try {",
       "\t$0",
       "} catch (${1:error}) {",
-      "\t",
+      "",
       "}"
     ],
-    "description": "Try-catch statement"
+    "description": "try { $0 } catch (error) { }"
   },
-  "whi": {
-    "prefix": "whi-",
+  "w": {
+    "prefix": "w",
     "body": [
       "while (${1:condition}) {",
       "\t$0",
       "}"
     ],
-    "description": "While statement"
+    "description": "while (${1:condition}) {"
+  },
+  "y": {
+    "prefix": "y",
+    "body": "yield ${0}",
+    "description": "yield ${0}"
   }
 }

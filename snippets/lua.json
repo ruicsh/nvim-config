@@ -1,10 +1,179 @@
 {
-  "function": {
-    "prefix": "fn",
+  "require": {
+    "prefix": "req",
+    "body": "require(${1:module})",
+    "description": "require(${1:module})"
+  },
+  "return": {
+    "prefix": "rt",
+    "body": "return $0",
+    "description": "return $0"
+  },
+  "assigment": {
+    "prefix": "ll",
+    "body": "local ${1:varName} = ${0:value}",
+    "description": "local ${1:varName} = ${0:value}"
+  },
+  "local": {
+    "prefix": "l",
+    "body": "local ${0}",
+    "description": "local ${0}"
+  },
+  "lreq": {
+    "prefix": "lreq",
+    "body": "local ${1:module} = require(\"${2:$1}\")$0",
+    "description": "local ${1:module} = require(\"${2:$1}\")$0"
+  },
+  "class": {
+    "prefix": "cl",
     "body": [
-      "local function ${1:name}(${2:args})",
-      "\t${0:body}",
+      "${1:M} = {}\n",
+      "$1.${2:new} = function($3)",
+      "\t${6}",
       "end"
-    ]
+    ],
+    "description": "$1.${2:new} = function($3)"
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if ${1:true} then",
+      "\t$0",
+      "end"
+    ],
+    "description": "if ${1} then"
+  },
+  "elseif": {
+    "prefix": "ife",
+    "body": [
+      "if ${1:cond} then",
+      "\t$2",
+      "else",
+      "\t$0"
+    ],
+    "description": "if ${1} then $2 else $0"
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for $1 do",
+      "\t$0",
+      "end"
+    ],
+    "description": "for $1 do"
+  },
+  "for-numeric": {
+    "prefix": "forn",
+    "body": [
+      "for ${1:i} = ${2:1}, ${3:10} do",
+      "\t$0",
+      "end"
+    ],
+    "description": "for ${1} = ${2}, ${3} do"
+  },
+  "for-ipairs": {
+    "prefix": "fori",
+    "body": [
+      "for ${1:i}, ${2:x} in ipairs(${3:t}) do",
+      "\t$0",
+      "end"
+    ],
+    "description": "for ${1}, ${2} in ipairs(${3}) do"
+  },
+  "for-pairs": {
+    "prefix": "forp",
+    "body": [
+      "for ${1:k}, ${2:v} in pairs(${3:t}) do",
+      "\t$0",
+      "end"
+    ],
+    "description": "for ${1}, ${2} in pairs(${3}) do"
+  },
+  "function": {
+    "prefix": "f",
+    "body": [
+      "function ${1:name}($2)",
+      "\t${0}",
+      "end"
+    ],
+    "description": "function ${1}($2)"
+  },
+  "assign-function": {
+    "prefix": "f=",
+    "body": [
+      "${1:name} = function($2)",
+      "\t${0}",
+      "end"
+    ],
+    "description": "${1} = function($2)"
+  },
+  "local-function": {
+    "prefix": "lf",
+    "body": [
+      "local function ${1:name}($2)",
+      "\t${0}",
+      "end"
+    ],
+    "description": "local function ${1:name}($2)"
+  },
+  "local-assign-function": {
+    "prefix": "lf=",
+    "body": [
+      "local ${1:name} = function($2)",
+      "\t${0}",
+      "end"
+    ],
+    "description": "local ${1:name} = function($2)"
+  },
+  "anonymous-function": {
+    "prefix": "f)",
+    "body": [
+      "function($1)",
+      "\t${0}",
+      "end"
+    ],
+    "description": "function($1)"
+  },
+  "member-function": {
+    "prefix": "f,",
+    "body": [
+      "${1:name} = function($2)",
+      "\t${0}",
+      "end,"
+    ],
+    "description": "${1:name} = function($2)"
+  },
+  "print": {
+    "prefix": "p",
+    "body": "print(${0})",
+    "description": "print(${0})"
+  },
+  "self": {
+    "prefix": "self:",
+    "body": [
+      "function self:${1:methodName}($2)",
+      "\t$0",
+      "end"
+    ],
+    "description": "function self:${1:methodName}($2)"
+  },
+  "while": {
+    "prefix": "while",
+    "body": [
+      "while ${1:true} do",
+      "\t$0",
+      "end"
+    ],
+    "description": "while ${1:true} do"
+  },
+  "pcall": {
+    "prefix": "pca",
+    "body": "pcall(${1:function})",
+    "description": "pcall(${1:function})"
+  },
+  "locpcall": {
+    "prefix": "lpca",
+    "body": "local ${1:status}, ${2:err_or_value} = pcall(${3:function})",
+    "description": "local ${1:status}, ${2:err_or_value} = pcall(${3:function})"
   }
 }

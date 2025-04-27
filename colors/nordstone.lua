@@ -342,6 +342,15 @@ loadColorSet({
 	MiniFilesNormal = { fg = c.nord4, bg = c.neutral_880 },
 })
 
+-- mini.snippets
+loadColorSet({
+	MiniSnippetsCurrent = { fg = c.nord13 },
+	MiniSnippetsCurrentReplace = { link = "MiniSnippetsCurrent" },
+	MiniSnippetsFinal = { link = "MiniSnippetsUnvisited" },
+	MiniSnippetsUnvisited = { fg = c.nord13, style = "underline" },
+	MiniSnippetsVisited = { link = "MiniSnippetsUnvisited" },
+})
+
 -- nvim-dap
 loadColorSet({
 	DapBreakpoint = { fg = c.nord12 },
