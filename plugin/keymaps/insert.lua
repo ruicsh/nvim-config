@@ -24,9 +24,8 @@ k("<m-f>", "<s-right>")
 k("<c-d>", "<del>")
 
 -- Delete back/forward one word.
-k("<m-bs>", "<c-s-w>")
 k("<m-d>", "<c-o>dw")
 
--- Jump to biginning/end of line.
-k("<c-a>", "<c-o>^")
-k("<c-e>", "<c-o>$", { unique = false })
+-- Jump to beginning/end of line.
+k("<c-a>", "<home>")
+k("<c-e>", "<end>", { unique = false })

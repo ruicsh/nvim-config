@@ -12,9 +12,9 @@ return {
 				gen_loader.from_lang(),
 			},
 			mappings = {
-				expand = "<c-x><c-x>",
-				jump_next = "<c-l>",
-				jump_prev = "<c-h>",
+				expand = "<c-]>",
+				jump_next = "<c-]>",
+				jump_prev = "",
 				stop = "<c-c>",
 			},
 		})

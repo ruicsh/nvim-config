@@ -5,7 +5,7 @@ return {
 	"echasnovski/mini.operators",
 	opts = {
 		exchange = {
-			prefix = "",
+			prefix = "<leader>x",
 		},
 		multiply = {
 			prefix = "<leader>p",

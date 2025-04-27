@@ -53,7 +53,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
 - [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
 - [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - CSS Colors
-- [mini.snipeets](https://github.com/echasnovski/mini.snippets) - Snippets
+- [mini.snippets](https://github.com/echasnovski/mini.snippets) - Snippets
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
 - [ts-comments.nvim](https://github.com/folke/ts-comments.nvim) - Custom comments configurations per language
 
@@ -209,7 +209,6 @@ Random features added.
 - `<c-r>+` paste from clipboard
 - `<c-u>` delete before the cursor in current line
 - `<c-w>` delete word before
-- `<m-bs>` delete backward one word
 - `<m-b>` jump backward one word
 - `<m-d>` delete forward one word
 - `<m-f>` jump forward one word
@@ -246,9 +245,8 @@ Random features added.
 
 ### Snippets
 
-- `<c-x><c-x>` expand
-- `<c-;>` jump to next tabstop
-- `<c-,>` jump to previous tabstop
+- `<c-]>` expand
+- `<c-]>` jump to next tabstop
 - `<c-c>` stop
 
 ### AI chat
@@ -274,10 +272,6 @@ Random features added.
 ### AI suggestions
 
 - `<tab>` accept
-- `<c-l>` accept line
-- `<c-w>` accept word
-- `<c-j>` next
-- `<c-k>` previous
 - `<c-e>` dismiss
 
 ### Logging
