@@ -8,7 +8,7 @@ return {
 			prefix = "",
 		},
 		multiply = {
-			prefix = "",
+			prefix = "<leader>p",
 		},
 		replace = {
 			prefix = "<leader>r",

@@ -154,7 +154,7 @@ Random features added.
 - `<leader><leader>` fuzzy find files
 - `-` file tree explorer
 - `<leader>.` last picker
-- `<leader>pp` projects
+- `<leader>-` workspaces
 
 ### Buffers
 
@@ -231,6 +231,7 @@ Random features added.
 - `sa{motion}{char}` add surrounding character
 - `sd{char}` delete surrounding character
 - `sr{target}{replacement}` replace surrounding character
+- `<leader>p{motion}` duplicate
 - `<leader>r{motion}` replace with last yank
 - `<leader>s{motion}` sort
 
