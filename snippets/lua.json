@@ -1,23 +1,43 @@
 {
+  "ternary": {
+    "prefix": "3",
+    "body": "${1:cond} and ${2:true} or ${3:false}",
+    "description": "${1} and ${2} or ${3}"
+  },
+  "ternary-assignment": {
+    "prefix": "=3",
+    "body": "local ${0:var} = ${1:cond} and ${2:true} or ${3:false}",
+    "description": "local ${0} = ${1} and ${2} or ${3}"
+  },
+  "assigment": {
+    "prefix": "=",
+    "body": "local ${1:varName} = ${0:value}",
+    "description": "local ${1:varName} = ${0:value}"
+  },
   "require": {
     "prefix": "req",
     "body": "require(${1:module})",
     "description": "require(${1:module})"
   },
   "return": {
-    "prefix": "rt",
+    "prefix": "r",
+    "body": "return",
+    "description": "return"
+  },
+  "return-value": {
+    "prefix": "rv",
     "body": "return $0",
     "description": "return $0"
   },
-  "assigment": {
-    "prefix": "ll",
-    "body": "local ${1:varName} = ${0:value}",
-    "description": "local ${1:varName} = ${0:value}"
-  },
-  "local": {
-    "prefix": "l",
-    "body": "local ${0}",
+  "variable": {
+    "prefix": "v",
+    "body": "local ${0:name}",
     "description": "local ${0}"
+  },
+  "variable-assignment": {
+    "prefix": "v=",
+    "body": "local ${1:name} = ${0:value}",
+    "description": "local ${1} = ${0}"
   },
   "lreq": {
     "prefix": "lreq",
@@ -37,21 +57,51 @@
   "if": {
     "prefix": "if",
     "body": [
-      "if ${1:true} then",
+      "if ${1:condition} then",
       "\t$0",
       "end"
     ],
     "description": "if ${1} then"
   },
-  "elseif": {
+  "if-else": {
     "prefix": "ife",
     "body": [
-      "if ${1:cond} then",
+      "if ${1:condition} then",
       "\t$2",
       "else",
-      "\t$0"
+      "\t$0",
+      "end"
     ],
-    "description": "if ${1} then $2 else $0"
+    "description": "if ${1} then $2 else $0 end"
+  },
+  "if-else-if": {
+    "prefix": "ifei",
+    "body": [
+      "if ${1:condition} then",
+      "\t$0",
+      "elseif ${2:condition} then",
+      "\t$3",
+      "end"
+    ],
+    "description": "if ${1} then $0 elseif ${2} then $3 end"
+  },
+  "else": {
+    "prefix": "e",
+    "body": [
+      "else",
+      "\t$0",
+      "end"
+    ],
+    "description": "else $0"
+  },
+  "else-if": {
+    "prefix": "eif",
+    "body": [
+      "elseif ${1:condition} then",
+      "\t$0",
+      "end"
+    ],
+    "description": "elseif ${1} then $0 end"
   },
   "for": {
     "prefix": "for",
@@ -98,8 +148,8 @@
     ],
     "description": "function ${1}($2)"
   },
-  "assign-function": {
-    "prefix": "f=",
+  "function-assignment": {
+    "prefix": "=f",
     "body": [
       "${1:name} = function($2)",
       "\t${0}",
@@ -107,17 +157,8 @@
     ],
     "description": "${1} = function($2)"
   },
-  "local-function": {
+  "function-local": {
     "prefix": "lf",
-    "body": [
-      "local function ${1:name}($2)",
-      "\t${0}",
-      "end"
-    ],
-    "description": "local function ${1:name}($2)"
-  },
-  "local-assign-function": {
-    "prefix": "lf=",
     "body": [
       "local ${1:name} = function($2)",
       "\t${0}",
@@ -125,7 +166,7 @@
     ],
     "description": "local ${1:name} = function($2)"
   },
-  "anonymous-function": {
+  "function anonymous": {
     "prefix": "f)",
     "body": [
       "function($1)",
@@ -134,10 +175,10 @@
     ],
     "description": "function($1)"
   },
-  "member-function": {
+  "function-method": {
     "prefix": "f,",
     "body": [
-      "${1:name} = function($2)",
+      "${1:name} = function($2:arguments)",
       "\t${0}",
       "end,"
     ],
@@ -158,21 +199,21 @@
     "description": "function self:${1:methodName}($2)"
   },
   "while": {
-    "prefix": "while",
+    "prefix": "w",
     "body": [
-      "while ${1:true} do",
+      "while ${1:condition} do",
       "\t$0",
       "end"
     ],
     "description": "while ${1:true} do"
   },
   "pcall": {
-    "prefix": "pca",
+    "prefix": "pc",
     "body": "pcall(${1:function})",
     "description": "pcall(${1:function})"
   },
   "locpcall": {
-    "prefix": "lpca",
+    "prefix": "lpc",
     "body": "local ${1:status}, ${2:err_or_value} = pcall(${3:function})",
     "description": "local ${1:status}, ${2:err_or_value} = pcall(${3:function})"
   }
