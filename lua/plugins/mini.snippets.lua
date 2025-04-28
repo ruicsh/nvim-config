@@ -19,4 +19,6 @@ return {
 			},
 		})
 	end,
+
+	event = "InsertEnter",
 }
