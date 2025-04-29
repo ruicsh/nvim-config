@@ -34,6 +34,7 @@ vim.api.nvim_create_user_command("VimMessages", function()
 		row = row,
 		style = "minimal",
 		border = "single",
+		zindex = 300,
 	})
 
 	vim.api.nvim_set_option_value("wrap", true, { win = win })

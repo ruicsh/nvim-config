@@ -1,37 +1,37 @@
 -- Quickfix.
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/qf", { clear = true })
+local ns = vim.api.nvim_create_namespace("ruicsh/filetypes/qf")
 
 -- Hold the window id for the preview window
 local preview_winid = nil
 
 local function close_preview_window()
-	if preview_winid then
-		if not vim.api.nvim_win_is_valid(preview_winid) then
-			preview_winid = nil
-		else
-			vim.api.nvim_win_close(preview_winid, true)
-		end
+	if preview_winid and vim.api.nvim_win_is_valid(preview_winid) then
+		vim.api.nvim_win_close(preview_winid, true)
 	end
+	preview_winid = nil
 end
 
 local function open_preview()
 	local line = vim.fn.line(".")
-	local qf = vim.fn.getqflist({ items = 0, size = 1 })
+	local qf = vim.fn.getqflist({ items = 0, size = 1, winid = 0 })
 	local entry = qf.items[line]
-	local file = vim.api.nvim_buf_get_name(entry.bufnr)
-	local lnum = entry.lnum
+	if not entry then
+		vim.notify("No entry found at the current index in the quickfix list", vim.log.levels.ERROR)
+		return
+	end
 
-	if preview_winid and vim.api.nvim_win_is_valid(preview_winid) then
+	local file = vim.api.nvim_buf_get_name(entry.bufnr)
+
+	if preview_winid and preview_winid ~= nil and vim.api.nvim_win_is_valid(preview_winid) then
 		vim.api.nvim_set_current_win(preview_winid)
 	else
 		local buf = vim.api.nvim_create_buf(false, true)
 		vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
+		local qfwin = vim.fn.getwininfo(qf.winid)[1]
 
-		local qfwinid = vim.fn.getqflist({ winid = 0 }).winid
-		local qfwin = vim.fn.getwininfo(qfwinid)[1]
-
-		local config = {
+		preview_winid = vim.api.nvim_open_win(buf, true, {
 			anchor = "SW",
 			border = "rounded",
 			col = 0,
@@ -42,31 +42,18 @@ local function open_preview()
 			width = qfwin.width,
 			noautocmd = true,
 			zindex = 52,
-		}
-		preview_winid = vim.api.nvim_open_win(buf, true, config)
+		})
 	end
 
 	vim.cmd.edit(file) -- Open the file in the preview window
-	vim.api.nvim_win_set_cursor(0, { lnum, 0 }) -- Move to the specific line
-	vim.cmd("normal! zz") -- Center the line in the preview window
+	vim.cmd("normal! " .. entry.lnum .. "Gzz") -- Center the line in the preview window
 
 	local title = string.format("[ %d/%d ] %s", line, qf.size, vim.fs.get_relative_path(file))
-	vim.api.nvim_win_set_config(preview_winid, {
-		title = title,
-	})
+	vim.api.nvim_win_set_config(preview_winid, { title = title })
 	vim.api.nvim_set_option_value("winhighlight", "", { win = preview_winid })
 	vim.api.nvim_set_option_value("previewwindow", true, { win = preview_winid })
 	vim.api.nvim_set_option_value("foldenable", false, { win = preview_winid })
-
-	local bufnr = vim.api.nvim_get_current_buf()
-
-	vim.api.nvim_create_autocmd({ "WinClosed" }, {
-		group = augroup,
-		buffer = bufnr,
-		callback = function()
-			preview_winid = nil
-		end,
-	})
+	vim.api.nvim_set_option_value("relativenumber", false, { win = preview_winid })
 end
 
 local function preview_file()
@@ -91,9 +78,9 @@ local mappings = {
 	end,
 	open = function()
 		return function()
-			close_preview_window() -- Close before opening the file, so it doesn't open in the preview window
-			local line = vim.fn.line(".") -- Get the current line
-			vim.cmd("cc " .. line)
+			-- Close before opening the file, so it doesn't open in the preview window
+			close_preview_window()
+			vim.cmd("cc")
 			vim.cmd.cclose()
 		end
 	end,
@@ -106,16 +93,27 @@ vim.api.nvim_create_autocmd("FileType", {
 		local k = vim.keymap.set
 		local opts = { buffer = event.buf }
 
+		preview_winid = nil -- Reset preview window id
+
+		-- Highlight current line (selected entry)
+		vim.api.nvim_win_set_hl_ns(0, ns)
+		vim.api.nvim_set_hl(ns, "CursorLine", { bg = _G.NordStoneColors.nord3 })
+
+		-- Open preview window for the first entry in the quickfix list
+		if vim.fn.getqflist({ size = 1 }).size > 0 then
+			vim.defer_fn(preview_file, 10)
+		end
+
 		k("n", "<cr>", mappings.open(), opts)
 
 		k("n", "<c-p>", vim.cmd.colder, opts) -- Open previous list.
 		k("n", "<c-n>", vim.cmd.cnewer, opts) -- Open next list.
 
 		-- Preview the file under the cursor in the preview window.
-		for _, key in pairs({ "<c-j>", "<down>", "]q" }) do
+		for _, key in pairs({ "j", "<down>", "]q" }) do
 			k("n", key, mappings.select("next"), opts)
 		end
-		for _, key in pairs({ "<c-k>", "<up>", "[q" }) do
+		for _, key in pairs({ "k", "<up>", "[q" }) do
 			k("n", key, mappings.select("previous"), opts)
 		end
 
@@ -137,7 +135,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			fk(tc(cmd, true, false, true), "n", false)
 		end, opts)
 
-		vim.api.nvim_create_autocmd({ "BufHidden" }, {
+		vim.api.nvim_create_autocmd("WinClosed", {
 			group = augroup,
 			buffer = event.buf,
 			callback = function()

@@ -354,9 +354,6 @@ Random features added.
 ### Quickfix
 
 - `<leader>qq` toggle quickfix list
-- `<leader>ql` toggle location list
-- `<leader>qc` toggle changes list
-- `<leader>qj` toggle jumps list
 - `[q` previous entry
 - `]q` next entry
 - `[Q` first entry

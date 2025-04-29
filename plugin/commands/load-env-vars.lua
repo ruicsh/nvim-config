@@ -3,8 +3,7 @@
 vim.api.nvim_create_user_command("LoadEnvVars", function()
 	local dirs = {
 		-- Config directory
-		vim.fn.stdpath("config"),
-		-- Current working directory
+		vim.fn.stdpath("config"), -- Current working directory
 		vim.fn.getcwd(),
 		-- Git root directory
 		vim.git.root(),

@@ -98,7 +98,7 @@ loadColorSet({
 	Function = { fg = c.nord8 },
 	IncSearch = { link = "CurSearch" },
 	InsertMode = { fg = c.nord14, bg = "NONE", style = "reverse" },
-	LineNr = { fg = c.neutral_600 },
+	LineNr = { fg = c.neutral_500 },
 	MatchParen = { fg = c.nord15, bg = "NONE", style = "bold" },
 	ModeMsg = { fg = c.nord4 },
 	MoreMsg = { fg = c.nord4 },
