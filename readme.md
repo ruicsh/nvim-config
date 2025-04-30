@@ -236,17 +236,18 @@ Random features added.
 
 ### Completion
 
-- `<c-n>` complete/next entry
+- `<c-n>` show/next entry
 - `<c-p>` previous entry
-- `<c-y>` confirm
+- `<tab>` confirm
 - `<c-e>` abort
 - `<c-u>` scroll docs up
 - `<c-d>` scroll docs down
 
 ### Snippets
 
-- `<c-]>` expand
-- `<c-]>` jump to next tabstop
+- `<tab>` expand
+- `<tab>` jump to next tabstop
+- `<c-e>` list
 - `<c-c>` stop
 
 ### AI chat
@@ -271,7 +272,7 @@ Random features added.
 
 ### AI suggestions
 
-- `<tab>` accept
+- `<c-]>` accept
 - `<c-e>` dismiss
 
 ### Logging

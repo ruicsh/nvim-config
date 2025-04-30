@@ -23,7 +23,7 @@ return {
 			enabled = true,
 			auto_trigger = true,
 			keymap = {
-				accept = "<tab>",
+				accept = "<c-]>",
 				accept_word = nil,
 				accept_line = nil,
 				next = nil,

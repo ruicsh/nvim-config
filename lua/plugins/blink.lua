@@ -25,6 +25,7 @@ local DISABLED_BUFTYPES = {
 return {
 	"saghen/blink.cmp",
 	version = "1.*",
+
 	opts = {
 		completion = {
 			documentation = {
@@ -64,15 +65,12 @@ return {
 			sorts = { "exact", "score", "sort_text" },
 		},
 		keymap = {
-			preset = "default",
+			preset = "super-tab",
 			["<c-n>"] = { "select_next", "show", "fallback" },
-			["<c-p>"] = { "select_prev", "fallback" },
-			["<c-y>"] = { "select_and_accept", "fallback" },
-			["<cr>"] = { "select_and_accept", "fallback" },
-			["<c-e>"] = { "hide", "fallback" },
-			["<c-u>"] = { "scroll_documentation_up", "fallback" },
-			["<c-d>"] = { "scroll_documentation_down", "fallback" },
+			["<c-j>"] = { "select_next", "show", "fallback" },
+			["<c-k>"] = { "select_prev", "show", "fallback" },
 		},
+		snippets = { preset = "mini_snippets" },
 		signature = {
 			enabled = true,
 			window = {
@@ -82,9 +80,10 @@ return {
 			},
 		},
 		sources = {
-			default = { "lsp", "path" },
+			default = { "snippets", "lsp", "path" },
 		},
 	},
 
 	event = { "InsertEnter", "CmdlineEnter" },
+	dependencies = { "echasnovski/mini.snippets" },
 }
