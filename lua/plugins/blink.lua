@@ -1,8 +1,6 @@
 -- Autocomplete
 -- https://cmp.saghen.dev
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/blink.cmp", { clear = true })
-
 local DISABLED_FILETYPES = {
 	"checkhealth",
 	"copilot-chat",
@@ -18,30 +16,11 @@ local DISABLED_FILETYPES = {
 	"startuptime",
 }
 
-vim.api.nvim_create_autocmd("User", {
-	group = augroup,
-	pattern = "BlinkCmpMenuOpen",
-	callback = function()
-		-- Hide copilot suggestions when menu opens
-		local ok, copilot = pcall(require, "copilot.suggestion")
-		if ok then
-			vim.b.copilot_suggestion_hidden = true
-			copilot.dismiss()
-		end
-	end,
-})
-
-vim.api.nvim_create_autocmd("User", {
-	group = augroup,
-	pattern = "BlinkCmpMenuClose",
-	callback = function()
-		-- Enable back copilot suggestions when menu closes
-		local ok = pcall(require, "copilot.suggestion")
-		if ok then
-			vim.b.copilot_suggestion_hidden = false
-		end
-	end,
-})
+local DISABLED_BUFTYPES = {
+	"nofile",
+	"nowrite",
+	"prompt",
+}
 
 return {
 	"saghen/blink.cmp",
@@ -52,19 +31,19 @@ return {
 				auto_show = true,
 				auto_show_delay_ms = 100,
 				window = {
-					border = "rounded",
+					border = "single",
 					max_height = 20,
 					max_width = 50,
 				},
 			},
 			list = {
 				selection = {
-					auto_insert = false,
+					auto_insert = true,
 				},
 			},
 			menu = {
-				auto_show = false,
-				border = "rounded",
+				auto_show = true,
+				border = "single",
 				draw = {
 					columns = {
 						{ "kind_icon" },
@@ -75,13 +54,9 @@ return {
 			},
 		},
 		enabled = function()
-			local buftype = vim.bo.buftype
-			local filetype = vim.bo.filetype
 			return not (
-				buftype == "nofile"
-				or buftype == "nowrite"
-				or buftype == "prompt"
-				or vim.tbl_contains(DISABLED_FILETYPES, filetype)
+				vim.tbl_contains(DISABLED_BUFTYPES, vim.bo.buftype)
+				or vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype)
 			)
 		end,
 		fuzzy = {

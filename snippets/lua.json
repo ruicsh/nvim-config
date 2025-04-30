@@ -178,7 +178,7 @@
   "function-method": {
     "prefix": "f,",
     "body": [
-      "${1:name} = function($2:arguments)",
+      "${1:name} = function(${2})",
       "\t${0}",
       "end,"
     ],
