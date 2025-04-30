@@ -29,3 +29,6 @@ k("<m-d>", "<c-o>dw")
 -- Jump to beginning/end of line.
 k("<c-a>", "<home>")
 k("<c-e>", "<end>", { unique = false })
+
+-- Make undo work word by word.
+k("<space>", "<c-g>u<space>")
