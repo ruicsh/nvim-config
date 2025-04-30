@@ -254,7 +254,7 @@ Random features added.
 
 - `<leader>aa` open
 - `<leader>am` models
-- `<c-y>` accept diff
+- `<c-]>` accept
 - `<c-x>` reset
 
 ### AI assistant

@@ -566,7 +566,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 	chat.ask("/review", {
 		callback = function(response)
 			local function accept_code_review()
-				vim.keymap.del("n", "<c-y>", { buffer = true })
+				vim.keymap.del("n", "<c-]>", { buffer = true })
 
 				chat.close()
 
@@ -575,7 +575,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 				vim.cmd("Git commit")
 			end
 
-			vim.keymap.set("n", "<c-y>", accept_code_review, { buffer = true })
+			vim.keymap.set("n", "<c-]>", accept_code_review, { buffer = true })
 			return response
 		end,
 		context = { "git_staged" },
@@ -842,8 +842,8 @@ return {
 			log_level = "warn",
 			mappings = {
 				accept_diff = {
-					normal = "<c-y>",
-					insert = "<c-y>",
+					normal = "<c-]>",
+					insert = "<c-]>",
 				},
 				close = {
 					normal = "<c-e>",
