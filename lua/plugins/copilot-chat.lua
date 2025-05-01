@@ -3,6 +3,9 @@
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/copilot-chat", { clear = true })
 
+-- [CopilotChat] [ERROR 19:15:05] /Users/ruic/.local/share/nvim/lazy/CopilotChat.nvim/lua/CopilotChat/init.lua:373: Failed to resolve context: git_staged /Users/ruic/.config/nvim/lua/plugins/copilot-chat.lua:821: attempt to call field 'cwd' (a nil value)
+-- [CopilotChat] [ERROR 19:15:05] /Users/ruic/.local/share/nvim/lazy/CopilotChat.nvim/lua/CopilotChat/init.lua:373: Failed to resolve context: git_staged /Users/ruic/.config/nvim/lua/plugins/copilot-chat.lua:821: attempt to call field 'cwd' (a nil value)
+
 local CHAT_HISTORY_DIR = vim.fn.stdpath("data") .. "/copilot-chats"
 
 local FILETYPE_CONFIGS = {
@@ -817,6 +820,11 @@ return {
 				git_staged = {
 					description = "Includes all staged files in the git repository in chat context.",
 					resolve = function(_, source)
+						if not source or not source.cwd then
+							vim.notify("Error: git_staged.resolve.source.cwd is nil", vim.log.levels.ERROR)
+							return {}
+						end
+
 						-- List files staged for commit, excluding lock files
 						local cmd = { "git", "-C", source.cwd(), "diff", "--no-color", "--no-ext-diff", "--staged" }
 						local EXCLUDE_FILES = { "package-lock.json", "lazy-lock.json", "Cargo.lock" }

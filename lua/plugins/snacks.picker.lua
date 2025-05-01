@@ -283,6 +283,8 @@ return {
 						["<c-m>"] = { "flash", mode = { "n", "i" } },
 						["<cr>"] = { "confirm", mode = { "n", "i" } },
 						["<c-y>"] = { "confirm", mode = { "n", "i" } },
+						["<c-[>"] = { "list_scroll_up", mode = { "n", "i" } },
+						["<c-]>"] = { "list_scroll_down", mode = { "n", "i" } },
 						["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
 						["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
 					},

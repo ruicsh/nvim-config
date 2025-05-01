@@ -4,6 +4,7 @@ local function k(lhs, rhs, opts)
 end
 
 -- Navigation {{{
+
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
 k("{", ":keepjumps normal! 6k<cr>", { desc = "Jump up 6 lines", silent = true })
@@ -31,6 +32,7 @@ local center_scroll_keys = {
 for key, desc in pairs(center_scroll_keys) do
 	k(key, key .. "zz", { desc = desc })
 end
+
 -- }}}
 
 -- Editing {{{
