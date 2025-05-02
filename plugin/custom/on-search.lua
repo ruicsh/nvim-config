@@ -70,6 +70,9 @@ vim.on_key(function(char)
 	local isCmdlineMode = vim.api.nvim_get_mode().mode == "c"
 
 	if isNormalMode then
+		-- Toggle search highlighting
+		vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, key)
+
 		-- Track f/t motions
 		if vim.tbl_contains({ "f", "F", "t", "T" }, key) then
 			last_motion_type = "ft"
