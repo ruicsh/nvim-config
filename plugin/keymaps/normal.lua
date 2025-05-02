@@ -187,6 +187,9 @@ k("<tab>", function()
 	vim.cmd("normal! " .. cmd)
 end, { silent = true, desc = "Folds: Toggle" })
 
+-- Close all other
+k("<s-tab>", "zMzv", { desc = "Folds: Close all other" })
+
 -- }}}
 
 -- Terminal {{{

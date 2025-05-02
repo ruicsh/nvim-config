@@ -38,6 +38,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ### Editing
 
+- [dial.nvim](https://github.com/monaqa/dial.nvim) - Enhanced increment/decrement
 - [flash.nvim](https://github.com/folke/flash.nvim) - Jump to single character
 - [mini.ai](https://github.com/echasnovski/mini.ai) - around/inside textobjects
 - [mini.align](https://github.com/echasnovski/mini.align) - align text interactively
