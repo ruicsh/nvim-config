@@ -17,23 +17,24 @@ vim.api.nvim_create_user_command("VimMessages", function()
 	end
 
 	-- Calculate dimensions for floating window
-	local width = math.floor(vim.o.columns * 0.3)
-	local height = vim.o.lines - 3
-	local col = vim.o.columns - width
-	local row = 0
+	local width = vim.o.columns
+	local height = math.floor(vim.o.lines * 0.3)
+	local col = 0
+	local row = vim.o.lines - height
 
 	-- Create floating window
 	local buf = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, filtered_lines)
 
 	local win = vim.api.nvim_open_win(buf, true, {
-		relative = "editor",
-		width = width,
-		height = height,
+		border = "single",
 		col = col,
+		height = height,
+		relative = "editor",
 		row = row,
 		style = "minimal",
-		border = "single",
+		title = " Messages ",
+		width = width,
 		zindex = 300,
 	})
 
