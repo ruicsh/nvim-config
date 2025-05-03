@@ -12,7 +12,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - **Search** - fuzzy find anything, file, workspace scoped search and replace
 - **UI** - files and directory explorer, notifications, command palette, bookmarks
 
-<sub>Works on Neovim v0.11 (and vscode-neovim)</sub>
+<sub>Works on Neovim v0.11.1 (and vscode-neovim)</sub>
 
 ## Screenshots
 
@@ -25,16 +25,17 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>35 plugins</sub>
+<sub>37 plugins</sub>
 
 ### UI
 
+- [grapple.nvim](https://github.com/cbochs/grapple.nvim) - Bookmarks
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
 - [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
 - [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
-- [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers, statuscolumn, indent lines
+- [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers
 
 ### Editing
 
@@ -139,7 +140,6 @@ Random features added.
 
 |                                                                                                          |                                                 |
 | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [bookmarks](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/bookmarks.lua)                 | Buffer global bookmarks (harpoon)               |
 | [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)       | Use the same shortcut to close different panels |
 | [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua) | Duplicate and comment                           |
 | [on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/on-search.lua)                 | Pause folds, show results count on search       |
@@ -169,11 +169,9 @@ Random features added.
 
 ### Bookmarks:
 
-- `'{1-9}` jump to bookmark
-- `m{1-9}` set bookmark
-- `<leader>md` delete bookmark
-- `<leader>mD` delete all bookmarks
-- `<leader>'` list bookmarks
+- `'{1-9}` jump to
+- `<leader>m` toggle
+- `<leader>'` list
 
 ### Windows
 

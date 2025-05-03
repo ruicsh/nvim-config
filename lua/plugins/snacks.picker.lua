@@ -121,7 +121,6 @@ return {
 			{ "<leader>.", snacks.picker.resume, "Recent buffers" },
 			{ "<leader>:", snacks.picker.command_history, "Command history" },
 			{ "<leader>jj", snacks.picker.jumps, "Jumplist" },
-			{ "<leader>mm", snacks.picker.marks, "Marks" },
 			{ "<leader>-", snacks.picker.projects, "Workspaces" },
 			{ "<leader>qq", snacks.picker.qflist, "Quickfix" },
 			{ "<leader>uu", snacks.picker.undo, "Undotree" },

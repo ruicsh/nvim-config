@@ -104,7 +104,7 @@ end
 -- Show the current filename
 local function c_filename()
 	local hl = "%#StatusLineFilename#"
-	local line = hl .. " "
+	local line = sep() .. " " .. hl
 	local ft = vim.bo.filetype
 	local bt = vim.bo.buftype
 
@@ -124,23 +124,32 @@ local function c_filename()
 		line = line .. display
 	end
 
-	return line .. " %m"
+	return line .. "%m"
 end
 
 -- Show the current bookmark
 local function c_bookmark()
-	local line = "  "
-
-	-- Check if the file is bookmarked with a global mark
-	local bufnr = vim.api.nvim_get_current_buf()
-	local file = vim.api.nvim_buf_get_name(bufnr)
-	local file_path = vim.fn.fnamemodify(file, ":p")
-	local mark = _G.file_bookmarks[file_path]
-	if mark then
-		line = "%#StatusLineBookmarkText##" .. mark
+	local ft = vim.bo.filetype
+	local ignore = { "fugitive", "gitcommit", "copilot-chat", "messages", "terminal" }
+	if vim.tbl_contains(ignore, ft) then
+		return ""
 	end
 
-	return line
+	local grapple = require("grapple")
+	local tags = grapple.tags()
+	if tags == nil or #tags == 0 then
+		return ""
+	end
+
+	local current = grapple.name_or_index()
+	local line = sep() .. " 󰛢 "
+	local parts = {}
+	for i in ipairs(tags) do
+		local hl = (i == current and "%#StatusLineBookmarkActive#" or "%#StatusLineBookmarkText#")
+		table.insert(parts, hl .. i)
+	end
+
+	return line .. table.concat(parts, " ")
 end
 
 -- Show search count
@@ -229,11 +238,6 @@ end
 
 -- Show the current git branch
 local function c_git_branch()
-	local ft = vim.bo.filetype
-	if ft == "fugitive" or ft == "gitcommit" then
-		return ""
-	end
-
 	local head = vim.b.git_branch_name
 	if not head or head == "" then
 		return ""
@@ -244,15 +248,7 @@ end
 
 -- Show the current position
 local function c_cursor_position()
-	local bt = vim.bo.buftype
-	local ft = vim.bo.filetype
-
-	if bt == "terminal" or ft == "" or ft == "fugitive" or ft == "gitcommit" then
-		return ""
-	end
-
 	local has_tabs = vim.fn.tabpagenr("$") > 1
-
 	return "%#StatusLine#%4l %3p%% " .. (has_tabs and sep() or "")
 end
 
@@ -304,7 +300,7 @@ local function c_copilot_chat()
 		-- Nothing to do here since we're just updating a local variable
 	end)
 
-	local status = { " Copilot", "%#StatusLine#", model }
+	local status = { sep(), "Copilot", sep(), model }
 	return table.concat(status, " ")
 end
 
@@ -325,8 +321,8 @@ function _G.status_line()
 		hl,
 		c_mode(),
 		c_project(),
-		c_filename(),
 		c_bookmark(),
+		c_filename(),
 		c_copilot_chat(),
 		c_search_count(),
 		"%=",
