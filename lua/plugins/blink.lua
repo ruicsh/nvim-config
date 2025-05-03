@@ -24,7 +24,6 @@ local DISABLED_BUFTYPES = {
 
 return {
 	"saghen/blink.cmp",
-	version = "1.*",
 
 	opts = {
 		completion = {
@@ -66,7 +65,7 @@ return {
 		},
 		keymap = {
 			preset = "super-tab",
-			["<c-e>"] = { "hide", "show" },
+			["<c-e>"] = { "hide", "show" }, -- Toggle completion menu
 			["<c-n>"] = { "select_next", "show", "fallback" },
 			["<c-j>"] = { "select_next", "show", "fallback" },
 			["<c-k>"] = { "select_prev", "show", "fallback" },
@@ -86,4 +85,5 @@ return {
 
 	event = { "InsertEnter", "CmdlineEnter" },
 	enabled = not vim.g.vscode,
+	version = "1.*",
 }

@@ -206,12 +206,11 @@ Random features added.
 - `<c-d>` delete character in front of cursor
 - `<c-e>` jump to end of line
 - `<c-f>` jump forward one character
-- `<c-r>+` paste from clipboard
-- `<c-u>` delete before the cursor in current line
-- `<c-w>` delete word before
+- `<c-u>` delete till beginning of line
 - `<m-b>` jump backward one word
-- `<m-d>` delete forward one word
 - `<m-f>` jump forward one word
+- `<m-backspace>` delete word before
+- `<m-d>` delete forward one word
 
 ### Text objects
 
@@ -239,7 +238,7 @@ Random features added.
 - `<c-n>` show/next entry
 - `<c-p>` previous entry
 - `<tab>` confirm
-- `<c-e>` abort
+- `<c-e>` show/abort
 - `<c-u>` scroll docs up
 - `<c-d>` scroll docs down
 

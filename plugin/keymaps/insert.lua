@@ -3,32 +3,34 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("i", lhs, rhs, options)
 end
 
--- Save file
+-- Always exit insert mode when saving.
 local save_keys = { "<c-s>", "<d-s>" }
 for _, key in ipairs(save_keys) do
-	k(key, "<cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
+	k(key, "<cmd>silent! update<cr><esc>", { desc = "Save", unique = false })
 end
 
--- bash shortcuts
--- https://github.com/tpope/vim-rsi
-
--- Jump back/forward one character.
+-- Jump character back/forward
 k("<c-b>", "<left>")
 k("<c-f>", "<right>")
-
--- Jump back/forward one word.
+-- Jump word back/forward
 k("<m-b>", "<s-left>")
 k("<m-f>", "<s-right>")
-
--- Delete character in front of cursor
-k("<c-d>", "<del>")
-
--- Delete back/forward one word.
-k("<m-d>", "<c-o>dw")
-
--- Jump to beginning/end of line.
+-- Jump to line begin/end
 k("<c-a>", "<home>")
 k("<c-e>", "<end>", { unique = false })
+
+-- Delete character back/forward
+k("<backspace>", "<backspace>")
+k("<c-d>", "<del>")
+-- Delete word back/forward
+k("<m-backspace>", "<c-o>dB")
+k("<m-d>", "<c-o>dW")
+
+-- Insert previously insert text (`:h i_CTRL-A`)
+k("<c-x><c-a>", "<c-a>")
+
+-- Always insert register content literally (`:h i_CTRL-R`)
+k("<c-r>", "<c-r><c-r>")
 
 -- Make undo work word by word.
 local undo_keys = { "<space>", ",", ".", "!", "?", ">", ")", "]", "}" }
