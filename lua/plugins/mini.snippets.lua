@@ -12,13 +12,22 @@ return {
 				gen_loader.from_lang(),
 			},
 			mappings = {
-				expand = "<c-e>",
-				jump_next = "",
-				jump_prev = "",
+				expand = "<c-;>",
+				jump_next = "<c-;>",
+				jump_prev = "<c-,>",
 				stop = "<c-c>",
+			},
+			expand = {
+				insert = function(snippet)
+					return ms.default_insert(snippet, {
+						empty_tabstop = "",
+						empty_tabstop_final = "",
+					})
+				end,
 			},
 		})
 	end,
 
+	enabled = not vim.g.vscode,
 	event = "InsertEnter",
 }

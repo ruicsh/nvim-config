@@ -66,11 +66,11 @@ return {
 		},
 		keymap = {
 			preset = "super-tab",
+			["<c-e>"] = { "hide", "show" },
 			["<c-n>"] = { "select_next", "show", "fallback" },
 			["<c-j>"] = { "select_next", "show", "fallback" },
 			["<c-k>"] = { "select_prev", "show", "fallback" },
 		},
-		snippets = { preset = "mini_snippets" },
 		signature = {
 			enabled = true,
 			window = {
@@ -80,10 +80,10 @@ return {
 			},
 		},
 		sources = {
-			default = { "snippets", "path", "lsp", "buffer" },
+			default = { "path", "buffer", "lsp" },
 		},
 	},
 
 	event = { "InsertEnter", "CmdlineEnter" },
-	dependencies = { "echasnovski/mini.snippets" },
+	enabled = not vim.g.vscode,
 }

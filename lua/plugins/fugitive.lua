@@ -51,4 +51,5 @@ return {
 	end,
 
 	cmd = { "Git" },
+	enabled = not vim.g.vscode,
 }

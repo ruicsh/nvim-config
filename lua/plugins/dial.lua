@@ -1,4 +1,4 @@
---Enhanced increment/decrement
+-- Enhanced increment/decrement
 -- https://github.com/monaqa/dial.nvim
 
 return {
@@ -16,12 +16,25 @@ return {
 
 		require("dial.config").augends:register_group({
 			default = {
-				augend.integer.alias.decimal,
-				augend.integer.alias.hex,
-				augend.date.alias["%Y/%m/%d"],
-				augend.constant.alias.bool,
-				augend.semver.alias.semver,
-				augend.constant.new({ elements = { "let", "const" } }),
+				augend.constant.alias.Alpha, -- [A-Z]
+				augend.constant.alias.alpha, -- [a-z]
+				augend.constant.alias.bool, -- true/false
+				augend.constant.new({ -- yes/no
+					elements = { "yes", "no" },
+					word = true,
+					cyclic = true,
+				}),
+
+				augend.date.alias["%H:%M"], -- 23:59
+				augend.date.new({ -- 2023-10-01
+					pattern = "%Y-%m-%d",
+					default_kind = "day",
+					only_valid = true,
+				}),
+
+				augend.integer.alias.decimal, -- 1234
+
+				augend.semver.alias.semver, -- 1.2.3
 			},
 		})
 	end,

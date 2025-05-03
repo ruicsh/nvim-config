@@ -31,4 +31,7 @@ k("<c-a>", "<home>")
 k("<c-e>", "<end>", { unique = false })
 
 -- Make undo work word by word.
-k("<space>", "<c-g>u<space>")
+local undo_keys = { "<space>", ",", ".", "!", "?", ">", ")", "]", "}" }
+for _, key in ipairs(undo_keys) do
+	k(key, key .. "<c-g>u")
+end

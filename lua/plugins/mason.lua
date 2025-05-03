@@ -129,6 +129,6 @@ return {
 		end, 3000)
 	end,
 
-	enabled = not vim.g.vscode,
 	event = { "VeryLazy" },
+	enabled = not vim.g.vscode,
 }
