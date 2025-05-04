@@ -523,11 +523,7 @@ end
 
 vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local chat = require("CopilotChat")
-	local select = require("CopilotChat.select")
 	local bufnr = vim.api.nvim_get_current_buf()
-
-	-- Yank everything in the buffer, to feed into the chat later
-	vim.cmd("normal! ggVGy")
 
 	-- Determine which prompt command to use based on work environment
 	local is_work_env = vim.fn.getenv("IS_WORK") == "true"
@@ -556,7 +552,6 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 		context = { "git_staged" },
 		headless = true,
 		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
-		selection = select.unnamed,
 		system_prompt = "/COPILOT_INSTRUCTIONS",
 	})
 end, {})

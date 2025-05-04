@@ -125,7 +125,7 @@ vim.fn.start_spinner = function(bufnr, msg)
 				icons.spinner[spinners[bufnr].idx] .. " " .. msg,
 				"",
 			})
-			vim.cmd("normal! G") -- Set cursor on the last line
+			vim.cmd("normal! j") -- Set cursor on the last line
 		end)
 	)
 end
