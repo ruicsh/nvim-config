@@ -6,11 +6,11 @@ return {
 	keys = function()
 		local mappings = {
 			{ "<leader>m", ":Grapple toggle<cr>", "Toggle" },
-			{ "<leader>'", ":Grapple toggle_tags<cr>", "List" },
-			{ "'1", "<cmd>Grapple select index=1<cr>", "Select #1" },
-			{ "'2", "<cmd>Grapple select index=2<cr>", "Select #2" },
-			{ "'3", "<cmd>Grapple select index=3<cr>", "Select #3" },
-			{ "'4", "<cmd>Grapple select index=4<cr>", "Select #4" },
+			{ "§", ":Grapple toggle_tags<cr>", "List" },
+			{ "<leader>1", "<cmd>Grapple select index=1<cr>", "Select #1" },
+			{ "<leader>2", "<cmd>Grapple select index=2<cr>", "Select #2" },
+			{ "<leader>3", "<cmd>Grapple select index=3<cr>", "Select #3" },
+			{ "<leader>4", "<cmd>Grapple select index=4<cr>", "Select #4" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Grapple")

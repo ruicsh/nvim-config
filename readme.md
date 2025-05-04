@@ -169,9 +169,9 @@ Random features added.
 
 ### Bookmarks:
 
-- `'{1-9}` jump to
+- `<leader>{1-9}` jump
 - `<leader>m` toggle
-- `<leader>'` list
+- `§` list
 
 ### Windows
 
