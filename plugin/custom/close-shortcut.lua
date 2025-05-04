@@ -61,3 +61,12 @@ api.nvim_create_autocmd("FileType", {
 		k("n", closeShortcut, ":close | :vsplit | :blast<cr>", { buffer = event.buf, silent = true })
 	end,
 })
+
+-- Terminal
+api.nvim_create_autocmd("TermOpen", {
+	group = augroup,
+	pattern = "*",
+	callback = function(event)
+		k("t", closeShortcut, "<c-\\><c-n>", { buffer = event.buf })
+	end,
+})

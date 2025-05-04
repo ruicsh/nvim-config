@@ -8,12 +8,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	pattern = "term://*",
 	callback = function()
 		if vim.opt.buftype:get() == "terminal" then
-			local set = vim.opt_local
-			set.scrolloff = 0 -- Don't scroll when at the top or bottom of the terminal buffer
-			vim.opt.filetype = "terminal"
-			vim.opt.hidden = true -- Hide the terminal buffer when switching to another buffer
-			vim.opt.buflisted = false -- Don't show terminal buffers in the buffer list
-			vim.opt.signcolumn = "yes" -- Show sign column (add some padding)
+			local o = vim.opt_local
+			o.scrolloff = 0 -- Don't scroll when at the top or bottom of the terminal buffer
+			o.filetype = "terminal"
+			o.hidden = true -- Hide the terminal buffer when switching to another buffer
+			o.buflisted = false -- Don't show terminal buffers in the buffer list
+			o.signcolumn = "yes" -- Show sign column (add some padding)
 			vim.cmd.startinsert() -- Start in insert mode
 		end
 	end,
