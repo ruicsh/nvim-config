@@ -207,4 +207,4 @@ end
 
 -- }}}
 
--- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0
+-- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable

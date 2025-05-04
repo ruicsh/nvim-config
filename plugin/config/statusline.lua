@@ -130,7 +130,7 @@ end
 -- Show the current bookmark
 local function c_bookmark()
 	local ft = vim.bo.filetype
-	local ignore = { "fugitive", "gitcommit", "copilot-chat", "messages", "terminal" }
+	local ignore = { "", "fugitive", "gitcommit", "copilot-chat", "messages", "terminal" }
 	if vim.tbl_contains(ignore, ft) then
 		return ""
 	end
@@ -141,8 +141,8 @@ local function c_bookmark()
 		return ""
 	end
 
-	local current = grapple.name_or_index()
 	local line = sep() .. " 󰛢 "
+	local current = grapple.name_or_index()
 	local parts = {}
 	for i in ipairs(tags) do
 		local hl = (i == current and "%#StatusLineBookmarkActive#" or "%#StatusLineBookmarkText#")
@@ -309,9 +309,6 @@ function _G.status_line()
 	if vim.g.vscode then
 		return table.concat({
 			c_mode(),
-			c_project(),
-			c_filename(),
-			c_bookmark(),
 		})
 	end
 

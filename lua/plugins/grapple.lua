@@ -23,4 +23,5 @@ return {
 
 	cmd = "Grapple",
 	event = { "BufReadPost", "BufNewFile" },
+	enabled = not vim.g.vscode,
 }
