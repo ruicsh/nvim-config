@@ -10,19 +10,21 @@ end
 k("<c-b>", "<left>")
 k("<c-f>", "<right>")
 
--- Jump back/forward one word.
+-- Jump word back/forward
 k("<m-b>", "<s-left>")
 k("<m-f>", "<s-right>")
 
--- Delete character in front of cursor
+-- Jump to line begin/end
+k("<c-a>", "<home>")
+k("<c-e>", "<end>", { unique = false })
+
+-- Delete character back/forward
+k("<bs>", "<bs>")
 k("<c-d>", "<del>")
 
 -- Delete back/forward one word.
 k("<m-bs>", "<c-s-w>")
 k("<m-d>", "<s-right><del>")
-
--- Jump to biginning/end of line.
-k("<c-a>", "<home>")
 
 -- Filter the command line history.
 -- Pratical Vim, pp 69
