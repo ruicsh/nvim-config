@@ -268,7 +268,7 @@ return {
 					win = {
 						input = {
 							keys = {
-								["<c-e>"] = { "close", mode = { "n", "i" } },
+								["<esc>"] = { "close", mode = { "n", "i" } },
 							},
 						},
 					},
@@ -278,8 +278,7 @@ return {
 			win = {
 				input = {
 					keys = {
-						["<c-e>"] = { "close", mode = { "n", "i" } },
-						["<c-m>"] = { "flash", mode = { "n", "i" } },
+						["<esc>"] = { "close", mode = { "i" } },
 						["<cr>"] = { "confirm", mode = { "n", "i" } },
 						["<c-y>"] = { "confirm", mode = { "n", "i" } },
 						["<c-[>"] = { "list_scroll_up", mode = { "n", "i" } },

@@ -55,9 +55,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.bo.bufhidden = "wipe" -- Wipe the buffer when it's hidden
 		vim.wo.wrap = true -- Enable line wrapping
 		vim.wo.relativenumber = false -- Disable relative line numbers
-
-		vim.keymap.set("n", "q", "<c-w>q", { buffer = 0, desc = "Close messages window" })
-		vim.keymap.set("n", "<c-e>", "<c-w>q", { buffer = 0, desc = "Close messages window" })
 	end,
 })
 

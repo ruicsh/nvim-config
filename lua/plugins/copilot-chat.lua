@@ -849,8 +849,7 @@ return {
 					insert = "<c-]>",
 				},
 				close = {
-					normal = "<c-e>",
-					insert = "<c-e>",
+					normal = "<esc>",
 				},
 				reset = {
 					normal = "<c-x>",

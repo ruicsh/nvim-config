@@ -1,7 +1,7 @@
 -- Use the same shortcut to close different panels.
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 
-local closeShortcut = "<c-e>"
+local closeShortcut = "<esc>"
 local api = vim.api
 local k = vim.keymap.set
 
@@ -19,10 +19,9 @@ local function close_buffer_or_window_or_quit()
 		require("snacks.bufdelete").delete()
 	end
 end
-k("n", closeShortcut, close_buffer_or_window_or_quit)
+k("n", "<c-q>", close_buffer_or_window_or_quit)
 
 k("v", closeShortcut, "<esc>") -- Use it to exit visual mode
-k("t", closeShortcut, "<c-\\><c-n>") -- Return to normal mode in the terminal
 
 -- Custom buffers
 api.nvim_create_autocmd("FileType", {
@@ -36,6 +35,7 @@ api.nvim_create_autocmd("FileType", {
 		"query",
 		"scratch",
 		"startuptime",
+		"vim-messages",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
@@ -59,14 +59,5 @@ api.nvim_create_autocmd("FileType", {
 	},
 	callback = function(event)
 		k("n", closeShortcut, ":close | :vsplit | :blast<cr>", { buffer = event.buf, silent = true })
-	end,
-})
-
--- Terminal
-api.nvim_create_autocmd("TermOpen", {
-	group = augroup,
-	pattern = "*",
-	callback = function(event)
-		k("t", closeShortcut, "<c-\\><c-n>", { buffer = event.buf })
 	end,
 })

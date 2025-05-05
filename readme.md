@@ -157,7 +157,7 @@ Random features added.
 ### Buffers
 
 - `<bs>` open last
-- `<c-e>` close
+- `<esc>` close
 - `<leader>,` list
 - `=` open alternate
 - `=s` open alternate css
@@ -174,7 +174,7 @@ Random features added.
 ### Windows
 
 - `|` switch
-- `<c-e>` close window
+- `<esc>` close window
 
 ### Navigation
 

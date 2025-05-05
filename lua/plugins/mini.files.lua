@@ -40,7 +40,7 @@ return {
 			end,
 		},
 		mappings = {
-			close = "<c-e>",
+			close = "<esc>",
 			go_in = "",
 			go_in_plus = "<cr>",
 			go_out = "",
