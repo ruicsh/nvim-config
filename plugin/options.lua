@@ -3,7 +3,10 @@
 local o = vim.opt
 
 -- 2 moving around, searching and patterns {{{
-o.jumpoptions = { "stack" } -- https://www.reddit.com/r/neovim/comments/16nead7/comment/k1e1nj5/?context=3
+o.jumpoptions = {
+	"stack", -- https://www.reddit.com/r/neovim/comments/16nead7/comment/k1e1nj5/?context=3
+	"view", -- https://www.reddit.com/r/neovim/comments/1kfcrfx/how_can_lazyvim_mark_also_save_the_scroll_position/
+}
 o.ignorecase = true -- Ignore case on search patterns.
 o.inccommand = "nosplit" -- Show live preview of substitution.
 o.path:append("**") -- Enable searching for files on subdirectories.

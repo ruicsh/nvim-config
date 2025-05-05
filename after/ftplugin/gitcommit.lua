@@ -16,4 +16,4 @@ end
 
 k({ "n", "i" }, "<c-s>", accept_commit_message, opts)
 k({ "n", "i" }, "<leader>ac", ":CopilotCommitMessage<cr>", opts)
-k({ "n", "i" }, "<esc>", "", opts) -- Disable default behavior
+k({ "n" }, "<esc>", "", opts) -- Disable <esc> as it closes the buffer
