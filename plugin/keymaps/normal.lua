@@ -33,6 +33,10 @@ for key, desc in pairs(center_scroll_keys) do
 	k(key, key .. "zz", { desc = desc })
 end
 
+-- Jump to mark
+k("`", "'", { desc = "Jump to mark cursor" })
+k("'", "`", { desc = "Jump to mark line" })
+
 -- }}}
 
 -- Editing {{{
