@@ -22,7 +22,7 @@
   "export-function": {
     "prefix": "ef",
     "body": [
-      "export function ${1:name}($2:args) {",
+      "export function ${1:name}($2) {",
       "\t$0",
       "}"
     ],
@@ -31,7 +31,7 @@
   "export-arrow-function": {
     "prefix": "ef>",
     "body": [
-      "export ($1:args) => {",
+      "export ($1) => {",
       "\t$0",
       "}"
     ],
@@ -40,7 +40,7 @@
   "export-async-function": {
     "prefix": "efa",
     "body": [
-      "export async function ${1:name}($2:args) {",
+      "export async function ${1:name}($2) {",
       "\t$0",
       "}"
     ],
@@ -49,7 +49,7 @@
   "export-async-arrow-function": {
     "prefix": "efa>",
     "body": [
-      "export async ($1:args) => {",
+      "export async ($1) => {",
       "\t$0",
       "}"
     ],
@@ -58,8 +58,8 @@
   "function": {
     "prefix": "f",
     "body": [
-      "function ${1:name}(${2:args}) {",
-      "\t${0:body}",
+      "function ${1:name}($2) {",
+      "\t$0",
       "}"
     ],
     "description": "function ${1}($2) {"
@@ -103,11 +103,11 @@
   "function-async-assignment": {
     "prefix": "fa=",
     "body": [
-      "const ${1:name} = async function ${2:name}($3) {",
+      "const ${1:name} = async function ($2) {",
       "\t$0",
       "}"
     ],
-    "description": "const ${1:name} = async function ${2:name}($3) {"
+    "description": "const ${1:name} = async function ($3) { $0 }"
   },
   "function-async-arrow-assignment": {
     "prefix": "=fa>",
@@ -116,7 +116,7 @@
       "\t$0",
       "}"
     ],
-    "description": "const ${1} = async ($2) => {"
+    "description": "const ${1} = async ($2) => { $0 }"
   },
   "function-method": {
     "prefix": "f,",
@@ -197,7 +197,7 @@
       "\t$0",
       "}"
     ],
-    "description": "for (const ${1} of ${2}) {"
+    "description": "for (const ${1} of ${2}) { $0 }"
   },
   "if": {
     "prefix": "if",
@@ -206,7 +206,7 @@
       "\t$0",
       "}"
     ],
-    "description": "if (${1}) {"
+    "description": "if (${1}) { $0 }"
   },
   "if-else": {
     "prefix": "ife",
