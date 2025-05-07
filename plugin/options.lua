@@ -130,8 +130,6 @@ o.timeoutlen = 300 -- Don't wait 1 second for a possible new key
 
 -- 17 reading and writing files {{{
 o.autoread = true -- Automatically reload files changed outside of Vim.
-o.autowrite = true -- Automatically save files when switching buffers.
-o.autowriteall = true -- Automatically save all files when quitting.
 o.backup = false -- Do not create backup files.
 -- }}}
 
