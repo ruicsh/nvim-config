@@ -25,11 +25,10 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>37 plugins</sub>
+<sub>36 plugins</sub>
 
 ### UI
 
-- [grapple.nvim](https://github.com/cbochs/grapple.nvim) - Bookmarks
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
 - [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
