@@ -826,12 +826,16 @@ return {
 						for _, file in ipairs(EXCLUDE_FILES) do
 							table.insert(cmd, ":(exclude)" .. file)
 						end
-
 						local out = utils.system(cmd)
+
+						local content = table.concat({
+							"On branch: " .. vim.b.git_branch_name,
+							out.stdout,
+						}, "\n\n")
 
 						return {
 							{
-								content = out.stdout,
+								content = content,
 								filename = "git_diff_staged",
 								filetype = "diff",
 							},
