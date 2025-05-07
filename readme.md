@@ -25,7 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>35 plugins</sub>
+<sub>34 plugins</sub>
 
 ### UI
 
@@ -44,7 +44,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Autopairs
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround pairs
-- [nvim-spider](https://github.com/chrisgrieser/nvim-spider) - Move by subwords (camelCase, ...)
 
 ### Coding
 
