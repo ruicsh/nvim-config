@@ -34,7 +34,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
 - [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
-- [snacks.nvim](https://github.com/folke/snacks.nvim) - Pickers
+- [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
 
 ### Editing
 
