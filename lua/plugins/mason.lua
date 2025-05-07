@@ -72,12 +72,16 @@ local function syncPackages(ensurePacks)
 			if pack:is_installed() then
 				-- Only check for updates if no version was pinned
 				if pinnedVersion == "" then
-					pack:check_new_version(function(hasNewVersion, version)
-						if not hasNewVersion then
-							return
-						end
-						install(pack, version.latest_version)
-					end)
+					local latest_version = pack:get_latest_version()
+					-- Check if the latest version is different from the installed one
+					if latest_version and latest_version ~= pack:get_installed_version() then
+						local msg = ("[%s] updating to %s…"):format(pack.name, latest_version)
+						vim.defer_fn(function()
+							vim.notify(msg, nil, { title = "Mason", icon = "󰅗" })
+						end, 0)
+						-- Install the latest version
+						pack:install({ version = latest_version })
+					end
 				end
 			else
 				-- Install with pinned version if specified
