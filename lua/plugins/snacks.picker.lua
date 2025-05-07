@@ -159,6 +159,19 @@ return {
 						vim.cmd.stopinsert() -- start in normal mode
 					end,
 					sort_lastused = true,
+					win = {
+						input = {
+							keys = {
+								["<esc>"] = { "close", mode = { "n", "i" } },
+								["<c-d>"] = { "bufdelete", mode = { "n", "i" } },
+							},
+						},
+						list = {
+							keys = {
+								["<c-d>"] = { "bufdelete", mode = { "n", "i" } },
+							},
+						},
+					},
 				},
 				command_history = {
 					layout = {
