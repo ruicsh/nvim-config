@@ -1,6 +1,17 @@
 -- File explorer.
 -- https://github.com/echasnovski/mini.files
 
+local augroup = vim.api.nvim_create_augroup("ruicsh/plugins/mini.files", { clear = true })
+
+vim.api.nvim_create_autocmd("User", {
+	group = augroup,
+	pattern = "MiniFilesWindowUpdate",
+	callback = function(args)
+		-- Show line numbers in the file explorer, ex.: jump to file - 14G
+		vim.wo[args.data.win_id].number = true
+	end,
+})
+
 return {
 	"echasnovski/mini.files",
 	keys = function()
@@ -52,6 +63,7 @@ return {
 			width_nofocus = 50,
 			width_preview = 50,
 		},
+		use_as_default_explorer = true,
 	},
 
 	enabled = not vim.g.vscode,
