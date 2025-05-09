@@ -17,6 +17,7 @@ local IGNORE_FILETYPES = {
 	lazy = true,
 	lspinfo = true,
 	mason = true,
+	minifiles = true,
 	mininotify = true,
 	terminal = true,
 	vim = true,

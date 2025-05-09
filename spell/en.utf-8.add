@@ -14,6 +14,7 @@ dockerfile
 env
 eslint
 fd
+filepath
 foldenable
 foldlevel
 ftplugin

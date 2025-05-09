@@ -9,4 +9,4 @@ end
 k("n", "<leader>ar", ":CopilotCodeReview<cr>", { desc = "Code Review" })
 k("n", "<leader>hps", ":Git push<cr>", { desc = "push" })
 k("n", "<leader>hpf", ":Git push --force-with-lease<cr>", { desc = "push --force-with-lease" })
-k("n", "<leader>hpu", ":Git push -u origin HEAD", { desc = "push -u origin HEAD" })
+k("n", "<leader>hpu", ":Git push -u origin HEAD<cr>", { desc = "push -u origin HEAD" })
