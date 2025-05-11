@@ -25,4 +25,5 @@ return {
 	end,
 
 	event = "BufRead",
+	enabled = not vim.g.vscode,
 }

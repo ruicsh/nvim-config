@@ -74,6 +74,8 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "rust",
 	callback = function()
-		setup_dap()
+		if not vim.g.vscode then
+			setup_dap()
+		end
 	end,
 })

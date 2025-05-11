@@ -79,6 +79,7 @@ return {
 		end
 	end,
 
+	enabled = not vim.g.vscode,
 	dependencies = {
 		{ -- User interface
 			-- https://github.com/rcarriga/nvim-dap-ui

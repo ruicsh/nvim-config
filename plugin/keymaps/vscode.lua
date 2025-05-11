@@ -13,20 +13,25 @@ end
 
 -- Explorer
 k("n", "<leader><space>", ac("workbench.action.quickOpen"))
-k("n", "<leader>e", ac("workbench.files.action.focusFilesExplorer"))
+k("n", "-", ac("workbench.files.action.focusFilesExplorer"))
 
 -- Search
 k("n", "<leader>/", ac("workbench.action.findInFiles"))
 
 -- Buffers
+k("n", "<bs>", ac("workbench.action.openPreviousRecentlyUsedEditorInGroup"))
+k("n", "<s-bs>", ac("workbench.action.openNextRecentlyUsedEditorInGroup"))
 k("n", "<leader>,", ac("workbench.action.showAllEditors"))
 
 -- Splits
 k("n", "|", ac("workbench.action.focusNextGroup"))
+k("n", "<c-w>=", ac("workbench.action.toggleMaximizeEditorGroup"))
+k("n", "<c-w>q", ac("workbench.action.closeActiveEditor"))
+k("n", "<c-w>r", ac("workbench.action.moveEditorToNextGroup"))
+k("n", "<c-w>s", ac("workbench.action.splitEditorDown"))
+k("n", "<c-w>v", ac("workbench.action.splitEditorRight"))
 k("n", "<c-w>w", ac("workbench.action.focusNextGroup"))
 k("n", "<c-w>|", ac("workbench.action.toggleMaximizeEditorGroup"))
-k("n", "<c-w>[", ac("workbench.action.moveEditorToLeftGroup"))
-k("n", "<c-w>]", ac("workbench.action.moveEditorToRightGroup"))
 
 -- LSP
 k("n", "<c-]>", ac("editor.action.revealDefinition"))
@@ -41,3 +46,10 @@ k("n", "<tab>", ac("editor.toggleFold"))
 
 -- Git
 k({ "n", "x" }, "<leader>hh", ac("workbench.view.scm"))
+k("n", "[h", ac("workbench.action.editor.previousChange"))
+k("n", "]h", ac("workbench.action.editor.nextChange"))
+k("n", "ghh", ac("git.stageSelectedRanges"))
+k("n", "gHh", ac("git.revertSelectedRanges"))
+
+-- Extension
+k("n", "<c-l>", ac("vscode-neovim.restart"))

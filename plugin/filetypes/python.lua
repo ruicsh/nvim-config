@@ -148,6 +148,10 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "python",
 	callback = function()
+		if vim.g.vscode then
+			return
+		end
+
 		-- Only run once per session
 		if vim.g.venv_configured then
 			return
