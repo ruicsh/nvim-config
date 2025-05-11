@@ -18,9 +18,9 @@ vim.api.nvim_create_user_command("VimMessages", function()
 
 	-- Calculate dimensions for floating window
 	local width = vim.o.columns
-	local height = math.floor(vim.o.lines * 0.3)
+	local height = math.floor(vim.o.lines * 0.3) + 4
 	local col = 0
-	local row = vim.o.lines - height
+	local row = vim.o.lines - height - 4
 
 	-- Create floating window
 	local buf = vim.api.nvim_create_buf(false, true)

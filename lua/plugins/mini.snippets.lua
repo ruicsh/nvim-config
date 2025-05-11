@@ -28,6 +28,6 @@ return {
 		})
 	end,
 
-	enabled = not vim.g.vscode,
 	event = "InsertEnter",
+	enabled = not vim.g.vscode,
 }

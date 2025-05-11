@@ -47,10 +47,10 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ### Coding
 
-- [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
+- [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
-- [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
+- [mini.completion](https://github.com/echasnovski/mini.completion) - Autocomplete
 - [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - CSS Colors
 - [mini.snippets](https://github.com/echasnovski/mini.snippets) - Snippets
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags

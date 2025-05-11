@@ -11,12 +11,17 @@ vim.fn.get_lazy_keys_conf = function(mappings, desc_prefix)
 		local expr = opts and opts.expr or false
 		local remap = opts and opts.remap or false
 
+		local unique = true
+		if opts and opts.unique ~= nil then
+			unique = opts.unique
+		end
+
 		return {
 			lhs,
 			rhs,
 			mode = mode,
 			noremap = true,
-			unique = true,
+			unique = unique,
 			desc = desc,
 			expr = expr,
 			remap = remap,
