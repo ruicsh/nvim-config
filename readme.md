@@ -120,6 +120,7 @@ New features built around autocmds (events).
 |                                                                                                                                |                                                            |
 | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
 | [auto-resize-splits](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-resize-splits.lua)                   | Auto resize splits when window is resized                  |
+| [clear-jumps](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/clear-jumps.lua)                                 | Clear jumplist when vim starts                             |
 | [cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline.lua)                                         | Clean up after use, hide hit-enter messages on blur        |
 | [disable-newline-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-newline-comments.lua)       | Disable newline comments                                   |
 | [git-branch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/git-branch.lua)                                   | Active git branch                                          |
