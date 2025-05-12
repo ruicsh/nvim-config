@@ -213,7 +213,7 @@ end
 
 -- Show the current git branch
 local function c_git_branch()
-	local head = vim.b.git_branch_name
+	local head = vim.g.git_branch_name
 	if not head or head == "" then
 		return ""
 	end

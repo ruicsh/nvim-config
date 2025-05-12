@@ -829,7 +829,7 @@ return {
 						local out = utils.system(cmd)
 
 						local content = table.concat({
-							"On branch: " .. vim.b.git_branch_name,
+							"On branch: " .. vim.g.git_branch_name,
 							out.stdout,
 						}, "\n\n")
 
