@@ -53,9 +53,9 @@ return {
 		mappings = {
 			close = "<esc>",
 			go_in = "",
-			go_in_plus = "l",
+			go_in_plus = "<cr>",
 			go_out = "",
-			go_out_plus = "h",
+			go_out_plus = "-",
 			synchronize = "<c-s>",
 		},
 		windows = {
