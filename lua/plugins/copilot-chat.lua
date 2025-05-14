@@ -698,6 +698,11 @@ return {
 
 		customize_chat_window()
 
+		local proxy = nil
+		if vim.fn.getenv("COPILOT_PROXY") ~= vim.NIL then
+			proxy = vim.fn.getenv("COPILOT_PROXY")
+		end
+
 		chat.setup({
 			agent = "copilot",
 			allow_insecure = true,
@@ -866,6 +871,7 @@ return {
 			},
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
 			prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts"),
+			proxy = proxy,
 			references_display = "write", -- Display references as markdown links
 			question_header = "꠵ User ",
 			selection = false, -- Have no predefined context by default
