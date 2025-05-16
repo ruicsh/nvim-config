@@ -44,8 +44,8 @@ return {
 				auto_show = true,
 				draw = {
 					columns = {
-						{ "kind_icon" },
 						{ "label" },
+						{ "kind" },
 					},
 					treesitter = { "lsp" },
 				},

@@ -271,9 +271,9 @@ loadColorSet({
 
 -- blink.cmp
 loadColorSet({
-	BlinkCmpMenuBorder = { fg = c.neutral_600 },
-	BlinkCmpDocBorder = { link = "BlinkCmpMenuBorder" },
-	BlinkCmpSignatureHelpBorder = { link = "BlinkCmpMenuBorder" },
+	BlinkCmpMenu = { bg = c.neutral_880 },
+	BlinkCmpDoc = { link = "BlinkCmpDoc" },
+	BlinkCmpDocSeparator = { link = "BlinkCmpDoc" },
 })
 
 -- CopilotChat.nvim
