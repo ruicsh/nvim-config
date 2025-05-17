@@ -63,7 +63,8 @@ return {
 		},
 		keymap = {
 			preset = "super-tab",
-			["<c-e>"] = { "hide", "show" }, -- Toggle completion menu
+			["<cr>"] = { "select_and_accept", "fallback" },
+			["<c-e>"] = { "hide", "show", "fallback" }, -- Toggle completion menu
 			["<c-n>"] = { "select_next", "show", "fallback" },
 			["<c-j>"] = { "select_next", "show", "fallback" },
 			["<c-k>"] = { "select_prev", "show", "fallback" },

@@ -233,6 +233,7 @@ Random features added.
 - `<c-n>` show/next entry
 - `<c-p>` previous entry
 - `<tab>` confirm
+- `<cr>` confirm
 - `<c-e>` show/abort
 - `<c-u>` scroll docs up
 - `<c-d>` scroll docs down
