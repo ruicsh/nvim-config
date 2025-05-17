@@ -98,32 +98,36 @@ local function get_project_dirs()
 	return project_dirs
 end
 
-local function bookmarks()
-	local snacks = require("snacks")
-	return snacks.picker.marks({ filter_marks = "A-I" })
-end
-
 return {
 	"folke/snacks.nvim",
 	keys = (function()
 		local snacks = require("snacks")
 
 		local mappings = {
+			-- files
+			{ "<leader><space>", snacks.picker.smart, "Files" },
+			{ "<leader>-", snacks.picker.projects, "Workspaces" },
+			{ "<leader>,", snacks.picker.buffers, "Buffers" },
+
 			-- search
-			{ "<leader><space>", snacks.picker.smart, "Search: Files" },
 			{ "<leader>/", snacks.picker.grep, "Search: Workspace" },
 			{ "<leader>?", grep_directory, "Search: Directory" },
 			{ "<leader>*", snacks.picker.grep_word, "Search: Current word" },
+			{ "<leader>sh", snacks.picker.search_history, "Search: History" },
 
 			-- current state
-			{ "<leader>'", bookmarks, "Bookmarks" },
-			{ "<leader>,", snacks.picker.buffers, "Buffers" },
-			{ "<leader>.", snacks.picker.resume, "Recent buffers" },
+			{ "<leader>'", snacks.picker.marks, "Marks" },
+			{ "<leader>.", snacks.picker.resume, "Last picker" },
 			{ "<leader>:", snacks.picker.command_history, "Command history" },
+			{ '<leader>"', snacks.picker.registers, "Command history" },
 			{ "<leader>jj", snacks.picker.jumps, "Jumplist" },
-			{ "<leader>-", snacks.picker.projects, "Workspaces" },
 			{ "<leader>qq", snacks.picker.qflist, "Quickfix" },
 			{ "<leader>uu", snacks.picker.undo, "Undotree" },
+
+			-- git
+			{ "<leader>hbr", snacks.picker.git_branches, "Git: Branches" },
+			{ "<leader>hlg", snacks.picker.git_log, "Git: Log" },
+			{ "<leader>hlf", snacks.picker.git_log_file, "Git: Log file" },
 
 			-- neovim
 			{ "<leader>nh", snacks.picker.help, "Help" },
@@ -138,6 +142,24 @@ return {
 	end)(),
 	opts = {
 		picker = {
+			actions = {
+				send_to_qflist = function(picker)
+					picker:close()
+					local qflist = {}
+					for _, item in ipairs(picker:items()) do
+						if item.file then
+							table.insert(qflist, {
+								lnum = item.pos[1],
+								col = item.pos[2],
+								text = item.line,
+								filename = item.file,
+							})
+						end
+					end
+					vim.fn.setqflist({}, "r", { items = qflist })
+					require("snacks.picker").qflist()
+				end,
+			},
 			enabled = true,
 			formatters = {
 				file = {
@@ -162,13 +184,12 @@ return {
 					win = {
 						input = {
 							keys = {
-								["<esc>"] = { "close", mode = { "n", "i" } },
-								["<c-d>"] = { "bufdelete", mode = { "n", "i" } },
+								["<c-x>"] = { "bufdelete", mode = { "n", "i" } },
 							},
 						},
 						list = {
 							keys = {
-								["<c-d>"] = { "bufdelete", mode = { "n", "i" } },
+								["<c-x>"] = { "bufdelete", mode = { "n", "i" } },
 							},
 						},
 					},
@@ -196,49 +217,6 @@ return {
 						picker:close()
 						vim.cmd("only")
 						vim.cmd("vertical help " .. item.tag)
-					end,
-				},
-				marks = {
-					transform = function(item, ctx)
-						local init_opts = ctx.picker.init_opts or {}
-						-- Only show bookmarks [A-I]
-						if init_opts.filter_marks == "A-I" then
-							return item.label and item.label:match("^[A-I]$") and true or false
-						end
-
-						return true
-					end,
-					format = function(item, picker)
-						local init_opts = picker.init_opts or {}
-						local ret = {}
-
-						if item.label then
-							local label = item.label
-							-- Show the label as a number
-							if init_opts.filter_marks == "A-I" then
-								label = "" .. string.byte(item.label) - string.byte("A") + 1 .. ""
-							end
-							ret[#ret + 1] = { label, "SnacksPickerLabel" }
-							ret[#ret + 1] = { " ", virtual = true }
-						end
-
-						local path = Snacks.picker.util.path(item) or item.file
-						local dir, base = path:match("^(.*)/(.+)$")
-						local base_hl = item.dir and "SnacksPickerDirectory" or "SnacksPickerFile"
-						local dir_hl = "SnacksPickerDir"
-
-						-- Get the current working directory
-						local cwd = vim.fn.getcwd() .. "/"
-						-- Make dir relative to cwd if it starts with cwd
-						if dir and dir:sub(1, #cwd) == cwd then
-							dir = dir:sub(#cwd + 1)
-						end
-
-						ret[#ret + 1] = { base, base_hl, field = "file" }
-						ret[#ret + 1] = { " " }
-						ret[#ret + 1] = { dir, dir_hl, field = "file" }
-
-						return ret
 					end,
 				},
 				projects = {
@@ -286,18 +264,26 @@ return {
 						},
 					},
 				},
+				search_history = {
+					layout = {
+						preview = false,
+						preset = "vertical",
+					},
+				},
 			},
 			ui_select = true,
 			win = {
 				input = {
 					keys = {
-						["<esc>"] = { "close", mode = { "i" } },
-						["<cr>"] = { "confirm", mode = { "n", "i" } },
-						["<c-y>"] = { "confirm", mode = { "n", "i" } },
+						["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+						["<c-e>"] = { "close", mode = { "n", "i" } },
+						["<c-q>"] = { "send_to_qflist", mode = { "n", "i" } },
 						["<c-s-[>"] = { "list_scroll_up", mode = { "n", "i" } },
 						["<c-s-]>"] = { "list_scroll_down", mode = { "n", "i" } },
 						["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
-						["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+						["<c-y>"] = { "confirm", mode = { "n", "i" } },
+						["<cr>"] = { "confirm", mode = { "n", "i" } },
+						["<esc>"] = { "close", mode = { "n", "i" } },
 					},
 				},
 			},

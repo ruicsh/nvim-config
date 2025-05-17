@@ -68,7 +68,7 @@ local function keymaps(bufnr, client)
 	k("gD", vim.lsp.buf.declaration, "Jump to declaration")
 	k("grr", snacks.picker.lsp_references, "References")
 	k("gO", snacks.picker.lsp_symbols, "Symbols")
-	k("<leader>dd", vim.diagnostic.setqflist, "Diagnostics")
+	k("<leader>dd", snacks.picker.diagnostics, "Diagnostics")
 
 	if client.supports_method(methods.textDocument_typeDefinition) then
 		k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
