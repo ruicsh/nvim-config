@@ -1,4 +1,4 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/rust_analyzer.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/rust_analyzer.lua
 
 return {
 	cmd = {

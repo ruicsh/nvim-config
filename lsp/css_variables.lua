@@ -1,4 +1,4 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/css_variables.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/css_variables.lua
 
 return {
 	cmd = {

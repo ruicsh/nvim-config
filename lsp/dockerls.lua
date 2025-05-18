@@ -1,4 +1,4 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/dockerls.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/dockerls.lua
 
 return {
 	cmd = {

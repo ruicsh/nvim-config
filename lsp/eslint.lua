@@ -1,4 +1,4 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/eslint.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/eslint.lua
 
 return {
 	cmd = {

@@ -1,4 +1,4 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/ansiblels.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/ansiblels.lua
 
 return {
 	cmd = {

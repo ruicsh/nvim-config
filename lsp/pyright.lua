@@ -1,4 +1,4 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/pyright.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/pyright.lua
 
 return {
 	cmd = {

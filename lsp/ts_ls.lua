@@ -1,4 +1,4 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/ts_ls.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/ts_ls.lua
 -- https://github.com/typescript-language-server/typescript-language-server/blob/master/docs/configuration.md
 
 return {

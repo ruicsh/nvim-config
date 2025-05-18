@@ -1,4 +1,4 @@
--- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/cssls.lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/cssls.lua
 
 return {
 	cmd = {
