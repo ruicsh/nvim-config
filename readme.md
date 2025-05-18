@@ -166,17 +166,6 @@ Random features added.
 - `==t` open alternate test (vsplit)
 - `==m` open alternate template (vsplit)
 
-### Bookmarks:
-
-- `<leader>{1-9}` jump
-- `<leader>m` toggle
-- `§` list
-
-### Windows
-
-- `|` switch
-- `<esc>` close window
-
 ### Navigation
 
 - `{` jump up 6 lines
@@ -189,6 +178,7 @@ Random features added.
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
+- `|` switch windows
 
 ### Editing
 
@@ -209,10 +199,10 @@ Random features added.
 - `<c-e>` jump to end of line
 - `<c-f>` jump forward one character
 - `<c-u>` delete till beginning of line
-- `<m-b>` jump backward one word
-- `<m-f>` jump forward one word
-- `<m-backspace>` delete word before
-- `<m-d>` delete forward one word
+- `<c-s-b>` jump word before
+- `<c-s-f>` jump word after
+- `<c-bs>` delete word before
+- `<c-s-d>` delete word after
 
 ### Text objects
 
@@ -276,6 +266,7 @@ Random features added.
 
 - `<c-]>` accept
 - `<c-e>` dismiss
+- `<c-j>` accept line
 
 ### Logging
 
@@ -290,17 +281,17 @@ Random features added.
 
 ### Syntax (AST)
 
-- `<s-left>` jump to parent node
-- `<s-right>` jump to child node
-- `<s-up>` jump to previous sibling node
-- `<s-down>` jump to next sibling node
+- `<c-h>` jump to parent node
+- `<c-l>` jump to child node
+- `<c-k>` jump to previous sibling node
+- `<c-j>` jump to next sibling node
 - `<leader>v` select current node
 - `<c-a>` increase selection (on node selection mode)
 - `<c-x>` decrease selection (on node selection mode)
-- `<m-right>` swap with lateral previous node
-- `<m-left>` swap with lateral next node
-- `<m-up>` swap with vertical previous node
-- `<m-down>` swap with vertical next node
+- `<m-h>` swap with lateral previous node
+- `<m-l>` swap with lateral next node
+- `<m-k>` swap with vertical previous node
+- `<m-j>` swap with vertical next node
 
 ### LSP
 
@@ -338,10 +329,11 @@ Random features added.
 - `]h` next hunk
 - `gh` stage hunk
 - `gH` reset hunk
-- `<leader>hb` blame
 - `<leader>hd` diff hunk
 - `<leader>hh` status
-- `<leader>hl` log
+- `<leader>hlg` log
+- `<leader>hlf` log file
+- `<leader>hll` log line
 - `<leader>hpf` push --force-with-lease
 - `<leader>hps` push
 - `<leader>hpu` push -u origin HEAD

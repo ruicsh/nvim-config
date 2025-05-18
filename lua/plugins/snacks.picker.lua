@@ -193,6 +193,9 @@ return {
 					Hint = icons.diagnostics.hint,
 				},
 			},
+			jump = {
+				reuse_win = true,
+			},
 			matcher = {
 				cwd_bonus = true,
 				frecency = true,

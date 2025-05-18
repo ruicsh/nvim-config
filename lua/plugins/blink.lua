@@ -66,8 +66,9 @@ return {
 			["<cr>"] = { "select_and_accept", "fallback" },
 			["<c-e>"] = { "hide", "show", "fallback" }, -- Toggle completion menu
 			["<c-n>"] = { "select_next", "show", "fallback" },
-			["<c-j>"] = { "select_next", "show", "fallback" },
-			["<c-k>"] = { "select_prev", "show", "fallback" },
+			["<c-p>"] = { "select_prev", "show", "fallback" },
+			["<c-j>"] = { "select_next", "fallback" },
+			["<c-k>"] = { "select_prev", "fallback" },
 		},
 		signature = {
 			enabled = true,
