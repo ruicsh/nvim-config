@@ -157,11 +157,15 @@ Random features added.
 - `<bs>` open last
 - `<esc>` close
 - `<leader>,` list
-- `=` open alternate
-- `=s` open alternate css
+- `==` open alternate
+- `=<space>` open alternate source
+- `=s` open alternate style
 - `=t` open alternate test
-- `=h` open alternate html
-- `=c` open alternate component
+- `=m` open alternate template
+- `==<space>` open alternate source (vsplit)
+- `==s` open alternate style (vsplit)
+- `==t` open alternate test (vsplit)
+- `==m` open alternate template (vsplit)
 
 ### Bookmarks:
 
@@ -181,6 +185,11 @@ Random features added.
 - `<leader>/` find in workspace
 - `<leader>?` find in directory
 - `<leader>*` find word in workspace
+- `';' jump to previous position`
+- `',' jump to next position`
+- `''` jump to position before last jump
+- `'.` jump to position where last change was made
+- `'{a-z}'` jump to marked position
 
 ### Editing
 
@@ -348,25 +357,6 @@ Random features added.
 - `c0` choose none
 - `]x` jump to next conflict
 - `[x` jump to previous conflict
-
-### Quickfix
-
-- `<leader>qq` toggle quickfix list
-- `[q` previous entry
-- `]q` next entry
-- `[Q` first entry
-- `]Q` last entry
-- `[<c-q>` previous file
-- `]<c-q>` next file
-- `<c-p>` open previous list
-- `<c-n>` open next list
-
-### Marks
-
-- `''` jump to position before last jump
-- `'.` jump to position where last change was made
-- `'{1-9}` jump to bookmarks
-- `'{a-z}'` jump to marked position
 
 ### Application
 

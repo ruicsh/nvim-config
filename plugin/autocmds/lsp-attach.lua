@@ -9,6 +9,7 @@ local function diagnostics()
 	vim.diagnostic.config({
 		float = {
 			border = "rounded",
+			width = 60,
 		},
 		jump = {
 			float = true,
