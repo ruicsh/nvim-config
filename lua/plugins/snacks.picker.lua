@@ -275,14 +275,7 @@ return {
 			win = {
 				input = {
 					keys = {
-						["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
-						["<c-e>"] = { "close", mode = { "n", "i" } },
 						["<c-q>"] = { "send_to_qflist", mode = { "n", "i" } },
-						["<c-s-[>"] = { "list_scroll_up", mode = { "n", "i" } },
-						["<c-s-]>"] = { "list_scroll_down", mode = { "n", "i" } },
-						["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
-						["<c-y>"] = { "confirm", mode = { "n", "i" } },
-						["<cr>"] = { "confirm", mode = { "n", "i" } },
 						["<esc>"] = { "close", mode = { "n", "i" } },
 					},
 				},

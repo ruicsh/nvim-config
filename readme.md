@@ -310,7 +310,10 @@ Random features added.
 - `[r` jump to previous symbol reference
 - `]r` jump to next symbol reference
 - `<c-s>` display signature help
-- `<leader>dd` open diagnostics for buffer
+- `<c-]>` jump to definition
+- `<c-w>]` jump to definition (vslipt)
+- `<leader>dd` open diagnostics (workspace)
+- `<leader>df` open diagnostics (buffer)
 
 ### Debugger:
 

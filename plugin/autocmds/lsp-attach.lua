@@ -64,11 +64,12 @@ local function keymaps(bufnr, client)
 	k("gd", vim.lsp.buf.definition, "Jump to definition")
 	k("<cr>", vim.lsp.buf.definition, "Jump to definition")
 	k("<c-]>", vim.lsp.buf.definition, "Jump to definition")
-	k("<c-w>]", vsplit_and_definition, "Jump to definition (vsplit)")
+	k("<c-w>]", vsplit_and_definition, "Jump to definition (vsplit)") -- :h CTRL-w_]
 	k("gD", vim.lsp.buf.declaration, "Jump to declaration")
 	k("grr", snacks.picker.lsp_references, "References")
 	k("gO", snacks.picker.lsp_symbols, "Symbols")
-	k("<leader>dd", snacks.picker.diagnostics, "Diagnostics")
+	k("<leader>dd", snacks.picker.diagnostics, "Diagnostics: Workspace")
+	k("<leader>df", snacks.picker.diagnostics_buffer, "Diagnostics: File")
 
 	if client.supports_method(methods.textDocument_typeDefinition) then
 		k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
