@@ -204,7 +204,7 @@ local function c_git_status()
 	end
 
 	-- Don't show anything if there are no changes
-	local git_status = n_changes == 0 and "" or " " .. table.concat(entries, " ") .. " " .. sep()
+	local git_status = n_changes == 0 and "" or icons.git.commit .. " " .. table.concat(entries, " ") .. " " .. sep()
 
 	cache_git_status[bufnr] = { time = vim.loop.now(), value = git_status }
 
@@ -218,7 +218,7 @@ local function c_git_branch()
 		return ""
 	end
 
-	return " " .. head .. " " .. sep()
+	return icons.git.branch .. " " .. head .. " " .. sep()
 end
 
 -- Show the current position

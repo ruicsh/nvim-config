@@ -1,6 +1,8 @@
 -- Pickers.
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 
+local icons = require("config/icons")
+
 -- Open a ui.select to search for a directory to search in
 local grep_directory = function()
 	local snacks = require("snacks")
@@ -142,8 +144,10 @@ return {
 
 			-- git
 			{ "<leader>hbr", snacks.picker.git_branches, "Git: Branches" },
-			{ "<leader>hlg", snacks.picker.git_log, "Git: Log" },
 			{ "<leader>hlf", snacks.picker.git_log_file, "Git: Log file" },
+			{ "<leader>hlg", snacks.picker.git_log, "Git: Log" },
+			{ "<leader>hll", snacks.picker.git_log_line, "Git: Log line" },
+			{ "<leader>hst", snacks.picker.git_status, "Git: Status" },
 
 			-- neovim
 			{ "<leader>nH", snacks.picker.highlights, "Highlights" },
@@ -179,6 +183,14 @@ return {
 			formatters = {
 				file = {
 					filename_first = true,
+				},
+			},
+			icons = {
+				diagnostics = {
+					Error = icons.diagnostics.error,
+					Warn = icons.diagnostics.warning,
+					Info = icons.diagnostics.information,
+					Hint = icons.diagnostics.hint,
 				},
 			},
 			matcher = {
@@ -223,6 +235,9 @@ return {
 					layout = git_log_layout,
 				},
 				git_log_file = {
+					layout = git_log_layout,
+				},
+				git_log_line = {
 					layout = git_log_layout,
 				},
 				grep = {
