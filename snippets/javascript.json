@@ -4,57 +4,6 @@
     "body": "${1:cond} ? ${2:true} : ${3:false}",
     "description": "${1} ? ${2} : ${3}"
   },
-  "ternary-assignemt": {
-    "prefix": "=3",
-    "body": "const ${0:var} = ${1:cond} ? ${2:true} : ${3:false}",
-    "description": "const ${0} = ${1} ? ${2} : ${3}"
-  },
-  "export": {
-    "prefix": "e",
-    "body": "export $0",
-    "description": "export $0"
-  },
-  "export-asignment": {
-    "prefix": "e=",
-    "body": "export const ${1:var}=$0",
-    "description": "export const ${1}=$0"
-  },
-  "export-function": {
-    "prefix": "ef",
-    "body": [
-      "export function ${1:name}($2) {",
-      "\t$0",
-      "}"
-    ],
-    "description": "export const ${1}=$0"
-  },
-  "export-arrow-function": {
-    "prefix": "ef>",
-    "body": [
-      "export ($1) => {",
-      "\t$0",
-      "}"
-    ],
-    "description": "export ($2) => {"
-  },
-  "export-async-function": {
-    "prefix": "efa",
-    "body": [
-      "export async function ${1:name}($2) {",
-      "\t$0",
-      "}"
-    ],
-    "description": "export async function ${1:name}($2:args) {"
-  },
-  "export-async-arrow-function": {
-    "prefix": "efa>",
-    "body": [
-      "export async ($1) => {",
-      "\t$0",
-      "}"
-    ],
-    "description": "export ($2) => {"
-  },
   "function": {
     "prefix": "f",
     "body": [
@@ -65,22 +14,13 @@
     "description": "function ${1}($2) {"
   },
   "function-arrow": {
-    "prefix": "f>",
+    "prefix": "fw",
     "body": [
       "($1) => {",
       "\t$0",
       "}"
     ],
     "description": "($1) => { $0 }"
-  },
-  "function-arrow-assignment": {
-    "prefix": "f>=",
-    "body": [
-      "const ${1:name} = ($2) => {",
-      "\t$0",
-      "}"
-    ],
-    "description": "const ${1} = ($2) => {"
   },
   "function-async": {
     "prefix": "fa",
@@ -92,7 +32,7 @@
     "description": "async function ${1}($2) {"
   },
   "function-async-arrow": {
-    "prefix": "fa>",
+    "prefix": "faw",
     "body": [
       "async ($1) => {",
       "\t$0",
@@ -100,26 +40,8 @@
     ],
     "description": "async ($1) => { $0 }"
   },
-  "function-async-assignment": {
-    "prefix": "fa=",
-    "body": [
-      "const ${1:name} = async function ($2) {",
-      "\t$0",
-      "}"
-    ],
-    "description": "const ${1:name} = async function ($3) { $0 }"
-  },
-  "function-async-arrow-assignment": {
-    "prefix": "=fa>",
-    "body": [
-      "const ${1:name} = async ($2) => {",
-      "\t$0",
-      "}"
-    ],
-    "description": "const ${1} = async ($2) => { $0 }"
-  },
   "function-method": {
-    "prefix": "f,",
+    "prefix": "fm",
     "body": [
       "${1:name}($2) {",
       "\t$0",
@@ -128,7 +50,7 @@
     "description": "${1}($2) { $0 },"
   },
   "function-method-async": {
-    "prefix": "f,a",
+    "prefix": "fma",
     "body": [
       "async ${1:name}($2) {",
       "\t$0",
@@ -137,7 +59,7 @@
     "description": "${1}($2) { $0 },"
   },
   "function-method-arrow": {
-    "prefix": "f,>",
+    "prefix": "fmw",
     "body": [
       "${1:name} = ($2) => {",
       "\t$0",
@@ -146,7 +68,7 @@
     "description": "${1:name} = ($2) => { $0 },"
   },
   "function-method-async-arrow": {
-    "prefix": "f,a>",
+    "prefix": "fmaw",
     "body": [
       "${1:name} = async ($2) => {",
       "\t$0",
@@ -162,6 +84,24 @@
       "}"
     ],
     "description": "for (let ${1} = 0; ${1} < ${2}.length; ${1}++) {"
+  },
+  "for-of": {
+    "prefix": "forof",
+    "body": [
+      "for (const ${1:item} of ${2:array}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for (const ${1} of ${2}) { $0 }"
+  },
+  "for-key-value": {
+    "prefix": "forkv",
+    "body": [
+      "for (const [key, value] of Object.entries(${1:object})) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "for (const [key, value] of Object.entries(${1})) {"
   },
   "for-of-async": {
     "prefix": "forofa",
@@ -181,24 +121,6 @@
     ],
     "description": "for (const ${1:key} in ${2:object}) {"
   },
-  "for-key-value": {
-    "prefix": "forkv",
-    "body": [
-      "for (const [key, value] of Object.entries(${1:object})) {",
-      "\t$0",
-      "}"
-    ],
-    "description": "for (const [key, value] of Object.entries(${1})) {"
-  },
-  "for-of": {
-    "prefix": "forof",
-    "body": [
-      "for (const ${1:item} of ${2:array}) {",
-      "\t$0",
-      "}"
-    ],
-    "description": "for (const ${1} of ${2}) { $0 }"
-  },
   "if": {
     "prefix": "if",
     "body": [
@@ -209,7 +131,7 @@
     "description": "if (${1}) { $0 }"
   },
   "if-else": {
-    "prefix": "ife",
+    "prefix": "ifel",
     "body": [
       "if (${1:condition}) {",
       "\t$2",
@@ -220,7 +142,7 @@
     "description": "if (${1}) { $2 } else { $0 }"
   },
   "else": {
-    "prefix": "e",
+    "prefix": "el",
     "body": [
       "} else {",
       "\t$0",
@@ -229,7 +151,7 @@
     "description": "} else { $0 }"
   },
   "else-if": {
-    "prefix": "eif",
+    "prefix": "elif",
     "body": [
       "} else if (${1:condition}) {",
       "\t$0",
@@ -238,7 +160,7 @@
     "description": "} else if (${1}) { $0 }"
   },
   "if-else-if": {
-    "prefix": "ifei",
+    "prefix": "ifelif",
     "body": [
       "if (${1:condition}) {",
       "\t$0",
@@ -273,37 +195,12 @@
     "body": "Object.entries(${0:object})",
     "description": "Object.entries(${0})"
   },
-  "return": {
-    "prefix": "r",
-    "body": "return"
-  },
-  "return-value": {
-    "prefix": "rv",
-    "body": "return ${0:value}",
-    "description": "return ${0}"
-  },
-  "return-arrow-function": {
-    "prefix": "r>",
-    "body": "return (${1:arguments}) => ${2:statement}"
-  },
-  "return-this": {
-    "prefix": "rt",
-    "body": "return ${0:this}"
-  },
-  "return-dict": {
-    "prefix": "r{",
-    "body": "return {\n\t${0}\n}"
-  },
-  "return-array": {
-    "prefix": "r[",
-    "body": "return [\n\t${0}\n]"
-  },
   "return-promise": {
     "prefix": "rp",
     "body": "return new Promise((resolve, reject) => {\n\t${0}\n})"
   },
   "switch": {
-    "prefix": "s",
+    "prefix": "sw",
     "body": [
       "switch (${1:key}) {",
       "\tcase ${2:value}: {",
@@ -318,7 +215,7 @@
     "description": "switch(${1}) {"
   },
   "switch-case": {
-    "prefix": "sc",
+    "prefix": "swc",
     "body": [
       "case ${1:value}: {",
       "\t$0",
@@ -328,7 +225,7 @@
     "description": "case ${1} { $0 }"
   },
   "switch-default": {
-    "prefix": "sd",
+    "prefix": "swd",
     "body": [
       "default: {",
       "\t$0",
@@ -338,7 +235,7 @@
     "description": "default { $0 }"
   },
   "set-timeout": {
-    "prefix": "st",
+    "prefix": "stm",
     "body": [
       "setTimeout(() => {",
       "\t$0",
@@ -347,7 +244,7 @@
     "description": "setTimeout(() => { $0 }, ${1});"
   },
   "set-interval": {
-    "prefix": "si",
+    "prefix": "sit",
     "body": [
       "setInterval(() => {",
       "\t$0",
@@ -356,7 +253,7 @@
     "description": "setInterval(() => { $0 }, ${1});"
   },
   "try-catch": {
-    "prefix": "t",
+    "prefix": "try",
     "body": [
       "try {",
       "\t$0",
@@ -367,7 +264,7 @@
     "description": "try { $0 } catch (error) { }"
   },
   "try-catch-finally": {
-    "prefix": "tc",
+    "prefix": "tryc",
     "body": [
       "try {",
       "\t$0",
@@ -380,7 +277,7 @@
     "description": "try { $0 } catch (error) { $2 } finally { $3 }"
   },
   "while": {
-    "prefix": "w",
+    "prefix": "wh",
     "body": [
       "while (${1:condition}) {",
       "\t$0",
@@ -389,17 +286,12 @@
     "description": "while (${1:condition}) {"
   },
   "while-do": {
-    "prefix": "wd",
+    "prefix": "whd",
     "body": [
       "do {",
       "\t$0",
       "} while (${1:condition});"
     ],
     "description": "do { $0 } while (${1});"
-  },
-  "yield": {
-    "prefix": "y",
-    "body": "yield ${0}",
-    "description": "yield ${0}"
   }
 }

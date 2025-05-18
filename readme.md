@@ -236,10 +236,10 @@ Random features added.
 
 ### Snippets
 
-- `<c-\>` expand
-- `<c-\>` jump to next tabstop
-- `<c-\>` list
-- `<c-c>` stop
+- `<tab>` expand
+- `<tab>` jump to next tabstop
+- `<s-tab>` jump to previous tabstop
+- `<c-c>` cancel
 
 ### AI chat
 

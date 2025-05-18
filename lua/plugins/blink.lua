@@ -78,7 +78,7 @@ return {
 			},
 		},
 		sources = {
-			default = { "path", "buffer", "lsp" },
+			default = { "path", "buffer", "snippets", "lsp" },
 		},
 	},
 
