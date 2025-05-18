@@ -376,7 +376,6 @@ Random features added.
 - `<leader>nH` highlights
 - `<leader>nk` keymaps
 - `<leader>nn` vim-messages
-- `<leader>no` notifications
 
 <div style="margin-top:80px"></div>
 

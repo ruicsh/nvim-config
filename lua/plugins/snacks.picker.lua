@@ -98,6 +98,22 @@ local function get_project_dirs()
 	return project_dirs
 end
 
+-- Common layout used by git_log and git_log_file
+local git_log_layout = {
+	layout = {
+		backdrop = false,
+		width = 0.8,
+		height = 0.9,
+		box = "vertical",
+		border = "single",
+		title = "{title} {live} {flags}",
+		title_pos = "center",
+		{ win = "input", height = 1, border = "bottom" },
+		{ win = "list", height = 5, border = "none" },
+		{ win = "preview", height = 0.8, border = "top" },
+	},
+}
+
 return {
 	"folke/snacks.nvim",
 	keys = (function()
@@ -130,12 +146,11 @@ return {
 			{ "<leader>hlf", snacks.picker.git_log_file, "Git: Log file" },
 
 			-- neovim
-			{ "<leader>nh", snacks.picker.help, "Help" },
+			{ "<leader>nH", snacks.picker.highlights, "Highlights" },
 			{ "<leader>na", snacks.picker.autocmds, "Autocmds" },
 			{ "<leader>nc", snacks.picker.commands, "Commands" },
-			{ "<leader>nH", snacks.picker.highlights, "Highlights" },
+			{ "<leader>nh", snacks.picker.help, "Help" },
 			{ "<leader>nk", snacks.picker.keymaps, "Keymaps" },
-			{ "<leader>no", snacks.picker.notifications, "Notifications" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings)
@@ -182,14 +197,9 @@ return {
 					end,
 					sort_lastused = true,
 					win = {
-						input = {
-							keys = {
-								["<c-x>"] = { "bufdelete", mode = { "n", "i" } },
-							},
-						},
 						list = {
 							keys = {
-								["<c-x>"] = { "bufdelete", mode = { "n", "i" } },
+								["<c-x>"] = { "bufdelete" },
 							},
 						},
 					},
@@ -208,6 +218,12 @@ return {
 				},
 				files = {
 					hidden = true,
+				},
+				git_log = {
+					layout = git_log_layout,
+				},
+				git_log_file = {
+					layout = git_log_layout,
 				},
 				grep = {
 					exclude = { "package-lock.json", "lazy-lock.json" },
@@ -256,12 +272,11 @@ return {
 						preview = false,
 						preset = "vertical",
 					},
-					win = {
-						input = {
-							keys = {
-								["<esc>"] = { "close", mode = { "n", "i" } },
-							},
-						},
+				},
+				registers = {
+					layout = {
+						preview = false,
+						preset = "vertical",
 					},
 				},
 				search_history = {
