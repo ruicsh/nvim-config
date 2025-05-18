@@ -22,7 +22,12 @@ return {
 				},
 				debuglog = {
 					pattern = "().*ruic%[%d+%].*()$",
-					group = "MiniHipatternsDebuglog",
+					group = "MiniHipatternsDebugStatement",
+					extmark_opts = { priority = 2000 },
+				},
+				cssdebug = {
+					pattern = "().*hotpink.*()$",
+					group = "MiniHipatternsDebugStatement",
 					extmark_opts = { priority = 2000 },
 				},
 			},

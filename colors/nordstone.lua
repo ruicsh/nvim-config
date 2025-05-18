@@ -338,7 +338,7 @@ loadColorSet({
 
 -- mini.hipatterns
 loadColorSet({
-	MiniHipatternsDebuglog = { fg = c.nord12 },
+	MiniHipatternsDebugStatement = { fg = c.nord12 },
 })
 
 -- mini.snippets
