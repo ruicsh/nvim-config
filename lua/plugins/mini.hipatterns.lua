@@ -20,6 +20,11 @@ return {
 					end,
 					extmark_opts = { priority = 2000 },
 				},
+				debuglog = {
+					pattern = "().*ruic%[%d+%].*()$",
+					group = "MiniHipatternsDebuglog",
+					extmark_opts = { priority = 2000 },
+				},
 			},
 		}
 	end,

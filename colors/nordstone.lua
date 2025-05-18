@@ -336,6 +336,11 @@ loadColorSet({
 	MiniFilesNormal = { fg = c.nord4, bg = c.neutral_880 },
 })
 
+-- mini.hipatterns
+loadColorSet({
+	MiniHipatternsDebuglog = { fg = c.nord12 },
+})
+
 -- mini.snippets
 loadColorSet({
 	MiniSnippetsCurrent = { fg = c.nord13 },
