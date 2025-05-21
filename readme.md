@@ -25,13 +25,14 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>36 plugins</sub>
+<sub>37 plugins</sub>
 
 ### UI
 
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
 - [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
+- [mini.keymap](https://github.com/echasnovski/mini.keymap) - Special key mappings
 - [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
 - [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
