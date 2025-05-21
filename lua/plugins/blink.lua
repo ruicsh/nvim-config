@@ -88,9 +88,10 @@ return {
 			sorts = { "exact", "score", "sort_text" },
 		},
 		keymap = {
-			preset = "super-tab",
+			["tab"] = { "select_next", "fallback" },
+			["<s-tab>"] = { "select_prev", "fallback" },
 			["<cr>"] = { "select_and_accept", "fallback" },
-			["<c-e>"] = { "hide", "show", "fallback" }, -- Toggle completion menu
+			["<c-e>"] = { "hide", "show", "fallback" },
 			["<c-n>"] = { "select_next", "show", "fallback" },
 			["<c-p>"] = { "select_prev", "show", "fallback" },
 			["<c-j>"] = { "select_next", "fallback" },

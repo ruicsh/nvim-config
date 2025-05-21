@@ -9,6 +9,9 @@ for _, key in ipairs(save_keys) do
 	k(key, "<cmd>silent! update<cr><esc>", { desc = "Save", unique = false })
 end
 
+-- Paste from clipboard
+k("<c-v>", "<c-r>+")
+
 -- Jump character back/forward
 k("<c-b>", "<left>")
 k("<c-f>", "<right>")
