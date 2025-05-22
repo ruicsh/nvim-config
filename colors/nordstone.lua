@@ -282,6 +282,11 @@ loadColorSet({
 	CopilotChatSelection = { bg = c.nord0 },
 })
 
+-- flash.nvim
+loadColorSet({
+	FlashLabel = { fg = c.nord13, bg = "NONE" },
+})
+
 -- Fugitive
 loadColorSet({
 	-- git diff

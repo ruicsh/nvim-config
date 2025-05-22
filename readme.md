@@ -27,22 +27,21 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 <sub>37 plugins</sub>
 
-### UI
+### Navigation
 
+- [flash.nvim](https://github.com/folke/flash.nvim) - Jump to single character
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
-- [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
 - [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
 - [mini.keymap](https://github.com/echasnovski/mini.keymap) - Special key mappings
-- [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
 - [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
-- [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
+- [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Search
+- [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - AST aware navigation
 
 ### Editing
 
 - [guess-indent](https://github.com/NMAC427/guess-indent.nvim) - Indentation style detection
 - [mini.ai](https://github.com/echasnovski/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/echasnovski/mini.align) - Align text interactively
-- [mini.jump](https://github.com/echasnovski/mini.jump) - Jump to single character
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Auto-pairs
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround actions
@@ -63,7 +62,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [mason](https://github.com/williamboman/mason.nvim) - LSP package manager
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
-- [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - AST aware navigation
 
 ### Debugging
 
@@ -76,6 +74,11 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [fugitive.vim](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [mini.diff](https://github.com/echasnovski/mini.diff) - hunks
 - [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote repo
+
+### UI
+
+- [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
+- [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
 
 ## Config
 
