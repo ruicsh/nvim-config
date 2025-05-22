@@ -10,19 +10,15 @@ local function hardtime()
 		j = "k",
 		k = "j",
 		l = "h",
-		["{"] = "}",
-		["}"] = "{",
 		["<up>"] = "j",
 		["<down>"] = "k",
 		["<left>"] = "l",
 		["<right>"] = "h",
-		w = "b",
-		b = "w",
 	}
 
 	for key, opposite_key in pairs(key_opposite) do
-		local lhs = string.rep(key, 5)
-		local opposite_lhs = string.rep(opposite_key, 5)
+		local lhs = string.rep(key, 3)
+		local opposite_lhs = string.rep(opposite_key, 3)
 
 		km.map_combo({ "n", "x", "i" }, lhs, function()
 			return opposite_lhs
