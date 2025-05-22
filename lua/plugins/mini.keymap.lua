@@ -25,8 +25,7 @@ local function hardtime()
 		local opposite_lhs = string.rep(opposite_key, 5)
 
 		km.map_combo({ "n", "x", "i" }, lhs, function()
-			vim.notify("Too many " .. key)
-			vim.cmd.normal(opposite_lhs)
+			return opposite_lhs
 		end)
 	end
 end
