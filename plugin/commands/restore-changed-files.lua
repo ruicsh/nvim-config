@@ -205,19 +205,19 @@ vim.api.nvim_create_user_command("RestoreChangedFiles", function()
 		-- Add older changed files to the buffer list
 		if #files > 2 then
 			for i = 1, #files - 3 do
-				vim.api.nvim_command("badd " .. files[i])
+				vim.cmd.badd(files[i])
 			end
 		end
 
 		-- Open the last changed file
-		vim.api.nvim_command("edit " .. files[#files])
+		vim.cmd.edit(files[#files])
 
 		-- Open the second last changed file in a new window
 		if #files > 1 then
-			vim.api.nvim_command("vsplit" .. files[#files - 1])
+			vim.cmd.vsplit(files[#files - 1])
 		end
 
 		-- Place cursor on the last changed file window
-		vim.api.nvim_command("wincmd h")
+		vim.cmd.wincmd("h")
 	end)
 end, {})
