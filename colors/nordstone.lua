@@ -271,9 +271,11 @@ loadColorSet({
 
 -- blink.cmp
 loadColorSet({
+	BlinkCmpDocBorder = { link = "FloatBorder" },
+	BlinkCmpDocSeparator = { link = "FloatBorder" },
 	BlinkCmpMenu = { bg = c.neutral_880 },
-	BlinkCmpDoc = { link = "BlinkCmpDoc" },
-	BlinkCmpDocSeparator = { link = "BlinkCmpDoc" },
+	BlinkCmpMenuBorder = { link = "FloatBorder" },
+	BlinkCmpSignatureHelpBorder = { link = "FloatBorder" },
 })
 
 -- CopilotChat.nvim
@@ -344,6 +346,11 @@ loadColorSet({
 -- mini.hipatterns
 loadColorSet({
 	MiniHipatternsDebugStatement = { fg = c.nord12 },
+})
+
+-- mini.notify
+loadColorSet({
+	MiniNotifyBorder = { link = "FloatBorder" },
 })
 
 -- nvim-dap

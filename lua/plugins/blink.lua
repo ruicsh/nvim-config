@@ -31,6 +31,7 @@ return {
 				auto_show = true,
 				auto_show_delay_ms = 100,
 				window = {
+					border = "single",
 					max_height = 20,
 					max_width = 50,
 				},
@@ -42,6 +43,7 @@ return {
 			},
 			menu = {
 				auto_show = true,
+				border = "single",
 				draw = {
 					columns = {
 						{ "label" },
@@ -100,6 +102,7 @@ return {
 		signature = {
 			enabled = true,
 			window = {
+				border = "single",
 				max_height = 20,
 				max_width = 50,
 			},

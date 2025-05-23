@@ -16,7 +16,7 @@ return {
 
 		window = {
 			config = {
-				border = "rounded",
+				border = "single",
 			},
 			max_width_share = 0.382,
 			winblend = 25,

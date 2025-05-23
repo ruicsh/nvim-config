@@ -8,7 +8,7 @@ local icons = require("config/icons")
 local function diagnostics()
 	vim.diagnostic.config({
 		float = {
-			border = "rounded",
+			border = "single",
 			width = 60,
 		},
 		jump = {
@@ -61,6 +61,15 @@ local function keymaps(bufnr, client)
 		vim.lsp.buf.definition()
 	end
 
+	local function hover()
+		-- https://neovim.io/doc/user/lsp.html#vim.lsp.buf.hover.Opts
+		vim.lsp.buf.hover({
+			border = "single",
+			focusable = false,
+			close_events = { "CursorMoved", "InsertEnter", "FocusLost" },
+		})
+	end
+
 	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
 	k("gd", vim.lsp.buf.definition, "Jump to definition")
 	k("<cr>", vim.lsp.buf.definition, "Jump to definition")
@@ -71,6 +80,7 @@ local function keymaps(bufnr, client)
 	k("gO", snacks.picker.lsp_symbols, "Symbols")
 	k("<leader>dd", snacks.picker.diagnostics, "Diagnostics: Workspace")
 	k("<leader>df", snacks.picker.diagnostics_buffer, "Diagnostics: File")
+	k("K", hover, "Hover")
 
 	if client.supports_method(methods.textDocument_typeDefinition) then
 		k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
