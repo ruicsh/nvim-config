@@ -54,10 +54,10 @@ k("cN", replace_selection("N"), { expr = true, desc = "Change selection (backwar
 -- Same behavior for `I`/`A` as in normal mode
 -- https://www.reddit.com/r/neovim/comments/1k4efz8/comment/moelhto/
 k("I", function()
-	return vim.fn.mode() == "V" and "^<C-v>I" or "I"
+	return vim.fn.mode() == "V" and "^<c-v>I" or "I"
 end, { expr = true })
 k("A", function()
-	return vim.fn.mode() == "V" and "$<C-v>A" or "A"
+	return vim.fn.mode() == "V" and "$<c-v>A" or "A"
 end, { expr = true })
 
 -- }}}

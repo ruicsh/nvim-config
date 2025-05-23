@@ -40,6 +40,10 @@ k("'", "`", { desc = "Jump to mark line" })
 -- }}}
 
 -- Editing {{{
+
+-- Paste
+k("<c-v>", '"*p', { desc = "Paste from clipboard" })
+
 -- Keep same logic from `y/c/d` on `v`
 k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode
