@@ -263,12 +263,12 @@ return {
 						end
 
 						-- Check if the project is already open by checking the cwd of each tab
-						local tabpages = vim.api.nvim_list_tabpages()
-						for _, tabpage in ipairs(tabpages) do
-							local tab_cwd = vim.fn.getcwd(-1, tabpage)
+						local tabnrs = vim.api.nvim_list_tabpages()
+						for _, tabnr in ipairs(tabnrs) do
+							local tab_cwd = vim.fn.getcwd(-1, tabnr)
 							if tab_cwd == item.file then
 								-- Change to the tab
-								vim.api.nvim_set_current_tabpage(tabpage)
+								vim.api.nvim_set_current_tabpage(tabnr)
 								return
 							end
 						end

@@ -41,8 +41,8 @@ k("'", "`", { desc = "Jump to mark line" })
 
 -- Editing {{{
 
--- Paste
-k("<c-v>", '"*p', { desc = "Paste from clipboard" })
+k("<c-v>", '"*p', { desc = "Paste" })
+k("U", "<c-r>", { desc = "Redo" })
 
 -- Keep same logic from `y/c/d` on `v`
 k("V", "v$") -- Select until end of line
