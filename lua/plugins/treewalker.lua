@@ -11,14 +11,18 @@ return {
 			{ "<c-k>", tw.move_up, "Jump to previous sibling node", { mode = { "n", "v" } } },
 			{ "<c-h>", tw.move_out, "Jump to parent", { mode = { "n", "v" } } },
 			{ "<c-l>", tw.move_in, "Jump to child", { mode = { "n", "v" } } },
-			{ "<m-k>", tw.swap_up, "Swap up" },
-			{ "<m-j>", tw.swap_down, "Swap down" },
-			{ "<m-h>", tw.swap_left, "Swap left" },
-			{ "<m-l>", tw.swap_right, "Swap right" },
+			{ "<c-s-k>", tw.swap_up, "Swap up" },
+			{ "<c-s-j>", tw.swap_down, "Swap down" },
+			{ "<c-s-h>", tw.swap_left, "Swap left" },
+			{ "<c-s-l>", tw.swap_right, "Swap right" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(keymaps, "AST")
 	end,
+	opts = {
+		highlight = true,
+		jumplist = false,
+	},
 
 	enabled = not vim.g.vscode,
 }
