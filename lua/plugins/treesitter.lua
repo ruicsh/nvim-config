@@ -66,6 +66,18 @@ return {
 			indent = {
 				enable = true,
 			},
+			refactor = {
+				navigation = {
+					enable = true,
+					keymaps = {
+						goto_definition = false,
+						list_definitions = false,
+						list_definitions_toc = false,
+						goto_next_usage = "]r",
+						goto_previous_usage = "[r",
+					},
+				},
+			},
 		}
 	end,
 
@@ -76,6 +88,10 @@ return {
 		{ -- Syntax aware text objects.
 			-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
+		{ -- AST navigation
+			-- https://github.com/nvim-treesitter/nvim-treesitter-refactor
+			"nvim-treesitter/nvim-treesitter-refactor",
 		},
 	},
 }
