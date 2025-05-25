@@ -11,15 +11,10 @@ return {
 			{ "<c-k>", tw.move_up, "Jump to previous sibling node", { mode = { "n", "v" } } },
 			{ "<c-h>", tw.move_out, "Jump to parent", { mode = { "n", "v" } } },
 			{ "<c-l>", tw.move_in, "Jump to child", { mode = { "n", "v" } } },
-			{ "<c-s-k>", tw.swap_up, "Swap up" },
-			{ "<c-s-j>", tw.swap_down, "Swap down" },
-			{ "<c-s-h>", tw.swap_left, "Swap left" },
-			{ "<c-s-l>", tw.swap_right, "Swap right" },
-			-- So that it also works across virtual desktops
-			{ "<c-K>", tw.swap_up, "Swap up" },
-			{ "<c-J>", tw.swap_down, "Swap down" },
-			{ "<c-H>", tw.swap_left, "Swap left" },
-			{ "<c-L>", tw.swap_right, "Swap right" },
+			{ "<s-up>", tw.swap_up, "Swap up" },
+			{ "<s-down>", tw.swap_down, "Swap down" },
+			{ "<s-left>", tw.swap_left, "Swap left" },
+			{ "<s-right>", tw.swap_right, "Swap right" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(keymaps, "AST")

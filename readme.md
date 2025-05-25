@@ -293,10 +293,10 @@ Random features added.
 - `<leader>v` select current node
 - `<c-a>` increase selection (on node selection mode)
 - `<c-x>` decrease selection (on node selection mode)
-- `<c-s-h>` swap with lateral previous node
-- `<c-s-l>` swap with lateral next node
-- `<c-s-k>` swap with vertical previous node
-- `<c-s-j>` swap with vertical next node
+- `<s-left>` swap with lateral previous node
+- `<s-right>` swap with lateral next node
+- `<s-up>` swap with vertical previous node
+- `<s-down>` swap with vertical next node
 
 ### LSP
 

@@ -37,6 +37,8 @@ quickfix
 scrolloff
 statuscolumn
 statusline
+stderr
+stdout
 tabline
 treesitter
 typescript
