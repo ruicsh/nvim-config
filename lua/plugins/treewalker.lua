@@ -15,6 +15,11 @@ return {
 			{ "<c-s-j>", tw.swap_down, "Swap down" },
 			{ "<c-s-h>", tw.swap_left, "Swap left" },
 			{ "<c-s-l>", tw.swap_right, "Swap right" },
+			-- So that it also works across virtual desktops
+			{ "<c-K>", tw.swap_up, "Swap up" },
+			{ "<c-J>", tw.swap_down, "Swap down" },
+			{ "<c-H>", tw.swap_left, "Swap left" },
+			{ "<c-L>", tw.swap_right, "Swap right" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(keymaps, "AST")
