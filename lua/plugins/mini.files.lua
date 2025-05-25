@@ -7,8 +7,8 @@ vim.api.nvim_create_autocmd("User", {
 	group = augroup,
 	pattern = "MiniFilesWindowUpdate",
 	callback = function(args)
-		-- Show line numbers in the file explorer, ex.: jump to file - 14G
 		vim.wo[args.data.win_id].number = true
+		vim.wo[args.data.win_id].relativenumber = true
 	end,
 })
 

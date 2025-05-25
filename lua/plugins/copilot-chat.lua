@@ -199,8 +199,6 @@ local function customize_chat_window()
 		pattern = "copilot-*",
 		callback = function()
 			vim.opt_local.conceallevel = 0
-			vim.opt_local.relativenumber = false
-			vim.opt_local.cursorline = false
 			vim.opt_local.signcolumn = "yes:1"
 		end,
 	})
