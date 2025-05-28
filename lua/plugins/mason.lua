@@ -129,8 +129,18 @@ return {
 	},
 	config = function(_, opts)
 		require("mason").setup(opts)
+
+		-- Filter out disabled packages
+		local disabled = vim.fn.env_get_list("MASON_DISABLED_PACKAGES")
+		local packages = {}
+		for _, package in ipairs(PACKAGES) do
+			if not vim.tbl_contains(disabled, package) then
+				table.insert(packages, package)
+			end
+		end
+
 		vim.defer_fn(function()
-			syncPackages(PACKAGES)
+			syncPackages(packages)
 		end, 3000)
 	end,
 
