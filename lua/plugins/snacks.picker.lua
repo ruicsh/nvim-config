@@ -87,32 +87,6 @@ local grep_directory = function()
 	end
 end
 
--- Get the project directories from the environment variable
-local function get_project_dirs()
-	vim.fn.load_env_file() -- Make sure the env file is loaded
-
-	local project_dirs = {}
-	local project_dirs_env = vim.fn.getenv("PROJECTS_DIRS")
-	if project_dirs_env ~= vim.NIL and project_dirs_env ~= "" then
-		project_dirs = vim.split(project_dirs_env, ",")
-	end
-
-	return project_dirs
-end
-
--- Get the project patterns from the environment variable
-local function get_project_patterns()
-	vim.fn.load_env_file() -- Make sure the env file is loaded
-
-	local project_patterns = {}
-	local project_patterns_env = vim.fn.getenv("PROJECTS_PATTERNS")
-	if project_patterns_env ~= vim.NIL and project_patterns_env ~= "" then
-		project_patterns = vim.split(project_patterns_env, ",")
-	end
-
-	return project_patterns
-end
-
 -- Common layout used by git_log and git_log_file
 local git_log_layout = {
 	layout = {
@@ -267,8 +241,8 @@ return {
 					end,
 				},
 				projects = {
-					dev = get_project_dirs(),
-					patterns = get_project_patterns(),
+					dev = vim.fn.env_get_list("PROJECTS_DIRS"),
+					patterns = vim.fn.env_get_list("PROJECTS_PATTERNS"),
 					confirm = function(picker, item)
 						picker:close()
 						if not item or not item.file then

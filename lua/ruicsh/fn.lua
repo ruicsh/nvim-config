@@ -102,6 +102,19 @@ vim.fn.load_env_file = function(dir)
 	env_file:close()
 end
 
+-- Read an environment variable, separated by commas, and returns a list
+vim.fn.env_get_list = function(key)
+	vim.fn.load_env_file() -- Make sure the env file is loaded
+
+	local list = {}
+	local env = vim.fn.getenv(key)
+	if env ~= vim.NIL and env ~= "" then
+		list = vim.split(env, ",")
+	end
+
+	return list
+end
+
 local spinners = {} -- Store spinner timers by buffer
 
 vim.fn.start_spinner = function(bufnr, msg)
@@ -180,10 +193,16 @@ vim.fn.fmt_relative_time = function(timestamp)
 end
 
 vim.fn.setup_lsp = function()
+	local disabled_servers = vim.fn.env_get_list("LSP_DISABLED_SERVERS")
+
 	local lsp_configs = {}
 	for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
 		local server_name = vim.fn.fnamemodify(f, ":t:r")
-		table.insert(lsp_configs, server_name)
+		-- Skip if on the disabled list
+		if not vim.tbl_contains(disabled_servers, server_name) then
+			table.insert(lsp_configs, server_name)
+		end
 	end
+
 	vim.lsp.enable(lsp_configs)
 end
