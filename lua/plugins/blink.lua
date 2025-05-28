@@ -86,7 +86,7 @@ return {
 			)
 		end,
 		fuzzy = {
-			implementation = "prefer_rust_with_warning",
+			implementation = vim.fn.env_get("BLINK_FUZZY_IMPLEMENTATION") or "prefer_rust_with_warning",
 			sorts = { "exact", "score", "sort_text" },
 		},
 		keymap = {
