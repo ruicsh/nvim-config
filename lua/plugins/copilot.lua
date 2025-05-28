@@ -32,6 +32,16 @@ return {
 			},
 		},
 	},
+	config = function(_, opts)
+		local copilot = require("copilot")
+
+		vim.fn.load_env_file()
+		if vim.fn.getenv("COPILOT_PROXY") ~= vim.NIL then
+			vim.g.copilot_proxy = vim.fn.getenv("COPILOT_PROXY")
+		end
+
+		copilot.setup(opts)
+	end,
 
 	cmd = "Copilot",
 	event = "InsertEnter",
