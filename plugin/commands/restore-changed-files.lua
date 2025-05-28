@@ -109,15 +109,15 @@ local function get_changed_files(callback)
 							-- Process directory contents asynchronously
 							pending_operations = pending_operations + 1
 							job:new({
-								command = "find",
-								args = { file, "-type", "f" },
+								command = "fd",
+								args = { "--type", "f", ".", file },
 								on_exit = function(find_j, find_return_code)
 									-- Handle find command errors
 									if find_return_code ~= 0 then
 										vim.schedule(function()
 											vim.notify(
 												string.format(
-													"Error processing directory: %s (find command failed)",
+													"Error processing directory: %s (fd command failed)",
 													file
 												),
 												vim.log.levels.WARN
@@ -141,7 +141,7 @@ local function get_changed_files(callback)
 										vim.schedule(function()
 											vim.notify(
 												string.format(
-													"Find command error for %s: %s",
+													"fd command error for %s: %s",
 													file,
 													type(data) == "table" and table.concat(data, "\n") or tostring(data)
 												),
