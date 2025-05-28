@@ -17,10 +17,12 @@ return {
 			{ "=s", "<cmd>:Other style<cr>", "" },
 			{ "=t", "<cmd>:Other test<cr>", "" },
 			{ "=m", "<cmd>:Other template<cr>", "" },
+			{ "=y", "<cmd>:Other story<cr>", "" },
 			{ "==<space>", vsplit("source"), "" },
 			{ "==s", vsplit("style"), "" },
 			{ "==t", vsplit("test"), "" },
 			{ "==m", vsplit("template"), "" },
+			{ "==y", vsplit("story"), "" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Alternate")
@@ -33,6 +35,7 @@ return {
 					{ target = "%1.module.scss", context = "style" },
 					{ target = "%1.scss", context = "style" },
 					{ target = "%1.test.tsx", context = "test" },
+					{ target = "%1.stories.tsx", context = "story" },
 				},
 			},
 			{ -- react (test)
@@ -55,6 +58,15 @@ return {
 				target = {
 					{ target = "%1.tsx", context = "source" },
 					{ target = "%1.test.tsx", context = "test" },
+				},
+			},
+			{ -- react (story)
+				pattern = "(.*).stories.tsx$",
+				target = {
+					{ target = "%1.tsx", context = "source" },
+					{ target = "%1.test.tsx", context = "test" },
+					{ target = "%1.module.scss", context = "style" },
+					{ target = "%1.scss", context = "style" },
 				},
 			},
 			{ -- typescript
