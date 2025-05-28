@@ -1,47 +1,57 @@
 -- Code parser
 -- https://github.com/nvim-treesitter/nvim-treesitter
 
+-- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
+local PARSERS = {
+	"angular",
+	"bash",
+	"css",
+	"csv",
+	"diff",
+	"dockerfile",
+	"embedded_template",
+	"git_rebase",
+	"gitattributes",
+	"gitcommit",
+	"gitignore",
+	"graphql",
+	"html",
+	"javascript",
+	"jsdoc",
+	"json",
+	"lua",
+	"luadoc",
+	"markdown",
+	"nginx",
+	"powershell",
+	"python",
+	"regex",
+	"rust",
+	"scss",
+	"sql",
+	"styled",
+	"toml",
+	"tsx",
+	"typescript",
+	"vim",
+	"vue",
+	"yaml",
+}
+
 return {
 	"nvim-treesitter/nvim-treesitter",
 	opts = function()
+		local disabled = vim.fn.env_get_list("TREESITTER_DISABLED_PARSERS")
+		local ensure_installed = {}
+		for _, parser in ipairs(PARSERS) do
+			if not vim.tbl_contains(disabled, parser) then
+				table.insert(ensure_installed, parser)
+			end
+		end
+
 		return {
 			auto_install = true, -- Auto-install languages that are not installed
-			-- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
-			ensure_installed = {
-				"angular",
-				"bash",
-				"css",
-				"csv",
-				"diff",
-				"dockerfile",
-				"embedded_template",
-				"git_rebase",
-				"gitattributes",
-				"gitcommit",
-				"gitignore",
-				"graphql",
-				"html",
-				"javascript",
-				"jsdoc",
-				"json",
-				"lua",
-				"luadoc",
-				"markdown",
-				"nginx",
-				"powershell",
-				"python",
-				"regex",
-				"rust",
-				"scss",
-				"sql",
-				"styled",
-				"toml",
-				"tsx",
-				"typescript",
-				"vim",
-				"vue",
-				"yaml",
-			},
+			ensure_installed = ensure_installed,
 			highlight = {
 				enable = true,
 				disable = function(_, buf)
