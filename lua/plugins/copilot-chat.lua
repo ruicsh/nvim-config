@@ -696,10 +696,7 @@ return {
 
 		customize_chat_window()
 
-		local proxy = nil
-		if vim.fn.getenv("COPILOT_PROXY") ~= vim.NIL then
-			proxy = vim.fn.getenv("COPILOT_PROXY")
-		end
+		local proxy = vim.fn.env_get("COPILOT_PROXY")
 
 		chat.setup({
 			agent = "copilot",

@@ -166,6 +166,7 @@ return {
 					require("snacks.picker").qflist()
 				end,
 			},
+			db = { sqlite3_path = vim.fn.env_get("SNACKS_PICKER_DB_SQLITE3_PATH") },
 			enabled = true,
 			formatters = {
 				file = {

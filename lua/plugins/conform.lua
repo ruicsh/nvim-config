@@ -22,7 +22,7 @@ return {
 		},
 		format_on_save = function()
 			-- Stop if we disabled formatting on save.
-			if vim.fn.getenv("FORMAT_ON_SAVE") == "false" then
+			if vim.fn.env_get("FORMAT_ON_SAVE") == "false" then
 				return nil
 			end
 

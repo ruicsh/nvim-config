@@ -115,6 +115,17 @@ vim.fn.env_get_list = function(key)
 	return list
 end
 
+vim.fn.env_get = function(key)
+	vim.fn.load_env_file() -- Make sure the env file is loaded
+
+	local env = vim.fn.getenv(key)
+	if env == vim.NIL or env == "" then
+		return nil
+	end
+
+	return env
+end
+
 local spinners = {} -- Store spinner timers by buffer
 
 vim.fn.start_spinner = function(bufnr, msg)
