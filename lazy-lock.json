@@ -9,7 +9,7 @@
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lazydev.nvim": { "branch": "main", "commit": "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c" },
   "mason.nvim": { "branch": "main", "commit": "8024d64e1330b86044fed4c8494ef3dcd483a67c" },
-  "mini.ai": { "branch": "main", "commit": "7f1fe86277f0e977642cf8fe15f004229f61e61a" },
+  "mini.ai": { "branch": "main", "commit": "4b5348fac5912f1957f4c012c2e0ab0c4b865386" },
   "mini.align": { "branch": "main", "commit": "969bdcdf9b88e30bda9cb8ad6f56afed208778ad" },
   "mini.clue": { "branch": "main", "commit": "97198ef9d8425e69f74d2875e217440ba0ff1730" },
   "mini.diff": { "branch": "main", "commit": "f7bcd3cb4561f7d3a02ae9afafeda899c82f7108" },

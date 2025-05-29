@@ -39,26 +39,30 @@ local FILETYPE_CONFIGS = {
 		filetypes = { "javascript" },
 		prompts = { "js" },
 	},
-	python = {
-		filetypes = { "python" },
-		prompts = { "python" },
-	},
-	typescript = {
-		filetypes = { "typescript" },
-		prompts = { "js", "ts" },
-	},
 	neovim = {
 		filetypes = { "vim", "lua" },
 		prompts = { "neovim", "lua" },
 		contexts = { "url:https://github.com/ruicsh/nvim-config" },
 	},
-	rust = {
-		filetypes = { "rust" },
-		prompts = { "rust" },
+	python = {
+		filetypes = { "python" },
+		prompts = { "python" },
 	},
 	react = {
 		filetypes = { "typescriptreact" },
 		prompts = { "react", "js", "ts" },
+	},
+	rust = {
+		filetypes = { "rust" },
+		prompts = { "rust" },
+	},
+	storybook = {
+		patterns = { "%.stories%.tsx$" },
+		prompts = { "storybook", "ts", "js" },
+	},
+	typescript = {
+		filetypes = { "typescript" },
+		prompts = { "js", "ts" },
 	},
 }
 
