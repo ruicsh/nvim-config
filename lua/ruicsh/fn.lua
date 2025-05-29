@@ -217,3 +217,10 @@ vim.fn.setup_lsp = function()
 
 	vim.lsp.enable(lsp_configs)
 end
+
+vim.fn.make_repeatable_pair = function(fn_next, fn_prev)
+	local move = require("nvim-next.move")
+	local next = move.make_forward_repeatable_move(fn_next, fn_prev)
+	local prev = move.make_backward_repeatable_move(fn_prev, fn_next)
+	return next, prev
+end
