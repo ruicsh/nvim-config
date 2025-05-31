@@ -2,6 +2,8 @@
 
 -- Ignore files with this basename
 local IGNORE_BASENAMES = {
+	".env",
+	".gitignore",
 	"lazy-lock.json",
 	"package-lock.json",
 	"yarn.lock",

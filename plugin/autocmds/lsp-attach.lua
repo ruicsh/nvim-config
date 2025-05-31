@@ -99,7 +99,7 @@ local function keymaps(bufnr, client)
 
 	set_keymaps_repeatable_jumps_diag(k)
 
-	if client.supports_method(methods.textDocument_typeDefinition) then
+	if client:supports_method(methods.textDocument_typeDefinition) then
 		k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
 	end
 end
@@ -108,7 +108,7 @@ end
 local function highlight_references(bufnr, client)
 	local methods = vim.lsp.protocol.Methods
 
-	if not client.supports_method(methods.textDocument_documentHighlight) then
+	if not client:supports_method(methods.textDocument_documentHighlight) then
 		return
 	end
 
@@ -131,7 +131,7 @@ end
 local function clear_highlight_references(bufnr, client)
 	local methods = vim.lsp.protocol.Methods
 
-	if client.supports_method(methods.textDocument_documentHighlight) then
+	if client:supports_method(methods.textDocument_documentHighlight) then
 		vim.api.nvim_clear_autocmds({
 			group = augroup,
 			event = { "BufLeave", "CursorHold", "CursorMoved", "InsertEnter", "InsertLeave" },
