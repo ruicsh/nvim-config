@@ -79,7 +79,6 @@ end
 -- Read env files on a given directory
 vim.fn.load_env_file = function(dir)
 	dir = dir and dir or vim.fn.stdpath("config")
-
 	if not dir or not vim.fn.isdirectory(dir) then
 		return
 	end
@@ -104,8 +103,6 @@ end
 
 -- Read an environment variable, separated by commas, and returns a list
 vim.fn.env_get_list = function(key)
-	vim.fn.load_env_file() -- Make sure the env file is loaded
-
 	local list = {}
 	local env = vim.fn.getenv(key)
 	if env ~= vim.NIL and env ~= "" then
