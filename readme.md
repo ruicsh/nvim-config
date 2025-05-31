@@ -101,6 +101,7 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 
 |                                                                                                                  |                                                                      |
 | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [LspEnable/LspRestart](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/lsp.lua)                  | Enable and restart LSP                                               |
 | [LoadEnvVars](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/load-env-vars.lua)                 | Load environment variables, global, and project scoped.              |
 | [RestoreChangedFiles](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/restore-changed-files.lua) | On VimEnter, open all git changed files in current working directory |
 | [ToggleTerminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/toggle-terminal.lua)            | Toggle terminal open/closed                                          |

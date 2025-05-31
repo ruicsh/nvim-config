@@ -203,21 +203,6 @@ vim.fn.fmt_relative_time = function(timestamp)
 	end
 end
 
-vim.fn.setup_lsp = function()
-	local disabled_servers = vim.fn.env_get_list("LSP_DISABLED_SERVERS")
-
-	local lsp_configs = {}
-	for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
-		local server_name = vim.fn.fnamemodify(f, ":t:r")
-		-- Skip if on the disabled list
-		if not vim.tbl_contains(disabled_servers, server_name) then
-			table.insert(lsp_configs, server_name)
-		end
-	end
-
-	vim.lsp.enable(lsp_configs)
-end
-
 vim.fn.make_repeatable_pair = function(fn_next, fn_prev)
 	local move = require("nvim-next.move")
 	local next = move.make_forward_repeatable_move(fn_next, fn_prev)
