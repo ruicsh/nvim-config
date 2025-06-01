@@ -52,12 +52,50 @@ local FILETYPE_CONFIGS = {
 	},
 	-- React specific configurations
 	storybook = {
-		patterns = { "%.stories.tsx$" },
+		patterns = { "%.stories%.tsx$" },
 		prompts = { "storybook" },
+		context = function()
+			-- Return a context with the source file path
+			local current_file = vim.fn.expand("%:p")
+			local source_file = current_file:gsub("%.stories%.tsx$", ".tsx")
+			if vim.fn.filereadable(source_file) == 1 then
+				return { "file:" .. source_file }
+			end
+
+			return {}
+		end,
+	},
+	reacttest = {
+		patterns = { "%.test%.tsx$" },
+		prompts = { "reacttest" },
+		context = function()
+			-- Return a context with the source file path
+			local current_file = vim.fn.expand("%:p")
+			local source_file = current_file:gsub("%.test%.tsx$", ".tsx")
+			if vim.fn.filereadable(source_file) == 1 then
+				return { "file:" .. source_file }
+			end
+
+			return {}
+		end,
 	},
 	react = {
 		filetypes = { "typescriptreact" },
 		prompts = { "react" },
+	},
+	typescripttest = {
+		patterns = { "%.test%.ts$" },
+		prompts = { "tstest" },
+		context = function()
+			-- Return a context with the source file path
+			local current_file = vim.fn.expand("%:p")
+			local source_file = current_file:gsub("%.test%.ts$", ".ts")
+			if vim.fn.filereadable(source_file) == 1 then
+				return { "file:" .. source_file }
+			end
+
+			return {}
+		end,
 	},
 	typescript = {
 		filetypes = { "typescript" },
@@ -112,19 +150,13 @@ local function get_config_by_filetype()
 		end
 
 		if matches then
+			if config.context and type(config.context) == "function" then
+				config.context = config.context()
+			end
+
 			return config
 		end
 	end
-end
-
-local function concat_prompts(commands)
-	return table.concat(
-		vim.tbl_map(function(p)
-			-- Add sticky commands
-			return "\n> /" .. p
-		end, commands),
-		""
-	)
 end
 
 local function get_system_prompt(action)
