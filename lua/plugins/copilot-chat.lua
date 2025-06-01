@@ -3,11 +3,9 @@
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/copilot-chat", { clear = true })
 
--- [CopilotChat] [ERROR 19:15:05] /Users/ruic/.local/share/nvim/lazy/CopilotChat.nvim/lua/CopilotChat/init.lua:373: Failed to resolve context: git_staged /Users/ruic/.config/nvim/lua/plugins/copilot-chat.lua:821: attempt to call field 'cwd' (a nil value)
--- [CopilotChat] [ERROR 19:15:05] /Users/ruic/.local/share/nvim/lazy/CopilotChat.nvim/lua/CopilotChat/init.lua:373: Failed to resolve context: git_staged /Users/ruic/.config/nvim/lua/plugins/copilot-chat.lua:821: attempt to call field 'cwd' (a nil value)
-
 local CHAT_HISTORY_DIR = vim.fn.stdpath("data") .. "/copilot-chats"
 
+-- Ordering matters, so that the most specific filetype configs are checked first
 local FILETYPE_CONFIGS = {
 	angular = {
 		patterns = {
@@ -16,7 +14,7 @@ local FILETYPE_CONFIGS = {
 			"%.module%.ts$",
 		},
 		filetypes = { "htmlangular" },
-		prompts = { "angular", "js", "ts" },
+		prompts = { "angular" },
 	},
 	ansible = {
 		filetypes = { "yaml" },
@@ -42,27 +40,28 @@ local FILETYPE_CONFIGS = {
 	neovim = {
 		filetypes = { "vim", "lua" },
 		prompts = { "neovim", "lua" },
-		contexts = { "url:https://github.com/ruicsh/nvim-config" },
+		context = { "url:https://github.com/ruicsh/nvim-config" },
 	},
 	python = {
 		filetypes = { "python" },
 		prompts = { "python" },
 	},
-	react = {
-		filetypes = { "typescriptreact" },
-		prompts = { "react", "js", "ts" },
-	},
 	rust = {
 		filetypes = { "rust" },
 		prompts = { "rust" },
 	},
+	-- React specific configurations
 	storybook = {
-		patterns = { "%.stories%.tsx$" },
-		prompts = { "storybook", "ts", "js" },
+		patterns = { "%.stories.tsx$" },
+		prompts = { "storybook" },
+	},
+	react = {
+		filetypes = { "typescriptreact" },
+		prompts = { "react" },
 	},
 	typescript = {
 		filetypes = { "typescript" },
-		prompts = { "js", "ts" },
+		prompts = { "ts" },
 	},
 }
 
@@ -83,7 +82,8 @@ local function load_prompts(prompt_dir)
 
 	for _, file_path in ipairs(prompt_files) do
 		local basename = vim.fn.fnamemodify(file_path, ":t:r")
-		prompts[basename] = read_prompt_file(basename)
+		local prompt = read_prompt_file(basename)
+		prompts[basename] = { prompt = prompt, system_prompt = prompt }
 	end
 
 	return prompts
@@ -127,18 +127,18 @@ local function concat_prompts(commands)
 	)
 end
 
-local function get_system_prompts(action)
+local function get_system_prompt(action)
 	local base_prompt = (action == "explain") and "COPILOT_EXPLAIN"
 		or (action == "generic" and "COPILOT_INSTRUCTIONS")
 		or "COPILOT_GENERATE"
 
+	return base_prompt
+end
+
+local function get_prompts()
 	-- Get filetype-specific prompts
 	local ft_config = get_config_by_filetype()
-	local ft_prompts = ft_config and ft_config.prompts or {}
-
-	-- Build list of prompts
-	local prompts = { base_prompt }
-	vim.list_extend(prompts, ft_prompts)
+	local prompts = ft_config and ft_config.prompts or {}
 
 	return prompts
 end
@@ -215,15 +215,14 @@ local function open_chat(type, opts)
 		local model
 		local selection
 		local ft_config
-		local system_prompt = ""
+		local prompts = {}
 
 		if type == "assistance" then
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN")
 			local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
 			selection = is_visual_mode and select.visual or select.buffer
 			ft_config = get_config_by_filetype()
-			local prompts = get_system_prompts("generic")
-			system_prompt = concat_prompts(prompts)
+			prompts = get_prompts()
 		elseif type == "architect" then
 			model = vim.fn.getenv("COPILOT_MODEL_ARCHITECT")
 			selection = false
@@ -234,11 +233,12 @@ local function open_chat(type, opts)
 
 		new_chat_window("", {
 			auto_insert_mode = true,
-			contexts = ft_config and ft_config.contexts or {},
+			context = ft_config and ft_config.context or {},
+			include_contexts_in_prompt = true,
+			inline = opts and opts.inline or false,
 			model = model,
 			selection = selection,
-			system_prompt = system_prompt,
-			inline = opts and opts.inline or false,
+			system_prompt = prompts[1] or get_system_prompt(type),
 		})
 	end
 end
@@ -295,8 +295,7 @@ local function action(type, opts)
 	return function()
 		local select = require("CopilotChat.select")
 
-		local prompts = get_system_prompts(type)
-		local system_prompt = concat_prompts(prompts)
+		local prompts = get_prompts()
 		local prompt = "> /" .. type
 
 		local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
@@ -317,7 +316,7 @@ local function action(type, opts)
 			auto_insert_mode = false,
 			model = get_model_for_operation(type),
 			selection = selection,
-			system_prompt = system_prompt,
+			system_prompt = prompts[1] or get_system_prompt(type),
 			inline = opts and opts.inline or false,
 		})
 	end
@@ -702,6 +701,8 @@ return {
 
 		local proxy = vim.fn.env_get("COPILOT_PROXY")
 
+		local prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts")
+
 		chat.setup({
 			agent = "copilot",
 			allow_insecure = true,
@@ -869,7 +870,7 @@ return {
 				},
 			},
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
-			prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts"),
+			prompts = prompts,
 			proxy = proxy,
 			references_display = "write", -- Display references as markdown links
 			question_header = "꠵ User ",
