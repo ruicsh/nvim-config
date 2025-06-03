@@ -217,10 +217,10 @@ Random features added.
 - `b` brackets ({}, (), [])
 - `c` comment
 - `f` function
-- `g` buffer
+- `g` entire file
 - `h` git hunk
-- `i` scope
 - `q` quotes (", ', `)
+- `s` single word in different cases
 - `t` html tags
 
 ### Operators

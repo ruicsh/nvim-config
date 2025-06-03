@@ -10,7 +10,7 @@ return {
 			custom_textobjects = {
 				a = ai.gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
 				c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
-				e = { -- Single words in different cases (camelCase, snake_case, etc.)
+				s = { -- Single words in different cases (camelCase, snake_case, etc.)
 					{
 						"%u[%l%d]+%f[^%l%d]",
 						"%f[^%s%p][%l%d]+%f[^%l%d]",
