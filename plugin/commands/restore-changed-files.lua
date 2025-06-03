@@ -55,12 +55,7 @@ end
 
 -- List files changed on git status.
 local function get_changed_files(callback)
-	-- Early return if not in a git repo
-	if not vim.git.is_git() then
-		return callback({})
-	end
-
-	local git_root = vim.git.root()
+	local git_root = require("snacks.git").get_root()
 	if not git_root then
 		return callback({})
 	end

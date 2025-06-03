@@ -1,20 +1,5 @@
 vim.git = {}
 
-vim.git.is_git = function()
-	local result = vim.system({ "git", "rev-parse", "--is-inside-work-tree" }):wait()
-	return result.stdout:match("^true")
-end
-
--- Finds the root directory for the current git repo
-vim.git.root = function()
-	local result = vim.system({ "git", "rev-parse", "--show-toplevel" }):wait()
-	local root = result.stdout:gsub("\n", "")
-	if root == "" then
-		return nil
-	end
-	return root
-end
-
 -- Get blame info for a file/line
 vim.git.blame = function(o)
 	local opts = o or {}

@@ -25,8 +25,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			end
 		end
 
-		local is_project = vim.fn.isdirectory(vim.fn.getcwd() .. "/.git") == 1
-		if is_project then
+		if require("snacks.git").get_root() ~= nil then
 			-- Restore all git changed files in current project
 			vim.cmd("RestoreChangedFiles")
 		end

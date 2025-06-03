@@ -6,7 +6,7 @@ vim.api.nvim_create_user_command("LoadEnvVars", function()
 		vim.fn.stdpath("config"), -- Current working directory
 		vim.fn.getcwd(),
 		-- Git root directory
-		vim.git.root(),
+		require("snacks.git").get_root(),
 	}
 
 	for _, dir in ipairs(dirs) do
