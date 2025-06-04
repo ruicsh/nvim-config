@@ -167,11 +167,6 @@ vim.g.terminal_color_15 = c.nord6
 
 -- CUSTOM
 
--- bookmarks
-loadColorSet({
-	BookmarkNotification = { fg = c.nord13 },
-})
-
 -- inline-search-count
 loadColorSet({
 	InlineSearchCount = { fg = c.nord3_700, bg = c.nord0 },
