@@ -85,6 +85,7 @@ end, { desc = "Copy relative file path" })
 -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 k("cn", "*``cgn", { desc = "Change word (forward)" })
 k("cN", "*``cgN", { desc = "Change word (backward)" })
+
 -- }}}
 
 -- Search {{{

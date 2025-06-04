@@ -3,7 +3,7 @@
 
 local PACKAGES = {
 	-- LSP
-	"angular-language-server@18.2.0",
+	"angular-language-server",
 	"ansible-language-server",
 	"css-lsp",
 	"cssmodules-language-server",

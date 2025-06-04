@@ -31,6 +31,12 @@ end
 local default_probe_dir = get_probe_dir(vim.fn.getcwd())
 local default_angular_core_version = get_angular_core_version(vim.fn.getcwd())
 
+local ROOT_MARKERS = {
+	".git",
+	"angular.json",
+	"package.json",
+}
+
 return {
 	cmd = {
 		"ngserver",
@@ -46,11 +52,29 @@ return {
 		"htmlangular",
 		"typescript",
 	},
-	root_markers = {
-		".git",
-		"angular.json",
-		"package.json",
-	},
+	root_markers = ROOT_MARKERS,
+	root_dir = function(bufnr, on_dir)
+		local filename = vim.api.nvim_buf_get_name(bufnr)
+		-- Only if Angular files trigger the LSP.
+		if
+			not filename:match("component%.html$")
+			and not filename:match("component%.scss$")
+			and not filename:match("component%.ts$")
+			and not filename:match("directive%.ts$")
+			and not filename:match("module%.ts$")
+			and not filename:match("pipe%.ts$")
+			and not filename:match("service%.ts$")
+		then
+			return nil
+		end
+
+		local root_dir = vim.fs.dirname(vim.fs.find(ROOT_MARKERS, { path = filename, upward = true })[1])
+		if not root_dir then
+			return nil
+		end
+
+		on_dir(root_dir)
+	end,
 
 	on_new_config = function(new_config, new_root_dir)
 		local new_probe_dir = get_probe_dir(new_root_dir)

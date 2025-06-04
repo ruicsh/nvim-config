@@ -1,5 +1,20 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/eslint.lua
 
+local ROOT_MARKERS = {
+	".eslintrc",
+	".eslintrc.cjs",
+	".eslintrc.js",
+	".eslintrc.json",
+	".eslintrc.yaml",
+	".eslintrc.yml",
+	"eslint.config.cjs",
+	"eslint.config.cts",
+	"eslint.config.js",
+	"eslint.config.mjs",
+	"eslint.config.mts",
+	"eslint.config.ts",
+}
+
 return {
 	cmd = {
 		"vscode-eslint-language-server",
@@ -13,20 +28,17 @@ return {
 		"typescript.tsx",
 		"typescriptreact",
 	},
-	root_markers = {
-		".eslintrc",
-		".eslintrc.cjs",
-		".eslintrc.js",
-		".eslintrc.json",
-		".eslintrc.yaml",
-		".eslintrc.yml",
-		"eslint.config.cjs",
-		"eslint.config.cts",
-		"eslint.config.js",
-		"eslint.config.mjs",
-		"eslint.config.mts",
-		"eslint.config.ts",
-	},
+	root_markers = ROOT_MARKERS,
+	root_dir = function(bufnr, on_dir)
+		local filename = vim.api.nvim_buf_get_name(bufnr)
+		-- Only attach if there's some eslint config file in the root directory.
+		local root_dir = vim.fs.dirname(vim.fs.find(ROOT_MARKERS, { path = filename, upward = true })[1])
+		if not root_dir then
+			return nil
+		end
+
+		on_dir(root_dir)
+	end,
 	-- https://github.com/Microsoft/vscode-eslint#settings-options
 	settings = {
 		validate = "on",
@@ -50,7 +62,7 @@ return {
 		-- nodePath configures the directory in which the eslint server should start its node_modules resolution.
 		-- This path is relative to the workspace folder (root dir) of the server instance.
 		nodePath = "",
-		-- use the workspace folder location or the file location (if no workspace folder is open) as the working directory
+		-- Use the workspace folder location or the file location (if no workspace folder is open) as the working directory
 		workingDirectory = { mode = "location" },
 		codeAction = {
 			disableRuleComment = {
