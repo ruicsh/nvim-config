@@ -22,11 +22,9 @@ k("<c-e>", "<end>", { unique = false })
 k("<bs>", "<bs>")
 k("<c-d>", "<del>")
 
--- Delete back/forward one word.
+-- Delete back one word.
 k("<m-bs>", "<c-s-w>")
-k("<m-d>", "<s-right><del>")
 
--- Filter the command line history.
--- Pratical Vim, pp 69
+-- Filter the command line history. `Pratical Vim, pp 69`
 k("<c-n>", "<down>")
 k("<c-p>", "<up>")

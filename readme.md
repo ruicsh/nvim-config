@@ -206,10 +206,10 @@ Random features added.
 - `<c-e>` jump to end of line
 - `<c-f>` jump forward one character
 - `<c-u>` delete till beginning of line
-- `<c-s-b>` jump word before
-- `<c-s-f>` jump word after
-- `<c-bs>` delete word before
-- `<c-s-d>` delete word after
+- `<m-b>` jump word before
+- `<m-f>` jump word after
+- `<m-bs>` delete word before
+- `<m-d>` delete word after
 
 ### Text objects
 

@@ -18,8 +18,8 @@ k("<c-b>", "<left>")
 k("<c-f>", "<right>")
 
 -- Jump word back/forward
-k("<c-s-b>", "<s-left>")
-k("<c-s-f>", "<s-right>")
+k("<m-b>", "<s-left>")
+k("<m-f>", "<s-right>")
 
 -- Jump to line begin/end
 k("<c-a>", "<home>")
@@ -30,8 +30,8 @@ k("<bs>", "<bs>")
 k("<c-d>", "<del>")
 
 -- Delete word back/forward
-k("<c-bs>", "<c-o>db")
-k("<c-s-d>", "<c-o>dw")
+k("<m-bs>", "<c-o>db")
+k("<m-d>", "<c-o>dw")
 
 -- Insert previously insert text (`:h i_CTRL-A`)
 k("<c-x><c-a>", "<c-a>")
