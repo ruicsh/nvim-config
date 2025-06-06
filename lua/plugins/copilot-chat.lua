@@ -54,6 +54,7 @@ local FILETYPE_CONFIGS = {
 	storybook = {
 		patterns = { "%.stories%.tsx$" },
 		prompts = { "storybook" },
+		priority = 5000,
 		context = function()
 			-- Return a context with the source file path
 			local current_file = vim.fn.expand("%:p")
@@ -68,6 +69,7 @@ local FILETYPE_CONFIGS = {
 	reacttest = {
 		patterns = { "%.test%.tsx$" },
 		prompts = { "reacttest" },
+		priority = 4000,
 		context = function()
 			-- Return a context with the source file path
 			local current_file = vim.fn.expand("%:p")
@@ -79,13 +81,10 @@ local FILETYPE_CONFIGS = {
 			return {}
 		end,
 	},
-	react = {
-		filetypes = { "typescriptreact" },
-		prompts = { "react" },
-	},
 	typescripttest = {
 		patterns = { "%.test%.ts$" },
 		prompts = { "tstest" },
+		priority = 3000,
 		context = function()
 			-- Return a context with the source file path
 			local current_file = vim.fn.expand("%:p")
@@ -96,6 +95,11 @@ local FILETYPE_CONFIGS = {
 
 			return {}
 		end,
+	},
+	react = {
+		filetypes = { "typescriptreact" },
+		priority = 2000,
+		prompts = { "react" },
 	},
 	typescript = {
 		filetypes = { "typescript" },
@@ -131,7 +135,18 @@ local function get_config_by_filetype()
 	local ft = vim.bo.filetype
 	local filename = vim.fn.expand("%:t")
 
+	-- Sort FILETYPE_CONFIGS by priority, descending
+	local sorted_configs = {}
 	for _, config in pairs(FILETYPE_CONFIGS) do
+		table.insert(sorted_configs, config)
+	end
+	table.sort(sorted_configs, function(a, b)
+		local a_priority = a.priority or 0
+		local b_priority = b.priority or 0
+		return a_priority > b_priority
+	end)
+
+	for _, config in pairs(sorted_configs) do
 		local matches = false
 
 		-- Check file patterns if defined
