@@ -9,8 +9,9 @@ for _, key in ipairs(save_keys) do
 	k(key, "<cmd>silent! update<cr><esc>", { desc = "Save", unique = false })
 end
 
--- Paste from clipboard
-k("<c-v>", "<c-r>+")
+-- Don't auto-indent when pasting (`:h i_CTRL-R_CTRL-O`)
+k("<c-r>", "<c-r><c-o>")
+k("<c-v>", "<c-r><c-o>+")
 
 -- Jump character back/forward
 k("<c-b>", "<left>")
@@ -35,10 +36,7 @@ k("<c-s-d>", "<c-o>dw")
 -- Insert previously insert text (`:h i_CTRL-A`)
 k("<c-x><c-a>", "<c-a>")
 
--- Always insert register content literally (`:h i_CTRL-R`)
-k("<c-r>", "<c-r><c-r>")
-
--- Make undo work word by word.
+-- Make undo work word by word (`:h i_CTRL-G_u`)
 local undo_keys = { "<space>", ",", ".", "!", "?", ">", ")", "]", "}" }
 for _, key in ipairs(undo_keys) do
 	k(key, key .. "<c-g>u")
