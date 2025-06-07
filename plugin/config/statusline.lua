@@ -124,7 +124,7 @@ local function c_filename()
 		line = line .. display
 	end
 
-	return line .. "%m"
+	return line .. " %m"
 end
 
 -- Show search count
