@@ -146,6 +146,7 @@ return {
 
 		return vim.fn.get_lazy_keys_conf(mappings)
 	end)(),
+	priority = 1000, -- Ensure this is loaded before other plugins that might use snacks
 	opts = {
 		picker = {
 			actions = {

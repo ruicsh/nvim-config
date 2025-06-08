@@ -8,7 +8,6 @@ return {
 
 		local mappings = {
 			{ "<c-f>", flash.jump, "Jump", { mode = { "n", "o", "x" } } },
-			{ "<c-r>", flash.remote, "Remote", { mode = { "o" } } },
 			{ "<leader><s-v>", flash.treesitter, "Treesitter", { mode = { "n", "x", "o" } } },
 		}
 

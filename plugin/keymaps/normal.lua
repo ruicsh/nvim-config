@@ -153,21 +153,6 @@ k("N", ":keepjumps normal! N<cr>", { desc = "Search: Previous" })
 
 -- }}}
 
--- NOOP {{{
-
-local noop_keys = {
-	"Q", -- Ex mode
-	"gQ", -- Ex mode
-	"q:", -- cmdline-window
-	"q/", -- cmdline-window
-	"q?", -- cmdline-window
-}
-for _, key in ipairs(noop_keys) do
-	k(key, "<nop>")
-end
-
---}}}
-
 -- Stop setting keymaps incompatible with vscode
 if vim.g.vscode then
 	return
