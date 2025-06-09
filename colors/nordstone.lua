@@ -103,7 +103,7 @@ loadColorSet({
 	ModeMsg = { fg = c.nord4 },
 	MoreMsg = { fg = c.nord4 },
 	NonText = { fg = c.nord1 },
-	Normal = { fg = c.nord4, bg = c.neutral_900 },
+	Normal = { fg = c.nord4, bg = "NONE" },
 	NormalFloat = { fg = c.nord4, bg = c.neutral_900 },
 	NormalMode = { fg = c.nord4, bg = "NONE", style = "reverse" },
 	Pmenu = { fg = c.nord4, bg = "NONE" },
