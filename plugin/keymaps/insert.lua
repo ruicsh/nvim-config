@@ -1,3 +1,5 @@
+-- Insert mode keymaps `:h insert-index`
+
 local function k(lhs, rhs, opts)
 	local options = vim.tbl_extend("force", { unique = true }, opts or {})
 	vim.keymap.set("i", lhs, rhs, options)
@@ -30,7 +32,7 @@ k("<bs>", "<bs>")
 k("<c-d>", "<del>")
 
 -- Delete word back/forward
-k("<m-bs>", "<c-o>db")
+k("<m-bs>", "<c-w>")
 k("<m-d>", "<c-o>dw")
 
 -- Insert previously insert text (`:h i_CTRL-A`)

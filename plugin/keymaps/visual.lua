@@ -1,3 +1,5 @@
+-- Visual mode keymaps `:h visual-index`
+
 local function k(lhs, rhs, opts)
 	local options = vim.tbl_extend("force", { unique = true }, opts or {})
 	vim.keymap.set("v", lhs, rhs, options)

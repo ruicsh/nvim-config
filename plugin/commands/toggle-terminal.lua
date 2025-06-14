@@ -49,7 +49,3 @@ vim.api.nvim_create_user_command("ToggleTerminal", function()
 		enter_terminal()
 	end
 end, {})
-
-vim.keymap.set("t", "<c-\\>", function()
-	vim.cmd("ToggleTerminal")
-end, { desc = "Toggle terminal", unique = true, noremap = true })

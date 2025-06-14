@@ -1,3 +1,5 @@
+-- Normal mode keymaps `:h normal-index`
+
 local function k(lhs, rhs, opts)
 	local options = vim.tbl_extend("force", { unique = true }, opts or {})
 	vim.keymap.set("n", lhs, rhs, options)
@@ -10,7 +12,7 @@ end
 k("{", ":keepjumps normal! 6k<cr>", { desc = "Jump up 6 lines", silent = true })
 k("}", ":keepjumps normal! 6j<cr>", { desc = "Jump down 6 lines", silent = true })
 
--- Store relative line number jumps in the jumplist if they exceed a threshold.
+-- Store relative line number jumps in the jumplist.
 -- For small jumps, use visual lines.
 k("k", function()
 	return vim.v.count > 0 and "m'" .. vim.v.count .. "k" or "gk"
@@ -33,9 +35,8 @@ for key, desc in pairs(center_scroll_keys) do
 	k(key, key .. "zz", { desc = desc })
 end
 
--- Jump to mark
-k("`", "'", { desc = "Jump to mark cursor" })
-k("'", "`", { desc = "Jump to mark line" })
+-- Jump to mark, don't change jumplist `:h map-backtick` `:h g``
+k("'", "g`", { desc = "Jump to mark cursor" })
 
 -- }}}
 
@@ -56,7 +57,8 @@ k("]p", ":put<cr>==", { desc = "Paste on line below" })
 k("]e", ":m .+1<cr>==", { desc = "Move line down", silent = true })
 k("[e", ":m .-2<cr>==", { desc = "Move line up", silent = true })
 
-k("J", "mzJ`z:delmarks z<cr>") -- Keep cursor in place when joining lines
+-- Keep cursor in place when joining lines
+k("J", "mzJ`z:delmarks z<cr>")
 
 -- Save file
 local save_keys = { "<c-s>", "<d-s>" }
@@ -106,6 +108,12 @@ for key, desc in pairs(mark_search_keys) do
 	k(key, "ms" .. key, { desc = desc })
 end
 
+-- Clear search highlight when moving back to position before starting the search
+k("'s", function()
+	vim.cmd("normal! `s")
+	vim.cmd.nohlsearch()
+end, { desc = "Jump to last search" })
+
 -- Split search
 -- Mimics the native behavior of `<c-w>i` :h CTRL-W_i
 local split_search_keys = {
@@ -121,7 +129,8 @@ for key, desc in pairs(split_search_keys) do
 	k("<c-w>" .. key, "<c-w>s" .. key, { desc = desc })
 end
 
--- Make `<c-w><c-i>` work with `n` and `N`
+-- Split window and search current word from beginning of file
+-- Make `<c-w><c-i>` work with `n` and `N` `:h CTRL-W_i`
 k("<c-w><c-i>", function()
 	local cword = vim.fn.expand("<cword>")
 	vim.cmd.split()
@@ -131,6 +140,7 @@ k("<c-w><c-i>", function()
 end, { desc = "Split window and search current word from beginning of file" })
 
 -- This simulates the native `[<c-i>` behavior but doesn't include imported files.
+-- It sets a mark before searching, so can return to the position before the search with `'s`.
 -- It also allows using `n` to jump to the next search result (native is `]<c-i>`).
 -- `<c-i>` is the same as `<tab>` :h [_CTRL-I
 k("[<c-i>", function()
@@ -140,12 +150,6 @@ k("[<c-i>", function()
 	vim.cmd("/" .. vim.fn.escape(cword, "\\[]^$.*~/"))
 	vim.cmd("normal! n")
 end, { desc = "Search current word (from beginning of file)" })
-
--- Clear search highlight when moving back to position before starting the search
-k("'s", function()
-	vim.cmd("normal! `s")
-	vim.cmd.nohlsearch()
-end, { desc = "Jump to last search" })
 
 -- Don't store jumps when browsing search results
 k("n", ":keepjumps normal! n<cr>", { desc = "Search: Next" })
@@ -163,7 +167,7 @@ k("<bs>", "<c-6>", { desc = "Toggle to last buffer" })
 -- }}}
 
 -- Windows {{{
-k("|", "<c-w>w", { desc = "Windows: Switch" })
+k("<bar>", "<c-w>w", { desc = "Windows: Switch" })
 -- }}}
 
 -- Folds {{{
@@ -187,18 +191,7 @@ k("<s-tab>", "zMzv", { desc = "Folds: Close all other" })
 -- }}}
 
 -- Terminal {{{
-k("<c-\\>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
--- }}}
-
--- Tabs {{{
-
--- Tabs: Go to #{1..9}
-for i = 1, 9 do
-	k("§" .. i, function()
-		vim.cmd.tabnext(i)
-	end, { desc = "Tabs: Go to #" .. i })
-end
-
+k("<c-bslash>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 -- }}}
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable

@@ -1,7 +1,12 @@
+-- Command mode keymaps
+
 local function k(lhs, rhs, opts)
 	local options = vim.tbl_extend("force", { noremap = true, unique = true }, opts or {})
 	vim.keymap.set("c", lhs, rhs, options)
 end
+
+-- Paste from clipboard
+k("<c-v>", "<c-r>+")
 
 -- bash shortcuts
 -- https://github.com/tpope/vim-rsi
