@@ -710,22 +710,22 @@ return {
 			{ "<leader>aQ", open_chat("architect", { inline = true }), "Architect" },
 
 			-- actions
-			{ "<leader>aE", action("explain"), "Explain", { mode = "v" } },
-			{ "<leader>aF", action("fix"), "Fix", { mode = { "v" } } },
-			{ "<leader>aI", action("implement"), "Implement", { mode = "v" } },
-			{ "<leader>aO", action("optimize"), "Optimize", { mode = "v" } },
-			{ "<leader>aR", action("review"), "Review", { mode = { "v" } } },
-			{ "<leader>aT", action("tests"), "Tests", { mode = "v" } },
-			{ "<leader>aW", action("refactor"), "Refactor", { mode = "v" } },
+			{ "<leader>ae", action("explain"), "Explain", { mode = "v" } },
+			{ "<leader>af", action("fix"), "Fix", { mode = { "v" } } },
+			{ "<leader>ai", action("implement"), "Implement", { mode = "v" } },
+			{ "<leader>ao", action("optimize"), "Optimize", { mode = "v" } },
+			{ "<leader>ar", action("review"), "Review", { mode = { "v" } } },
+			{ "<leader>at", action("tests"), "Tests", { mode = "v" } },
+			{ "<leader>an", action("refactor"), "Refactor", { mode = "v" } },
 
 			-- actions inline
-			{ "<leader>ae", action("explain", { inline = true }), "Explain", { mode = "v" } },
-			{ "<leader>af", action("fix", { inline = true }), "Fix", { mode = { "v" } } },
-			{ "<leader>ai", action("implement", { inline = true }), "Implement", { mode = "v" } },
-			{ "<leader>ao", action("optimize", { inline = true }), "Optimize", { mode = "v" } },
-			{ "<leader>ar", action("review", { inline = true }), "Review", { mode = { "v" } } },
-			{ "<leader>at", action("tests", { inline = true }), "Tests", { mode = "v" } },
-			{ "<leader>aw", action("refactor", { inline = true }), "Refactor", { mode = "v" } },
+			{ "<leader>aE", action("explain", { inline = true }), "Explain", { mode = "v" } },
+			{ "<leader>aF", action("fix", { inline = true }), "Fix", { mode = { "v" } } },
+			{ "<leader>aI", action("implement", { inline = true }), "Implement", { mode = "v" } },
+			{ "<leader>aO", action("optimize", { inline = true }), "Optimize", { mode = "v" } },
+			{ "<leader>aR", action("review", { inline = true }), "Review", { mode = { "v" } } },
+			{ "<leader>aT", action("tests", { inline = true }), "Tests", { mode = "v" } },
+			{ "<leader>aN", action("refactor", { inline = true }), "Refactor", { mode = "v" } },
 
 			-- git
 			{ "<leader>ap", ":CopilotPrReview<cr>", "PR review" },
