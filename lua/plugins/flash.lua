@@ -25,7 +25,8 @@ return {
 				enabled = false,
 			},
 			char = {
-				enabled = false,
+				enabled = true,
+				highlight = { backdrop = false },
 			},
 			treesitter = {
 				jump = {

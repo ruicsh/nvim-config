@@ -25,11 +25,11 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>39 plugins</sub>
+<sub>37 plugins</sub>
 
 ### Navigation
 
-- [flash.nvim](https://github.com/folke/flash.nvim) - Jump to single character
+- [flash.nvim](https://github.com/folke/flash.nvim) - Jump with search labels
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
 - [mini.keymap](https://github.com/echasnovski/mini.keymap) - Special key mappings
