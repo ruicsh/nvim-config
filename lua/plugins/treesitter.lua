@@ -38,8 +38,8 @@ local PARSERS = {
 	"yaml",
 }
 
--- Make prev/next reference usage jumps repeatable with `;` and `,`
-local function set_keymaps_repeatable_usage_navigation()
+--
+local function set_keymaps_navigation()
 	local nav = require("nvim-treesitter-refactor.navigation")
 
 	local function goto_next_usage()
@@ -50,10 +50,8 @@ local function set_keymaps_repeatable_usage_navigation()
 		nav.goto_previous_usage(vim.api.nvim_get_current_buf())
 	end
 
-	local next, prev = vim.fn.make_repeatable_pair(goto_next_usage, goto_prev_usage)
-
-	vim.keymap.set("n", "]r", next, { desc = "Next diff hunk" })
-	vim.keymap.set("n", "[r", prev, { desc = "Previous diff hunk" })
+	vim.keymap.set("n", "]r", goto_next_usage, { desc = "Next diff hunk" })
+	vim.keymap.set("n", "[r", goto_prev_usage, { desc = "Previous diff hunk" })
 end
 
 return {
@@ -112,7 +110,7 @@ return {
 		local ts = require("nvim-treesitter.configs")
 		ts.setup(opts)
 
-		set_keymaps_repeatable_usage_navigation()
+		set_keymaps_navigation()
 	end,
 
 	main = "nvim-treesitter.configs",

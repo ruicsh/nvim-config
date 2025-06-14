@@ -43,8 +43,8 @@ local function diagnostics()
 	})
 end
 
--- Make diagnostic navigation repeatable with `;` and `,`
-local function set_keymaps_repeatable_jumps_diag(k)
+-- Make diagnostic navigation
+local function set_keymaps_diagnostics(k)
 	local jump_to_next = function()
 		vim.diagnostic.jump({ count = vim.v.count1 })
 	end
@@ -52,10 +52,8 @@ local function set_keymaps_repeatable_jumps_diag(k)
 		vim.diagnostic.jump({ count = -vim.v.count1 })
 	end
 
-	local next, prev = vim.fn.make_repeatable_pair(jump_to_next, jump_to_prev)
-
-	k("[d", prev, "Previous diagnostic")
-	k("]d", next, "Next diagnostic")
+	k("[d", jump_to_prev, "Previous diagnostic")
+	k("]d", jump_to_next, "Next diagnostic")
 end
 
 -- Set keymaps for LSP
@@ -97,7 +95,7 @@ local function keymaps(bufnr, client)
 	k("<leader>df", snacks.picker.diagnostics_buffer, "Diagnostics: File")
 	k("K", hover, "Hover")
 
-	set_keymaps_repeatable_jumps_diag(k)
+	set_keymaps_diagnostics(k)
 
 	if client:supports_method(methods.textDocument_typeDefinition) then
 		k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
