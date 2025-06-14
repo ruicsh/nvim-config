@@ -160,7 +160,8 @@ o.shada = {
 -- https://www.reddit.com/r/neovim/comments/1hkpgar/a_per_project_shadafile/
 o.shadafile = (function() -- Per project shadafile
 	local data = tostring(vim.fn.stdpath("data"))
-	local cwd = require("snacks.git").get_root() or vim.fn.getcwd()
+	local git_root = require("snacks.git").get_root()
+	local cwd = git_root or vim.fn.getcwd()
 	local cwd_b64 = vim.base64.encode(cwd)
 	local file = vim.fs.joinpath(data, "project_shada", cwd_b64)
 	vim.fn.mkdir(vim.fs.dirname(file), "p")
