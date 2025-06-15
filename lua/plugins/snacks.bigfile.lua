@@ -7,7 +7,7 @@ return {
 		bigfile = {
 			enabled = true,
 			notify = false,
-			size = 1.5 * 1024 * 1024,
+			size = 100 * 1024, -- 100 KB
 			line_length = 1000,
 			setup = function(ctx)
 				vim.schedule(function()
