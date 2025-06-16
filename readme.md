@@ -69,6 +69,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) - Debugger
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap) - Debugger Adapter Protocol
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
+- [vim-test](https://github.com/vim-test/vim-test) - Test runner
 
 ### Git
 
@@ -328,6 +329,13 @@ Random features added.
 - `<f10>` step over
 - `<f11>` step into
 - `<s-f11>` step out
+
+### Test runner:
+
+- `<leader>bb` run last
+- `<leader>bn` run nearest
+- `<leader>bf` run file
+- `<leader>ba` run all
 
 ### Git
 

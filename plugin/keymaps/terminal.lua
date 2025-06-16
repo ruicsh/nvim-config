@@ -5,8 +5,10 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("t", lhs, rhs, options)
 end
 
-k("<c-q>", "<c-bslash><c-n>", { desc = "Exit terminal mode" })
+-- Enter normal mode :h t_CTRL-\_CTRL-N
+k("<c-[>", "<c-bslash><c-n>", { desc = "Enter normal mode" })
 
+-- Toggle terminal buffer (close as we are in terminal mode)
 k("<c-bslash>", function()
 	vim.cmd("ToggleTerminal")
 end, { desc = "Toggle terminal" })
