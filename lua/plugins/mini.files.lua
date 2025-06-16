@@ -9,6 +9,17 @@ vim.api.nvim_create_autocmd("User", {
 	callback = function(args)
 		vim.wo[args.data.win_id].number = true
 		vim.wo[args.data.win_id].relativenumber = true
+
+		local function synchronize()
+			local mf = require("mini.files")
+			mf.synchronize()
+			vim.cmd("stopinsert")
+		end
+
+		vim.keymap.set("i", "<c-s>", synchronize, {
+			buffer = args.buf,
+			desc = "Synchronize files",
+		})
 	end,
 })
 

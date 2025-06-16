@@ -15,7 +15,7 @@ return {
 			{ "<leader>bb", run("TestLast"), "Run last" },
 			{ "<leader>bn", run("TestNearest"), "Run nearest" },
 			{ "<leader>bf", run("TestFile"), "Run file" },
-			{ "<leader>bA", run("TestSuite"), "Run all" },
+			{ "<leader>ba", run("TestSuite"), "Run all" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Tests")
