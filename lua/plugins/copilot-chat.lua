@@ -710,13 +710,13 @@ return {
 			{ "<leader>aQ", open_chat("architect", { inline = true }), "Architect" },
 
 			-- actions
-			{ "<leader>ae", action("explain"), "Explain", { mode = "v" } },
-			{ "<leader>af", action("fix"), "Fix", { mode = { "v" } } },
-			{ "<leader>ai", action("implement"), "Implement", { mode = "v" } },
-			{ "<leader>ao", action("optimize"), "Optimize", { mode = "v" } },
-			{ "<leader>ar", action("review"), "Review", { mode = { "v" } } },
-			{ "<leader>at", action("tests"), "Tests", { mode = "v" } },
-			{ "<leader>an", action("refactor"), "Refactor", { mode = "v" } },
+			{ "<leader>ae", action("explain"), "Explain", { mode = { "n", "v" } } },
+			{ "<leader>af", action("fix"), "Fix", { mode = { "n", "v" } } },
+			{ "<leader>ai", action("implement"), "Implement", { mode = { "n", "v" } } },
+			{ "<leader>ao", action("optimize"), "Optimize", { mode = { "n", "v" } } },
+			{ "<leader>ar", action("review"), "Review", { mode = { "n", "v" } } },
+			{ "<leader>at", action("tests"), "Tests", { mode = { "n", "v" } } },
+			{ "<leader>an", action("refactor"), "Refactor", { mode = { "n", "v" } } },
 
 			-- actions inline
 			{ "<leader>aE", action("explain", { inline = true }), "Explain", { mode = "v" } },
