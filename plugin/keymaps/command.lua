@@ -8,27 +8,7 @@ end
 -- Paste from clipboard
 k("<c-v>", "<c-r>+")
 
--- bash shortcuts
--- https://github.com/tpope/vim-rsi
-
--- Jump back/forward one character.
-k("<c-b>", "<left>")
-k("<c-f>", "<right>")
-
--- Jump word back/forward
-k("<m-b>", "<s-left>")
-k("<m-f>", "<s-right>")
-
--- Jump to line begin/end
-k("<c-a>", "<home>")
-k("<c-e>", "<end>", { unique = false })
-
--- Delete character back/forward
-k("<bs>", "<bs>")
-k("<c-d>", "<del>")
-
--- Delete back one word.
-k("<m-bs>", "<c-s-w>")
+-- Use <c-f> to open the commend line window and edit the command `:h c_CTRL-f`
 
 -- Filter the command line history. `Pratical Vim, pp 69`
 k("<c-n>", "<down>")
