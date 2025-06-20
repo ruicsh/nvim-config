@@ -50,7 +50,7 @@ local FILETYPE_CONFIGS = {
 		filetypes = { "rust" },
 		prompts = { "rust" },
 	},
-	-- React specific configurations
+	-- React specific configure ations
 	storybook = {
 		patterns = { "%.stories%.tsx$" },
 		prompts = { "storybook" },
@@ -75,7 +75,10 @@ local FILETYPE_CONFIGS = {
 			local current_file = vim.fn.expand("%:p")
 			local source_file = current_file:gsub("%.test%.tsx$", ".tsx")
 			if vim.fn.filereadable(source_file) == 1 then
-				return { "file:" .. source_file }
+				-- Convert to path relative to cwd
+				local cwd = vim.fn.getcwd()
+				local relative_path = source_file:gsub("^" .. vim.pesc(cwd) .. "/", "")
+				return { "file:" .. relative_path }
 			end
 
 			return {}
