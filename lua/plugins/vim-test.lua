@@ -4,25 +4,37 @@
 return {
 	"vim-test/vim-test",
 	keys = function()
-		local function run(cmd)
-			return function()
-				vim.cmd.only()
-				vim.cmd(cmd)
-			end
-		end
-
 		local mappings = {
-			{ "<leader>bb", run("TestLast"), "Run last" },
-			{ "<leader>bn", run("TestNearest"), "Run nearest" },
-			{ "<leader>bf", run("TestFile"), "Run file" },
-			{ "<leader>ba", run("TestSuite"), "Run all" },
+			{ "<leader>bb", ":TestLast<cr>", "Run last" },
+			{ "<leader>bn", ":TestNearest<cr>", "Run nearest" },
+			{ "<leader>bf", ":TestFile<cr>", "Run file" },
+			{ "<leader>ba", ":TestSuite<cr>", "Run all" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Tests")
 	end,
 	config = function()
-		vim.g["test#strategy"] = "neovim"
-		vim.g["test#neovim#term_position"] = "vert"
+		vim.g["test#custom_strategies"] = {
+			my_neovim = function(cmd)
+				-- Open a new vertical split for the terminal
+				vim.cmd("silent only | vnew")
+
+				-- Run the test command
+				vim.fn.jobstart(cmd, {
+					term = true,
+				})
+
+				-- Set buffer-local variable so that terminal doesn't enter insert mode
+				local bufnr = vim.api.nvim_get_current_buf()
+				vim.api.nvim_buf_set_var(bufnr, "is_vimtest_terminal", true)
+
+				vim.cmd.wincmd("h") -- Go back to the previous window
+				vim.cmd.stopinsert() -- Make sure we are not in insert mode
+			end,
+		}
+
+		-- Use custom strategy
+		vim.g["test#strategy"] = "my_neovim"
 	end,
 
 	event = "VeryLazy",

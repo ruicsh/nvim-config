@@ -23,6 +23,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	group = augroup,
 	pattern = "term://*",
 	callback = function()
-		vim.cmd.startinsert() -- Start in insert mode
+		if vim.b.is_vimtest_terminal then
+			return
+		end
+
+		vim.cmd.startinsert()
 	end,
 })
