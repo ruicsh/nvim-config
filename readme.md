@@ -25,7 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>37 plugins</sub>
+<sub>36 plugins</sub>
 
 ### Navigation
 
@@ -64,9 +64,9 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 
-### Debugging
+### Testing/Debugging
 
-- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) - Debugger
+- [nvim-dap-view](https://github.com/igorlfs/nvim-dap-view) - Debugger UI
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap) - Debugger Adapter Protocol
 - [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [vim-test](https://github.com/vim-test/vim-test) - Test runner
@@ -325,12 +325,13 @@ Random features added.
 
 ### Debugger:
 
-- `<f5>` continue
-- `<s-f5>` stop
-- `<f9>` toggle breakpoint
-- `<f10>` step over
-- `<f11>` step into
-- `<s-f11>` step out
+- `<d-\>` continue
+- `<d-s-\>` stop
+- `<d-'>` step over
+- `<d-;>` step into
+- `<d-s-;>` step out
+- `<leader>dp` toggle breakpoint
+- `<leader>dd` start session with breakpoint
 
 ### Test runner:
 

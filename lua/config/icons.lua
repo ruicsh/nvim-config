@@ -1,10 +1,6 @@
 local M = {}
 
 M = {
-	dap = {
-		Stopped = "",
-		Breakpoint = "",
-	},
 	diagnostics = {
 		error = "",
 		warning = "",
