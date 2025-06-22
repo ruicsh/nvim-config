@@ -38,7 +38,6 @@ local PARSERS = {
 	"yaml",
 }
 
---
 local function set_keymaps_navigation()
 	local nav = require("nvim-treesitter-refactor.navigation")
 

@@ -34,7 +34,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
 - [mini.keymap](https://github.com/echasnovski/mini.keymap) - Special key mappings
 - [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
-- [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Search
+- [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - AST aware navigation
 
 ### Editing
@@ -52,7 +52,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
 - [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
-- [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - CSS Colors
+- [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - CSS Colours
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
 - [ts-comments.nvim](https://github.com/folke/ts-comments.nvim) - Custom comments configurations per language
 
@@ -318,8 +318,10 @@ Random features added.
 - `<c-s>` display signature help
 - `<c-]>` jump to definition
 - `<c-w>]` jump to definition (vslipt)
-- `<leader>dd` open diagnostics (workspace)
-- `<leader>df` open diagnostics (buffer)
+- `<leader>xx` open diagnostics (workspace)
+- `<leader>xf` open diagnostics (buffer)
+- `[x` jump to previous diagnostic
+- `]x` jump to next diagnostic
 
 ### Debugger:
 
@@ -350,7 +352,7 @@ Random features added.
 - `<leader>hll` log line
 - `<leader>hpf` push --force-with-lease
 - `<leader>hps` push
-- `<leader>hpu` push -u origin HEAD
+- `<leader>hpu` push -set-upstream origin HEAD
 - `<leader>hst` status
 - `<leader>hxb` open blame in browser
 - `<leader>hxf` open file in browser

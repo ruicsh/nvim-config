@@ -52,8 +52,8 @@ local function set_keymaps_diagnostics(k)
 		vim.diagnostic.jump({ count = -vim.v.count1 })
 	end
 
-	k("[d", jump_to_prev, "Previous diagnostic")
-	k("]d", jump_to_next, "Next diagnostic")
+	k("[x", jump_to_prev, "Previous diagnostic")
+	k("]x", jump_to_next, "Next diagnostic")
 end
 
 -- Set keymaps for LSP
@@ -91,8 +91,8 @@ local function keymaps(bufnr, client)
 	k("gD", vim.lsp.buf.declaration, "Jump to declaration")
 	k("grr", snacks.picker.lsp_references, "References")
 	k("gO", snacks.picker.lsp_symbols, "Symbols")
-	k("<leader>dd", snacks.picker.diagnostics, "Diagnostics: Workspace")
-	k("<leader>df", snacks.picker.diagnostics_buffer, "Diagnostics: File")
+	k("<leader>xx", snacks.picker.diagnostics, "Diagnostics: Workspace")
+	k("<leader>xf", snacks.picker.diagnostics_buffer, "Diagnostics: File")
 	k("K", hover, "Hover")
 
 	set_keymaps_diagnostics(k)
