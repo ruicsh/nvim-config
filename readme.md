@@ -325,11 +325,11 @@ Random features added.
 
 ### Debugger:
 
-- `<m-\>` continue
-- `<m-s-\>` stop
-- `<m-'>` step over
-- `<m-;>` step into
-- `<m-s-;>` step out
+- `<f5>` continue
+- `<s-f5>` stop
+- `<f10>` step over
+- `<f11>` step into
+- `<s-f11>` step out
 - `<leader>dp` toggle breakpoint
 - `<leader>dd` start session with breakpoint
 
