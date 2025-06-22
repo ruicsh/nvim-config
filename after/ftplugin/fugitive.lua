@@ -1,9 +1,6 @@
 vim.opt_local.wrap = true
 vim.opt_local.buflisted = false
 
--- Clean ^M characters in all fugitive buffers (Windows/Command Prompt line endings)
-vim.cmd([[silent! %s/\r//ge]])
-
 local function k(mode, lhs, rhs, opts)
 	local options = vim.tbl_extend("force", { buffer = 0 }, opts or {})
 	vim.keymap.set(mode, lhs, rhs, options)
