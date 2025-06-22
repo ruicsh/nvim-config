@@ -31,11 +31,11 @@ return {
 		local mappings = {
 			{ "<leader>dd", start_session, "Start session with breakpoint" },
 			{ "<leader>db", dap.toggle_breakpoint, "Toggle Breakpoint" },
-			{ "<d-bslash>", dap.continue, "Run/Continue" },
-			{ "<d-s-bslash>", dap.terminate, "Stop session" },
-			{ "<d-'>", dap.step_over, "Step Over" },
-			{ "<d-;>", dap.step_into, "Step Into" },
-			{ "<d-s-;>", dap.step_out, "Step Out" },
+			{ "<m-bslash>", dap.continue, "Run/Continue" },
+			{ "<m-s-bslash>", dap.terminate, "Stop session" },
+			{ "<m-'>", dap.step_over, "Step Over" },
+			{ "<m-;>", dap.step_into, "Step Into" },
+			{ "<m-s-;>", dap.step_out, "Step Out" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Debug")

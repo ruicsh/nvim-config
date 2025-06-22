@@ -325,11 +325,11 @@ Random features added.
 
 ### Debugger:
 
-- `<d-\>` continue
-- `<d-s-\>` stop
-- `<d-'>` step over
-- `<d-;>` step into
-- `<d-s-;>` step out
+- `<m-\>` continue
+- `<m-s-\>` stop
+- `<m-'>` step over
+- `<m-;>` step into
+- `<m-s-;>` step out
 - `<leader>dp` toggle breakpoint
 - `<leader>dd` start session with breakpoint
 
@@ -357,15 +357,6 @@ Random features added.
 - `<leader>hst` status
 - `<leader>hxb` open blame in browser
 - `<leader>hxf` open file in browser
-
-### Merge Conflicts
-
-- `co` choose ours
-- `ct` choose theirs
-- `cb` choose both
-- `c0` choose none
-- `]x` jump to next conflict
-- `[x` jump to previous conflict
 
 ### Application
 
