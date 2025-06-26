@@ -24,7 +24,7 @@ local function hardtime()
 	end
 end
 
--- Different behavior for <tab>/<s-tab>/<cr> depending on context
+-- Different behaviour for <tab>/<s-tab>/<cr> depending on context
 local function super_tab()
 	local km = require("mini.keymap")
 

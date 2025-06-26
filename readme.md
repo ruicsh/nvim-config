@@ -29,19 +29,19 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ### Navigation
 
-- [flash.nvim](https://github.com/folke/flash.nvim) - Jump with search labels
-- [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
-- [mini.keymap](https://github.com/echasnovski/mini.keymap) - Special key mappings
-- [oil.nvim](https://github.com/stevearc/oil.nvim) - Files explorer
-- [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
+- [flash](https://github.com/folke/flash.nvim) - Jump with search labels
+- [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
+- [oil](https://github.com/stevearc/oil.nvim) - Files explorer
+- [other](https://github.com/rgroli/other.nvim) - Open alternative files
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
-- [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - AST aware navigation
+- [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware navigation
 
 ### Editing
 
 - [guess-indent](https://github.com/NMAC427/guess-indent.nvim) - Indentation style detection
 - [mini.ai](https://github.com/echasnovski/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/echasnovski/mini.align) - Align text interactively
+- [mini.keymap](https://github.com/echasnovski/mini.keymap) - Special key mappings
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.pairs](https://github.com/echasnovski/mini.pairs) - Auto-pairs
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround actions
@@ -49,17 +49,17 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 ### Coding
 
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
-- [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
-- [conform.nvim](https://github.com/stevearc/conform.nvim) - Formatter
+- [CopilotChat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
+- [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
-- [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - CSS Colours
 - [nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename HTML tags
-- [ts-comments.nvim](https://github.com/folke/ts-comments.nvim) - Custom comments configurations per language
+- [ts-comments](https://github.com/folke/ts-comments.nvim) - Custom comments configurations per language
 
 ### LSP/Syntax
 
-- [lazydev.nvim](https://github.com/folke/lazydev.nvim) - Lua language server
+- [lazydev](https://github.com/folke/lazydev.nvim) - Lua language server
 - [mason](https://github.com/williamboman/mason.nvim) - LSP package manager
+- [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - Highlight patterns in text
 - [nvim-treesitter-refactor](https://github.com/nvim-treesitter/nvim-treesitter-refactor) - AST navigation
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
@@ -68,12 +68,12 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 - [nvim-dap-view](https://github.com/igorlfs/nvim-dap-view) - Debugger UI
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap) - Debugger Adapter Protocol
-- [timber.nvim](https://github.com/Goose97/timber.nvim) - Insert log statements
+- [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [vim-test](https://github.com/vim-test/vim-test) - Test runner
 
 ### Git
 
-- [fugitive.vim](https://github.com/tpope/vim-fugitive) - status, commit, push
+- [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [mini.diff](https://github.com/echasnovski/mini.diff) - hunks
 - [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote repo
 
