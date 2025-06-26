@@ -17,7 +17,7 @@ return {
 		vim.g["test#custom_strategies"] = {
 			my_neovim = function(cmd)
 				-- Open a new vertical split for the terminal
-				vim.cmd("silent only | vnew")
+				vim.ui.open_side_panel(false)
 
 				-- Run the test command
 				vim.fn.jobstart(cmd, {

@@ -5,8 +5,8 @@ return {
 	"tpope/vim-fugitive",
 	keys = function()
 		local function open_git_status()
-			local buf_id = vim.fn.bufnr("^fugitive://")
 			-- Fugitive is already open, so just switch to it
+			local buf_id = vim.fn.bufnr("^fugitive://")
 			if buf_id ~= -1 then
 				local win_ids = vim.fn.win_findbuf(buf_id)
 				if #win_ids > 0 then
@@ -16,9 +16,7 @@ return {
 			end
 
 			-- Fugitive is not open, so we need to open it
-			vim.cmd("only") -- Make sure we are in a single window
-			vim.cmd("vertical Git") -- Open Git status in a vertical split
-			vim.cmd("wincmd L") -- Send current window (fugitive) to the right edge
+			vim.ui.open_side_panel("vertical Git")
 		end
 
 		local mappings = {

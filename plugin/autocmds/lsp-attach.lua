@@ -55,9 +55,7 @@ local function keymaps(bufnr, client)
 
 	-- Open definition in a new vertical window
 	local function vsplit_and_definition()
-		vim.cmd("only")
-		vim.cmd("vsplit")
-		vim.cmd("wincmd L")
+		vim.ui.open_side_panel(false)
 		vim.lsp.buf.definition()
 	end
 

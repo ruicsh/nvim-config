@@ -238,8 +238,7 @@ return {
 				help = {
 					confirm = function(picker, item)
 						picker:close()
-						vim.cmd("only")
-						vim.cmd("vertical help " .. item.tag)
+						vim.ui.open_side_panel("vertical help " .. item.tag)
 					end,
 				},
 				projects = {

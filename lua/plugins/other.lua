@@ -6,8 +6,7 @@ return {
 	keys = function()
 		local function vsplit(other)
 			return function()
-				vim.cmd("only")
-				vim.cmd("OtherVSplit " .. other)
+				vim.ui.open_side_panel("OtherVSplit " .. other)
 			end
 		end
 

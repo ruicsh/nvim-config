@@ -234,7 +234,8 @@ local function new_chat_window(prompt, opts)
 		opts.window = {
 			layout = "vertical",
 		}
-		vim.cmd("only")
+
+		vim.ui.open_side_panel(false)
 	end
 
 	vim.g.copilot_chat_title = nil -- Reset chat title used for saving chat history
@@ -507,7 +508,7 @@ local function list_chat_history()
 			end
 
 			vim.g.copilot_chat_title = item.basename
-			vim.cmd("only")
+			vim.ui.open_side_panel(false)
 
 			chat.open()
 			chat.load(item.basename)
@@ -619,7 +620,7 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 
 				chat.close()
 
-				vim.cmd("only")
+				vim.api.nvim_win_close(0, false)
 				vim.cmd("vertical Git")
 				vim.cmd("Git commit")
 			end
