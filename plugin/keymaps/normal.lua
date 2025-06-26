@@ -112,10 +112,10 @@ end
 k("'s", function()
 	vim.cmd("normal! `s")
 	vim.cmd.nohlsearch()
-end, { desc = "Jump to last search" })
+end, { desc = "Last searched from position" })
 
 -- Split search
--- Mimics the native behavior of `<c-w>i` :h CTRL-W_i
+-- Mimics the native behaviour of `<c-w>i` :h CTRL-W_i
 local split_search_keys = {
 	["/"] = "Split window and search",
 	["*"] = "Split window and search current word (forward)",
@@ -139,7 +139,7 @@ k("<c-w><c-i>", function()
 	vim.cmd("normal! n")
 end, { desc = "Split window and search current word from beginning of file" })
 
--- This simulates the native `[<c-i>` behavior but doesn't include imported files.
+-- This simulates the native `[<c-i>` behaviour but doesn't include imported files.
 -- It sets a mark before searching, so can return to the position before the search with `'s`.
 -- It also allows using `n` to jump to the next search result (native is `]<c-i>`).
 -- `<c-i>` is the same as `<tab>` :h [_CTRL-I
@@ -185,13 +185,10 @@ k("<tab>", function()
 	vim.cmd("normal! " .. cmd)
 end, { silent = true, desc = "Folds: Toggle" })
 
--- Close all other
-k("<s-tab>", "zMzv", { desc = "Folds: Close all other" })
-
 -- }}}
 
 -- Terminal {{{
-k("<c-bslash>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 -- }}}
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable

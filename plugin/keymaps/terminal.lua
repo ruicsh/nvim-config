@@ -9,6 +9,6 @@ end
 k("<c-[>", "<c-bslash><c-n>", { desc = "Enter normal mode" })
 
 -- Toggle terminal buffer (close as we are in terminal mode)
-k("<c-bslash>", function()
+k("<c-t>", function()
 	vim.cmd("ToggleTerminal")
 end, { desc = "Toggle terminal" })
