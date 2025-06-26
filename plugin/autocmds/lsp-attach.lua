@@ -135,6 +135,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 
+		-- Skip oil buffers
+		if vim.bo[bufnr].filetype == "oil" then
+			return
+		end
+
 		diagnostics()
 		keymaps(bufnr, client)
 		highlight_references(bufnr, client)

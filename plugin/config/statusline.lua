@@ -72,6 +72,8 @@ local function c_mode()
 		mode = "HELP"
 	elseif bt == "quickfix" then
 		mode = "QF"
+	elseif ft == "oil" then
+		mode = "DIR"
 	elseif ft == "vim" then
 		mode = "VIM"
 	elseif ft == "fugitive" or ft == "gitcommit" or vim.wo.diff then
@@ -118,10 +120,14 @@ local function c_filename()
 		return ""
 	else
 		local path = vim.fn.expand("%:p:~")
-		local parent = vim.fn.fnamemodify(path, ":h:t")
-		local filename = vim.fn.fnamemodify(path, ":t")
-		local display = parent == filename and filename or parent .. "/" .. filename
-		line = line .. display
+		if ft == "oil" then
+			line = line .. vim.fn.fnamemodify(path:sub(7), ":.")
+		else
+			local parent = vim.fn.fnamemodify(path, ":h:t")
+			local filename = vim.fn.fnamemodify(path, ":t")
+			local display = parent == filename and filename or parent .. "/" .. filename
+			line = line .. display
+		end
 	end
 
 	return line .. " %m"

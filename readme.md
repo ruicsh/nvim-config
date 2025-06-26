@@ -33,6 +33,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
 - [mini.keymap](https://github.com/echasnovski/mini.keymap) - Special key mappings
+- [oil.nvim](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
 - [treewalker.nvim](https://github.com/aaronik/treewalker.nvim) - AST aware navigation

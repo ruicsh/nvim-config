@@ -10,6 +10,7 @@ local DISABLED_FILETYPES = {
 	"help",
 	"lspinfo",
 	"man",
+	"oil",
 	"qf",
 	"query",
 	"scratch",
