@@ -17,7 +17,7 @@ local function hardtime()
 	}
 
 	for key, opposite_key in pairs(key_opposite) do
-		local limit = 3
+		local limit = 5
 		local lhs = string.rep(key, limit)
 		local rhs = string.rep(opposite_key, limit)
 		km.map_combo({ "n", "x" }, lhs, rhs)

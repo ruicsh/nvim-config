@@ -43,19 +43,6 @@ local function diagnostics()
 	})
 end
 
--- Make diagnostic navigation
-local function set_keymaps_diagnostics(k)
-	local jump_to_next = function()
-		vim.diagnostic.jump({ count = vim.v.count1 })
-	end
-	local jump_to_prev = function()
-		vim.diagnostic.jump({ count = -vim.v.count1 })
-	end
-
-	k("[x", jump_to_prev, "Previous diagnostic")
-	k("]x", jump_to_next, "Next diagnostic")
-end
-
 -- Set keymaps for LSP
 local function keymaps(bufnr, client)
 	local snacks = require("snacks")
@@ -94,8 +81,6 @@ local function keymaps(bufnr, client)
 	k("<leader>xx", snacks.picker.diagnostics, "Diagnostics: Workspace")
 	k("<leader>xf", snacks.picker.diagnostics_buffer, "Diagnostics: File")
 	k("K", hover, "Hover")
-
-	set_keymaps_diagnostics(k)
 
 	if client:supports_method(methods.textDocument_typeDefinition) then
 		k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
