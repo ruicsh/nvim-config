@@ -31,7 +31,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 - [flash.nvim](https://github.com/folke/flash.nvim) - Jump with search labels
 - [gx.nvim](https://github.com/chrishrb/gx.nvim) - Open links/files
-- [mini.files](https://github.com/echasnovski/mini.files) - Files explorer
 - [mini.keymap](https://github.com/echasnovski/mini.keymap) - Special key mappings
 - [oil.nvim](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other.nvim](https://github.com/rgroli/other.nvim) - Open alternative files
@@ -154,10 +153,12 @@ Random features added.
 
 ### Files explorer
 
-- `<leader><leader>` fuzzy find files
-- `-` file tree explorer
-- `<leader>.` last picker
+- `-` open directory explorer
+- `<c-w>s` open in horizontal split
+- `<c-w>v` open in vertical split
 - `<leader>-` workspaces
+- `<leader>.` last picker
+- `<leader><leader>` fuzzy find files
 
 ### Buffers
 

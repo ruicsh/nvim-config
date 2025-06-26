@@ -333,13 +333,6 @@ loadColorSet({
 	MiniDiffOverContextBuf = { link = "diffRemoved" },
 })
 
--- mini.files
-loadColorSet({
-	MiniFilesBorder = { fg = c.neutral_600, bg = c.neutral_880 },
-	MiniFilesBorderModified = { fg = c.nord12 },
-	MiniFilesNormal = { fg = c.nord4, bg = c.neutral_880 },
-})
-
 -- mini.hipatterns
 loadColorSet({
 	MiniHipatternsDebugStatement = { fg = c.nord12 },
