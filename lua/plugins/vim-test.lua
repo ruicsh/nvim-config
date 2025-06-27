@@ -28,7 +28,7 @@ return {
 				local bufnr = vim.api.nvim_get_current_buf()
 				vim.api.nvim_buf_set_var(bufnr, "is_vimtest_terminal", true)
 
-				vim.cmd.wincmd("h") -- Go back to the previous window
+				vim.cmd.wincmd("p") -- Go back to the previous window
 				vim.cmd.stopinsert() -- Make sure we are not in insert mode
 			end,
 		}
