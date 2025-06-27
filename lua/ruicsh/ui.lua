@@ -29,6 +29,13 @@ vim.ui.open_side_panel = function(cmd)
 	local current_tab = vim.api.nvim_win_get_tabpage(current_win)
 	local wins = vim.api.nvim_tabpage_list_wins(current_tab)
 
+	-- Remove invalid windows from the list
+	for i = #wins, 1, -1 do
+		if not vim.api.nvim_win_is_valid(wins[i]) then
+			table.remove(wins, i)
+		end
+	end
+
 	local function run_command()
 		-- If the command is false, we don't run anything
 		if cmd ~= false then
