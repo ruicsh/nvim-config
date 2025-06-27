@@ -1,7 +1,7 @@
-vim.ui = {}
+vim.ux = vim.ux or {}
 
 -- Close all windows to the right/left side of the current window
-vim.ui.close_windows_on_side = function(side)
+vim.ux.close_windows_on_side = function(side)
 	local current_win = vim.api.nvim_get_current_win()
 	local current_tab = vim.api.nvim_win_get_tabpage(current_win)
 	local wins = vim.api.nvim_tabpage_list_wins(current_tab)
@@ -24,7 +24,7 @@ vim.ui.close_windows_on_side = function(side)
 end
 
 -- Open the right side panel, closing right/left side windows if necessary
-vim.ui.open_side_panel = function(cmd)
+vim.ux.open_side_panel = function(cmd)
 	local current_win = vim.api.nvim_get_current_win()
 	local current_tab = vim.api.nvim_win_get_tabpage(current_win)
 	local wins = vim.api.nvim_tabpage_list_wins(current_tab)
@@ -65,9 +65,9 @@ vim.ui.open_side_panel = function(cmd)
 	end
 
 	if has_right_windows then
-		vim.ui.close_windows_on_side("right")
+		vim.ux.close_windows_on_side("right")
 	else
-		vim.ui.close_windows_on_side("left")
+		vim.ux.close_windows_on_side("left")
 	end
 
 	run_command()

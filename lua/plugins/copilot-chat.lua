@@ -235,7 +235,7 @@ local function new_chat_window(prompt, opts)
 			layout = "vertical",
 		}
 
-		vim.ui.open_side_panel(false)
+		vim.ux.open_side_panel(false)
 	end
 
 	vim.g.copilot_chat_title = nil -- Reset chat title used for saving chat history
@@ -508,7 +508,7 @@ local function list_chat_history()
 			end
 
 			vim.g.copilot_chat_title = item.basename
-			vim.ui.open_side_panel(false)
+			vim.ux.open_side_panel(false)
 
 			chat.open()
 			chat.load(item.basename)

@@ -237,7 +237,7 @@ return {
 				help = {
 					confirm = function(picker, item)
 						picker:close()
-						vim.ui.open_side_panel("vertical help " .. item.tag)
+						vim.ux.open_side_panel("vertical help " .. item.tag)
 					end,
 				},
 				projects = {
