@@ -20,12 +20,12 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>hst", open_git_status, "status" },
+			{ "<leader>hh", open_git_status, "status" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
 	end,
 
-	cmd = { "Git" },
+	event = "VeryLazy",
 	enabled = not vim.g.vscode,
 }

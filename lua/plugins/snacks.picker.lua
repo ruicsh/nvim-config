@@ -130,7 +130,6 @@ return {
 			{ "<leader>uu", snacks.picker.undo, "Undotree" },
 
 			-- git
-			{ "<leader>hh", snacks.picker.git_status, "Git: Status" },
 			{ "<leader>hbr", snacks.picker.git_branches, "Git: Branches" },
 			{ "<leader>hlf", snacks.picker.git_log_file, "Git: Log file" },
 			{ "<leader>hlg", snacks.picker.git_log, "Git: Log" },

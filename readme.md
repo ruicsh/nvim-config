@@ -349,14 +349,13 @@ Random features added.
 - `gh` stage hunk
 - `gH` reset hunk
 - `<leader>hd` diff hunk
-- `<leader>hh` modified files
+- `<leader>hh` status
 - `<leader>hlg` log
 - `<leader>hlf` log file
 - `<leader>hll` log line
 - `<leader>hpf` push --force-with-lease
 - `<leader>hps` push
 - `<leader>hpu` push -set-upstream origin HEAD
-- `<leader>hst` status
 - `<leader>hxb` open blame in browser
 - `<leader>hxf` open file in browser
 
