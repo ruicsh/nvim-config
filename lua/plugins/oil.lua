@@ -24,11 +24,12 @@ return {
 			bufhidden = "hide",
 		},
 		columns = {
+			{ "mtime", highlight = "Comment" },
+			{ "size", highlight = "Comment" },
 			{ "icon", add_padding = false },
 		},
 		constrain_cursor = "name",
 		default_file_explorer = true,
-		delete_to_trash = true,
 		keymaps = {
 			["-"] = { "actions.parent", mode = "n" },
 			["<c-l>"] = "actions.refresh",
@@ -49,9 +50,6 @@ return {
 		skip_confirm_for_simple_edits = true,
 		use_default_keymaps = false,
 		view_options = {
-			is_always_hidden = function(name, _)
-				return name == "." or name == ".."
-			end,
 			show_hidden = true,
 		},
 	},
