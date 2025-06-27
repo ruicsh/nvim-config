@@ -55,7 +55,8 @@ local function keymaps(bufnr, client)
 
 	-- Open definition in a new vertical window
 	local function vsplit_and_definition()
-		vim.ui.open_side_panel(false)
+		-- We need to open the panel with the current buffer first
+		vim.ui.open_side_panel("vsplit | wincmd L")
 		vim.lsp.buf.definition()
 	end
 
