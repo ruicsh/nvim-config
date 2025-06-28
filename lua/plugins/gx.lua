@@ -4,8 +4,25 @@
 return {
 	"chrishrb/gx.nvim",
 	keys = function()
+		local function open_commit_url()
+			local notify = require("mini.notify")
+			local blame = vim.git.blame()
+
+			if blame.commit:match("^00000000") or blame.commit == "fatal" then
+				local id = notify.add("Not commited yet.", "WARN")
+				vim.defer_fn(function()
+					notify.remove(id)
+				end, 3000)
+				return
+			end
+
+			local url = string.format("%s/commit/%s", blame.repo_url, blame.commit)
+			vim.cmd("Browse " .. url)
+		end
+
 		local mappings = {
 			{ "gx", "<cmd>Browse<cr>", "Open file/url at cursor", mode = { "n", "x" } },
+			{ "<leader>hxb", open_commit_url, "Git commit" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings)
@@ -108,6 +125,7 @@ return {
 					end
 				end,
 			},
+			search = false,
 		},
 	},
 	config = function(_, opts)
