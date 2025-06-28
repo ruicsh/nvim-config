@@ -113,8 +113,11 @@ return {
 	config = function(_, opts)
 		local gx = require("gx")
 
-		if vim.fn.env_get("USE_EDGE_BROWSER") == "true" then
-			opts.open_browser_app = "cmd.exe"
+		-- We're probably running in a Windows environment or in a WSL environment
+		if vim.fn.env_get("USE_BROWSER") == "edge" then
+			-- Needs full path when running on CommandPrompt
+			local browser_app = vim.fn.has("win32") and "C:\\Windows\\System32\\cmd.exe" or "cmd.exe"
+			opts.open_browser_app = browser_app
 			opts.open_browser_args = { "/C", "start", 'microsoft-edge:"%s"' }
 		end
 
@@ -123,4 +126,6 @@ return {
 	init = function()
 		vim.g.netrw_nogx = 1
 	end,
+
+	cmd = { "Browse" },
 }
