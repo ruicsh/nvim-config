@@ -9,8 +9,8 @@ end
 
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
-k("{", ":keepjumps normal! 6k<cr>", { desc = "Jump up 6 lines", silent = true })
-k("}", ":keepjumps normal! 6j<cr>", { desc = "Jump down 6 lines", silent = true })
+k("{", ":normal! 6k<cr>", { desc = "Jump up 6 lines", silent = true })
+k("}", ":normal! 6j<cr>", { desc = "Jump down 6 lines", silent = true })
 
 -- Store relative line number jumps in the jumplist.
 -- For small jumps, use visual lines.
@@ -152,8 +152,8 @@ k("[<c-i>", function()
 end, { desc = "Search current word (from beginning of file)" })
 
 -- Don't store jumps when browsing search results
-k("n", ":keepjumps normal! n<cr>", { desc = "Search: Next" })
-k("N", ":keepjumps normal! N<cr>", { desc = "Search: Previous" })
+k("n", ":normal! n<cr>", { desc = "Search: Next" })
+k("N", ":normal! N<cr>", { desc = "Search: Previous" })
 
 -- }}}
 

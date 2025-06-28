@@ -24,8 +24,8 @@ return {
 			bufhidden = "hide",
 		},
 		columns = {
-			{ "mtime", highlight = "Comment" },
 			{ "size", highlight = "Comment" },
+			{ "mtime", highlight = "Comment" },
 			{ "icon", add_padding = false },
 		},
 		constrain_cursor = "name",
