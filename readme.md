@@ -189,6 +189,8 @@ Random features added.
 - `'{a-z}'` jump to marked position
 - `\` focus previous window
 - `|` cycle windows
+- `<c-b>` jump backwards one character (insert mode)
+- `<c-f>` jump forward one character (insert mode)
 
 ### Editing
 
@@ -200,19 +202,6 @@ Random features added.
 - `]p` paste to new line below
 - `ycc` duplicate a line, comment out the first line.
 - `<leader>yf` copy relative filename
-
-### Insert mode navigation
-
-- `<c-a>` jump to beginning of line
-- `<c-b>` jump backwards one character
-- `<c-d>` delete character in front of cursor
-- `<c-e>` jump to end of line
-- `<c-f>` jump forward one character
-- `<c-u>` delete till beginning of line
-- `<m-b>` jump word before
-- `<m-f>` jump word after
-- `<m-bs>` delete word before
-- `<m-d>` delete word after
 
 ### Text objects
 

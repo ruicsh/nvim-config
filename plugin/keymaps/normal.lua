@@ -35,19 +35,18 @@ for key, desc in pairs(center_scroll_keys) do
 	k(key, key .. "zz", { desc = desc })
 end
 
--- Jump to mark, don't change jumplist `:h map-backtick` `:h g``
-k("'", "g`", { desc = "Jump to mark cursor" })
+-- Jump to mark `:h map-backtick`
+k("'", "`", { desc = "Jump to mark cursor" })
 
 -- }}}
 
 -- Editing {{{
 
-k("<c-v>", '"*p', { desc = "Paste" })
-k("U", "<c-r>", { desc = "Redo" })
+k("U", "<c-r>", { desc = "Redo" }) -- `:h ctrl-r`
 
 -- Keep same logic from `y/c/d` on `v`
 k("V", "v$") -- Select until end of line
-k("vv", "V") -- Enter visual linewise mode
+k("vv", "V") -- Enter visual linewise mode `:h V`
 
 -- Paste on adjacent line
 k("[p", ":put!<cr>==", { desc = "Paste on line above" })
@@ -115,7 +114,7 @@ k("'s", function()
 end, { desc = "Last searched from position" })
 
 -- Split search
--- Mimics the native behaviour of `<c-w>i` :h CTRL-W_i
+-- Mimics the native behaviour of `:h CTRL-W_i`
 local split_search_keys = {
 	["/"] = "Split window and search",
 	["*"] = "Split window and search current word (forward)",
@@ -151,10 +150,6 @@ k("[<c-i>", function()
 	vim.cmd("normal! n")
 end, { desc = "Search current word (from beginning of file)" })
 
--- Don't store jumps when browsing search results
-k("n", ":normal! n<cr>", { desc = "Search: Next" })
-k("N", ":normal! N<cr>", { desc = "Search: Previous" })
-
 -- }}}
 
 -- Stop setting keymaps incompatible with vscode
@@ -163,12 +158,12 @@ if vim.g.vscode then
 end
 
 -- Buffers {{{
-k("<bs>", "<c-6>", { desc = "Toggle to last buffer" })
+k("<bs>", "<c-6>", { desc = "Toggle to last buffer" }) -- `:h CTRL-6`
 -- }}}
 
 -- Windows {{{
-k("<bslash>", "<c-w>p", { desc = "Windows: Previous" })
-k("<bar>", "<c-w>w", { desc = "Windows: Cycle" })
+k("<bslash>", "<c-w>p", { desc = "Windows: Previous" }) -- `:h CTRL-W_p`
+k("<bar>", "<c-w>w", { desc = "Windows: Cycle" }) -- `:h CTRL-W_w`
 -- }}}
 
 -- Folds {{{
