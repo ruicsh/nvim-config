@@ -133,8 +133,10 @@ return {
 
 		-- We're probably running in a Windows environment or in a WSL environment
 		if vim.fn.env_get("USE_BROWSER") == "edge" then
+			local is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
+			local is_windows = vim.fn.has("win32") == 1 and not is_wsl
 			-- Needs full path when running on CommandPrompt
-			local browser_app = vim.fn.has("win32") and "C:\\Windows\\System32\\cmd.exe" or "cmd.exe"
+			local browser_app = is_windows and "C:\\Windows\\System32\\cmd.exe" or "cmd.exe"
 			opts.open_browser_app = browser_app
 			opts.open_browser_args = { "/C", "start", 'microsoft-edge:"%s"' }
 		end
