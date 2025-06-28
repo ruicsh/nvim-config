@@ -187,7 +187,8 @@ Random features added.
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
-- `|` switch windows
+- `\` focus previous window
+- `|` cycle windows
 
 ### Editing
 

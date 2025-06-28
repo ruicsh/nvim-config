@@ -167,7 +167,8 @@ k("<bs>", "<c-6>", { desc = "Toggle to last buffer" })
 -- }}}
 
 -- Windows {{{
-k("<bar>", "<c-w>w", { desc = "Windows: Switch" })
+k("<bslash>", "<c-w>p", { desc = "Windows: Previous" })
+k("<bar>", "<c-w>w", { desc = "Windows: Cycle" })
 -- }}}
 
 -- Folds {{{
