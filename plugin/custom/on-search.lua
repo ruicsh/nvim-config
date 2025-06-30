@@ -1,4 +1,4 @@
--- On search behaviors
+-- On search behaviours
 
 -- 1. Pause folds on search
 -- https://github.com/chrisgrieser/nvim-origami/blob/main/lua/origami/features/pause-folds-on-search.lua

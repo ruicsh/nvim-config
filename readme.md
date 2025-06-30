@@ -140,14 +140,12 @@ New features built around autocmds (events).
 
 Random features added.
 
-|                                                                                                          |                                                 |
-| -------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [close-shortcut](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/close-shortcut.lua)       | Use the same shortcut to close different panels |
-| [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua) | Duplicate and comment                           |
-| [on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/on-search.lua)                 | Pause folds, show results count on search       |
-| [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)   | AST aware indentation                           |
-| [yank-ring](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/yank-ring.lua)                 | Yank ring                                       |
-| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)           | Display :messages on a separate window          |
+|                                                                                                          |                                           |
+| -------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua) | Duplicate and comment                     |
+| [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)   | AST aware indentation                     |
+| [on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/on-search.lua)                 | Pause folds, show results count on search |
+| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)           | Display :messages on a separate window    |
 
 ## Keymaps
 
