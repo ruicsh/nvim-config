@@ -24,8 +24,6 @@ return {
 			bufhidden = "hide",
 		},
 		columns = {
-			{ "size", highlight = "Comment" },
-			{ "mtime", highlight = "Comment" },
 			{ "icon", add_padding = false },
 		},
 		constrain_cursor = "name",
@@ -50,7 +48,13 @@ return {
 		skip_confirm_for_simple_edits = true,
 		use_default_keymaps = false,
 		view_options = {
+			is_always_hidden = function(name, _)
+				return name == "." or name == ".."
+			end,
 			show_hidden = true,
+		},
+		win_options = {
+			signcolumn = "yes:2",
 		},
 	},
 	enabled = not vim.g.vscode,

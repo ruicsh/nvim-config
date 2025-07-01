@@ -24,7 +24,7 @@ local function hl(group, color)
 	end
 end
 
--- Local a set of colors
+-- Local a set of colours
 local function loadColorSet(colorSet)
 	for group, colors in pairs(colorSet) do
 		hl(group, colors)
@@ -39,7 +39,7 @@ end
 
 vim.g.colors_name = "nordstone"
 
--- COLORS
+-- COLOURS
 
 _G.NordStoneColors = {
 	nord0 = "#2e3440",
