@@ -5,12 +5,12 @@ return {
 	"echasnovski/mini.surround",
 	opts = {
 		mappings = {
-			add = "sa",
-			delete = "sd",
+			add = "ys",
+			delete = "ds",
 			find = "",
 			find_left = "",
 			highlight = "",
-			replace = "sr",
+			replace = "cs",
 			update_n_lines = "",
 		},
 	},
