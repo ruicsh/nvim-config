@@ -82,6 +82,10 @@ k("cN", "*``cgN", { desc = "Change word (backward)" })
 
 -- Search {{{
 
+-- Center screen on search results
+k("n", "nzvzz", { desc = "Search: Next (center screen)" })
+k("N", "Nzvzz", { desc = "Search: Previous (center screen)" })
+
 -- Mark position before search
 -- Use `'s` to go back to where search started
 -- https://github.com/justinmk/config/blob/master/.config/nvim/plugin/my/keymaps.lua#L51
@@ -104,42 +108,22 @@ k("'s", function()
 	vim.cmd.nohlsearch()
 end, { desc = "Last searched from position" })
 
--- Split search
--- Mimics the native behaviour of `:h CTRL-W_i`
-local split_search_keys = {
-	["/"] = "Split window and search",
-	["*"] = "Split window and search current word (forward)",
-	["#"] = "Split window and search current word (backward)",
-	["£"] = "Split window and search current word (backward)",
-	["g*"] = "Split window and search current word (forward, not whole word)",
-	["g#"] = "Split window and search current word (backward, not whole word)",
-	["g£"] = "Split window and search current word (backward, not whole word)",
-}
-for key, desc in pairs(split_search_keys) do
-	k("<c-w>" .. key, "<c-w>s" .. key, { desc = desc })
-end
-
 -- Split window and search current word from beginning of file
 -- Make `<c-w><c-i>` work with `n` and `N` `:h CTRL-W_i`
-k("<c-w><c-i>", function()
+local function split_and_search_current_word()
 	local cword = vim.fn.expand("<cword>")
-	vim.cmd.split()
-	vim.cmd("normal! gg")
+	vim.ux.open_side_panel("vsplit || normal! gg")
 	vim.cmd("/" .. vim.fn.escape(cword, "\\[]^$.*~/"))
-	vim.cmd("normal! n")
-end, { desc = "Split window and search current word from beginning of file" })
+	vim.cmd("normal! nzvzz")
+end
 
--- This simulates the native `[<c-i>` behaviour but doesn't include imported files.
--- It sets a mark before searching, so can return to the position before the search with `'s`.
--- It also allows using `n` to jump to the next search result (native is `]<c-i>`).
--- `<c-i>` is the same as `<tab>` :h [_CTRL-I
-k("[<c-i>", function()
-	local cword = vim.fn.expand("<cword>")
-	vim.cmd("normal! ms")
-	vim.cmd("normal! gg")
-	vim.cmd("/" .. vim.fn.escape(cword, "\\[]^$.*~/"))
-	vim.cmd("normal! n")
-end, { desc = "Search current word (from beginning of file)" })
+local split_search_keys = {
+	"<c-w><c-i>",
+	"<c-w>i",
+}
+for _, key in ipairs(split_search_keys) do
+	k(key, split_and_search_current_word, { desc = "Split window and search current word from beginning of file" })
+end
 
 -- }}}
 
