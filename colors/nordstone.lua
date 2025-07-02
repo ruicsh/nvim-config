@@ -389,6 +389,16 @@ loadColorSet({
 	DapUIWinSelect = { fg = c.nord8, style = "bold" },
 })
 
+-- oil-git-status
+loadColorSet({
+	OilGitAdded = { fg = c.nord14, bg = "NONE" },
+	OilGitModified = { fg = c.nord13, bg = "NONE" },
+	OilGitDeleted = { fg = c.nord11, bg = "NONE" },
+	OilGitRenamed = { fg = c.nord13, bg = "NONE" },
+	OilGitUntracked = { fg = c.nord14, bg = "NONE" },
+	OilGitIgnored = { fg = c.nord3_500, bg = "NONE" },
+})
+
 -- other.nvim
 loadColorSet({
 	OtherUnderlined = { fg = c.nord12, bg = c.neutral_900 },

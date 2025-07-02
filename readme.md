@@ -25,7 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>36 plugins</sub>
+<sub>37 plugins</sub>
 
 ### Navigation
 
@@ -75,6 +75,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [mini.diff](https://github.com/echasnovski/mini.diff) - hunks
+- [oil-git-status](https://github.com/benomahony/oil-git.nvim) - git status on file explorer
 - [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote repo
 
 ### UI
