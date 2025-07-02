@@ -32,6 +32,7 @@ return {
 				pattern = "(.*).tsx$",
 				target = {
 					{ target = "%1.module.scss", context = "style" },
+					{ target = "styles.module.scss", context = "style" },
 					{ target = "%1.scss", context = "style" },
 					{ target = "%1.test.tsx", context = "test" },
 					{ target = "%1.stories.tsx", context = "story" },
@@ -43,6 +44,7 @@ return {
 					{ target = "%1.tsx", context = "source" },
 					{ target = "%1.module.scss", context = "style" },
 					{ target = "%1.scss", context = "style" },
+					{ target = "%1.stories.tsx", context = "story" },
 				},
 			},
 			{ -- react/scss (style)
@@ -50,6 +52,7 @@ return {
 				target = {
 					{ target = "%1.tsx", context = "source" },
 					{ target = "%1.test.tsx", context = "test" },
+					{ target = "%1.stories.tsx", context = "story" },
 				},
 			},
 			{ -- react/css.modules (style)
@@ -57,6 +60,7 @@ return {
 				target = {
 					{ target = "%1.tsx", context = "source" },
 					{ target = "%1.test.tsx", context = "test" },
+					{ target = "%1.story.tsx", context = "story" },
 				},
 			},
 			{ -- react (story)

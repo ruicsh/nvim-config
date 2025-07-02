@@ -9,11 +9,11 @@ end
 
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
-k("{", ":normal! 6k<cr>", { desc = "Jump up 6 lines", silent = true })
-k("}", ":normal! 6j<cr>", { desc = "Jump down 6 lines", silent = true })
+k("{", "6k", { desc = "Jump up 6 lines", silent = true })
+k("}", "6j", { desc = "Jump down 6 lines", silent = true })
 
--- Store relative line number jumps in the jumplist.
--- For small jumps, use visual lines.
+-- Store relative line number jumps in the jumplist, by setting a mark. `:h m'`
+-- For small jumps, use visual lines. `:h gk`
 k("k", function()
 	return vim.v.count > 0 and "m'" .. vim.v.count .. "k" or "gk"
 end, { expr = true })
@@ -21,19 +21,10 @@ k("j", function()
 	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
 
--- <c-i> would trigger the toggle fold because it's the same as <tab>
--- ' as in jump to mark and ;, as used in the changelist (g;, g,).
+-- <c-i> would trigger the toggle fold because it's the same as <tab> `:h CTRL-I`
+-- ' as in jump to mark and ;, as used in the changelist (g;, g,). `h g;`
 k("';", "<c-o>", { desc = "Older cursor position" })
 k("',", "<c-i>", { desc = "Newer cursor position" })
-
--- Center cursor in the middle of the screen when scrolling
-local center_scroll_keys = {
-	["<c-u>"] = "Scroll up half a screen",
-	["<c-d>"] = "Scroll down half a screen",
-}
-for key, desc in pairs(center_scroll_keys) do
-	k(key, key .. "zz", { desc = desc })
-end
 
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark cursor" })
