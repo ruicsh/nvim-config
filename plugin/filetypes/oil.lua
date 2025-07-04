@@ -149,12 +149,24 @@ local function apply_git_highlights()
 	end
 end
 
+local function safe_apply_highlights()
+	local oil = require("oil")
+	local current_dir = oil.get_current_dir()
+
+	if not current_dir then
+		-- Oil not ready, retry
+		vim.defer_fn(safe_apply_highlights, 25)
+		return
+	end
+
+	apply_git_highlights()
+end
+
 vim.api.nvim_create_autocmd("BufEnter", {
 	group = augroup,
 	pattern = "oil://*",
 	callback = function()
-		-- Small delay to ensure oil is fully loaded
-		vim.defer_fn(apply_git_highlights, 100)
+		vim.schedule(safe_apply_highlights)
 	end,
 })
 
