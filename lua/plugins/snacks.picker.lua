@@ -130,10 +130,11 @@ return {
 			{ "<leader>uu", snacks.picker.undo, "Undotree" },
 
 			-- git
-			{ "<leader>hbr", snacks.picker.git_branches, "Git: Branches" },
-			{ "<leader>hlf", snacks.picker.git_log_file, "Git: Log file" },
-			{ "<leader>hlg", snacks.picker.git_log, "Git: Log" },
-			{ "<leader>hll", snacks.picker.git_log_line, "Git: Log line" },
+			{ "<leader>hh", snacks.picker.git_status, "Git: Status" },
+			{ "<leader>hb", snacks.picker.git_branches, "Git: Branches" },
+			{ "<leader>hf", snacks.picker.git_log_file, "Git: Log file" },
+			{ "<leader>hg", snacks.picker.git_log, "Git: Log" },
+			{ "<leader>hl", snacks.picker.git_log_line, "Git: Log line" },
 
 			-- neovim
 			{ "<leader>nH", snacks.picker.highlights, "Highlights" },

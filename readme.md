@@ -339,13 +339,14 @@ Random features added.
 - `gh` stage hunk
 - `gH` reset hunk
 - `<leader>hd` diff hunk
-- `<leader>hh` status
-- `<leader>hlg` log
-- `<leader>hlf` log file
-- `<leader>hll` log line
-- `<leader>hpf` push --force-with-lease
-- `<leader>hps` push
-- `<leader>hpu` push -set-upstream origin HEAD
+- `<leader>hh` pick git files
+- `<leader>hH` status
+- `<leader>hg` log
+- `<leader>hf` log file
+- `<leader>hl` log line
+- `<leader>hF` push --force-with-lease
+- `<leader>hp` push
+- `<leader>hu` push -set-upstream origin HEAD
 - `<leader>hxb` open blame in browser
 - `<leader>hxf` open file in browser
 
