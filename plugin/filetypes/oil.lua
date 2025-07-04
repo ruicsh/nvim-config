@@ -38,22 +38,22 @@ local function get_highlight_group(status_code)
 	return nil, nil
 end
 
-local function get_git_status()
+local function get_git_status(callback)
 	local oil = require("oil")
 	local current_dir = oil.get_current_dir()
 	local git_root = vim.git.get_root_dir()
 
 	if not git_root or not current_dir then
-		return {}
+		callback({})
+		return
 	end
 
-	-- Get relative path from git root to current directory
 	local rel_path = vim.fs.relpath(current_dir, git_root) or "."
 	if rel_path == "" then
 		rel_path = "."
 	end
 
-	local result = vim.system({
+	vim.system({
 		"git",
 		"-C",
 		git_root,
@@ -62,44 +62,34 @@ local function get_git_status()
 		"--ignored",
 		"--",
 		rel_path,
-	}, { text = true }):wait()
-
-	if result.code ~= 0 then
-		return {}
-	end
-
-	local output = result.stdout
-	if not output or output == "" then
-		return {}
-	end
-
-	local status = {}
-	for line in output:gmatch("[^\r\n]+") do
-		if #line >= 3 then
-			local status_code = line:sub(1, 2)
-			local filepath = line:sub(4)
-
-			-- Handle renames (format: "old-name -> new-name")
-			if status_code:sub(1, 1) == "R" then
-				local arrow_pos = filepath:find(" %-> ")
-				if arrow_pos then
-					filepath = filepath:sub(arrow_pos + 4)
-				end
-			end
-
-			-- Remove leading "./" if present
-			if filepath:sub(1, 2) == "./" then
-				filepath = filepath:sub(3)
-			end
-
-			-- Convert to absolute path
-			local abs_path = vim.fs.joinpath(git_root, filepath)
-
-			status[abs_path] = status_code
+	}, { text = true }, function(result)
+		if result.code ~= 0 or not result.stdout or result.stdout == "" then
+			callback({})
+			return
 		end
-	end
 
-	return status
+		local status = {}
+		for line in result.stdout:gmatch("[^\r\n]+") do
+			if #line >= 3 then
+				local status_code = line:sub(1, 2)
+				local filepath = line:sub(4)
+
+				if status_code:sub(1, 1) == "R" then
+					local arrow_pos = filepath:find(" %-> ")
+					if arrow_pos then
+						filepath = filepath:sub(arrow_pos + 4)
+					end
+				end
+
+				if filepath:sub(1, 2) == "./" then
+					filepath = filepath:sub(3)
+				end
+				local abs_path = vim.fs.joinpath(git_root, filepath)
+				status[abs_path] = status_code
+			end
+		end
+		callback(status)
+	end)
 end
 
 local function clear_highlights()
@@ -111,42 +101,39 @@ local function apply_git_highlights()
 	local oil = require("oil")
 	local current_dir = oil.get_current_dir()
 
-	local git_status = get_git_status()
-	if vim.tbl_isempty(git_status) then
-		clear_highlights()
-		return
-	end
+	get_git_status(function(git_status)
+		vim.schedule(function()
+			if vim.tbl_isempty(git_status) then
+				clear_highlights()
+				return
+			end
 
-	local bufnr = vim.api.nvim_get_current_buf()
-	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+			local bufnr = vim.api.nvim_get_current_buf()
+			local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+			clear_highlights()
 
-	clear_highlights()
+			for i, line in ipairs(lines) do
+				local entry = oil.get_entry_on_line(bufnr, i)
+				if entry and entry.type == "file" then
+					local filepath = vim.fs.joinpath(current_dir, entry.name)
+					local status_code = git_status[filepath]
+					local hl_group, symbol = get_highlight_group(status_code)
 
-	for i, line in ipairs(lines) do
-		local entry = oil.get_entry_on_line(bufnr, i)
-		if entry and entry.type == "file" then
-			local filepath = vim.fs.joinpath(current_dir, entry.name)
-
-			local status_code = git_status[filepath]
-			local hl_group, symbol = get_highlight_group(status_code)
-
-			if hl_group and symbol then
-				-- Find the filename part in the line and highlight it
-				local name_start = line:find(entry.name, 1, true)
-				if name_start then
-					-- Highlight the filename
-					vim.fn.matchaddpos(hl_group, { { i, name_start, #entry.name } })
-
-					-- Add symbol as virtual text at the end of the line
-					vim.api.nvim_buf_set_extmark(bufnr, ns, i - 1, 0, {
-						virt_text = { { symbol, hl_group } },
-						virt_text_pos = "eol",
-						hl_mode = "combine",
-					})
+					if hl_group and symbol then
+						local name_start = line:find(entry.name, 1, true)
+						if name_start then
+							vim.fn.matchaddpos(hl_group, { { i, name_start, #entry.name } })
+							vim.api.nvim_buf_set_extmark(bufnr, ns, i - 1, 0, {
+								virt_text = { { symbol, hl_group } },
+								virt_text_pos = "eol",
+								hl_mode = "combine",
+							})
+						end
+					end
 				end
 			end
-		end
-	end
+		end)
+	end)
 end
 
 local function safe_apply_highlights()
@@ -162,9 +149,9 @@ local function safe_apply_highlights()
 	apply_git_highlights()
 end
 
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd("User", {
 	group = augroup,
-	pattern = "oil://*",
+	pattern = "OilEnter",
 	callback = function()
 		vim.schedule(safe_apply_highlights)
 	end,
@@ -178,7 +165,7 @@ vim.api.nvim_create_autocmd("BufLeave", {
 })
 
 -- Refresh when oil buffer content changes (file operations)
-vim.api.nvim_create_autocmd({ "BufWritePost", "TextChanged", "TextChangedI" }, {
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	group = augroup,
 	pattern = "oil://*",
 	callback = function()
