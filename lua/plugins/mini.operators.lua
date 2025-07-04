@@ -5,13 +5,13 @@ return {
 	"echasnovski/mini.operators",
 	opts = {
 		exchange = {
-			prefix = "sx",
+			prefix = "<leader>x",
 		},
 		multiply = {
 			prefix = "<leader>p",
 		},
 		replace = {
-			prefix = "s",
+			prefix = "<leader>r",
 		},
 		sort = {
 			prefix = "<leader>s",

@@ -216,12 +216,12 @@ Random features added.
 
 ### Operators
 
-- `ys{motion}{char}` add surrounding character
-- `ds{char}` delete surrounding character
-- `cs{target}{replacement}` replace surrounding character
-- `sx{motion1}sx{motion2}` exchange
+- `sa{motion}{char}` add surrounding character
+- `sd{char}` delete surrounding character
+- `sr{target}{replacement}` replace surrounding character
+- `<leader>x{motion1}<leader>x{motion2}` exchange
 - `<leader>p{motion}` duplicate
-- `s{motion}` substitute with last yank
+- `<leader>r{motion}` substitute with last yank
 - `<leader>s{motion}` sort
 
 ### Completion
