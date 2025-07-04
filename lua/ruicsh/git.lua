@@ -1,5 +1,14 @@
 vim.git = {}
 
+vim.git.get_root_dir = function()
+	local git_toplevel = vim.fn.system("git rev-parse --show-toplevel")
+	if vim.v.shell_error == 0 then
+		return vim.trim(git_toplevel)
+	else
+		return nil
+	end
+end
+
 -- Get blame info for a file/line
 vim.git.blame = function(o)
 	local opts = o or {}

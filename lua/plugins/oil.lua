@@ -60,6 +60,5 @@ return {
 	enabled = not vim.g.vscode,
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons" },
-		{ "benomahony/oil-git.nvim" },
 	},
 }

@@ -25,7 +25,7 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 ## Plugins
 
-<sub>37 plugins</sub>
+<sub>36 plugins</sub>
 
 ### Navigation
 
@@ -75,7 +75,6 @@ This is my configuration for [Neovim](https://neovim.io/), mostly for frontend d
 
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [mini.diff](https://github.com/echasnovski/mini.diff) - hunks
-- [oil-git-status](https://github.com/benomahony/oil-git.nvim) - git status on file explorer
 - [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote repo
 
 ### UI
@@ -115,6 +114,7 @@ Custom configuration, keymaps, and features dependent on the file's type.
 | --------------------------------------------------------------------------------------------- | ---------- |
 | [dockerfile](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/dockerfile.lua) | Dockerfile |
 | [help](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/help.lua)             | help       |
+| [oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/oil.lua)               | Oil        |
 | [python](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/python.lua)         | Python     |
 | [rust](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/rust.lua)             | Rust       |
 | [terminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/terminal.lua)     | Terminal   |
