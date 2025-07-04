@@ -157,3 +157,30 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		vim.defer_fn(apply_git_highlights, 100)
 	end,
 })
+
+-- Clear highlights when leaving oil buffers
+vim.api.nvim_create_autocmd("BufLeave", {
+	group = augroup,
+	pattern = "oil://*",
+	callback = clear_highlights,
+})
+
+-- Refresh when oil buffer content changes (file operations)
+vim.api.nvim_create_autocmd({ "BufWritePost", "TextChanged", "TextChangedI" }, {
+	group = augroup,
+	pattern = "oil://*",
+	callback = function()
+		vim.schedule(apply_git_highlights)
+	end,
+})
+
+-- Catch common git-related user events
+vim.api.nvim_create_autocmd("User", {
+	group = augroup,
+	pattern = { "FugitiveChanged" },
+	callback = function()
+		if vim.bo.filetype == "oil" then
+			vim.schedule(apply_git_highlights)
+		end
+	end,
+})
