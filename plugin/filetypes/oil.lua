@@ -48,7 +48,7 @@ local function get_git_status()
 	end
 
 	-- Get relative path from git root to current directory
-	local rel_path = vim.fs.normalize(vim.fn.fnamemodify(current_dir, ":~:."))
+	local rel_path = vim.fs.relpath(current_dir, git_root) or "."
 	if rel_path == "" then
 		rel_path = "."
 	end
@@ -154,6 +154,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "oil://*",
 	callback = function()
 		-- Small delay to ensure oil is fully loaded
-		vim.defer_fn(apply_git_highlights, 50)
+		vim.defer_fn(apply_git_highlights, 100)
 	end,
 })
