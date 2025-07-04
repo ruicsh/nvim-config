@@ -53,16 +53,20 @@ local function get_git_status(callback)
 		rel_path = "."
 	end
 
+	-- Use git -c core.quotepath=false for Windows compatibility
+	-- Only check current directory, not subdirectories
 	vim.system({
 		"git",
 		"-C",
 		git_root,
+		"-c",
+		"core.quotepath=false",
 		"status",
-		"--porcelain",
-		"--ignored",
-		"--",
-		rel_path,
-	}, { text = true }, function(result)
+		"--porcelain=v1",
+		"--untracked-files=normal",
+		"--ignored=no",
+		".",
+	}, { text = true, cwd = current_dir }, function(result)
 		if result.code ~= 0 or not result.stdout or result.stdout == "" then
 			callback({})
 			return
@@ -149,11 +153,30 @@ local function safe_apply_highlights()
 	apply_git_highlights()
 end
 
+local debounce_timer = nil
+local DEBOUNCE_MS = 150
+
+local function debounced_apply_highlights()
+	if debounce_timer then
+		vim.uv.timer_stop(debounce_timer)
+	end
+
+	debounce_timer = vim.uv.new_timer()
+	debounce_timer:start(DEBOUNCE_MS, 0, function()
+		vim.schedule(apply_git_highlights)
+		debounce_timer:close()
+		debounce_timer = nil
+	end)
+end
+
 vim.api.nvim_create_autocmd("BufEnter", {
 	group = augroup,
 	pattern = "oil://*",
 	callback = function()
-		vim.schedule(safe_apply_highlights)
+		-- Only run if we're in a git repository
+		if vim.git.get_root_dir() then
+			vim.defer_fn(debounced_apply_highlights, 50)
+		end
 	end,
 })
 
