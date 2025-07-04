@@ -149,9 +149,9 @@ local function safe_apply_highlights()
 	apply_git_highlights()
 end
 
-vim.api.nvim_create_autocmd("User", {
+vim.api.nvim_create_autocmd("BufEnter", {
 	group = augroup,
-	pattern = "OilEnter",
+	pattern = "oil://*",
 	callback = function()
 		vim.schedule(safe_apply_highlights)
 	end,
