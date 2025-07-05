@@ -149,24 +149,6 @@ return {
 	priority = 1000, -- Ensure this is loaded before other plugins that might use snacks
 	opts = {
 		picker = {
-			actions = {
-				send_to_qflist = function(picker)
-					picker:close()
-					local qflist = {}
-					for _, item in ipairs(picker:items()) do
-						if item.file then
-							table.insert(qflist, {
-								lnum = item.pos[1],
-								col = item.pos[2],
-								text = item.line,
-								filename = item.file,
-							})
-						end
-					end
-					vim.fn.setqflist({}, "r", { items = qflist })
-					require("snacks.picker").qflist()
-				end,
-			},
 			db = { sqlite3_path = vim.fn.env_get("SNACKS_PICKER_DB_SQLITE3_PATH") },
 			enabled = true,
 			formatters = {
@@ -297,8 +279,7 @@ return {
 			win = {
 				input = {
 					keys = {
-						["<c-q>"] = { "send_to_qflist", mode = { "n", "i" } },
-						["<esc>"] = { "close", mode = { "n", "i" } },
+						["<c-q>"] = { "close", mode = { "n", "i" } },
 					},
 				},
 			},
