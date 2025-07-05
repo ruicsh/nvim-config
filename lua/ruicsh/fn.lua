@@ -112,8 +112,14 @@ vim.fn.env_get_list = function(key)
 	return list
 end
 
+local env_file_loaded = false
+
 vim.fn.env_get = function(key)
-	vim.fn.load_env_file() -- Make sure the env file is loaded
+	-- Load the env file only once
+	if not env_file_loaded then
+		vim.fn.load_env_file()
+		env_file_loaded = true
+	end
 
 	local env = vim.fn.getenv(key)
 	if env == vim.NIL or env == "" then
