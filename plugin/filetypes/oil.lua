@@ -99,14 +99,15 @@ end
 local function clear_highlights()
 	local bufnr = vim.api.nvim_get_current_buf()
 	vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+	vim.fn.clearmatches()
 end
 
 local function apply_git_highlights()
-	local oil = require("oil")
-	local current_dir = oil.get_current_dir()
-
 	get_git_status(function(git_status)
 		vim.schedule(function()
+			local oil = require("oil")
+			local current_dir = oil.get_current_dir()
+
 			if vim.tbl_isempty(git_status) then
 				clear_highlights()
 				return
@@ -150,45 +151,45 @@ local function safe_apply_highlights()
 		return
 	end
 
-	apply_git_highlights()
-end
+	-- Check if Oil has populated the buffer with entries
+	local bufnr = vim.api.nvim_get_current_buf()
+	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+	local has_entries = false
 
-local debounce_timer = nil
-local DEBOUNCE_MS = 150
-
-local function debounced_apply_highlights()
-	if debounce_timer then
-		vim.uv.timer_stop(debounce_timer)
+	for i = 1, math.min(#lines, 5) do -- Check first few lines
+		if oil.get_entry_on_line(bufnr, i) then
+			has_entries = true
+			break
+		end
 	end
 
-	debounce_timer = vim.uv.new_timer()
-	debounce_timer:start(DEBOUNCE_MS, 0, function()
-		vim.schedule(apply_git_highlights)
-		debounce_timer:close()
-		debounce_timer = nil
-	end)
+	if not has_entries and #lines > 0 then
+		vim.defer_fn(safe_apply_highlights, 25)
+		return
+	end
+
+	apply_git_highlights()
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	group = augroup,
 	pattern = "oil://*",
 	callback = function()
-		-- Only run if we're in a git repository
-		if vim.git.get_root_dir() then
-			vim.defer_fn(debounced_apply_highlights, 50)
-		end
+		safe_apply_highlights()
 	end,
 })
 
--- Clear highlights when leaving oil buffers
+-- Clear highlights when leaving Oil buffer
 vim.api.nvim_create_autocmd("BufLeave", {
 	group = augroup,
 	pattern = "oil://*",
-	callback = clear_highlights,
+	callback = function()
+		clear_highlights()
+	end,
 })
 
 -- Refresh when oil buffer content changes (file operations)
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+vim.api.nvim_create_autocmd({ "BufWritePost", "TextChanged", "TextChangedI" }, {
 	group = augroup,
 	pattern = "oil://*",
 	callback = function()
