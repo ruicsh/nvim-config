@@ -37,6 +37,6 @@ return {
 		vim.g["test#strategy"] = "my_neovim"
 	end,
 
-	event = "VeryLazy",
+	cmd = { "TestLast", "TestNearest", "TestFile", "TestSuite" },
 	enabled = not vim.g.vscode,
 }

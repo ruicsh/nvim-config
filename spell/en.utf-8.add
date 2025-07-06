@@ -3,6 +3,7 @@ Colorscheme
 CursorHold
 DAP
 VimEnter
+Vimscript
 autocmd
 autocmds
 basename

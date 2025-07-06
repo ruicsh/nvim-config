@@ -83,7 +83,7 @@ loadColorSet({
 	Cursor = { fg = c.nord4, bg = "NONE", style = "reverse" },
 	CursorColumn = { fg = "NONE", bg = c.nord0 },
 	CursorIM = { fg = c.nord5, bg = "NONE", style = "reverse" },
-	CursorLine = { bg = c.nord0 },
+	CursorLine = { bg = c.neutral_800 },
 	CursorLineNr = { fg = c.nord4 },
 	DiffAdd = { bg = c.nord0 },
 	DiffChange = { bg = c.nord0 },
@@ -149,22 +149,28 @@ loadColorSet({
 })
 
 -- TERMINAL
-vim.g.terminal_color_0 = c.nord1
-vim.g.terminal_color_1 = c.nord11
-vim.g.terminal_color_2 = c.nord14
-vim.g.terminal_color_3 = c.nord13
-vim.g.terminal_color_4 = c.nord9
-vim.g.terminal_color_5 = c.nord15
-vim.g.terminal_color_6 = c.nord8
-vim.g.terminal_color_7 = c.nord5
-vim.g.terminal_color_8 = c.nord3
-vim.g.terminal_color_9 = c.nord11
-vim.g.terminal_color_10 = c.nord14
-vim.g.terminal_color_11 = c.nord13
-vim.g.terminal_color_12 = c.nord9
-vim.g.terminal_color_13 = c.nord15
-vim.g.terminal_color_14 = c.nord7
-vim.g.terminal_color_15 = c.nord6
+-- `h: terminal_config`
+local terminal_colors = {
+	c.nord1,
+	c.nord11,
+	c.nord14,
+	c.nord13,
+	c.nord9,
+	c.nord15,
+	c.nord8,
+	c.nord5,
+	c.nord3,
+	c.nord11,
+	c.nord14,
+	c.nord13,
+	c.nord9,
+	c.nord15,
+	c.nord7,
+	c.nord6,
+}
+for i, color in ipairs(terminal_colors) do
+	vim.g["terminal_color_" .. (i - 1)] = color
+end
 
 -- CUSTOM
 

@@ -24,8 +24,8 @@ return {
 			auto_trigger = true,
 			keymap = {
 				accept = "<c-]>",
-				accept_word = nil,
-				accept_line = "<c-j>",
+				accept_word = "<c-l>",
+				accept_line = "<c-s-L>",
 				next = nil,
 				prev = nil,
 				dismiss = "<c-e>",

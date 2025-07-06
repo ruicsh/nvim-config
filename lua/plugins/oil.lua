@@ -31,6 +31,7 @@ return {
 		keymaps = {
 			["-"] = { "actions.parent", mode = "n" },
 			["<c-l>"] = "actions.refresh",
+			["<c-q>"] = "actions.close",
 			["<c-p>"] = "actions.preview",
 			["<c-w>s"] = { "actions.select", opts = { horizontal = true } },
 			["<c-w>t"] = { "actions.select", opts = { tab = true } },
