@@ -202,7 +202,7 @@ end
 local is_initialized = false
 
 local function initialize()
-	if is_initialized or vim.fn.env_get("OIL_GIT_HIGHLIGHTS") == "true" then
+	if is_initialized or vim.fn.env_get("OIL_DISABLE_GIT_HIGHLIGHTS") == "true" then
 		return
 	end
 
