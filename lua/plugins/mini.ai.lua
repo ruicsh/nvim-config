@@ -10,6 +10,16 @@ return {
 			custom_textobjects = {
 				a = ai.gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
 				c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
+				d = { "%f[%d]%d+" },
+				f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+				g = function() -- whole file
+					local from = { line = 1, col = 1 }
+					local to = {
+						line = vim.fn.line("$"),
+						col = math.max(vim.fn.getline("$"):len(), 1),
+					}
+					return { from = from, to = to }
+				end,
 				s = { -- Single words in different cases (camelCase, snake_case, etc.)
 					{
 						"%u[%l%d]+%f[^%l%d]",
@@ -20,15 +30,6 @@ return {
 					},
 					"^().*()$",
 				},
-				f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
-				g = function() -- whole file
-					local from = { line = 1, col = 1 }
-					local to = {
-						line = vim.fn.line("$"),
-						col = math.max(vim.fn.getline("$"):len(), 1),
-					}
-					return { from = from, to = to }
-				end,
 			},
 			mappings = {
 				around = "a",
