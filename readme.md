@@ -25,7 +25,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>36 plugins</sub>
+<sub>37 plugins</sub>
 
 ### Navigation
 
@@ -63,6 +63,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [nvim-treesitter-refactor](https://github.com/nvim-treesitter/nvim-treesitter-refactor) - AST navigation
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
+- [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
 
 ### Testing/Debugging
 

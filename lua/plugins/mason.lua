@@ -15,7 +15,6 @@ local PACKAGES = {
 	"json-lsp",
 	"lua-language-server",
 	"pyright",
-	"rust-analyzer",
 	"typescript-language-server",
 	"yaml-language-server",
 	-- DAP

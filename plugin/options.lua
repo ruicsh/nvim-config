@@ -42,7 +42,7 @@ o.wrap = false -- Do not automatically wrap texts.
 -- 5 syntax, highlighting and spelling {{{
 o.cursorline = true -- Highlight current line.
 o.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add" -- Custom spellfile.
-o.termguicolors = true -- Enable true colors.
+o.termguicolors = true -- Enable true colours.
 -- }}}
 
 -- 6 multiple windows {{{
@@ -95,7 +95,7 @@ o.clipboard = "unnamedplus" -- Use system clipboard.
 o.complete = ".,]" -- How keyword completion works.
 o.completeopt = "menu,menuone,noinsert,preview" -- Disable native autocompletion (using nvim-cmp).
 o.pumblend = 5 -- Opaque completion menu background.
-o.pumheight = 5 -- Maximum height of popup menu.
+o.pumheight = 5 -- Maximum height of pop-up menu.
 o.showmatch = false -- Do not jump to matching brackets.
 o.undofile = true -- Automatically save and restore undo history.
 -- }}}
