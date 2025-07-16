@@ -2,10 +2,10 @@ local M = {}
 
 M = {
 	diagnostics = {
-		error = "",
-		warning = "",
-		information = "",
-		hint = "",
+		error = "E",
+		warning = "W",
+		information = "I",
+		hint = "H",
 	},
 	git = {
 		Add = "┃",
@@ -14,11 +14,11 @@ M = {
 		Delete = "",
 		TopDelete = "",
 		Untracked = "┃",
-		add = "",
+		add = "+",
 		branch = "",
-		change = "",
+		change = "~",
 		commit = "",
-		delete = "",
+		delete = "-",
 	},
 	spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
 }

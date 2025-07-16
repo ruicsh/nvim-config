@@ -174,7 +174,7 @@ local function c_lsp_diagnostics()
 		local severity = vim.diagnostic.severity[ki]
 		local count = vim.diagnostic.count(0, { severity = severity })[severity]
 		if count and count > 0 then
-			table.insert(lines, icons.diagnostics[k] .. " " .. count)
+			table.insert(lines, icons.diagnostics[k] .. count)
 		end
 	end
 
@@ -204,7 +204,7 @@ local function c_git_status()
 	for _, k in ipairs(keys) do
 		local count = (status[k] or 0)
 		if count > 0 then
-			table.insert(entries, icons.git[k] .. " " .. count)
+			table.insert(entries, icons.git[k] .. count)
 		end
 		n_changes = n_changes + count
 	end
