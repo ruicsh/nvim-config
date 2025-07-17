@@ -32,7 +32,7 @@
   "rustaceanvim": { "branch": "master", "commit": "709d35ca3a8e42ec855467de62d43f70f7adc656" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "timber.nvim": { "branch": "main", "commit": "aac3a12753652a60955d3178b75fdb6c247b9f7d" },
-  "treewalker.nvim": { "branch": "main", "commit": "860772d82f1ce2adc475638b454da89a8d2382e4" },
+  "treewalker.nvim": { "branch": "main", "commit": "ae229700e1cce34198280f588568dc49c52d9eb1" },
   "ts-comments.nvim": { "branch": "main", "commit": "1bd9d0ba1d8b336c3db50692ffd0955fe1bb9f0c" },
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
   "vim-test": { "branch": "master", "commit": "fba18e168565f055d4061408ada0f6abd9ea8bbd" }
