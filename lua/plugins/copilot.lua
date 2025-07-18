@@ -25,7 +25,7 @@ return {
 			keymap = {
 				accept = "<c-]>",
 				accept_word = "<c-l>",
-				accept_line = "<c-s-L>",
+				accept_line = "<c-j>",
 				next = nil,
 				prev = nil,
 				dismiss = "<c-e>",

@@ -48,6 +48,14 @@ local FILETYPE_CONFIGS = {
 		prompts = { "neovim", "lua" },
 		context = { "url:https://github.com/ruicsh/nvim-config" },
 	},
+	playwright = {
+		filetypes = { "typescript", "javascript" },
+		prompts = { "playwright" },
+		patterns = {
+			"%.spec%.ts$",
+		},
+		priority = 5000,
+	},
 	python = {
 		filetypes = { "python" },
 		prompts = { "python" },
