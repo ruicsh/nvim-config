@@ -41,6 +41,19 @@ local function diagnostics()
 			current_line = true,
 		},
 	})
+
+	local k = vim.keymap.set
+
+	local function jump_to_error(direction)
+		return function()
+			local count = direction == "next" and 1 or -1
+			local opts = { count = count, severity = vim.diagnostic.severity.ERROR, float = true }
+			vim.diagnostic.jump(opts)
+		end
+	end
+
+	k("n", "[x", jump_to_error("prev"), { desc = "Jump to previous error", silent = true })
+	k("n", "]x", jump_to_error("next"), { desc = "Jump to next error", silent = true })
 end
 
 -- Set keymaps for LSP
@@ -77,8 +90,8 @@ local function keymaps(bufnr, client)
 	k("gD", vim.lsp.buf.declaration, "Jump to declaration")
 	k("grr", snacks.picker.lsp_references, "References")
 	k("gO", snacks.picker.lsp_symbols, "Symbols")
-	k("<leader>xx", snacks.picker.diagnostics, "Diagnostics: Workspace")
-	k("<leader>xf", snacks.picker.diagnostics_buffer, "Diagnostics: File")
+	k("<leader>xX", snacks.picker.diagnostics, "Diagnostics: Workspace")
+	k("<leader>xx", snacks.picker.diagnostics_buffer, "Diagnostics: File")
 	k("K", hover, "Hover")
 
 	if client:supports_method(methods.textDocument_typeDefinition) then

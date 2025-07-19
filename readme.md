@@ -312,10 +312,10 @@ Random features added.
 - `<c-s>` display signature help
 - `<c-]>` jump to definition
 - `<c-w>]` jump to definition (vslipt)
-- `<leader>xx` open diagnostics (workspace)
-- `<leader>xf` open diagnostics (buffer)
-- `[x` jump to previous diagnostic
-- `]x` jump to next diagnostic
+- `<leader>xx` open diagnostics (buffer)
+- `<leader>xX` open diagnostics (workspace)
+- `[x` jump to previous error
+- `]x` jump to next error
 
 ### Debugger:
 
