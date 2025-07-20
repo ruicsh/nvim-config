@@ -97,8 +97,7 @@ return {
 			["<c-e>"] = { "hide", "show", "fallback" },
 			["<c-n>"] = { "select_next", "show", "fallback" },
 			["<c-p>"] = { "select_prev", "show", "fallback" },
-			["<c-j>"] = { "select_next", "fallback" },
-			["<c-k>"] = { "select_prev", "fallback" },
+			["<c-k>"] = false,
 		},
 		signature = {
 			enabled = true,
