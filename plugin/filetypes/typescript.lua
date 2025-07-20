@@ -53,8 +53,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = { "typescript", "typescriptreact", "typescript.tsx" },
 	callback = function()
-		if not vim.g.vscode then
-			setup_dap()
-		end
+		setup_dap()
 	end,
 })

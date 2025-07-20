@@ -113,6 +113,5 @@ return {
 	},
 
 	event = { "InsertEnter", "CmdlineEnter" },
-	enabled = not vim.g.vscode,
 	version = "1.*",
 }

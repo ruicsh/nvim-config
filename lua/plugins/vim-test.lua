@@ -38,5 +38,4 @@ return {
 	end,
 
 	cmd = { "TestLast", "TestNearest", "TestFile", "TestSuite" },
-	enabled = not vim.g.vscode,
 }

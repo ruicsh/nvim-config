@@ -42,5 +42,4 @@ return {
 
 	cmd = "Copilot",
 	event = "InsertEnter",
-	enabled = not vim.g.vscode,
 }

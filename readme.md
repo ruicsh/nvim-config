@@ -12,7 +12,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - **Search** - fuzzy find anything, file, workspace scoped search and replace
 - **UI** - files and directory explorer, notifications, command palette, bookmarks
 
-<sub>Works on Neovim v0.11.1 (and vscode-neovim)</sub>
+<sub>Works on Neovim v0.11.3</sub>
 
 ## Screenshots
 

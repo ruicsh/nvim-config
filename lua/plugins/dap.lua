@@ -65,7 +65,6 @@ return {
 		end
 	end,
 
-	enabled = not vim.g.vscode,
 	dependencies = {
 		{
 			"igorlfs/nvim-dap-view",

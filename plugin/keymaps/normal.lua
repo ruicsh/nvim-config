@@ -123,11 +123,6 @@ end
 
 -- }}}
 
--- Stop setting keymaps incompatible with vscode
-if vim.g.vscode then
-	return
-end
-
 -- Buffers {{{
 k("<bs>", "<c-6>", { desc = "Toggle to last buffer" }) -- `:h CTRL-6`
 -- }}}

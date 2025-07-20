@@ -6,11 +6,6 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 		-- Load env vars from config
 		vim.cmd("LoadEnvVars")
 
-		-- No need to run this if running in vscode
-		if vim.g.vscode then
-			return
-		end
-
 		-- If vim was opened with files, don't open changed files
 		if #vim.fn.argv() > 0 then
 			return

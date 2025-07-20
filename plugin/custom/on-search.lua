@@ -5,10 +5,6 @@
 -- 2. Search count indicator
 -- https://github.com/chrisgrieser/.config/blob/main/nvim/lua/config/autocmds.lua
 
-if vim.g.vscode then
-	return
-end
-
 local ns = vim.api.nvim_create_namespace("ruicsh/custom/on-search")
 local ns_count = vim.api.nvim_create_namespace("ruicsh/custom/on-search/count")
 

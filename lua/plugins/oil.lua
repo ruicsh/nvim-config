@@ -58,7 +58,6 @@ return {
 			signcolumn = "yes:2",
 		},
 	},
-	enabled = not vim.g.vscode,
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons" },
 	},

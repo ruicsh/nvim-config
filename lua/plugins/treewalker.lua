@@ -23,6 +23,4 @@ return {
 		highlight = true,
 		jumplist = false,
 	},
-
-	enabled = not vim.g.vscode,
 }

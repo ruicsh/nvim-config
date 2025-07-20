@@ -35,5 +35,4 @@ return {
 	},
 
 	event = "VeryLazy",
-	enabled = not vim.g.vscode,
 }

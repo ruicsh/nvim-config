@@ -38,5 +38,4 @@ return {
 	end,
 
 	event = { "BufWritePre" },
-	enabled = not vim.g.vscode,
 }

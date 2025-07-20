@@ -94,11 +94,7 @@ local function c_project()
 		return ""
 	end
 
-	if vim.g.vscode then
-		line = line .. project_name .. ": "
-	else
-		line = line .. " " .. project_name
-	end
+	line = line .. " " .. project_name
 
 	return line
 end
@@ -287,12 +283,6 @@ end
 
 -- Construct the statusline (default)
 function _G.status_line()
-	if vim.g.vscode then
-		return table.concat({
-			c_mode(),
-		})
-	end
-
 	local hl = "%#StatusLine#"
 
 	local components = {

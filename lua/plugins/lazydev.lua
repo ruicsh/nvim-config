@@ -11,5 +11,4 @@ return {
 
 	lazy = true,
 	ft = "lua",
-	enabled = not vim.g.vscode,
 }

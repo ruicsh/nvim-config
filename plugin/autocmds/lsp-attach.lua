@@ -139,10 +139,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup,
 	pattern = "*",
 	callback = function(event)
-		if vim.g.vscode then
-			return
-		end
-
 		local bufnr = event.buf
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if not client then
@@ -163,10 +159,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd("LspDetach", {
 	group = augroup,
 	callback = function(event)
-		if vim.g.vscode then
-			return
-		end
-
 		local bufnr = event.buf
 		local client = vim.lsp.get_client_by_id(event.data.client_id)
 		if not client then
