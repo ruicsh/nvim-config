@@ -181,8 +181,8 @@ Random features added.
 - `<leader>/` find in workspace
 - `<leader>?` find in directory
 - `<leader>*` find word in workspace
-- `';' jump to previous position`
-- `',' jump to next position`
+- `[; jump to previous position`
+- `]; jump to next position`
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position

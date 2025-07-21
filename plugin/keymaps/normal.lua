@@ -21,10 +21,9 @@ k("j", function()
 	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
 
--- <c-i> would trigger the toggle fold because it's the same as <tab> `:h CTRL-I`
--- ' as in jump to mark and ;, as used in the changelist (g;, g,). `h g;`
-k("';", "<c-o>", { desc = "Older cursor position" })
-k("',", "<c-i>", { desc = "Newer cursor position" })
+-- <c-i> would trigger the toggle fold because it's the same as <tab>
+k("[;", "<c-o>", { desc = "Older cursor position" }) -- `:h ctrl-o`
+k("];", "<c-i>", { desc = "Newer cursor position" }) -- `:h ctrl-i`
 
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark cursor" })
@@ -75,8 +74,8 @@ k("<leader>yf", function()
 end, { desc = "Copy relative file path" })
 
 -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
-k("cn", "*``cgn", { desc = "Change word (forward)" })
-k("cN", "*``cgN", { desc = "Change word (backward)" })
+k("cn", "*``cgn", { desc = "Change word (forward)" }) -- `:h gn`
+k("cN", "*``cgN", { desc = "Change word (backward)" }) -- `:h gN`
 
 -- }}}
 
