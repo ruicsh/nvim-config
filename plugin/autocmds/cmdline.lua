@@ -13,7 +13,7 @@ local function hide_hit_enter_on_blur()
 	})
 end
 
--- Cleanup command line after use
+-- Clean-up command line after use
 -- https://github.com/mcauley-penney/nvim/blob/main/lua/aucmd/init.lua
 local function cleanup_after_use()
 	vim.fn.timer_start(3000, function()

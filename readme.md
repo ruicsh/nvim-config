@@ -178,9 +178,6 @@ Random features added.
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
-- `<leader>/` find in workspace
-- `<leader>?` find in directory
-- `<leader>*` find word in workspace
 - `[; jump to previous position`
 - `]; jump to next position`
 - `''` jump to position before last jump
@@ -190,6 +187,14 @@ Random features added.
 - `|` cycle windows
 - `<c-b>` jump backwards one character (insert mode)
 - `<c-f>` jump forward one character (insert mode)
+
+### Search
+
+- `<leader>*` find word in workspace
+- `<leader>/` find in workspace
+- `<leader>?` find in directory
+- `<c-8>` find current word from the beginning of the file
+- `'s` jump back to where search started
 
 ### Editing
 

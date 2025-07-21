@@ -26,7 +26,7 @@ k("[;", "<c-o>", { desc = "Older cursor position" }) -- `:h ctrl-o`
 k("];", "<c-i>", { desc = "Newer cursor position" }) -- `:h ctrl-i`
 
 -- Jump to mark `:h map-backtick`
-k("'", "`", { desc = "Jump to mark cursor" })
+k("'", "`", { desc = "Jump to mark position" })
 
 -- }}}
 
@@ -101,24 +101,17 @@ end
 k("'s", function()
 	vim.cmd("normal! `s")
 	vim.cmd.nohlsearch()
-end, { desc = "Last searched from position" })
+end, { desc = "Jump to where search started" })
 
--- Split window and search current word from beginning of file
--- Make `<c-w><c-i>` work with `n` and `N` `:h CTRL-W_i`
-local function split_and_search_current_word()
+-- Search current word from the beginning of the file `:h [i`
+-- Jump back to where the search started with `'s`
+k("<c-8>", function()
 	local cword = vim.fn.expand("<cword>")
-	vim.ux.open_side_panel("vsplit || normal! gg")
-	vim.cmd("/" .. vim.fn.escape(cword, "\\[]^$.*~/"))
-	vim.cmd("normal! nzvzz")
-end
-
-local split_search_keys = {
-	"<c-w><c-i>",
-	"<c-w>i",
-}
-for _, key in ipairs(split_search_keys) do
-	k(key, split_and_search_current_word, { desc = "Split window and search current word from beginning of file" })
-end
+	if cword ~= "" then
+		vim.fn.setreg("/", "\\<" .. vim.fn.escape(cword, [[\/.*$^~[]()]]) .. "\\>")
+		vim.cmd("keepjumps normal! gg0nzv")
+	end
+end, { desc = "Jump to first occurrence" })
 
 -- }}}
 
