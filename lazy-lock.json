@@ -19,7 +19,7 @@
   "mini.pairs": { "branch": "main", "commit": "42407ccb80ec59c84e7c91d815f42ed90a8cc093" },
   "mini.surround": { "branch": "main", "commit": "f59022c2c66c1cffd3cd755b105faa468b25a4e0" },
   "nvim-dap": { "branch": "master", "commit": "5dd4d50f2e6a2eaf9e57fad023d294ef371bda35" },
-  "nvim-dap-view": { "branch": "main", "commit": "0a7ec4ba3ad45169f49835b8dd4d5af70049bd87" },
+  "nvim-dap-view": { "branch": "main", "commit": "cfefa28877cdd2b340c94eb4f8ecbab91d205467" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "nvim-treesitter-refactor": { "branch": "master", "commit": "d8b74fa87afc6a1e97b18da23e762efb032dc270" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "89ebe73cd2836db80a22d9748999ace0241917a5" },
