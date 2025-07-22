@@ -38,21 +38,6 @@ local PARSERS = {
 	"yaml",
 }
 
-local function set_keymaps_navigation()
-	local nav = require("nvim-treesitter-refactor.navigation")
-
-	local function goto_next_usage()
-		nav.goto_next_usage(vim.api.nvim_get_current_buf())
-	end
-
-	local function goto_prev_usage()
-		nav.goto_previous_usage(vim.api.nvim_get_current_buf())
-	end
-
-	vim.keymap.set("n", "]r", goto_next_usage, { desc = "Next diff hunk" })
-	vim.keymap.set("n", "[r", goto_prev_usage, { desc = "Previous diff hunk" })
-end
-
 return {
 	"nvim-treesitter/nvim-treesitter",
 	opts = function()
@@ -98,18 +83,12 @@ return {
 						goto_definition = false,
 						list_definitions = false,
 						list_definitions_toc = false,
-						goto_next_usage = false,
-						goto_previous_usage = false,
+						goto_next_usage = "]r",
+						goto_previous_usage = "[r",
 					},
 				},
 			},
 		}
-	end,
-	config = function(_, opts)
-		local ts = require("nvim-treesitter.configs")
-		ts.setup(opts)
-
-		set_keymaps_navigation()
 	end,
 
 	main = "nvim-treesitter.configs",

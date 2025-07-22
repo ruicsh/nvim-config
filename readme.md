@@ -288,17 +288,13 @@ Random features added.
 
 ### Syntax (AST)
 
-- ``[` jump to parent node
-- ``n` jump to next sibling node
-- ``p` jump to previous sibling node
-- ``]` jump to child node
-- ``h` swap with left node
-- ``j` swap with down node
-- ``k` swap with up node
-- ``l` swap with right node
+- `<c-h>` swap with left node
+- `<c-j>` swap with down node
+- `<c-k>` swap with up node
+- `<c-l>` swap with right node
 - `<leader>v` select current node
-- `;` increase selection (on node selection mode)
-- `,` decrease selection (on node selection mode)
+- `;` increase node selection
+- `,` decrease node selection
 
 ### LSP
 
@@ -313,11 +309,10 @@ Random features added.
 - `grr` list references
 - `grI` toggle inlay hints
 - `gD` jump to declaration
-- `[r` jump to previous symbol reference
-- `]r` jump to next symbol reference
-- `<c-s>` display signature help
+- `[r` jump to previous symbol usage
+- `]r` jump to next symbol usage
 - `<c-]>` jump to definition
-- `<c-w>]` jump to definition (vslipt)
+- `<c-w>]` jump to definition (vsplit)
 - `<leader>xx` open diagnostics (buffer)
 - `<leader>xX` open diagnostics (workspace)
 - `[x` jump to previous error
