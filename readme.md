@@ -25,10 +25,11 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>36 plugins</sub>
+<sub>37 plugins</sub>
 
 ### Navigation
 
+- [flash](https://github.com/folke/flash.nvim) - Jump with search labels
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
@@ -178,6 +179,7 @@ Random features added.
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
+- `<c-f>` jump with labels
 - `[; jump to previous position`
 - `]; jump to next position`
 - `''` jump to position before last jump
