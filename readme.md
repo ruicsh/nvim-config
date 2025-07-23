@@ -294,10 +294,10 @@ Random features added.
 - `<c-j>` jump to next sibling node
 - `<c-k>` jump to previous sibling node
 - `<c-l>` jump to child node
-- `<c-s-h>` swap with left node
-- `<c-s-j>` swap with down node
-- `<c-s-k>` swap with up node
-- `<c-s-l>` swap with right node
+- `<a-h>` swap with left node
+- `<a-j>` swap with down node
+- `<a-k>` swap with up node
+- `<a-l>` swap with right node
 - `<leader>v` select current node
 - `;` increase node selection
 - `,` decrease node selection
