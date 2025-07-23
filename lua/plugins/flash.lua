@@ -21,10 +21,7 @@ return {
 		},
 		modes = {
 			char = {
-				enabled = true,
-				highlight = {
-					backdrop = false,
-				},
+				enabled = false,
 			},
 		},
 	},
