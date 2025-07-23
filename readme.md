@@ -288,10 +288,14 @@ Random features added.
 
 ### Syntax (AST)
 
-- `<c-h>` swap with left node
-- `<c-j>` swap with down node
-- `<c-k>` swap with up node
-- `<c-l>` swap with right node
+- `<c-h>` jump to parent node
+- `<c-j>` jump to next sibling node
+- `<c-k>` jump to previous sibling node
+- `<c-l>` jump to child node
+- `<c-s-h>` swap with left node
+- `<c-s-j>` swap with down node
+- `<c-s-k>` swap with up node
+- `<c-s-l>` swap with right node
 - `<leader>v` select current node
 - `;` increase node selection
 - `,` decrease node selection
