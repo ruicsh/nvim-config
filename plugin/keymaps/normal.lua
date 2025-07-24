@@ -31,6 +31,9 @@ k("'", "`", { desc = "Jump to mark position" })
 -- Start/stop recording a macro
 k("Q", "q", { desc = "Start recording macro" })
 
+-- Jumnp to matching bracket
+k("mm", "%", { desc = "Jump to matching bracket" }) -- `:h %`
+
 -- }}}
 
 -- Editing {{{

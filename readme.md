@@ -187,6 +187,7 @@ Random features added.
 - `'{a-z}'` jump to marked position
 - `<c-b>` jump backwards one character (insert mode)
 - `<c-f>` jump forward one character (insert mode)
+- `mm` jump to matching
 
 ### Windows
 

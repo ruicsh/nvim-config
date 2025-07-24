@@ -23,7 +23,7 @@ k("<c-v>", "<c-r><c-o>+") -- Paste from clipboard without auto-indentation (`:h 
 -- <c-d> Delete one shiftwidth of indentation (`:h i_CTRL-D`)
 
 -- Make undo work word by word (`:h i_CTRL-G_u`)
-local undo_keys = { "<space>", ",", ".", "!", "?", ">", ")", "]", "}" }
+local undo_keys = { "<space>", ";", ",", ".", "!", "?", ">", ")", "]", "}" }
 for _, key in ipairs(undo_keys) do
 	k(key, key .. "<c-g>u")
 end
