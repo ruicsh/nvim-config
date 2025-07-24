@@ -28,6 +28,9 @@ k("];", "<c-i>", { desc = "Newer cursor position" }) -- `:h ctrl-i`
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })
 
+-- Start/stop recording a macro
+k("Q", "q", { desc = "Start recording macro" })
+
 -- }}}
 
 -- Editing {{{
@@ -120,6 +123,7 @@ k("<bs>", "<c-6>", { desc = "Toggle to last buffer" }) -- `:h CTRL-6`
 -- }}}
 
 -- Windows {{{
+k("q", "<c-w>q", { desc = "Windows: Close" }) -- `:h CTRL-W_q`
 k("<bslash>", "<c-w>p", { desc = "Windows: Previous" }) -- `:h CTRL-W_p`
 k("<bar>", "<c-w>w", { desc = "Windows: Cycle" }) -- `:h CTRL-W_w`
 -- }}}

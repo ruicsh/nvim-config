@@ -185,10 +185,14 @@ Random features added.
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
-- `\` focus previous window
-- `|` cycle windows
 - `<c-b>` jump backwards one character (insert mode)
 - `<c-f>` jump forward one character (insert mode)
+
+### Windows
+
+- `q` close window
+- `\` focus previous window
+- `|` cycle windows
 
 ### Search
 
