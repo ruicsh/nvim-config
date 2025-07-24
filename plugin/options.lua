@@ -74,7 +74,7 @@ o.report = 9999 -- Don't report number of changed lines.
 o.ruler = false -- Do not show the line and column number of the cursor position.
 o.shortmess:append({ -- Don't show messages:
 	A = true, -- When a swap file is found.
-	C = true, -- When scanning for ins-completion items.
+	C = true, -- When scanning for "ins-completion" items.
 	F = true, -- File info when editing a file.
 	I = true, -- Skip intro message.
 	S = true, -- Search messages, using nvim-hlslens instead.

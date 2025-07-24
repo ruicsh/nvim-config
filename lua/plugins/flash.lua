@@ -13,6 +13,7 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "Flash")
 	end,
 	opts = {
+		labels = "asdfqwerzxcv", -- Limit labels to left side of the keyboard
 		search = {
 			wrap = true,
 		},
