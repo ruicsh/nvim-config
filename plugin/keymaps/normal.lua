@@ -49,8 +49,8 @@ k("[p", ":put!<cr>==", { desc = "Paste on line above" })
 k("]p", ":put<cr>==", { desc = "Paste on line below" })
 
 -- Move lines
-k("]e", ":m .+1<cr>==", { desc = "Move line down", silent = true })
-k("[e", ":m .-2<cr>==", { desc = "Move line up", silent = true })
+k("]e", ":move .+1<cr>==", { desc = "Move line down", silent = true })
+k("[e", ":move .-2<cr>==", { desc = "Move line up", silent = true })
 
 -- Keep cursor in place when joining lines
 k("J", "mzJ`z:delmarks z<cr>")
@@ -73,7 +73,7 @@ k("dd", function()
 	return vim.fn.getline(".") == "" and '"_dd' or "dd"
 end, { expr = true })
 
--- Copy relative file path
+-- Copy relative filepath
 k("<leader>yf", function()
 	local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
 	vim.fn.setreg("+", path)

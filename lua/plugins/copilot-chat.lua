@@ -49,7 +49,6 @@ local FILETYPE_CONFIGS = {
 		context = { "url:https://github.com/ruicsh/nvim-config" },
 	},
 	playwright = {
-		filetypes = { "typescript", "javascript" },
 		prompts = { "playwright" },
 		patterns = {
 			"%.spec%.ts$",
