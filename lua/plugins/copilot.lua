@@ -6,15 +6,17 @@ return {
 	opts = {
 		copilot_model = "gpt-4o-copilot",
 		filetypes = {
-			yaml = false,
-			markdown = false,
-			help = false,
+			["."] = false,
+			css = false,
+			cvs = false,
 			gitcommit = false,
 			gitrebase = false,
+			help = false,
 			hgcommit = false,
+			markdown = false,
+			scss = false,
 			svn = false,
-			cvs = false,
-			["."] = false,
+			yaml = false,
 		},
 		panel = {
 			enabled = false,

@@ -97,8 +97,6 @@ return {
 			["<c-e>"] = { "hide", "show", "fallback" },
 			["<c-n>"] = { "select_next", "show", "fallback" },
 			["<c-p>"] = { "select_prev", "show", "fallback" },
-			["<c-j>"] = { "select_next", "show", "fallback" },
-			["<c-k>"] = { "select_prev", "show", "fallback" },
 		},
 		signature = {
 			enabled = true,
@@ -109,7 +107,7 @@ return {
 			},
 		},
 		sources = {
-			default = { "path", "buffer", "snippets", "lsp" },
+			default = { "buffer", "lsp", "snippets" },
 		},
 	},
 
