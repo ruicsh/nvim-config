@@ -9,8 +9,8 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - **Syntax** - highlighting, syntax aware motions, text objects
 - **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
 - **Git integration** - status, commit message editor, buffer integration
-- **Search** - fuzzy find anything, file, workspace scoped search and replace
-- **UI** - files and directory explorer, notifications, command palette, bookmarks
+- **Search** - fuzzy find anything, files, git changed, last buffers
+- **UI** - files and directory explorer, notifications, command palette
 
 <sub>Works on Neovim v0.11.3</sub>
 
@@ -199,6 +199,7 @@ Random features added.
 - `<leader>*` find word in workspace
 - `<leader>/` find in workspace
 - `<leader>?` find in directory
+- `g/` search in selection
 - `<c-8>` find current word from the beginning of the file
 - `'s` jump back to where search started
 
