@@ -117,7 +117,8 @@ local env_file_loaded = false
 vim.fn.env_get = function(key)
 	-- Load the env file only once
 	if not env_file_loaded then
-		vim.fn.load_env_file()
+		vim.fn.load_env_file(vim.fn.stdpath("config"))
+		vim.fn.load_env_file(vim.fn.getcwd())
 		env_file_loaded = true
 	end
 
