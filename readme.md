@@ -277,10 +277,10 @@ Random features added.
 
 - `<c-]>` accept
 - `<c-e>` dismiss
-- `<c-j>` accept word
-- `<c-k>` accept line
-- `<c-h>` show previous
-- `<c-l>` show next
+- `<a-l>` accept word
+- `<a-j>` accept line
+- `<a-n>` show next
+- `<a-p>` show previous
 
 ### Logging
 
