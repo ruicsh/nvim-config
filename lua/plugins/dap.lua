@@ -50,7 +50,7 @@ return {
 		local is_dapview_open = false
 		dap.listeners.before.launch.dapui_config = function()
 			if not is_dapview_open then
-				vim.cmd.only()
+				vim.cmd.only() -- Close other windows
 				dv.open()
 				is_dapview_open = true
 			end

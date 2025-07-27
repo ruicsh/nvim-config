@@ -192,6 +192,7 @@ Random features added.
 - `q` close window
 - `\` focus previous window
 - `|` cycle windows
+- `<c-w>t` move file to new tab
 
 ### Search
 

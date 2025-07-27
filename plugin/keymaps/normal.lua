@@ -129,6 +129,12 @@ k("<bs>", "<c-6>", { desc = "Toggle to last buffer" }) -- `:h CTRL-6`
 k("q", "<c-w>q", { desc = "Windows: Close" }) -- `:h CTRL-W_q`
 k("<bslash>", "<c-w>p", { desc = "Windows: Previous" }) -- `:h CTRL-W_p`
 k("<bar>", "<c-w>w", { desc = "Windows: Cycle" }) -- `:h CTRL-W_w`
+-- Same as `:h ctrl-w_T` but without closing the current window
+k("<c-w>t", function()
+	local file = vim.fn.expand("%:p")
+	require("snacks").bufdelete.delete() -- Close current buffer, keep window layout
+	vim.cmd("tabedit " .. file) -- Open the file in a new tab
+end, { desc = "Windows: Move to new tab" })
 -- }}}
 
 -- Folds {{{
