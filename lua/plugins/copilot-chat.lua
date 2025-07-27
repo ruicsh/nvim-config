@@ -20,6 +20,7 @@ local FILETYPE_CONFIGS = {
 			"%.injectable%.ts$",
 		},
 		filetypes = { "htmlangular" },
+		priority = 1000,
 		prompts = { "angular" },
 	},
 	ansible = {
@@ -176,7 +177,7 @@ local function get_config_by_filetype()
 		end
 
 		-- Check filetypes
-		if config.filetypes and vim.tbl_contains(config.filetypes, ft) then
+		if not matches and config.filetypes and vim.tbl_contains(config.filetypes, ft) then
 			matches = true
 		end
 
