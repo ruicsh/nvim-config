@@ -111,7 +111,6 @@ return {
 		local mappings = {
 			-- files
 			{ "<leader><space>", snacks.picker.smart, "Files" },
-			{ "<leader>-", snacks.picker.projects, "Workspaces" },
 			{ "<leader>,", snacks.picker.buffers, "Buffers" },
 
 			-- search
@@ -241,45 +240,6 @@ return {
 						picker:close()
 						vim.ux.open_side_panel("vertical help " .. item.tag)
 					end,
-				},
-				projects = {
-					dev = vim.fn.env_get_list("PROJECTS_DIRS"),
-					patterns = vim.fn.env_get_list("PROJECTS_PATTERNS"),
-					confirm = function(picker, item)
-						picker:close()
-						if not item or not item.file then
-							vim.notify("No project selected", "WARN")
-							return
-						end
-
-						-- Check if the project is already open by checking the cwd of each tab
-						local tabnrs = vim.api.nvim_list_tabpages()
-						for _, tabnr in ipairs(tabnrs) do
-							local tab_cwd = vim.fn.getcwd(-1, tabnr)
-							if tab_cwd == item.file then
-								-- Change to the tab
-								vim.api.nvim_set_current_tabpage(tabnr)
-								return
-							end
-						end
-
-						-- If there are already opened buffers, open a new tab
-						for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-							if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_get_name(bufnr) ~= "" then
-								vim.cmd("tabnew")
-								break
-							end
-						end
-
-						-- Change cwd to the selected project, only for this tab
-						vim.cmd("tcd " .. vim.fn.fnameescape(item.file))
-						vim.cmd("LoadEnvVars")
-						vim.cmd("RestoreChangedFiles")
-					end,
-					layout = {
-						preview = false,
-						preset = "vertical",
-					},
 				},
 				registers = {
 					layout = {
