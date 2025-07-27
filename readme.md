@@ -218,8 +218,8 @@ Random features added.
 - `a` function argument
 - `b` brackets ({}, (), [])
 - `c` comment
+- `e` entire file
 - `f` function
-- `g` entire file
 - `h` git hunk
 - `q` quotes (", ', `)
 - `s` single word in different cases
@@ -347,8 +347,8 @@ Random features added.
 
 ### Git
 
-- `[h` previous hunk
-- `]h` next hunk
+- `[c` previous change
+- `]c` next change
 - `gh` stage hunk
 - `gH` reset hunk
 - `<leader>hd` diff hunk

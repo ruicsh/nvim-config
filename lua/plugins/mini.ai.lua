@@ -11,8 +11,7 @@ return {
 				a = ai.gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
 				c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
 				d = { "%f[%d]%d+" },
-				f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
-				g = function() -- whole file
+				e = function() -- Entire file
 					local from = { line = 1, col = 1 }
 					local to = {
 						line = vim.fn.line("$"),
@@ -20,6 +19,7 @@ return {
 					}
 					return { from = from, to = to }
 				end,
+				f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
 				s = { -- Single words in different cases (camelCase, snake_case, etc.)
 					{
 						"%u[%l%d]+%f[^%l%d]",
