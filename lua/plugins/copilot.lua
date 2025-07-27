@@ -22,7 +22,7 @@ return {
 			enabled = false,
 		},
 		suggestion = {
-			enabled = true,
+			enabled = vim.fn.env_get("COPILOT_DISABLE_SUGGESTIONS") ~= "true",
 			auto_trigger = true,
 			keymap = {
 				accept = "<c-]>",
