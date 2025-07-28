@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
 		local cache_time = vim.g.git_branch_cache_time and vim.g.git_branch_cache_time[dir] or 0
 
 		-- Use cached value if less than 30 seconds old
-		if cached_branch and (vim.loop.now() - cache_time < 30000) then
+		if cached_branch and (vim.uv.now() - cache_time < 30000) then
 			vim.g.git_branch_name = cached_branch
 			return
 		end
@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
 					local branch = data[1]:gsub("\n", "")
 					vim.g.git_branch_name = branch
 					vim.g.git_branch_cache[dir] = branch
-					vim.g.git_branch_cache_time[dir] = vim.loop.now()
+					vim.g.git_branch_cache_time[dir] = vim.uv.now()
 				end
 			end,
 			stdout_buffered = true,
