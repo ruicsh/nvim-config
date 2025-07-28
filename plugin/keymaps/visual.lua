@@ -28,8 +28,8 @@ for _, key in ipairs(save_keys) do
 end
 
 -- Move lines
-k("]e", ":m '>+1<cr>gv=gv", { desc = "Move line down", silent = true })
-k("[e", ":m '<-2<cr>gv=gv", { desc = "Move line up", silent = true })
+k("<a-j>", ":move '>+1<cr>gv=gv", { desc = "Move line down", silent = true })
+k("<a-k>", ":move '<-2<cr>gv=gv", { desc = "Move line up", silent = true })
 
 -- Paste over currently selected text without yanking it.
 k("P", '"_dP')

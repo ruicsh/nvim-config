@@ -31,9 +31,6 @@ k("'", "`", { desc = "Jump to mark position" })
 -- Start/stop recording a macro
 k("Q", "q", { desc = "Start recording macro" })
 
--- Jumnp to matching bracket
-k("mm", "%", { desc = "Jump to matching bracket" }) -- `:h %`
-
 -- }}}
 
 -- Editing {{{
@@ -45,12 +42,8 @@ k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode `:h V`
 
 -- Paste on adjacent line
-k("[p", ":put!<cr>==", { desc = "Paste on line above" })
-k("]p", ":put<cr>==", { desc = "Paste on line below" })
-
--- Move lines
-k("]e", ":move .+1<cr>==", { desc = "Move line down", silent = true })
-k("[e", ":move .-2<cr>==", { desc = "Move line up", silent = true })
+k("[p", ":put!<cr>==", { desc = "Paste on line above" }) -- `:h :put!`
+k("]p", ":put<cr>==", { desc = "Paste on line below" }) -- `:h :put`
 
 -- Keep cursor in place when joining lines
 k("J", "mzJ`z:delmarks z<cr>")
@@ -72,12 +65,6 @@ end
 k("dd", function()
 	return vim.fn.getline(".") == "" and '"_dd' or "dd"
 end, { expr = true })
-
--- Copy relative filepath
-k("<leader>yf", function()
-	local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
-	vim.fn.setreg("+", path)
-end, { desc = "Copy relative file path" })
 
 -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 k("cn", "*``cgn", { desc = "Change word (forward)" }) -- `:h gn`

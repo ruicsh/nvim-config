@@ -207,12 +207,11 @@ Random features added.
 
 - `[<space>` add blank line above cursor
 - `]<space>` add blank line below cursor
-- `[e` move line/selection above
-- `]e` move line/selection below
 - `[p` paste to new line above
 - `]p` paste to new line below
 - `ycc` duplicate a line, comment out the first line.
-- `<leader>yf` copy relative filename
+- `<a-j>` move selection down
+- `<a-k>` move selection up
 
 ### Text objects
 
