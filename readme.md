@@ -200,6 +200,8 @@ Random features added.
 - `<leader>/` find in workspace
 - `<leader>?` find in directory
 - `g/` search in selection
+- `[i` search first occurrence
+- `<c-w>i` search first occurence in new window
 - `<c-8>` find current word from the beginning of the file
 - `'s` jump back to where search started
 

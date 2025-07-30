@@ -90,21 +90,22 @@ for key, desc in pairs(mark_search_keys) do
 	k(key, "ms" .. key, { desc = desc })
 end
 
+-- Search for first occurrence of word under cursor
+k("[i", "ms[<c-i>", { desc = "Search for first occurrence of word under cursor" }) -- `:h [_ctrl-i`
+
+-- Search for first occurrence of word under cursor, in a new window
+k("<c-w>i", function()
+	local word = vim.fn.expand("<cword>")
+	if word ~= "" then
+		vim.cmd("only | vsplit | silent! ijump /" .. word .. "/") -- `:h ijump`
+	end
+end, { desc = "Search for first occurrence of word under cursor in new window" })
+
 -- Clear search highlight when moving back to position before starting the search
 k("'s", function()
 	vim.cmd("normal! `s")
 	vim.cmd.nohlsearch()
 end, { desc = "Jump to where search started" })
-
--- Search current word from the beginning of the file `:h [i`
--- Jump back to where the search started with `'s`
-k("<c-8>", function()
-	local cword = vim.fn.expand("<cword>")
-	if cword ~= "" then
-		vim.fn.setreg("/", "\\<" .. vim.fn.escape(cword, [[\/.*$^~[]()]]) .. "\\>")
-		vim.cmd("keepjumps normal! gg0nzv")
-	end
-end, { desc = "Jump to first occurrence" })
 
 -- }}}
 
