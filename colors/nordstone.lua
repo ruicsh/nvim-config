@@ -349,7 +349,7 @@ loadColorSet({
 	MiniNotifyBorder = { link = "FloatBorder" },
 })
 
--- oil-git-status
+-- filetypes/oil.lua
 loadColorSet({
 	OilGitAdded = { fg = c.nord14, bg = "NONE" },
 	OilGitModified = { fg = c.nord13, bg = "NONE" },

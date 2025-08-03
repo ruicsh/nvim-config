@@ -91,8 +91,6 @@ return {
 			sorts = { "exact", "score", "sort_text" },
 		},
 		keymap = {
-			["tab"] = { "select_next", "fallback" },
-			["<s-tab>"] = { "select_prev", "fallback" },
 			["<cr>"] = { "select_and_accept", "fallback" },
 			["<c-e>"] = { "hide", "show", "fallback" },
 			["<c-f>"] = { "fallback" }, -- Fallback to cursor forward `:h i_<Right>`
