@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>29 plugins</sub>
+<sub>28 plugins</sub>
 
 ### Navigation
 
@@ -47,7 +47,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [CopilotChat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
-- [ts-comments](https://github.com/folke/ts-comments.nvim) - Custom comments configurations per language
 
 ### LSP/Syntax
 
