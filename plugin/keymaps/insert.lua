@@ -8,7 +8,7 @@ end
 -- Always exit insert mode when saving.
 local save_keys = { "<c-s>", "<d-s>" }
 for _, key in ipairs(save_keys) do
-	k(key, "<cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
+	k(key, "<cmd>silent! update | redraw<cr><esc>", { desc = "Save", unique = false })
 end
 
 k("<c-b>", "<left>") -- Cursor one character left `:h i_<Left>`
