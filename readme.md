@@ -25,7 +25,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>36 plugins</sub>
+<sub>35 plugins</sub>
 
 ### Navigation
 
@@ -43,7 +43,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [mini.align](https://github.com/echasnovski/mini.align) - Align text interactively
 - [mini.keymap](https://github.com/echasnovski/mini.keymap) - Special key mappings
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
-- [mini.pairs](https://github.com/echasnovski/mini.pairs) - Auto-pairs
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround actions
 
 ### Coding
