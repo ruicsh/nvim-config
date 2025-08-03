@@ -13,7 +13,6 @@
   "mini.clue": { "branch": "main", "commit": "edf3016944b5f2c7932d39af83af7c885ca0f019" },
   "mini.diff": { "branch": "main", "commit": "f573bd2ae2eb225ea2f125126b8869e04bcaf231" },
   "mini.hipatterns": { "branch": "main", "commit": "2b78f3d475d60ea1793a6d595ff65a0db9ac3a67" },
-  "mini.keymap": { "branch": "main", "commit": "99557a5b87b4f73856b847d17920af6a1e1d84b7" },
   "mini.notify": { "branch": "main", "commit": "e18f9fc783c7a26fab9c8a094d97dc768e56f558" },
   "mini.operators": { "branch": "main", "commit": "fd655907ed56434c83a6efb654b266d9c090ca82" },
   "mini.surround": { "branch": "main", "commit": "b12fcfefd6b9b7c9e9a773bc0e3e07ae20c03351" },

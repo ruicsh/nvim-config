@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>31 plugins</sub>
+<sub>30 plugins</sub>
 
 ### Navigation
 
@@ -39,7 +39,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [guess-indent](https://github.com/NMAC427/guess-indent.nvim) - Indentation style detection
 - [mini.ai](https://github.com/echasnovski/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/echasnovski/mini.align) - Align text interactively
-- [mini.keymap](https://github.com/echasnovski/mini.keymap) - Special key mappings
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround actions
 
