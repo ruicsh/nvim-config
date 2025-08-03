@@ -7,7 +7,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - **AI Assistant** - suggestions, chat, system prompts, operations, chat history
 - **LSP** - Language Server Protocol client, symbols navigation, diagnostics
 - **Syntax** - highlighting, syntax aware motions, text objects
-- **Debugger** - Debug Adapter Protocol client, breakpoints, stack traces, locals
 - **Git integration** - status, commit message editor, buffer integration
 - **Search** - fuzzy find anything, files, git changed, last buffers
 - **UI** - files and directory explorer, notifications, command palette
@@ -25,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>34 plugins</sub>
+<sub>32 plugins</sub>
 
 ### Navigation
 
@@ -64,8 +63,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Testing/Debugging
 
-- [nvim-dap-view](https://github.com/igorlfs/nvim-dap-view) - Debugger UI
-- [nvim-dap](https://github.com/mfussenegger/nvim-dap) - Debugger Adapter Protocol
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [vim-test](https://github.com/vim-test/vim-test) - Test runner
 
@@ -114,9 +111,7 @@ Custom configuration, keymaps, and features dependent on the file's type.
 | [help](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/help.lua)             | help       |
 | [oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/oil.lua)               | Oil        |
 | [python](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/python.lua)         | Python     |
-| [rust](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/rust.lua)             | Rust       |
 | [terminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/terminal.lua)     | Terminal   |
-| [typescript](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/typescript.lua) | TypeScript |
 
 ### Autocmds
 

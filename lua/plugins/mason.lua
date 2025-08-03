@@ -17,9 +17,6 @@ local PACKAGES = {
 	"pyright",
 	"typescript-language-server",
 	"yaml-language-server",
-	-- DAP
-	"codelldb",
-	"js-debug-adapter",
 	-- Format
 	"black",
 	"flake8",

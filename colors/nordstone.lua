@@ -349,52 +349,6 @@ loadColorSet({
 	MiniNotifyBorder = { link = "FloatBorder" },
 })
 
--- nvim-dap
-loadColorSet({
-	DapBreakpoint = { fg = c.nord12 },
-	DapBreakpointLineNr = { link = "DapBreakpoint" },
-	DapStopped = { fg = c.nord13 },
-	DapStoppedLine = { bg = c.nord2 },
-	DapStoppedLineNr = { link = "DapStopped" },
-})
-
--- nvim-dap-ui
-loadColorSet({
-	DapUIBreakpointsCurrentLine = { fg = c.nord8 },
-	DapUIBreakpointsDisabledLine = {},
-	DapUIBreakpointsInfo = { fg = c.nord8 },
-	DapUIBreakpointsLine = { fg = c.nord8 },
-	DapUIBreakpointsPath = { fg = c.nord8, bg = "NONE" },
-	DapUICurrentFrameName = { link = "DapUIBreakpointsCurrentLine" },
-	DapUIDecoration = { fg = c.nord8 },
-	DapUIEndofBuffer = { link = "EndofBuffer" },
-	DapUIFloatBorder = { link = "FloatBorder" },
-	DapUIFloatNormal = { link = "NormalFloat" },
-	DapUIFrameName = { fg = c.nord4 },
-	DapUILineNumber = { fg = c.nord8 },
-	DapUIModifiedValue = { fg = c.nord8, style = "bold" },
-	DapUINormal = { link = "Normal" },
-	DapUIPlayPause = { fg = c.nord14 },
-	DapUIRestart = { fg = c.nord14 },
-	DapUIScope = { fg = c.nord8 },
-	DapUISource = { fg = c.nord9 },
-	DapUIStepBack = { fg = c.nord8 },
-	DapUIStepInto = { fg = c.nord8 },
-	DapUIStepOut = { fg = c.nord8 },
-	DapUIStepOver = { fg = c.nord8 },
-	DapUIStop = { fg = c.nord11 },
-	DapUIStoppedThread = { fg = c.nord8 },
-	DapUIThread = { fg = c.nord8 },
-	DapUIType = { fg = c.nord9 },
-	DapUIUnavailable = { fg = c.nord3 },
-	DapUIValue = { fg = c.nord4 },
-	DapUIVariable = { fg = c.nord4 },
-	DapUIWatchesEmpty = { fg = c.nord3 },
-	DapUIWatchesError = { fg = c.nord11 },
-	DapUIWatchesValue = { fg = c.nord8 },
-	DapUIWinSelect = { fg = c.nord8, style = "bold" },
-})
-
 -- oil-git-status
 loadColorSet({
 	OilGitAdded = { fg = c.nord14, bg = "NONE" },

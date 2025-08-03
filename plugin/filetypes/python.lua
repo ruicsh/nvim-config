@@ -87,43 +87,7 @@ local function setup_lsp(python_path)
 	})
 end
 
--- Setup DAP
--- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#python
-local function setup_dap(python_path)
-	local dap = package.loaded.dap
-
-	dap.adapters.python = {
-		type = "executable",
-		command = python_path,
-		args = { "-m", "debugpy.adapter" },
-		options = {
-			source_filetype = "python",
-		},
-	}
-
-	dap.configurations.python = {
-		{
-			type = "python",
-			request = "launch",
-			name = "Launch file",
-			program = "${file}",
-			console = "integratedTerminal",
-			justMyCode = false,
-			cwd = "${workspaceFolder}",
-		},
-		{
-			type = "python",
-			request = "launch",
-			name = "Run pytest current file",
-			module = "pytest",
-			args = { "${file}", "-v" },
-			console = "integratedTerminal",
-			cwd = "${workspaceFolder}",
-		},
-	}
-end
-
--- Activate virtual environment and configure LSP/DAP
+-- Activate virtual environment and configure LSP
 local function auto_activate_venv()
 	local venv = find_venv()
 	if not venv then
@@ -156,6 +120,5 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.g.venv_configured = true
 		local python_path = auto_activate_venv()
 		setup_lsp(python_path)
-		setup_dap(python_path)
 	end,
 })
