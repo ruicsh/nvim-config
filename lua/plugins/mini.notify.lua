@@ -19,7 +19,7 @@ return {
 				border = "single",
 			},
 			max_width_share = 0.382,
-			winblend = 25,
+			winblend = 0,
 		},
 	},
 

@@ -12,3 +12,4 @@ require("ruicsh")
 require("config.lazy")
 
 vim.cmd("LspEnable")
+

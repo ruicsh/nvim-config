@@ -338,11 +338,6 @@ loadColorSet({
 	MiniHipatternsDebugStatement = { fg = c.nord12 },
 })
 
--- mini.notify
-loadColorSet({
-	MiniNotifyBorder = { link = "FloatBorder" },
-})
-
 -- filetypes/oil.lua
 loadColorSet({
 	OilGitAdded = { fg = c.nord14, bg = "NONE" },

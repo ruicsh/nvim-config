@@ -2,11 +2,9 @@
 
 vim.api.nvim_create_user_command("LoadEnvVars", function()
 	local dirs = {
-		-- Config directory
-		vim.fn.stdpath("config"), -- Current working directory
-		vim.fn.getcwd(),
-		-- Git root directory
-		require("snacks.git").get_root(),
+		vim.fn.stdpath("config"), -- Neovim configuration directory
+		vim.fn.getcwd(), -- Current working directory
+		require("snacks.git").get_root(), -- Git root directory
 	}
 
 	for _, dir in ipairs(dirs) do
