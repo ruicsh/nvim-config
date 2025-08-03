@@ -24,11 +24,10 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>32 plugins</sub>
+<sub>31 plugins</sub>
 
 ### Navigation
 
-- [flash](https://github.com/folke/flash.nvim) - Jump with search labels
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
@@ -70,7 +69,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [mini.diff](https://github.com/echasnovski/mini.diff) - hunks
-- [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote repo
 
 ### UI
 
