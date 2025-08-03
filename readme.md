@@ -25,7 +25,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>35 plugins</sub>
+<sub>34 plugins</sub>
 
 ### Navigation
 
@@ -58,7 +58,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [lazydev](https://github.com/folke/lazydev.nvim) - Lua language server
 - [mason](https://github.com/williamboman/mason.nvim) - LSP package manager
 - [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - Highlight patterns in text
-- [nvim-treesitter-refactor](https://github.com/nvim-treesitter/nvim-treesitter-refactor) - AST navigation
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
@@ -319,8 +318,6 @@ Random features added.
 - `grr` list references
 - `grI` toggle inlay hints
 - `gD` jump to declaration
-- `[r` jump to previous symbol usage
-- `]r` jump to next symbol usage
 - `<c-]>` jump to definition
 - `<c-w>]` jump to definition (vsplit)
 - `<leader>xx` open diagnostics (buffer)
