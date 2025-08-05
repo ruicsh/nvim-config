@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>28 plugins</sub>
+<sub>27 plugins</sub>
 
 ### Navigation
 
@@ -50,7 +50,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### LSP/Syntax
 
-- [lazydev](https://github.com/folke/lazydev.nvim) - Lua language server
 - [mason](https://github.com/williamboman/mason.nvim) - LSP package manager
 - [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - Highlight patterns in text
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
