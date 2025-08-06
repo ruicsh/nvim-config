@@ -118,7 +118,7 @@ return {
 	end,
 	opts = {
 		ui = {
-			border = "single",
+			border = "rounded",
 			height = 0.85,
 			width = 0.8,
 		},

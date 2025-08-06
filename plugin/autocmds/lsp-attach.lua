@@ -8,7 +8,7 @@ local icons = require("config/icons")
 local function diagnostics()
 	vim.diagnostic.config({
 		float = {
-			border = "single",
+			border = "rounded",
 			width = 60,
 		},
 		jump = {
@@ -76,7 +76,7 @@ local function keymaps(bufnr, client)
 	local function hover()
 		-- https://neovim.io/doc/user/lsp.html#vim.lsp.buf.hover.Opts
 		vim.lsp.buf.hover({
-			border = "single",
+			border = "rounded",
 			focusable = false,
 			close_events = { "CursorMoved", "InsertEnter", "FocusLost" },
 		})

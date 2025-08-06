@@ -27,7 +27,7 @@ vim.api.nvim_create_user_command("VimMessages", function()
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, filtered_lines)
 
 	local win = vim.api.nvim_open_win(buf, true, {
-		border = "single",
+		border = "rounded",
 		col = col,
 		height = height,
 		relative = "editor",

@@ -111,7 +111,7 @@ return {
 		},
 		showMissingFiles = false,
 		style = {
-			border = "single",
+			border = "rounded",
 		},
 	},
 

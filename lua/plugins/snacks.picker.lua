@@ -94,7 +94,7 @@ local git_log_layout = {
 		width = 0.8,
 		height = 0.9,
 		box = "vertical",
-		border = "single",
+		border = "rounded",
 		title = "{title} {live} {flags}",
 		title_pos = "center",
 		{ win = "input", height = 1, border = "bottom" },
