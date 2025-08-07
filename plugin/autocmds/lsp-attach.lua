@@ -59,12 +59,12 @@ end
 -- Set keymaps for LSP
 local function keymaps(bufnr, client)
 	local snacks = require("snacks")
+	local methods = vim.lsp.protocol.Methods
 
 	local k = function(keys, func, desc, mode)
 		mode = mode or "n"
 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
 	end
-	local methods = vim.lsp.protocol.Methods
 
 	-- Open definition in a new vertical window
 	local function vsplit_and_definition()
@@ -90,8 +90,8 @@ local function keymaps(bufnr, client)
 	k("gD", vim.lsp.buf.declaration, "Jump to declaration")
 	k("grr", snacks.picker.lsp_references, "References")
 	k("gO", snacks.picker.lsp_symbols, "Symbols")
-	k("<leader>xX", snacks.picker.diagnostics, "Diagnostics: Workspace")
-	k("<leader>xx", snacks.picker.diagnostics_buffer, "Diagnostics: File")
+	k("<leader>dD", snacks.picker.diagnostics, "Diagnostics: Workspace")
+	k("<leader>dd", snacks.picker.diagnostics_buffer, "Diagnostics: File")
 	k("K", hover, "Hover")
 
 	if client:supports_method(methods.textDocument_typeDefinition) then

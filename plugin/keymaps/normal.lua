@@ -79,6 +79,7 @@ k("cN", "*``cgN", { desc = "Change word (backward)" }) -- `:h gN`
 -- https://github.com/justinmk/config/blob/master/.config/nvim/plugin/my/keymaps.lua#L51
 local mark_search_keys = {
 	["/"] = "Search forward",
+	["?"] = "Search backward",
 	["*"] = "Search current word (forward)",
 	["#"] = "Search current word (backward)",
 	["£"] = "Search current word (backward)",

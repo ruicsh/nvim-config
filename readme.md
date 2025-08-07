@@ -309,8 +309,8 @@ Random features added.
 - `gD` jump to declaration
 - `<c-]>` jump to definition
 - `<c-w>]` jump to definition (vsplit)
-- `<leader>xx` open diagnostics (buffer)
-- `<leader>xX` open diagnostics (workspace)
+- `<leader>dd` open diagnostics (buffer)
+- `<leader>dD` open diagnostics (workspace)
 - `[x` jump to previous error
 - `]x` jump to next error
 
