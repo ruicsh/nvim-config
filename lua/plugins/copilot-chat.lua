@@ -142,7 +142,10 @@ local function load_prompts(prompt_dir)
 	for _, file_path in ipairs(prompt_files) do
 		local basename = vim.fn.fnamemodify(file_path, ":t:r")
 		local prompt = read_prompt_file(basename)
-		prompts[basename] = { prompt = prompt, system_prompt = prompt }
+		prompts[basename] = {
+			prompt = prompt,
+			system_prompt = prompt,
+		}
 	end
 
 	return prompts
@@ -273,6 +276,20 @@ local function customize_chat_window()
 	})
 end
 
+local function get_sticky_prompts()
+	local sticky = {}
+
+	-- Add filetype-specific prompts
+	for _, p in pairs(get_prompts()) do
+		table.insert(sticky, "/" .. p)
+	end
+
+	-- Always add diagnostics for current file
+	table.insert(sticky, "#diagnostics:current")
+
+	return sticky
+end
+
 local function open_chat(type, opts)
 	local select = require("CopilotChat.select")
 
@@ -280,14 +297,14 @@ local function open_chat(type, opts)
 		local model
 		local selection
 		local ft_config
-		local prompts = {}
+		local sticky = {}
 
 		if type == "assistance" then
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN")
 			local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
 			selection = is_visual_mode and select.visual or select.buffer
 			ft_config = get_config_by_filetype()
-			prompts = get_prompts()
+			sticky = get_sticky_prompts()
 		elseif type == "architect" then
 			model = vim.fn.getenv("COPILOT_MODEL_ARCHITECT")
 			selection = false
@@ -297,13 +314,12 @@ local function open_chat(type, opts)
 		end
 
 		new_chat_window("", {
-			auto_insert_mode = true,
 			context = ft_config and ft_config.context or {},
-			include_contexts_in_prompt = true,
 			inline = opts and opts.inline or false,
 			model = model,
 			selection = selection,
-			system_prompt = prompts[1] or get_system_prompt(type),
+			system_prompt = get_system_prompt(type),
+			sticky = sticky,
 		})
 	end
 end
@@ -360,8 +376,10 @@ local function action(type, opts)
 	return function()
 		local select = require("CopilotChat.select")
 
-		local prompts = get_prompts()
-		local prompt = "> /" .. type
+		local prompt = "Please"
+
+		local sticky = get_sticky_prompts()
+		table.insert(sticky, "/" .. type)
 
 		local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
 		local selection = nil
@@ -369,7 +387,7 @@ local function action(type, opts)
 		if type == "generic" then
 			selection = nil
 		elseif type == "implement" then
-			prompt = table.concat({ "> /" .. type, get_visual_selection() }, "\n\n")
+			prompt = get_visual_selection() .. "\n\n"
 			selection = select.buffer
 		elseif is_visual_mode then
 			selection = select.visual
@@ -378,10 +396,10 @@ local function action(type, opts)
 		end
 
 		new_chat_window(prompt, {
-			auto_insert_mode = false,
 			model = get_model_for_operation(type),
 			selection = selection,
-			system_prompt = prompts[1] or get_system_prompt(type),
+			system_prompt = get_system_prompt(type),
+			sticky = sticky,
 			inline = opts and opts.inline or false,
 		})
 	end
@@ -756,9 +774,9 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "AI")
 	end,
 	config = function()
-		local chat = package.loaded.CopilotChat
-		local utils = package.loaded["CopilotChat.utils"]
-		local context = package.loaded["CopilotChat.context"]
+		local chat = require("CopilotChat")
+		local utils = require("CopilotChat.utils")
+		local resources = require("CopilotChat.resources")
 
 		vim.fn.load_env_file() -- Make sure the env file is loaded
 
@@ -769,166 +787,169 @@ return {
 		local prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts")
 
 		chat.setup({
-			agent = "copilot",
 			allow_insecure = true,
-			answer_header = "꠵ Assistant ",
-			auto_follow_cursor = false, -- Don't follow cursor in chat buffer
+			auto_follow_cursor = true,
+			auto_insert_mode = false,
 			callback = function(response)
 				save_chat(response)
-				return response
 			end,
 			chat_autocomplete = false,
-			contexts = {
+			-- debug = true,
+			functions = {
 				buffer = {
-					description = "Pick a buffer to include in chat context.",
-					input = function(callback)
-						local chat_winid = vim.api.nvim_get_current_win()
-						Snacks.picker.buffers({
-							confirm = function(picker, item)
-								picker:close()
-								-- Return focus to the chat window
-								if vim.api.nvim_win_is_valid(chat_winid) then
-									vim.api.nvim_set_current_win(chat_winid)
-									vim.cmd("normal! a")
-								end
-								vim.schedule(function()
-									callback(item.buf)
-								end)
-							end,
-						})
-					end,
-				},
-				file = {
-					description = "Pick a file to include in chat context.",
-					input = function(callback)
-						local chat_winid = vim.api.nvim_get_current_win()
-						Snacks.picker.smart({
-							confirm = function(picker, item)
-								picker:close()
-								-- Return focus to the chat window
-								if vim.api.nvim_win_is_valid(chat_winid) then
-									vim.api.nvim_set_current_win(chat_winid)
-									vim.cmd("normal! a")
-								end
-								vim.schedule(function()
-									callback(item.file)
-								end)
-							end,
-						})
-					end,
+					group = "copilot",
+					uri = "buffer://{name}",
+					description = "Retrieves content from a specific buffer.",
 					resolve = function(input)
-						if not input or input == "" then
-							return {}
+						local bufnr = tonumber(input.bufnr)
+						if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
+							error("Invalid buffer number: " .. tostring(input.bufnr))
 						end
 
 						utils.schedule_main()
+						local name = vim.api.nvim_buf_get_name(bufnr)
+						local data, mimetype = resources.get_buffer(bufnr)
+
 						return {
-							context.get_file(utils.filepath(input), utils.filetype(input)),
+							{
+								uri = "buffer://" .. name,
+								name = name,
+								mimetype = mimetype,
+								data = data,
+							},
 						}
 					end,
+					schema = {
+						type = "object",
+						required = { "bufnr" },
+						properties = {
+							bufnr = {
+								type = "number",
+								description = "Buffer number to include in chat context.",
+								enum = function()
+									local chat_winid = vim.api.nvim_get_current_win()
+									local async = require("plenary.async")
+									local fn = async.wrap(function(callback)
+										Snacks.picker.buffers({
+											confirm = function(picker, item)
+												picker:close()
+												-- Return focus to the chat window
+												if vim.api.nvim_win_is_valid(chat_winid) then
+													vim.api.nvim_set_current_win(chat_winid)
+													vim.cmd("normal! a")
+												end
+												callback({ item.buf })
+											end,
+										})
+									end, 1)
+									return fn()
+								end,
+							},
+						},
+					},
 				},
-				parent = {
-					description = "Includes all files from the parent directory of current file in chat context.",
-					resolve = function(_, source)
-						-- Get file path in a way that's safe for loop callbacks
-						local current_buf = source.bufnr
-						local current_file
-
-						-- Use pcall to safely get the buffer name
-						local ok, path = pcall(function()
-							return vim.api.nvim_buf_get_name(current_buf)
-						end)
-
-						if ok and path and path ~= "" then
-							current_file = path
-						else
-							return {}
+				file = {
+					group = "copilot",
+					uri = "file://{path}",
+					description = "Pick a file to include in chat context.",
+					resolve = function(input)
+						utils.schedule_main()
+						local data, mimetype = resources.get_file(input.path)
+						if not data then
+							error("File not found: " .. input.path)
 						end
 
-						local abs_parent_dir = vim.fn.fnamemodify(current_file, ":p:h")
-						local parent_dir = vim.fn.fnamemodify(abs_parent_dir, ":.:.")
-
-						-- Load all files in the directory
-						local scandir = require("plenary.scandir")
-						local files = scandir.scan_dir(parent_dir, {
-							depth = 1,
-							add_dirs = false,
-						})
-
-						if not files or #files == 0 then
-							return {}
-						end
-
-						-- Get file list using synchronous functions
-						local max_size = 1024 * 100 -- 100Kb
-						local file_list = {}
-
-						for _, file_path in ipairs(files) do
-							if vim.fn.getfsize(file_path) <= max_size then
-								local name = vim.fn.fnamemodify(file_path, ":t")
-								local ft = vim.filetype.match({ filename = file_path })
-
-								-- Only include text files with detectable filetype
-								if ft then
-									table.insert(file_list, {
-										content = table.concat(vim.fn.readfile(file_path), "\n"),
-										filename = name,
-										filetype = ft,
-									})
-								end
-							end
-						end
-
-						return file_list
+						return {
+							{
+								uri = "file://" .. input.path,
+								name = input.path,
+								mimetype = mimetype,
+								data = data,
+							},
+						}
 					end,
+					schema = {
+						type = "object",
+						required = { "path" },
+						properties = {
+							path = {
+								type = "string",
+								description = "Path to file to include in chat context.",
+								enum = function()
+									local chat_winid = vim.api.nvim_get_current_win()
+									local async = require("plenary.async")
+									local fn = async.wrap(function(callback)
+										Snacks.picker.smart({
+											confirm = function(picker, item)
+												picker:close()
+												-- Return focus to the chat window
+												if vim.api.nvim_win_is_valid(chat_winid) then
+													vim.api.nvim_set_current_win(chat_winid)
+													vim.cmd("normal! a")
+												end
+												callback({ item.file })
+											end,
+										})
+									end, 1)
+									return fn()
+								end,
+							},
+						},
+					},
 				},
-				git_staged = {
-					description = "Includes all staged files in the git repository in chat context.",
-					resolve = function(_, source)
-						if not source or not source.cwd then
-							vim.notify("Error: git_staged.resolve.source.cwd is nil", vim.log.levels.ERROR)
-							return {}
+				gitdiff = {
+					group = "copilot",
+					uri = "git://diff/{target}",
+					description = "Retrieves git diff information. Requires git to be installed. Useful for discussing code changes or explaining the purpose of modifications.",
+					schema = {
+						type = "object",
+						required = { "target" },
+						properties = {
+							target = {
+								type = "string",
+								description = "Target to diff against.",
+								enum = { "unstaged", "staged", "<sha>" },
+								default = "unstaged",
+							},
+						},
+					},
+					resolve = function(input, source)
+						local cmd = { "git", "-C", source.cwd(), "diff", "--no-color", "--no-ext-diff" }
+
+						if input.target == "staged" then
+							table.insert(cmd, "--staged")
+						elseif input.target == "unstaged" then
+							table.insert(cmd, "--")
+						else
+							table.insert(cmd, input.target)
 						end
 
-						-- List files staged for commit, excluding lock files
-						local cmd = { "git", "-C", source.cwd(), "diff", "--no-color", "--no-ext-diff", "--staged" }
 						local EXCLUDE_FILES = { "package-lock.json", "lazy-lock.json", "Cargo.lock" }
 						for _, file in ipairs(EXCLUDE_FILES) do
 							table.insert(cmd, ":(exclude)" .. file)
 						end
-						local out = utils.system(cmd)
 
-						local content = table.concat({
-							"On branch: " .. vim.g.git_branch_name,
-							out.stdout,
-						}, "\n\n")
+						local out = utils.system(cmd)
 
 						return {
 							{
-								content = content,
-								filename = "git_diff_staged",
-								filetype = "diff",
+								uri = "git://diff/" .. input.target,
+								mimetype = "text/plain",
+								data = out.stdout,
 							},
 						}
 					end,
 				},
 			},
-			error_header = "  Error ",
-			insert_at_end = true,
+			insert_at_end = false,
+			headers = {
+				user = "꠵ User ",
+				assistant = "꠵ Assistant ",
+				tool = "꠵ Tool ",
+			},
 			history_path = CHAT_HISTORY_DIR, -- Default path to stored history
 			log_level = "warn",
 			mappings = {
-				accept_diff = {
-					normal = "<c-]>",
-					insert = "<c-]>",
-				},
-				close = {
-					normal = "<esc>",
-				},
-				reset = {
-					normal = "<c-x>",
-					insert = "<c-x>",
-				},
 				submit_prompt = {
 					normal = "<c-s>",
 					insert = "<c-s>",
@@ -937,12 +958,11 @@ return {
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
 			prompts = prompts,
 			proxy = proxy,
-			references_display = "write", -- Display references as markdown links
-			question_header = "꠵ User ",
+			remember_as_sticky = false,
 			selection = false, -- Have no predefined context by default
 			separator = " ",
 			show_help = false,
-			show_folds = false,
+			show_folds = true,
 			window = {
 				layout = "vertical",
 				title = "",
@@ -950,7 +970,6 @@ return {
 		})
 	end,
 
-	commit = "d0537a749e11a68ebaea3967b9c698f998a700fe",
 	dependencies = {
 		{ "zbirenbaum/copilot.lua" },
 		{ "nvim-lua/plenary.nvim" },
