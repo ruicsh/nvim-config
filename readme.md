@@ -132,6 +132,7 @@ Random features added.
 | [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua) | Duplicate and comment                     |
 | [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)   | AST aware indentation                     |
 | [on-search](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/on-search.lua)                 | Pause folds, show results count on search |
+| [opencode](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/opencode.lua)                   | Toggle OpenCode tab                       |
 | [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)           | Display :messages on a separate window    |
 
 ## Keymaps
