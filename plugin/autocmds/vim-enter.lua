@@ -6,6 +6,9 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 		-- Load env vars from config
 		vim.cmd("LoadEnvVars")
 
+		-- Enable LSP servers via custom command (respects disabled env)
+		vim.cmd("LspEnable")
+
 		-- If vim was opened with files, don't open changed files
 		if #vim.fn.argv() > 0 then
 			return

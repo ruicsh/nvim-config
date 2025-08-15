@@ -10,6 +10,3 @@ vim.g.maplocalleader = vim.keycode(",")
 
 require("ruicsh")
 require("config.lazy")
-
-vim.cmd("LspEnable")
-
