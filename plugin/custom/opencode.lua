@@ -1,3 +1,6 @@
+-- Toggle OpenCode terminal in a right side panel
+-- https://opencode.ai/
+
 local api, fn, map = vim.api, vim.fn, vim.keymap.set
 
 -- Allow override via `vim.g.opencode_command` or ENV OPENCODE_CMD, fallback to "opencode"
@@ -128,8 +131,15 @@ local function toggle_opencode_terminal()
 		return
 	end
 
-	vim.cmd("tabnew")
-	spawn_opencode_terminal_in(api.nvim_get_current_win())
+	-- Open in a right side panel instead of a new tab
+	local panel_win = vim.ux and vim.ux.open_side_panel(false)
+	if panel_win and api.nvim_win_is_valid(panel_win) then
+		spawn_opencode_terminal_in(panel_win)
+	else
+		-- Fallback to vertical split if panel API unavailable
+		vim.cmd("vsplit")
+		spawn_opencode_terminal_in(api.nvim_get_current_win())
+	end
 end
 
 -- Keymap

@@ -28,6 +28,7 @@ hlsearch
 html
 htmlangular
 inlined
+ipairs
 jumplist
 linewise
 lua
