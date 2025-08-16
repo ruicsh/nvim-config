@@ -1,3 +1,5 @@
+local vim = vim
+
 -- NordStone theme
 
 -- UTILITIES
@@ -24,7 +26,7 @@ local function hl(group, color)
 	end
 end
 
--- Local a set of colours
+-- Load a set of colours
 local function loadColorSet(colorSet)
 	for group, colors in pairs(colorSet) do
 		hl(group, colors)
@@ -41,7 +43,7 @@ vim.g.colors_name = "nordstone"
 
 -- COLOURS
 
-_G.NordStoneColors = {
+local NordStoneColors = {
 	nord0 = "#2e3440",
 	nord1 = "#3b4252",
 	nord2 = "#434c5e",
@@ -56,13 +58,13 @@ _G.NordStoneColors = {
 	nord7 = "#8fbcbb",
 	nord8 = "#88c0d0",
 	nord9 = "#81a1c1",
-	nord10 = "#5e81aC",
-	nord11 = "#bf616A",
+	nord10 = "#5e81ac",
+	nord11 = "#bf616a",
 	nord11_900 = "#3c181c",
 	nord12 = "#d08770",
-	nord13 = "#ebcb8B",
-	nord14 = "#a3be8C",
-	nord15 = "#b48eaD",
+	nord13 = "#ebcb8b",
+	nord14 = "#a3be8c",
+	nord15 = "#b48ead",
 	neutral_900 = "#171717",
 	neutral_880 = "#1a1a1a",
 	neutral_800 = "#262626",
@@ -72,7 +74,10 @@ _G.NordStoneColors = {
 	neutral_400 = "#a1a1aa",
 }
 
-local c = _G.NordStoneColors
+local c = NordStoneColors
+
+-- Make colours available globally for external access
+vim.g.nordstone_colors = NordStoneColors
 
 -- EDITOR
 loadColorSet({
@@ -388,7 +393,7 @@ loadColorSet({
 	["@float"] = { fg = c.nord15 },
 	["@function"] = { fg = c.nord8 },
 	["@function.builtin"] = { fg = c.nord7 },
-	["@funtion.macro"] = { fg = c.nord7 },
+	["@function.macro"] = { fg = c.nord7 },
 	["@include"] = { fg = c.nord9 },
 	["@keyword"] = { fg = c.nord9 },
 	["@keyword.function"] = { fg = c.nord9 },
@@ -471,12 +476,12 @@ loadColorSet({
 	["@string.special.path.diff"] = { fg = c.nord3_900 },
 	["@constant.diff"] = { fg = c.nord3_500 },
 
-	-- scss
+	-- SCSS
 	["@keyword.import.scss"] = { link = "@keyword.import.css" },
 	["@string.scss"] = { link = "@string.css" },
 	["@type.scss"] = { link = "@type.css" },
 
-	-- vue
+	-- Vue
 	["@none.vue"] = { fg = c.nord4 },
 
 	["markdownLinkText"] = { link = "@markup.link.label.markdown_inline" },

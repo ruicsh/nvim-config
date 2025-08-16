@@ -1,8 +1,7 @@
 -- Duplicate and comment
 -- https://www.reddit.com/r/neovim/comments/1k4efz8/comment/mola3k0/
 
--- Duplicate selection and comment out the first instance.
-function _G.duplicate_and_comment_lines()
+local function duplicate_and_comment_lines()
 	local start_line, end_line = vim.api.nvim_buf_get_mark(0, "[")[1], vim.api.nvim_buf_get_mark(0, "]")[1]
 
 	-- NOTE: `nvim_buf_get_mark()` is 1-indexed, but `nvim_buf_get_lines()` is 0-indexed. Adjust accordingly.
@@ -20,6 +19,8 @@ function _G.duplicate_and_comment_lines()
 	-- Move cursor to the start of the duplicate lines.
 	vim.api.nvim_win_set_cursor(0, { end_line + 1, cursor[2] })
 end
+
+_G.duplicate_and_comment_lines = duplicate_and_comment_lines
 
 vim.keymap.set({ "n", "x" }, "yc", function()
 	vim.opt.operatorfunc = "v:lua.duplicate_and_comment_lines"

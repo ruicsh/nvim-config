@@ -60,7 +60,8 @@ local function get_changed_files(callback)
 		return callback({})
 	end
 
-	-- Pre-allocate table with expected size
+	-- Pre-allocate table with expected size (LuaJIT optimization)
+	---@diagnostic disable-next-line: undefined-field
 	local files = table.new and table.new(64, 0) or {}
 
 	-- Use local references for better performance
