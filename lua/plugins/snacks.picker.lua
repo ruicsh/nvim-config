@@ -148,6 +148,26 @@ return {
 	priority = 1000, -- Ensure this is loaded before other plugins that might use snacks
 	opts = {
 		picker = {
+			actions = {
+				flash = function(picker)
+					require("flash").jump({
+						pattern = "",
+						search = {
+							mode = "search",
+							exclude = {
+								function(win)
+									return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
+								end,
+							},
+						},
+						action = function(match)
+							local idx = picker.list:row2idx(match.pos[1])
+
+							picker.list:_move(idx, true, true)
+						end,
+					})
+				end,
+			},
 			db = { sqlite3_path = vim.fn.env_get("SNACKS_PICKER_DB_SQLITE3_PATH") },
 			enabled = true,
 			formatters = {
@@ -239,6 +259,7 @@ return {
 			win = {
 				input = {
 					keys = {
+						["<c-f>"] = { "flash", mode = { "n", "i" } },
 						["<c-q>"] = { "close", mode = { "n", "i" } },
 					},
 				},

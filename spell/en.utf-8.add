@@ -8,6 +8,7 @@ autocmd
 autocmds
 basename
 buf
+charwise
 cmdline
 codegen
 commitizen

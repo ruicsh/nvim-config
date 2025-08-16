@@ -24,10 +24,11 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>27 plugins</sub>
+<sub>28 plugins</sub>
 
 ### Navigation
 
+- [flash](https://github.com/folke/flash.nvim) - Jump with search labels
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
@@ -220,8 +221,8 @@ Random features added.
 - `sd{char}` delete surrounding character
 - `sr{target}{replacement}` replace surrounding character
 - `<leader>x{motion1}<leader>x{motion2}` exchange
-- `<leader>p{motion}` duplicate
-- `<leader>r{motion}` substitute with last yank
+- `<leader>m{motion}` multiply
+- `<leader>r{motion}` replace
 - `<leader>s{motion}` sort
 
 ### Completion

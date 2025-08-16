@@ -109,8 +109,8 @@ o.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for.
 -- }}}
 
 -- 14 folding {{{
-o.foldenable = true -- Enable folding.
 o.foldcolumn = "1" -- Show folding signs.
+o.foldenable = true -- Enable folding.
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding.
 o.foldlevel = 999 -- Close all folds.
 o.foldlevelstart = 99 -- Start with all folds closed.
