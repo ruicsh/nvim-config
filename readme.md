@@ -313,6 +313,8 @@ Random features added.
 - `<c-w>]` jump to definition (vsplit)
 - `<leader>dd` open diagnostics (buffer)
 - `<leader>dD` open diagnostics (workspace)
+- `[r` jump to previous symbol reference
+- `]r` jump to next symbol reference
 - `[x` jump to previous error
 - `]x` jump to next error
 

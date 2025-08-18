@@ -23,13 +23,6 @@ local function diagnostics()
 				[vim.diagnostic.severity.HINT] = icons.diagnostics.hint,
 				[vim.diagnostic.severity.N] = icons.diagnostics.hint,
 			},
-			numhl = {
-				[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-				[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-				[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-				[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-				[vim.diagnostic.severity.N] = "DiagnosticSignInfo",
-			},
 		},
 		underline = true,
 		update_in_insert = false,
@@ -54,6 +47,96 @@ local function diagnostics()
 
 	k("n", "[x", jump_to_error("prev"), { desc = "Jump to previous error", silent = true })
 	k("n", "]x", jump_to_error("next"), { desc = "Jump to next error", silent = true })
+end
+
+-- Jump to prev/next reference
+local function jump_to_references(bufnr, client)
+	local methods = vim.lsp.protocol.Methods
+
+	local k = function(keys, func, desc)
+		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+	end
+
+	if client:supports_method(methods.textDocument_references) then
+		local function find_ajdacent_reference(list, direction)
+			-- Find the current reference based on cursor position
+			local current_ref = 1
+			local lnum = vim.fn.line(".")
+			local col = vim.fn.col(".")
+			for i, item in ipairs(list) do
+				if item.lnum == lnum and item.col == col then
+					current_ref = i
+					break
+				end
+			end
+
+			-- Calculate the adjacent reference based on direction
+			local adjacent_ref = current_ref
+			if direction == "first" then
+				adjacent_ref = 1
+			elseif direction == "last" then
+				adjacent_ref = #list
+			else
+				local delta = direction == "next" and 1 or -1
+				adjacent_ref = math.min(#list, current_ref + delta)
+				if adjacent_ref < 1 then
+					adjacent_ref = 1
+				end
+			end
+
+			return adjacent_ref
+		end
+
+		-- Cache the current word and references list
+		local jump_refs_current_word = nil
+		local jump_refs_cache_list = nil
+
+		local function jump_to_reference(direction)
+			return function()
+				-- Make sure we're at the beginning of the current word
+				vim.cmd("normal! eb")
+
+				-- If we are jumping on the same word, we can use the cached list
+				if jump_refs_current_word == vim.fn.expand("<cword>") then
+					local adjacent_ref = find_ajdacent_reference(jump_refs_cache_list, direction)
+					vim.cmd("ll " .. adjacent_ref)
+					return
+				end
+
+				vim.lsp.buf.references(nil, {
+					on_list = function(options)
+						if not options or not options.items or #options.items == 0 then
+							vim.notify("No references found", vim.log.levels.WARN)
+							vim.fn.setloclist(0, {}, "r", { items = {} })
+							jump_refs_current_word = nil
+							jump_refs_cache_list = nil
+							return
+						end
+
+						-- Filter out references that are not in the current buffer
+						local current_filename = vim.api.nvim_buf_get_name(0)
+						options.items = vim.tbl_filter(function(item)
+							return item.filename == current_filename
+						end, options.items)
+
+						-- Cache the current word and items for later use
+						jump_refs_current_word = vim.fn.expand("<cword>")
+						jump_refs_cache_list = options.items
+
+						-- Set the quickfix list and jump to the adjacent reference
+						vim.fn.setloclist(0, {}, "r", { items = options.items })
+						local adjacent_ref = find_ajdacent_reference(jump_refs_cache_list, direction)
+						vim.cmd("ll " .. adjacent_ref)
+					end,
+				})
+			end
+		end
+
+		k("[r", jump_to_reference("prev"), "Jump to previous reference")
+		k("]r", jump_to_reference("next"), "Jump to next reference")
+		k("[R", jump_to_reference("first"), "Jump to first reference")
+		k("]R", jump_to_reference("last"), "Jump to last reference")
+	end
 end
 
 -- Set keymaps for LSP
@@ -94,9 +177,13 @@ local function keymaps(bufnr, client)
 	k("<leader>dd", snacks.picker.diagnostics_buffer, "Diagnostics: File")
 	k("K", hover, "Hover")
 
+	-- Jump to type implementation
 	if client:supports_method(methods.textDocument_typeDefinition) then
 		k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
 	end
+
+	-- Jump to symbol references
+	jump_to_references(bufnr, client)
 end
 
 -- Highlight all references to symbol under cursor
