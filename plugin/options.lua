@@ -46,6 +46,7 @@ o.termguicolors = true -- Enable true colours.
 -- }}}
 
 -- 6 multiple windows {{{
+o.equalalways = false -- Do not resize windows when opening a new one.
 o.laststatus = 3 -- Always show global statusline.
 o.splitbelow = true -- Open a new horizontal split below.
 o.splitright = true -- Open a new vertical split to the right.

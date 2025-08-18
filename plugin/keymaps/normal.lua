@@ -27,10 +27,6 @@ k("];", "<c-i>", { desc = "Newer cursor position" }) -- `:h ctrl-i`
 
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })
-
--- Start/stop recording a macro
-k("Q", "q", { desc = "Start recording macro" })
-
 -- }}}
 
 -- Editing {{{
@@ -70,6 +66,8 @@ end, { expr = true })
 k("cn", "*``cgn", { desc = "Change word (forward)" }) -- `:h gn`
 k("cN", "*``cgN", { desc = "Change word (backward)" }) -- `:h gN`
 
+-- Start/stop recording a macro
+k("Q", "q", { desc = "Start recording macro" })
 -- }}}
 
 -- Search {{{
