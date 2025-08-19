@@ -27,9 +27,9 @@ for _, key in ipairs(save_keys) do
 	k(key, "<cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
 end
 
--- Move lines
-k("<a-j>", ":move '>+1<cr>gv=gv", { desc = "Move line down", silent = true })
-k("<a-k>", ":move '<-2<cr>gv=gv", { desc = "Move line up", silent = true })
+-- Move selection up/down
+k("]e", ":move '>+1<cr>gv=gv", { desc = "Move selection down" })
+k("[e", ":move '<-2<cr>gv=gv", { desc = "Move selection up" })
 
 -- Paste over currently selected text without yanking it.
 k("P", '"_dP')
