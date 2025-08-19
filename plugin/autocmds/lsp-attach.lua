@@ -58,12 +58,24 @@ local function jump_to_references(bufnr, client)
 	end
 
 	if client:supports_method(methods.textDocument_references) then
-		local function find_ajdacent_reference(list, direction)
+		-- Cache the current word and references list
+		local current_word = nil
+		local cache_items = nil
+
+		local function find_ajdacent_reference(items, direction)
+			if direction == "first" then
+				return 1
+			end
+
+			if direction == "last" then
+				return #items
+			end
+
 			-- Find the current reference based on cursor position
 			local current_ref = 1
 			local lnum = vim.fn.line(".")
 			local col = vim.fn.col(".")
-			for i, item in ipairs(list) do
+			for i, item in ipairs(items) do
 				if item.lnum == lnum and item.col == col then
 					current_ref = i
 					break
@@ -72,24 +84,14 @@ local function jump_to_references(bufnr, client)
 
 			-- Calculate the adjacent reference based on direction
 			local adjacent_ref = current_ref
-			if direction == "first" then
+			local delta = direction == "next" and 1 or -1
+			adjacent_ref = math.min(#items, current_ref + delta)
+			if adjacent_ref < 1 then
 				adjacent_ref = 1
-			elseif direction == "last" then
-				adjacent_ref = #list
-			else
-				local delta = direction == "next" and 1 or -1
-				adjacent_ref = math.min(#list, current_ref + delta)
-				if adjacent_ref < 1 then
-					adjacent_ref = 1
-				end
 			end
 
 			return adjacent_ref
 		end
-
-		-- Cache the current word and references list
-		local jump_refs_current_word = nil
-		local jump_refs_cache_list = nil
 
 		local function jump_to_reference(direction)
 			return function()
@@ -97,35 +99,39 @@ local function jump_to_references(bufnr, client)
 				vim.cmd("normal! eb")
 
 				-- If we are jumping on the same word, we can use the cached list
-				if jump_refs_current_word == vim.fn.expand("<cword>") then
-					local adjacent_ref = find_ajdacent_reference(jump_refs_cache_list, direction)
+				if current_word == vim.fn.expand("<cword>") then
+					local adjacent_ref = find_ajdacent_reference(cache_items, direction)
 					vim.cmd("ll " .. adjacent_ref)
 					return
 				end
 
 				vim.lsp.buf.references(nil, {
 					on_list = function(options)
-						if not options or not options.items or #options.items == 0 then
+						-- Filter out references that are not in the current buffer
+						local current_filename = vim.api.nvim_buf_get_name(0):lower()
+						if vim.fn.has("win32") == 1 then
+							current_filename = current_filename:gsub("/", "\\")
+						end
+						local items = vim.tbl_filter(function(item)
+							return item.filename:lower() == current_filename
+						end, options.items)
+
+						-- No references found in the current buffer
+						if #items == 0 then
 							vim.notify("No references found", vim.log.levels.WARN)
 							vim.fn.setloclist(0, {}, "r", { items = {} })
-							jump_refs_current_word = nil
-							jump_refs_cache_list = nil
+							current_word = nil
+							cache_items = nil
 							return
 						end
 
-						-- Filter out references that are not in the current buffer
-						local current_filename = vim.api.nvim_buf_get_name(0)
-						options.items = vim.tbl_filter(function(item)
-							return item.filename == current_filename
-						end, options.items)
-
 						-- Cache the current word and items for later use
-						jump_refs_current_word = vim.fn.expand("<cword>")
-						jump_refs_cache_list = options.items
+						current_word = vim.fn.expand("<cword>")
+						cache_items = items
 
 						-- Set the quickfix list and jump to the adjacent reference
-						vim.fn.setloclist(0, {}, "r", { items = options.items })
-						local adjacent_ref = find_ajdacent_reference(jump_refs_cache_list, direction)
+						vim.fn.setloclist(0, {}, "r", { items = items })
+						local adjacent_ref = find_ajdacent_reference(cache_items, direction)
 						vim.cmd("ll " .. adjacent_ref)
 					end,
 				})
