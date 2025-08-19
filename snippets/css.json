@@ -39,6 +39,21 @@
     "body": "position: relative;",
     "description": "position: relative;"
   },
+  "flex-direction: column": {
+    "prefix": "flex-col",
+    "body": "flex-direction: column;",
+    "description": "flex-direction: column;"
+  },
+  "flex-direction: row": {
+    "prefix": "flex-row",
+    "body": "flex-direction: row;",
+    "description": "flex-direction: row;"
+  },
+  "gap": {
+    "prefix": "gap",
+    "body": "gap: ${1}px;",
+    "description": "gap: ${1}px;"
+  },
   "position: absolute": {
     "prefix": "absolute",
     "body": "position: absolute;",
@@ -59,9 +74,19 @@
     "body": "position: sticky;",
     "description": "position: sticky;"
   },
-  "gap": {
-    "prefix": "gap",
-    "body": "gap: ${1}px;",
-    "description": "gap: ${1}px;"
+  "xbg": {
+    "prefix": "xbg",
+    "body": "background-color: hotpink;",
+    "description": "background-color: hotpink;"
+  },
+  "xbr": {
+    "prefix": "xbr",
+    "body": "border: 1px solid hotpink;",
+    "description": "border: 1px solid hotpink;"
+  },
+  "xc": {
+    "prefix": "xc",
+    "body": "color: hotpink;",
+    "description": "color: hotpink;"
   }
 }
