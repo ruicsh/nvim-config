@@ -9,7 +9,6 @@ local PACKAGES = {
 	"cssmodules-language-server",
 	"css-variables-language-server",
 	"dockerfile-language-server",
-	"emmet-language-server",
 	"harper-ls",
 	"html-lsp",
 	"json-lsp",
