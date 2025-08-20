@@ -27,6 +27,9 @@ k("];", "<c-i>", { desc = "Newer cursor position" }) -- `:h ctrl-i`
 
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })
+
+-- Jump to matching pair `:h %`
+k("mm", "%", { desc = "Jump to matching pair" })
 -- }}}
 
 -- Editing {{{

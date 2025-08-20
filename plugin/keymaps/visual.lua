@@ -61,6 +61,7 @@ end, { expr = true })
 
 -- Search {{{
 k("g/", "<esc>/\\%V") -- Search within visual selection
+k("m", "%", { desc = "Match pair" }) -- Search for matching pair
 -- }}}
 
 -- Windows {{{

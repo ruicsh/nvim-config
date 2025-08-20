@@ -211,6 +211,7 @@ Random features added.
 - `e` entire file
 - `f` function
 - `h` git hunk
+- `m` matching pairs
 - `q` quotes (", ', `)
 - `s` single word in different cases
 - `t` html tags
