@@ -197,9 +197,6 @@ return {
 						preview = false,
 						preset = "vertical",
 					},
-					on_show = function()
-						vim.cmd.stopinsert() -- start in normal mode
-					end,
 					sort_lastused = true,
 					win = {
 						list = {
