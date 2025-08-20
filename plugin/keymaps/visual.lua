@@ -28,8 +28,8 @@ for _, key in ipairs(save_keys) do
 end
 
 -- Move selection up/down
-k("]e", ":move '>+1<cr>gv=gv", { desc = "Move selection down" })
-k("[e", ":move '<-2<cr>gv=gv", { desc = "Move selection up" })
+k("<a-up>", ":move '<-2<cr>gv=gv", { desc = "Move selection up" })
+k("<a-down>", ":move '>+1<cr>gv=gv", { desc = "Move selection down" })
 
 -- Paste over currently selected text without yanking it.
 k("P", '"_dP')

@@ -42,8 +42,8 @@ k("[p", ":put!<cr>==", { desc = "Paste on line above" }) -- `:h :put!`
 k("]p", ":put<cr>==", { desc = "Paste on line below" }) -- `:h :put`
 
 -- Move current line up/down
-k("[e", ":move .-2<cr>==", { desc = "Move current line up" }) -- `:h :move`
-k("]e", ":move .+1<cr>==", { desc = "Move current line down" }) -- `:h :move`
+k("<a-up>", ":move .-2<cr>==", { desc = "Move current line up" }) -- `:h :move`
+k("<a-down>", ":move .+1<cr>==", { desc = "Move current line down" }) -- `:h :move`
 
 -- Keep cursor in place when joining lines
 k("J", "mzJ`z:delmarks z<cr>")

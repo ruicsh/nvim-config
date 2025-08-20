@@ -200,8 +200,8 @@ Random features added.
 - `[p` paste to new line above
 - `]p` paste to new line below
 - `ycc` duplicate a line, comment out the first line.
-- `]e` move selection down
-- `[e` move selection up
+- `<a-up>` move selection up
+- `<a-down>` move selection down
 
 ### Text objects
 
