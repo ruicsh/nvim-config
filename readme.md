@@ -165,7 +165,7 @@ Random features added.
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
-- `<c-f>` jump with labels
+- `s` jump with labels
 - `[; jump to previous position`
 - `]; jump to next position`
 - `''` jump to position before last jump
@@ -218,9 +218,9 @@ Random features added.
 
 ### Operators
 
-- `sa{motion}{char}` add surrounding character
-- `sd{char}` delete surrounding character
-- `sr{target}{replacement}` replace surrounding character
+- `ys{motion}{char}` add surrounding character
+- `ds{char}` delete surrounding character
+- `cs{target}{replacement}` replace surrounding character
 - `<leader>x{motion1}<leader>x{motion2}` exchange
 - `<leader>m{motion}` multiply
 - `<leader>r{motion}` replace
@@ -293,9 +293,9 @@ Random features added.
 - `<a-j>` swap with down node
 - `<a-k>` swap with up node
 - `<a-l>` swap with right node
-- `<leader>v` select current node
-- `;` increase node selection
-- `,` decrease node selection
+- `<leader>v` select node with labels
+- `<c-a>` increase node selection
+- `<c-x>` decrease node selection
 
 ### LSP
 
