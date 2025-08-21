@@ -28,8 +28,12 @@ k("];", "<c-i>", { desc = "Newer cursor position" }) -- `:h ctrl-i`
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })
 
--- Jump to matching pair `:h %`
-k("mm", "%", { desc = "Jump to matching pair" })
+-- Matching pairs (use `m` instead of `%`)
+k("mm", "<Plug>(MatchitNormalForward)", { desc = "Match pair" }) -- `:h matchit-%`
+k("gm", "<Plug>(MatchitNormalBackward)", { desc = "Match pair backward" }) -- `:h g%`
+k("[m", "<Plug>(MatchitNormalMultiBackward)", { desc = "Unmatched pair backward" }) -- `:h [%`
+k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }) -- `:h ]%`
+
 -- }}}
 
 -- Editing {{{

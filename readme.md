@@ -171,7 +171,7 @@ Random features added.
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
-- `mm` jump to matching
+- `mm` jump to matching pair
 
 ### Windows
 
@@ -227,7 +227,7 @@ Random features added.
 - `e` entire file
 - `f` function
 - `h` git hunk
-- `m` matching pairs
+- `m` matching pair
 - `q` quotes (", ', `)
 - `s` single word in different cases
 - `t` html tags

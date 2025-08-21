@@ -3,5 +3,8 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("o", lhs, rhs, options)
 end
 
--- Match pairs
-k("m", "%", { desc = "Match pair" })
+-- Matching pairs (use `m` instead of `%`)
+k("m", "<Plug>(MatchitOperationForward)", { desc = "Match pair" }) -- `:h matchit-%`
+k("gm", "<Plug>(MatchitOperationBackward)", { desc = "Match pair backward" }) -- `:h o_g%`
+k("[m", "<Plug>(MatchitOperationMultiBackward)", { desc = "Unmatched pair backward" }) -- `:h o_[%`
+k("]m", "<Plug>(MatchitOperationMultiForward)", { desc = "Unmatched pair forward" }) -- `:h o_]%`

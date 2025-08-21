@@ -16,6 +16,12 @@ k("}", "6j")
 k("k", "gk")
 k("j", "gj")
 
+-- Matching pairs (use `m` instead of `%`)
+k("m", "<Plug>(MatchitVisualForward)", { desc = "Match pair" }) -- `:h matchit-%`
+k("gm", "<Plug>(MatchitVisualBackward)", { desc = "Match pair backward" }) -- `:h v_g%`
+k("[m", "<Plug>(MatchitVisualMultiBackward)", { desc = "Unmatched pair backward" }) -- `:h v_[%`
+k("]m", "<Plug>(MatchitVisualMultiForward)", { desc = "Unmatched pair forward" }) -- `:h v_]%`
+k("am", "<Plug>(MatchitVisualTextObject)", { desc = "Around matched pair" }) -- `:h v_a%`
 -- }}}
 
 -- Editing {{{
@@ -61,7 +67,6 @@ end, { expr = true })
 
 -- Search {{{
 k("g/", "<esc>/\\%V") -- Search within visual selection
-k("m", "%", { desc = "Match pair" }) -- Search for matching pair
 -- }}}
 
 -- Windows {{{
