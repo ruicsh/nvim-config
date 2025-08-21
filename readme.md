@@ -171,8 +171,6 @@ Random features added.
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
-- `<c-b>` jump backwards one character (insert mode)
-- `<c-f>` jump forward one character (insert mode)
 - `mm` jump to matching
 
 ### Windows
@@ -202,6 +200,17 @@ Random features added.
 - `ycc` duplicate a line, comment out the first line.
 - `<a-up>` move selection up
 - `<a-down>` move selection down
+
+### Insert mode
+
+- `<c-b>` jump character backwards
+- `<c-f>` jump character forward
+- `<a-f>` delete character forward
+- `<a-w>` delete word forward
+- `<a-u>` delete line forward
+- `<a-s-d>` delete whole line
+- `<a-up>` move current line up
+- `<a-down>` move current line down
 
 ### Text objects
 
