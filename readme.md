@@ -182,13 +182,13 @@ Random features added.
 
 ### Search
 
-- `<leader>*` find word in workspace
-- `<leader>/` find in workspace
-- `<leader>?` find in directory
-- `g/` search in selection
-- `[i` search first occurrence
-- `<c-w>i` search first occurence in new window
-- `<c-8>` find current word from the beginning of the file
+- `<leader>/` search in workspace
+- `<leader>?` search in directory
+- `<leader>g/` search current word in workspace
+- `g/` search current word forward
+- `g?` search current word backward
+- `[/` search first occurrence
+- `<c-w>/` search first occurence in new window
 - `'s` jump back to where search started
 
 ### Editing
@@ -246,7 +246,6 @@ Random features added.
 
 - `<c-n>` show/next entry
 - `<c-p>` previous entry
-- `<tab>` confirm
 - `<cr>` confirm
 - `<c-e>` show/abort
 - `<c-u>` scroll docs up
@@ -334,16 +333,6 @@ Random features added.
 - `]r` jump to next symbol reference
 - `[x` jump to previous error
 - `]x` jump to next error
-
-### Debugger:
-
-- `<f5>` continue
-- `<s-f5>` stop
-- `<f10>` step over
-- `<f11>` step into
-- `<s-f11>` step out
-- `<leader>dp` toggle breakpoint
-- `<leader>dd` start session with breakpoint
 
 ### Test runner:
 

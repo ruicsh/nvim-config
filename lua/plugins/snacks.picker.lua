@@ -116,7 +116,7 @@ return {
 			-- search
 			{ "<leader>/", snacks.picker.grep, "Search: Workspace" },
 			{ "<leader>?", grep_directory, "Search: Directory" },
-			{ "<leader>*", snacks.picker.grep_word, "Search: Current word" },
+			{ "<leader>g/", snacks.picker.grep_word, "Search: Current word" },
 			{ "<leader>sh", snacks.picker.search_history, "Search: History" },
 
 			-- current state

@@ -66,7 +66,7 @@ end, { expr = true })
 -- }}}
 
 -- Search {{{
-k("g/", "<esc>/\\%V") -- Search within visual selection
+k("/", "<esc>/\\%V", { desc = "Search in selection" }) -- `:h */\%V`
 -- }}}
 
 -- Windows {{{
