@@ -26,7 +26,7 @@ return {
 		mappings = {
 			apply = "gh",
 			reset = "gH",
-			textobject = "h",
+			textobject = "gh",
 			goto_first = "[C",
 			goto_prev = "[c",
 			goto_next = "]c",
