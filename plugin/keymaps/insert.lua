@@ -11,20 +11,28 @@ for _, key in ipairs(save_keys) do
 	k(key, "<cmd>silent! update | redraw<cr><esc>", { desc = "Save", unique = false })
 end
 
-k("<c-b>", "<left>") -- Cursor one character left `:h i_<Left>`
-k("<c-f>", "<right>") -- Cursor one character right `:h i_<Right>`
-k("<c-v>", "<c-r><c-o>+") -- Paste from clipboard without auto-indentation (`:h i_CTRL-r_CTRL-O`)
-k("<a-w>", "<c-o>de") -- Delete word forward
-k("<a-u>", "<c-o>d$") -- Delete line forward
-k("<a-f>", "<c-o>dl") -- Delete character backward
-k("<a-s-d>", "<c-o>dd") -- Delete whole line
+k("<c-h>", "<left>") -- Jump character backward `:h i_<Left>`
+k("<c-l>", "<right>") -- Jump character forward `:h i_<Right>`
+k("<c-b>", "<s-left>") -- Jump word backward `:h i_<S-Left>`
+k("<c-w>", "<s-right>", { unique = false }) -- Jump word forward `:h i_<S-Right>`
+k("<c-s-i>", "<home>") -- Jump to line start `:h i_<Home>`
+k("<c-s-a>", "<end>") -- Jump to line end `:h i_<End>`
 
--- <c-w> Delete word before cursor (`:h i_CTRL-W`)
--- <c-u> Delete all text before cursor (`:h i_CTRL-U`)
--- <c-a> Insert previously insert text (`:h i_CTRL-A`)
--- <c-r><c-o> Don't auto-indent when pasting (`:h i_CTRL-R_CTRL-O`)
+k("<a-h>", "<bs>") -- Delete character backward (`:h i_<BS>`)
+k("<a-l>", "<c-o>dl") -- Delete character forward
+k("<a-b>", "<c-w>") -- Delete word backward (`:h i_CTRL-W`)
+k("<a-w>", "<c-o>de") -- Delete word forward
+k("<a-s-i>", "<c-u>") -- Delete line backward (`:h i_CTRL-U`)
+k("<a-s-a>", "<c-o>dg_") -- Delete line forward
+k("<a-d><a-d>", "<c-o>dd") -- Delete whole line
+
 -- <c-t> Insert one shiftwidth of indentation (`:h i_CTRL-T`)
 -- <c-d> Delete one shiftwidth of indentation (`:h i_CTRL-D`)
+
+-- <c-r><c-o> Don't auto-indent when pasting (`:h i_CTRL-R_CTRL-O`)
+
+-- Paste from clipboard without auto-indentation (`:h i_CTRL-r_CTRL-O`)
+k("<c-v>", "<c-r><c-o>+")
 
 -- Move current line up/down
 k("<a-up>", "<c-o>:move .-2<cr>", { desc = "Move current line up" }) -- `:h :move`

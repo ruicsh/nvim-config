@@ -203,12 +203,19 @@ Random features added.
 
 ### Insert mode
 
-- `<c-b>` jump character backwards
-- `<c-f>` jump character forward
-- `<a-f>` delete character forward
+- `<c-h>` jump character backward
+- `<c-l>` jump character forward
+- `<c-b>` jump word backward
+- `<c-w>` jump word forward
+- `<c-I>` jump to line start
+- `<c-A>` jump to line end
+- `<a-h>` delete character backward
+- `<a-l>` delete haracter forward
+- `<a-b>` delete word backward
 - `<a-w>` delete word forward
-- `<a-u>` delete line forward
-- `<a-s-d>` delete whole line
+- `<a-I>` delete line backward
+- `<a-A>` delete line forward
+- `<a-d><a-d>` delete whole line
 - `<a-up>` move current line up
 - `<a-down>` move current line down
 
