@@ -163,6 +163,8 @@ Random features added.
 
 ### Navigation
 
+- `H` jump to start of line
+- `L` jump to end of line
 - `{` jump up 6 lines
 - `}` jump down 6 lines
 - `s` jump with labels
@@ -207,14 +209,14 @@ Random features added.
 - `<c-l>` jump character forward
 - `<c-b>` jump word backward
 - `<c-w>` jump word forward
-- `<c-I>` jump to line start
-- `<c-A>` jump to line end
+- `<c-H>` jump to line start
+- `<c-L>` jump to line end
 - `<a-h>` delete character backward
 - `<a-l>` delete haracter forward
 - `<a-b>` delete word backward
 - `<a-w>` delete word forward
-- `<a-I>` delete line backward
-- `<a-A>` delete line forward
+- `<a-H>` delete line backward
+- `<a-L>` delete line forward
 - `<a-d><a-d>` delete whole line
 - `<a-up>` move current line up
 - `<a-down>` move current line down
@@ -353,8 +355,8 @@ Random features added.
 - `<leader>hg` log
 - `<leader>hf` log file
 - `<leader>hl` log line
-- `<leader>hF` push --force-with-lease
 - `<leader>hp` push
+- `<leader>hP` push --force-with-lease
 - `<leader>hu` push -set-upstream origin HEAD
 - `<leader>hxb` open blame in browser
 - `<leader>hxf` open file in browser

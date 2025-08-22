@@ -8,3 +8,7 @@ k("m", "<Plug>(MatchitOperationForward)", { desc = "Match pair" }) -- `:h matchi
 k("gm", "<Plug>(MatchitOperationBackward)", { desc = "Match pair backward" }) -- `:h o_g%`
 k("[m", "<Plug>(MatchitOperationMultiBackward)", { desc = "Unmatched pair backward" }) -- `:h o_[%`
 k("]m", "<Plug>(MatchitOperationMultiForward)", { desc = "Unmatched pair forward" }) -- `:h o_]%`
+
+-- Start/end of line
+k("H", "^", { desc = "Start of line" }) -- `:h ^`
+k("L", "g_", { desc = "End of line" }) -- `:h g_`

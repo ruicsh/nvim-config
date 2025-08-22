@@ -34,6 +34,9 @@ k("gm", "<Plug>(MatchitNormalBackward)", { desc = "Match pair backward" }) -- `:
 k("[m", "<Plug>(MatchitNormalMultiBackward)", { desc = "Unmatched pair backward" }) -- `:h [%`
 k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }) -- `:h ]%`
 
+-- Jump to start/end of line
+k("H", "^", { desc = "Jump to start of line" }) -- `:h ^`
+k("L", "g_", { desc = "Jump to end of line" }) -- `:h g_`
 -- }}}
 
 -- Editing {{{

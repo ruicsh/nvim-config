@@ -15,15 +15,15 @@ k("<c-h>", "<left>") -- Jump character backward `:h i_<Left>`
 k("<c-l>", "<right>") -- Jump character forward `:h i_<Right>`
 k("<c-b>", "<s-left>") -- Jump word backward `:h i_<S-Left>`
 k("<c-w>", "<s-right>", { unique = false }) -- Jump word forward `:h i_<S-Right>`
-k("<c-s-i>", "<home>") -- Jump to line start `:h i_<Home>`
-k("<c-s-a>", "<end>") -- Jump to line end `:h i_<End>`
+k("<c-s-h>", "<home>") -- Jump to line start `:h i_<Home>`
+k("<c-s-l>", "<end>") -- Jump to line end `:h i_<End>`
 
 k("<a-h>", "<bs>") -- Delete character backward (`:h i_<BS>`)
 k("<a-l>", "<c-o>dl") -- Delete character forward
 k("<a-b>", "<c-w>") -- Delete word backward (`:h i_CTRL-W`)
 k("<a-w>", "<c-o>de") -- Delete word forward
-k("<a-s-i>", "<c-u>") -- Delete line backward (`:h i_CTRL-U`)
-k("<a-s-a>", "<c-o>dg_") -- Delete line forward
+k("<a-s-h>", "<c-u>") -- Delete line backward (`:h i_CTRL-U`)
+k("<a-s-l>", "<c-o>dg_") -- Delete line forward
 k("<a-d><a-d>", "<c-o>dd") -- Delete whole line
 
 -- <c-t> Insert one shiftwidth of indentation (`:h i_CTRL-T`)

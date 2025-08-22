@@ -22,6 +22,11 @@ k("gm", "<Plug>(MatchitVisualBackward)", { desc = "Match pair backward" }) -- `:
 k("[m", "<Plug>(MatchitVisualMultiBackward)", { desc = "Unmatched pair backward" }) -- `:h v_[%`
 k("]m", "<Plug>(MatchitVisualMultiForward)", { desc = "Unmatched pair forward" }) -- `:h v_]%`
 k("am", "<Plug>(MatchitVisualTextObject)", { desc = "Around matched pair" }) -- `:h v_a%`
+
+-- Start/end of line
+k("H", "^", { desc = "Start of line" }) -- `:h ^`
+k("L", "g_", { desc = "End of line" }) -- `:h g_`
+
 -- }}}
 
 -- Editing {{{
@@ -66,7 +71,7 @@ end, { expr = true })
 -- }}}
 
 -- Search {{{
-k("/", "<esc>/\\%V", { desc = "Search in selection" }) -- `:h */\%V`
+k("/", "<esc>/\\%V", { desc = "Search in selection" }) -- `:h /\%V`
 -- }}}
 
 -- Windows {{{
