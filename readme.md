@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>28 plugins</sub>
+<sub>29 plugins</sub>
 
 ### Navigation
 
@@ -37,17 +37,12 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Editing
 
+- [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
+- [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [mini.ai](https://github.com/echasnovski/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/echasnovski/mini.align) - Align text interactively
 - [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
 - [mini.surround](https://github.com/echasnovski/mini.surround) - Surround actions
-
-### Coding
-
-- [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
-- [CopilotChat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI assistant
-- [conform](https://github.com/stevearc/conform.nvim) - Formatter
-- [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
 
 ### LSP/Syntax
 
@@ -56,6 +51,12 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
+
+### AI
+
+- [CopilotChat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
+- [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
+- [opencode](https://github.com/NickvanDyke/opencode.nvim) - AI agent
 
 ### Testing/Debugging
 
@@ -269,7 +270,16 @@ Random features added.
 - `<c-]>` accept
 - `<c-x>` reset
 
-### AI assistant
+### AI suggestions
+
+- `<c-]>` accept
+- `<a-e>` dismiss
+- `<a-]>` accept word
+- `<a-[>` accept line
+- `<a-n>` show next
+- `<a-p>` show previous
+
+### AI chat
 
 - `<leader>ac` commit message (ft:gitcommit)
 - `<leader>ae` explain
@@ -282,14 +292,16 @@ Random features added.
 - `<leader>at` tests
 - `<leader>aw` refactor
 
-### AI suggestions
+### AI agent
 
-- `<c-]>` accept
-- `<a-e>` dismiss
-- `<a-]>` accept word
-- `<a-[>` accept line
-- `<a-n>` show next
-- `<a-p>` show previous
+- `<a-a>a` new session
+- `<a-a>\` toggle
+- `<a-a>A` ask about buffer
+- `<a-a>a` ask about selection
+- `<a-a>p` select prompt
+- `<a-a>c` copy message
+- `<c-U>` scroll up
+- `<c-D>` scroll down
 
 ### Logging
 
