@@ -98,8 +98,8 @@ local git_log_layout = {
 		title = "{title} {live} {flags}",
 		title_pos = "center",
 		{ win = "input", height = 1, border = "bottom" },
-		{ win = "list", height = 5, border = "none" },
-		{ win = "preview", height = 0.8, border = "top" },
+		{ win = "list", height = 10, border = "none" },
+		{ win = "preview", border = "top" },
 	},
 }
 
@@ -131,9 +131,9 @@ return {
 			-- git
 			{ "<leader>hh", snacks.picker.git_status, "Git: Status" },
 			{ "<leader>hb", snacks.picker.git_branches, "Git: Branches" },
-			{ "<leader>hf", snacks.picker.git_log_file, "Git: Log file" },
-			{ "<leader>hg", snacks.picker.git_log, "Git: Log" },
-			{ "<leader>hl", snacks.picker.git_log_line, "Git: Log line" },
+			{ "<leader>he", snacks.picker.git_log_file, "Git: Log file" },
+			{ "<leader>hl", snacks.picker.git_log, "Git: Log" },
+			{ "<leader>h.", snacks.picker.git_log_line, "Git: Log line" },
 
 			-- neovim
 			{ "<leader>nH", snacks.picker.highlights, "Highlights" },
@@ -256,7 +256,7 @@ return {
 			win = {
 				input = {
 					keys = {
-						["<c-f>"] = { "flash", mode = { "n", "i" } },
+						["<c-s>"] = { "flash", mode = { "n", "i" } },
 						["<c-q>"] = { "close", mode = { "n", "i" } },
 					},
 				},

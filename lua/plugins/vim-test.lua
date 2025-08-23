@@ -7,7 +7,7 @@ return {
 		local mappings = {
 			{ "<leader>bb", ":TestLast<cr>", "Run last" },
 			{ "<leader>bn", ":TestNearest<cr>", "Run nearest" },
-			{ "<leader>bf", ":TestFile<cr>", "Run file" },
+			{ "<leader>be", ":TestFile<cr>", "Run file" },
 			{ "<leader>ba", ":TestSuite<cr>", "Run all" },
 		}
 

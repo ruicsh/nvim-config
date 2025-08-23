@@ -340,7 +340,7 @@ Random features added.
 
 - `<leader>bb` run last
 - `<leader>bn` run nearest
-- `<leader>bf` run file
+- `<leader>be` run file
 - `<leader>ba` run all
 
 ### Git
@@ -352,9 +352,9 @@ Random features added.
 - `<leader>hd` diff hunk
 - `<leader>hh` pick git files
 - `<leader>hH` status
-- `<leader>hg` log
-- `<leader>hf` log file
-- `<leader>hl` log line
+- `<leader>hl` log
+- `<leader>he` log file
+- `<leader>h.` log line
 - `<leader>hp` push
 - `<leader>hP` push --force-with-lease
 - `<leader>hu` push -set-upstream origin HEAD
