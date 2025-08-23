@@ -1,5 +1,7 @@
 -- GitHub Copilot Chat
 -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
+-- https://docs.github.com/en/copilot/concepts/billing/copilot-requests
+-- https://lmarena.ai/leaderboard/webdev
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/copilot-chat", { clear = true })
 
@@ -291,50 +293,16 @@ local function get_sticky_prompts()
 	return sticky
 end
 
-local function open_chat(type, opts)
-	local select = require("CopilotChat.select")
-
-	return function()
-		local model
-		local selection
-		local ft_config
-		local sticky = {}
-
-		if type == "assistance" then
-			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN")
-			local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
-			selection = is_visual_mode and select.visual or select.buffer
-			ft_config = get_config_by_filetype()
-			sticky = get_sticky_prompts()
-		elseif type == "architect" then
-			model = vim.fn.getenv("COPILOT_MODEL_ARCHITECT")
-			selection = false
-		elseif type == "search" then
-			model = "perplexityai"
-			selection = false
-		end
-
-		new_chat_window("", {
-			context = ft_config and ft_config.context or {},
-			inline = opts and opts.inline or false,
-			model = model,
-			selection = selection,
-			system_prompt = get_system_prompt(type),
-			sticky = sticky,
-		})
-	end
-end
-
 local function get_model_for_operation(operation_type)
 	-- Define model environment variables in a central configuration
 	local MODEL_ENV_VARS = {
 		reason = "COPILOT_MODEL_REASON", -- Used for analysis operations
-		architect = "COPILOT_MODEL_ARCHITECT", -- Used for high-level design
 		codegen = "COPILOT_MODEL_CODEGEN", -- Default for code generation
 	}
 
 	-- Use a Set for faster lookups of analysis operations
 	local ANALYSIS_OPERATIONS = {
+		architect = true,
 		explain = true,
 		review = true,
 		-- Have refactor here to act as second opinion to codegen
@@ -342,12 +310,9 @@ local function get_model_for_operation(operation_type)
 	}
 
 	-- Determine appropriate model type with fallbacks
-	local env_var = MODEL_ENV_VARS.codegen -- Default to codegen model
-
+	local env_var = MODEL_ENV_VARS.codegen
 	if ANALYSIS_OPERATIONS[operation_type] then
 		env_var = MODEL_ENV_VARS.reason
-	elseif operation_type == "architect" then
-		env_var = MODEL_ENV_VARS.architect
 	end
 
 	-- Retrieve model with safety checks
@@ -361,6 +326,38 @@ local function get_model_for_operation(operation_type)
 	end
 
 	return selected_model
+end
+
+local function open_chat(type, opts)
+	local select = require("CopilotChat.select")
+
+	return function()
+		local selection
+		local ft_config
+		local sticky = {}
+
+		local model = get_model_for_operation(type)
+
+		if type == "assistance" then
+			local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
+			selection = is_visual_mode and select.visual or select.buffer
+			ft_config = get_config_by_filetype()
+			sticky = get_sticky_prompts()
+		elseif type == "architect" then
+			selection = false
+		elseif type == "search" then
+			selection = false
+		end
+
+		new_chat_window("", {
+			context = ft_config and ft_config.context or {},
+			inline = opts and opts.inline or false,
+			model = model,
+			selection = selection,
+			system_prompt = get_system_prompt(type),
+			sticky = sticky,
+		})
+	end
 end
 
 local function get_visual_selection()
@@ -736,7 +733,7 @@ return {
 		local mappings = {
 			-- chat
 			{ "<leader>aa", open_chat("assistance"), "Assistance", { mode = { "n", "v" } } },
-			{ "<leader>ag", open_chat("generic"), "Assistance" },
+			{ "<leader>ag", open_chat("generic"), "Generic" },
 			{ "<leader>as", open_chat("search"), "Search" },
 			{ "<leader>aq", open_chat("architect"), "Architect" },
 
