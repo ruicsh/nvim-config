@@ -238,12 +238,12 @@ local function new_chat_window(prompt, opts)
 		}
 	else
 		opts.window = {
-			layout = "float",
-			width = math.floor(vim.o.columns * 0.5),
-			height = math.floor(vim.o.lines),
-			row = 0,
+			border = { "", "", "", "", "", "", "", "│" }, -- left only
 			col = math.floor(vim.o.columns * 0.5 + 1),
-			border = "none",
+			height = math.floor(vim.o.lines),
+			layout = "float",
+			row = 0,
+			width = math.floor(vim.o.columns * 0.5),
 		}
 	end
 
