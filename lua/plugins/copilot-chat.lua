@@ -48,7 +48,7 @@ local FILETYPE_CONFIGS = {
 	},
 	neovim = {
 		filetypes = { "vim", "lua" },
-		prompts = { "neovim", "lua", "#url:https://github.com/ruicsh/nvim-config" },
+		prompts = { "neovim", "lua" },
 	},
 	playwright = {
 		patterns = { "%.spec%.ts$" },
@@ -198,14 +198,6 @@ local function get_system_prompt(action)
 	return base_prompt
 end
 
-local function get_prompts()
-	-- Get filetype-specific prompts
-	local ft_config = get_config_by_filetype()
-	local prompts = ft_config and ft_config.prompts or {}
-
-	return prompts
-end
-
 local function save_chat(response)
 	local chat = require("CopilotChat")
 
@@ -276,17 +268,18 @@ end
 local function get_sticky_prompts()
 	local sticky = {}
 
+	-- Get filetype-specific prompts
+	local ft_config = get_config_by_filetype()
+	local prompts = ft_config and ft_config.prompts or {}
+
 	-- Add filetype-specific prompts
-	for _, p in pairs(get_prompts()) do
+	for _, p in pairs(prompts) do
 		-- Only ad a slash if prompt not started by #, $, / or @
 		if not p:match("^[#$/@]") then
 			p = "/" .. p
 		end
 		table.insert(sticky, p)
 	end
-
-	-- Always add diagnostics for current file
-	table.insert(sticky, "#diagnostics:current")
 
 	return sticky
 end
@@ -385,6 +378,8 @@ local function action(type, opts)
 		elseif type == "implement" then
 			prompt = get_visual_selection() .. "\n\n"
 			selection = select.buffer
+		elseif type == "fix" then
+			table.insert(sticky, #sticky + 1, "#diagnostics:current")
 		elseif is_visual_mode then
 			selection = select.visual
 		else
