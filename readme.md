@@ -15,7 +15,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Screenshots
 
-![screenshot](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/assets/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/.assets/screenshot.png)
 
 ## Theme
 
