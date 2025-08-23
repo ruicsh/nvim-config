@@ -2,7 +2,9 @@ Caddyfile
 Colorscheme
 CursorHold
 DAP
+FIXME
 SCSS
+TODO
 VimEnter
 Vimscript
 autocmd

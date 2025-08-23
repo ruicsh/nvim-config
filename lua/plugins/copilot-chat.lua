@@ -31,12 +31,12 @@ local FILETYPE_CONFIGS = {
 	},
 	css = {
 		filetypes = { "css", "scss", "less" },
-		prompts = { "css" },
 		patterns = {
 			"%.css$",
 			"%.scss$",
 			"%.module%.css$",
 		},
+		prompts = { "css" },
 	},
 	dockerfile = {
 		filetypes = { "dockerfile" },
@@ -48,15 +48,12 @@ local FILETYPE_CONFIGS = {
 	},
 	neovim = {
 		filetypes = { "vim", "lua" },
-		prompts = { "neovim", "lua" },
-		context = { "url:https://github.com/ruicsh/nvim-config" },
+		prompts = { "neovim", "lua", "url:https://github.com/ruicsh/nvim-config" },
 	},
 	playwright = {
-		prompts = { "playwright" },
-		patterns = {
-			"%.spec%.ts$",
-		},
+		patterns = { "%.spec%.ts$" },
 		priority = 5000,
+		prompts = { "playwright" },
 	},
 	python = {
 		filetypes = { "python" },
@@ -66,54 +63,23 @@ local FILETYPE_CONFIGS = {
 		filetypes = { "rust" },
 		prompts = { "rust" },
 	},
-	-- React specific configure ations
 	storybook = {
+		alernate = ".tsx",
 		patterns = { "%.stories%.tsx$" },
-		prompts = { "storybook" },
 		priority = 5000,
-		context = function()
-			-- Return a context with the source file path
-			local current_file = vim.fn.expand("%:p")
-			local source_file = current_file:gsub("%.stories%.tsx$", ".tsx")
-			if vim.fn.filereadable(source_file) == 1 then
-				return { "file:" .. source_file }
-			end
-
-			return {}
-		end,
+		prompts = { "storybook" },
 	},
 	reacttest = {
+		alternate = ".tsx",
 		patterns = { "%.test%.tsx$" },
-		prompts = { "reacttest" },
 		priority = 4000,
-		context = function()
-			-- Return a context with the source file path
-			local current_file = vim.fn.expand("%:p")
-			local source_file = current_file:gsub("%.test%.tsx$", ".tsx")
-			if vim.fn.filereadable(source_file) == 1 then
-				-- Convert to path relative to cwd
-				local cwd = vim.fn.getcwd()
-				local relative_path = source_file:gsub("^" .. vim.pesc(cwd) .. "/", "")
-				return { "file:" .. relative_path }
-			end
-
-			return {}
-		end,
+		prompts = { "reacttest" },
 	},
 	typescripttest = {
+		alternate = ".ts",
 		patterns = { "%.test%.ts$" },
-		prompts = { "tstest" },
 		priority = 3000,
-		context = function()
-			-- Return a context with the source file path
-			local current_file = vim.fn.expand("%:p")
-			local source_file = current_file:gsub("%.test%.ts$", ".ts")
-			if vim.fn.filereadable(source_file) == 1 then
-				return { "file:" .. source_file }
-			end
-
-			return {}
-		end,
+		prompts = { "tstest" },
 	},
 	react = {
 		filetypes = { "typescriptreact" },
@@ -153,6 +119,18 @@ local function load_prompts(prompt_dir)
 	return prompts
 end
 
+local function get_alternate_file(file_ext, alternate_ext)
+	local current_file = vim.fn.expand("%:p")
+	local source_file = current_file:gsub(file_ext, alternate_ext)
+	if vim.fn.filereadable(source_file) == 1 then
+		-- Convert to path relative to cwd
+		local cwd = vim.fn.getcwd()
+		local relative_path = source_file:gsub("^" .. vim.pesc(cwd) .. "/", "")
+		return relative_path
+	end
+	return nil
+end
+
 local function get_config_by_filetype()
 	local ft = vim.bo.filetype
 	local filename = vim.fn.expand("%:t")
@@ -187,8 +165,24 @@ local function get_config_by_filetype()
 		end
 
 		if matches then
-			if config.context and type(config.context) == "function" then
-				config.context = config.context()
+			if config.prompts then
+				if type(config.prompts) == "function" then
+					config.prompts = config.prompts()
+				else
+					config.prompts = config.prompts
+				end
+			end
+
+			-- Check if alternate file exists and add as context prompt
+			if config.alternate then
+				-- For each pattern, try to find the alternate file
+				for _, pattern in ipairs(config.patterns or {}) do
+					local alternate = get_alternate_file(pattern, config.alternate)
+					if alternate then
+						config.prompts = config.prompts or {}
+						table.insert(config.prompts, #config.prompts + 1, "#file:" .. alternate)
+					end
+				end
 			end
 
 			return config
@@ -284,7 +278,11 @@ local function get_sticky_prompts()
 
 	-- Add filetype-specific prompts
 	for _, p in pairs(get_prompts()) do
-		table.insert(sticky, "/" .. p)
+		-- Only ad a slash if prompt not started by #, $, / or @
+		if not p:match("^[#$/@]") then
+			p = "/" .. p
+		end
+		table.insert(sticky, p)
 	end
 
 	-- Always add diagnostics for current file
