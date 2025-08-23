@@ -347,6 +347,7 @@ local function open_chat(type, opts)
 		end
 
 		new_chat_window("", {
+			auto_insert_mode = type == "assistance",
 			context = ft_config and ft_config.context or {},
 			inline = opts and opts.inline or false,
 			model = model,
