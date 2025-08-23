@@ -128,6 +128,8 @@ k("g?", "ms#", { desc = "Search current word backward" }) -- `:h #`
 
 -- Buffers {{{
 k("<bs>", "<c-6>", { desc = "Toggle to last buffer" }) -- `:h CTRL-6`
+k("<c-n>", ":bnext<cr>", { desc = "Next buffer" }) -- `:h :bnext`
+k("<c-p>", ":bprevious<cr>", { desc = "Previous buffer" }) -- `:h :bprevious`
 -- }}}
 
 -- Windows {{{

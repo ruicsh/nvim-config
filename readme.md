@@ -149,6 +149,8 @@ Random features added.
 ### Buffers
 
 - `<bs>` open last
+- `<c-n>` open next
+- `<c-p>` open previous
 - `<esc>` close
 - `<leader>,` list
 - `==` open alternate
@@ -168,8 +170,8 @@ Random features added.
 - `{` jump up 6 lines
 - `}` jump down 6 lines
 - `s` jump with labels
-- `[; jump to previous position`
-- `]; jump to next position`
+- `[;` jump to previous position
+- `];` jump to next position
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
