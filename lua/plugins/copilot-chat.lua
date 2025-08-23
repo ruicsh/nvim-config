@@ -263,10 +263,14 @@ end
 local function customize_chat_window()
 	vim.api.nvim_create_autocmd("BufEnter", {
 		group = augroup,
-		pattern = "copilot-*",
+		pattern = "copilot-chat",
 		callback = function()
 			vim.opt_local.conceallevel = 0
 			vim.opt_local.signcolumn = "yes:1"
+			vim.opt_local.foldlevel = 999
+			vim.opt_local.foldlevelstart = 99
+
+			vim.keymap.set("n", "<bar>", "<c-w>p", { buffer = 0 }) -- `:h CTRL-W_p`
 		end,
 	})
 end
