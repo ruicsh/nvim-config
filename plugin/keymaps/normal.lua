@@ -127,13 +127,21 @@ k("g?", "ms#", { desc = "Search current word backward" }) -- `:h #`
 -- }}}
 
 -- Buffers {{{
+
+k("<c-e>", require("snacks").bufdelete.delete, { desc = "Close buffer" }) -- `:h :bdelete`
 k("<bs>", "<c-6>", { desc = "Toggle to last buffer" }) -- `:h CTRL-6`
 k("<c-n>", ":bnext<cr>", { desc = "Next buffer" }) -- `:h :bnext`
 k("<c-p>", ":bprevious<cr>", { desc = "Previous buffer" }) -- `:h :bprevious`
+
 -- }}}
 
 -- Windows {{{
-k("q", "<c-w>q", { desc = "Windows: Close" }) -- `:h CTRL-W_q`
+
+-- Close window, not if it's the last one
+k("q", function()
+	return vim.fn.winnr("$") == 1 and "" or "<c-w>q" -- `:h CTRL-W_q`
+end, { expr = true })
+
 k("<bslash>", "<c-w>p", { desc = "Windows: Previous" }) -- `:h CTRL-W_p`
 k("<bar>", "<c-w>w", { desc = "Windows: Cycle" }) -- `:h CTRL-W_w`
 -- Same as `:h ctrl-w_T` but without closing the current window
@@ -142,6 +150,7 @@ k("<c-w>t", function()
 	require("snacks").bufdelete.delete() -- Close current buffer, keep window layout
 	vim.cmd("tabedit " .. file) -- Open the file in a new tab
 end, { desc = "Windows: Move to new tab" })
+
 -- }}}
 
 -- Folds {{{
@@ -163,6 +172,13 @@ end, { silent = true, desc = "Folds: Toggle" })
 
 -- Terminal {{{
 k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+-- }}}
+
+-- Miscellaneous {{{
+
+-- Prevent waiting for more input when pressing leader key
+k("<leader>", "<noop>")
+
 -- }}}
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable

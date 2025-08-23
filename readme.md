@@ -150,6 +150,7 @@ Random features added.
 ### Buffers
 
 - `<bs>` open last
+- `<c-e>` close
 - `<c-n>` open next
 - `<c-p>` open previous
 - `<esc>` close
