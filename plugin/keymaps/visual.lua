@@ -13,8 +13,12 @@ k("{", "6k")
 k("}", "6j")
 
 -- Use visual lines. `:h gk`
-k("k", "gk")
-k("j", "gj")
+k("k", function()
+	return vim.v.count > 0 and "k" or "gk"
+end, { expr = true })
+k("j", function()
+	return vim.v.count > 0 and "j" or "gj"
+end, { expr = true })
 
 -- Matching pairs (use `m` instead of `%`)
 k("m", "<Plug>(MatchitVisualForward)", { desc = "Match pair" }) -- `:h matchit-%`

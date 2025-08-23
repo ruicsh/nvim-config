@@ -12,8 +12,8 @@ end
 k("{", "6k", { desc = "Jump up 6 lines", silent = true })
 k("}", "6j", { desc = "Jump down 6 lines", silent = true })
 
--- Store relative line number jumps in the jumplist, by setting a mark. `:h m'`
 -- For small jumps, use visual lines. `:h gk`
+-- Store relative line number jumps in the jumplist, by setting a mark. `:h m'`
 k("k", function()
 	return vim.v.count > 0 and "m'" .. vim.v.count .. "k" or "gk"
 end, { expr = true })
