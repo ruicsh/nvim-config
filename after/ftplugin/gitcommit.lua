@@ -15,6 +15,8 @@ local function accept_commit_message()
 end
 
 k({ "n", "i" }, "<c-s>", accept_commit_message, opts)
-k({ "n", "i" }, "<leader>ac", ":CopilotCommitMessage<cr>", opts)
-k({ "n" }, "<esc>", "", opts) -- Disable <esc> as it closes the buffer
-k({ "n", "i" }, "<c-q>", ":q!<cr>", opts) -- Close the buffer
+k({ "n" }, "<leader>ac", ":CopilotCommitMessage<cr>", opts)
+k({ "n" }, "q", "<cmd>q!<cr>", opts) -- Close the buffer
+
+-- Start in insert mode
+vim.cmd.startinsert()
