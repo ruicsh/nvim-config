@@ -16,7 +16,7 @@ return {
 			end
 
 			-- Fugitive is not open, so we need to open it
-			vim.ux.open_side_panel("vertical Git")
+			vim.ux.open_on_right_side("vertical Git")
 		end
 
 		local mappings = {

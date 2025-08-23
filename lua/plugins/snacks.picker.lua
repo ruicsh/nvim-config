@@ -236,7 +236,7 @@ return {
 				help = {
 					confirm = function(picker, item)
 						picker:close()
-						vim.ux.open_side_panel("vertical help " .. item.tag)
+						vim.ux.open_on_right_side("vertical help " .. item.tag)
 					end,
 				},
 				registers = {

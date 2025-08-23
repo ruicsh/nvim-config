@@ -238,10 +238,13 @@ local function new_chat_window(prompt, opts)
 		}
 	else
 		opts.window = {
-			layout = "vertical",
+			layout = "float",
+			width = math.floor(vim.o.columns * 0.5),
+			height = math.floor(vim.o.lines),
+			row = 0,
+			col = math.floor(vim.o.columns * 0.5 + 1),
+			border = "none",
 		}
-
-		vim.ux.open_side_panel(false)
 	end
 
 	vim.g.copilot_chat_title = nil -- Reset chat title used for saving chat history
@@ -251,6 +254,9 @@ local function new_chat_window(prompt, opts)
 		chat.ask(prompt, opts)
 	else
 		chat.open(opts)
+		if opts.load then
+			chat.load(opts.load)
+		end
 	end
 end
 
@@ -531,10 +537,10 @@ local function list_chat_history()
 			end
 
 			vim.g.copilot_chat_title = item.basename
-			vim.ux.open_side_panel(false)
 
-			chat.open()
-			chat.load(item.basename)
+			new_chat_window("", {
+				load = item.basename,
+			})
 		end,
 		items = items,
 		format = function(item)

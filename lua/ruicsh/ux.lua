@@ -24,7 +24,7 @@ vim.ux.close_windows_on_side = function(side)
 end
 
 -- Open the right side panel, closing right/left side windows if necessary
-vim.ux.open_side_panel = function(cmd)
+vim.ux.open_on_right_side = function(cmd)
 	local current_win = vim.api.nvim_get_current_win()
 	local current_tab = vim.api.nvim_win_get_tabpage(current_win)
 	local wins = vim.api.nvim_tabpage_list_wins(current_tab)
@@ -71,4 +71,27 @@ vim.ux.open_side_panel = function(cmd)
 	end
 
 	run_command()
+end
+
+-- Open a floating window on the right half of the screen
+vim.ux.open_side_panel = function(cmd)
+	local width = math.floor(vim.o.columns * 0.5)
+	local height = math.floor(vim.o.lines) - 2
+	local buf = vim.api.nvim_create_buf(false, true)
+
+	local win = vim.api.nvim_open_win(buf, true, {
+		border = { "", "", "", "", "", "", "", "│" }, -- left only
+		col = vim.o.columns - width,
+		height = height,
+		relative = "editor",
+		row = 0,
+		style = "minimal",
+		width = width,
+	})
+
+	vim.api.nvim_set_current_win(win)
+
+	if cmd then
+		vim.cmd(cmd)
+	end
 end
