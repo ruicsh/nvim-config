@@ -219,13 +219,14 @@ local function save_chat(response)
 	end
 
 	-- Use AI to generate prompt title based on first AI response to user question
-	local prompt = read_prompt_file("chattitle")
-	chat.ask(vim.trim(prompt:format(response)), {
+	local system_prompt = read_prompt_file("chattitle")
+	local prompt = vim.trim(system_prompt:format(response.content))
+	chat.ask(prompt, {
 		callback = function(gen_response)
 			-- Generate timestamp in format YYYYMMDD_HHMMSS
 			local timestamp = os.date("%Y%m%d_%H%M%S")
 			-- Encode the generated title to make it safe as a filename
-			local safe_title = vim.base64.encode(gen_response):gsub("/", "_"):gsub("+", "-"):gsub("=", "")
+			local safe_title = vim.base64.encode(gen_response.content):gsub("/", "_"):gsub("+", "-"):gsub("=", "")
 			vim.g.copilot_chat_title = timestamp .. "_" .. vim.trim(safe_title)
 			chat.save(vim.g.copilot_chat_title)
 			return gen_response
