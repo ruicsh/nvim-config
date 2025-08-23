@@ -48,7 +48,7 @@ local FILETYPE_CONFIGS = {
 	},
 	neovim = {
 		filetypes = { "vim", "lua" },
-		prompts = { "neovim", "lua", "url:https://github.com/ruicsh/nvim-config" },
+		prompts = { "neovim", "lua", "#url:https://github.com/ruicsh/nvim-config" },
 	},
 	playwright = {
 		patterns = { "%.spec%.ts$" },
@@ -788,6 +788,10 @@ return {
 			auto_insert_mode = false,
 			callback = function(response)
 				save_chat(response)
+				-- Close the current fold (the user's prompt)
+				vim.cmd("normal! zc")
+				-- Scroll to the bottom of the chat window
+				vim.api.nvim_win_set_cursor(0, { vim.api.nvim_buf_line_count(0), 0 })
 			end,
 			chat_autocomplete = false,
 			-- debug = true,
