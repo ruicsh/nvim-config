@@ -130,14 +130,14 @@ return {
 				name = "vim_help",
 				handle = function(_, line, _)
 					-- Match :h or :help followed by help tag
-					local help_tag = line:match(":h%s+([%w_%-%.%:]+)") or line:match(":help%s+([%w_%-%.%:]+)")
+					local help_tag = line:match(":h%s+([%w_%-%.%:']+)") or line:match(":help%s+([%w_%-%.%:']+)")
 					if help_tag then
 						vim.ux.open_on_right_side("help " .. help_tag)
 						return true
 					end
 
 					-- Match standalone help tags like |i_ctrl-a|
-					local tag = line:match("|([%w_%-%.%:]+)|")
+					local tag = line:match("|([%w_%-%.%:']+)|")
 					if tag then
 						vim.ux.open_on_right_side("help " .. tag)
 						return true

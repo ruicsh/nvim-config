@@ -125,8 +125,8 @@ o.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60
 -- }}}
 
 -- 16 mapping {{{
-o.timeout = true -- Wait for mapped key sequence to be received
-o.timeoutlen = 500 -- Don't wait 1 second for a possible new key
+o.timeout = true -- Wait for mapped key sequence to be received `:h 'timeout'`
+o.timeoutlen = 500 -- Don't wait 1 second for a possible new key `:h 'timeoutlen'`
 -- }}}
 
 -- 17 reading and writing files {{{
