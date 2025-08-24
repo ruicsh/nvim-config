@@ -111,7 +111,7 @@ return {
 		local mappings = {
 			-- files
 			{ "<leader><space>", snacks.picker.smart, "Files" },
-			{ "<leader>,", snacks.picker.buffers, "Buffers" },
+			{ "<leader>;", snacks.picker.buffers, "Buffers" },
 
 			-- search
 			{ "<leader>/", snacks.picker.grep, "Search: Workspace" },

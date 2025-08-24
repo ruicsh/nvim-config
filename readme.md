@@ -24,11 +24,12 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>29 plugins</sub>
+<sub>30 plugins</sub>
 
 ### Navigation
 
 - [flash](https://github.com/folke/flash.nvim) - Jump with search labels
+- [grapple](https://github.com/cbochs/grapple.nvim) - File bookmarks
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
@@ -154,16 +155,27 @@ Random features added.
 - `<c-n>` open next
 - `<c-p>` open previous
 - `<esc>` close
+- `<leader>;` list
+
+### Bookmark buffer
+
+- `,{a,s,d,f}` jump
 - `<leader>,` list
-- `==` open alternate
-- `=<space>` open alternate source
-- `=s` open alternate style
-- `=t` open alternate test
-- `=m` open alternate template
-- `==<space>` open alternate source (vsplit)
-- `==s` open alternate style (vsplit)
-- `==t` open alternate test (vsplit)
-- `==m` open alternate template (vsplit)
+- `,,` toggle
+- `[,` jump to previous
+- `],` jump to next
+
+### Alternate buffer
+
+- `==` switch to
+- `=<space>` switch to source
+- `=m` switch to template
+- `=s` switch to style
+- `=t` switch to test
+- `==<space>` switch to source (vsplit)
+- `==m` switch to template (vsplit)
+- `==s` switch to style (vsplit)
+- `==t` switch to test (vsplit)
 
 ### Navigation
 
