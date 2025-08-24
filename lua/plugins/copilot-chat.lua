@@ -238,13 +238,10 @@ local function new_chat_window(prompt, opts)
 		}
 	else
 		opts.window = {
-			border = { "", "", "", "", "", "", "", "│" }, -- left only
-			col = math.floor(vim.o.columns * 0.5 + 1),
-			height = math.floor(vim.o.lines),
-			layout = "float",
-			row = 0,
-			width = math.floor(vim.o.columns * 0.5),
+			layout = "vertical",
 		}
+
+		vim.ux.open_on_right_side(false)
 	end
 
 	vim.g.copilot_chat_title = nil -- Reset chat title used for saving chat history
@@ -790,14 +787,11 @@ return {
 
 		chat.setup({
 			allow_insecure = true,
+			auto_fold = true,
 			auto_follow_cursor = true,
 			auto_insert_mode = false,
 			callback = function(response)
 				save_chat(response)
-				-- Close the current fold (the user's prompt)
-				vim.cmd("normal! zc")
-				-- Scroll to the bottom of the chat window
-				vim.api.nvim_win_set_cursor(0, { vim.api.nvim_buf_line_count(0), 0 })
 			end,
 			chat_autocomplete = false,
 			-- debug = true,
