@@ -387,7 +387,8 @@ local function action(type, opts)
 			prompt = get_visual_selection() .. "\n\n"
 			selection = select.buffer
 		elseif type == "fix" then
-			table.insert(sticky, #sticky + 1, "#diagnostics:current")
+			local scope = is_visual_mode and "selection" or "current"
+			table.insert(sticky, #sticky + 1, "#diagnostics:" .. scope)
 		elseif is_visual_mode then
 			selection = select.visual
 		else
@@ -794,7 +795,6 @@ return {
 				save_chat(response)
 			end,
 			chat_autocomplete = false,
-			-- debug = true,
 			functions = {
 				buffer = {
 					group = "copilot",
@@ -847,6 +847,123 @@ return {
 							},
 						},
 					},
+				},
+				-- This will be replace by the core implementation once this PR is merged:
+				-- https://github.com/CopilotC-Nvim/CopilotChat.nvim/pull/1351
+				diagnostics = {
+					group = "copilot",
+					uri = "neovim://diagnostics/{scope}/{severity}",
+					description = "Collects code diagnostics (errors, warnings, etc.) from specified buffers. Helpful for troubleshooting and fixing code issues.",
+
+					schema = {
+						type = "object",
+						required = { "scope", "severity" },
+						properties = {
+							scope = {
+								type = "string",
+								description = "Scope of buffers to use for retrieving diagnostics.",
+								enum = { "current", "listed", "visible", "selection" },
+								default = "current",
+							},
+							severity = {
+								type = "string",
+								description = "Minimum severity level of diagnostics to include.",
+								enum = { "error", "warn", "info", "hint" },
+								default = "warn",
+							},
+						},
+					},
+
+					resolve = function(input, source)
+						utils.schedule_main()
+						local out = {}
+						local scope = input.scope or "current"
+						local buffers = {}
+
+						-- Get buffers based on scope
+						if scope == "current" or scope == "selection" then
+							if source and source.bufnr and utils.buf_valid(source.bufnr) then
+								buffers = { source.bufnr }
+							end
+						elseif scope == "listed" then
+							buffers = vim.tbl_filter(function(b)
+								return utils.buf_valid(b) and vim.fn.buflisted(b) == 1
+							end, vim.api.nvim_list_bufs())
+						elseif scope == "visible" then
+							buffers = vim.tbl_filter(function(b)
+								return utils.buf_valid(b) and vim.fn.buflisted(b) == 1 and #vim.fn.win_findbuf(b) > 0
+							end, vim.api.nvim_list_bufs())
+						else
+							buffers = vim.tbl_filter(function(b)
+								return utils.buf_valid(b) and vim.api.nvim_buf_get_name(b) == input.scope
+							end, vim.api.nvim_list_bufs())
+						end
+
+						-- By default, collect from the whole buffer
+						local selection_start_line = 1
+						local selection_end_line = vim.api.nvim_buf_line_count(source.bufnr)
+						-- Determine selection range if scope is 'selection'
+						if scope == "selection" then
+							local select = require("CopilotChat.select")
+							local selection = select.visual(source)
+							if selection then
+								selection_start_line = selection.start_line
+								selection_end_line = selection.end_line
+							end
+						end
+
+						-- Collect diagnostics for each buffer
+						for _, bufnr in ipairs(buffers) do
+							local name = vim.api.nvim_buf_get_name(bufnr)
+							local diagnostics = vim.diagnostic.get(bufnr, {
+								severity = {
+									min = vim.diagnostic.severity[input.severity:upper()],
+								},
+							})
+
+							if #diagnostics > 0 then
+								local diag_lines = {}
+								for _, diag in ipairs(diagnostics) do
+									-- Diagnostics.lnum are 0-indexed, so add 1 for comparison
+									local diag_lnum = diag.lnum + 1
+									if
+										scope == "selection"
+										and (diag_lnum < selection_start_line or diag_lnum > selection_end_line)
+									then
+									-- Skip diagnostics outside the selection range
+									else
+										local severity = vim.diagnostic.severity[diag.severity] or "UNKNOWN"
+										local line_text = vim.api.nvim_buf_get_lines(
+											bufnr,
+											diag.lnum,
+											diag.lnum + 1,
+											false
+										)[1] or ""
+
+										table.insert(
+											diag_lines,
+											string.format(
+												"%s line=%d-%d: %s\n  > %s",
+												severity,
+												diag.lnum + 1,
+												diag.end_lnum and (diag.end_lnum + 1) or (diag.lnum + 1),
+												diag.message,
+												line_text
+											)
+										)
+									end
+								end
+
+								table.insert(out, {
+									uri = "neovim://diagnostics/" .. name,
+									mimetype = "text/plain",
+									data = table.concat(diag_lines, "\n"),
+								})
+							end
+						end
+
+						return out
+					end,
 				},
 				file = {
 					group = "copilot",
