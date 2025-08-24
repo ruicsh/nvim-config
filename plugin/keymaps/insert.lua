@@ -11,6 +11,7 @@ for _, key in ipairs(save_keys) do
 	k(key, "<cmd>silent! update | redraw<cr><esc>", { desc = "Save", unique = false })
 end
 
+-- Navigation
 k("<c-h>", "<left>") -- Jump character backward `:h i_<Left>`
 k("<c-l>", "<right>") -- Jump character forward `:h i_<Right>`
 k("<c-b>", "<s-left>") -- Jump word backward `:h i_<S-Left>`
@@ -18,6 +19,7 @@ k("<c-w>", "<s-right>", { unique = false }) -- Jump word forward `:h i_<S-Right>
 k("<c-s-h>", "<home>") -- Jump to line start `:h i_<Home>`
 k("<c-s-l>", "<end>") -- Jump to line end `:h i_<End>`
 
+-- Editing commands
 k("<a-h>", "<bs>") -- Delete character backward (`:h i_<BS>`)
 k("<a-l>", "<c-o>dl") -- Delete character forward
 k("<a-b>", "<c-w>") -- Delete word backward (`:h i_CTRL-W`)
