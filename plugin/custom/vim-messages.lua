@@ -18,16 +18,16 @@ vim.api.nvim_create_user_command("VimMessages", function()
 
 	-- Calculate dimensions for floating window
 	local width = vim.o.columns
-	local height = math.floor(vim.o.lines * 0.3) + 4
+	local height = math.floor(vim.o.lines * 0.4)
 	local col = 0
-	local row = vim.o.lines - height - 4
+	local row = vim.o.lines - height - 3
 
 	-- Create floating window
 	local buf = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, filtered_lines)
 
 	local win = vim.api.nvim_open_win(buf, true, {
-		border = "rounded",
+		border = { "─", "─", "─", "", "", "─", "", "" }, -- Only top border
 		col = col,
 		height = height,
 		relative = "editor",
@@ -58,4 +58,8 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.keymap.set("n", "<leader>nn", "<cmd>VimMessages<cr>", { unique = true, desc = "Vim messages" })
+local k = vim.keymap.set
+local opts = { silent = true, noremap = true }
+
+k("n", "<leader>nn", "<cmd>VimMessages<cr>", opts)
+k("n", "<leader>nc", "<cmd>messages clear<cr>", opts)
