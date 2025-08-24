@@ -6,7 +6,7 @@ local function k(lhs, rhs, opts)
 end
 
 -- Navigation {{{
-
+--
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
 k("{", "6k")
@@ -34,6 +34,7 @@ k("L", "g_", { desc = "End of line" }) -- `:h g_`
 -- }}}
 
 -- Editing {{{
+--
 k("Y", "y$") -- Make Y behave like normal mode
 
 -- Save file
@@ -75,10 +76,12 @@ end, { expr = true })
 -- }}}
 
 -- Search {{{
+--
 k("/", "<esc>/\\%V", { desc = "Search in selection" }) -- `:h /\%V`
 -- }}}
 
 -- Windows {{{
+--
 k("<bslash>", "<esc><c-w>p", { desc = "Windows: Previous" }) -- `:h CTRL-W_p`
 k("<bar>", "<esc><c-w>w", { desc = "Windows: Cycle" }) -- `:h CTRL-W_w`
 -- }}}

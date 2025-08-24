@@ -6,7 +6,7 @@ local function k(lhs, rhs, opts)
 end
 
 -- Navigation {{{
-
+--
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
 k("{", "6k", { desc = "Jump up 6 lines", silent = true })
@@ -40,7 +40,7 @@ k("L", "g_", { desc = "Jump to end of line" }) -- `:h g_`
 -- }}}
 
 -- Editing {{{
-
+--
 k("U", "<c-r>", { desc = "Redo" }) -- `:h ctrl-r`
 
 -- Keep same logic from `y/c/d` on `v`
@@ -79,13 +79,10 @@ end, { expr = true })
 -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 k("cn", "*``cgn", { desc = "Change word (forward)" }) -- `:h gn`
 k("cN", "*``cgN", { desc = "Change word (backward)" }) -- `:h gN`
-
--- Start/stop recording a macro
-k("Q", "q", { desc = "Start recording macro" })
 -- }}}
 
 -- Search {{{
-
+--
 -- Mark position before search
 -- Use `'s` to go back to where search started
 -- https://github.com/justinmk/config/blob/master/.config/nvim/plugin/my/keymaps.lua#L51
@@ -123,20 +120,18 @@ end, { desc = "Jump to where search started" })
 -- `*` and `#` are hard to type
 k("g/", "ms*", { desc = "Search current word forward" }) -- `:h *`
 k("g?", "ms#", { desc = "Search current word backward" }) -- `:h #`
-
 -- }}}
 
 -- Buffers {{{
-
+--
 k("<c-e>", require("snacks").bufdelete.delete, { desc = "Close buffer" }) -- `:h :bdelete`
 k("<bs>", "<c-6>", { desc = "Toggle to last buffer" }) -- `:h CTRL-6`
 k("<c-n>", ":bnext<cr>", { desc = "Next buffer" }) -- `:h :bnext`
 k("<c-p>", ":bprevious<cr>", { desc = "Previous buffer" }) -- `:h :bprevious`
-
 -- }}}
 
 -- Windows {{{
-
+--
 -- Close window, not if it's the last one
 k("q", function()
 	return vim.fn.winnr("$") == 1 and "" or "<c-w>q" -- `:h CTRL-W_q`
@@ -150,11 +145,10 @@ k("<c-w>t", function()
 	require("snacks").bufdelete.delete() -- Close current buffer, keep window layout
 	vim.cmd("tabedit " .. file) -- Open the file in a new tab
 end, { desc = "Windows: Move to new tab" })
-
 -- }}}
 
 -- Folds {{{
-
+--
 -- Toggle
 k("<tab>", function()
 	local linenr = vim.fn.line(".")
@@ -167,18 +161,20 @@ k("<tab>", function()
 	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
 	vim.cmd("normal! " .. cmd)
 end, { silent = true, desc = "Folds: Toggle" })
-
 -- }}}
 
 -- Terminal {{{
+--
 k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 -- }}}
 
 -- Miscellaneous {{{
+--
+-- Start/stop recording a macro
+k("Q", "q", { desc = "Start recording macro" })
 
 -- Prevent waiting for more input when pressing leader key
 k("<leader>", "<noop>")
-
 -- }}}
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable

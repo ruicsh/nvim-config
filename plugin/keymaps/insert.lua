@@ -5,21 +5,19 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("i", lhs, rhs, options)
 end
 
--- Always exit insert mode when saving.
-local save_keys = { "<c-s>", "<d-s>" }
-for _, key in ipairs(save_keys) do
-	k(key, "<cmd>silent! update | redraw<cr><esc>", { desc = "Save", unique = false })
-end
-
--- Navigation
+-- Navigation {{{
+--
 k("<c-h>", "<left>") -- Jump character backward `:h i_<Left>`
 k("<c-l>", "<right>") -- Jump character forward `:h i_<Right>`
 k("<c-b>", "<s-left>") -- Jump word backward `:h i_<S-Left>`
 k("<c-w>", "<s-right>", { unique = false }) -- Jump word forward `:h i_<S-Right>`
 k("<c-s-h>", "<home>") -- Jump to line start `:h i_<Home>`
 k("<c-s-l>", "<end>") -- Jump to line end `:h i_<End>`
+-- }}}
 
--- Editing commands
+-- Editing {{{
+--
+-- Delete
 k("<a-h>", "<bs>") -- Delete character backward (`:h i_<BS>`)
 k("<a-l>", "<c-o>dl") -- Delete character forward
 k("<a-b>", "<c-w>") -- Delete word backward (`:h i_CTRL-W`)
@@ -27,7 +25,6 @@ k("<a-w>", "<c-o>de") -- Delete word forward
 k("<a-s-h>", "<c-u>") -- Delete line backward (`:h i_CTRL-U`)
 k("<a-s-l>", "<c-o>dg_") -- Delete line forward
 k("<a-d><a-d>", "<c-o>dd") -- Delete whole line
-
 -- <c-t> Insert one shiftwidth of indentation (`:h i_CTRL-T`)
 -- <c-d> Delete one shiftwidth of indentation (`:h i_CTRL-D`)
 
@@ -45,3 +42,14 @@ local undo_keys = { "<space>", ";", ",", ".", "!", "?", ">", ")", "]", "}" }
 for _, key in ipairs(undo_keys) do
 	k(key, key .. "<c-g>u")
 end
+-- }}}
+
+-- Miscellaneous {{{
+--
+-- Always exit insert mode when saving.
+local save_keys = { "<c-s>", "<d-s>" }
+for _, key in ipairs(save_keys) do
+	k(key, "<cmd>silent! update | redraw<cr><esc>", { desc = "Save", unique = false })
+end
+-- }}}
+-- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable
