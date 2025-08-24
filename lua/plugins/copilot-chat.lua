@@ -331,7 +331,6 @@ local function open_chat(type, opts)
 
 	return function()
 		local selection
-		local ft_config
 		local sticky = {}
 
 		local model = get_model_for_operation(type)
@@ -339,7 +338,6 @@ local function open_chat(type, opts)
 		if type == "assistance" then
 			local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
 			selection = is_visual_mode and select.visual or select.buffer
-			ft_config = get_config_by_filetype()
 			sticky = get_sticky_prompts()
 		elseif type == "architect" then
 			selection = false
@@ -349,12 +347,11 @@ local function open_chat(type, opts)
 
 		new_chat_window("", {
 			auto_insert_mode = type == "assistance",
-			context = ft_config and ft_config.context or {},
 			inline = opts and opts.inline or false,
 			model = model,
 			selection = selection,
-			system_prompt = get_system_prompt(type),
 			sticky = sticky,
+			system_prompt = get_system_prompt(type),
 		})
 	end
 end
@@ -633,9 +630,9 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 			vim.cmd("normal! G")
 			return response
 		end,
-		context = { "git_staged" },
 		headless = true,
 		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
+		sticky = { "#gitdiff:staged" },
 		system_prompt = "/COPILOT_INSTRUCTIONS",
 	})
 end, {})
@@ -660,9 +657,9 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 			vim.keymap.set("n", "<c-]>", accept_code_review, { buffer = true })
 			return response
 		end,
-		context = { "git_staged" },
 		model = vim.fn.getenv("COPILOT_MODEL_REASON"),
 		selection = false,
+		sticky = { "#gitdiff:staged" },
 		system_prompt = "/COPILOT_REVIEW",
 		window = {
 			layout = "replace",
