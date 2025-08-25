@@ -194,6 +194,7 @@ Random features added.
 ### Windows
 
 - `q` close window
+- `<c-q>` quit
 - `\` focus previous window
 - `|` cycle windows
 - `<c-w>t` move file to new tab

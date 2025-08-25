@@ -136,6 +136,7 @@ k("<c-p>", ":bprevious<cr>", { desc = "Previous buffer" }) -- `:h :bprevious`
 k("q", function()
 	return vim.fn.winnr("$") == 1 and "" or "<c-w>q" -- `:h CTRL-W_q`
 end, { expr = true })
+k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
 
 k("<bslash>", "<c-w>p", { desc = "Windows: Previous" }) -- `:h CTRL-W_p`
 k("<bar>", "<c-w>w", { desc = "Windows: Cycle" }) -- `:h CTRL-W_w`
