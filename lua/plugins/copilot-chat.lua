@@ -776,25 +776,17 @@ return {
 		local resources = require("CopilotChat.resources")
 
 		vim.fn.load_env_file() -- Make sure the env file is loaded
-
 		customize_chat_window()
-
 		local proxy = vim.fn.env_get("COPILOT_PROXY")
-
 		local prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts")
 
 		chat.setup({
 			allow_insecure = true,
-			auto_fold = false,
+			auto_fold = true,
 			auto_follow_cursor = true,
 			auto_insert_mode = false,
 			callback = function(response)
 				save_chat(response)
-
-				-- FIXME: This will be unnecessary once auto_fold is working better:
-				-- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/1300
-				-- Close the current fold (the user's prompt)
-				vim.cmd("normal! zc")
 				-- Scroll to the bottom of the chat window
 				vim.api.nvim_win_set_cursor(0, { vim.api.nvim_buf_line_count(0), 0 })
 			end,
