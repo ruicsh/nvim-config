@@ -21,9 +21,8 @@ k("j", function()
 	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
 
--- <c-i> would trigger the toggle fold because it's the same as <tab>
-k("[;", "<c-o>", { desc = "Older cursor position" }) -- `:h ctrl-o`
-k("];", "<c-i>", { desc = "Newer cursor position" }) -- `:h ctrl-i`
+-- Newer cursor position (<tab> is mapped to toggle fold)
+k("<c-i>", "<tab>", { unique = false }) -- `:h <c-i>`
 
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })
@@ -35,8 +34,21 @@ k("[m", "<Plug>(MatchitNormalMultiBackward)", { desc = "Unmatched pair backward"
 k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }) -- `:h ]%`
 
 -- Jump to start/end of line
-k("H", "^", { desc = "Jump to start of line" }) -- `:h ^`
-k("L", "g_", { desc = "Jump to end of line" }) -- `:h g_`
+k("<s-h>", "^", { desc = "Jump to start of line" }) -- `:h ^`
+k("<s-l>", "g_", { desc = "Jump to end of line" }) -- `:h g_`
+
+-- Keep cursor centered when scrolling, and open folds if necessary
+local scroll_center_keys = { "<c-d>", "<c-u>" }
+for _, key in ipairs(scroll_center_keys) do
+	k(key, key .. "zzzv", { desc = "Scroll and center", silent = true })
+end
+
+-- Keep cursor centered when browsing search results
+local search_center_keys = { "n", "N" }
+for _, key in ipairs(search_center_keys) do
+	k(key, key .. "zz", { desc = "Scroll and center", silent = true })
+end
+--
 -- }}}
 
 -- Editing {{{
@@ -79,6 +91,7 @@ end, { expr = true })
 -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 k("cn", "*``cgn", { desc = "Change word (forward)" }) -- `:h gn`
 k("cN", "*``cgN", { desc = "Change word (backward)" }) -- `:h gN`
+--
 -- }}}
 
 -- Search {{{
@@ -117,9 +130,14 @@ k("'s", function()
 	vim.cmd.nohlsearch()
 end, { desc = "Jump to where search started" })
 
--- `*` and `#` are hard to type
-k("g/", "ms*", { desc = "Search current word forward" }) -- `:h *`
-k("g?", "ms#", { desc = "Search current word backward" }) -- `:h #`
+-- `*` is hard to type
+k("g/", "ms*", { desc = "Search current word" }) -- `:h *`
+
+-- Web search
+k("g?", function()
+	vim.ui.open(("https://google.com/search?q=%s"):format(vim.fn.expand("<cword>")))
+end, { desc = "Search web for word under cursor" })
+--
 -- }}}
 
 -- Buffers {{{
@@ -128,6 +146,7 @@ k("<c-e>", require("snacks").bufdelete.delete, { desc = "Close buffer" }) -- `:h
 k("<bs>", "<c-6>", { desc = "Toggle to last buffer" }) -- `:h CTRL-6`
 k("<c-n>", ":bnext<cr>", { desc = "Next buffer" }) -- `:h :bnext`
 k("<c-p>", ":bprevious<cr>", { desc = "Previous buffer" }) -- `:h :bprevious`
+--
 -- }}}
 
 -- Windows {{{
@@ -146,6 +165,7 @@ k("<c-w>t", function()
 	require("snacks").bufdelete.delete() -- Close current buffer, keep window layout
 	vim.cmd("tabedit " .. file) -- Open the file in a new tab
 end, { desc = "Windows: Move to new tab" })
+--
 -- }}}
 
 -- Folds {{{
@@ -161,21 +181,26 @@ k("<tab>", function()
 	-- Open if closed, close if open.
 	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
 	vim.cmd("normal! " .. cmd)
-end, { silent = true, desc = "Folds: Toggle" })
+end, { unique = false, silent = true, desc = "Folds: Toggle" })
+--
 -- }}}
 
 -- Terminal {{{
 --
 k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+--
 -- }}}
 
 -- Miscellaneous {{{
 --
--- Start/stop recording a macro
-k("Q", "q", { desc = "Start recording macro" })
+k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
+k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
+k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
+k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h :help`
 
 -- Prevent waiting for more input when pressing leader key
 k("<leader>", "<noop>")
+--
 -- }}}
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable

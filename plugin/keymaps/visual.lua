@@ -28,9 +28,9 @@ k("]m", "<Plug>(MatchitVisualMultiForward)", { desc = "Unmatched pair forward" }
 k("am", "<Plug>(MatchitVisualTextObject)", { desc = "Around matched pair" }) -- `:h v_a%`
 
 -- Start/end of line
-k("H", "^", { desc = "Start of line" }) -- `:h ^`
-k("L", "g_", { desc = "End of line" }) -- `:h g_`
-
+k("<s-h>", "^", { desc = "Start of line" }) -- `:h ^`
+k("<s-l>", "g_", { desc = "End of line" }) -- `:h g_`
+--
 -- }}}
 
 -- Editing {{{
@@ -66,24 +66,33 @@ k("cN", replace_selection("N"), { expr = true, desc = "Change selection (backwar
 
 -- Same behaviour for `I`/`A` as in normal mode
 -- https://www.reddit.com/r/neovim/comments/1k4efz8/comment/moelhto/
-k("I", function()
-	return vim.fn.mode() == "V" and "^<c-v>I" or "I"
+k("<s-i>", function()
+	return vim.fn.mode() == "V" and "^<c-v><s-i>" or "<s-i>"
 end, { expr = true })
-k("A", function()
-	return vim.fn.mode() == "V" and "$<c-v>A" or "A"
+k("<s-a>", function()
+	return vim.fn.mode() == "V" and "$<c-v><s-a>" or "<s-a>"
 end, { expr = true })
-
+--
 -- }}}
 
 -- Search {{{
 --
 k("/", "<esc>/\\%V", { desc = "Search in selection" }) -- `:h /\%V`
+k("g?", function()
+	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), { type = vim.fn.mode() }), " "
+	local query = vim.trim(table.concat(selection, " "))
+	local url = ("https://google.com/search?q=%s"):format(query)
+	vim.ui.open(url)
+	vim.api.nvim_input("<esc>")
+end)
+--
 -- }}}
 
 -- Windows {{{
 --
 k("<bslash>", "<esc><c-w>p", { desc = "Windows: Previous" }) -- `:h CTRL-W_p`
 k("<bar>", "<esc><c-w>w", { desc = "Windows: Cycle" }) -- `:h CTRL-W_w`
+--
 -- }}}
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0

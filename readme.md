@@ -184,8 +184,6 @@ Random features added.
 - `{` jump up 6 lines
 - `}` jump down 6 lines
 - `s` jump with labels
-- `[;` jump to previous position
-- `];` jump to next position
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
@@ -204,11 +202,11 @@ Random features added.
 - `<leader>/` search in workspace
 - `<leader>?` search in directory
 - `<leader>g/` search current word in workspace
-- `g/` search current word forward
-- `g?` search current word backward
+- `g/` search current word
 - `[/` search first occurrence
 - `<c-w>/` search first occurence in new window
 - `'s` jump back to where search started
+- `g?` web search
 
 ### Editing
 
