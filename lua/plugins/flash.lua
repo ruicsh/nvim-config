@@ -24,7 +24,9 @@ return {
 		},
 		modes = {
 			char = {
-				enabled = false,
+				enabled = true,
+				highlight = { backdrop = false },
+				multi_line = false,
 			},
 			treesitter = {
 				label = {
