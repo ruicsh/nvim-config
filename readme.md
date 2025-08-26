@@ -159,9 +159,10 @@ Random features added.
 
 ### Bookmark buffer
 
-- `,{a,s,d,f}` jump
+- `,{a,s,d,f}` jump to
+- `,{A,S,D,F}` save to
 - `<leader>,` list
-- `,,` toggle
+- `,l` toggle
 - `[,` jump to previous
 - `],` jump to next
 
