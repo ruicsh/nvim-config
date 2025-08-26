@@ -19,7 +19,7 @@ return {
 			table.insert(mappings, { "," .. key, cmd, desc })
 
 			local saveCmd = string.format("<cmd>Grapple tag index=%d<cr>", i)
-			table.insert(mappings, { ",<c-" .. key .. ">", saveCmd, "Tag " .. key })
+			table.insert(mappings, { ",<s-" .. key .. ">", saveCmd, "Tag " .. key })
 		end
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Bookmarks")

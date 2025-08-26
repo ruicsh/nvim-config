@@ -206,6 +206,7 @@ Random features added.
 - `g/` search current word
 - `[/` search first occurrence
 - `<c-w>/` search first occurence in new window
+- `<c-r>/` repeat last search
 - `'s` jump back to where search started
 - `g?` web search
 

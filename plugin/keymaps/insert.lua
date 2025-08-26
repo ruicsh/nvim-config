@@ -43,14 +43,6 @@ local undo_keys = { "<space>", ";", ",", ".", "!", "?", ">", ")", "]", "}" }
 for _, key in ipairs(undo_keys) do
 	k(key, key .. "<c-g>u")
 end
-
--- Auto-pairs
-k("{<cr>", "{<cr>}<esc>O")
-k("{;", "{<cr>};<esc>O")
-k("{,", "{<cr>},<esc>O")
-k("[<cr>", "[<cr>]<esc>O")
-k("[;", "[<cr>];<esc>O")
-k("[,", "[<cr>],<esc>O")
 --
 -- }}}
 
@@ -63,4 +55,5 @@ for _, key in ipairs(save_keys) do
 end
 --
 -- }}}
+
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable
