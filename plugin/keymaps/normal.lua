@@ -194,9 +194,6 @@ k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
 k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
 k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
 k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h :help`
-
--- Prevent waiting for more input when pressing leader key
-k("<leader>", "<noop>")
 --
 -- }}}
 
