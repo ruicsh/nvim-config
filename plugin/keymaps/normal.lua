@@ -37,16 +37,10 @@ k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }
 k("<s-h>", "^", { desc = "Jump to start of line" }) -- `:h ^`
 k("<s-l>", "g_", { desc = "Jump to end of line" }) -- `:h g_`
 
--- Keep cursor centered when scrolling, and open folds if necessary
+-- When scrolling, open folds if necessary
 local scroll_center_keys = { "<c-d>", "<c-u>" }
 for _, key in ipairs(scroll_center_keys) do
-	k(key, key .. "zzzv", { desc = "Scroll and center", silent = true })
-end
-
--- Keep cursor centered when browsing search results
-local search_center_keys = { "n", "N" }
-for _, key in ipairs(search_center_keys) do
-	k(key, key .. "zz", { desc = "Scroll and center", silent = true })
+	k(key, key .. "zv", { desc = "Scroll and center", silent = true })
 end
 --
 -- }}}
@@ -64,8 +58,9 @@ k("[p", ":put!<cr>==", { desc = "Paste on line above" }) -- `:h :put!`
 k("]p", ":put<cr>==", { desc = "Paste on line below" }) -- `:h :put`
 
 -- Move current line up/down
-k("<a-up>", ":move .-2<cr>==", { desc = "Move current line up" }) -- `:h :move`
-k("<a-down>", ":move .+1<cr>==", { desc = "Move current line down" }) -- `:h :move`
+-- https://www.reddit.com/r/vim/comments/i8b5z1/is_there_a_more_elegant_way_to_move_lines_than_eg/
+k("<a-up>", ":<c-u>move-2<cr>==", { desc = "Move current line up" }) -- `:h :move`
+k("<a-down>", ":<c-u>move+1<cr>==", { desc = "Move current line down" }) -- `:h :move`
 
 -- Keep cursor in place when joining lines
 k("J", "mzJ`z:delmarks z<cr>")
@@ -131,7 +126,7 @@ k("'s", function()
 end, { desc = "Jump to where search started" })
 
 -- `*` is hard to type
-k("g/", "ms*", { desc = "Search current word" }) -- `:h *`
+k("g/", "ms*N", { desc = "Search current word" }) -- `:h *`
 k("<c-r>/", "ms/<c-r>/<cr>", { desc = "Repeat last search" }) -- `:h quote_/`
 
 -- Web search

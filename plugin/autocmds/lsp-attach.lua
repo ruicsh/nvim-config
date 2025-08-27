@@ -155,13 +155,6 @@ local function keymaps(bufnr, client)
 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
 	end
 
-	-- Open definition in a new vertical window
-	local function vsplit_and_definition()
-		-- We need to open the panel with the current buffer first
-		vim.ux.open_on_right_side("vsplit | wincmd L")
-		vim.lsp.buf.definition()
-	end
-
 	local function hover()
 		-- https://neovim.io/doc/user/lsp.html#vim.lsp.buf.hover.Opts
 		vim.lsp.buf.hover({
@@ -175,7 +168,7 @@ local function keymaps(bufnr, client)
 	k("gd", vim.lsp.buf.definition, "Jump to definition")
 	k("<cr>", vim.lsp.buf.definition, "Jump to definition")
 	k("<c-]>", vim.lsp.buf.definition, "Jump to definition")
-	k("<c-w>]", vsplit_and_definition, "Jump to definition (vsplit)") -- :h CTRL-w_]
+	k("<c-w>]", "<c-w>o<c-w>v<c-]><c-w>L", "Jump to definition (vsplit)") -- `:h CTRL-]`
 	k("gD", vim.lsp.buf.declaration, "Jump to declaration")
 	k("grr", snacks.picker.lsp_references, "References")
 	k("gO", snacks.picker.lsp_symbols, "Symbols")

@@ -44,8 +44,9 @@ for _, key in ipairs(save_keys) do
 end
 
 -- Move selection up/down
-k("<a-up>", ":move '<-2<cr>gv=gv", { desc = "Move selection up" })
-k("<a-down>", ":move '>+1<cr>gv=gv", { desc = "Move selection down" })
+-- https://www.reddit.com/r/vim/comments/i8b5z1/is_there_a_more_elegant_way_to_move_lines_than_eg/
+k("<a-up>", ":move-2<cr>='[gv", { desc = "Move selection up" })
+k("<a-down>", ":move'>+1<cr>='[gv", { desc = "Move selection down" })
 
 -- Paste over currently selected text without yanking it.
 k("P", '"_dP')
@@ -72,12 +73,24 @@ end, { expr = true })
 k("<s-a>", function()
 	return vim.fn.mode() == "V" and "$<c-v><s-a>" or "<s-a>"
 end, { expr = true })
+
+-- Repeat last change across visual selection
+k(".", ":normal .<cr>", { desc = "Repeat last change" }) -- `:h .`
 --
 -- }}}
 
 -- Search {{{
 --
-k("/", "<esc>/\\%V", { desc = "Search in selection" }) -- `:h /\%V`
+-- Search current selection
+k("g/", function()
+	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), { type = vim.fn.mode() }), " "
+	return "<esc>/" .. vim.trim(table.concat(selection, " ")) .. "<cr>N"
+end, { desc = "Search selection", expr = true })
+
+-- Search inside visual selection
+k("/", "<esc>/\\%V", { desc = "Search inside selection" }) -- `:h /\%V`
+
+-- Web search selection
 k("g?", function()
 	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), { type = vim.fn.mode() }), " "
 	local query = vim.trim(table.concat(selection, " "))
