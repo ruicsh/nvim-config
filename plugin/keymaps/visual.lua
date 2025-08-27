@@ -84,7 +84,9 @@ k(".", ":normal .<cr>", { desc = "Repeat last change" }) -- `:h .`
 -- Search current selection
 k("g/", function()
 	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), { type = vim.fn.mode() }), " "
-	return "<esc>/" .. vim.trim(table.concat(selection, " ")) .. "<cr>N"
+	local text = vim.trim(table.concat(selection, " "))
+	local escaped = vim.fn.escape(text, [[\/.*$^~[]])
+	return "<esc>/" .. escaped .. "<cr>N"
 end, { desc = "Search selection", expr = true })
 
 -- Search inside visual selection
