@@ -21,8 +21,9 @@ k("j", function()
 	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
 
--- Newer cursor position (<tab> is mapped to toggle fold)
-k("<c-i>", "<tab>", { unique = false }) -- `:h <c-i>`
+-- Jump to older/newer cursor position in jump list
+k("[;", "<c-o>", { desc = "Jump to older cursor position" }) -- `:h <c-o>`
+k("];", "<c-i>", { desc = "Jump to newer cursor position" }) -- `:h <c-i>`
 
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })
