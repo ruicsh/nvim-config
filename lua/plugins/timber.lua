@@ -42,14 +42,16 @@ return {
 	end,
 	opts = {
 		keymaps = {
-			insert_log_below = "glv",
-			insert_log_above = "glV",
-			insert_plain_log_below = "glp",
-			insert_plain_log_above = "glP",
+			add_log_targets_to_batch = "gla",
+			add_log_targets_to_batch_operator = "g<s-l>a",
 			insert_batch_log = "glb",
-			insert_batch_log_operator = false,
-			insert_log_below_operator = "glo",
+			insert_batch_log_operator = "g<s-l>b",
+			insert_log_above = "glV",
 			insert_log_above_operator = "glO",
+			insert_log_below = "glv",
+			insert_log_below_operator = "glo",
+			insert_plain_log_above = "glP",
+			insert_plain_log_below = "glp",
 		},
 		template_placeholders = {
 			print_tag = function()
