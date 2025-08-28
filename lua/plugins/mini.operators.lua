@@ -2,7 +2,7 @@
 -- https://github.com/echasnovski/mini.operators
 
 return {
-	"echasnovski/mini.operators",
+	"nvim-mini/mini.operators",
 	opts = {
 		exchange = {
 			prefix = "<leader>x",

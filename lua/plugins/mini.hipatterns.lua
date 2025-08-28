@@ -2,7 +2,7 @@
 -- https://github.com/echasnovski/mini.hipatterns
 
 return {
-	"echasnovski/mini.hipatterns",
+	"nvim-mini/mini.hipatterns",
 	opts = function()
 		local hi = require("mini.hipatterns")
 

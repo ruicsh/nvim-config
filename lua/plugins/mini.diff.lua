@@ -4,7 +4,7 @@
 local icons = require("config/icons")
 
 return {
-	"echasnovski/mini.diff",
+	"nvim-mini/mini.diff",
 	keys = function()
 		local diff = require("mini.diff")
 

@@ -40,15 +40,15 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
-- [mini.ai](https://github.com/echasnovski/mini.ai) - Around/inside textobjects
-- [mini.align](https://github.com/echasnovski/mini.align) - Align text interactively
-- [mini.operators](https://github.com/echasnovski/mini.operators) - Text edit operators
-- [mini.surround](https://github.com/echasnovski/mini.surround) - Surround actions
+- [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
+- [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
+- [mini.operators](https://github.com/nvim-mini/mini.operators) - Text edit operators
+- [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround actions
 
 ### LSP/Syntax
 
 - [mason](https://github.com/williamboman/mason.nvim) - LSP package manager
-- [mini.hipatterns](https://github.com/echasnovski/mini.hipatterns) - Highlight patterns in text
+- [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
@@ -67,12 +67,12 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 ### Git
 
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
-- [mini.diff](https://github.com/echasnovski/mini.diff) - hunks
+- [mini.diff](https://github.com/nvim-mini/mini.diff) - hunks
 
 ### UI
 
-- [mini.clue](https://github.com/echasnovski/mini.clue) - Keybindings helper
-- [mini.notify](https://github.com/echasnovski/mini.notify) - Notifications
+- [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
+- [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
 
 ## Config
 

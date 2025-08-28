@@ -2,7 +2,7 @@
 -- https://github.com/echasnovski/mini.notify
 
 return {
-	"echasnovski/mini.notify",
+	"nvim-mini/mini.notify",
 	opts = {
 		content = {
 			format = nil,

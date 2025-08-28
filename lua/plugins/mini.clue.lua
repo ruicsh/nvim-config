@@ -2,7 +2,7 @@
 -- https://github.com/echasnovski/mini.clue
 
 return {
-	"echasnovski/mini.clue",
+	"nvim-mini/mini.clue",
 	opts = function()
 		local miniclue = require("mini.clue")
 		return {
