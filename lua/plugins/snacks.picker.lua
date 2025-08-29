@@ -87,22 +87,6 @@ local grep_directory = function()
 	end
 end
 
--- Common layout used by git_log and git_log_file
-local git_log_layout = {
-	layout = {
-		backdrop = false,
-		width = 0.8,
-		height = 0.9,
-		box = "vertical",
-		border = "rounded",
-		title = "{title} {live} {flags}",
-		title_pos = "center",
-		{ win = "input", height = 1, border = "bottom" },
-		{ win = "list", height = 10, border = "none" },
-		{ win = "preview", border = "top" },
-	},
-}
-
 return {
 	"folke/snacks.nvim",
 	keys = (function()
@@ -201,7 +185,7 @@ return {
 					win = {
 						list = {
 							keys = {
-								["<c-x>"] = { "bufdelete" },
+								["<c-e>"] = { "bufdelete" },
 							},
 						},
 					},
@@ -220,15 +204,6 @@ return {
 				},
 				files = {
 					hidden = true,
-				},
-				git_log = {
-					layout = git_log_layout,
-				},
-				git_log_file = {
-					layout = git_log_layout,
-				},
-				git_log_line = {
-					layout = git_log_layout,
 				},
 				grep = {
 					exclude = { "package-lock.json", "lazy-lock.json" },
