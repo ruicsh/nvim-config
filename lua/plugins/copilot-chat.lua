@@ -266,8 +266,6 @@ local function customize_chat_window()
 			vim.opt_local.signcolumn = "yes:1"
 			vim.opt_local.foldlevel = 999
 			vim.opt_local.foldlevelstart = 99
-
-			vim.keymap.set("n", "<bar>", "<c-w>p", { buffer = 0 }) -- `:h CTRL-W_p`
 		end,
 	})
 end
