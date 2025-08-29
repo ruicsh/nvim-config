@@ -5,7 +5,7 @@ g.loaded_2html_plugin = 1
 g.loaded_getscript = 1
 g.loaded_getscriptPlugin = 1
 g.loaded_gzip = 1
-g.loaded_matchparen = 1
+-- g.loaded_matchparen = 1
 g.loaded_netrwPlugin = 1
 g.loaded_rrhelper = 1
 g.loaded_tar = 1
@@ -22,3 +22,6 @@ g.loaded_python3_provider = 0
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
+
+-- matchparen `:h matchparen`
+g.matchparen_disable_cursor_hl = 1

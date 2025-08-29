@@ -95,6 +95,7 @@ o.clipboard = "unnamedplus" -- Use system clipboard.
 -- 12 editing text {{{
 o.complete = ".,]" -- How keyword completion works.
 o.completeopt = "menu,menuone,noinsert,preview" -- Disable native autocompletion (using nvim-cmp).
+o.matchpairs = "(:),{:},[:]" -- Pairs of characters that % can match.
 o.pumblend = 5 -- Opaque completion menu background.
 o.pumheight = 5 -- Maximum height of pop-up menu.
 o.showmatch = false -- Do not jump to matching brackets.

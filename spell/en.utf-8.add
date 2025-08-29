@@ -37,6 +37,7 @@ jumplist
 linewise
 lua
 markdown
+matchparen
 neovim
 netrw
 opencode

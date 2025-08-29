@@ -26,20 +26,6 @@ require("lazy").setup("plugins", {
 	},
 	import = "plugins",
 	install = { colorscheme = { "nordstone" } },
-	performance = {
-		rtp = {
-			disabled_plugins = {
-				"gzip",
-				"matchparen",
-				"netrwPlugin",
-				"rplugin",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
-			},
-		},
-	},
 	ui = {
 		border = "rounded",
 	},

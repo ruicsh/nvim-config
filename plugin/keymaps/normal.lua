@@ -75,7 +75,7 @@ end
 -- Don't store on register when changing text or deleting a character.
 local black_hole_commands = { "C", "c", "cc", "x", "X" }
 for _, key in pairs(black_hole_commands) do
-	k(key, '"_' .. key)
+	k(key, '"_' .. key) -- `:h "_`
 end
 
 -- Don't store empty lines in register.
@@ -162,6 +162,12 @@ k("<c-w>t", function()
 	require("snacks").bufdelete.delete() -- Close current buffer, keep window layout
 	vim.cmd("tabedit " .. file) -- Open the file in a new tab
 end, { desc = "Windows: Move to new tab" })
+--
+-- }}}
+
+-- Tabs {{{
+--
+k("<leader><tab><tab>", ":tabnew<cr>", { desc = "Tabs: New" }) -- `:h :tabnew`
 --
 -- }}}
 
