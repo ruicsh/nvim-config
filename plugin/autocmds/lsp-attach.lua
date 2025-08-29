@@ -2,7 +2,7 @@
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/lsp-attach", { clear = true })
 
-local icons = require("config/icons")
+local icons = require("lua.core.icons")
 
 -- Configure diagnostics
 local function diagnostics()

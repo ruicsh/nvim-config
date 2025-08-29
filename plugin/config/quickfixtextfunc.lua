@@ -1,6 +1,6 @@
 -- Quickfix formatting and highlighting customization
 
-local icons = require("config/icons")
+local icons = require("core.icons")
 
 local ns = vim.api.nvim_create_namespace("ruicsh/config/quickfixtextfunc")
 local augroup = vim.api.nvim_create_augroup("ruicsh/config/quickfixtextfunc", { clear = true })

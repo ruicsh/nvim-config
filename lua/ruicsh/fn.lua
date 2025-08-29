@@ -1,4 +1,4 @@
-local icons = require("config/icons")
+local icons = require("core.icons")
 
 -- Takes a table of keys, returns a keymaps lazy config
 vim.fn.get_lazy_keys_conf = function(mappings, desc_prefix)

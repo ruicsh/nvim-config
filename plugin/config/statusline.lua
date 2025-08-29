@@ -1,6 +1,6 @@
 -- Statusline configuration
 
-local icons = require("config/icons")
+local icons = require("core.icons")
 
 local function sep()
 	return "%#StatusLineSeparator#|%#StatusLine#"

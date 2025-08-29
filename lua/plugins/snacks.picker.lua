@@ -1,7 +1,7 @@
 -- Pickers.
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 
-local icons = require("config/icons")
+local icons = require("core.icons")
 
 -- Open a ui.select to search for a directory to search in
 local grep_directory = function()
