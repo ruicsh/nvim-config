@@ -1,5 +1,5 @@
 -- Align text interactively
--- https://github.com/echasnovski/mini.align
+-- https://github.com/nvim-mini/mini.align
 
 return {
 	"nvim-mini/mini.align",

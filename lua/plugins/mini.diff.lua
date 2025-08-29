@@ -1,5 +1,5 @@
 -- Git diff hunks.
--- https://github.com/echasnovski/mini.diff
+-- https://github.com/nvim-mini/mini.diff
 
 local icons = require("core.icons")
 

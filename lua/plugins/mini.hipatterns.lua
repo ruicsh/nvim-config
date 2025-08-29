@@ -1,5 +1,5 @@
 -- Highlight patterns in text.
--- https://github.com/echasnovski/mini.hipatterns
+-- https://github.com/nvim-mini/mini.hipatterns
 
 return {
 	"nvim-mini/mini.hipatterns",

@@ -1,5 +1,5 @@
 -- Text edit operators
--- https://github.com/echasnovski/mini.operators
+-- https://github.com/nvim-mini/mini.operators
 
 return {
 	"nvim-mini/mini.operators",

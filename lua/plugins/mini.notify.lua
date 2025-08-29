@@ -1,5 +1,5 @@
 -- Notifications.
--- https://github.com/echasnovski/mini.notify
+-- https://github.com/nvim-mini/mini.notify
 
 return {
 	"nvim-mini/mini.notify",

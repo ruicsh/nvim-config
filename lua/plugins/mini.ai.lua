@@ -1,5 +1,5 @@
 -- Extend and create a/i textobjects.
--- https://github.com/echasnovski/mini.ai
+-- https://github.com/nvim-mini/mini.ai
 
 return {
 	"nvim-mini/mini.ai",
