@@ -327,31 +327,29 @@ local function get_model_for_operation(operation_type)
 end
 
 local function open_chat(type, opts)
-	local select = require("CopilotChat.select")
-
 	return function()
-		local selection
 		local sticky = {}
 
 		local model = get_model_for_operation(type)
+		local system_prompt = get_system_prompt(type)
 
 		if type == "assistance" then
 			local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
-			selection = is_visual_mode and select.visual or select.buffer
 			sticky = get_sticky_prompts()
+			if is_visual_mode then
+				table.insert(sticky, #sticky + 1, "#selection")
+			else
+				table.insert(sticky, #sticky + 1, "#buffer")
+			end
 		elseif type == "architect" then
-			selection = false
 		elseif type == "search" then
-			selection = false
 		end
 
 		new_chat_window("", {
-			auto_insert_mode = type == "assistance",
 			inline = opts and opts.inline or false,
 			model = model,
-			selection = selection,
 			sticky = sticky,
-			system_prompt = get_system_prompt(type),
+			system_prompt = system_prompt,
 		})
 	end
 end
@@ -368,33 +366,28 @@ end
 
 local function action(type, opts)
 	return function()
-		local select = require("CopilotChat.select")
-
 		local prompt = "Please"
 
 		local sticky = get_sticky_prompts()
 		table.insert(sticky, "/" .. type)
 
 		local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
-		local selection = nil
 
 		if type == "generic" then
-			selection = nil
 		elseif type == "implement" then
 			prompt = get_visual_selection() .. "\n\n"
-			selection = select.buffer
+			table.insert(sticky, #sticky + 1, "#buffer")
 		elseif type == "fix" then
 			local scope = is_visual_mode and "selection" or "current"
 			table.insert(sticky, #sticky + 1, "#diagnostics:" .. scope)
 		elseif is_visual_mode then
-			selection = select.visual
+			table.insert(sticky, #sticky + 1, "#selection")
 		else
-			selection = select.buffer
+			table.insert(sticky, #sticky + 1, "#buffer")
 		end
 
 		new_chat_window(prompt, {
 			model = get_model_for_operation(type),
-			selection = selection,
 			system_prompt = get_system_prompt(type),
 			sticky = sticky,
 			inline = opts and opts.inline or false,
@@ -602,6 +595,32 @@ local function list_chat_history()
 	})
 end
 
+local function resources_get_buffer(bufnr)
+	local utils = require("CopilotChat.utils")
+	local files = require("CopilotChat.utils.files")
+
+	local content = nil
+
+	if not utils.buf_valid(bufnr) then
+		-- Read it from disk if not loaded in a buffer
+		local name = vim.api.nvim_buf_get_name(bufnr)
+		if name == "" or vim.fn.filereadable(name) == 0 then
+			return nil
+		end
+		content = vim.fn.readfile(name)
+		if not content or #content == 0 then
+			return nil
+		end
+	else
+		content = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+		if not content or #content == 0 then
+			return nil
+		end
+	end
+
+	return table.concat(content, "\n"), files.filetype_to_mimetype(vim.bo[bufnr].filetype)
+end
+
 vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local chat = require("CopilotChat")
 	local bufnr = vim.api.nvim_get_current_buf()
@@ -658,7 +677,6 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 			return response
 		end,
 		model = vim.fn.getenv("COPILOT_MODEL_REASON"),
-		selection = false,
 		sticky = { "#gitdiff:staged" },
 		system_prompt = "/COPILOT_REVIEW",
 		window = {
@@ -715,7 +733,6 @@ vim.api.nvim_create_user_command("CopilotPrReview", function()
 				vim.schedule(function()
 					new_chat_window(prompt, {
 						model = vim.fn.getenv("COPILOT_MODEL_REASON"),
-						selection = false,
 						system_prompt = "/COPILOT_INSTRUCTIONS",
 					})
 				end)
@@ -784,7 +801,7 @@ return {
 			allow_insecure = true,
 			auto_fold = true,
 			auto_follow_cursor = true,
-			auto_insert_mode = false,
+			auto_insert_mode = true,
 			callback = function(response)
 				save_chat(response)
 				-- Scroll to the bottom of the chat window
@@ -796,32 +813,13 @@ return {
 					group = "copilot",
 					uri = "buffer://{name}",
 					description = "Retrieves content from a specific buffer.",
-					resolve = function(input)
-						local bufnr = tonumber(input.bufnr)
-						if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
-							error("Invalid buffer number: " .. tostring(input.bufnr))
-						end
-
-						utils.schedule_main()
-						local name = vim.api.nvim_buf_get_name(bufnr)
-						local data, mimetype = resources.get_buffer(bufnr)
-
-						return {
-							{
-								uri = "buffer://" .. name,
-								name = name,
-								mimetype = mimetype,
-								data = data,
-							},
-						}
-					end,
 					schema = {
 						type = "object",
-						required = { "bufnr" },
+						required = { "name" },
 						properties = {
-							bufnr = {
-								type = "number",
-								description = "Buffer number to include in chat context.",
+							name = {
+								type = "string",
+								description = "Buffer filename to include in chat context.",
 								enum = function()
 									local chat_winid = vim.api.nvim_get_current_win()
 									local async = require("plenary.async")
@@ -834,7 +832,7 @@ return {
 													vim.api.nvim_set_current_win(chat_winid)
 													vim.cmd("normal! a")
 												end
-												callback({ item.buf })
+												callback({ item.file })
 											end,
 										})
 									end, 1)
@@ -843,6 +841,35 @@ return {
 							},
 						},
 					},
+					resolve = function(input, source)
+						utils.schedule_main()
+						local name = input.name or vim.api.nvim_buf_get_name(source.bufnr)
+						local found_buf = nil
+						for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+							if vim.api.nvim_buf_get_name(buf) == name then
+								found_buf = buf
+								break
+							end
+						end
+
+						if not found_buf then
+							error("Buffer not found: " .. name)
+						end
+
+						local data, mimetype = resources_get_buffer(found_buf)
+						if not data then
+							error("Buffer not found: " .. name)
+						end
+
+						return {
+							{
+								uri = "buffer://" .. name,
+								name = name,
+								mimetype = mimetype,
+								data = data,
+							},
+						}
+					end,
 				},
 				file = {
 					group = "copilot",
@@ -955,7 +982,6 @@ return {
 			prompts = prompts,
 			proxy = proxy,
 			remember_as_sticky = false,
-			selection = false, -- Have no predefined context by default
 			separator = " ",
 			show_help = false,
 			show_folds = true,
