@@ -244,17 +244,19 @@ loadColorSet({
 
 -- status-line (mode)
 local cmode = {
-	c = c.nord14, -- #a3be8c
-	i = c.nord4, -- #d8dee9
-	n = c.nord8, -- #88c0d0
-	o = c.nord12, -- #d08770
-	x = c.nord13, -- #ebcb8b
-	_ = c.nord11, -- #bf616a
+	c = c.nord14, -- `#a3be8c`
+	i = c.nord4, -- `#d8dee9`
+	n = c.nord8, -- `#88c0d0`
+	o = c.nord12, -- `#d08770`
+	x = c.nord13, -- `#ebcb8b`
+	_ = c.nord11, -- `#bf616a`
 }
 
 -- status-line
 loadColorSet({
 	StatusLineBookmark = { fg = c.nord13 },
+	StatusLineFileChanged = { fg = c.nord8 },
+	StatusLineGitStatus = { fg = c.nord4 },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
 	StatusLineModeInsert = { bg = cmode.i },

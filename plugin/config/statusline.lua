@@ -129,7 +129,7 @@ local function c_filename()
 		end
 	end
 
-	return line .. " %m"
+	return line .. " %#StatusLineFileChanged#%m"
 end
 
 local function c_bookmark()
@@ -139,7 +139,7 @@ local function c_bookmark()
 	end
 
 	local hl = "%#StatusLineBookmark#"
-	return sep() .. " " .. hl .. "󰛢 " .. index .. "%#StatusLine#"
+	return sep() .. " " .. hl .. "󰛢 " .. index
 end
 
 -- Show search count
@@ -199,7 +199,7 @@ local cache_git_status = {}
 local function c_git_status()
 	local bufnr = vim.api.nvim_get_current_buf()
 	if cache_git_status[bufnr] and cache_git_status[bufnr].time > vim.loop.now() - 1000 then
-		return cache_git_status[bufnr].value
+		return "%#StatusLineGitStatus#" .. cache_git_status[bufnr].value
 	end
 
 	local status = vim.b.minidiff_summary
@@ -223,7 +223,7 @@ local function c_git_status()
 
 	cache_git_status[bufnr] = { time = vim.loop.now(), value = git_status }
 
-	return "%#StatusLine#" .. git_status
+	return "%#StatusLineGitStatus#" .. git_status
 end
 
 -- Show the current git branch
@@ -302,8 +302,8 @@ function _G.status_line()
 		hl,
 		c_mode(),
 		c_project(),
-		c_filename(),
 		c_bookmark(),
+		c_filename(),
 		c_copilot_chat(),
 		c_search_count(),
 		"%=",
