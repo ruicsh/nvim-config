@@ -135,7 +135,7 @@ end
 local function c_bookmark()
 	local index = require("grapple").name_or_index()
 	if not index then
-		return
+		return ""
 	end
 
 	local hl = "%#StatusLineBookmark#"
