@@ -22,7 +22,7 @@ return {
 
 		local mappings = {
 			{ "gx", "<cmd>Browse<cr>", "Open file/url at cursor", mode = { "n", "x" } },
-			{ "<leader>gxb", open_commit_url, "Git commit" },
+			{ "<leader>hxb", open_commit_url, "Git commit" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings)

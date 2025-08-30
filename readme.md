@@ -375,16 +375,16 @@ Random features added.
 
 - `[c` previous change
 - `]c` next change
-- `<leader>gd` diff hunk
-- `<leader>gg` status
-- `<leader>gl` log
-- `<leader>ge` log file
-- `<leader>g.` log line
-- `<leader>gp` push
-- `<leader>gP` push --force-with-lease
-- `<leader>gu` push -set-upstream origin HEAD
-- `<leader>gxb` open blame in browser
-- `<leader>gxf` open file in browser
+- `<leader>h.` log line
+- `<leader>hP` push --force-with-lease
+- `<leader>hd` diff hunk
+- `<leader>he` log file
+- `<leader>hh` status
+- `<leader>hl` log
+- `<leader>hp` push
+- `<leader>hu` push -set-upstream origin HEAD
+- `<leader>hxb` open blame in browser
+- `<leader>hxf` open file in browser
 
 ### Application
 

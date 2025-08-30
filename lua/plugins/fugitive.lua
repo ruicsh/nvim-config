@@ -20,7 +20,7 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>gg", open_git_status, "status" },
+			{ "<leader>hh", open_git_status, "Status" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")

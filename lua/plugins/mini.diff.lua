@@ -9,7 +9,7 @@ return {
 		local diff = require("mini.diff")
 
 		local mappings = {
-			{ "<leader>gd", diff.toggle_overlay, "Toggle diff overlay" },
+			{ "<leader>hd", diff.toggle_overlay, "Diff" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
@@ -26,7 +26,7 @@ return {
 		mappings = {
 			apply = "",
 			reset = "",
-			textobject = "gh",
+			textobject = "",
 			goto_first = "[C",
 			goto_prev = "[c",
 			goto_next = "]c",
