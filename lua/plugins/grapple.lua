@@ -14,14 +14,14 @@ return {
 			local desc = "Select " .. key
 			table.insert(mappings, { "," .. key, cmd, desc })
 
-			local saveCmd = string.format("<cmd>Grapple tag index=%d<cr>", i)
+			local saveCmd = string.format("<cmd>Grapple tag index=%d name=%s<cr>", i, key)
 			table.insert(mappings, { "<leader>," .. key, saveCmd, "Tag " .. key })
 		end
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Bookmarks")
 	end,
 	opts = {
-		name_pos = "start",
+		name_pos = "",
 		quick_select = "asdf",
 		scope = "git_branch",
 		win = {

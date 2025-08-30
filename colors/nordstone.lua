@@ -254,6 +254,7 @@ local cmode = {
 
 -- status-line
 loadColorSet({
+	StatusLineBookmark = { fg = c.nord13 },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
 	StatusLineModeInsert = { bg = cmode.i },
@@ -264,9 +265,9 @@ loadColorSet({
 	StatusLineModeOtherText = { fg = cmode._ },
 	StatusLineModePending = { bg = cmode.o },
 	StatusLineModePendingText = { fg = cmode.o },
-	StatusLineProject = { fg = c.nord4 },
 	StatusLineModeVisual = { bg = cmode.x },
 	StatusLineModeVisualText = { fg = cmode.x },
+	StatusLineProject = { fg = c.nord4 },
 	StatusLineSeparator = { fg = c.nord3 },
 })
 
