@@ -324,6 +324,8 @@ Random features added.
 - `glP` insert plain log above
 - `glb` insert batch log below
 - `gla` add to batch log
+- `glk` insert breakpoint below
+- `glK` insert breakpoint above
 - `glt` insert timestamp below
 - `glT` insert timestamp below
 - `<leader>glt` insert timestamp above/below

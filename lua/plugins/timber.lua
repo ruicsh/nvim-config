@@ -32,10 +32,21 @@ return {
 			end
 		end
 
+		local function insert_breakpoint(position)
+			return function()
+				actions.insert_log({
+					template = "breakpoint",
+					position = position,
+				})
+			end
+		end
+
 		local mappings = {
-			{ "glt", insert_time_log("below"), "Timestamp below", { expr = true } },
-			{ "glT", insert_time_log("above"), "Timestamp above", { expr = true } },
-			{ "<leader>glt", insert_time_log("surround"), "Timestamp above/below", { expr = true } },
+			{ "glk", insert_breakpoint("below"), "Insert debugger statement (below)" },
+			{ "glK", insert_breakpoint("above"), "Insert debugger statement (above)" },
+			{ "glt", insert_time_log("below"), "Timestamp below" },
+			{ "glT", insert_time_log("above"), "Timestamp above" },
+			{ "<leader>glt", insert_time_log("surround"), "Timestamp above/below" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Logs")
@@ -66,6 +77,15 @@ return {
 			end,
 		},
 		log_templates = {
+			breakpoint = {
+				javascript = "debugger;",
+				jsx = "debugger;",
+				python = "import pdb; pdb.set_trace()",
+				rust = "std::intrinsics::breakpoint();",
+				tsx = "debugger;",
+				typescript = "debugger;",
+				typescriptreact = "debugger;",
+			},
 			default = {
 				javascript = templates_js.log.default,
 				jsx = templates_js.log.default,
