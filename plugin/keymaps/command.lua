@@ -16,8 +16,8 @@ k("<c-h>", "<left>") -- Jump character backward `:h c_<Left>`
 k("<c-l>", "<right>") -- Jump character forward `:h c_<Right>`
 k("<c-b>", "<s-left>") -- Jump word backward `:h c_<S-Left>`
 k("<c-w>", "<s-right>") -- Jump word forward `:h c_<S-Right>`
-k("<c-s-h>", "<c-o>^") -- Jump to line start `:h ^`
-k("<c-s-l>", "<c-o>g_") -- Jump to line end `:h g_`
+k("<c-s-h>", "<c-b>") -- Jump to line start `:h c_ctrl-b`
+k("<c-s-l>", "<c-e>") -- Jump to line end `:h c_ctrl-e`
 
 -- Editing commands
 k("<a-h>", "<bs>") -- Delete character backward (`:h c_<BS>`)
