@@ -7,9 +7,9 @@ end
 
 -- Use <c-f> to open the commend line window and edit the command `:h c_CTRL-f`
 
--- Filter the command line history. `Pratical Vim, pp 69`
-k("<c-n>", "<down>") -- `:h c_Down`
-k("<c-p>", "<up>") -- `:h c_Up`
+-- Navigate through search matches without leaving command mode
+k("<c-n>", "<c-g>") -- `:h c_ctrl-g`
+k("<c-p>", "<c-t>") -- `:h c_ctrl-t`
 
 -- Navigate within the command line
 k("<c-h>", "<left>") -- Jump character backward `:h c_<Left>`

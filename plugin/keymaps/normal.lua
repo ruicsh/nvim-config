@@ -131,7 +131,8 @@ end, { desc = "Jump to where search started" })
 
 -- `*` is hard to type
 k("g/", "ms*N", { desc = "Search current word" }) -- `:h *`
-k("<c-r>/", "ms/<c-r>/<cr>", { desc = "Repeat last search" }) -- `:h quote_/`
+k("<s-g>/", "/\\<<c-r><c-w>\\>", { desc = "Search current word (no jumps)" }) -- `:h c_ctrl-g`
+k("<c-g>/", "ms/<c-r>/<cr>", { desc = "Repeat last search" }) -- `:h quote_/`
 
 -- Web search
 k("g?", function()
