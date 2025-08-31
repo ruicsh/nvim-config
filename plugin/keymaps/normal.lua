@@ -130,7 +130,7 @@ k("'s", function()
 end, { desc = "Jump to where search started" })
 
 -- `*` is hard to type
-k("g/", "ms*N", { desc = "Search current word" }) -- `:h *`
+k("g/", "ms:keepjumps normal! *`s<cr>", { desc = "Search current word" }) -- `:h *`
 k("<s-g>/", "/\\<<c-r><c-w>\\>", { desc = "Search current word (no jumps)" }) -- `:h c_ctrl-g`
 k("<c-g>/", "ms/<c-r>/<cr>", { desc = "Repeat last search" }) -- `:h quote_/`
 
