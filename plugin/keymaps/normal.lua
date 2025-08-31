@@ -137,6 +137,9 @@ k("<c-r>/", "ms/<c-r>/<cr>", { desc = "Repeat last search" }) -- `:h quote_/`
 k("g?", function()
 	vim.ui.open(("https://google.com/search?q=%s"):format(vim.fn.expand("<cword>")))
 end, { desc = "Search web for word under cursor" })
+
+-- Replace current word under cursor
+k("r/", ":%s/<c-r><c-w>//g<left><left>", { desc = "Replace current word" })
 --
 -- }}}
 

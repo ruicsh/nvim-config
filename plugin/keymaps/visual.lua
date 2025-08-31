@@ -100,6 +100,9 @@ k("g?", function()
 	vim.ui.open(url)
 	vim.api.nvim_input("<esc>")
 end)
+
+-- Replace selection
+k("r/", '"hy:%s/<c-r>h//g<left><left>', { desc = "Replace selection" })
 --
 -- }}}
 

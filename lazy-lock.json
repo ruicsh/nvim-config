@@ -23,7 +23,7 @@
   "opencode.nvim": { "branch": "main", "commit": "2fce982fc8080849afbe3db2ee4229ae9104af30" },
   "other.nvim": { "branch": "main", "commit": "1d48e090f6d1d53dda9fb5094af3f2006ebbb858" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
-  "rustaceanvim": { "branch": "master", "commit": "687792dc71cc68e9c27fd73eb9189b34212ed263" },
+  "rustaceanvim": { "branch": "master", "commit": "12504405821c05874d2d1f6b5ec919f9808e2c99" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "timber.nvim": { "branch": "main", "commit": "d32f10e30c1056861c412a00a028869538998e30" },
   "treewalker.nvim": { "branch": "main", "commit": "4b268cdd9d9b4bc6b06760dcf883734de84bfcd3" },
