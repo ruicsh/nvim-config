@@ -211,7 +211,7 @@ Random features added.
 - `<c-w>/` search first occurence in new window
 - `<c-r>/` repeat last search
 - `'s` jump back to where search started
-- `g?` web search
+- `<a-g>/` web search current word
 
 ### Editing
 

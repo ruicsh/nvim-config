@@ -975,6 +975,10 @@ return {
 					normal = "<c-s>",
 					insert = "<c-s>",
 				},
+				show_help = {
+					normal = "g?",
+					insert = "g?",
+				},
 			},
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
 			prompts = prompts,

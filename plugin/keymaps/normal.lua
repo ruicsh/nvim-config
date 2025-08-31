@@ -135,7 +135,7 @@ k("<s-g>/", "/\\<<c-r><c-w>\\>", { desc = "Search current word (no jumps)" }) --
 k("<c-g>/", "ms/<c-r>/<cr>", { desc = "Repeat last search" }) -- `:h quote_/`
 
 -- Web search
-k("g?", function()
+k("<a-g>/", function()
 	vim.ui.open(("https://google.com/search?q=%s"):format(vim.fn.expand("<cword>")))
 end, { desc = "Search web for word under cursor" })
 
