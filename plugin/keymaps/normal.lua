@@ -87,6 +87,9 @@ end, { expr = true })
 -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 k("cn", "*``cgn", { desc = "Change word (forward)" }) -- `:h gn`
 k("cN", "*``cgN", { desc = "Change word (backward)" }) -- `:h gN`
+
+-- Toggle character case without moving cursor
+k("~", "v~", { desc = "Toggle character case" }) -- `:h ~`
 --
 -- }}}
 
