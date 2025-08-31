@@ -143,7 +143,10 @@ Random features added.
 ### Files explorer
 
 - `-` open directory explorer
+- `_` open current working directory
+- `<c-p>` preview file
 - `<c-w>s` open in horizontal split
+- `<c-w>t` open in new tab
 - `<c-w>v` open in vertical split
 - `<leader>.` last picker
 - `<leader><leader>` fuzzy find files
