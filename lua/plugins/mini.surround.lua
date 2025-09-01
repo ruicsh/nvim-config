@@ -5,12 +5,12 @@ return {
 	"nvim-mini/mini.surround",
 	opts = {
 		mappings = {
-			add = "ys",
-			delete = "ds",
+			add = "Sa",
+			delete = "Sd",
 			find = "",
 			find_left = "",
 			highlight = "",
-			replace = "cs",
+			replace = "Sr",
 			update_n_lines = "",
 		},
 		custom_surroundings = {
@@ -29,11 +29,12 @@ return {
 		search_method = "cover_or_next",
 	},
 	config = function(_, opts)
+		vim.keymap.set("n", "S", "<nop>") -- Disable `S` to avoid conflicts
+
 		require("mini.surround").setup(opts)
 
 		-- `:h MiniSurround-vim-surround-config`
-		vim.keymap.del("x", "ys")
+		vim.keymap.del("x", "Sa")
 		vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
-		vim.keymap.set("n", "yss", "ys_", { remap = true })
 	end,
 }

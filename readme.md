@@ -258,9 +258,10 @@ Random features added.
 
 ### Operators
 
-- `ys{motion}{char}` add surrounding character
-- `ds{char}` delete surrounding character
-- `cs{target}{replacement}` replace surrounding character
+- `Sa{motion}{char}` add surrounding character
+- `Sd{char}` delete surrounding character
+- `Sr{target}{replacement}` replace surrounding character
+- `S{char}` add surroundint character to selection
 - `<leader>x{motion1}<leader>x{motion2}` exchange
 - `<leader>m{motion}` multiply
 - `<leader>r{motion}` replace
