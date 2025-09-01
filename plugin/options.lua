@@ -128,6 +128,7 @@ o.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60
 -- }}}
 
 -- 16 mapping {{{
+o.timeout = false
 o.timeoutlen = 300 -- Wait time for a possible new key `:h 'timeoutlen'`
 o.ttimeoutlen = 10 -- Wait time for a key code sequence to complete. `:h 'ttimeoutlen'`
 -- }}}
@@ -151,6 +152,12 @@ o.wildignore:append({ -- Ignore on filename completion. `:h 'wildignore'`
 -- 24 various {{{
 o.conceallevel = 0 -- Text is shown normally. `:h 'conceallevel'`
 o.gdefault = true -- Use g flag for ':substitute'. `:h 'gdefault'`
+o.guicursor = { -- `:h 'guicursor'`
+	"n-v-c:block", -- Normal, visual, command-line: block cursor
+	"i-ci-ve:ver25", -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
+	"r-cr:hor20", -- Replace, command-line replace: horizontal bar cursor with 20% height
+	"o:hor50", -- Operator-pending: horizontal bar cursor with 50% height
+}
 o.shada = { -- `:h 'shada'`
 	'"50', -- Max number of lines saved for each register.
 	"'50", -- Remember marks for the last 10 edited files.
