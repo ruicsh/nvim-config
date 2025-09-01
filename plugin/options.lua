@@ -118,7 +118,7 @@ o.foldenable = true -- Enable folding. `:h 'foldenable'`
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding. `:h 'foldexpr'`
 o.foldlevel = 999 -- Close all folds. `:h 'foldlevel'`
 o.foldlevelstart = 99 -- Start with all folds closed. `:h 'foldlevelstart'`
-o.foldmethod = "expr" -- Use expr to determine fold level. `:h 'foldmethod'`
+o.foldmethod = "indent" -- Use indent to determine fold level. `:h 'foldmethod'`
 o.foldopen = "insert,mark,search,tag" -- Which commands open folds if the cursor moves into a closed fold. `:h 'foldopen'`
 o.foldtext = "v:lua.custom_fold_text()" -- What to display on fold line. `:h 'foldtext'`
 -- }}}
@@ -128,7 +128,7 @@ o.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60
 -- }}}
 
 -- 16 mapping {{{
-o.timeout = false
+o.timeout = true -- Enable mapped sequences. `:h 'timeout'`
 o.timeoutlen = 300 -- Wait time for a possible new key `:h 'timeoutlen'`
 o.ttimeoutlen = 10 -- Wait time for a key code sequence to complete. `:h 'ttimeoutlen'`
 -- }}}
