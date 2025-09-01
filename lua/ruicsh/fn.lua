@@ -206,3 +206,9 @@ vim.fn.fmt_relative_time = function(timestamp)
 		return os.date("%Y-%m-%d", timestamp)
 	end
 end
+
+vim.fn.urlencode = function(str)
+	return (str:gsub("[^%w%-_%.~]", function(c)
+		return string.format("%%%02X", string.byte(c))
+	end))
+end

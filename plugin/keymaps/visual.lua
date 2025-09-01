@@ -83,7 +83,7 @@ k(".", ":normal .<cr>", { desc = "Repeat last change" }) -- `:h .`
 --
 -- Search current selection
 k("g/", function()
-	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), { type = vim.fn.mode() }), " "
+	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), { type = vim.fn.mode() })
 	local text = vim.trim(table.concat(selection, " "))
 	local escaped = vim.fn.escape(text, [[\/.*$^~[]])
 	return "<esc>/" .. escaped .. "<cr>N"
@@ -93,11 +93,12 @@ end, { desc = "Search selection", expr = true })
 k("/", "<esc>/\\%V", { desc = "Search inside selection" }) -- `:h /\%V`
 
 -- Web search selection
-k("g?", function()
-	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), { type = vim.fn.mode() }), " "
+k("gb/", function()
+	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), { type = vim.fn.mode() })
 	local query = vim.trim(table.concat(selection, " "))
-	local url = ("https://google.com/search?q=%s"):format(query)
-	vim.ui.open(url)
+	local encoded = vim.fn.urlencode(query)
+	local url = ("https://google.com/search?q=%s"):format(encoded)
+	vim.cmd("Browse " .. url)
 	vim.api.nvim_input("<esc>")
 end)
 

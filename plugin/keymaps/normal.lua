@@ -119,7 +119,7 @@ k("[/", "ms[<c-i>zv", { desc = "Search for first occurrence of word under cursor
 k("<c-w>/", function()
 	local word = vim.fn.expand("<cword>")
 	if word ~= "" then
-		vim.cmd("only | vsplit | silent! ijump /" .. word .. "/") -- `:h ijump`
+		vim.cmd("only | vsplit | silent! ijump /" .. word .. "/ | normal! zv") -- `:h ijump`
 	end
 end, { desc = "Search for first occurrence of word under cursor in new window" })
 
@@ -130,13 +130,16 @@ k("'s", function()
 end, { desc = "Jump to where search started" })
 
 -- `*` is hard to type
-k("g/", "ms:keepjumps normal! *`s<cr>", { desc = "Search current word" }) -- `:h *`
+k("g/", "ms:keepjumps normal! *N<cr>", { desc = "Search current word", silent = true }) -- `:h *`
 k("<s-g>/", "/\\<<c-r><c-w>\\>", { desc = "Search current word (no jumps)" }) -- `:h c_ctrl-g`
-k("<c-g>/", "ms/<c-r>/<cr>", { desc = "Repeat last search" }) -- `:h quote_/`
+k("g./", "ms/<c-r>/<cr>N", { desc = "Repeat last search" }) -- `:h quote_/`
 
 -- Web search
-k("<a-g>/", function()
-	vim.ui.open(("https://google.com/search?q=%s"):format(vim.fn.expand("<cword>")))
+k("gb/", function()
+	local query = vim.fn.expand("<cword>")
+	local encoded = vim.fn.urlencode(query)
+	local url = ("https://google.com/search?q=%s"):format(encoded)
+	vim.cmd("Browse " .. url)
 end, { desc = "Search web for word under cursor" })
 
 -- Replace current word under cursor

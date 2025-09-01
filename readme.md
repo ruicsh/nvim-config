@@ -207,12 +207,13 @@ Random features added.
 - `<leader>g/` search current word in workspace
 - `g/` search current word / selection
 - `G/` search current word (no jumps)
-- `gr/` replace current word / selection
 - `[/` search first occurrence
+- `gr/` replace current word / selection
+- `gb/` web search current word
+- `g./` repeat last search
 - `<c-w>/` search first occurence in new window
 - `<c-r>/` repeat last search
 - `'s` jump back to where search started
-- `<a-g>/` web search current word
 
 ### Editing
 
