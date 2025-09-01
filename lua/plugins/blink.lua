@@ -92,8 +92,7 @@ return {
 		},
 		keymap = {
 			["<cr>"] = { "select_and_accept", "fallback" },
-			["<c-e>"] = { "hide", "show", "fallback" },
-			["<c-f>"] = { "fallback" }, -- Fallback to cursor forward `:h i_<Right>`
+			["<c-e>"] = { "hide", "fallback" },
 			["<c-n>"] = { "select_next", "show", "fallback" },
 			["<c-p>"] = { "select_prev", "show", "fallback" },
 			["<c-j>"] = { "select_next", "show", "fallback" },

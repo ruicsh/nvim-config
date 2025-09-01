@@ -225,20 +225,20 @@ Random features added.
 - `<a-up>` move selection up
 - `<a-down>` move selection down
 
-### Insert mode
+### Insert/Command mode
 
 - `<c-h>` jump character backward
 - `<c-l>` jump character forward
 - `<c-b>` jump word backward
 - `<c-w>` jump word forward
-- `<c-H>` jump to line start
-- `<c-L>` jump to line end
+- `<c-a>` jump to line start
+- `<c-f>` jump to line end
 - `<a-h>` delete character backward
 - `<a-l>` delete haracter forward
 - `<a-b>` delete word backward
 - `<a-w>` delete word forward
-- `<a-H>` delete line backward
-- `<a-L>` delete line forward
+- `<a-a>` delete line backward
+- `<a-f>` delete line forward
 - `<a-d><a-d>` delete whole line
 - `<a-up>` move current line up
 - `<a-down>` move current line down
