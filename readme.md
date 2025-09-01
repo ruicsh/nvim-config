@@ -205,8 +205,9 @@ Random features added.
 - `<leader>/` search in workspace
 - `<leader>?` search in directory
 - `<leader>g/` search current word in workspace
-- `g/` search current word
-- `r/` replace current word
+- `g/` search current word / selection
+- `G/` search current word (no jumps)
+- `gr/` replace current word / selection
 - `[/` search first occurrence
 - `<c-w>/` search first occurence in new window
 - `<c-r>/` repeat last search

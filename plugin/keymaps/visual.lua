@@ -102,7 +102,7 @@ k("g?", function()
 end)
 
 -- Replace selection
-k("r/", '"hy:%s/<c-r>h//g<left><left>', { desc = "Replace selection" })
+k("gr/", '"hy:%s/\\<<c-r>h\\>//g<left><left>', { desc = "Replace selection" })
 --
 -- }}}
 
