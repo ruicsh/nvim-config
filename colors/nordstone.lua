@@ -332,6 +332,13 @@ loadColorSet({
 	gitKeyword = { fg = c.nord3_700 },
 })
 
+-- incline.nvim
+loadColorSet({
+	InclineNormal = { fg = c.nord4, bg = "NONE" },
+	InclineNormalNC = { fg = c.nord4, bg = "NONE" },
+	InclineGrapple = { fg = c.nord13, bg = "NONE" },
+})
+
 -- mini.diff
 loadColorSet({
 	MiniDiffSignAdd = { fg = c.nord14 },

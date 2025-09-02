@@ -132,16 +132,6 @@ local function c_filename()
 	return line .. " %#StatusLineFileChanged#%m"
 end
 
-local function c_bookmark()
-	local index = require("grapple").name_or_index()
-	if not index then
-		return ""
-	end
-
-	local hl = "%#StatusLineBookmark#"
-	return sep() .. " " .. hl .. "󰛢 " .. index
-end
-
 -- Show search count
 -- https://github.com/echasnovski/mini.statusline/blob/main/lua/mini/statusline.lua
 local function c_search_count()
@@ -302,7 +292,6 @@ function _G.status_line()
 		hl,
 		c_mode(),
 		c_project(),
-		c_bookmark(),
 		c_filename(),
 		c_copilot_chat(),
 		c_search_count(),
