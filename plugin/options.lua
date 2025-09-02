@@ -76,7 +76,7 @@ o.report = 9999 -- Don't report number of changed lines. `:h 'report'`
 o.ruler = false -- Do not show the line and column number of the cursor position. `:h 'ruler'`
 o.shortmess:append({ -- Don't show messages: `h 'shortmess'`
 	A = true, -- When a swap file is found.
-	C = true, -- When scanning for "ins-completion" items.
+	C = true, -- When scanning for `ins-completion` items.
 	F = true, -- File info when editing a file.
 	I = true, -- Skip intro message.
 	S = true, -- Search messages, using nvim-hlslens instead.
@@ -129,7 +129,7 @@ o.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60
 
 -- 16 mapping {{{
 o.timeout = true -- Enable mapped sequences. `:h 'timeout'`
-o.timeoutlen = 300 -- Wait time for a possible new key `:h 'timeoutlen'`
+o.timeoutlen = 500 -- Wait time for a possible new key `:h 'timeoutlen'`
 o.ttimeoutlen = 10 -- Wait time for a key code sequence to complete. `:h 'ttimeoutlen'`
 -- }}}
 

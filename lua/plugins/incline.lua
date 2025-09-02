@@ -19,7 +19,7 @@ return {
 			end
 
 			local bufname = api.nvim_buf_get_name(bufnr)
-			local filename = bufname ~= "" and vim.fn.fnamemodify(bufname, ":t") or "[No Name]"
+			local filename = bufname ~= "" and vim.fn.fnamemodify(bufname, ":t") or ""
 			if api.nvim_buf_get_option(bufnr, "modified") then
 				filename = filename .. " [+]"
 			end
