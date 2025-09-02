@@ -11,7 +11,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - **Search** - fuzzy find anything, files, git changed, last buffers
 - **UI** - files and directory explorer, notifications, command palette
 
-<sub>Works on Neovim v0.11.3</sub>
+<sub>Works on Neovim v0.11.4</sub>
 
 ## Screenshots
 
@@ -183,11 +183,7 @@ Random features added.
 
 - `H` jump to start of line
 - `L` jump to end of line
-- `{` jump up 6 lines
-- `}` jump down 6 lines
 - `s` jump with labels
-- `[;` jump to older cursor position
-- `];` jump to newer cursor position
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
@@ -197,8 +193,6 @@ Random features added.
 
 - `q` close window
 - `<c-q>` quit
-- `\` focus previous window
-- `|` cycle windows
 - `<c-w>t` move file to new tab
 
 ### Search

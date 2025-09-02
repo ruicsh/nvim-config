@@ -9,8 +9,8 @@ end
 --
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
-k("{", "6k", { desc = "Jump up 6 lines", silent = true })
-k("}", "6j", { desc = "Jump down 6 lines", silent = true })
+k("<c-u>", "6k", { desc = "Jump up 6 lines", silent = true })
+k("<c-d>", "6j", { desc = "Jump down 6 lines", silent = true })
 
 -- For small jumps, use visual lines. `:h gk`
 -- Store relative line number jumps in the jumplist, by setting a mark. `:h m'`
@@ -20,10 +20,6 @@ end, { expr = true })
 k("j", function()
 	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
 end, { expr = true })
-
--- Jump to older/newer cursor position in jump list
-k("[;", "<c-o>", { desc = "Jump to older cursor position" }) -- `:h <c-o>`
-k("];", "<c-i>", { desc = "Jump to newer cursor position" }) -- `:h <c-i>`
 
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })
@@ -37,12 +33,6 @@ k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }
 -- Jump to start/end of line
 k("<s-h>", "^", { desc = "Jump to start of line" }) -- `:h ^`
 k("<s-l>", "g_", { desc = "Jump to end of line" }) -- `:h g_`
-
--- When scrolling, open folds if necessary
-local scroll_center_keys = { "<c-d>", "<c-u>" }
-for _, key in ipairs(scroll_center_keys) do
-	k(key, key .. "zv", { desc = "Scroll and center", silent = true })
-end
 --
 -- }}}
 
@@ -164,8 +154,6 @@ k("q", function()
 end, { expr = true })
 k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
 
-k("<bslash>", "<c-w>p", { desc = "Windows: Previous" }) -- `:h CTRL-W_p`
-k("<bar>", "<c-w>w", { desc = "Windows: Cycle" }) -- `:h CTRL-W_w`
 -- Same as `:h ctrl-w_T` but without closing the current window
 k("<c-w>t", function()
 	local file = vim.fn.expand("%:p")
@@ -178,32 +166,7 @@ end, { desc = "Windows: Move to new tab" })
 -- Tabs {{{
 --
 k("<leader><tab><tab>", ":tabnew<cr>", { desc = "Tabs: New" }) -- `:h :tabnew`
-k("[<tab>", ":tabprevious<cr>", { desc = "Tabs: Previous" }) -- `:h :tabprevious`
-k("]<tab>", ":tabnext<cr>", { desc = "Tabs: Next" }) -- `:h :tabnext`
 k("<leader><tab>q", ":tabclose<cr>", { desc = "Tabs: Close" }) -- `:h :tabclose`
---
--- }}}
-
--- Folds {{{
---
--- Toggle
-k("<tab>", function()
-	local linenr = vim.fn.line(".")
-	-- If there's no fold to be opened/closed, do nothing.
-	if vim.fn.foldlevel(linenr) == 0 then
-		return
-	end
-
-	-- Open if closed, close if open.
-	local cmd = vim.fn.foldclosed(linenr) == -1 and "zc" or "zO"
-	vim.cmd("normal! " .. cmd)
-end, { unique = false, silent = true, desc = "Folds: Toggle" })
---
--- }}}
-
--- Terminal {{{
---
-k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 --
 -- }}}
 
@@ -213,7 +176,16 @@ k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
 k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
 k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
 k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h :help`
+k("za", "zA", { desc = "Toggle fold under cursor" }) -- `:h zA`
+k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 --
 -- }}}
+
+-- Disable default keymaps {{{
+--
+local disable_keys = { "{", "}" }
+for _, key in ipairs(disable_keys) do
+	k(key, "<nop>", { desc = "Disable default behavior" })
+end
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable
