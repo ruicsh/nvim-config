@@ -26,7 +26,6 @@ return {
 				end,
 			},
 		},
-		search_method = "cover_or_next",
 	},
 	config = function(_, opts)
 		vim.keymap.set("n", "S", "<nop>") -- Disable `S` to avoid conflicts
