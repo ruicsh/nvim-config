@@ -35,6 +35,8 @@ k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }
 -- Jump to start/end of line
 k("<s-h>", "^", { desc = "Jump to start of line" }) -- `:h ^`
 k("<s-l>", "g_", { desc = "Jump to end of line" }) -- `:h g_`
+
+k("<c-s-o>", "<c-i>", { desc = "Jump forward in jumplist" }) -- `:h CTRL-I`
 --
 -- }}}
 
@@ -150,6 +152,9 @@ k("<c-p>", ":bprevious<cr>", { desc = "Previous buffer" }) -- `:h :bprevious`
 
 -- Windows {{{
 --
+-- Switch windows
+k("<tab>", "<c-w>w", { desc = "Next window" }) -- `:h CTRL-W_w`
+
 -- Close window, not if it's the last one
 k("q", function()
 	return vim.fn.winnr("$") == 1 and "" or "<c-w>q" -- `:h CTRL-W_q`

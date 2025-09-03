@@ -192,7 +192,8 @@ Random features added.
 
 ### Windows
 
-- `q` close window
+- `<tab>` switch
+- `q` close
 - `<c-q>` quit
 - `<c-w>t` move file to new tab
 
