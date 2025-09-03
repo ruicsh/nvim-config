@@ -11,8 +11,8 @@ return {
 		end
 
 		local mappings = {
-			{ "-", ":Oil<cr>", "Open parent" },
-			{ "_", open_cwd, "Open cwd" },
+			{ "<leader>f", ":Oil<cr>", "Open parent" },
+			{ "<leader>F", open_cwd, "Open cwd" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Oil")
