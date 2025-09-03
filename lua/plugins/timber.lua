@@ -3,12 +3,12 @@
 
 local templates_js = {
 	log = {
-		default = [[console.warn("%print_tag: %log_target=", %log_target)]],
-		plain = [[console.warn("%print_tag: (%placement %snippet)")]],
+		default = [[console.log("%print_tag: %log_target=", %log_target)]],
+		plain = [[console.log("%print_tag: (%placement %snippet)")]],
 		time = [[console.log(new Date().toISOString())]],
 	},
 	batch = {
-		default = [[console.warn("%print_tag", { %repeat<"%log_target": %log_target><, > })]],
+		default = [[console.log("%print_tag", { %repeat<"%log_target": %log_target><, > })]],
 	},
 }
 
