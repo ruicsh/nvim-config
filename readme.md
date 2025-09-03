@@ -178,8 +178,8 @@ Random features added.
 
 ### Navigation
 
-- `<` jump up 6 lines
-- `>` jump down 6 lines
+- `{` jump up 6 lines
+- `}` jump down 6 lines
 - `H` jump to start of line
 - `L` jump to end of line
 - `s` jump with labels

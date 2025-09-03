@@ -35,7 +35,7 @@ o.messagesopt = "wait:500,history:1000" -- Option settings for outputting messag
 o.number = true -- Show line numbers. `:h 'number'`
 o.numberwidth = 5 -- More space on the gutter column. `:h 'numberwidth'`
 o.relativenumber = true -- Show relative line numbers. `:h 'relativenumber'`
-o.scrolloff = 0 -- Number of lines to keep above/below the cursor. `:h 'scrolloff'`
+o.scrolloff = 5 -- Number of lines to keep above/below the cursor. `:h 'scrolloff'`
 o.sidescrolloff = 10 -- Number of columns to keep left/right of the cursor. `:h 'sidescrolloff'`
 o.wrap = false -- Do not automatically wrap texts. `:h 'wrap'`
 -- }}}

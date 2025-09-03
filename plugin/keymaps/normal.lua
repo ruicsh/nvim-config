@@ -9,10 +9,12 @@ end
 --
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
-k("<", "6k", { desc = "Jump up 6 lines" })
-k(">", "6j", { desc = "Jump down 6 lines" })
-k("<c-u>", "6k", { desc = "Jump up 6 lines" })
-k("<c-d>", "6j", { desc = "Jump down 6 lines" })
+-- Always jump on visual lines, not actual lines. `:h gj`
+-- Always jump to the start of the line. `:h g0`
+k("{", "6gkg0", { desc = "Jump up 6 lines" })
+k("}", "6gjg0", { desc = "Jump down 6 lines" })
+k("<c-u>", "6gkg0", { desc = "Jump up 6 lines" })
+k("<c-d>", "6gjg0", { desc = "Jump down 6 lines" })
 
 -- For small jumps, use visual lines. `:h gk`
 -- Store relative line number jumps in the jumplist, by setting a mark. `:h m'`
@@ -36,6 +38,7 @@ k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }
 k("<s-h>", "^", { desc = "Jump to start of line" }) -- `:h ^`
 k("<s-l>", "g_", { desc = "Jump to end of line" }) -- `:h g_`
 
+-- Jump to newer position in jumplist
 k("<c-s-o>", "<c-i>", { desc = "Jump forward in jumplist" }) -- `:h CTRL-I`
 --
 -- }}}
@@ -144,7 +147,6 @@ k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" 
 -- Buffers {{{
 --
 k("<c-e>", require("snacks").bufdelete.delete, { desc = "Close buffer" }) -- `:h :bdelete`
-k("<s-tab>", "<c-6>", { desc = "Toggle to last buffer" }) -- `:h CTRL-6`
 --
 -- }}}
 
@@ -185,13 +187,5 @@ k("za", "zA", { desc = "Toggle fold under cursor" }) -- `:h zA`
 k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 --
 -- }}}
-
--- Disable default keymaps {{{
---
--- Have to ween myself off using these, bad for my wrists
-local disable_keys = { "{", "}" }
-for _, key in ipairs(disable_keys) do
-	k(key, "<nop>", { desc = "Disable default behavior" })
-end
 
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable
