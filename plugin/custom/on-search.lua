@@ -62,12 +62,13 @@ end
 vim.on_key(function(char)
 	local key = vim.fn.keytrans(char)
 	local isCmdlineSearch = vim.fn.getcmdtype():find("[/?]") ~= nil
-	local isNormalMode = vim.api.nvim_get_mode().mode == "n"
-	local isCmdlineMode = vim.api.nvim_get_mode().mode == "c"
+	local mode = vim.api.nvim_get_mode().mode
+	local isNormalMode = mode == "n"
+	local isCmdlineMode = mode == "c"
 
 	if isNormalMode then
 		-- Toggle search highlighting
-		if vim.api.nvim_get_mode().mode == "n" then
+		if mode == "n" then
 			vim.opt.hlsearch = vim.tbl_contains({ "<CR>", "n", "N", "*", "#", "?", "/" }, key)
 		end
 

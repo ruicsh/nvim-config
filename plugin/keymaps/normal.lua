@@ -9,8 +9,10 @@ end
 --
 -- More deterministic short distance jumps
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
-k("<c-u>", "6k", { desc = "Jump up 6 lines", silent = true })
-k("<c-d>", "6j", { desc = "Jump down 6 lines", silent = true })
+k("<", "6k", { desc = "Jump up 6 lines" })
+k(">", "6j", { desc = "Jump down 6 lines" })
+k("<c-u>", "6k", { desc = "Jump up 6 lines" })
+k("<c-d>", "6j", { desc = "Jump down 6 lines" })
 
 -- For small jumps, use visual lines. `:h gk`
 -- Store relative line number jumps in the jumplist, by setting a mark. `:h m'`
@@ -183,6 +185,7 @@ k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 
 -- Disable default keymaps {{{
 --
+-- Have to ween myself off using these, bad for my wrists
 local disable_keys = { "{", "}" }
 for _, key in ipairs(disable_keys) do
 	k(key, "<nop>", { desc = "Disable default behavior" })

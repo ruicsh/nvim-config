@@ -140,5 +140,5 @@ local function indent_node(direction)
 	end
 end
 
-k("<", indent_node("<"))
-k(">", indent_node(">"))
+k("g<", indent_node("<"))
+k("g>", indent_node(">"))
