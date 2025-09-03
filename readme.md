@@ -153,10 +153,8 @@ Random features added.
 
 ### Buffers
 
-- `<bs>` open last
+- `<s-tab>` switch to last
 - `<c-e>` close
-- `<c-n>` open next
-- `<c-p>` open previous
 - `<esc>` close
 - `<leader>;` list
 

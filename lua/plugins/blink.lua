@@ -91,12 +91,13 @@ return {
 			sorts = { "exact", "score", "sort_text" },
 		},
 		keymap = {
-			["<cr>"] = { "select_and_accept", "fallback" },
 			["<c-e>"] = { "hide", "fallback" },
-			["<c-n>"] = { "select_next", "show", "fallback" },
-			["<c-p>"] = { "select_prev", "show", "fallback" },
 			["<c-j>"] = { "select_next", "show", "fallback" },
 			["<c-k>"] = { "select_prev", "show", "fallback" },
+			["<c-m>"] = { "select_and_accept", "fallback" },
+			["<c-n>"] = { "select_next", "show", "fallback" },
+			["<c-p>"] = { "select_prev", "show", "fallback" },
+			["<cr>"] = { "select_and_accept", "fallback" },
 		},
 		signature = {
 			enabled = true,
