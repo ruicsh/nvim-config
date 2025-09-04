@@ -85,8 +85,13 @@ local function c_mode()
 	return string.format("%%#StatusLineMode%s# %%#StatusLineMode%sText# %s %%#StatusLine#", hl, hl, mode)
 end
 
+local git_root = nil
 local function c_project()
-	local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+	git_root = git_root or vim.git.get_root_dir()
+	if not git_root or git_root == "" then
+		return ""
+	end
+	local project_name = vim.fn.fnamemodify(git_root, ":t")
 	local hl = "%#StatusLineProject#"
 	local line = hl .. " "
 
