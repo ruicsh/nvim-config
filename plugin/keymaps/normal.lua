@@ -39,7 +39,8 @@ k("<s-h>", "^", { desc = "Jump to start of line" }) -- `:h ^`
 k("<s-l>", "g_", { desc = "Jump to end of line" }) -- `:h g_`
 
 -- Jump to newer position in jumplist
-k("<c-s-o>", "<c-i>", { desc = "Jump forward in jumplist" }) -- `:h CTRL-I`
+k("<leader>o", "<c-o>", { desc = "Jump backward in jumplist" }) -- `:h CTRL-O`
+k("<leader>i", "<c-i>", { desc = "Jump forward in jumplist" }) -- `:h CTRL-I`
 --
 -- }}}
 
@@ -146,14 +147,14 @@ k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" 
 
 -- Buffers {{{
 --
-k("<c-e>", require("snacks").bufdelete.delete, { desc = "Close buffer" }) -- `:h :bdelete`
+k("<bs>", require("snacks").bufdelete.delete, { desc = "Close buffer" }) -- `:h :bdelete`
 --
 -- }}}
 
 -- Windows {{{
 --
 -- Switch windows
-k("<tab>", "<c-w>w", { desc = "Next window" }) -- `:h CTRL-W_w`
+k("<bar>", "<c-w>w", { desc = "Next window" }) -- `:h CTRL-W_w`
 
 -- Close window, not if it's the last one
 k("q", function()
@@ -183,7 +184,7 @@ k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
 k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
 k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
 k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h :help`
-k("za", "zA", { desc = "Toggle fold under cursor" }) -- `:h zA`
+k("<tab>", "zA", { desc = "Toggle fold under cursor" }) -- `:h zA`
 k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 --
 -- }}}

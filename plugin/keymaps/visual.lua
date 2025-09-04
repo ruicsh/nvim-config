@@ -76,6 +76,10 @@ end, { expr = true })
 
 -- Repeat last change across visual selection
 k(".", ":normal .<cr>", { desc = "Repeat last change" }) -- `:h .`
+
+-- Indent/dedent and reselect
+k("<tab>", ">gv|") -- `:h gv`
+k("<s-tab>", "<gv") -- `:h gv`
 --
 -- }}}
 
@@ -88,6 +92,9 @@ k("g/", function()
 	local escaped = vim.fn.escape(text, [[\/.*$^~[]])
 	return "<esc>/" .. escaped .. "<cr>N"
 end, { desc = "Search selection", expr = true })
+
+-- Search current selection in the workspace
+k("<leader>g/", require("snacks.picker").grep_word, { desc = "Search selection in workspace" })
 
 -- Search inside visual selection
 k("/", "<esc>/\\%V", { desc = "Search inside selection" }) -- `:h /\%V`
