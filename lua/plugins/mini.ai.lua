@@ -8,9 +8,10 @@ return {
 
 		return {
 			custom_textobjects = {
+				["?"] = false,
+				["/"] = ai.gen_spec.user_prompt(),
 				a = ai.gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
 				c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
-				d = { "%f[%d]%d+" },
 				e = function() -- Entire file
 					local from = { line = 1, col = 1 }
 					local to = {
