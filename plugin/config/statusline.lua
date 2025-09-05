@@ -228,7 +228,7 @@ local function c_git_branch()
 		return ""
 	end
 
-	return icons.git.branch .. " " .. head .. " " .. sep()
+	return "%#StatusLine#" .. icons.git.branch .. " " .. head .. " " .. sep()
 end
 
 -- Show the current position
