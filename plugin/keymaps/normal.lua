@@ -158,7 +158,25 @@ k("<bar>", "<c-w>w", { desc = "Next window" }) -- `:h CTRL-W_w`
 
 -- Close window, not if it's the last one
 k("q", function()
-	return vim.fn.winnr("$") == 1 and "" or "<c-w>q" -- `:h CTRL-W_q`
+	-- List all windows, discard non-focusable ones
+	local num_wins = #vim.api.nvim_list_wins()
+	for _, winnr in ipairs(vim.api.nvim_list_wins()) do
+		local win = vim.api.nvim_win_get_config(winnr)
+		if win.focusable == false then
+			num_wins = num_wins - 1
+		end
+	end
+
+	-- If there's only one window left, and it's an unnamed buffer, do nothing
+	if num_wins == 1 then
+		local buf = vim.api.nvim_get_current_buf()
+		local bufname = vim.api.nvim_buf_get_name(buf)
+		if bufname == "" then
+			return ""
+		end
+	end
+
+	return num_wins == 1 and ":bdelete<cr>" or "<c-w>q" -- `:h CTRL-W_q`
 end, { expr = true })
 k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
 
