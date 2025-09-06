@@ -29,5 +29,5 @@
   "timber.nvim": { "branch": "main", "commit": "d32f10e30c1056861c412a00a028869538998e30" },
   "treewalker.nvim": { "branch": "main", "commit": "4b268cdd9d9b4bc6b06760dcf883734de84bfcd3" },
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
-  "vim-test": { "branch": "master", "commit": "02453e48d27d89f5293745aa7ecf70796b2d9660" }
+  "vim-test": { "branch": "master", "commit": "5d6ca4be679d7679265e83a8c3ee1f3ab97af9f0" }
 }
