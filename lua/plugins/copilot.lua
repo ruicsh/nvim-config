@@ -42,7 +42,6 @@ return {
 		copilot.setup(opts)
 	end,
 
-	commit = "4958fb9390f624cb389be2772e3c5e718e94d8b6",
 	cmd = "Copilot",
 	event = "InsertEnter",
 }

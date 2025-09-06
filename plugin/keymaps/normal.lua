@@ -147,7 +147,8 @@ k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" 
 
 -- Buffers {{{
 --
-k("<bs>", require("snacks").bufdelete.delete, { desc = "Close buffer" }) -- `:h :bdelete`
+k("<bs>", ":b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
+k("<c-e>", require("snacks").bufdelete.delete, { desc = "Close buffer" }) -- `:h :bdelete`
 --
 -- }}}
 
