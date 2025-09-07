@@ -102,6 +102,7 @@ loadColorSet({
 	FoldColumn = { fg = c.nord3_500 },
 	Folded = { fg = c.nord9, style = "italic" },
 	Function = { fg = c.nord8 },
+	Identifier = { fg = c.nord8 },
 	IncSearch = { link = "CurSearch" },
 	InsertMode = { fg = c.nord14, bg = "NONE", style = "reverse" },
 	LineNr = { fg = c.neutral_500 },
@@ -151,6 +152,16 @@ loadColorSet({
 	healthError = { fg = c.nord11 },
 	healthSuccess = { fg = c.nord14 },
 	healthWarning = { fg = c.nord15 },
+	-- diff
+	diffAdded = { fg = c.nord14, bg = "NONE" },
+	diffChanged = { fg = c.nord13, bg = "NONE" },
+	diffFile = { fg = c.nord7 },
+	diffIndexLine = { fg = c.nord9 },
+	diffLine = { fg = c.nord9 },
+	diffNewFile = { fg = c.nord9 },
+	diffOldFile = { fg = c.nord9 },
+	diffRemoved = { fg = c.nord11, bg = "NONE" },
+	diffSubname = { fg = c.nord3_900, style = "bold" },
 })
 
 -- TERMINAL
@@ -290,6 +301,11 @@ loadColorSet({
 	CopilotChatSelection = { bg = c.nord0 },
 })
 
+-- Diffview.nvim
+loadColorSet({
+	DiffviewFilePanelCounter = { fg = c.nord8 },
+	DiffviewSecondary = { fg = c.nord14 },
+})
 -- flash.nvim
 loadColorSet({
 	FlashLabel = { fg = c.nord13, bg = "NONE" },
@@ -298,10 +314,6 @@ loadColorSet({
 
 -- Fugitive
 loadColorSet({
-	-- git diff
-	diffAdded = { fg = c.nord14 },
-	diffChanged = { fg = c.nord15 },
-	diffRemoved = { fg = c.nord11 },
 	-- git status
 	fugitiveHunk = { fg = c.nord3_900 },
 	fugitiveIgnoredHeading = { fg = c.nord3 },
@@ -314,11 +326,6 @@ loadColorSet({
 	fugitiveUnstagedHeading = { fg = c.nord13 },
 	fugitiveUntrackedHeading = { fg = c.nord11 },
 	-- git show
-	diffFile = { fg = c.nord7 },
-	diffIndexLine = { fg = c.nord9 },
-	diffLine = { fg = c.nord9 },
-	diffNewFile = { fg = c.nord9 },
-	diffOldFile = { fg = c.nord9 },
 	gitDiff = { fg = c.nord4 },
 	-- git log
 	gitDate = { fg = c.nord9 },

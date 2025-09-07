@@ -17,6 +17,7 @@ codegen
 commitizen
 css
 cwd
+diffview
 dockerfile
 env
 eslint

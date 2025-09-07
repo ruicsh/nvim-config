@@ -23,11 +23,11 @@ o.tagstack = true -- Enable tagstack. `:h 'tagstack'`
 o.breakindent = true -- Wrapped lines will continue visually indented `:h 'breakindent'`
 o.cmdheight = 1 -- Show command line on 1 line. `:h 'cmdheight'`
 o.fillchars = { -- `:h 'fillchars'`
+	diff = vim.fn.is_windows() and "╱" or "⢕", -- Diff deleted lines marker.
 	eob = " ", -- End of buffer marker.
-	diff = vim.fn.is_windows() and "╱" or "⣿", -- Diff deleted lines marker.
-	foldopen = "", -- Beggining of a fold.
-	foldclose = "", -- Closed fold.
 	fold = " ", -- Filling foldtext.
+	foldclose = "", -- Closed fold.
+	foldopen = "", -- Beggining of a fold.
 	foldsep = " ", -- Open fold middle marker
 }
 o.lazyredraw = true -- Don't redraw when executing macros. `:h 'lazyredraw'`
@@ -124,7 +124,7 @@ o.foldtext = "v:lua.custom_fold_text()" -- What to display on fold line. `:h 'fo
 -- }}}
 
 -- 15 diff mode {{{
-o.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60" -- `:h 'diffopt'`
+o.diffopt = "vertical,filler,internal,closeoff,algorithm:histogram,context:5,linematch:60" -- `:h 'diffopt'`
 -- }}}
 
 -- 16 mapping {{{

@@ -113,10 +113,7 @@ return {
 			{ "<leader>uu", snacks.picker.undo, "Undotree" },
 
 			-- git
-			{ "<leader>hb", snacks.picker.git_branches, "Git: Branches" },
-			{ "<leader>he", snacks.picker.git_log_file, "Git: Log file" },
-			{ "<leader>hl", snacks.picker.git_log, "Git: Log" },
-			{ "<leader>h.", snacks.picker.git_log_line, "Git: Log line" },
+			{ "<leader>h/", snacks.picker.git_log, "Git: Search Log" },
 
 			-- neovim
 			{ "<leader>nH", snacks.picker.highlights, "Highlights" },
@@ -203,6 +200,16 @@ return {
 				},
 				files = {
 					hidden = true,
+				},
+				git_log = {
+					confirm = function(picker, item)
+						picker:close()
+						vim.cmd("DiffviewOpen " .. item.commit .. "^!")
+					end,
+					layout = {
+						preset = "vertical",
+					},
+					title = "Git: Search Log",
 				},
 				grep = {
 					exclude = { "package-lock.json", "lazy-lock.json" },

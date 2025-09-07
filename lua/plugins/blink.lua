@@ -2,6 +2,8 @@
 -- https://cmp.saghen.dev
 
 local DISABLED_FILETYPES = {
+	"DiffviewFileHistory",
+	"DiffviewFiles",
 	"checkhealth",
 	"copilot-chat",
 	"fugitive",

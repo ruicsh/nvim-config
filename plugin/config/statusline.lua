@@ -114,9 +114,13 @@ local function c_filename()
 	if bt == "terminal" then
 		return ""
 	elseif ft == "fugitive" then
-		line = line .. "STATUS"
+		line = line .. "GIT STATUS"
 	elseif ft == "gitcommit" then
-		line = line .. "COMMIT"
+		line = line .. "GIT COMMIT"
+	elseif ft == "DiffviewFiles" then
+		line = line .. "GIT DIFF"
+	elseif ft == "DiffviewFileHistory" then
+		line = line .. "GIT LOG"
 	elseif ft == "" or ft == "copilot-chat" or ft == "messages" then
 		return ""
 	else

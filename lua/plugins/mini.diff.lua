@@ -5,15 +5,6 @@ local icons = require("core.icons")
 
 return {
 	"nvim-mini/mini.diff",
-	keys = function()
-		local diff = require("mini.diff")
-
-		local mappings = {
-			{ "<leader>hd", diff.toggle_overlay, "Diff" },
-		}
-
-		return vim.fn.get_lazy_keys_conf(mappings, "Git")
-	end,
 	opts = {
 		view = {
 			style = "sign",
