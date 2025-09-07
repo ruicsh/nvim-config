@@ -46,24 +46,33 @@ return {
 	opts = function()
 		local actions = require("diffview.actions")
 
+		local function git_commit()
+			vim.cmd("DiffviewClose")
+			vim.cmd.tabnew()
+			vim.cmd("Git")
+			vim.cmd("wincmd o")
+			vim.cmd("vertical Git commit")
+		end
+
 		return {
 			enhanced_diff_hl = true,
 			keymaps = {
 				file_panel = {
-					{ "n", "<cr>", actions.focus_entry, { desc = "Open and focus the diff" } },
-					{ "n", "<c-n>", actions.select_next_entry, { desc = "Open the diff for the next file" } },
-					{ "n", "<c-p>", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
-					-- Disable default tab mappings
-					{ "n", "<tab>", "<nop>" },
-					{ "n", "<s-tab>", "<nop>" },
+					["<c-n>"] = actions.select_next_entry,
+					["<c-p>"] = actions.select_prev_entry,
+					["<c-q>"] = ":DiffviewClose<cr>",
+					["<cr>"] = actions.focus_entry,
+					["<s-tab>"] = "<nop>",
+					["<tab>"] = "<nop>",
+					["cc"] = git_commit,
 				},
 				file_history_panel = {
-					{ "n", "<cr>", actions.focus_entry, { desc = "Open and focus the diff" } },
-					{ "n", "<c-n>", actions.select_next_entry, { desc = "Open the log for the next file" } },
-					{ "n", "<c-p>", actions.select_prev_entry, { desc = "Open the log for the previous file" } },
-					-- Disable default tab mappings
-					{ "n", "<tab>", "<nop>" },
-					{ "n", "<s-tab>", "<nop>" },
+					["<c-n>"] = actions.select_next_entry,
+					["<c-p>"] = actions.select_prev_entry,
+					["<c-q>"] = ":DiffviewClose<cr>",
+					["<cr>"] = actions.focus_entry,
+					["<s-tab>"] = "<nop>",
+					["<tab>"] = "<nop>",
 				},
 				help_panel = {
 					{ "n", "q", actions.close },
@@ -71,6 +80,18 @@ return {
 			},
 			hooks = {
 				diff_buf_read = function(bufnr)
+					vim.b.minidiff_disable = true
+
+					local k = vim.keymap.set
+					local opts = { buffer = bufnr, silent = true }
+
+					-- Hunk navigation
+					k("n", "[c", "[c", opts)
+					k("n", "]c", "]c", opts)
+
+					-- Close diffview
+					k("n", "<c-q>", ":DiffviewClose<cr>", opts)
+
 					vim.schedule(function()
 						vim.api.nvim_buf_call(bufnr, function()
 							vim.cmd("normal! gg]czz") -- Focus the first hunk and center it.
