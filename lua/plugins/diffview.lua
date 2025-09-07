@@ -25,7 +25,7 @@ return {
 
 		local function diff_back()
 			require("snacks.input").input({
-				prompt = "Diffview Range (HEAD..HEAD~{count}): ",
+				prompt = "Diffview {git-rev}: ",
 				default = "HEAD..HEAD~" .. tostring(vim.v.count > 0 and vim.v.count or 1),
 			}, function(input)
 				vim.cmd("DiffviewOpen " .. input)
@@ -55,7 +55,7 @@ return {
 		end
 
 		return {
-			enhanced_diff_hl = true,
+			enhanced_diff_hl = true, -- ':h diffview-config-enhanced_diff_hl'
 			keymaps = {
 				file_panel = {
 					["<c-n>"] = actions.select_next_entry,

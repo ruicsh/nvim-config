@@ -382,15 +382,16 @@ Random features added.
 
 - `[c` previous change
 - `]c` next change
+- `<leader>hD` diff {git-rev}
 - `<leader>hP` push --force-with-lease
-- `<leader>hd` diff
+- `<leader>hd` diff HEAD
 - `<leader>he` log file
 - `<leader>hh` status
 - `<leader>hl` log
 - `<leader>hp` push
 - `<leader>hu` push --set-upstream origin HEAD
 - `<leader>hxb` open blame in browser
-- `<leader>hxf` open file in browser
+- `<leader>hxe` open file in browser
 
 ### Application
 
