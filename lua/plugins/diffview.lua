@@ -23,12 +23,22 @@ return {
 			vim.cmd(cmd)
 		end
 
+		local function diff_back()
+			require("snacks.input").input({
+				prompt = "Diffview Range (HEAD..HEAD~{count}): ",
+				default = "HEAD..HEAD~" .. tostring(vim.v.count > 0 and vim.v.count or 1),
+			}, function(input)
+				vim.cmd("DiffviewOpen " .. input)
+			end)
+		end
+
 		local mappings = {
 			{ "<leader>hd", ":DiffviewOpen<cr>", "Diffview" },
 			{ "<leader>hl", ":DiffviewFileHistory<cr>", "Log" },
 			{ "<leader>he", ":DiffviewFileHistory %<cr>", "Log for file" },
 			{ "<leader>hl", ":'<,'>DiffviewFileHistory<cr>", "Log visual selection", { mode = "v" } },
 			{ "<leader>hb", git_blame_line, "Blame line" },
+			{ "<leader>hD", diff_back, "Diffview HEAD~{count}..HEAD" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
