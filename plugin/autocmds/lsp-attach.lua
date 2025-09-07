@@ -4,6 +4,20 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/lsp-attach", { clea
 
 local icons = require("core.icons")
 
+local DISABLE_FILETYPES = {
+	"DiffviewFileHistory",
+	"DiffviewFiles",
+	"checkhealth",
+	"diff",
+	"fugitive",
+	"git",
+	"gitcommit",
+	"help",
+	"lazy",
+	"lspinfo",
+	"oil",
+}
+
 -- Configure diagnostics
 local function diagnostics()
 	vim.diagnostic.config({
@@ -231,8 +245,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 
-		-- Skip oil buffers
-		if vim.bo[bufnr].filetype == "oil" then
+		-- Skip certain filetypes
+		local filetype = vim.bo[bufnr].filetype
+		if vim.tbl_contains(DISABLE_FILETYPES, filetype) then
 			return
 		end
 
