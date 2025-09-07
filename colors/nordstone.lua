@@ -64,6 +64,7 @@ local NordStoneColors = {
 	nord12 = "#d08770",
 	nord13 = "#ebcb8b",
 	nord14 = "#a3be8c",
+	nord14_700 = "#303f24",
 	nord15 = "#b48ead",
 	neutral_900 = "#171717",
 	neutral_880 = "#1a1a1a",
@@ -90,7 +91,7 @@ loadColorSet({
 	CursorIM = { fg = c.nord5, bg = "NONE", style = "reverse" },
 	CursorLine = { bg = c.neutral_800 },
 	CursorLineNr = { fg = c.nord4 },
-	DiffAdd = { bg = c.nord0 },
+	DiffAdd = { bg = c.nord14_700 },
 	DiffChange = { bg = c.nord0 },
 	DiffDelete = { bg = c.nord11_900 },
 	DiffText = { bg = c.nord3 },
@@ -303,6 +304,7 @@ loadColorSet({
 
 -- Diffview.nvim
 loadColorSet({
+	DiffviewDiffDeleteDim = { fg = c.neutral_600, bg = c.neutral_800 },
 	DiffviewFilePanelCounter = { fg = c.nord8 },
 	DiffviewSecondary = { fg = c.nord14 },
 })
