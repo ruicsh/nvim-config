@@ -230,13 +230,13 @@ Random features added.
 - `<c-b>` jump word backward
 - `<c-w>` jump word forward
 - `<c-a>` jump to line start
-- `<c-f>` jump to line end
+- `<c-;>` jump to line end
 - `<a-h>` delete character backward
 - `<a-l>` delete haracter forward
 - `<a-b>` delete word backward
 - `<a-w>` delete word forward
 - `<a-a>` delete line backward
-- `<a-f>` delete line forward
+- `<a-;>` delete line forward
 - `<a-d><a-d>` delete whole line
 - `<a-up>` move current line up
 - `<a-down>` move current line down
