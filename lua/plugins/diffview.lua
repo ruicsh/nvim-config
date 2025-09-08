@@ -63,7 +63,7 @@ return {
 					["<c-q>"] = ":DiffviewClose<cr>",
 					["<cr>"] = actions.focus_entry,
 					["<s-tab>"] = "<nop>",
-					["<tab>"] = "<nop>",
+					["<tab>"] = actions.focus_entry,
 					["cc"] = git_commit,
 				},
 				file_history_panel = {
@@ -72,7 +72,7 @@ return {
 					["<c-q>"] = ":DiffviewClose<cr>",
 					["<cr>"] = actions.focus_entry,
 					["<s-tab>"] = "<nop>",
-					["<tab>"] = "<nop>",
+					["<tab>"] = actions.focus_entry,
 				},
 				help_panel = {
 					{ "n", "q", actions.close },
@@ -80,8 +80,6 @@ return {
 			},
 			hooks = {
 				diff_buf_read = function(bufnr)
-					vim.b.minidiff_disable = true
-
 					local k = vim.keymap.set
 					local opts = { buffer = bufnr, silent = true }
 
