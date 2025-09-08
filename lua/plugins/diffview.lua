@@ -44,6 +44,7 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
 	end,
 	opts = function()
+		local diffview = require("diffview")
 		local actions = require("diffview.actions")
 
 		local function git_commit()
@@ -73,6 +74,10 @@ return {
 					["<cr>"] = actions.focus_entry,
 					["<s-tab>"] = "<nop>",
 					["<tab>"] = actions.focus_entry,
+					["<leader>hd"] = function()
+						diffview.emit("copy_hash")
+						vim.cmd("DiffviewOpen " .. vim.fn.getreg("*") .. "^!")
+					end,
 				},
 				help_panel = {
 					{ "n", "q", actions.close },
