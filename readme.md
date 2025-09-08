@@ -188,12 +188,12 @@ Random features added.
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
 - `mm` jump to matching pair
-- `<leader>o` jump to earlier position
-- `<leader>i` jump to later position
+- `<tab>` jump to earlier position
+- `<s-tab>` jump to later position
 
 ### Windows
 
-- `<tab>` switch
+- `|` switch
 - `q` close
 - `<c-q>` quit
 - `<c-w>t` move file to new tab

@@ -39,8 +39,8 @@ k("<s-h>", "^", { desc = "Jump to start of line" }) -- `:h ^`
 k("<s-l>", "g_", { desc = "Jump to end of line" }) -- `:h g_`
 
 -- Jump to newer position in jumplist
-k("<leader>o", "<c-o>", { desc = "Jump backward in jumplist" }) -- `:h CTRL-O`
-k("<leader>i", "<c-i>", { desc = "Jump forward in jumplist" }) -- `:h CTRL-I`
+k("<tab>", "<c-o>", { desc = "Jump backward in jumplist" }) -- `:h CTRL-O`
+k("<s-tab>", "<c-i>", { desc = "Jump forward in jumplist" }) -- `:h CTRL-I`
 --
 -- }}}
 
@@ -203,7 +203,6 @@ k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
 k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
 k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
 k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h :help`
-k("<tab>", "zA", { desc = "Toggle fold under cursor" }) -- `:h zA`
 k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 --
 -- }}}
