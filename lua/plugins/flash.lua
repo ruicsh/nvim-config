@@ -7,9 +7,8 @@ return {
 		local flash = require("flash")
 
 		local mappings = {
-			{ "s", flash.jump, "Jump", { mode = { "n", "o", "x" } } },
+			{ "<c-f>", flash.jump, "Jump", { mode = { "n", "o", "x" } } },
 			{ "<leader>v", flash.treesitter, "Treesitter Jump", { mode = { "n", "o", "x" } } },
-			{ "<c-s>", flash.toggle, "Toggle Flash", { mode = { "c" } } },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Flash")
@@ -26,7 +25,7 @@ return {
 			char = {
 				enabled = true,
 				highlight = { backdrop = false },
-				multi_line = false,
+				multi_line = true,
 			},
 			treesitter = {
 				label = {

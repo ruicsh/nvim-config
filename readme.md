@@ -183,7 +183,7 @@ Random features added.
 - `}` jump down 6 lines
 - `H` jump to start of line
 - `L` jump to end of line
-- `s` jump with labels
+- `<c-f>` jump with labels
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position

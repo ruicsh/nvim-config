@@ -17,4 +17,4 @@ k("n", "<c-p>", "(", { desc = "Previous entry", remap = true }) -- `:h fugitive_
 k("n", "q", require("snacks.bufdelete").delete, { desc = "Close" })
 
 local flash = require("flash")
-k("n", "<c-s>", flash.jump, { desc = "Flash Jump" })
+k("n", "<c-f>", flash.jump, { desc = "Flash Jump" })

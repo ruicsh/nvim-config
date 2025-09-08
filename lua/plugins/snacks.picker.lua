@@ -237,7 +237,7 @@ return {
 			win = {
 				input = {
 					keys = {
-						["<c-s>"] = { "flash", mode = { "n", "i" } },
+						["<c-f>"] = { "flash", mode = { "n", "i" } },
 						["<c-q>"] = { "close", mode = { "n", "i" } },
 					},
 				},
