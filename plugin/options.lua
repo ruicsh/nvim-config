@@ -124,7 +124,16 @@ o.foldtext = "v:lua.custom_fold_text()" -- What to display on fold line. `:h 'fo
 -- }}}
 
 -- 15 diff mode {{{
-o.diffopt = "vertical,filler,internal,closeoff,algorithm:histogram,context:5,linematch:60" -- `:h 'diffopt'`
+o.diffopt = { -- `:h 'diffopt'`
+	"algorithm:histogram", -- Better algorithm for diffs.
+	"closeoff", -- Close a diff window when it's the only window in the tab.
+	"context:5", -- Number of context lines.
+	"filler", -- Show filler lines to keep text aligned.
+	"indent-heuristic", -- Better indent matching.
+	"internal", -- Use internal diff library.
+	"linematch:60", -- Better line matching.
+	"vertical", -- Show diffs in vertical splits.
+}
 -- }}}
 
 -- 16 mapping {{{
