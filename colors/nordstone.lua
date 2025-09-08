@@ -304,10 +304,11 @@ loadColorSet({
 
 -- Diffview.nvim
 loadColorSet({
-	DiffviewDiffDeleteDim = { fg = c.neutral_600, bg = c.neutral_800 },
+	DiffviewDiffDeleteDim = { bg = c.neutral_800 },
 	DiffviewFilePanelCounter = { fg = c.nord8 },
 	DiffviewSecondary = { fg = c.nord14 },
 })
+
 -- flash.nvim
 loadColorSet({
 	FlashLabel = { fg = c.nord13, bg = "NONE" },
