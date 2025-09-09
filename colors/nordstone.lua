@@ -64,7 +64,6 @@ local NordStoneColors = {
 	nord12 = "#d08770",
 	nord13 = "#ebcb8b",
 	nord14 = "#a3be8c",
-	nord14_700 = "#303f24",
 	nord14_800 = "#202a18",
 	nord15 = "#b48ead",
 	neutral_900 = "#171717",
@@ -343,22 +342,18 @@ loadColorSet({
 	gitKeyword = { fg = c.nord3_700 },
 })
 
+-- gitsigns.nvim
+loadColorSet({
+	GitSignsAdd = { fg = c.nord14 },
+	GitSignsChange = { fg = c.nord13 },
+	GitSignsDelete = { fg = c.nord11 },
+})
+
 -- incline.nvim
 loadColorSet({
 	InclineNormal = { fg = c.nord4, bg = "NONE" },
 	InclineNormalNC = { fg = c.nord4, bg = "NONE" },
 	InclineGrapple = { fg = c.nord13, bg = "NONE" },
-})
-
--- mini.diff
-loadColorSet({
-	MiniDiffSignAdd = { fg = c.nord14 },
-	MiniDiffSignChange = { fg = c.nord13 },
-	MiniDiffSignDelete = { fg = c.nord11 },
-	MiniDiffOverChange = { fg = c.nord13 },
-	MiniDiffOverChangeBuf = { link = "diffRemoved" },
-	MiniDiffOverContext = { link = "diffAdded" },
-	MiniDiffOverContextBuf = { link = "diffRemoved" },
 })
 
 -- mini.hipatterns

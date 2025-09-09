@@ -155,7 +155,6 @@ local function c_bookmark()
 end
 
 -- Show search count
--- https://github.com/echasnovski/mini.statusline/blob/main/lua/mini/statusline.lua
 local function c_search_count()
 	if vim.v.hlsearch == 0 then
 		return ""
@@ -207,45 +206,22 @@ local function c_lsp_diagnostics()
 end
 
 -- Show git status
-local cache_git_status = {}
 local function c_git_status()
-	local bufnr = vim.api.nvim_get_current_buf()
-	if cache_git_status[bufnr] and cache_git_status[bufnr].time > vim.loop.now() - 1000 then
-		return "%#StatusLineGitStatus#" .. cache_git_status[bufnr].value
-	end
-
-	local status = vim.b.minidiff_summary
-	if not status or status == "" then
+	if not vim.b.gitsigns_status or vim.b.gitsigns_status == "" then
 		return ""
 	end
 
-	local n_changes = 0
-	local keys = { "add", "change", "delete" }
-	local entries = {}
-	for _, k in ipairs(keys) do
-		local count = (status[k] or 0)
-		if count > 0 then
-			table.insert(entries, icons.git[k] .. count)
-		end
-		n_changes = n_changes + count
-	end
-
-	-- Don't show anything if there are no changes
-	local git_status = n_changes == 0 and "" or icons.git.commit .. " " .. table.concat(entries, " ") .. " " .. sep()
-
-	cache_git_status[bufnr] = { time = vim.loop.now(), value = git_status }
-
-	return "%#StatusLineGitStatus#" .. git_status
+	return "%#StatusLineGitStatus#" .. " " .. vim.b.gitsigns_status .. " " .. sep()
 end
 
 -- Show the current git branch
 local function c_git_branch()
-	local head = vim.g.git_branch_name
+	local head = vim.b.gitsigns_head
 	if not head or head == "" then
 		return ""
 	end
 
-	return "%#StatusLine#" .. icons.git.branch .. " " .. head .. " " .. sep()
+	return "%#StatusLine#" .. " " .. head .. " " .. sep()
 end
 
 -- Show the current position

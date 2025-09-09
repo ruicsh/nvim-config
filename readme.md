@@ -68,7 +68,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim) - diffview
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
-- [mini.diff](https://github.com/nvim-mini/mini.diff) - hunks
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
 
 ### UI
 
@@ -122,7 +122,6 @@ New features built around autocmds (events).
 | [clear-jumps](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/clear-jumps.lua)                                 | Clear jumplist when vim starts                        |
 | [cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline.lua)                                         | Clean up after use, hide hit-enter messages on blur   |
 | [disable-newline-comments](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/disable-newline-comments.lua)       | Disable newline comments                              |
-| [git-branch](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/git-branch.lua)                                   | Active git branch                                     |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                   | LSP diagnostics, keymaps, and custom handlers         |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua) | Show cursorline only on active window.                |
 | [views](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/views.lua)                                             | Save and load views for each file (marks, folds)      |
@@ -389,6 +388,8 @@ Random features added.
 - `<leader>hh` status
 - `<leader>hl` log
 - `<leader>hp` push
+- `<leader>hr` reset hunk
+- `<leader>hs` stage/unstage hunk
 - `<leader>hu` push --set-upstream origin HEAD
 - `<leader>hxb` open blame in browser
 - `<leader>hxe` open file in browser
