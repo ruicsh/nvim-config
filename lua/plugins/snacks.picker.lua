@@ -237,8 +237,10 @@ return {
 			win = {
 				input = {
 					keys = {
+						["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
 						["<c-f>"] = { "flash", mode = { "n", "i" } },
 						["<c-q>"] = { "close", mode = { "n", "i" } },
+						["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
 					},
 				},
 			},
