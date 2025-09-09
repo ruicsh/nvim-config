@@ -1,8 +1,6 @@
 -- Pickers.
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 
-local icons = require("core.icons")
-
 -- Open a ui.select to search for a directory to search in
 local grep_directory = function()
 	local snacks = require("snacks")
@@ -157,10 +155,10 @@ return {
 			},
 			icons = {
 				diagnostics = {
-					Error = icons.diagnostics.error,
-					Warn = icons.diagnostics.warning,
-					Info = icons.diagnostics.information,
-					Hint = icons.diagnostics.hint,
+					Error = "E",
+					Warn = "W",
+					Info = "I",
+					Hint = "H",
 				},
 			},
 			jump = {

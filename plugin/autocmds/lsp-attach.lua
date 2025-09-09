@@ -2,8 +2,6 @@
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/lsp-attach", { clear = true })
 
-local icons = require("core.icons")
-
 local DISABLE_FILETYPES = {
 	"DiffviewFileHistory",
 	"DiffviewFiles",
@@ -31,11 +29,11 @@ local function diagnostics()
 		severity_sort = true,
 		signs = {
 			text = {
-				[vim.diagnostic.severity.ERROR] = icons.diagnostics.error,
-				[vim.diagnostic.severity.WARN] = icons.diagnostics.warning,
-				[vim.diagnostic.severity.INFO] = icons.diagnostics.information,
-				[vim.diagnostic.severity.HINT] = icons.diagnostics.hint,
-				[vim.diagnostic.severity.N] = icons.diagnostics.hint,
+				[vim.diagnostic.severity.ERROR] = "E",
+				[vim.diagnostic.severity.WARN] = "W",
+				[vim.diagnostic.severity.INFO] = "I",
+				[vim.diagnostic.severity.HINT] = "H",
+				[vim.diagnostic.severity.N] = "H",
 			},
 		},
 		underline = true,

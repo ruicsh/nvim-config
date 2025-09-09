@@ -1,7 +1,5 @@
 -- Quickfix formatting and highlighting customization
 
-local icons = require("core.icons")
-
 local ns = vim.api.nvim_create_namespace("ruicsh/config/quickfixtextfunc")
 local augroup = vim.api.nvim_create_augroup("ruicsh/config/quickfixtextfunc", { clear = true })
 
@@ -48,11 +46,11 @@ local function get_snippet(entry)
 end
 
 local typeIconsMap = {
-	E = icons.diagnostics.error,
-	H = icons.diagnostics.hint,
-	I = icons.diagnostics.information,
-	N = icons.diagnostics.hint,
-	W = icons.diagnostics.warning,
+	E = "E",
+	H = "H",
+	I = "I",
+	N = "H",
+	W = "W",
 }
 
 local typeHighlightMap = {

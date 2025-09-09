@@ -1,7 +1,5 @@
 -- Statusline configuration
 
-local icons = require("core.icons")
-
 local function sep()
 	return "%#StatusLineSeparator#|%#StatusLine#"
 end
@@ -194,7 +192,8 @@ local function c_lsp_diagnostics()
 		local severity = vim.diagnostic.severity[ki]
 		local count = vim.diagnostic.count(0, { severity = severity })[severity]
 		if count and count > 0 then
-			table.insert(lines, icons.diagnostics[k] .. count)
+			local icon = k:sub(1, 1):upper()
+			table.insert(lines, icon .. count)
 		end
 	end
 

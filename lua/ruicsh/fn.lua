@@ -1,5 +1,3 @@
-local icons = require("core.icons")
-
 -- Takes a table of keys, returns a keymaps lazy config
 vim.fn.get_lazy_keys_conf = function(mappings, desc_prefix)
 	return vim.tbl_map(function(mapping)
@@ -131,6 +129,7 @@ vim.fn.env_get = function(key)
 end
 
 local spinners = {} -- Store spinner timers by buffer
+local icon_spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 
 vim.fn.start_spinner = function(bufnr, msg)
 	local new_timer = vim.uv and vim.uv.new_timer or vim.loop.new_timer
@@ -153,9 +152,9 @@ vim.fn.start_spinner = function(bufnr, msg)
 				return
 			end
 
-			spinners[bufnr].idx = (spinners[bufnr].idx % #icons.spinner) + 1
+			spinners[bufnr].idx = (spinners[bufnr].idx % #icon_spinner) + 1
 			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {
-				icons.spinner[spinners[bufnr].idx] .. " " .. msg,
+				icon_spinner[spinners[bufnr].idx] .. " " .. msg,
 				"",
 			})
 			vim.cmd("normal! j") -- Set cursor on the last line
