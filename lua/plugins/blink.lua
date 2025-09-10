@@ -93,9 +93,9 @@ return {
 			sorts = { "exact", "score", "sort_text" },
 		},
 		keymap = {
-			["<c-e>"] = { "hide", "fallback" },
-			["<c-j>"] = { "select_next", "show", "fallback" },
-			["<c-k>"] = { "select_prev", "show", "fallback" },
+			["<c-q>"] = { "hide", "fallback" },
+			["<c-j>"] = { "select_next", "fallback" },
+			["<c-k>"] = { "select_prev", "fallback" },
 			["<c-m>"] = { "select_and_accept", "fallback" },
 			["<c-n>"] = { "select_next", "show", "fallback" },
 			["<c-p>"] = { "select_prev", "show", "fallback" },

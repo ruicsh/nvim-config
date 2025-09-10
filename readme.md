@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>32 plugins</sub>
+<sub>31 plugins</sub>
 
 ### Navigation
 
@@ -268,7 +268,7 @@ Random features added.
 - `<c-n>` show/next entry
 - `<c-p>` previous entry
 - `<cr>` confirm
-- `<c-e>` show/abort
+- `<c-q>` hide
 - `<c-u>` scroll docs up
 - `<c-d>` scroll docs down
 

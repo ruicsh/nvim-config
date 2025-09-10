@@ -17,6 +17,7 @@ return {
 			scss = false,
 			svn = false,
 			yaml = false,
+			[""] = false,
 		},
 		panel = {
 			enabled = false,
