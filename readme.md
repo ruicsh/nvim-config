@@ -57,7 +57,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [CopilotChat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
-- [opencode](https://github.com/NickvanDyke/opencode.nvim) - AI agent
 
 ### Testing/Debugging
 
