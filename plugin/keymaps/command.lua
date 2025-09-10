@@ -12,20 +12,20 @@ k("<c-n>", "<c-g>") -- `:h c_ctrl-g`
 k("<c-p>", "<c-t>") -- `:h c_ctrl-t`
 
 -- Navigate within the command line
-k("<c-h>", "<left>") -- Jump character backward `:h c_<Left>`
-k("<c-l>", "<right>") -- Jump character forward `:h c_<Right>`
-k("<c-b>", "<s-left>") -- Jump word backward `:h c_<S-Left>`
-k("<c-w>", "<s-right>") -- Jump word forward `:h c_<S-Right>`
+k("<c-b>", "<left>") -- Jump character backward `:h c_<Left>`
+k("<c-f>", "<right>") -- Jump character forward `:h c_<Right>`
+k("<a-b>", "<s-left>") -- Jump word backward `:h c_<S-Left>`
+k("<a-f>", "<s-right>") -- Jump word forward `:h c_<S-Right>`
 k("<c-a>", "<c-b>") -- Jump to line start `:h c_ctrl-b`
-k("<c-;>", "<end>") -- Jump to line end `:h c_end`
+k("<c-e>", "<end>") -- Jump to line end `:h c_end`
 
 -- Editing commands
-k("<a-h>", "<bs>") -- Delete character backward (`:h c_<BS>`)
-k("<a-l>", "<del>") -- Delete character forward (`:h c_<Del>`)
-k("<a-b>", "<c-w>") -- Delete word backward (`:h c_CTRL-W`)
+-- k("<bs>", "<bs>") -- Delete character backward (`:h c_<BS>`)
+k("<c-d>", "<del>") -- Delete character forward (`:h c_<Del>`)
+-- k("<c-w>", "<c-w>") -- Delete word backward (`:h c_CTRL-W`)
 k(
-	"<a-w>",
+	"<a-d>",
 	"<c-\\>estrpart(getcmdline(), 0, getcmdpos()-1)..strpart(getcmdline(), matchend(getcmdline(), '\\S\\+\\s*', getcmdpos()-1))<cr>"
 ) -- Delete word forward
-k("<a-a>", "<c-u>") -- Delete line backward (`:h c_CTRL-U`)
-k("<a-;>", "<c-\\>estrpart(getcmdline(), 0, getcmdpos()-1)<cr>") -- Delete line forward
+k("<c-u>", "<c-u>") -- Delete line backward (`:h c_CTRL-U`)
+k("<c-k>", "<c-\\>estrpart(getcmdline(), 0, getcmdpos()-1)<cr>") -- Delete line forward
