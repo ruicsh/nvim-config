@@ -28,9 +28,9 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Navigation
 
-- [flash](https://github.com/folke/flash.nvim) - Jump with search labels
 - [grapple](https://github.com/cbochs/grapple.nvim) - File bookmarks
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
+- [mini.flash](https://github.com/nvim-mini/mini.jump) - Character navigation
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
@@ -181,7 +181,6 @@ Random features added.
 - `}` jump down 6 lines
 - `H` jump to start of line
 - `L` jump to end of line
-- `<c-f>` jump with labels
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
