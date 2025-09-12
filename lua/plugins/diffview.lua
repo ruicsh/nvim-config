@@ -59,21 +59,15 @@ return {
 			enhanced_diff_hl = true, -- ':h diffview-config-enhanced_diff_hl'
 			keymaps = {
 				file_panel = {
-					["<c-n>"] = actions.select_next_entry,
-					["<c-p>"] = actions.select_prev_entry,
 					["<c-q>"] = ":DiffviewClose<cr>",
 					["<cr>"] = actions.focus_entry,
-					["<s-tab>"] = "<nop>",
-					["<tab>"] = actions.focus_entry,
 					["cc"] = git_commit,
 				},
 				file_history_panel = {
-					["<c-n>"] = actions.select_next_entry,
-					["<c-p>"] = actions.select_prev_entry,
+					["<c-n>"] = actions.select_next_commit,
+					["<c-p>"] = actions.select_prev_commit,
 					["<c-q>"] = ":DiffviewClose<cr>",
 					["<cr>"] = actions.focus_entry,
-					["<s-tab>"] = "<nop>",
-					["<tab>"] = actions.focus_entry,
 					["<leader>hd"] = function()
 						diffview.emit("copy_hash")
 						vim.cmd("DiffviewOpen " .. vim.fn.getreg("*") .. "^!")
@@ -81,6 +75,11 @@ return {
 				},
 				help_panel = {
 					{ "n", "q", actions.close },
+					["<c-q>"] = ":DiffviewClose<cr>",
+				},
+				panel = {
+					["<tab>"] = actions.select_next_entry,
+					["<s-tab>"] = actions.select_prev_entry,
 				},
 			},
 			hooks = {

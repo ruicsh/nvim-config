@@ -8,12 +8,10 @@ return {
 			format = nil,
 			sort = nil,
 		},
-
 		lsp_progress = {
 			enable = true,
 			duration_last = 3000,
 		},
-
 		window = {
 			config = {
 				border = "rounded",
