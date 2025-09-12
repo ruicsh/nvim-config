@@ -10,9 +10,7 @@ return {
 			custom_textobjects = {
 				["?"] = false,
 				["/"] = ai.gen_spec.user_prompt(),
-				a = ai.gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
-				c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
-				e = function() -- Entire file
+				["%"] = function() -- Entire file
 					local from = { line = 1, col = 1 }
 					local to = {
 						line = vim.fn.line("$"),
@@ -20,6 +18,8 @@ return {
 					}
 					return { from = from, to = to }
 				end,
+				a = ai.gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
+				c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
 				f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
 				m = { -- Matching pairs
 					{ "%b()", "%b[]", "%b{}" },
