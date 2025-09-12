@@ -1,5 +1,5 @@
 {
-  "CopilotChat.nvim": { "branch": "main", "commit": "1d8aa27e2317950b0b7ddc023487c6f2b7b074ca" },
+  "CopilotChat.nvim": { "branch": "main", "commit": "070e3022d8878567a089143e2672e8c06ab83be2" },
   "blink.cmp": { "branch": "main", "commit": "bae4bae0eedd1fa55f34b685862e94a222d5c6f8" },
   "conform.nvim": { "branch": "master", "commit": "b4aab989db276993ea5dcb78872be494ce546521" },
   "copilot.lua": { "branch": "master", "commit": "8e52d47e4033fa0659c25deb39a39b61c86adb45" },
@@ -15,7 +15,7 @@
   "mini.align": { "branch": "main", "commit": "ab6777ca0fdfe8e4cfe931e3b0b5d98c719c3c1d" },
   "mini.clue": { "branch": "main", "commit": "2d361459de6a5fd7ea20a14ee4b95c6caec383b9" },
   "mini.hipatterns": { "branch": "main", "commit": "96d07d32a0db0d8d8a10c83a964ec557cca005e7" },
-  "mini.notify": { "branch": "main", "commit": "efb7e5a58ae1bcd5f4c242e151dffe85dfb48f7a" },
+  "mini.notify": { "branch": "main", "commit": "9aae6c2e1020267a898b3950fc0b97eb0d83ce37" },
   "mini.operators": { "branch": "main", "commit": "57c9daf96e0278ebac07bc57fe2f60cf360e5eea" },
   "mini.surround": { "branch": "main", "commit": "e170a2dde4b0a8905c9bb218ed428be94ec0b255" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
@@ -29,5 +29,5 @@
   "timber.nvim": { "branch": "main", "commit": "d32f10e30c1056861c412a00a028869538998e30" },
   "treewalker.nvim": { "branch": "main", "commit": "4b268cdd9d9b4bc6b06760dcf883734de84bfcd3" },
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
-  "vim-test": { "branch": "master", "commit": "ba859e8f66ffe12a097e9963110cd7712db14801" }
+  "vim-test": { "branch": "master", "commit": "5ee3c0b3734eab612b9f70bbc8a4f69f17f8e8ef" }
 }

@@ -3,7 +3,7 @@ vim.opt_local.modifiable = true
 vim.opt_local.number = false
 vim.opt_local.relativenumber = false
 vim.opt_local.signcolumn = "yes:1"
-vim.opt_local.textwidth = 0 -- Disable text width
+vim.opt_local.textwidth = 80 -- Hard wrap at 80 characters
 vim.opt_local.wrap = true -- Enable line wrapping
 
 local k = vim.keymap.set

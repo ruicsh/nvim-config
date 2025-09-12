@@ -56,7 +56,7 @@ k("<c-d>", function() -- Delete character forward
 	end
 end, { expr = true })
 k("<c-w>", "<c-g>u<c-w>", { unique = false }) -- Delete word backward (`:h i_CTRL-W`)
-k("<a-d>", "<c-g>u<c-o>dw") -- Delete word forward
+k("<a-d>", "<c-g>u<s-right><c-w>") -- Delete word forward
 k("<c-u>", "<c-g>u<c-u>", { unique = false }) -- Delete line backward (`:h i_CTRL-U`)
 k("<c-k>", "<c-g>u<c-o>d$", { unique = false }) -- Delete line forward
 k("<a-d><a-d>", "<c-g>u<c-o>dd") -- Delete whole line

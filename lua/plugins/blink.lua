@@ -98,7 +98,7 @@ return {
 			["<c-k>"] = { "select_prev", "fallback" },
 			["<c-m>"] = { "select_and_accept", "fallback" },
 			["<c-n>"] = { "select_next", "show", "fallback" },
-			["<c-p>"] = { "select_prev", "show", "fallback" },
+			["<c-p>"] = { "select_prev", "fallback" },
 			["<cr>"] = { "select_and_accept", "fallback" },
 		},
 		signature = {
