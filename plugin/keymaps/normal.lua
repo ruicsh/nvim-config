@@ -13,8 +13,6 @@ end
 -- Always jump to the start of the line. `:h g0`
 k("{", "6gkg0", { desc = "Jump up 6 lines" })
 k("}", "6gjg0", { desc = "Jump down 6 lines" })
-k("<c-u>", "6gkg0", { desc = "Jump up 6 lines" })
-k("<c-d>", "6gjg0", { desc = "Jump down 6 lines" })
 
 -- For small jumps, use visual lines. `:h gk`
 -- Store relative line number jumps in the jumplist, by setting a mark. `:h m'`
@@ -148,7 +146,6 @@ k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" 
 -- Buffers {{{
 --
 k("<bs>", ":b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
-k("<c-e>", require("snacks").bufdelete.delete, { desc = "Close buffer" }) -- `:h :bdelete`
 --
 -- }}}
 
@@ -177,7 +174,7 @@ k("q", function()
 		end
 	end
 
-	return num_wins == 1 and ":bdelete<cr>" or "<c-w>q" -- `:h CTRL-W_q`
+	return num_wins == 1 and require("snacks").bufdelete.delete or "<c-w>q" -- `:h CTRL-W_q`
 end, { expr = true })
 k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
 

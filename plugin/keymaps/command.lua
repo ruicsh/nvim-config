@@ -5,8 +5,6 @@ local function k(lhs, rhs, opts)
 	vim.keymap.set("c", lhs, rhs, options)
 end
 
--- Use <c-f> to open the commend line window and edit the command `:h c_CTRL-f`
-
 -- Navigation {{{
 --
 -- Browse search matches without leaving command mode
@@ -22,7 +20,8 @@ k("<c-a>", "<c-b>") -- Jump to line start `:h c_ctrl-b`
 k("<c-e>", "<end>") -- Jump to line end `:h c_end`
 
 -- Replacements for keys overridden by above mappings
-k("<c-x><c-a>", "<c-a>") -- Jump to line start `:h c_CTRL-A`
+k("<c-x><c-a>", "<c-a>") -- Insert all names that match the pattern `:h c_CTRL-A`
+k("<c-]>", "<c-f>") -- Open command line window `:h c_CTRL-F`
 --
 -- }}}
 

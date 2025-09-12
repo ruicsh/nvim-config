@@ -153,8 +153,7 @@ Random features added.
 ### Buffers
 
 - `<bs>` switch to last
-- `<c-e>` close
-- `<esc>` close
+- `q` close
 - `<leader>;` list
 
 ### Bookmark buffer
@@ -243,7 +242,7 @@ Random features added.
 - `a` function argument
 - `b` brackets ({}, (), [])
 - `c` comment
-- `e` entire file
+- `%` entire file
 - `f` function
 - `h` git hunk
 - `m` matching pair
@@ -253,10 +252,10 @@ Random features added.
 
 ### Operators
 
-- `Sa{motion}{char}` add surrounding character
-- `Sd{char}` delete surrounding character
-- `Sr{target}{replacement}` replace surrounding character
-- `S{char}` add surroundint character to selection
+- `sa{motion}{char}` add surrounding character
+- `sd{char}` delete surrounding character
+- `sr{target}{replacement}` replace surrounding character
+- `s{char}` add surroundint character to selection
 - `<leader>x{motion1}<leader>x{motion2}` exchange
 - `<leader>m{motion}` multiply
 - `<leader>r{motion}` replace

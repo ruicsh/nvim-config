@@ -30,9 +30,6 @@ return {
 		default_file_explorer = true,
 		keymaps = {
 			["-"] = "actions.parent",
-			["<c-u>"] = "actions.preview_scroll_up",
-			["<c-d>"] = "actions.preview_scroll_down",
-			["<c-p>"] = { "actions.preview", opts = { horizontal = true } },
 			["<c-w>s"] = "actions.select_split",
 			["<c-w>t"] = "actions.select_tab",
 			["<c-w>v"] = "actions.select_vsplit",

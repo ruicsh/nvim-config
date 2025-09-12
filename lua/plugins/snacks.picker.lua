@@ -156,13 +156,6 @@ return {
 						preset = "vertical",
 					},
 					sort_lastused = true,
-					win = {
-						list = {
-							keys = {
-								["<c-e>"] = { "bufdelete" },
-							},
-						},
-					},
 				},
 				command_history = {
 					layout = {
@@ -215,9 +208,7 @@ return {
 			win = {
 				input = {
 					keys = {
-						["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
 						["<c-q>"] = { "close", mode = { "n", "i" } },
-						["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
 					},
 				},
 			},
