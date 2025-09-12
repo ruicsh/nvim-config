@@ -994,6 +994,7 @@ return {
 		})
 	end,
 
+	tag = "v4.6.0",
 	dependencies = {
 		{ "zbirenbaum/copilot.lua" },
 		{ "nvim-lua/plenary.nvim" },
