@@ -1,9 +1,13 @@
 -- Insert mode keymaps `:h insert-index`
 
+-- Setup {{{
+--
 local function k(lhs, rhs, opts)
 	local options = vim.tbl_extend("force", { unique = true }, opts or {})
 	vim.keymap.set("i", lhs, rhs, options)
 end
+--
+-- }}}
 
 -- Navigation {{{
 --

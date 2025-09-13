@@ -1,9 +1,19 @@
 -- Visual mode keymaps `:h visual-index`
 
+-- Setup {{{
+--
 local function k(lhs, rhs, opts)
 	local options = vim.tbl_extend("force", { unique = true }, opts or {})
 	vim.keymap.set("x", lhs, rhs, options)
 end
+
+-- Remove any delay for these keys
+local disable_keys = { "<space>", "<leader>", "s" }
+for _, key in ipairs(disable_keys) do
+	k(key, "<nop>", { unique = false })
+end
+--
+-- }}}
 
 -- Navigation {{{
 --

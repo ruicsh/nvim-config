@@ -12,3 +12,5 @@ k("]m", "<Plug>(MatchitOperationMultiForward)", { desc = "Unmatched pair forward
 -- Start/end of line
 k("H", "^", { desc = "Start of line" }) -- `:h ^`
 k("L", "g_", { desc = "End of line" }) -- `:h g_`
+
+-- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable
