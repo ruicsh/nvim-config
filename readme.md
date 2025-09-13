@@ -43,8 +43,9 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
 - [mini.operators](https://github.com/nvim-mini/mini.operators) - Text edit operators
-- [sort](https://github.com/sQVe/sort.nvim) - Sort operator
-- [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround actions
+- [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action
+- [sort](https://github.com/sQVe/sort.nvim) - Sort action
+- [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
 
 ### LSP/Syntax
 
