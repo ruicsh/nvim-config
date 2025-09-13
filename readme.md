@@ -342,9 +342,6 @@ Random features added.
 - `<a-j>` swap with down node
 - `<a-k>` swap with up node
 - `<a-l>` swap with right node
-- `<leader>v` select node with labels
-- `<c-a>` increase node selection
-- `<c-x>` decrease node selection
 
 ### LSP
 

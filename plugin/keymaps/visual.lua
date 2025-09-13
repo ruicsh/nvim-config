@@ -80,6 +80,10 @@ k(".", ":normal .<cr>", { desc = "Repeat last change" }) -- `:h .`
 -- Indent/dedent and reselect
 k("<tab>", ">gv|") -- `:h gv`
 k("<s-tab>", "<gv") -- `:h gv`
+
+-- Increment/decrement numbers
+k("<c-a>", "<c-a>gv", { desc = "Increment number" }) -- `:h v_ctrl-a`
+k("<c-x>", "<c-x>gv", { desc = "Decrement number" }) -- `:h v_ctrl-x`
 --
 -- }}}
 

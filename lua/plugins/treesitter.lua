@@ -64,15 +64,6 @@ return {
 					return false
 				end,
 			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = false,
-					node_incremental = "<c-a>",
-					node_decremental = "<c-x>",
-					scope_incremental = false,
-				},
-			},
 			indent = {
 				enable = true,
 			},
