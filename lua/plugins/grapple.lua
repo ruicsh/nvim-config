@@ -32,7 +32,7 @@ return {
 		end
 
 		-- Add markings for easier access and saving
-		for index, key in ipairs({ "a", "s", "d", "f" }) do
+		for index, key in ipairs({ "a", "s", "d", "f", "g" }) do
 			table.insert(mappings, { "," .. key, jump_to_tag(index), "Jump to " .. key })
 
 			local saveCmd = string.format("<cmd>Grapple tag index=%d name=%s<cr>", index, key)
@@ -43,7 +43,7 @@ return {
 	end,
 	opts = {
 		name_pos = "",
-		quick_select = "asdf",
+		quick_select = "asdfg",
 		scope = "git_branch",
 		win = {
 			border = "rounded",

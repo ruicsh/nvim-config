@@ -159,8 +159,8 @@ Random features added.
 
 ### Bookmark buffer
 
-- `,{a,s,d,f}` jump to
-- `<leader>,{a,s,d,f}` save to
+- `,{a,s,d,f,g}` jump to
+- `<leader>,{a,s,d,f,g}` save to
 - `<leader>,,` list
 
 ### Alternate buffer
