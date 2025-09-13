@@ -42,9 +42,9 @@ k("gm", "<Plug>(MatchitNormalBackward)", { desc = "Match pair backward" }) -- `:
 k("[m", "<Plug>(MatchitNormalMultiBackward)", { desc = "Unmatched pair backward" }) -- `:h [%`
 k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }) -- `:h ]%`
 
--- Jump to start/end of line
-k("<s-h>", "^", { desc = "Jump to start of line" }) -- `:h ^`
-k("<s-l>", "g_", { desc = "Jump to end of line" }) -- `:h g_`
+-- Jumplist
+k("[[", "<c-o>", { desc = "Jump to older position in jumplist" }) -- `:h <c-o>`
+k("]]", "<c-i>", { desc = "Jump to newer position in jumplist" }) -- `:h <c-i>`
 --
 -- }}}
 

@@ -181,12 +181,12 @@ Random features added.
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
-- `H` jump to start of line
-- `L` jump to end of line
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
 - `mm` jump to matching pair
+- `[[` jump to earlier position
+- `]]` jump to later position
 
 ### Windows
 
