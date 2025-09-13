@@ -24,13 +24,13 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>31 plugins</sub>
+<sub>32 plugins</sub>
 
 ### Navigation
 
 - [grapple](https://github.com/cbochs/grapple.nvim) - File bookmarks
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
-- [mini.flash](https://github.com/nvim-mini/mini.jump) - Character navigation
+- [mini.jump](https://github.com/nvim-mini/mini.jump) - Character navigation
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
@@ -42,7 +42,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
-- [mini.operators](https://github.com/nvim-mini/mini.operators) - Text edit operators
 - [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
