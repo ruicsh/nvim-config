@@ -45,10 +45,6 @@ k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }
 -- Jump to start/end of line
 k("<s-h>", "^", { desc = "Jump to start of line" }) -- `:h ^`
 k("<s-l>", "g_", { desc = "Jump to end of line" }) -- `:h g_`
-
--- Jump to newer position in jumplist
-k("<tab>", "<c-o>", { desc = "Jump backward in jumplist" }) -- `:h CTRL-O`
-k("<s-tab>", "<c-i>", { desc = "Jump forward in jumplist" }) -- `:h CTRL-I`
 --
 -- }}}
 
@@ -203,6 +199,14 @@ k("<leader><tab><tab>", ":tabnew<cr>", { desc = "Tabs: New" }) -- `:h :tabnew`
 k("<leader><tab>q", ":tabclose<cr>", { desc = "Tabs: Close" }) -- `:h :tabclose`
 k("[<tab>", ":tabprevious<cr>", { desc = "Tabs: Previous" }) -- `:h :tabprevious`
 k("]<tab>", ":tabnext<cr>", { desc = "Tabs: Next" }) -- `:h :tabnext`
+--
+-- }}}
+
+-- Folds {{{
+--
+-- Jump to newer position in jumplist
+k("<tab>", "za", { desc = "Toggle fold" }) -- `:h za`
+k("<s-tab>", "zA", { desc = "Toggle all folds" }) -- `:h zA`
 --
 -- }}}
 

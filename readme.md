@@ -156,6 +156,8 @@ Random features added.
 - `<bs>` switch to last
 - `q` close
 - `<leader>;` list
+- `<tab>` toggle fold
+- `<s-tab>` toggle all folds
 
 ### Bookmark buffer
 
@@ -185,8 +187,6 @@ Random features added.
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
 - `mm` jump to matching pair
-- `<tab>` jump to earlier position
-- `<s-tab>` jump to later position
 
 ### Windows
 
@@ -258,7 +258,6 @@ Random features added.
 - `sr{target}{replacement}` replace surrounding character
 - `s{char}` add surroundint character to selection
 - `<leader>x{motion1}<leader>x{motion2}` exchange
-- `<leader>m{motion}` multiply
 - `<leader>r{motion}` replace
 - `<leader>s{motion}` sort
 
