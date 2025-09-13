@@ -40,13 +40,13 @@ return {
 				around = "a",
 				inside = "i",
 
-				around_next = "an",
-				inside_next = "in",
-				around_last = "ap",
-				inside_last = "ip",
+				around_next = "",
+				inside_next = "",
+				around_last = "",
+				inside_last = "",
 
-				goto_left = "g[",
-				goto_right = "g]",
+				goto_left = "",
+				goto_right = "",
 			},
 			n_lines = 500,
 		}
