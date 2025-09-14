@@ -1,4 +1,4 @@
-vim.git = {}
+vim.git = vim.git or {}
 
 vim.git.get_root_dir = function()
 	local git_toplevel = vim.fn.system("git rev-parse --show-toplevel")
