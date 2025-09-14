@@ -97,6 +97,14 @@ k("~", "v~", { desc = "Toggle character case" }) -- `:h ~`
 
 -- Search {{{
 --
+-- Helper to set search keymaps
+local function ks(lhs, rhs, opts)
+	k(lhs, function()
+		vim.opt.hlsearch = true -- Always enable search highlighting `:h hlsearch`
+		return "ms" .. rhs -- Mark position before search with `ms`. `:h m`
+	end, vim.tbl_extend("force", { expr = true }, opts or {}))
+end
+
 -- Mark position before search
 -- Use `'s` to go back to where search started
 -- https://github.com/justinmk/config/blob/master/.config/nvim/plugin/my/keymaps.lua#L51
@@ -111,16 +119,17 @@ local mark_search_keys = {
 	["g£"] = "Search current word (backward, not whole word)",
 }
 for key, desc in pairs(mark_search_keys) do
-	k(key, "ms" .. key, { desc = desc })
+	ks(key, key, { desc = desc })
 end
 
 -- Search for first occurrence of word under cursor
-k("[/", "ms[<c-i>zv", { desc = "Search for first occurrence of word under cursor" }) -- `:h [_ctrl-i`
+ks("[/", "[<c-i>zv", { desc = "Search for first occurrence of word under cursor" }) -- `:h [_ctrl-i`
 
 -- Search for first occurrence of word under cursor, in a new window
 k("<c-w>/", function()
 	local word = vim.fn.expand("<cword>")
 	if word ~= "" then
+		vim.opt.hlsearch = true -- Always enable search highlighting `:h hlsearch`
 		vim.cmd("only | vsplit | silent! ijump /" .. word .. "/ | normal! zv") -- `:h ijump`
 	end
 end, { desc = "Search for first occurrence of word under cursor in new window" })
@@ -132,9 +141,8 @@ k("'s", function()
 end, { desc = "Jump to where search started" })
 
 -- `*` is hard to type
-k("g/", "ms:keepjumps normal! *N<cr>", { desc = "Search current word", silent = true }) -- `:h *`
-k("<s-g>/", "/\\<<c-r><c-w>\\>", { desc = "Search current word (no jumps)" }) -- `:h c_ctrl-g`
-k("g./", "ms/<c-r>/<cr>N", { desc = "Repeat last search" }) -- `:h quote_/`
+ks("g/", ":keepjumps normal! *N<cr>", { desc = "Search current word", silent = true }) -- `:h *`
+ks("g./", "/<c-r>/<cr>N", { desc = "Repeat last search" }) -- `:h quote_/`
 
 -- Web search
 k("gb/", function()
@@ -146,6 +154,9 @@ end, { desc = "Search web for word under cursor" })
 
 -- Replace current word under cursor
 k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" })
+
+-- Clear search highlight
+k("<esc>", ":nohlsearch<cr>", { desc = "Clear search highlight" }) -- `:h :nohlsearch`
 --
 -- }}}
 
