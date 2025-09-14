@@ -108,7 +108,6 @@ o.formatoptions = table.concat({ -- `:h 'formatoptions'`
 	"o", -- Continue comments when pressing 'o' or 'O' in Normal mode. `:h fo-o`
 	"p", -- Do not break lines after a punctuation character. `:h fo-p`
 	"q", -- Allow formatting of comments with `gq`. `:h fo-q`
-	"r", -- Continue comments when pressing <cr> in Insert mode. `:h fo-r`
 	"t", -- Auto-wrap text using textwidth. `:h fo-t`
 }, "")
 o.pumblend = 5 -- Opaque completion menu background. `h 'pumblend'`
