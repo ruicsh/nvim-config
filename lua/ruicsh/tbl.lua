@@ -1,4 +1,4 @@
-vim.tbl = {}
+vim.tbl = vim.tbl or {}
 
 -- Reverse a list
 vim.tbl.reverse = function(tbl)

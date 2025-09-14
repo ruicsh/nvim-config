@@ -152,33 +152,6 @@ local function c_bookmark()
 	return sep() .. " " .. hl .. "󰛢 " .. index
 end
 
--- Show search count
-local function c_search_count()
-	if vim.v.hlsearch == 0 then
-		return ""
-	end
-
-	-- `searchcount()` can return errors because it is evaluated very often in
-	-- statusline. For example, when typing `/` followed by `\(`, it gives E54.
-	local ok, s_count = pcall(vim.fn.searchcount, { recompute = true })
-	if not ok or s_count.current == nil or s_count.total == 0 then
-		return ""
-	end
-
-	local line = sep() .. " "
-
-	if s_count.incomplete == 1 then
-		line = line .. " ?/?"
-		return line
-	end
-
-	local too_many = ">" .. s_count.maxcount
-	local current = s_count.current > s_count.maxcount and too_many or s_count.current
-	local total = s_count.total > s_count.maxcount and too_many or s_count.total
-
-	return line .. " " .. current .. " of " .. total .. " matches"
-end
-
 -- Show LSP diagnostics
 local function c_lsp_diagnostics()
 	if not rawget(vim, "lsp") then
@@ -292,7 +265,6 @@ function _G.status_line()
 		c_filename(),
 		c_bookmark(),
 		c_copilot_chat(),
-		c_search_count(),
 		"%=",
 		"%=",
 		c_lsp_diagnostics(),

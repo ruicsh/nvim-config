@@ -1,5 +1,6 @@
 require("ruicsh/fn")
 require("ruicsh/fs")
 require("ruicsh/git")
+require("ruicsh/search")
 require("ruicsh/tbl")
-require("ruicsh.ux")
+require("ruicsh/ux")

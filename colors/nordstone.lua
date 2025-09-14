@@ -191,9 +191,9 @@ end
 
 -- CUSTOM
 
--- inline-search-count
+-- search
 loadColorSet({
-	InlineSearchCount = { fg = c.nord3_700, bg = c.nord0 },
+	InlineSearchCount = { fg = c.nord13, bg = "NONE" },
 })
 
 -- folds

@@ -101,6 +101,7 @@ k("~", "v~", { desc = "Toggle character case" }) -- `:h ~`
 local function ks(lhs, rhs, opts)
 	k(lhs, function()
 		vim.opt.hlsearch = true -- Always enable search highlighting `:h hlsearch`
+		vim.schedule(vim.search.show_search_count)
 		return "ms" .. rhs -- Mark position before search with `ms`. `:h m`
 	end, vim.tbl_extend("force", { expr = true }, opts or {}))
 end
@@ -120,6 +121,11 @@ local mark_search_keys = {
 }
 for key, desc in pairs(mark_search_keys) do
 	ks(key, key, { desc = desc })
+end
+
+local search_browse_keys = { "n", "N" } -- `:h n`
+for _, key in ipairs(search_browse_keys) do
+	ks(key, key .. "zv", { desc = "Browse search results" })
 end
 
 -- Search for first occurrence of word under cursor
@@ -156,7 +162,12 @@ end, { desc = "Search web for word under cursor" })
 k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" })
 
 -- Clear search highlight
-k("<esc>", ":nohlsearch<cr>", { desc = "Clear search highlight" }) -- `:h :nohlsearch`
+k("<esc>", function()
+	vim.search.clear_search_count()
+	vim.cmd.nohlsearch()
+	vim.opt.hlsearch = false
+	return "<esc>"
+end, { desc = "Clear search highlight", expr = true })
 --
 -- }}}
 
