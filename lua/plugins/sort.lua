@@ -3,13 +3,6 @@
 
 return {
 	"sQVe/sort.nvim",
-	keys = function()
-		local mappings = {
-			{ "<leader>ss", "<leader>s<leader>s", "Line", { remap = true } },
-		}
-
-		return vim.fn.get_lazy_keys_conf(mappings, "Sort")
-	end,
 	opts = {
 		mappings = {
 			operator = "<leader>s",
@@ -17,4 +10,16 @@ return {
 			motion = false,
 		},
 	},
+	config = function(_, opts)
+		require("sort").setup(opts)
+
+		local mappings = {
+			{ "n", "<leader>ss", "<leader>s<leader>s", "Sort Line" },
+		}
+
+		for _, map in ipairs(mappings) do
+			local mode, lhs, rhs, desc = unpack(map)
+			vim.keymap.set(mode, lhs, rhs, { desc = desc, remap = true })
+		end
+	end,
 }
