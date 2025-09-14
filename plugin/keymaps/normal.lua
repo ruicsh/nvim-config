@@ -239,6 +239,7 @@ k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
 k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
 k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h :help`
 k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+k("gf", ":edit <cfile><CR>") -- Allow gf to open non-existing files `:h gf`
 --
 -- }}}
 
