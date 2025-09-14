@@ -98,6 +98,19 @@ end)
 -- 12 editing text {{{
 o.complete = ".,]" -- How keyword completion works. `h 'complete'`
 o.completeopt = "menu,menuone,noinsert,preview" -- Disable native autocompletion (using nvim-cmp). `:h 'completeopt'`
+o.formatoptions = table.concat({ -- `:h 'formatoptions'`
+	"/", -- Only when // is at the start of the line. `:h fo-/`
+	"1", -- Do not break a line after a one-letter word. `:h fo-1`
+	"b", -- Auto-wrap comments using textwidth, but do not break lines. `:h fo-b`
+	"c", -- Auto-wrap comments using textwidth. `:h fo-c`
+	"j", -- Remove comment leader when joining lines. `:h fo-j`
+	"n", -- Recognize numbered lists. `:h fo-n`
+	"o", -- Continue comments when pressing 'o' or 'O' in Normal mode. `:h fo-o`
+	"p", -- Do not break lines after a punctuation character. `:h fo-p`
+	"q", -- Allow formatting of comments with `gq`. `:h fo-q`
+	"r", -- Continue comments when pressing <cr> in Insert mode. `:h fo-r`
+	"t", -- Auto-wrap text using textwidth. `:h fo-t`
+}, "")
 o.pumblend = 5 -- Opaque completion menu background. `h 'pumblend'`
 o.pumheight = 5 -- Maximum height of pop-up menu. `:h 'pumheight'`
 o.showmatch = false -- Do not jump to matching brackets. `:h 'showmatch'`
