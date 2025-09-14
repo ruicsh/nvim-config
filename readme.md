@@ -341,10 +341,8 @@ Random features added.
 - `<a-k>` swap with up node
 - `<a-l>` swap with right node
 - `]a` jump to next parameter start (`[a` previous)
-- `]c` jump to next class start (`[c` previous)
 - `]f` jump to next function start (`[f` previous)
 - `]A` jump to next parameter end (`[A` previous)
-- `]C` jump to next class end (`[C` previous)
 - `]F` jump to next function end (`[F` previous)
 
 ### LSP
