@@ -392,6 +392,15 @@ Random features added.
 - `<leader>hxb` open blame in browser
 - `<leader>hxe` open file in browser
 
+### Git merge conflicts
+
+- `[x` previous conflict
+- `]x` next conflict
+- `c0` choose none
+- `cb` choose both
+- `co` choose ours
+- `ct` choose theirs
+
 ### Application
 
 - `<leader>na` autocmds
