@@ -42,6 +42,7 @@ o.wrap = false -- Do not automatically wrap texts. `:h 'wrap'`
 
 -- 5 syntax, highlighting and spelling {{{
 o.cursorline = true -- Highlight current line.`:h 'cursorline'`
+o.hlsearch = true -- Highlight search matches. `:h 'hlsearch'`
 o.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add" -- Custom spellfile. `:h 'spellfile'`
 o.termguicolors = true -- Enable true colours. `:h 'termguicolors'`
 -- }}}

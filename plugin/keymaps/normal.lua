@@ -100,12 +100,6 @@ k("~", "v~", { desc = "Toggle character case" }) -- `:h ~`
 -- Helper to set search keymaps
 local function ks(lhs, rhs, opts)
 	k(lhs, function()
-		local last_search = vim.fn.getreg("/")
-		if last_search == "" then
-			return rhs
-		end
-
-		vim.opt.hlsearch = true -- Always enable search highlighting `:h hlsearch`
 		vim.schedule(vim.search.show_search_count)
 		return "ms" .. rhs -- Mark position before search with `ms`. `:h m`
 	end, vim.tbl_extend("force", { expr = true }, opts or {}))
@@ -140,7 +134,6 @@ ks("[/", "[<c-i>zv", { desc = "Search for first occurrence of word under cursor"
 k("<c-w>/", function()
 	local word = vim.fn.expand("<cword>")
 	if word ~= "" then
-		vim.opt.hlsearch = true -- Always enable search highlighting `:h hlsearch`
 		vim.cmd("only | vsplit | silent! ijump /" .. word .. "/ | normal! zv") -- `:h ijump`
 	end
 end, { desc = "Search for first occurrence of word under cursor in new window" })
@@ -170,7 +163,6 @@ k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" 
 k("<esc>", function()
 	vim.search.clear_search_count()
 	vim.cmd.nohlsearch()
-	vim.opt.hlsearch = false
 	return "<esc>"
 end, { desc = "Clear search highlight", expr = true })
 --
