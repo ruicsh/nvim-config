@@ -105,7 +105,6 @@ o.formatoptions = table.concat({ -- `:h 'formatoptions'`
 	"c", -- Auto-wrap comments using textwidth. `:h fo-c`
 	"j", -- Remove comment leader when joining lines. `:h fo-j`
 	"n", -- Recognize numbered lists. `:h fo-n`
-	"o", -- Continue comments when pressing 'o' or 'O' in Normal mode. `:h fo-o`
 	"p", -- Do not break lines after a punctuation character. `:h fo-p`
 	"q", -- Allow formatting of comments with `gq`. `:h fo-q`
 	"t", -- Auto-wrap text using textwidth. `:h fo-t`
