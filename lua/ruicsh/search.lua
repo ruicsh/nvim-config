@@ -5,6 +5,11 @@ vim.search = vim.search or {}
 local extmark_id
 
 vim.search.show_search_count = function()
+	local last_search = vim.fn.getreg("/")
+	if last_search == "" then
+		return
+	end
+
 	local sc = vim.fn.searchcount({ maxcount = 9999 })
 	if sc.total == 0 then
 		return

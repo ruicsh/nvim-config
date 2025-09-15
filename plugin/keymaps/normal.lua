@@ -100,6 +100,11 @@ k("~", "v~", { desc = "Toggle character case" }) -- `:h ~`
 -- Helper to set search keymaps
 local function ks(lhs, rhs, opts)
 	k(lhs, function()
+		local last_search = vim.fn.getreg("/")
+		if last_search == "" then
+			return rhs
+		end
+
 		vim.opt.hlsearch = true -- Always enable search highlighting `:h hlsearch`
 		vim.schedule(vim.search.show_search_count)
 		return "ms" .. rhs -- Mark position before search with `ms`. `:h m`
