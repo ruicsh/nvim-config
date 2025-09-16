@@ -12,21 +12,19 @@ end
 -- Get blame info for a file/line
 vim.git.blame = function(o)
 	local opts = o or {}
-	local cmd_parts = {}
-	table.insert(cmd_parts, "git blame --porcelain")
+	local cmd = { "git", "blame", "--porcelain" }
 
 	local line = opts.line or vim.fn.line(".")
 	if line then
-		table.insert(cmd_parts, "-L " .. line .. "," .. line)
+		table.insert(cmd, "-L " .. line .. "," .. line)
 	end
 
 	local filename = opts.filename or vim.fn.expand("%")
 	if filename then
-		table.insert(cmd_parts, filename)
+		table.insert(cmd, filename)
 	end
 
 	-- git blame --porcelain -L 10,10 src/file.lua
-	local cmd = table.concat(cmd_parts, " ")
 	local output = vim.fn.systemlist(cmd)
 
 	local info = {}
