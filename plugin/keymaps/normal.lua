@@ -199,8 +199,12 @@ k("q", function()
 		end
 	end
 
-	return num_wins == 1 and require("snacks").bufdelete.delete or "<c-w>q" -- `:h CTRL-W_q`
-end, { expr = true })
+	if num_wins == 1 then
+		return ":bdelete<cr>" -- `:h :bd`
+	end
+
+	return "<c-w>q" -- `:h CTRL-W_q`
+end, { expr = true, silent = true, desc = "Close buffer/window" })
 k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
 
 -- Same as `:h ctrl-w_T` but without closing the current window
