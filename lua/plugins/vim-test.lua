@@ -14,15 +14,18 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "Tests")
 	end,
 	config = function()
+		-- Use npx to run test runners
+		vim.g["test#javascript#vitest#executable"] = "npx vitest"
+		vim.g["test#javascript#jest#executable"] = "npx jest"
+
+		-- Open side panel with terminal for test output
 		vim.g["test#custom_strategies"] = {
 			my_neovim = function(cmd)
 				-- Open a new vertical split for the terminal
 				vim.ux.open_on_right_side()
 
-				-- Run the test command
-				vim.fn.jobstart(cmd, {
-					term = true,
-				})
+				-- Create a terminal buffer and run the command
+				vim.fn.termopen(cmd)
 
 				-- Set buffer-local variable so that terminal doesn't enter insert mode
 				local bufnr = vim.api.nvim_get_current_buf()
