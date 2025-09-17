@@ -982,7 +982,6 @@ return {
 				},
 				show_help = {
 					normal = "g?",
-					insert = "g?",
 				},
 			},
 			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
