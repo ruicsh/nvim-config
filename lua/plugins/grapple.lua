@@ -31,12 +31,18 @@ return {
 			end
 		end
 
+		local function save_tag(index, key)
+			local saveCmd = string.format("Grapple tag index=%d name=%s", index, key)
+			return function()
+				vim.cmd(saveCmd)
+				vim.cmd.redrawstatus()
+			end
+		end
+
 		-- Add markings for easier access and saving
 		for index, key in ipairs({ "a", "s", "d", "f", "g", "h", "j", "k", "l" }) do
 			table.insert(mappings, { "," .. key, jump_to_tag(index), "Jump to " .. key })
-
-			local saveCmd = string.format("<cmd>Grapple tag index=%d name=%s<cr>", index, key)
-			table.insert(mappings, { "<leader>," .. key, saveCmd, "Save " .. key })
+			table.insert(mappings, { "<leader>," .. key, save_tag(index, key), "Save " .. key })
 		end
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Bookmarks")
