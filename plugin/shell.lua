@@ -1,4 +1,4 @@
-local env_shell = vim.fn.env_get("SHELL")
+local env_shell = vim.fn.env_get("USE_SHELL")
 
 local options = {}
 
