@@ -42,6 +42,7 @@ vim.api.nvim_create_user_command("VimMessages", function()
 	vim.api.nvim_set_option_value("number", true, { win = win })
 	vim.api.nvim_set_option_value("numberwidth", 3, { win = win })
 	vim.api.nvim_set_option_value("filetype", "vim-messages", { buf = buf })
+	vim.api.nvim_set_option_value("modifiable", false, { buf = buf })
 
 	-- Set cursor to the last line
 	vim.api.nvim_win_set_cursor(win, { vim.api.nvim_buf_line_count(buf), 0 })
