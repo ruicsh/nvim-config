@@ -47,7 +47,7 @@ local FILETYPE_CONFIGS = {
 		prompts = { "js" },
 	},
 	neovim = {
-		filetypes = { "vim", "lua" },
+		filetypes = { "lua" },
 		prompts = { "neovim", "lua" },
 	},
 	playwright = {
@@ -89,6 +89,10 @@ local FILETYPE_CONFIGS = {
 	typescript = {
 		filetypes = { "typescript" },
 		prompts = { "ts" },
+	},
+	vim = {
+		filetypes = { "vim" },
+		prompts = { "vimscript" },
 	},
 }
 
