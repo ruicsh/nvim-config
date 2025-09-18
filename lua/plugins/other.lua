@@ -42,6 +42,7 @@ return {
 				pattern = "(.*).test.tsx$",
 				target = {
 					{ target = "%1.tsx", context = "source" },
+					{ target = "%1.ts", context = "source" },
 					{ target = "%1.module.scss", context = "style" },
 					{ target = "%1.scss", context = "style" },
 					{ target = "%1.stories.tsx", context = "story" },
@@ -82,6 +83,7 @@ return {
 				pattern = "(.*).test.ts$",
 				target = {
 					{ target = "%1.ts", context = "source" },
+					{ target = "%1.tsx", context = "source" },
 				},
 			},
 			{ -- angular (source)
