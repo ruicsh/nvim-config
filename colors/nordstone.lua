@@ -410,7 +410,7 @@ loadColorSet({
 	["@markup.heading.html"] = { fg = c.nord4 },
 	["@method"] = { fg = c.nord8 },
 	["@namespace"] = { fg = c.nord4 },
-	["@none"] = { fg = c.nord9 },
+	["@none"] = { fg = c.nord4 },
 	["@none.html"] = { fg = c.nord4 },
 	["@none.tsx"] = { link = "@none.html" },
 	["@number"] = { fg = c.nord15 },
@@ -470,6 +470,9 @@ loadColorSet({
 	["@punctuation.special.markdown"] = { fg = c.nord3 },
 	["@markup.raw.block.markdown"] = { fg = c.nord3_900 },
 	["@markup.raw.markdown_inline"] = { fg = c.nord8 },
+	["markdownLinkText"] = { link = "@markup.link.label.markdown_inline" },
+	["markdownLinkDelimiter"] = { link = "@markup.link.markdown_inline" },
+	["markdownLinkUrl"] = { link = "@markup.link.url.markdown_inline" },
 
 	-- markdown_inline
 	["@markup.link.label.markdown_inline"] = { fg = c.nord8 },
@@ -487,10 +490,7 @@ loadColorSet({
 	["@string.scss"] = { link = "@string.css" },
 	["@type.scss"] = { link = "@type.css" },
 
-	-- Vue
-	["@none.vue"] = { fg = c.nord4 },
-
-	["markdownLinkText"] = { link = "@markup.link.label.markdown_inline" },
-	["markdownLinkDelimiter"] = { link = "@markup.link.markdown_inline" },
-	["markdownLinkUrl"] = { link = "@markup.link.url.markdown_inline" },
+	-- JSON
+	["@property.json"] = { link = "@tag" },
+	["@string.json"] = { fg = c.nord4 },
 })
