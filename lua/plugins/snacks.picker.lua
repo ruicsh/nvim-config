@@ -178,7 +178,18 @@ return {
 						vim.cmd("DiffviewOpen " .. item.commit .. "^!")
 					end,
 					layout = {
-						preset = "vertical",
+						layout = {
+							backdrop = false,
+							border = "rounded",
+							box = "vertical",
+							height = 0.8,
+							title = "{title} {live} {flags}",
+							title_pos = "center",
+							width = 0.8,
+							{ win = "input", height = 1, border = "bottom" },
+							{ win = "list", border = "none", height = 0.2 },
+							{ win = "preview", title = "{preview}", border = "top" },
+						},
 					},
 					title = "Git: Search Log",
 				},
