@@ -21,6 +21,15 @@ elseif env_shell == "cmd" then -- Windows Command Prompt
 		shellquote = '"',
 		shellxquote = "",
 	}
+elseif env_shell == "git-bash" then -- Git Bash
+	options = {
+		shell = '"C:\\Program Files\\Git\\bin\\bash.exe"',
+		shellcmdflag = "-c",
+		shellredir = ">%s 2>&1",
+		shellpipe = "2>&1 | tee %s",
+		shellquote = "",
+		shellxquote = "",
+	}
 end
 
 for option, value in pairs(options) do
