@@ -35,7 +35,7 @@ return {
 		local mappings = {
 			{ "<leader>hd", ":DiffviewOpen<cr>", "Diffview" },
 			{ "<leader>hl", ":DiffviewFileHistory<cr>", "Log" },
-			{ "<leader>he", ":DiffviewFileHistory %<cr>", "Log for file" },
+			{ "<leader>h%", ":DiffviewFileHistory %<cr>", "Log for file" },
 			{ "<leader>hl", ":'<,'>DiffviewFileHistory<cr>", "Log visual selection", { mode = "v" } },
 			{ "<leader>hb", git_blame_line, "Blame line" },
 			{ "<leader>hD", diff_back, "Diffview HEAD~{count}..HEAD" },
@@ -64,29 +64,29 @@ return {
 			enhanced_diff_hl = true, -- ':h diffview-config-enhanced_diff_hl'
 			keymaps = {
 				file_panel = {
+					["<c-b>"] = toggle_files,
+					["<c-n>"] = actions.select_next_entry,
+					["<c-p>"] = actions.select_prev_entry,
 					["<c-q>"] = ":DiffviewClose<cr>",
 					["<cr>"] = actions.focus_entry,
 					["cc"] = git_commit,
-					["<c-b>"] = toggle_files,
 				},
 				file_history_panel = {
-					["<c-n>"] = actions.select_next_commit,
-					["<c-p>"] = actions.select_prev_commit,
+					["<c-b>"] = toggle_files,
+					["<c-j>"] = actions.select_next_commit,
+					["<c-k>"] = actions.select_prev_commit,
+					["<c-n>"] = actions.select_next_entry,
+					["<c-p>"] = actions.select_prev_entry,
 					["<c-q>"] = ":DiffviewClose<cr>",
 					["<cr>"] = actions.focus_entry,
 					["<leader>hd"] = function()
 						diffview.emit("copy_hash")
 						vim.cmd("DiffviewOpen " .. vim.fn.getreg("*") .. "^!")
 					end,
-					["<c-b>"] = toggle_files,
 				},
 				help_panel = {
-					["q"] = actions.close,
 					["<c-q>"] = ":DiffviewClose<cr>",
-				},
-				panel = {
-					["<tab>"] = actions.select_next_entry,
-					["<s-tab>"] = actions.select_prev_entry,
+					["q"] = actions.close,
 				},
 				view = {
 					{ "n", "co", actions.conflict_choose("ours"), { desc = "Choose OURS" } },
