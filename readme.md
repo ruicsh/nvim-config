@@ -185,8 +185,8 @@ Random features added.
 - `'.` jump to position where last change was made
 - `'{a-z}'` jump to marked position
 - `mm` jump to matching pair
-- `[[` jump to earlier position
-- `]]` jump to later position
+- `<leader>[` jump to earlier position
+- `<leader>]` jump to later position
 
 ### Windows
 

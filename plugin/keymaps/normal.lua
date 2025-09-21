@@ -43,8 +43,8 @@ k("[m", "<Plug>(MatchitNormalMultiBackward)", { desc = "Unmatched pair backward"
 k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }) -- `:h ]%`
 
 -- Jumplist
-k("[[", "<c-o>", { desc = "Jump to older position in jumplist" }) -- `:h <c-o>`
-k("]]", "<c-i>", { desc = "Jump to newer position in jumplist" }) -- `:h <c-i>`
+k("<leader>[", "<c-o>", { desc = "Jump to older position in jumplist" }) -- `:h <c-o>`
+k("<leader>]", "<c-i>", { desc = "Jump to newer position in jumplist" }) -- `:h <c-i>`
 --
 -- }}}
 
