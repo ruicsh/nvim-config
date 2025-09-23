@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>31 plugins</sub>
+<sub>32 plugins</sub>
 
 ### Navigation
 
@@ -40,6 +40,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
+- [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
 - [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action

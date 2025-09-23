@@ -36,12 +36,6 @@ end, { expr = true })
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })
 
--- Matching pairs (use `m` instead of `%`)
-k("mm", "<Plug>(MatchitNormalForward)", { desc = "Match pair" }) -- `:h matchit-%`
-k("gm", "<Plug>(MatchitNormalBackward)", { desc = "Match pair backward" }) -- `:h g%`
-k("[m", "<Plug>(MatchitNormalMultiBackward)", { desc = "Unmatched pair backward" }) -- `:h [%`
-k("]m", "<Plug>(MatchitNormalMultiForward)", { desc = "Unmatched pair forward" }) -- `:h ]%`
-
 -- Jumplist
 k("<leader>[", "<c-o>", { desc = "Jump to older position in jumplist" }) -- `:h <c-o>`
 k("<leader>]", "<c-i>", { desc = "Jump to newer position in jumplist" }) -- `:h <c-i>`

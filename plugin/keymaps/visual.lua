@@ -30,13 +30,6 @@ k("j", function()
 	return vim.v.count > 0 and "j" or "gj"
 end, { expr = true })
 
--- Matching pairs (use `m` instead of `%`)
-k("m", "<Plug>(MatchitVisualForward)", { desc = "Match pair" }) -- `:h matchit-%`
-k("gm", "<Plug>(MatchitVisualBackward)", { desc = "Match pair backward" }) -- `:h v_g%`
-k("[m", "<Plug>(MatchitVisualMultiBackward)", { desc = "Unmatched pair backward" }) -- `:h v_[%`
-k("]m", "<Plug>(MatchitVisualMultiForward)", { desc = "Unmatched pair forward" }) -- `:h v_]%`
-k("am", "<Plug>(MatchitVisualTextObject)", { desc = "Around matched pair" }) -- `:h v_a%`
-
 -- Start/end of line
 k("<s-h>", "^", { desc = "Start of line" }) -- `:h ^`
 k("<s-l>", "g_", { desc = "End of line" }) -- `:h g_`

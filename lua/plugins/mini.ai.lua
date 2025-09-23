@@ -21,10 +21,6 @@ return {
 				a = ai.gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
 				c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
 				f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
-				m = { -- Matching pairs
-					{ "%b()", "%b[]", "%b{}" },
-					"^.().*().$",
-				},
 				s = { -- Single words in different cases (camelCase, snake_case, etc.)
 					{
 						"%u[%l%d]+%f[^%l%d]",
