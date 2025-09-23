@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>32 plugins</sub>
+<sub>31 plugins</sub>
 
 ### Navigation
 
@@ -53,16 +53,12 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
+- [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
 
 ### AI
 
 - [CopilotChat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
-
-### Testing/Debugging
-
-- [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
-- [vim-test](https://github.com/vim-test/vim-test) - Test runner
 
 ### Git
 
@@ -367,13 +363,6 @@ Random features added.
 - `]r` jump to next symbol reference
 - `[x` jump to previous error
 - `]x` jump to next error
-
-### Test runner:
-
-- `<leader>bb` run last
-- `<leader>bn` run nearest
-- `<leader>be` run file
-- `<leader>ba` run all
 
 ### Git
 
