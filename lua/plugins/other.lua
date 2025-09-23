@@ -4,9 +4,10 @@
 return {
 	"rgroli/other.nvim",
 	keys = function()
-		local function vsplit(other)
+		local function split(other)
 			return function()
-				vim.ux.open_on_right_side("OtherVSplit " .. other)
+				local cmd = vim.ux.is_narrow_screen() and "OtherSplit" or "OtherVSplit"
+				vim.ux.open_side_panel(cmd .. " " .. other)
 			end
 		end
 
@@ -17,11 +18,11 @@ return {
 			{ "=b", "<cmd>:Other test<cr>", "" },
 			{ "=m", "<cmd>:Other template<cr>", "" },
 			{ "=y", "<cmd>:Other story<cr>", "" },
-			{ "==<space>", vsplit("source"), "" },
-			{ "==s", vsplit("style"), "" },
-			{ "==b", vsplit("test"), "" },
-			{ "==m", vsplit("template"), "" },
-			{ "==y", vsplit("story"), "" },
+			{ "==<space>", split("source"), "" },
+			{ "==s", split("style"), "" },
+			{ "==b", split("test"), "" },
+			{ "==m", split("template"), "" },
+			{ "==y", split("story"), "" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Alternate")

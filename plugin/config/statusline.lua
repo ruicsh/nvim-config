@@ -128,11 +128,14 @@ local function c_filename()
 		if ft == "oil" then
 			line = line .. vim.fn.fnamemodify(path:sub(7), ":.")
 		else
-			local display = vim.fn.fnamemodify(path, ":~:.")
-			local parts = vim.split(display, "/", { plain = true })
-			local len = #parts
-			if len > 3 then
-				display = table.concat({ parts[len - 2], parts[len - 1], parts[len] }, "/")
+			local display = vim.fn.fnamemodify(path, ":t")
+			if not vim.ux.is_narrow_screen() then
+				display = vim.fn.fnamemodify(path, ":~:.")
+				local parts = vim.split(display, "/", { plain = true })
+				local len = #parts
+				if len > 3 then
+					display = table.concat({ parts[len - 2], parts[len - 1], parts[len] }, "/")
+				end
 			end
 			line = line .. display
 		end

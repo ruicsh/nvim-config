@@ -207,6 +207,11 @@ vim.api.nvim_create_user_command("RestoreChangedFiles", function()
 		-- Open the last changed file
 		vim.cmd.edit(files[#files])
 
+		-- Don't open split on narrow screens
+		if vim.ux.is_narrow_screen() then
+			return
+		end
+
 		-- Open the second last changed file in a new window
 		if #files > 1 then
 			vim.cmd.vsplit(files[#files - 1])

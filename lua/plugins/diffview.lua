@@ -52,7 +52,9 @@ return {
 			vim.cmd.tabnew()
 			vim.cmd("Git")
 			vim.cmd("wincmd o")
-			vim.cmd("vertical Git commit")
+
+			local prefix = vim.ux.is_narrow_screen() and "" or "vertical"
+			vim.cmd(prefix .. " Git commit")
 		end
 
 		local function toggle_files()

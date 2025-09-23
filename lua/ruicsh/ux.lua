@@ -23,8 +23,8 @@ vim.ux.close_windows_on_side = function(side)
 	end
 end
 
--- Open the right side panel, closing right/left side windows if necessary
-vim.ux.open_on_right_side = function(cmd)
+-- Open the side panel, closing right/left side windows if necessary
+vim.ux.open_side_panel = function(cmd)
 	local current_win = vim.api.nvim_get_current_win()
 	local current_tab = vim.api.nvim_win_get_tabpage(current_win)
 	local wins = vim.api.nvim_tabpage_list_wins(current_tab)
@@ -40,7 +40,8 @@ vim.ux.open_on_right_side = function(cmd)
 		-- If the command is false, we don't run anything
 		if cmd ~= false then
 			-- If there's a commend to run or by default open a new vertical split on the right
-			local command = cmd or "botright vnew"
+			local default = vim.ux.is_narrow_screen() and "botright new" or "botright vnew"
+			local command = cmd or default
 			vim.cmd(command)
 		end
 	end
@@ -71,4 +72,8 @@ vim.ux.open_on_right_side = function(cmd)
 	end
 
 	run_command()
+end
+
+vim.ux.is_narrow_screen = function()
+	return vim.o.columns < 170
 end

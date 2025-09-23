@@ -199,7 +199,8 @@ return {
 				help = {
 					confirm = function(picker, item)
 						picker:close()
-						vim.ux.open_on_right_side("vertical help " .. item.tag)
+						local cmd = vim.ux.is_narrow_screen() and "help" or "vertical help"
+						vim.ux.open_on_right_side(cmd .. " " .. item.tag)
 					end,
 				},
 				registers = {

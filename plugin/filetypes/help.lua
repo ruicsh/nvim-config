@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd("CmdLineLeave", {
 				end
 			end
 
-			vim.ux.open_on_right_side(false)
+			vim.ux.open_side_panel(false)
 		end
 	end,
 })
