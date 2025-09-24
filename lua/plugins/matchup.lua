@@ -4,8 +4,10 @@
 return {
 	"andymass/vim-matchup",
 	config = function()
+		vim.g.matchup_mappings_enabled = 0 -- Disable default mappings
 		vim.g.matchup_matchparen_deferred = 1 -- Delay to highlight matchparen
 		vim.g.matchup_matchparen_pumvisible = 0 -- Don't highlight when pumvisible
+		vim.g.matchup_matchparen_offscreen = {} -- Don't display offscreen on statusline
 
 		require("match-up").setup({})
 

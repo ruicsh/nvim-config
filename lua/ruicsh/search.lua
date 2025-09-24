@@ -6,7 +6,7 @@ local extmark_id
 
 vim.search.show_search_count = function()
 	local sc = vim.fn.searchcount({ maxcount = 9999 })
-	if sc.current == 0 or sc.total == 0 then
+	if not sc.current or sc.current == 0 or sc.total == 0 then
 		return
 	end
 
