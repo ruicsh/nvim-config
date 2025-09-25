@@ -46,7 +46,7 @@ return {
 		-- Add markings for easier access and saving
 		for index, key in ipairs({ "a", "s", "d", "f", "g", "h", "j", "k", "l" }) do
 			table.insert(mappings, { "," .. key, jump_to_tag(index), "Jump to " .. key })
-			table.insert(mappings, { "<leader>," .. key, toggle_tag(index, key), "Toggle " .. key })
+			table.insert(mappings, { ",," .. key, toggle_tag(index, key), "Toggle " .. key })
 		end
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Bookmarks")
