@@ -196,6 +196,10 @@ local function c_git_branch()
 		return ""
 	end
 
+	if vim.ux.is_narrow_screen() and #head > 15 then
+		head = head:sub(1, 20) .. "..."
+	end
+
 	return "%#StatusLine#" .. " " .. head .. " " .. sep()
 end
 
