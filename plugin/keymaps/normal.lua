@@ -229,11 +229,12 @@ k("<s-tab>", "zA", { desc = "Toggle all folds" }) -- `:h zA`
 
 -- Miscellaneous {{{
 --
+k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+k("<leader>v", "<c-v>", { desc = "Enter visual block mode" }) -- `:h <c-v>`
 k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
-k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
 k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
 k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h :help`
-k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
+k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
 k("gf", ":edit <cfile><CR>") -- Allow gf to open non-existing files `:h gf`
 --
 -- }}}
