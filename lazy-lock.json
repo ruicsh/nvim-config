@@ -16,6 +16,7 @@
   "mini.hipatterns": { "branch": "main", "commit": "1e0e8f51d50b18eb23b50eef8d97bfd9482e29d9" },
   "mini.jump": { "branch": "main", "commit": "86cb4bf366cedbeaf81cc282049852995cb5c462" },
   "mini.notify": { "branch": "main", "commit": "68ce2126c831bfcb9dcc359c15ccb105cf136718" },
+  "mini.pairs": { "branch": "main", "commit": "bada72fe4ec607f882a098d15aa4a3279bc6883d" },
   "mini.surround": { "branch": "main", "commit": "aec6ed2902a2fd809e3c2fe79ee4568791285201" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "71385f191ec06ffc60e80e6b0c9a9d5daed4824c" },
