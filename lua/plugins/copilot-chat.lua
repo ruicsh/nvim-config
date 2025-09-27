@@ -50,6 +50,10 @@ local FILETYPE_CONFIGS = {
 		filetypes = { "lua" },
 		prompts = { "neovim", "lua" },
 	},
+	nushell = {
+		filetypes = { "nu" },
+		prompts = { "nushell" },
+	},
 	playwright = {
 		patterns = { "%.spec%.ts$" },
 		priority = 5000,
