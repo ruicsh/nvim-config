@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>33 plugins</sub>
+<sub>34 plugins</sub>
 
 ### Navigation
 
@@ -38,6 +38,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Editing
 
+- [autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename tags
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
