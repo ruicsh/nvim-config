@@ -170,6 +170,10 @@ o.wildignore:append({ -- Ignore on filename completion. `:h 'wildignore'`
 })
 -- }}}
 
+-- 20 executing external commands {{{
+o.shell = vim.fn.exepath("nu") -- Resolves to full path if "nushell" is in $PATH
+-- }}}
+
 -- 24 various {{{
 o.conceallevel = 0 -- Text is shown normally. `:h 'conceallevel'`
 o.gdefault = true -- Use g flag for ':substitute'. `:h 'gdefault'`
