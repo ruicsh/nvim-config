@@ -85,6 +85,25 @@ local grep_directory = function()
 	end
 end
 
+local layout = {
+	presets = {
+		vertical = {
+			layout = {
+				backdrop = false,
+				border = "rounded",
+				box = "vertical",
+				height = 0.9,
+				title = "{title} {live} {flags}",
+				title_pos = "center",
+				width = 0.7,
+				{ win = "input", height = 1, border = "bottom" },
+				{ win = "list", border = "none", height = 0.2 },
+				{ win = "preview", title = "{preview}", border = "top" },
+			},
+		},
+	},
+}
+
 return {
 	"folke/snacks.nvim",
 	keys = (function()
@@ -93,22 +112,17 @@ return {
 		local mappings = {
 			-- files
 			{ "<leader><space>", snacks.picker.smart, "Files" },
-			{ "<leader>;", snacks.picker.buffers, "Buffers" },
+			{ "<leader>;;", snacks.picker.buffers, "Buffers" },
 
 			-- search
 			{ "<leader>/", snacks.picker.grep, "Search: Workspace" },
 			{ "<leader>?", grep_directory, "Search: Directory" },
 			{ "<leader>g/", snacks.picker.grep_word, "Search: Current word" },
-			{ "<leader>sh", snacks.picker.search_history, "Search: History" },
 
 			-- current state
 			{ "<leader>'", snacks.picker.marks, "Marks" },
 			{ "<leader>.", snacks.picker.resume, "Last picker" },
-			{ "<leader>:", snacks.picker.command_history, "Command history" },
 			{ '<leader>"', snacks.picker.registers, "Command history" },
-			{ "<leader>jj", snacks.picker.jumps, "Jumplist" },
-			{ "<leader>qq", snacks.picker.qflist, "Quickfix" },
-			{ "<leader>uu", snacks.picker.undo, "Undotree" },
 
 			-- git
 			{ "<leader>h/", snacks.picker.git_log, "Git: Search Log" },
@@ -116,7 +130,6 @@ return {
 			-- neovim
 			{ "<leader>nH", snacks.picker.highlights, "Highlights" },
 			{ "<leader>na", snacks.picker.autocmds, "Autocmds" },
-			{ "<leader>nc", snacks.picker.commands, "Commands" },
 			{ "<leader>nh", snacks.picker.help, "Help" },
 			{ "<leader>nk", snacks.picker.keymaps, "Keymaps" },
 		}
@@ -157,44 +170,27 @@ return {
 					},
 					sort_lastused = true,
 				},
-				command_history = {
-					layout = {
-						preview = false,
-						preset = "vertical",
-					},
+				diagnostics = {
+					layout = layout.presets.vertical,
 				},
-				commands = {
-					layout = {
-						preview = false,
-						preset = "vertical",
-					},
-				},
-				files = {
-					hidden = true,
+				diagnostics_buffer = {
+					layout = layout.presets.vertical,
 				},
 				git_log = {
 					confirm = function(picker, item)
 						picker:close()
 						vim.cmd("DiffviewOpen " .. item.commit .. "^!")
 					end,
-					layout = {
-						layout = {
-							backdrop = false,
-							border = "rounded",
-							box = "vertical",
-							height = 0.8,
-							title = "{title} {live} {flags}",
-							title_pos = "center",
-							width = 0.8,
-							{ win = "input", height = 1, border = "bottom" },
-							{ win = "list", border = "none", height = 0.2 },
-							{ win = "preview", title = "{preview}", border = "top" },
-						},
-					},
+					layout = layout.presets.vertical,
 					title = "Git: Search Log",
 				},
 				grep = {
 					exclude = { "package-lock.json", "lazy-lock.json" },
+					layout = layout.presets.vertical,
+				},
+				grep_word = {
+					exclude = { "package-lock.json", "lazy-lock.json" },
+					layout = layout.presets.vertical,
 				},
 				help = {
 					confirm = function(picker, item)
@@ -203,13 +199,10 @@ return {
 						vim.ux.open_side_panel(cmd .. " " .. item.tag)
 					end,
 				},
-				registers = {
-					layout = {
-						preview = false,
-						preset = "vertical",
-					},
+				lsp_references = {
+					layout = layout.presets.vertical,
 				},
-				search_history = {
+				registers = {
 					layout = {
 						preview = false,
 						preset = "vertical",

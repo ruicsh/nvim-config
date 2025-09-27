@@ -152,9 +152,7 @@ Random features added.
 
 - `<bs>` switch to last
 - `q` close
-- `<leader>;` list
-- `<tab>` toggle fold
-- `<s-tab>` toggle all folds
+- `<leader>;;` list
 
 ### Bookmark buffer
 
@@ -216,6 +214,8 @@ Random features added.
 - `ycc` duplicate a line, comment out the first line.
 - `<a-up>` move selection up
 - `<a-down>` move selection down
+- `<tab>` toggle fold
+- `<s-tab>` toggle all folds
 
 ### Insert/Command mode
 
@@ -394,7 +394,6 @@ Random features added.
 ### Application
 
 - `<leader>na` autocmds
-- `<leader>nc` commands
 - `<leader>nh` help
 - `<leader>nH` highlights
 - `<leader>nk` keymaps
