@@ -26,12 +26,8 @@ k("}", "6gjg0", { desc = "Jump down 6 lines" })
 
 -- For small jumps, use visual lines. `:h gk`
 -- Store relative line number jumps in the jumplist, by setting a mark. `:h m'`
-k("k", function()
-	return vim.v.count > 0 and "m'" .. vim.v.count .. "k" or "gk"
-end, { expr = true })
-k("j", function()
-	return vim.v.count > 0 and "m'" .. vim.v.count .. "j" or "gj"
-end, { expr = true })
+k("k", [[v:count > 0 ? "m'" . v:count . "k" : "gk"]], { expr = true })
+k("j", [[v:count > 0 ? "m'" . v:count . "j" : "gj"]], { expr = true })
 
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })

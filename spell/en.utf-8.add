@@ -18,7 +18,9 @@ commitizen
 css
 cwd
 diffview
+docker
 dockerfile
+entrypoint
 env
 eslint
 fd
