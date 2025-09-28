@@ -51,6 +51,10 @@ end
 k("<a-up>", ":move-2<cr>='[gv", { desc = "Move selection up" })
 k("<a-down>", ":move'>+1<cr>='[gv", { desc = "Move selection down" })
 
+-- Indent/dedent selection
+k(">", ">gv") -- Reselect after indent
+k("<", "<gv") -- Reselect after dedent
+
 -- Paste over currently selected text without yanking it.
 k("P", '"_dP')
 k("X", '"_X')
