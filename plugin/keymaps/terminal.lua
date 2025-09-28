@@ -11,8 +11,13 @@ end
 
 -- Toggle terminal {{{
 --
--- Enter normal mode :h t_CTRL-\_CTRL-N
-k("<c-[>", "<c-bslash><c-n>", { desc = "Enter normal mode" })
+-- Enter normal mode
+k("<c-n>", "<c-bslash><c-n>", { desc = "Enter normal mode" }) -- :h t_CTRL-\_CTRL-N
+
+-- Better window navigation
+for _, key in ipairs({ "h", "j", "k", "l", "<c-w>", "q" }) do
+	k("<c-w>" .. key, "<c-\\><c-n><c-w>" .. key)
+end
 
 -- Toggle terminal buffer (close as we are in terminal mode)
 k("<c-t>", function()
