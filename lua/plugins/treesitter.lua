@@ -23,6 +23,7 @@ local PARSERS = {
 	"luadoc",
 	"markdown",
 	"nginx",
+	"nu",
 	"powershell",
 	"python",
 	"regex",

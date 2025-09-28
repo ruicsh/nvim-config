@@ -1,6 +1,7 @@
 -- Install LSP servers and 3rd-party tools
 -- https://github.com/williamboman/mason.nvim
 
+-- https://mason-registry.dev/registry/list
 local PACKAGES = {
 	-- LSP
 	"angular-language-server",
