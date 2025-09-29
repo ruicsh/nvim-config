@@ -85,7 +85,7 @@ end
 
 local git_root = nil
 local function c_project()
-	git_root = git_root or vim.git.get_root_dir()
+	git_root = git_root or vim.fs.root(0, ".git")
 	if not git_root or git_root == "" then
 		return ""
 	end

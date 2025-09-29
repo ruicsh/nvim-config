@@ -41,7 +41,7 @@ end
 local function get_git_status(callback)
 	local oil = require("oil")
 	local current_dir = oil.get_current_dir()
-	local git_root = vim.git.get_root_dir()
+	local git_root = vim.fs.root(0, ".git")
 
 	if not git_root or not current_dir then
 		callback({})

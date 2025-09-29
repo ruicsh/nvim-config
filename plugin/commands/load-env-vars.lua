@@ -4,7 +4,7 @@ vim.api.nvim_create_user_command("LoadEnvVars", function()
 	local dirs = {
 		vim.fn.stdpath("config"), -- Neovim configuration directory
 		vim.fn.getcwd(), -- Current working directory
-		require("snacks.git").get_root(), -- Git root directory
+		vim.fs.root(0, ".git"), -- Git root directory
 	}
 
 	for _, dir in ipairs(dirs) do
