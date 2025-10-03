@@ -386,6 +386,11 @@ local function action(type, opts)
 			table.insert(sticky, #sticky + 1, "#buffer")
 		elseif type == "fix" then
 			local scope = is_visual_mode and "selection" or "current"
+			if scope == "selection" then
+				table.insert(sticky, #sticky + 1, "#selection")
+			elseif scope == "current" then
+				table.insert(sticky, #sticky + 1, "#buffer")
+			end
 			table.insert(sticky, #sticky + 1, "#diagnostics:" .. scope)
 		elseif is_visual_mode then
 			table.insert(sticky, #sticky + 1, "#selection")
