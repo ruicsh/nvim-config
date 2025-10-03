@@ -6,13 +6,9 @@ return {
 	keys = function()
 		local grapple = require("grapple")
 
-		local mappings = {
-			{ "<leader>,,", "<cmd>Grapple toggle_tags<cr>", "Toggle menu" },
-		}
-
-		local function jump_to_tag(index)
+		local function jump_to_tag(name)
 			return function()
-				local tag = grapple.find({ index = index })
+				local tag = grapple.find({ name = name })
 				if tag then
 					-- Check if the file is already open in any window
 					for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
@@ -27,36 +23,41 @@ return {
 				end
 
 				-- If not, open the file and jump to the tag
-				grapple.select({ index = index })
+				grapple.select({ name = name })
 			end
 		end
 
-		local function toggle_tag(index, key)
+		local function toggle_tag(name)
 			return function()
-				local cmd = string.format("Grapple tag index=%d name=%s", index, key)
-				if grapple.find({ index = index }) then
-					cmd = string.format("Grapple untag index=%d", index)
+				if grapple.exists({ name = name }) then
+					grapple.untag({ name = name })
+				else
+					grapple.tag({ name = name })
 				end
 
-				vim.cmd(cmd)
 				vim.cmd.redrawstatus()
 			end
 		end
 
+		local mappings = {
+			{ "<leader>,,", "<cmd>Grapple toggle_tags<cr>", "Toggle menu" },
+		}
+
 		-- Add markings for easier access and saving
-		for index, key in ipairs({ "a", "s", "d", "f", "g", "h", "j", "k", "l" }) do
-			table.insert(mappings, { "," .. key, jump_to_tag(index), "Jump to " .. key })
-			table.insert(mappings, { ",," .. key, toggle_tag(index, key), "Toggle " .. key })
+		for _, name in ipairs({ "a", "s", "d", "f", "g", "h", "j", "k", "l" }) do
+			table.insert(mappings, { "," .. name, jump_to_tag(name), "Jump to " .. name })
+			table.insert(mappings, { ",," .. name, toggle_tag(name), "Toggle " .. name })
 		end
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Bookmarks")
 	end,
 	opts = {
-		name_pos = "",
-		quick_select = "asdfghjkl",
+		name_pos = "start",
+		quick_select = "",
 		scope = "git_branch",
-		win = {
+		win_opts = {
 			border = "rounded",
+			width = 0.6,
 		},
 	},
 
