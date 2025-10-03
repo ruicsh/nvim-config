@@ -8,6 +8,12 @@ return {
 			local api = vim.api
 			local bufnr = props.buf
 
+			-- Don't show if the cursor is on the first line of the current window
+			local cursor = api.nvim_win_get_cursor(0)
+			if cursor[1] == 1 and props.win == api.nvim_get_current_win() then
+				return {}
+			end
+
 			local grapple = require("grapple")
 			local grapple_tag = grapple.exists({ buffer = bufnr }) and grapple.find({ buffer = bufnr })
 			local grapple_part = {}
