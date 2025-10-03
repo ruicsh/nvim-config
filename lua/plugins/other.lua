@@ -78,6 +78,7 @@ return {
 				pattern = "(.*).ts$",
 				target = {
 					{ target = "%1.test.ts", context = "test" },
+					{ target = "%1.test.tsx", context = "test" },
 				},
 			},
 			{ -- typescript (test)
