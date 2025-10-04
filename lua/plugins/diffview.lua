@@ -28,7 +28,9 @@ return {
 				prompt = "Diffview {git-rev}: ",
 				default = "HEAD..HEAD~" .. tostring(vim.v.count > 0 and vim.v.count or 1),
 			}, function(input)
-				vim.cmd("DiffviewOpen " .. input)
+				if input then
+					vim.cmd("DiffviewOpen " .. input)
+				end
 			end)
 		end
 

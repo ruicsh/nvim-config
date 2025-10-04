@@ -369,8 +369,10 @@ Random features added.
 
 - `[c` previous change
 - `]c` next change
+- `<leader>h%` current file history
 - `<leader>hD` diff {git-rev}
 - `<leader>hP` push --force-with-lease
+- `<leader>hb` blame line
 - `<leader>hd` diff HEAD
 - `<leader>he` log file
 - `<leader>hh` status

@@ -70,14 +70,6 @@ return {
 			k("v", "<leader>hr", function()
 				gs.reset_hunk({ vim.fn.line("'."), vim.fn.line("v") })
 			end, { desc = "Git: reset hunk" })
-
-			-- Blame
-			k("n", "<leader>hB", function()
-				local file = vim.fn.expand("%")
-				vim.cmd.tabnew()
-				vim.cmd.edit(file)
-				gs.blame()
-			end, { desc = "Git: blame line" })
 		end,
 	},
 
