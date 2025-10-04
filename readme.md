@@ -248,6 +248,13 @@ Random features added.
 - `s` single word in different cases
 - `t` html tags
 
+### Yank current filepath
+
+- `y%%` cwd relative
+- `y%b` basename
+- `y%d` directory
+- `y%p` full path
+
 ### Operators
 
 - `sa{motion}{char}` add surrounding character

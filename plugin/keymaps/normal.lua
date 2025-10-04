@@ -229,6 +229,15 @@ end, { expr = true, desc = "Toggle folds" })
 --
 -- }}}
 
+-- Yank current path {{{
+--
+k("y%%", ":let @+ = expand('%:.')<cr>", { desc = "Yank current file name (relative)", silent = true }) -- `:h expand()`
+k("y%b", ":let @+ = expand('%:t')<cr>", { desc = "Yank current file name (basename)", silent = true }) -- `:h expand()`
+k("y%d", ":let @+ = expand('%:.:h')<cr>", { desc = "Yank current file name (directory)", silent = true }) -- `:h expand()`
+k("y%p", ":let @+ = expand('%:p')<cr>", { desc = "Yank current file name (absolute)", silent = true }) -- `:h expand()`
+--
+-- }}}
+
 -- Miscellaneous {{{
 --
 k("<leader>v", "<c-v>", { desc = "Enter visual block mode" }) -- `:h <c-v>`
