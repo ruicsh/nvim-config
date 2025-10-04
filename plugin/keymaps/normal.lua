@@ -225,7 +225,6 @@ k("<s-tab>", "zA", { desc = "Toggle all folds" }) -- `:h zA`
 
 -- Miscellaneous {{{
 --
-k("<c-t>", ":ToggleTerminal<cr>", { desc = "Terminal: Toggle" })
 k("<leader>v", "<c-v>", { desc = "Enter visual block mode" }) -- `:h <c-v>`
 k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
 k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
