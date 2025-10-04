@@ -39,6 +39,7 @@ k("<s-l>", "g_", { desc = "End of line" }) -- `:h g_`
 -- Editing {{{
 --
 k("Y", "y$") -- Make Y behave like normal mode
+k("yy", "y") -- So that yanking has no delay (because of `yc`)
 
 -- Save file
 local save_keys = { "<c-s>", "<d-s>" }
