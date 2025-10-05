@@ -186,6 +186,7 @@ return {
 				},
 				grep = {
 					exclude = { "package-lock.json", "lazy-lock.json" },
+					hidden = true,
 					layout = layout.presets.vertical,
 				},
 				grep_word = {
