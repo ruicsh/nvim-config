@@ -2,6 +2,7 @@ vim.filetype.add({
 	extension = {
 		conf = "config",
 		env = "config",
+		http = "http",
 		zsh = "sh",
 	},
 	filename = {

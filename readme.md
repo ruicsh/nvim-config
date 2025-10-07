@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>34 plugins</sub>
+<sub>35 plugins</sub>
 
 ### Navigation
 
@@ -40,7 +40,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename tags
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
-- [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
@@ -49,8 +48,10 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
 
-### LSP/Syntax
+### LSP/Syntax/Tools
 
+- [conform](https://github.com/stevearc/conform.nvim) - Formatter
+- [kulala](https://github.com/mistweaverco/kulala.nvim) - HTTP client
 - [mason](https://github.com/williamboman/mason.nvim) - LSP package manager
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects

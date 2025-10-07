@@ -379,6 +379,7 @@ loadColorSet({
 
 -- SYNTAX
 loadColorSet({
+	["String"] = { fg = c.nord8 },
 	["@Special"] = { fg = c.nord13 },
 
 	["@attribute"] = { fg = c.nord7 },
