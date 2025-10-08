@@ -231,10 +231,23 @@ end, { expr = true, desc = "Toggle folds" })
 
 -- Yank current path {{{
 --
-k("y%%", ":let @+ = expand('%:.')<cr>", { desc = "Yank current file name (relative)", silent = true }) -- `:h expand()`
-k("y%b", ":let @+ = expand('%:t')<cr>", { desc = "Yank current file name (basename)", silent = true }) -- `:h expand()`
-k("y%d", ":let @+ = expand('%:.:h')<cr>", { desc = "Yank current file name (directory)", silent = true }) -- `:h expand()`
-k("y%p", ":let @+ = expand('%:p')<cr>", { desc = "Yank current file name (absolute)", silent = true }) -- `:h expand()`
+local function yank_path(fmt)
+	return function()
+		local path = vim.fn.expand(fmt)
+		if path == "" then
+			vim.notify("No file name", vim.log.levels.WARN)
+			return
+		end
+		vim.fn.setreg("+", path) -- `:h setreg()`
+		vim.notify(("Yanked %s"):format(path), vim.log.levels.INFO)
+	end
+end
+
+k("y%%", yank_path("%:."), { desc = "Yank current file name (relative)" }) -- `:h expand()`
+k("y%b", yank_path("%:t"), { desc = "Yank current file name (basename)" }) -- `:h expand()`
+k("y%d", yank_path("%:.:h"), { desc = "Yank current file name (directory)" }) -- `:h expand()`
+k("y%p", yank_path("%:p"), { desc = "Yank current file name (absolute)" }) -- `:h expand()`
+
 --
 -- }}}
 
