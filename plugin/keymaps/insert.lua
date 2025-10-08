@@ -81,16 +81,18 @@ local undo_keys = { "<space>", ";", ",", ".", "!", "?", ">", ")", "]", "}" }
 for _, key in ipairs(undo_keys) do
 	k(key, key .. "<c-g>u")
 end
---
--- }}}
 
--- Miscellaneous {{{
---
 -- Always exit insert mode when saving.
 local save_keys = { "<c-s>", "<d-s>" }
 for _, key in ipairs(save_keys) do
 	k(key, "<cmd>silent! update | redraw<cr><esc>", { desc = "Save", unique = false })
 end
+--
+-- }}}
+
+-- Miscellaneous {{{
+--
+k("<f1>", "<nop>", { desc = "Disable F1 help" })
 --
 -- }}}
 
