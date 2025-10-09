@@ -16,6 +16,7 @@ local PARSERS = {
 	"gitignore",
 	"graphql",
 	"html",
+	"http",
 	"javascript",
 	"jsdoc",
 	"json",

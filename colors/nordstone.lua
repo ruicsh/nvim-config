@@ -493,5 +493,7 @@ loadColorSet({
 
 	-- JSON
 	["@property.json"] = { link = "@tag" },
-	["@string.json"] = { fg = c.nord4 },
+	["@punctuation.bracket.json"] = { fg = c.nord3_700 },
+	["@boolean.json"] = { fg = c.nord4 },
+	["@string.json"] = { fg = c.nord14 },
 })
