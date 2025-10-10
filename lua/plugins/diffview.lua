@@ -73,6 +73,7 @@ return {
 					["<c-p>"] = actions.select_prev_entry,
 					["<c-q>"] = ":DiffviewClose<cr>",
 					["<cr>"] = actions.focus_entry,
+					["K"] = actions.open_commit_log,
 					["cc"] = git_commit,
 				},
 				file_history_panel = {
@@ -83,6 +84,7 @@ return {
 					["<c-p>"] = actions.select_prev_entry,
 					["<c-q>"] = ":DiffviewClose<cr>",
 					["<cr>"] = actions.focus_entry,
+					["K"] = actions.open_commit_log,
 					["<leader>hd"] = function()
 						diffview.emit("copy_hash")
 						vim.cmd("DiffviewOpen " .. vim.fn.getreg("*") .. "^!")
