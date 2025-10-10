@@ -252,10 +252,12 @@ Random features added.
 
 ### Yank current filepath
 
-- `y%%` cwd relative
-- `y%b` basename
-- `y%d` directory
-- `y%p` full path
+- `%%` path (relative)
+- `%D` directory (absolute)
+- `%d` directory (relative)
+- `%f` filename
+- `%n` basename
+- `%p` path (absolute)
 
 ### Operators
 
