@@ -4,29 +4,10 @@
     "snippets": [
       {
         "language": [
-          "typescript",
-          "typescriptreact"
-        ],
-        "path": "./javascript.json"
-      },
-      {
-        "language": [
           "css",
           "scss"
         ],
         "path": "./css.json"
-      },
-      {
-        "language": [
-          "markdown"
-        ],
-        "path": "./markdown.json"
-      },
-      {
-        "language": [
-          "lua"
-        ],
-        "path": "./lua.json"
       }
     ]
   }
