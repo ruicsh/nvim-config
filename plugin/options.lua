@@ -26,7 +26,7 @@ o.fillchars = { -- `:h 'fillchars'`
 	diff = " ", -- Diff deleted lines marker.
 	eob = " ", -- End of buffer marker.
 	fold = " ", -- Filling foldtext.
-	foldclose = "", -- Closed fold.
+	foldclose = "›", -- Closed fold.
 	foldopen = "", -- Beggining of a fold.
 	foldsep = " ", -- Open fold middle marker
 }
