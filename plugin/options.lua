@@ -42,8 +42,10 @@ o.wrap = false -- Do not automatically wrap texts. `:h 'wrap'`
 
 -- 5 syntax, highlighting and spelling {{{
 o.cursorline = true -- Highlight current line.`:h 'cursorline'`
+o.cursorlineopt = "screenline,number" -- Highlight the screen line and line number. `:h 'cursorlineopt'`
 o.hlsearch = true -- Highlight search matches. `:h 'hlsearch'`
 o.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add" -- Custom spellfile. `:h 'spellfile'`
+o.spelloptions = "camel" -- Recognize camelCase words. `:h 'spelloptions'`
 o.termguicolors = true -- Enable true colours. `:h 'termguicolors'`
 -- }}}
 
@@ -51,6 +53,7 @@ o.termguicolors = true -- Enable true colours. `:h 'termguicolors'`
 o.equalalways = false -- Do not resize windows when opening a new one. `:h 'equalalways'`
 o.laststatus = 3 -- Always show global statusline. `:h 'laststatus'`
 o.splitbelow = true -- Open a new horizontal split below. `:h 'splitbelow'`
+o.splitkeep = "cursor" -- Keep text on the same screen line when splitting. `:h 'splitkeep'`
 o.splitright = true -- Open a new vertical split to the right. `:h 'splitright'`
 o.statusline = "%!v:lua._G.status_line()" -- statusline format `h 'statusline'`
 -- }}}
@@ -99,6 +102,7 @@ end)
 -- 12 editing text {{{
 o.complete = ".,]" -- How keyword completion works. `h 'complete'`
 o.completeopt = "menu,menuone,noinsert,preview" -- Disable native autocompletion (using nvim-cmp). `:h 'completeopt'`
+o.infercase = true -- Adjust case of match for keyword completion. `:h 'infercase'`
 o.formatoptions = table.concat({ -- `:h 'formatoptions'`
 	"/", -- Only when // is at the start of the line. `:h fo-/`
 	"1", -- Do not break a line after a one-letter word. `:h fo-1`
@@ -172,6 +176,10 @@ o.wildignore:append({ -- Ignore on filename completion. `:h 'wildignore'`
 
 -- 20 executing external commands {{{
 o.shell = vim.fn.exepath("nu") -- Resolves to full path if "nushell" is in $PATH
+-- }}}
+
+-- 22 language specific {{{
+o.iskeyword = "@,48-57,_,192-255,-" -- Treat dash as `word` textobject part. `:h 'iskeyword'`
 -- }}}
 
 -- 24 various {{{
