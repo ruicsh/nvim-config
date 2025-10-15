@@ -94,9 +94,38 @@ o.showmode = false -- Do not show mode on last line. `:h 'showmode'`
 -- }}}
 
 -- 11 selecting text {{{
-vim.schedule(function() -- Schedule the setting after `UiEnter` because it can increase startup-time.
-	o.clipboard = "unnamedplus" -- Use system clipboard. `:h 'clipboard'`
-end)
+
+-- Use `win32yank.exe` on Windows
+if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+	vim.g.clipboard = {
+		name = "win32yank-wsl",
+		copy = {
+			["+"] = "win32yank.exe -i --crlf",
+			["*"] = "win32yank.exe -i --crlf",
+		},
+		paste = {
+			["+"] = "win32yank.exe -o --lf",
+			["*"] = "win32yank.exe -o --lf",
+		},
+		cache_enabled = 1,
+	}
+-- Use xclip on WSL
+elseif vim.fn.getenv("WSL_DISTRO_NAME") ~= vim.NIL or vim.fn.getenv("WSL_INTEROP") ~= vim.NIL then
+	vim.g.clipboard = {
+		name = "xclip",
+		copy = {
+			["+"] = "xclip -selection clipboard",
+			["*"] = "xclip -selection primary",
+		},
+		paste = {
+			["+"] = "xclip -selection clipboard -o",
+			["*"] = "xclip -selection primary -o",
+		},
+		cache_enabled = 1,
+	}
+end
+
+o.clipboard = "unnamedplus" -- Use system clipboard. `:h 'clipboard'`
 -- }}}
 
 -- 12 editing text {{{
