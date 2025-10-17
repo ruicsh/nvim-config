@@ -22,10 +22,5 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 				return -- Exit the callback if Lazy is open
 			end
 		end
-
-		if vim.fs.root(0, ".git") ~= nil then
-			-- Restore all git changed files in current project
-			vim.cmd("RestoreChangedFiles")
-		end
 	end,
 })
