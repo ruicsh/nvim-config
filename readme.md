@@ -72,7 +72,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### UI
 
-- [auto-session](https://github.com/rmagatti/auto-session) - Session management
 - [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
 - [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
