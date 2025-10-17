@@ -73,6 +73,7 @@ return {
 					["<c-p>"] = actions.select_prev_entry,
 					["<c-q>"] = ":DiffviewClose<cr>",
 					["<cr>"] = actions.focus_entry,
+					["<tab>"] = actions.select_entry,
 					["K"] = actions.open_commit_log,
 					["cc"] = git_commit,
 				},
@@ -84,6 +85,7 @@ return {
 					["<c-p>"] = actions.select_prev_entry,
 					["<c-q>"] = ":DiffviewClose<cr>",
 					["<cr>"] = actions.focus_entry,
+					["<tab>"] = actions.select_entry,
 					["K"] = actions.open_commit_log,
 					["<leader>hd"] = function()
 						diffview.emit("copy_hash")
