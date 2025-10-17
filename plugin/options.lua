@@ -220,6 +220,16 @@ o.guicursor = { -- `:h 'guicursor'`
 	"r-cr:hor20", -- Replace, command-line replace: horizontal bar cursor with 20% height
 	"o:hor50", -- Operator-pending: horizontal bar cursor with 50% height
 }
+o.sessionoptions = { -- `:h 'sessionoptions'`
+	"buffers", -- Save all buffers.
+	"curdir", -- Save current directory.
+	"folds", -- Save folds.
+	"help", -- Save help windows.
+	"tabpages", -- Save tab pages.
+	"terminal", -- Save terminal windows.
+	"winpos", -- Save window positions.
+	"winsize", -- Save window sizes.
+}
 o.shada = { -- `:h 'shada'`
 	'"50', -- Max number of lines saved for each register.
 	"'50", -- Remember marks for the last 10 edited files.
