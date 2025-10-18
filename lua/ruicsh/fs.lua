@@ -50,3 +50,16 @@ vim.fs.rmdir = function(dir)
 		end
 	end
 end
+
+vim.fs.find_upwards = function(target)
+	local dir = vim.fn.getcwd()
+	local dir_sep = vim.fn.is_windows() == 1 and "\\" or "/"
+	while dir ~= "/" do
+		local candidate = dir .. dir_sep .. target
+		if vim.fn.isdirectory(candidate) == 1 or vim.fn.filereadable(candidate) == 1 then
+			return candidate
+		end
+		dir = vim.fn.fnamemodify(dir, ":h")
+	end
+	return nil
+end

@@ -1,13 +1,13 @@
 -- Session management
 
-local function get_session_path()
-	local dir_sep = vim.fn.is_windows() and "\\" or "/"
+local function get_session_name()
 	local cwd = vim.fn.getcwd()
+	local dir_sep = vim.fn.is_windows() and "\\" or "/"
 
 	-- Safe git branch retrieval with fallback
-	local branch = "main"
-	local git_dir = vim.fn.finddir(".git", cwd .. dir_sep .. ";")
-	if vim.fn.isdirectory(git_dir) == 1 then
+	local branch = "default"
+	local git_dir = vim.fs.find_upwards(".git")
+	if git_dir and vim.fn.isdirectory(git_dir) == 1 then
 		local head_file = git_dir .. dir_sep .. "HEAD"
 		if vim.fn.filereadable(head_file) == 1 then
 			local head_content = vim.fn.readfile(head_file)[1]
@@ -18,6 +18,13 @@ local function get_session_path()
 	end
 
 	local name = cwd:gsub("[:\\/%s]", "_") .. "_" .. branch
+	return name
+end
+
+local function get_session_path()
+	local dir_sep = vim.fn.is_windows() and "\\" or "/"
+
+	local name = get_session_name()
 	local dir = vim.fn.stdpath("data") .. dir_sep .. "sessions"
 	vim.fn.mkdir(dir, "p")
 
