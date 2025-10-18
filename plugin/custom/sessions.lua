@@ -1,11 +1,13 @@
 -- Session management
 
+local augroup = vim.api.nvim_create_augroup("ruicsh/custom/sessions", { clear = true })
+
+-- Generate a session name based on the git-repo/git-branch or current directory
 local function get_session_name()
 	local name = ""
 	local cwd = vim.fn.getcwd()
 	local dir_sep = vim.fn.is_windows() and "\\" or "/"
 
-	-- Safe git branch retrieval with fallback
 	local git_dir = vim.fs.find_upwards(".git")
 	if git_dir and vim.fn.isdirectory(git_dir) == 1 then
 		local branch = "default"
@@ -16,18 +18,16 @@ local function get_session_name()
 				branch = head_content:gsub("ref: refs/heads/(.+)", "%1")
 			end
 		end
-		-- Get the git root directory name
 		local git_root = vim.fn.fnamemodify(git_dir, ":h:t")
-		-- Create a session name based on git root and branch
 		name = git_root:gsub("[:\\/%s]", "_") .. "_" .. branch
 	else
-		-- Fallback to using the current working directory name
 		name = cwd:gsub("[:\\/%s]", "_")
 	end
 
 	return name
 end
 
+-- Get the full path to the session file
 local function get_session_path()
 	local dir_sep = vim.fn.is_windows() and "\\" or "/"
 
@@ -38,12 +38,23 @@ local function get_session_path()
 	return dir .. dir_sep .. name .. ".vim"
 end
 
+-- Save the current session to a file
 local function save_session()
+	if vim.g.skip_session then
+		return
+	end
+
 	local path = get_session_path()
 	vim.cmd("mksession! " .. vim.fn.fnameescape(path))
 end
 
+-- Restore the session from a file
 local function restore_session()
+	if vim.fn.argc() > 0 or vim.g.started_with_stdin then
+		vim.g.skip_session = true
+		return
+	end
+
 	local path = get_session_path()
 	if vim.fn.filereadable(path) == 1 then
 		vim.cmd("source " .. vim.fn.fnameescape(path))
@@ -56,5 +67,20 @@ local function restore_session()
 	end
 end
 
-vim.api.nvim_create_autocmd("VimLeavePre", { callback = save_session })
-vim.api.nvim_create_autocmd("VimEnter", { callback = restore_session })
+-- Mark that Neovim was started with piped input, no session should be loaded
+vim.api.nvim_create_autocmd({ "StdinReadPre" }, {
+	group = augroup,
+	callback = function()
+		vim.g.started_with_stdin = true
+	end,
+})
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+	group = augroup,
+	callback = save_session,
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	group = augroup,
+	callback = restore_session,
+})
