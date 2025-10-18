@@ -1,13 +1,14 @@
 -- Session management
 
 local function get_session_name()
+	local name = ""
 	local cwd = vim.fn.getcwd()
 	local dir_sep = vim.fn.is_windows() and "\\" or "/"
 
 	-- Safe git branch retrieval with fallback
-	local branch = "default"
 	local git_dir = vim.fs.find_upwards(".git")
 	if git_dir and vim.fn.isdirectory(git_dir) == 1 then
+		local branch = "default"
 		local head_file = git_dir .. dir_sep .. "HEAD"
 		if vim.fn.filereadable(head_file) == 1 then
 			local head_content = vim.fn.readfile(head_file)[1]
@@ -15,9 +16,15 @@ local function get_session_name()
 				branch = head_content:gsub("ref: refs/heads/(.+)", "%1")
 			end
 		end
+		-- Get the git root directory name
+		local git_root = vim.fn.fnamemodify(git_dir, ":h:t")
+		-- Create a session name based on git root and branch
+		name = git_root:gsub("[:\\/%s]", "_") .. "_" .. branch
+	else
+		-- Fallback to using the current working directory name
+		name = cwd:gsub("[:\\/%s]", "_")
 	end
 
-	local name = cwd:gsub("[:\\/%s]", "_") .. "_" .. branch
 	return name
 end
 
