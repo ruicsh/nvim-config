@@ -997,7 +997,7 @@ return {
 			prompts = prompts,
 			proxy = proxy,
 			remember_as_sticky = false,
-			separator = " ",
+			separator = "⠒",
 			show_help = false,
 			show_folds = true,
 			window = {
@@ -1007,7 +1007,6 @@ return {
 		})
 	end,
 
-	tag = "v4.6.0",
 	dependencies = {
 		{ "zbirenbaum/copilot.lua" },
 		{ "nvim-lua/plenary.nvim" },

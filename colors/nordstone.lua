@@ -300,6 +300,7 @@ loadColorSet({
 loadColorSet({
 	CopilotChatHeader = { fg = c.nord14 },
 	CopilotChatSelection = { bg = c.nord0 },
+	CopilotChatSeparator = { fg = c.neutral_700 },
 })
 
 -- Diffview.nvim
