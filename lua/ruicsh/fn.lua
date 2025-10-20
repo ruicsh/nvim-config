@@ -83,7 +83,8 @@ vim.fn.load_env_file = function(dir)
 		return
 	end
 
-	local file = dir .. "/.env"
+	local dir_sep = vim.fn.is_windows() and "\\" or "/"
+	local file = dir .. dir_sep .. ".nvim.env"
 	local env_file = io.open(file, "r")
 	if not env_file then
 		return

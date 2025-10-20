@@ -213,6 +213,7 @@ o.iskeyword = "@,48-57,_,192-255,-" -- Treat dash as `word` textobject part. `:h
 
 -- 24 various {{{
 o.conceallevel = 0 -- Text is shown normally. `:h 'conceallevel'`
+o.exrc = false -- Disable project-local config files (use .nvim.env). `:h 'exrc'`
 o.gdefault = true -- Use g flag for ':substitute'. `:h 'gdefault'`
 o.guicursor = { -- `:h 'guicursor'`
 	"n-v-c:block", -- Normal, visual, command-line: block cursor
