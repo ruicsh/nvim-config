@@ -8,7 +8,8 @@ local function get_session_name()
 	local cwd = vim.fn.getcwd()
 	local dir_sep = vim.fn.is_windows() and "\\" or "/"
 
-	local git_dir = vim.fs.root(cwd, ".git")
+	local git_root = vim.fs.root(cwd, ".git")
+	local git_dir = git_root and git_root .. dir_sep .. ".git" or nil
 	if git_dir and vim.fn.isdirectory(git_dir) == 1 then
 		local branch = "default"
 		local head_file = git_dir .. dir_sep .. "HEAD"
@@ -18,8 +19,8 @@ local function get_session_name()
 				branch = head_content:gsub("ref: refs/heads/(.+)", "%1")
 			end
 		end
-		local git_root = vim.fn.fnamemodify(git_dir, ":h:t")
-		name = git_root:gsub("[:\\/%s]", "_") .. "_" .. branch
+		local git_repo = vim.fn.fnamemodify(git_dir, ":h:t")
+		name = git_repo:gsub("[:\\/%s]", "_") .. "_" .. branch
 	else
 		name = cwd:gsub("[:\\/%s]", "_")
 	end
