@@ -8,7 +8,7 @@ local function get_session_name()
 	local cwd = vim.fn.getcwd()
 	local dir_sep = vim.fn.is_windows() and "\\" or "/"
 
-	local git_dir = vim.fs.find_upwards(".git")
+	local git_dir = vim.fs.root(cwd, ".git")
 	if git_dir and vim.fn.isdirectory(git_dir) == 1 then
 		local branch = "default"
 		local head_file = git_dir .. dir_sep .. "HEAD"
