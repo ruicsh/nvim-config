@@ -38,13 +38,7 @@ local function diagnostics()
 		},
 		underline = true,
 		update_in_insert = false,
-		virtual_text = {
-			spacing = 4,
-			source = "if_many",
-			prefix = "●",
-			severity = vim.diagnostic.severity.ERROR,
-			current_line = true,
-		},
+		virtual_lines = false,
 	})
 
 	local k = vim.keymap.set
