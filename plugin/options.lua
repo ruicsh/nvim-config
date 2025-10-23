@@ -112,16 +112,16 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
 -- Use xclip on WSL `:h clipboard-wsl`
 elseif vim.fn.getenv("WSL_DISTRO_NAME") ~= vim.NIL or vim.fn.getenv("WSL_INTEROP") ~= vim.NIL then
 	vim.g.clipboard = {
-		name = "WslClipboard",
+		name = "xclip",
 		copy = {
-			["+"] = "clip.exe",
-			["*"] = "clip.exe",
+			["+"] = "xclip -selection clipboard",
+			["*"] = "xclip -selection primary",
 		},
 		paste = {
-			["+"] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-			["*"] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+			["+"] = "xclip -selection clipboard -o",
+			["*"] = "xclip -selection primary -o",
 		},
-		cache_enabled = 0,
+		cache_enabled = 1,
 	}
 end
 
