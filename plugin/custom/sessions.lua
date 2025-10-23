@@ -68,6 +68,18 @@ local function restore_session()
 	end
 end
 
+-- Close special buffers (e.g., fugitive) before saving session
+local function close_special_buffers()
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_loaded(buf) then
+			local name = vim.api.nvim_buf_get_name(buf)
+			if name:match("^fugitive://") then
+				vim.api.nvim_buf_delete(buf, { force = true })
+			end
+		end
+	end
+end
+
 -- Mark that Neovim was started with piped input, no session should be loaded
 vim.api.nvim_create_autocmd({ "StdinReadPre" }, {
 	group = augroup,
@@ -78,7 +90,10 @@ vim.api.nvim_create_autocmd({ "StdinReadPre" }, {
 
 vim.api.nvim_create_autocmd("VimLeavePre", {
 	group = augroup,
-	callback = save_session,
+	callback = function()
+		close_special_buffers()
+		save_session()
+	end,
 })
 
 vim.api.nvim_create_autocmd("VimEnter", {
