@@ -378,6 +378,12 @@ loadColorSet({
 	SnacksPickerMatch = { fg = c.nord4, bg = c.nord3 },
 })
 
+-- yanky
+loadColorSet({
+	YankyPut = { link = "IncSearch" },
+	YankyYanked = { link = "IncSearch" },
+})
+
 -- SYNTAX
 loadColorSet({
 	["String"] = { fg = c.nord8 },

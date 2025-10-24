@@ -46,10 +46,6 @@ k("U", "<c-r>", { desc = "Redo" }) -- `:h ctrl-r`
 k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual linewise mode `:h V`
 
--- Paste on adjacent line
-k("[p", ":put!<cr>==", { desc = "Paste on line above" }) -- `:h :put!`
-k("]p", ":put<cr>==", { desc = "Paste on line below" }) -- `:h :put`
-
 -- Move current line up/down
 -- https://www.reddit.com/r/vim/comments/i8b5z1/is_there_a_more_elegant_way_to_move_lines_than_eg/
 k("<a-up>", ":<c-u>move-2<cr>==", { desc = "Move current line up" }) -- `:h :move`
