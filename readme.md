@@ -88,7 +88,7 @@ Complex configuration options.
 |                                                                                                        |                                                           |
 | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
 | [foldtext](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/foldtext.lua)                 | Text displayed for a closed fold                          |
-| [native-plugins](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/native-plugins.lua)     | Disable unused native plugins                             |
+| [standard-plugins](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/standard-plugins.lua) | Disable unused standard plugins                           |
 | [quickfixtextfunc](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/quickfixtextfunc.lua) | Text to display in the quickfix and location list windows |
 | [statusline](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/statusline.lua)             | Content of the status line                                |
 
