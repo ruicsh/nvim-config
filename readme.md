@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>38 plugins</sub>
+<sub>39 plugins</sub>
 
 ### Navigation
 
@@ -35,6 +35,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
+- [spider](https://github.com/chrisgrieser/nvim-spider) - Sub-word navigation
 - [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware navigation
 
 ### Editing
