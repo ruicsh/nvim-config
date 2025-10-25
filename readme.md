@@ -24,12 +24,13 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>37 plugins</sub>
+<sub>38 plugins</sub>
 
 ### Navigation
 
 - [grapple](https://github.com/cbochs/grapple.nvim) - File bookmarks
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
+- [hlslens](https://github.com/kevinhwang91/nvim-hlslens) - Browse search results
 - [mini.jump](https://github.com/nvim-mini/mini.jump) - Character navigation
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
@@ -130,13 +131,12 @@ New features built around autocmds (events).
 
 Random features added.
 
-|                                                                                                          |                                          |
-| -------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| [auto-hlsearch](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/auto-hlsearch.lua)         | Disable search highlight after searching |
-| [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua) | Duplicate and comment                    |
-| [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)   | AST aware indentation                    |
-| [sessions](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/sessions.lua)                   | Session management                       |
-| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)           | Display :messages on a separate window   |
+|                                                                                                          |                                        |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua) | Duplicate and comment                  |
+| [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)   | AST aware indentation                  |
+| [sessions](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/sessions.lua)                   | Session management                     |
+| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)           | Display :messages on a separate window |
 
 ## Keymaps
 

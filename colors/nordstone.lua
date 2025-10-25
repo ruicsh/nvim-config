@@ -191,11 +191,6 @@ end
 
 -- CUSTOM
 
--- search
-loadColorSet({
-	InlineSearchCount = { fg = c.nord13, bg = "NONE" },
-})
-
 -- folds
 loadColorSet({
 	FoldedHeading = { fg = c.nord4 },
@@ -364,6 +359,12 @@ loadColorSet({
 	OilGitRenamed = { fg = c.nord13, bg = "NONE" },
 	OilGitUntracked = { fg = c.nord14, bg = "NONE" },
 	OilGitIgnored = { fg = c.nord3_500, bg = "NONE" },
+})
+
+-- hlslens.nvim
+loadColorSet({
+	HlSearchLens = { fg = c.nord3_700, bg = "NONE" },
+	HlSearchLensNear = { fg = c.nord13, bg = "NONE" },
 })
 
 -- other.nvim

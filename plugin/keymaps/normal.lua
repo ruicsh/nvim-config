@@ -83,39 +83,6 @@ k("~", "v~", { desc = "Toggle character case" }) -- `:h ~`
 
 -- Search {{{
 --
--- Helper to set search keymaps
-local function ks(lhs, rhs, opts)
-	k(lhs, function()
-		vim.schedule(vim.search.show_search_count)
-		return "ms" .. rhs -- Mark position before search with `ms`. `:h m`
-	end, vim.tbl_extend("force", { expr = true }, opts or {}))
-end
-
--- Mark position before search
--- Use `'s` to go back to where search started
--- https://github.com/justinmk/config/blob/master/.config/nvim/plugin/my/keymaps.lua#L51
-local mark_search_keys = {
-	["/"] = "Search forward",
-	["?"] = "Search backward",
-	["*"] = "Search current word (forward)",
-	["#"] = "Search current word (backward)",
-	["£"] = "Search current word (backward)",
-	["g*"] = "Search current word (forward, not whole word)",
-	["g#"] = "Search current word (backward, not whole word)",
-	["g£"] = "Search current word (backward, not whole word)",
-}
-for key, desc in pairs(mark_search_keys) do
-	ks(key, key, { desc = desc })
-end
-
-local search_browse_keys = { "n", "N" } -- `:h n`
-for _, key in ipairs(search_browse_keys) do
-	ks(key, key .. "zv", { desc = "Browse search results" })
-end
-
--- Search for first occurrence of word under cursor
-ks("[/", "[<c-i>zv", { desc = "Search for first occurrence of word under cursor" }) -- `:h [_ctrl-i`
-
 -- Search for first occurrence of word under cursor, in a new window
 k("<c-w>/", function()
 	local word = vim.fn.expand("<cword>")
@@ -130,10 +97,6 @@ k("'s", function()
 	vim.cmd.nohlsearch()
 end, { desc = "Jump to where search started" })
 
--- `*` is hard to type
-ks("g/", ":keepjumps normal! *N<cr>", { desc = "Search current word", silent = true }) -- `:h *`
-ks("g./", "/<c-r>/<cr>N", { desc = "Repeat last search" }) -- `:h quote_/`
-
 -- Web search
 k("gb/", function()
 	local query = vim.fn.expand("<cword>")
@@ -145,12 +108,6 @@ end, { desc = "Search web for word under cursor" })
 -- Replace current word under cursor
 k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" })
 
--- Clear search highlight
-k("<esc>", function()
-	vim.search.clear_search_count()
-	vim.cmd.nohlsearch()
-	return "<esc>"
-end, { desc = "Clear search highlight", expr = true })
 --
 -- }}}
 
