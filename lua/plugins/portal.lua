@@ -13,5 +13,8 @@ return {
 	end,
 	opts = {
 		labels = { "a", "s", "d", "f" },
+		window_options = {
+			height = 4,
+		},
 	},
 }
