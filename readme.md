@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>40 plugins</sub>
+<sub>41 plugins</sub>
 
 ### Navigation
 
@@ -34,6 +34,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [mini.jump](https://github.com/nvim-mini/mini.jump) - Character navigation
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
+- [portal](https://github.com/cbochs/portal.nvim) - Location list preview
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
 - [spider](https://github.com/chrisgrieser/nvim-spider) - Sub-word navigation
 - [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware navigation
@@ -90,6 +91,7 @@ Complex configuration options.
 |                                                                                                        |                                                           |
 | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
 | [foldtext](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/foldtext.lua)                 | Text displayed for a closed fold                          |
+| [formatoptions](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/formatoptions.lua)       | Format options                                            |
 | [standard-plugins](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/standard-plugins.lua) | Disable unused standard plugins                           |
 | [quickfixtextfunc](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/quickfixtextfunc.lua) | Text to display in the quickfix and location list windows |
 | [statusline](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/statusline.lua)             | Content of the status line                                |
@@ -122,9 +124,7 @@ New features built around autocmds (events).
 | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | [auto-resize-splits](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-resize-splits.lua)                     | Auto resize splits when window is resized           |
 | [auto-close-buffer-if-deleted](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-close-buffer-if-deleted.lua) | Auto close buffer when deleted from disk            |
-| [clear-jumps](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/clear-jumps.lua)                                   | Clear jumplist when vim starts                      |
 | [cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline.lua)                                           | Clean up after use, hide hit-enter messages on blur |
-| [formatoptions](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/formatoptions.lua)                               | Format options                                      |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                     | LSP diagnostics, keymaps, and custom handlers       |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua)   | Show cursorline only on active window.              |
 | [views](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/views.lua)                                               | Save and load views for each file (marks, folds)    |

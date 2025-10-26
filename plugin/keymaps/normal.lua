@@ -32,9 +32,6 @@ k("j", [[v:count > 0 ? "m'" . v:count . "j" : "gj"]], { expr = true })
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })
 
--- Jumplist
-k("<leader>[", "<c-o>", { desc = "Jump to older position in jumplist" }) -- `:h <c-o>`
-k("<leader>]", "<c-i>", { desc = "Jump to newer position in jumplist" }) -- `:h <c-i>`
 --
 -- }}}
 
