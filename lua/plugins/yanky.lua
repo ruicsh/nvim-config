@@ -5,7 +5,7 @@ return {
 	"gbprod/yanky.nvim",
 	keys = function()
 		local mappings = {
-			{ "<leader>p", "<cmd>YankyRingHistory<cr>", "Open Yank History", mode = { "n", "x" } },
+			{ "<leader>p", ":lua Snacks.picker.yanky()<cr>", "Open Yank History", mode = { "n", "x" } },
 			{ "y", "<Plug>(YankyYank)", "Yank text", { mode = { "n", "x" } } },
 			{ "p", "<Plug>(YankyPutAfter)", "Put yanked text after cursor", { mode = { "n", "x" } } },
 			{ "P", "<Plug>(YankyPutBefore)", "Put yanked text before cursor", { mode = { "n", "x" } } },
@@ -31,5 +31,9 @@ return {
 		highlight = {
 			timer = 200,
 		},
+	},
+
+	dependencies = {
+		"folke/snacks.nvim",
 	},
 }

@@ -209,6 +209,12 @@ return {
 						preset = "vertical",
 					},
 				},
+				yanky = {
+					layout = {
+						preview = false,
+						preset = "vertical",
+					},
+				},
 			},
 			ui_select = true,
 			win = {

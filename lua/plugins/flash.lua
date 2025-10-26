@@ -36,6 +36,10 @@ return {
 				jump_labels = false,
 				multi_line = true,
 			},
+			search = {
+				enabled = true,
+				highlight = { backdrop = false },
+			},
 		},
 		prompt = {
 			win_config = { border = "none" },
