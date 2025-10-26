@@ -28,10 +28,10 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Navigation
 
+- [flash](https://github.com/folke/flash.nvim) - Jump with labels
 - [grapple](https://github.com/cbochs/grapple.nvim) - File bookmarks
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
 - [hlslens](https://github.com/kevinhwang91/nvim-hlslens) - Browse search results
-- [mini.jump](https://github.com/nvim-mini/mini.jump) - Character navigation
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
 - [portal](https://github.com/cbochs/portal.nvim) - Location list preview
