@@ -367,6 +367,11 @@ loadColorSet({
 	HlSearchLensNear = { fg = c.nord13, bg = "NONE" },
 })
 
+-- portal.nvim
+loadColorSet({
+	PortalLabel = { fg = c.nord0, bg = c.nord8 },
+})
+
 -- other.nvim
 loadColorSet({
 	OtherUnderlined = { fg = c.nord12, bg = c.neutral_900 },
