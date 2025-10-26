@@ -4,7 +4,8 @@
 return {
 	"nvim-mini/mini.clue",
 	opts = function()
-		local miniclue = require("mini.clue")
+		local clue = require("mini.clue")
+
 		return {
 			triggers = {
 				-- Leader triggers
@@ -40,12 +41,12 @@ return {
 
 			clues = {
 				-- Enhance this by adding descriptions for <Leader> mapping groups
-				miniclue.gen_clues.builtin_completion(),
-				miniclue.gen_clues.g(),
-				miniclue.gen_clues.marks(),
-				miniclue.gen_clues.registers(),
-				miniclue.gen_clues.windows(),
-				miniclue.gen_clues.z(),
+				clue.gen_clues.builtin_completion(),
+				clue.gen_clues.g(),
+				clue.gen_clues.marks(),
+				clue.gen_clues.registers(),
+				clue.gen_clues.windows(),
+				clue.gen_clues.z(),
 			},
 			window = {
 				config = {
