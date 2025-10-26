@@ -251,7 +251,6 @@ o.shadafile = (function() -- Per project shadafile `:h 'shadafile'`
 	return file
 end)()
 o.signcolumn = "yes" -- Always showed to prevent the screen from jumping. `:h 'signcolumn'`
-o.viewoptions = "cursor,folds" -- Save cursor position and folds. `:h 'viewoptions'`
 o.winborder = "rounded" -- Use rounded borders for floating windows. `:h 'winborder'`
 -- }}}
 

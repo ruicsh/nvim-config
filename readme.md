@@ -127,7 +127,6 @@ New features built around autocmds (events).
 | [cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline.lua)                                           | Clean up after use, hide hit-enter messages on blur |
 | [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                     | LSP diagnostics, keymaps, and custom handlers       |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua)   | Show cursorline only on active window.              |
-| [views](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/views.lua)                                               | Save and load views for each file (marks, folds)    |
 
 ### Custom
 
