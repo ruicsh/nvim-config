@@ -153,6 +153,12 @@ k("<c-w>t", function()
 	require("snacks").bufdelete.delete() -- Close current buffer, keep window layout
 	vim.cmd("tabedit " .. file) -- Open the file in a new tab
 end, { desc = "Windows: Move to new tab" })
+
+-- Resize windows `:h :resize`
+k("<c-w>>", ":vertical resize +5<cr>", { desc = "Increase window width" })
+k("<c-w><", ":vertical resize -5<cr>", { desc = "Decrease window width" })
+k("<c-w>+", ":resize +5<cr>", { desc = "Increase window height" })
+k("<c-w>-", ":resize -5<cr>", { desc = "Decrease window height" })
 --
 -- }}}
 
