@@ -3,15 +3,6 @@
 
 return {
 	"folke/flash.nvim",
-	keys = function()
-		local flash = require("flash")
-
-		local mappings = {
-			{ "<c-f>", flash.jump, "Jump", { mode = { "n", "o", "x" } } },
-		}
-
-		return vim.fn.get_lazy_keys_conf(mappings, "Flash")
-	end,
 	opts = {
 		highlight = {
 			backdrop = false,
@@ -32,13 +23,20 @@ return {
 				end,
 				enabled = true,
 				keys = { "f", "F", "t", "T", ";" },
-				highlight = { backdrop = false },
+				highlight = {
+					backdrop = false,
+				},
 				jump_labels = false,
 				multi_line = true,
 			},
 			search = {
 				enabled = true,
-				highlight = { backdrop = false },
+				highlight = {
+					backdrop = false,
+				},
+				jump = {
+					autojump = false,
+				},
 			},
 		},
 		prompt = {
