@@ -4,9 +4,11 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/custom/sessions", { clear = 
 
 -- Generate a session name based on the git-repo/git-branch or current directory
 local function get_session_name()
-	local name = ""
 	local cwd = vim.fn.getcwd()
 	local dir_sep = vim.fn.is_windows() and "\\" or "/"
+	local cwd_path = cwd:gsub("[:\\/%s.]", "_")
+
+	local name = "s-" .. cwd_path
 
 	local git_root = vim.fs.root(cwd, ".git")
 	local git_dir = git_root and git_root .. dir_sep .. ".git" or nil
@@ -20,9 +22,7 @@ local function get_session_name()
 			end
 		end
 		local git_repo = vim.fn.fnamemodify(git_dir, ":h:t")
-		name = git_repo:gsub("[:\\/%s]", "_") .. "_" .. branch
-	else
-		name = cwd:gsub("[:\\/%s]", "_")
+		name = name .. "#" .. git_repo:gsub("[:\\/%s.]", "_") .. "_" .. branch
 	end
 
 	return name
