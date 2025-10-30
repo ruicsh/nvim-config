@@ -59,16 +59,10 @@ return {
 			vim.cmd(prefix .. " Git commit")
 		end
 
-		local function toggle_files()
-			actions.toggle_files()
-			vim.cmd.wincmd("=")
-		end
-
 		return {
 			enhanced_diff_hl = true, -- ':h diffview-config-enhanced_diff_hl'
 			keymaps = {
 				file_panel = {
-					["<c-b>"] = toggle_files,
 					["<c-n>"] = actions.select_next_entry,
 					["<c-p>"] = actions.select_prev_entry,
 					["<c-q>"] = ":DiffviewClose<cr>",
@@ -78,7 +72,6 @@ return {
 					["cc"] = git_commit,
 				},
 				file_history_panel = {
-					["<c-b>"] = toggle_files,
 					["<c-j>"] = actions.select_next_commit,
 					["<c-k>"] = actions.select_prev_commit,
 					["<c-n>"] = actions.select_next_entry,

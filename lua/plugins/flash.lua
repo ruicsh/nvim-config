@@ -4,13 +4,6 @@
 return {
 	"folke/flash.nvim",
 	opts = {
-		highlight = {
-			backdrop = false,
-		},
-		jump = {
-			autojump = true,
-			nohlsearch = true,
-		},
 		labels = "asdfqwerzxcv", -- Limit labels to left side of the keyboard
 		modes = {
 			char = {
@@ -19,31 +12,29 @@ return {
 						[";"] = "next",
 						["F"] = "left",
 						["f"] = "right",
+						["T"] = "left",
+						["t"] = "right",
 					}
 				end,
-				enabled = true,
 				keys = { "f", "F", "t", "T", ";" },
 				highlight = {
 					backdrop = false,
 				},
 				jump_labels = false,
-				multi_line = true,
 			},
 			search = {
 				enabled = true,
-				highlight = {
-					backdrop = false,
-				},
-				jump = {
-					autojump = false,
-				},
 			},
 		},
 		prompt = {
-			win_config = { border = "none" },
+			win_config = {
+				border = "none",
+			},
 		},
 		search = {
 			wrap = true,
 		},
 	},
+
+	event = "VeryLazy",
 }

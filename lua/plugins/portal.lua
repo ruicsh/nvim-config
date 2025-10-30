@@ -12,9 +12,13 @@ return {
 		return vim.fn.get_lazy_keys_conf(mappings, "Portal")
 	end,
 	opts = {
+		escape = {
+			["<esc>"] = true,
+			["q"] = true,
+		},
 		labels = { "a", "s", "d", "f" },
 		window_options = {
-			height = 4,
+			height = 6,
 		},
 	},
 }
