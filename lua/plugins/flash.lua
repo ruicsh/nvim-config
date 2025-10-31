@@ -21,6 +21,7 @@ return {
 					backdrop = false,
 				},
 				jump_labels = false,
+				multi_line = false,
 			},
 			search = {
 				enabled = true,
