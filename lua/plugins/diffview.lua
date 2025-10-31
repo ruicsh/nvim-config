@@ -59,13 +59,20 @@ return {
 			vim.cmd(prefix .. " Git commit")
 		end
 
+		local function quit()
+			vim.cmd("DiffviewClose")
+			if #vim.api.nvim_list_tabpages() == 1 then
+				vim.cmd("qa")
+			end
+		end
+
 		return {
 			enhanced_diff_hl = true, -- ':h diffview-config-enhanced_diff_hl'
 			keymaps = {
 				file_panel = {
 					["<c-n>"] = actions.select_next_entry,
 					["<c-p>"] = actions.select_prev_entry,
-					["<c-q>"] = ":DiffviewClose<cr>",
+					["<c-q>"] = quit,
 					["<cr>"] = actions.focus_entry,
 					["<tab>"] = actions.select_entry,
 					["K"] = actions.open_commit_log,
@@ -76,7 +83,7 @@ return {
 					["<c-k>"] = actions.select_prev_commit,
 					["<c-n>"] = actions.select_next_entry,
 					["<c-p>"] = actions.select_prev_entry,
-					["<c-q>"] = ":DiffviewClose<cr>",
+					["<c-q>"] = quit,
 					["<cr>"] = actions.focus_entry,
 					["<tab>"] = actions.select_entry,
 					["K"] = actions.open_commit_log,
@@ -86,7 +93,7 @@ return {
 					end,
 				},
 				help_panel = {
-					["<c-q>"] = ":DiffviewClose<cr>",
+					["<c-q>"] = quit,
 					["q"] = actions.close,
 				},
 				view = {
@@ -94,7 +101,6 @@ return {
 					{ "n", "ct", actions.conflict_choose("theirs"), { desc = "Choose THEIRS" } },
 					{ "n", "cb", actions.conflict_choose("all"), { desc = "Choose BOTH" } },
 					{ "n", "c0", actions.conflict_choose("none"), { desc = "Choose NONE" } },
-					["<c-b>"] = toggle_files,
 					["<leader>ca"] = false,
 					["<leader>cb"] = false,
 					["<leader>co"] = false,
@@ -103,7 +109,7 @@ return {
 					["<leader>cB"] = false,
 					["<leader>cO"] = false,
 					["<leader>cT"] = false,
-					["<c-q>"] = ":DiffviewClose<cr>",
+					["<c-q>"] = quit,
 				},
 			},
 			hooks = {
