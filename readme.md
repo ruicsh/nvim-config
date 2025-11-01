@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>41 plugins</sub>
+<sub>42 plugins</sub>
 
 ### Navigation
 
@@ -81,6 +81,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
 - [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
+- [wakatime](https://github.com/wakatime/vim-wakatime) - Time tracking
 
 ## Config
 
