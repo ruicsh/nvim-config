@@ -59,11 +59,13 @@ return {
 			vim.cmd(prefix .. " Git commit")
 		end
 
+    -- Close Diffview or quit Neovim if it's the last tab.
 		local function quit()
-			vim.cmd("DiffviewClose")
-			if #vim.api.nvim_list_tabpages() == 1 then
-				vim.cmd("qa")
-			end
+      if #vim.api.nvim_list_tabpages() == 1 then
+        vim.cmd("qa")
+      else 
+        vim.cmd("DiffviewClose")
+      end
 		end
 
 		return {
