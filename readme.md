@@ -11,7 +11,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - **Search** - fuzzy find anything, files, git changed, last buffers
 - **UI** - files and directory explorer, notifications, command palette
 
-<sub>Works on Neovim v0.11.4</sub>
+<sub>Works on Neovim v0.11.5</sub>
 
 ## Screenshots
 
