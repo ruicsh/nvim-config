@@ -2,11 +2,11 @@
 -- https://github.com/nat-418/boole.nvim
 
 return {
-	"nat-418/boole.nvim",
-	opts = {
-		mappings = {
-			increment = "<c-a>",
-			decrement = "<c-x>",
-		},
-	},
+  "nat-418/boole.nvim",
+  opts = {
+    mappings = {
+      increment = "<c-a>",
+      decrement = "<c-x>",
+    },
+  },
 }
