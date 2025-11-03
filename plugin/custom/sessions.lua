@@ -22,10 +22,10 @@ local function get_session_name()
       end
     end
     local git_repo = vim.fn.fnamemodify(git_dir, ":h:t")
-    name = name .. "#" .. git_repo:gsub("[:\\/%s.]", "_") .. "_" .. branch
+    name = name .. "#" .. git_repo .. "_" .. branch
   end
 
-  return name
+  return name:gsub("[:\\/%s.]", "_")
 end
 
 -- Get the full path to the session file
