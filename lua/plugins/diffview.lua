@@ -1,6 +1,12 @@
 -- Git diffview
 -- https://github.com/sindrets/diffview.nvim
 
+-- Used by `git df` to open diffview in a single tab
+vim.api.nvim_create_user_command("DiffviewOpenOnly", function()
+  vim.cmd("DiffviewOpen")
+  vim.cmd("tabonly")
+end, {})
+
 return {
   "sindrets/diffview.nvim",
   keys = function()

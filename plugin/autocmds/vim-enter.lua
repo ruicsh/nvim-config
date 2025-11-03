@@ -1,16 +1,13 @@
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/vim-enter", { clear = true })
 
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
+vim.api.nvim_create_autocmd("VimEnter", {
   group = augroup,
   callback = function()
     -- Load env vars from config
     vim.cmd("LoadEnvVars")
 
-    -- Enable LSP servers via custom command (respects disabled env)
-    vim.cmd("LspEnable")
-
-    -- If vim was opened with files, don't open changed files
-    if #vim.fn.argv() > 0 then
+    -- Skip LSP setup during git diffs
+    if os.getenv("NVIM_GIT_DIFF") then
       return
     end
 
@@ -22,5 +19,8 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
         return -- Exit the callback if Lazy is open
       end
     end
+
+    -- Enable LSP servers via custom command (respects disabled env)
+    vim.cmd("LspEnable")
   end,
 })

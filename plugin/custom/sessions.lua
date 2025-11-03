@@ -51,7 +51,7 @@ end
 
 -- Restore the session from a file
 local function restore_session()
-  if os.getenv("NO_NVIM_SESSION") then
+  if os.getenv("NVIM_GIT_DIFF") then
     vim.g.skip_session = true
     return
   end

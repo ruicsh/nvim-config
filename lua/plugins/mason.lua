@@ -110,6 +110,7 @@ end
 
 return {
   "williamboman/mason.nvim",
+  enabled = not os.getenv("NVIM_GIT_DIFF"),
   init = function()
     -- Do not crowd home directory with NPM cache folder
     vim.env.npm_config_cache = vim.env.HOME .. "/.cache/npm"
