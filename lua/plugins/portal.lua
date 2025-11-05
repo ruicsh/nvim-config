@@ -18,7 +18,7 @@ return {
     },
     labels = { "a", "s", "d", "f" },
     window_options = {
-      height = 6,
+      height = 10,
     },
   },
 }

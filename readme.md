@@ -50,6 +50,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
+- [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
 - [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
 
 ### LSP/Syntax/Tools
@@ -63,7 +64,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
-- [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
 
 ### AI
 
