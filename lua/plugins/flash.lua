@@ -3,6 +3,15 @@
 
 return {
   "folke/flash.nvim",
+  keys = function()
+    local flash = require("flash")
+
+    local mappings = {
+      { "+", flash.treesitter, "Treesitter", mode = { "n", "x", "o" } },
+    }
+
+    return vim.fn.get_lazy_keys_conf(mappings, "Flash")
+  end,
   opts = {
     labels = "asdfqwerzxcv", -- Limit labels to left side of the keyboard
     modes = {
@@ -25,6 +34,13 @@ return {
       },
       search = {
         enabled = true,
+      },
+      treesitter = {
+        actions = {
+          ["+"] = "next",
+          ["-"] = "prev",
+        },
+        labels = "" -- Disable labels for treesitter mode
       },
     },
     prompt = {
