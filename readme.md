@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>42 plugins</sub>
+<sub>43 plugins</sub>
 
 ### Navigation
 
@@ -64,6 +64,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
+- [ts-error-translator](https://github.com/dmmulroy/ts-error-translator.nvim) - Plain TS errors
 
 ### AI
 
