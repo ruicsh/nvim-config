@@ -7,22 +7,20 @@ return {
     local flash = require("flash")
 
     local mappings = {
+      { "s", flash.jump,       "Jump",       mode = { "n", "x", "o" } },
       { "+", flash.treesitter, "Treesitter", mode = { "n", "x", "o" } },
     }
 
     return vim.fn.get_lazy_keys_conf(mappings, "Flash")
   end,
   opts = {
-    label = {
-      style = "inline",      -- Don't hide the character under the cursor
+    highlight = {
+      backdrop = false
     },
     labels = "asdfqwerzxcv", -- Limit labels to left side of the keyboard
     modes = {
       char = {
         enabled = false,
-      },
-      search = {
-        enabled = true,
       },
       treesitter = {
         actions = {

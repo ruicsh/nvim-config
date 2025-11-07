@@ -184,6 +184,7 @@ Random features added.
 - `}` jump down 6 lines
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
+- `s` jump with labels
 - `'{a-z}'` jump to marked position
 - `mm` jump to matching pair
 - `<leader>[` jump to earlier position
@@ -252,7 +253,7 @@ Random features added.
 - `m` matching pair
 - `q` quotes (", ', `)
 - `s` single word in different cases
-- `t` html tags
+- `t` HTML tags
 
 ### Yank current filepath
 
@@ -265,10 +266,10 @@ Random features added.
 
 ### Operators
 
-- `sa{motion}{char}` add surrounding character
-- `sd{char}` delete surrounding character
-- `sr{target}{replacement}` replace surrounding character
-- `s{char}` add surroundint character to selection
+- `ys{motion}{char}` add surrounding character
+- `ds{char}` delete surrounding character
+- `cs{target}{replacement}` replace surrounding character
+- `S{char}` add surrounding character to selection
 - `<leader>x{motion1}<leader>x{motion2}` exchange
 - `<leader>r{motion}` replace
 - `<leader>s{motion}` sort

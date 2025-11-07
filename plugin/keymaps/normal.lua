@@ -8,7 +8,7 @@ local function k(lhs, rhs, opts)
 end
 
 -- Remove any delay for these keys
-local disable_keys = { "<space>", "<leader>", "s" }
+local disable_keys = { "<space>", "<leader>" }
 for _, key in ipairs(disable_keys) do
   k(key, "<nop>", { unique = false })
 end
@@ -151,7 +151,7 @@ k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
 k("<c-w>t", function()
   local file = vim.fn.expand("%:p")
   require("snacks").bufdelete.delete() -- Close current buffer, keep window layout
-  vim.cmd("tabedit " .. file)         -- Open the file in a new tab
+  vim.cmd("tabedit " .. file)          -- Open the file in a new tab
 end, { desc = "Windows: Move to new tab" })
 
 -- Resize windows `:h :resize`
