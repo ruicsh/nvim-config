@@ -57,6 +57,9 @@ for _, key in ipairs(save_keys) do
   k(key, "<cmd>silent! update | redraw<cr>", { desc = "Save" })
 end
 
+-- Bump file to trigger external file watchers
+k("<leader>S", ":write<cr>", { desc = "Bump file" }) -- `:h :write`
+
 -- Don't store on register when changing text or deleting a character.
 local black_hole_commands = { "C", "c", "cc", "x", "X" }
 for _, key in pairs(black_hole_commands) do
