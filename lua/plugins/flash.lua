@@ -13,34 +13,23 @@ return {
     return vim.fn.get_lazy_keys_conf(mappings, "Flash")
   end,
   opts = {
+    label = {
+      style = "inline",      -- Don't hide the character under the cursor
+    },
     labels = "asdfqwerzxcv", -- Limit labels to left side of the keyboard
     modes = {
       char = {
-        char_actions = function()
-          return {
-            [";"] = "next",
-            ["F"] = "left",
-            ["f"] = "right",
-            ["T"] = "left",
-            ["t"] = "right",
-          }
-        end,
-        keys = { "f", "F", "t", "T", ";" },
-        highlight = {
-          backdrop = false,
-        },
-        jump_labels = false,
-        multi_line = false,
+        enabled = false,
       },
       search = {
         enabled = true,
       },
       treesitter = {
         actions = {
-          ["+"] = "next",
-          ["-"] = "prev",
+          ["+"] = "next", -- Increment selection
+          ["-"] = "prev", -- Decrement selection
         },
-        labels = "" -- Disable labels for treesitter mode
+        labels = ""       -- Disable labels for treesitter mode
       },
     },
     prompt = {
