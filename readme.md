@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>43 plugins</sub>
+<sub>44 plugins</sub>
 
 ### Navigation
 
@@ -58,7 +58,8 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [diagflow](https://github.com/dgagn/diagflow.nvim) - Diagnostics display
 - [kulala](https://github.com/mistweaverco/kulala.nvim) - HTTP client
-- [mason](https://github.com/williamboman/mason.nvim) - LSP package manager
+- [mason](https://github.com/mason-org/mason.nvim) - LSP package manager
+- [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) - Tools installer
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
