@@ -2,11 +2,11 @@
 -- https://github.com/dgagn/diagflow.nvim
 
 return {
-  "dgagn/diagflow.nvim",
-  opts = {
-    max_height = 50,
-    padding_right = 1,
-  },
+	"dgagn/diagflow.nvim",
+	opts = {
+		max_height = 50,
+		padding_right = 1,
+	},
 
-  event = "LspAttach",
+	event = "LspAttach",
 }

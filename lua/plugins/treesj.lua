@@ -2,21 +2,21 @@
 -- https://github.com/Wansmer/treesj
 
 return {
-  "Wansmer/treesj",
-  keys = function()
-    local treesj = require('treesj')
+	"Wansmer/treesj",
+	keys = function()
+		local treesj = require("treesj")
 
-    local mappings = {
-      { '<leader>j', treesj.toggle, 'Toggle split/join' },
-    }
+		local mappings = {
+			{ "<leader>j", treesj.toggle, "Toggle split/join" },
+		}
 
-    return vim.fn.get_lazy_keys_conf(mappings, 'treesj')
-  end,
-  opts = {
-    use_default_keymaps = false
-  },
+		return vim.fn.get_lazy_keys_conf(mappings, "treesj")
+	end,
+	opts = {
+		use_default_keymaps = false,
+	},
 
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter',
-  },
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter",
+	},
 }

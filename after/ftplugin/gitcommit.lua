@@ -4,17 +4,17 @@ vim.opt_local.number = false
 vim.opt_local.relativenumber = false
 vim.opt_local.signcolumn = "yes:1"
 vim.opt_local.textwidth = 80 -- Hard wrap at 80 characters
-vim.opt_local.wrap = true    -- Enable line wrapping
+vim.opt_local.wrap = true -- Enable line wrapping
 
 local k = vim.keymap.set
 local opts = { buffer = 0 }
 
 local function accept_commit_message()
-  vim.cmd("%s/^\\s*//g") -- trim leading whitespace(s)
-  vim.cmd("wq")
+	vim.cmd("%s/^\\s*//g") -- trim leading whitespace(s)
+	vim.cmd("wq")
 end
 
 k({ "n", "i" }, "<c-s>", accept_commit_message, opts)
 k("n", "<leader>ac", ":CopilotCommitMessage<cr>", opts)
-k("n", "q", "<cmd>q!<cr>", opts)                         -- Close the buffer
+k("n", "q", "<cmd>q!<cr>", opts) -- Close the buffer
 k("n", "<leader>hd", ":DiffviewOpen --staged<cr>", opts) -- Open Diffview with staged changes

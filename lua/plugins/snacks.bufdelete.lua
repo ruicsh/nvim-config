@@ -2,12 +2,12 @@
 -- https://github.com/folke/snacks.nvim/blob/main/docs/bufdelete.md
 
 return {
-  "folke/snacks.nvim",
-  opts = {
-    bufdelete = {
-      enabled = true,
-    },
-  },
+	"folke/snacks.nvim",
+	opts = {
+		bufdelete = {
+			enabled = true,
+		},
+	},
 
-  event = "VeryLazy",
+	event = "VeryLazy",
 }

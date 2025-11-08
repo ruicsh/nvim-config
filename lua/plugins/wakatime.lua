@@ -2,8 +2,8 @@
 -- https://github.com/wakatime/vim-wakatime
 
 return {
-  "wakatime/vim-wakatime",
-  enabled = vim.fn.getenv("TIME_TRACKING_ENABLED") == "true",
+	"wakatime/vim-wakatime",
+	enabled = vim.fn.getenv("TIME_TRACKING_ENABLED") == "true",
 
-  lazy = false,
+	lazy = false,
 }
