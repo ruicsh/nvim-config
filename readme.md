@@ -1,6 +1,6 @@
 # Neovim IDE configuration
 
-My configuration for [Neovim](https://neovim.io/), mostly for frontend development (typescript, css, python, rust).
+My configuration for [Neovim](https://neovim.io/), mostly for frontend development (TypeScript, CSS, python, rust).
 
 - **Editor** - enhanced vim motions, extended text objects, folding
 - **Code** - formatter, comments, code completion, AI powered suggestions

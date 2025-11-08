@@ -20,7 +20,20 @@ return {
     labels = "asdfqwerzxcv", -- Limit labels to left side of the keyboard
     modes = {
       char = {
-        enabled = false,
+        char_actions = function()
+          return {
+            ["F"] = "left",
+            ["f"] = "right",
+            ["T"] = "left",
+            ["t"] = "right",
+          }
+        end,
+        keys = { "f", "F", "t", "T" },
+        highlight = {
+          backdrop = false,
+        },
+        jump_labels = false,
+        multi_line = false,
       },
       treesitter = {
         actions = {
