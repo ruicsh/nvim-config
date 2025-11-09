@@ -5,6 +5,7 @@ return {
 	"gbprod/substitute.nvim",
 	keys = function()
 		local s = require("substitute")
+		local x = require("substitute.exchange")
 
 		local mappings = {
 			-- Substitute
@@ -12,6 +13,11 @@ return {
 			{ "<leader>rr", s.line, "Line" },
 			{ "<leader>r$", s.eol, "End of line" },
 			{ "<leader>r", s.visual, "Selection", { mode = "x" } },
+			-- Exchange
+			{ "<leader>x", x.operator, "Operator" },
+			{ "<leader>xx", x.line, "Line" },
+			{ "<leader>x", x.visual, "Selection", { mode = "x" } },
+			{ "<leader>xc", x.cancel, "Cancel" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Substitute")

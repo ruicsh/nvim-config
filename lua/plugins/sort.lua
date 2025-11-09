@@ -5,9 +5,9 @@ return {
 	"sQVe/sort.nvim",
 	opts = {
 		mappings = {
+			motion = false,
 			operator = "<leader>s",
 			textobject = false,
-			motion = false,
 		},
 	},
 	config = function(_, opts)

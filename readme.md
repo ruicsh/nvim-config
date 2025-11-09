@@ -24,7 +24,42 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>44 plugins</sub>
+<sub>45 plugins</sub>
+
+### Code
+
+- [autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename tags
+- [biscuits](https://github.com/code-biscuits/nvim-biscuits) - Closing brackets annotations
+- [conform](https://github.com/stevearc/conform.nvim) - Formatter
+- [copilot-chat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
+- [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
+- [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
+- [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
+- [mini.pairs](https://github.com/nvim-mini/mini.pairs) - Auto-pairs
+- [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
+- [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
+- [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware actions
+- [ts-error-translator](https://github.com/dmmulroy/ts-error-translator.nvim) - Plain TS errors
+
+### Editor
+
+- [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
+- [boole](https://github.com/nat-418/boole.nvim) - Toggle between values
+- [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
+- [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
+- [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
+- [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
+- [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
+- [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action
+- [sort](https://github.com/sQVe/sort.nvim) - Sort action
+- [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
+- [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
+
+### Git
+
+- [diffview.nvim](https://github.com/sindrets/diffview.nvim) - diffview
+- [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
 
 ### Navigation
 
@@ -36,53 +71,16 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
 - [portal](https://github.com/cbochs/portal.nvim) - Location list preview
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
-- [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware navigation
-
-### Editing
-
-- [autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename tags
-- [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
-- [boole](https://github.com/nat-418/boole.nvim) - Toggle between values
-- [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
-- [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
-- [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
-- [mini.pairs](https://github.com/nvim-mini/mini.pairs) - Auto-pairs
-- [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action
-- [sort](https://github.com/sQVe/sort.nvim) - Sort action
-- [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
-- [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
-- [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
 
 ### LSP/Syntax/Tools
 
-- [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [diagflow](https://github.com/dgagn/diagflow.nvim) - Diagnostics display
 - [kulala](https://github.com/mistweaverco/kulala.nvim) - HTTP client
-- [mason](https://github.com/mason-org/mason.nvim) - LSP package manager
 - [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) - Tools installer
-- [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
+- [mason](https://github.com/mason-org/mason.nvim) - LSP package manager
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
-- [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
-- [ts-error-translator](https://github.com/dmmulroy/ts-error-translator.nvim) - Plain TS errors
-
-### AI
-
-- [CopilotChat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
-- [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
-
-### Git
-
-- [diffview.nvim](https://github.com/sindrets/diffview.nvim) - diffview
-- [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
-- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
-
-### UI
-
-- [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
-- [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
-- [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
 - [wakatime](https://github.com/wakatime/vim-wakatime) - Time tracking
 
 ## Config
