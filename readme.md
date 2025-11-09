@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>44 plugins</sub>
+<sub>45 plugins</sub>
 
 ### Code
 
@@ -50,6 +50,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
 - [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action
+- [rsi](https://github.com/tpope/vim-rsi) - Readline keybinds for insert mdoe
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
 - [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
