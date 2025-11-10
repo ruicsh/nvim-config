@@ -42,7 +42,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Editor
 
-- [abolish](https://github.com/tpope/vim-abolish) - Change words case
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [boole](https://github.com/nat-418/boole.nvim) - Toggle between values
 - [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
@@ -54,6 +53,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [rsi](https://github.com/tpope/vim-rsi) - Readline keybinds for insert mdoe
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
+- [text-case](https://github.com/johmsalas/text-case.nvim) - Convert text cases
 - [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
 
 ### Git
@@ -254,6 +254,21 @@ Random features added.
 - `q` quotes (", ', `)
 - `s` single word in different cases
 - `t` HTML tags
+
+### Change text cases
+
+- `~,` to comma,case
+- `~-` to kebab-case
+- `~.` to dot.case
+- `~/` to path/case
+- `~_` to snake_case
+- `~C` to CONSTANT_CASE
+- `~S` to Phrase case
+- `~U` to UPPER CASE
+- `~c` to camelCase
+- `~p` to PascalCase
+- `~t` to Title Case
+- `~u` to lower case
 
 ### Yank current filepath
 
