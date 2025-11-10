@@ -47,6 +47,7 @@ return {
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		enabled = not os.getenv("NVIM_GIT_DIFF"),
 		opts = function()
 			-- Filter out disabled packages
 			local disabled = vim.fn.env_get_list("MASON_DISABLED_PACKAGES")

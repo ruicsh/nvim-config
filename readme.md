@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>45 plugins</sub>
+<sub>46 plugins</sub>
 
 ### Code
 
@@ -42,6 +42,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Editor
 
+- [abolish](https://github.com/tpope/vim-abolish) - Change words case
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [boole](https://github.com/nat-418/boole.nvim) - Toggle between values
 - [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
