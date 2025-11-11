@@ -413,8 +413,7 @@ Random features added.
 - `<leader>hr` reset hunk
 - `<leader>hs` stage/unstage hunk
 - `<leader>hu` push --set-upstream origin HEAD
-- `<leader>hxb` open blame in browser
-- `<leader>hxe` open file in browser
+- `<leader>hx` open file in browser
 
 ### Git merge conflicts
 

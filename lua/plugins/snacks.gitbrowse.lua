@@ -7,7 +7,7 @@ return {
 		local snacks = require("snacks")
 
 		local mappings = {
-			{ "<leader>hxe", snacks.gitbrowse.open, "Open file in browser" },
+			{ "<leader>hx", snacks.gitbrowse.open, "Open file in browser" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
