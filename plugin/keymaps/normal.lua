@@ -218,8 +218,20 @@ k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h 
 k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
 k("gf", ":edit <cfile><CR>") -- Allow gf to open non-existing files `:h gf`
 k("<f1>", "<nop>", { desc = "Disable F1 help" })
+
+-- Disable tilde key to avoid clash with text-case.nvim
 vim.keymap.del("n", "~")
 k("~", "<nop>", { desc = "Disable tilde key" })
+
+-- Toggle quickfix list
+k("<leader>q", function()
+	local winid = vim.fn.getqflist({ winid = 0 }).winid
+	if winid > 0 then
+		vim.cmd("cclose")
+	else
+		vim.cmd("copen")
+	end
+end, { desc = "Toggle quickfix list" })
 --
 -- }}}
 

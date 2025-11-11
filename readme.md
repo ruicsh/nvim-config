@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>46 plugins</sub>
+<sub>47 plugins</sub>
 
 ### Code
 
@@ -44,6 +44,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [boole](https://github.com/nat-418/boole.nvim) - Toggle between values
+- [bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix window
 - [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively

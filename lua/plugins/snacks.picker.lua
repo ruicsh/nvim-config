@@ -217,13 +217,6 @@ return {
 				},
 			},
 			ui_select = true,
-			win = {
-				input = {
-					keys = {
-						["<c-q>"] = { "close", mode = { "n", "i" } },
-					},
-				},
-			},
 		},
 	},
 
