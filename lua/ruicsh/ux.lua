@@ -77,3 +77,51 @@ end
 vim.ux.is_narrow_screen = function()
 	return vim.o.columns < 170
 end
+
+vim.ux.open_floating_panel = function(options)
+	options = options or {}
+	local winid = options.winid or "floating_panel"
+
+	local width = math.floor(vim.o.columns * 0.5)
+	local height = vim.o.lines - vim.o.cmdheight - 2
+
+	-- Open a floating window on the right side
+	local blank = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_var(blank, winid, true)
+	local winnr = vim.api.nvim_open_win(blank, false, {
+		anchor = "NE",
+		border = { "", "", "", "", "", "", "", "│" },
+		col = vim.o.columns,
+		focusable = false,
+		height = height,
+		relative = "editor",
+		row = 0,
+		style = "minimal",
+		width = width,
+	})
+
+	-- Create another window inside the floating window with left padding
+	local bufnr = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_var(bufnr, winid, true)
+	vim.api.nvim_open_win(bufnr, true, {
+		border = { "" },
+		col = 2,
+		height = height,
+		win = winnr,
+		relative = "win",
+		row = 0,
+		width = width - 2,
+	})
+end
+
+vim.ux.close_floating_panel = function(winid)
+	winid = winid or "floating_panel"
+	-- Close the floating panel if it exists
+	for _, winnr in ipairs(vim.api.nvim_list_wins()) do
+		local bufnr = vim.api.nvim_win_get_buf(winnr)
+		local ok, is_floating = pcall(vim.api.nvim_buf_get_var, bufnr, winid)
+		if ok and is_floating then
+			vim.api.nvim_win_close(winnr, true)
+		end
+	end
+end

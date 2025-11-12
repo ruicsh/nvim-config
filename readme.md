@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>47 plugins</sub>
+<sub>48 plugins</sub>
 
 ### Code
 
@@ -62,6 +62,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim) - diffview
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
+- [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote
 
 ### Navigation
 
@@ -83,6 +84,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
+- [vim-test](https://github.com/vim-test/vim-test) - Test runner
 - [wakatime](https://github.com/wakatime/vim-wakatime) - Time tracking
 
 ## Config
@@ -423,6 +425,14 @@ Random features added.
 - `cb` choose both
 - `co` choose ours
 - `ct` choose theirs
+
+### Test runner
+
+- `<leader>ba` run all
+- `<leader>bb` run last
+- `<leader>be` run file
+- `<leader>bn` run nearest
+- `<leader>bq` close output
 
 ### Application
 
