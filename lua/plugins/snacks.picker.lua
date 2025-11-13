@@ -85,25 +85,6 @@ local grep_directory = function()
 	end
 end
 
-local layout = {
-	presets = {
-		vertical = {
-			layout = {
-				backdrop = false,
-				border = "rounded",
-				box = "vertical",
-				height = 0.9,
-				title = "{title} {live} {flags}",
-				title_pos = "center",
-				width = 0.7,
-				{ win = "input", height = 1, border = "bottom" },
-				{ win = "list", border = "none", height = 0.2 },
-				{ win = "preview", title = "{preview}", border = "top" },
-			},
-		},
-	},
-}
-
 return {
 	"folke/snacks.nvim",
 	keys = (function()
@@ -120,9 +101,9 @@ return {
 			{ "<leader>g/", snacks.picker.grep_word, "Search: Current word" },
 
 			-- current state
-			{ "<leader>'", snacks.picker.marks, "Marks" },
 			{ "<leader>.", snacks.picker.resume, "Last picker" },
-			{ '<leader>"', snacks.picker.registers, "Command history" },
+			{ "<leader>''", snacks.picker.marks, "Marks" },
+			{ '<leader>""', snacks.picker.registers, "Command history" },
 
 			-- git
 			{ "<leader>h/", snacks.picker.git_log, "Git: Search Log" },
@@ -157,6 +138,20 @@ return {
 			jump = {
 				reuse_win = true,
 			},
+			layout = {
+				layout = {
+					backdrop = false,
+					border = "rounded",
+					box = "vertical",
+					height = 0.9,
+					title = "{title} {live} {flags}",
+					title_pos = "center",
+					width = 0.7,
+					{ win = "input", height = 1, border = "bottom" },
+					{ win = "list", border = "none", height = 0.2 },
+					{ win = "preview", title = "{preview}", border = "top" },
+				},
+			},
 			matcher = {
 				cwd_bonus = true,
 				frecency = true,
@@ -170,28 +165,19 @@ return {
 					},
 					sort_lastused = true,
 				},
-				diagnostics = {
-					layout = layout.presets.vertical,
-				},
-				diagnostics_buffer = {
-					layout = layout.presets.vertical,
-				},
 				git_log = {
 					confirm = function(picker, item)
 						picker:close()
 						vim.cmd("DiffviewOpen " .. item.commit .. "^!")
 					end,
-					layout = layout.presets.vertical,
 					title = "Git: Search Log",
 				},
 				grep = {
 					exclude = { "package-lock.json", "lazy-lock.json" },
 					hidden = true,
-					layout = layout.presets.vertical,
 				},
 				grep_word = {
 					exclude = { "package-lock.json", "lazy-lock.json" },
-					layout = layout.presets.vertical,
 				},
 				help = {
 					confirm = function(picker, item)
@@ -199,9 +185,6 @@ return {
 						local cmd = vim.ux.is_narrow_screen() and "help" or "vertical help"
 						vim.ux.open_side_panel(cmd .. " " .. item.tag)
 					end,
-				},
-				lsp_references = {
-					layout = layout.presets.vertical,
 				},
 				registers = {
 					layout = {
