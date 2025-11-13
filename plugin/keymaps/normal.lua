@@ -159,6 +159,19 @@ k("<c-w>>", ":vertical resize +5<cr>", { desc = "Increase window width" })
 k("<c-w><", ":vertical resize -5<cr>", { desc = "Decrease window width" })
 k("<c-w>+", ":resize +5<cr>", { desc = "Increase window height" })
 k("<c-w>-", ":resize -5<cr>", { desc = "Decrease window height" })
+
+-- Close all floating panels
+k("<leader>qq", vim.ux.close_floating_panels, { desc = "Close all floating panels" })
+
+-- Toggle quickfix list
+k("<leader>cc", function()
+	local winid = vim.fn.getqflist({ winid = 0 }).winid
+	if winid > 0 then
+		vim.cmd("cclose")
+	else
+		vim.cmd("copen")
+	end
+end, { desc = "Toggle quickfix list" })
 --
 -- }}}
 
@@ -222,16 +235,6 @@ k("<f1>", "<nop>", { desc = "Disable F1 help" })
 -- Disable tilde key to avoid clash with text-case.nvim
 vim.keymap.del("n", "~")
 k("~", "<nop>", { desc = "Disable tilde key" })
-
--- Toggle quickfix list
-k("<leader>q", function()
-	local winid = vim.fn.getqflist({ winid = 0 }).winid
-	if winid > 0 then
-		vim.cmd("cclose")
-	else
-		vim.cmd("copen")
-	end
-end, { desc = "Toggle quickfix list" })
 --
 -- }}}
 

@@ -4,16 +4,11 @@
 return {
 	"vim-test/vim-test",
 	keys = function()
-		local close_test_output = function()
-			vim.ux.close_floating_panel("is_vimtest")
-		end
-
 		local mappings = {
 			{ "<leader>b%", ":TestFile<cr>", "Run file" },
 			{ "<leader>ba", ":TestSuite<cr>", "Run all" },
 			{ "<leader>bb", ":TestLast<cr>", "Run last" },
 			{ "<leader>bn", ":TestNearest<cr>", "Run nearest" },
-			{ "<leader>bq", close_test_output, "Close output" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Tests")
@@ -26,7 +21,7 @@ return {
 		-- Open side panel with terminal for test output
 		vim.g["test#custom_strategies"] = {
 			my_neovim = function(cmd)
-				vim.ux.open_floating_panel({ winid = "is_vimtest" })
+				vim.ux.open_floating_panel()
 
 				-- Create a terminal buffer and run the command
 				vim.fn.termopen(cmd)
