@@ -25,11 +25,10 @@ return {
 					padding_left = 2,
 				})
 
-				-- Create a terminal buffer and run the command
-				vim.fn.termopen(cmd)
-
-				vim.cmd.wincmd("p") -- Go back to the previous window
+				vim.fn.termopen(cmd) -- Create a terminal buffer and run the command
 				vim.cmd.stopinsert() -- Make sure we are not in insert mode
+				vim.cmd.normal("G") -- Go to the bottom of the terminal output
+				vim.cmd.wincmd("p") -- Go back to the previous window
 			end,
 		}
 
