@@ -107,6 +107,7 @@ return {
 
 			-- git
 			{ "<leader>h/", snacks.picker.git_log, "Git: Search Log" },
+			{ "<leader>hh", snacks.picker.git_status, "Git: Status" },
 
 			-- neovim
 			{ "<leader>nH", snacks.picker.highlights, "Highlights" },
@@ -156,6 +157,11 @@ return {
 				cwd_bonus = true,
 				frecency = true,
 				history_bonus = true,
+			},
+			previewers = {
+				diff = {
+					style = "syntax",
+				},
 			},
 			sources = {
 				buffers = {

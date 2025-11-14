@@ -145,6 +145,7 @@ k("q", function()
 
 	return "<c-w>q" -- `:h CTRL-W_q`
 end, { expr = true, silent = true, desc = "Close buffer/window" })
+
 k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
 
 -- Same as `:h ctrl-w_T` but without closing the current window

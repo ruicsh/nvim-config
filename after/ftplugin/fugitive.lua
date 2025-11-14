@@ -21,6 +21,20 @@ end, { desc = "Diff" })
 
 k("n", "<leader>ar", ":CopilotCodeReview<cr>", { desc = "Code Review" })
 
-k("n", "<tab>", ")", { desc = "Next entry", remap = true }) -- `:h fugitive_]m`
-k("n", "<s-tab>", "(", { desc = "Previous entry", remap = true }) -- `:h fugitive_[m`
-k("n", "q", require("snacks.bufdelete").delete, { desc = "Close" })
+k("n", "<tab>", "=", { desc = "Toggle section", remap = true })
+k("n", "q", function()
+	require("snacks.bufdelete").delete()
+	vim.cmd.tabclose()
+end, { desc = "Close" })
+
+-- Commit in new vertical split
+k("n", "cc", function()
+	vim.cmd("vertical Git commit")
+	vim.cmd.wincmd("L")
+end, { desc = "Commit in new tab" })
+
+-- Always open file under cursor in vertical split
+k("n", "<cr>", function()
+	vim.cmd.only()
+	vim.cmd.normal("gO") -- `:h fugitive_gO`
+end, { desc = "Open file under cursor" })
