@@ -63,11 +63,6 @@ vim.ux.open_side_panel = function(options)
 			local pos = vim.api.nvim_win_get_cursor(winnr)
 			local bufnr = vim.api.nvim_get_current_buf()
 
-			-- Close the old window
-			if vim.api.nvim_win_is_valid(winnr) then
-				vim.api.nvim_win_close(winnr, true)
-			end
-
 			-- Replace the buffer in the options to open in the floating panel
 			options.bufnr = bufnr
 
@@ -75,6 +70,11 @@ vim.ux.open_side_panel = function(options)
 
 			-- Restore cursor position
 			vim.api.nvim_win_set_cursor(0, pos)
+
+			-- Close the old window
+			if vim.api.nvim_win_is_valid(winnr) then
+				vim.api.nvim_win_close(winnr, true)
+			end
 		end)
 	else
 		create_floating_panel_window(options)
