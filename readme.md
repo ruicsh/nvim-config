@@ -176,10 +176,6 @@ Random features added.
 - `=m` switch to template
 - `=s` switch to style
 - `=t` switch to test
-- `==<space>` switch to source (vsplit)
-- `==m` switch to template (vsplit)
-- `==s` switch to style (vsplit)
-- `==t` switch to test (vsplit)
 
 ### Navigation
 

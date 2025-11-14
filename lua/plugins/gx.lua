@@ -115,14 +115,14 @@ return {
 					-- Match :h or :help followed by help tag
 					local help_tag = line:match(":h%s+([%w_%-%.%:']+)") or line:match(":help%s+([%w_%-%.%:']+)")
 					if help_tag then
-						vim.ux.open_side_panel("help " .. help_tag)
+						vim.cmd("help " .. help_tag)
 						return true
 					end
 
 					-- Match standalone help tags like |i_ctrl-a|
 					local tag = line:match("|([%w_%-%.%:']+)|")
 					if tag then
-						vim.ux.open_side_panel("help " .. tag)
+						vim.cmd("help " .. help_tag)
 						return true
 					end
 

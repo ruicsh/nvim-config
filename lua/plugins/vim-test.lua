@@ -21,7 +21,9 @@ return {
 		-- Open side panel with terminal for test output
 		vim.g["test#custom_strategies"] = {
 			my_neovim = function(cmd)
-				vim.ux.open_floating_panel()
+				vim.ux.open_side_panel({
+					padding_left = 2,
+				})
 
 				-- Create a terminal buffer and run the command
 				vim.fn.termopen(cmd)

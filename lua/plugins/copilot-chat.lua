@@ -246,10 +246,10 @@ local function new_chat_window(prompt, opts)
 		}
 	else
 		opts.window = {
-			layout = vim.ux.is_narrow_screen() and "horizontal" or "vertical",
+			layout = "replace",
 		}
 
-		vim.ux.open_side_panel(false)
+		vim.ux.open_side_panel()
 	end
 
 	vim.g.copilot_chat_title = nil -- Reset chat title used for saving chat history

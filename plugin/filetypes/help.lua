@@ -2,7 +2,7 @@
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/help", { clear = true })
 
--- Open help on a vertical split (or re-use window if opened).
+-- Open help on floating side panel (or re-use panel if opened).
 vim.api.nvim_create_autocmd("CmdLineLeave", {
 	group = augroup,
 	pattern = ":",
@@ -27,19 +27,18 @@ vim.api.nvim_create_autocmd("CmdLineLeave", {
 					return
 				end
 			end
-
-			vim.ux.open_side_panel(false)
 		end
 	end,
 })
 
--- Always open help panel on a vertical split, full height.
--- https://github.com/dmmulroy/kickstart.nix/blob/main/config/nvim/
+-- Always open help panel on the floating panel to the right.
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup,
 	pattern = "help",
 	callback = function()
-		vim.cmd.wincmd("L") -- Send current window (help) to the right edge
-		vim.cmd.wincmd("=") -- Make all windows the same height
+		vim.ux.open_side_panel({
+			mode = "replace",
+			padding_left = 2,
+		})
 	end,
 })

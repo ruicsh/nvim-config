@@ -160,8 +160,8 @@ k("<c-w><", ":vertical resize -5<cr>", { desc = "Decrease window width" })
 k("<c-w>+", ":resize +5<cr>", { desc = "Increase window height" })
 k("<c-w>-", ":resize -5<cr>", { desc = "Decrease window height" })
 
--- Close all floating panels
-k("<leader>qq", vim.ux.close_floating_panels, { desc = "Close all floating panels" })
+-- Close all side panels
+k("<leader>qq", vim.ux.close_side_panels, { desc = "Close all side panels" })
 
 -- Toggle quickfix list
 k("<leader>cc", function()
