@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>48 plugins</sub>
+<sub>49 plugins</sub>
 
 ### Code
 
@@ -48,6 +48,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
+- [mini.bracketed](https://github.com/nvim-mini/mini.bracketed) - Navigation with square brackets
 - [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
 - [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action
