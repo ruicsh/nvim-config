@@ -75,10 +75,20 @@ end
 
 -- Close special buffers (e.g., fugitive) before saving session
 local function close_special_buffers()
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		local config = vim.api.nvim_win_get_config(win)
+		if config.relative ~= "" then
+			local buf = vim.api.nvim_win_get_buf(win)
+			if vim.api.nvim_buf_is_loaded(buf) then
+				vim.api.nvim_buf_delete(buf, { force = true })
+			end
+		end
+	end
+
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.api.nvim_buf_is_loaded(buf) then
 			local name = vim.api.nvim_buf_get_name(buf)
-			if name:match("^fugitive://") or name:match("^diffview://") then
+			if name:match("^fugitive://") or name:match("^diffview://") or vim.bo[buf].buftype == "terminal" then
 				vim.api.nvim_buf_delete(buf, { force = true })
 			end
 		end
