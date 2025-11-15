@@ -11,19 +11,20 @@ local function create_floating_panel_window(options)
 	local width = math.floor(vim.o.columns * 0.5)
 	local height = vim.o.lines - vim.o.cmdheight - 2
 
-	local bufnr_frame = 0
+	local bufnr_wrapper = 0
 	if options.bufnr and not padding_left then
-		bufnr_frame = options.bufnr
+		bufnr_wrapper = options.bufnr
 	else
-		bufnr_frame = vim.api.nvim_create_buf(false, true)
+		bufnr_wrapper = vim.api.nvim_create_buf(false, true)
 	end
 
-	local enter_wrapper_window = not padding_left
-	local winnr = vim.api.nvim_open_win(bufnr_frame, enter_wrapper_window, {
+	local has_wrapper_window = padding_left
+
+	local winnr = vim.api.nvim_open_win(bufnr_wrapper, not has_wrapper_window, {
 		anchor = "NE",
 		border = { "", "", "", "", "", "", "", "│" },
 		col = vim.o.columns,
-		focusable = false,
+		focusable = not has_wrapper_window,
 		height = height,
 		relative = "editor",
 		row = 0,
@@ -32,17 +33,26 @@ local function create_floating_panel_window(options)
 	})
 
 	-- Create another window inside the floating window with padding-left
-	if padding_left then
+	if has_wrapper_window then
 		local bufnr_content = options.bufnr or vim.api.nvim_create_buf(false, true)
 		vim.api.nvim_open_win(bufnr_content, true, {
 			border = { "" },
 			col = padding_left,
+			focusable = true,
 			height = height,
 			win = winnr,
 			relative = "win",
 			row = 0,
 			width = width - padding_left,
 		})
+
+		vim.keymap.set("n", "q", function()
+			vim.ux.close_side_panels()
+		end, { buffer = bufnr_content, silent = true })
+	else
+		vim.keymap.set("n", "q", function()
+			vim.ux.close_side_panels()
+		end, { buffer = bufnr_wrapper, silent = true })
 	end
 end
 
