@@ -5,6 +5,7 @@ return {
 	"dgagn/diagflow.nvim",
 	opts = {
 		max_height = 50,
+		padding_top = 1,
 		padding_right = 1,
 	},
 
