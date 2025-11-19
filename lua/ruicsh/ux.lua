@@ -9,7 +9,7 @@ local function create_floating_panel_window(options)
 	local padding_left = options.padding_left or false
 
 	local width = math.floor(vim.o.columns * 0.5)
-	local height = vim.o.lines - vim.o.cmdheight - 2
+	local height = vim.o.lines - vim.o.cmdheight - 1
 
 	local bufnr_wrapper = 0
 	if options.bufnr and not padding_left then

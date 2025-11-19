@@ -1,17 +1,8 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/ansiblels.lua
 
+---@type vim.lsp.Config
 return {
-	cmd = {
-		"ansible-language-server",
-		"--stdio",
-	},
-	filetypes = {
-		"yaml.ansible",
-	},
-	root_markers = {
-		".ansible-lint",
-		"ansible.cfg",
-	},
+	cmd = { "ansible-language-server", "--stdio" },
 	settings = {
 		ansible = {
 			python = {
@@ -32,6 +23,6 @@ return {
 			},
 		},
 	},
-
-	single_file_support = true,
+	filetypes = { "yaml.ansible" },
+	root_markers = { "ansible.cfg", ".ansible-lint" },
 }

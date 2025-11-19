@@ -1,18 +1,10 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/jsonls.lua
 
 return {
-	cmd = {
-		"vscode-json-language-server",
-		"--stdio",
+	cmd = { "vscode-json-language-server", "--stdio" },
+	filetypes = { "json", "jsonc" },
+	init_options = {
+		provideFormatter = true,
 	},
-	filetypes = {
-		"json",
-		"jsonc",
-	},
-	root_markers = {
-		".git",
-	},
-
-	init_options = { provideFormatter = true },
-	single_file_support = true,
+	root_markers = { ".git" },
 }
