@@ -30,7 +30,11 @@ return {
 			untracked = { text = icons.Untracked },
 		},
 		attach_to_untracked = true,
-		current_line_blame = false,
+		current_line_blame = true,
+		current_line_blame_opts = {
+			virt_text_pos = "right_align",
+		},
+		current_line_blame_formatter = "<author_time:%R> - <summary>",
 		on_attach = function(bufnr)
 			local gs = package.loaded.gitsigns
 
@@ -58,18 +62,26 @@ return {
 				return fn
 			end
 
+			-- Navigation
 			k("n", "]c", nav_hunk("]c", "next"))
 			k("n", "[c", nav_hunk("[c", "prev"))
 
-			-- Hunks (stage, reset)
+			-- Stage
 			k("n", "<leader>hs", gs.stage_hunk, { desc = "Git: stage hunk" })
-			k("n", "<leader>hr", gs.reset_hunk, { desc = "Git: reset hunk" })
+			k("n", "<leader>hS", gs.stage_buffer, { desc = "Git: stage buffer" })
 			k("v", "<leader>hs", function()
 				gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 			end, { desc = "Git: stage hunk" })
+
+			-- Reset
+			k("n", "<leader>hr", gs.reset_hunk, { desc = "Git: reset hunk" })
+			k("n", "<leader>hR", gs.reset_buffer, { desc = "Git: reset buffer" })
 			k("v", "<leader>hr", function()
 				gs.reset_hunk({ vim.fn.line("'."), vim.fn.line("v") })
 			end, { desc = "Git: reset hunk" })
+
+			-- Preview
+			k("n", "<leader>hd", gs.preview_hunk, { desc = "Git: preview hunk" })
 		end,
 	},
 

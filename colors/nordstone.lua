@@ -342,6 +342,9 @@ loadColorSet({
 	GitSignsAdd = { fg = c.nord14 },
 	GitSignsChange = { fg = c.nord13 },
 	GitSignsDelete = { fg = c.nord11 },
+	GitSignsBlank = { fg = "NONE", bg = "NONE" },
+	GitSignsAddInline = { link = "GitSignsBlank" },
+	GitSignsDeleteInline = { link = "GitSignsBlank" },
 })
 
 -- incline.nvim

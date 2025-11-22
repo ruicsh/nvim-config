@@ -401,7 +401,7 @@ Random features added.
 - `[c` previous change
 - `]c` next change
 - `<leader>h%` current file history
-- `<leader>hD` diff {git-rev}
+- `<leader>h~` diff {git-rev}
 - `<leader>hP` push --force-with-lease
 - `<leader>hb` blame line
 - `<leader>hd` diff HEAD
@@ -410,7 +410,9 @@ Random features added.
 - `<leader>hl` log
 - `<leader>hp` push
 - `<leader>hr` reset hunk
-- `<leader>hs` stage/unstage hunk
+- `<leader>hR` reset buffer
+- `<leader>hs` stage hunk
+- `<leader>hS` stage buffer
 - `<leader>hu` push --set-upstream origin HEAD
 - `<leader>hx` open file in browser
 

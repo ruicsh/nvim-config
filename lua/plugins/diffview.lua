@@ -41,12 +41,12 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>hd", ":DiffviewOpen<cr>", "Diffview" },
+			{ "<leader>hD", ":DiffviewOpen<cr>", "Diffview" },
 			{ "<leader>hl", ":DiffviewFileHistory<cr>", "Log" },
 			{ "<leader>h%", ":DiffviewFileHistory %<cr>", "Log for file" },
 			{ "<leader>hl", ":'<,'>DiffviewFileHistory<cr>", "Log visual selection", { mode = "v" } },
 			{ "<leader>hb", git_blame_line, "Blame line" },
-			{ "<leader>hD", diff_back, "Diffview HEAD~{count}..HEAD" },
+			{ "<leader>h~", diff_back, "Diffview HEAD~{count}..HEAD" },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Git")
