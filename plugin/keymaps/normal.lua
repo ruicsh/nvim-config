@@ -187,7 +187,7 @@ k("]<tab>", ":tabnext<cr>", { desc = "Tabs: Next" }) -- `:h :tabnext`
 
 -- Folds {{{
 --
--- Jump to newer position in jumplist
+-- Toggle folds based on current fold level
 k("<tab>", function()
 	local level = vim.fn.foldlevel(".")
 	if level == 1 then

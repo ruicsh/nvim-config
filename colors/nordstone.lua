@@ -101,7 +101,7 @@ loadColorSet({
 	FloatBorder = { fg = c.neutral_600, bg = "NONE" },
 	FloatTitle = { fg = c.nord4, bg = "NONE" },
 	FoldColumn = { fg = c.nord3_500 },
-	Folded = { fg = c.nord9, style = "italic" },
+	Folded = { fg = c.nord9 },
 	Function = { fg = c.nord8 },
 	Identifier = { fg = c.nord8 },
 	IncSearch = { link = "CurSearch" },

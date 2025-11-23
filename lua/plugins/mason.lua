@@ -6,6 +6,7 @@ local PACKAGES = {
 	-- LSP
 	"angular-language-server",
 	"ansible-language-server",
+	"copilot-language-server",
 	"css-lsp",
 	"cssmodules-language-server",
 	"css-variables-language-server",
