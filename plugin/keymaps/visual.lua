@@ -47,11 +47,6 @@ for _, key in ipairs(save_keys) do
 	k(key, "<cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
 end
 
--- Move selection up/down
--- https://www.reddit.com/r/vim/comments/i8b5z1/is_there_a_more_elegant_way_to_move_lines_than_eg/
-k("<a-up>", ":move-2<cr>='[gv", { desc = "Move selection up" })
-k("<a-down>", ":move'>+1<cr>='[gv", { desc = "Move selection down" })
-
 -- Indent/dedent selection
 k(">", ">gv") -- Reselect after indent
 k("<", "<gv") -- Reselect after dedent

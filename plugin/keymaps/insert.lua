@@ -15,10 +15,6 @@ end
 -- Paste from clipboard `:h i_ctrl-r`
 k("<c-v>", "<c-r>+")
 
--- Move current line up/down
-k("<a-up>", "<esc>:move .-2<cr>==gi", { desc = "Move current line up" }) -- `:h :move`
-k("<a-down>", "<esc>:move .+1<cr>==gi", { desc = "Move current line down" }) -- `:h :move`
-
 -- Make undo work word by word (`:h i_CTRL-G_u`)
 local undo_keys = { "<space>", ";", ",", ".", "!", "?", ">", ")", "]", "}" }
 for _, key in ipairs(undo_keys) do
