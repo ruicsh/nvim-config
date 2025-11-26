@@ -68,8 +68,6 @@ end, { expr = true })
 k("cn", "*``cgn", { desc = "Change word (forward)" }) -- `:h gn`
 k("cN", "*``cgN", { desc = "Change word (backward)" }) -- `:h gN`
 
--- Toggle character case without moving cursor
-k("~", "v~", { desc = "Toggle character case" }) -- `:h ~`
 --
 -- }}}
 
@@ -90,7 +88,7 @@ k("'s", function()
 end, { desc = "Jump to where search started" })
 
 -- Web search
-k("gb/", function()
+k("gw/", function()
 	local query = vim.fn.expand("<cword>")
 	local encoded = vim.fn.urlencode(query)
 	local url = ("https://google.com/search?q=%s"):format(encoded)
@@ -229,7 +227,6 @@ k("gf", ":edit <cfile><CR>") -- Allow gf to open non-existing files `:h gf`
 k("<f1>", "<nop>", { desc = "Disable F1 help" })
 
 -- Disable tilde key to avoid clash with text-case.nvim
-vim.keymap.del("n", "~")
 k("~", "<nop>", { desc = "Disable tilde key" })
 --
 -- }}}

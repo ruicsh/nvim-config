@@ -30,9 +30,6 @@ k("j", function()
 	return vim.v.count > 0 and "j" or "gj"
 end, { expr = true })
 
--- Start/end of line
-k("<s-h>", "^", { desc = "Start of line" }) -- `:h ^`
-k("<s-l>", "g_", { desc = "End of line" }) -- `:h g_`
 --
 -- }}}
 
@@ -73,10 +70,6 @@ end, { expr = true })
 -- Repeat last change across visual selection
 k(".", ":normal .<cr>", { desc = "Repeat last change" }) -- `:h .`
 
--- Indent/dedent and reselect
-k("<tab>", ">gv|") -- `:h gv`
-k("<s-tab>", "<gv") -- `:h gv`
-
 --
 -- }}}
 
@@ -97,7 +90,7 @@ k("<leader>g/", require("snacks.picker").grep_word, { desc = "Search selection i
 k("/", "<esc>/\\%V", { desc = "Search inside selection" }) -- `:h /\%V`
 
 -- Web search selection
-k("gb/", function()
+k("gw/", function()
 	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), { type = vim.fn.mode() })
 	local query = vim.trim(table.concat(selection, " "))
 	local encoded = vim.fn.urlencode(query)
