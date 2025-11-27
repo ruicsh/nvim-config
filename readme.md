@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>50 plugins</sub>
+<sub>51 plugins</sub>
 
 ### Code
 

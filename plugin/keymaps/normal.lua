@@ -41,9 +41,9 @@ k("U", "<c-r>", { desc = "Redo" }) -- `:h ctrl-r`
 
 -- Keep same logic from `y/c/d` on `v`
 k("V", "v$") -- Select until end of line
-k("vv", "V") -- Enter visual linewise mode `:h V`
+k("vv", "V") -- Enter visual line wise mode `:h V`
 
--- Keep cursor in place when joining lines
+-- Keep cursor in place when joining words
 k("J", "mzJ`z:delmarks z<cr>")
 
 -- Save file
@@ -223,7 +223,7 @@ k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
 k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
 k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h :help`
 k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
-k("gf", ":edit <cfile><CR>") -- Allow gf to open non-existing files `:h gf`
+k("gf", ":edit <cfile><CR>") -- Allow `gf` to open non-existing files `:h gf`
 k("<f1>", "<nop>", { desc = "Disable F1 help" })
 
 -- Disable tilde key to avoid clash with text-case.nvim

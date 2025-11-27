@@ -392,6 +392,11 @@ loadColorSet({
 	SnacksPickerMatch = { fg = c.nord4, bg = c.nord3 },
 })
 
+-- visual-whitespace.nvim
+loadColorSet({
+	VisualNonText = { fg = c.nord3_700, bg = c.nord1 },
+})
+
 -- yanky
 loadColorSet({
 	YankyPut = { link = "IncSearch" },
