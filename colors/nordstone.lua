@@ -226,9 +226,9 @@ loadColorSet({
 	LspDiagnosticsVirtualTextInformation = { fg = c.nord10 },
 	LspDiagnosticsVirtualTextWarning = { fg = c.nord15 },
 	LspInlayHint = { fg = c.nord3_500 },
-	LspReferenceRead = { bg = c.nord2 },
-	LspReferenceText = { bg = c.nord2 },
-	LspReferenceWrite = { bg = c.nord2 },
+	LspReferenceRead = { bg = c.nord1 },
+	LspReferenceText = { link = "LspReferenceRead" },
+	LspReferenceWrite = { link = "LspReferenceRead" },
 	LspSignatureActiveParameter = { fg = c.nord4, bg = c.nord1 },
 
 	DiagnosticError = { link = "LspDiagnosticsDefaultError" },
@@ -340,10 +340,11 @@ loadColorSet({
 -- gitsigns.nvim
 loadColorSet({
 	GitSignsAdd = { fg = c.nord14 },
-	GitSignsChange = { fg = c.nord13 },
-	GitSignsDelete = { fg = c.nord11 },
-	GitSignsBlank = { fg = "NONE", bg = "NONE" },
 	GitSignsAddInline = { link = "GitSignsBlank" },
+	GitSignsBlank = { fg = "NONE", bg = "NONE" },
+	GitSignsChange = { fg = c.nord13 },
+	GitSignsCurrentLineBlame = { fg = c.nord3 },
+	GitSignsDelete = { fg = c.nord11 },
 	GitSignsDeleteInline = { link = "GitSignsBlank" },
 })
 

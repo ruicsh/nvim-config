@@ -31,10 +31,11 @@ return {
 		},
 		attach_to_untracked = true,
 		current_line_blame = true,
+		current_line_blame_formatter = "<author_time:%R> - <summary>",
 		current_line_blame_opts = {
+			delay = 2000,
 			virt_text_pos = "right_align",
 		},
-		current_line_blame_formatter = "<author_time:%R> - <summary>",
 		on_attach = function(bufnr)
 			local gs = package.loaded.gitsigns
 
