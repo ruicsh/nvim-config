@@ -8,7 +8,7 @@ return {
 
 		local mappings = {
 			{ "s", flash.jump, "Jump", mode = { "n", "x", "o" } },
-			{ "+", flash.treesitter, "Treesitter", mode = { "n", "x", "o" } },
+			{ "<leader><s-v>", flash.treesitter, "Treesitter", mode = { "n", "x", "o" } },
 		}
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Flash")
@@ -37,8 +37,8 @@ return {
 			},
 			treesitter = {
 				actions = {
-					["+"] = "next", -- Increment selection
-					["-"] = "prev", -- Decrement selection
+					["<c-a>"] = "next", -- Increment selection
+					["<c-x>"] = "prev", -- Decrement selection
 				},
 				labels = "", -- Disable labels for treesitter mode
 			},

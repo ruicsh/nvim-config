@@ -27,7 +27,7 @@ o.fillchars = { -- `:h 'fillchars'`
 	eob = " ", -- End of buffer marker.
 	fold = " ", -- Filling foldtext.
 	foldclose = "›", -- Closed fold.
-	foldopen = "", -- Beggining of a fold.
+	foldopen = "", -- Opened fold.
 	foldsep = " ", -- Open fold middle marker
 }
 o.lazyredraw = true -- Don't redraw when executing macros. `:h 'lazyredraw'`
@@ -40,13 +40,13 @@ o.sidescrolloff = 10 -- Number of columns to keep left/right of the cursor. `:h 
 o.wrap = false -- Do not automatically wrap texts. `:h 'wrap'`
 -- }}}
 
--- 5 syntax, highlighting and spelling {{{
+-- 5 syntax, highlighting, and spelling {{{
 o.cursorline = true -- Highlight current line.`:h 'cursorline'`
 o.cursorlineopt = "screenline,number" -- Highlight the screen line and line number. `:h 'cursorlineopt'`
 o.hlsearch = true -- Highlight search matches. `:h 'hlsearch'`
 o.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add" -- Custom spellfile. `:h 'spellfile'`
-o.spelloptions = "camel" -- Recognize camelCase words. `:h 'spelloptions'`
-o.termguicolors = true -- Enable true colours. `:h 'termguicolors'`
+o.spelloptions = "camel" -- Recognize camel case words. `:h 'spelloptions'`
+o.termguicolors = true -- Enable true colors. `:h 'termguicolors'`
 -- }}}
 
 -- 6 multiple windows {{{
