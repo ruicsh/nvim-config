@@ -131,22 +131,23 @@ New features built around autocmds (events).
 
 |                                                                                                                                  |                                                     |
 | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| [auto-resize-splits](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-resize-splits.lua)                     | Auto resize splits when window is resized           |
 | [auto-close-buffer-if-deleted](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-close-buffer-if-deleted.lua) | Auto close buffer when deleted from disk            |
+| [auto-resize-splits](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-resize-splits.lua)                     | Auto resize splits when window is resized           |
 | [cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline.lua)                                           | Clean up after use, hide hit-enter messages on blur |
-| [lsp-attach](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/lsp-attach.lua)                                     | LSP diagnostics, keymaps, and custom handlers       |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua)   | Show cursorline only on active window.              |
 
 ### Custom
 
 Random features added.
 
-|                                                                                                          |                                        |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua) | Duplicate and comment                  |
-| [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)   | AST aware indentation                  |
-| [sessions](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/sessions.lua)                   | Session management                     |
-| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)           | Display :messages on a separate window |
+|                                                                                                                        |                                        |
+| ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua)               | Duplicate and comment                  |
+| [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)                 | AST aware indentation                  |
+| [lsp-highlight-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-highlight-references.lua) | Highlight references (LSP)             |
+| [lsp-jump-to-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-jump-to-references.lua)     | Jump to references (LSP)               |
+| [sessions](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/sessions.lua)                                 | Session management                     |
+| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)                         | Display :messages on a separate window |
 
 ## Keymaps
 

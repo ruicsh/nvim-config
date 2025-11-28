@@ -192,6 +192,23 @@ end, { expr = true, desc = "Toggle folds" })
 --
 -- }}}
 
+-- LSP {{{
+--
+
+-- Alternatives to `gd`
+k("<cr>", vim.lsp.buf.definition, { desc = "LSP: Jump to definition" })
+k("<c-w>]", "<c-w>o<c-w>v<c-]><c-w>L", { desc = "LSP: Jump to definition (vsplit)" }) -- `:h CTRL-]`
+
+-- Instead of using quickfix list, use snacks.picker
+local picker = require("snacks.picker")
+k("grr", picker.lsp_references, { desc = "LSP: References", unique = false })
+k("gO", picker.lsp_symbols, { desc = "LSP: Symbols", unique = false })
+k("<leader>dD", picker.diagnostics, { desc = "Diagnostics: Workspace" })
+k("<leader>dd", picker.diagnostics_buffer, { desc = "Diagnostics: File" })
+
+--
+-- }}}
+
 -- Yank current path {{{
 --
 local function yank_path(fmt)
