@@ -7,7 +7,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - **AI Assistant** - suggestions, chat, system prompts, operations, chat history
 - **LSP** - Language Server Protocol client, symbols navigation, diagnostics
 - **Syntax** - highlighting, syntax aware motions, text objects
-- **Git integration** - status, diffview, commit message editor, buffer integration
+- **Git integration** - status, diff, conflicts, commit message editor, buffer integration
 - **Search** - fuzzy find anything, files, git changed, last buffers
 - **UI** - files and directory explorer, notifications, command palette
 
@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>51 plugins</sub>
+<sub>53 plugins</sub>
 
 ### Code
 
@@ -57,11 +57,12 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
 - [text-case](https://github.com/johmsalas/text-case.nvim) - Convert text cases
+- [visual-whitespace](https://github.com/mcauley-penney/visual-whitespace.nvim) - Render whitespace
 - [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
 
 ### Git
 
-- [diffview.nvim](https://github.com/sindrets/diffview.nvim) - diffview
+- [diffview.nvim](https://github.com/sindrets/diffview.nvim) - diff, conflicts
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
 - [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote
@@ -81,8 +82,10 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [diagflow](https://github.com/dgagn/diagflow.nvim) - Diagnostics display
 - [kulala](https://github.com/mistweaverco/kulala.nvim) - HTTP client
+- [mason-lspconfig](https://github.com/mason-org/mason-lspconfig.nvim) - Bridge between mason and lspconfig
 - [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) - Tools installer
 - [mason](https://github.com/mason-org/mason.nvim) - LSP package manager
+- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - LSP config
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
@@ -109,7 +112,6 @@ Custom built commands to be invoked on the `cmdline` or with keymaps.
 
 |                                                                                                  |                                                         |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| [LspEnable/LspRestart](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/lsp.lua)  | Enable and restart LSP                                  |
 | [LoadEnvVars](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/load-env-vars.lua) | Load environment variables, global, and project scoped. |
 
 ### Filetypes
