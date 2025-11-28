@@ -16,45 +16,6 @@ local DISABLE_FILETYPES = {
 	"oil",
 }
 
--- Configure diagnostics
-local function diagnostics()
-	vim.diagnostic.config({
-		float = {
-			border = "rounded",
-			width = 60,
-		},
-		jump = {
-			float = true,
-		},
-		severity_sort = true,
-		signs = {
-			text = {
-				[vim.diagnostic.severity.ERROR] = "E",
-				[vim.diagnostic.severity.WARN] = "W",
-				[vim.diagnostic.severity.INFO] = "I",
-				[vim.diagnostic.severity.HINT] = "H",
-				[vim.diagnostic.severity.N] = "H",
-			},
-		},
-		underline = true,
-		update_in_insert = false,
-		virtual_lines = false,
-	})
-
-	local k = vim.keymap.set
-
-	local function jump_to_error(direction)
-		return function()
-			local count = direction == "next" and 1 or -1
-			local opts = { count = count, severity = vim.diagnostic.severity.ERROR, float = true }
-			vim.diagnostic.jump(opts)
-		end
-	end
-
-	k("n", "[x", jump_to_error("prev"), { desc = "Jump to previous error", silent = true })
-	k("n", "]x", jump_to_error("next"), { desc = "Jump to next error", silent = true })
-end
-
 -- Jump to prev/next reference
 local function jump_to_references(bufnr, client)
 	local methods = vim.lsp.protocol.Methods
@@ -153,36 +114,24 @@ end
 
 -- Set keymaps for LSP
 local function keymaps(bufnr, client)
-	local snacks = require("snacks")
-	local methods = vim.lsp.protocol.Methods
-
 	local k = function(keys, func, desc, mode)
 		mode = mode or "n"
 		vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
 	end
 
-	local function hover()
-		-- https://neovim.io/doc/user/lsp.html#vim.lsp.buf.hover.Opts
-		vim.lsp.buf.hover({
-			border = "rounded",
-			focusable = false,
-			close_events = { "CursorMoved", "InsertEnter", "FocusLost" },
-		})
-	end
-
-	-- https://neovim.io/doc/user/lsp.html#lsp-defaults
-	k("gd", vim.lsp.buf.definition, "Jump to definition")
+	-- See https://neovim.io/doc/user/lsp.html#lsp-defaults
 	k("<cr>", vim.lsp.buf.definition, "Jump to definition")
-	k("<c-]>", vim.lsp.buf.definition, "Jump to definition")
 	k("<c-w>]", "<c-w>o<c-w>v<c-]><c-w>L", "Jump to definition (vsplit)") -- `:h CTRL-]`
-	k("gD", vim.lsp.buf.declaration, "Jump to declaration")
-	k("grr", snacks.picker.lsp_references, "References")
-	k("gO", snacks.picker.lsp_symbols, "Symbols")
-	k("<leader>dD", snacks.picker.diagnostics, "Diagnostics: Workspace")
-	k("<leader>dd", snacks.picker.diagnostics_buffer, "Diagnostics: File")
-	k("K", hover, "Hover")
+
+	-- Instead of using quickfix list, use snacks' LSP references picker
+	local picker = require("snacks.picker")
+	k("grr", picker.lsp_references, "References")
+	k("gO", picker.lsp_symbols, "Symbols")
+	k("<leader>dD", picker.diagnostics, "Diagnostics: Workspace")
+	k("<leader>dd", picker.diagnostics_buffer, "Diagnostics: File")
 
 	-- Jump to type implementation
+	local methods = vim.lsp.protocol.Methods
 	if client:supports_method(methods.textDocument_typeDefinition) then
 		k("grt", vim.lsp.buf.type_definition, "Jump to type definition")
 	end
@@ -194,7 +143,6 @@ end
 -- Highlight all references to symbol under cursor
 local function highlight_references(bufnr, client)
 	local methods = vim.lsp.protocol.Methods
-
 	if not client:supports_method(methods.textDocument_documentHighlight) then
 		return
 	end
@@ -217,14 +165,15 @@ end
 -- Clear highlight references event handlers
 local function clear_highlight_references(bufnr, client)
 	local methods = vim.lsp.protocol.Methods
-
-	if client:supports_method(methods.textDocument_documentHighlight) then
-		vim.api.nvim_clear_autocmds({
-			group = augroup,
-			event = { "BufLeave", "CursorHold", "CursorMoved", "InsertEnter", "InsertLeave" },
-			buffer = bufnr,
-		})
+	if not client:supports_method(methods.textDocument_documentHighlight) then
+		return
 	end
+
+	vim.api.nvim_clear_autocmds({
+		group = augroup,
+		event = { "BufLeave", "CursorHold", "CursorMoved", "InsertEnter", "InsertLeave" },
+		buffer = bufnr,
+	})
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -243,7 +192,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 
-		diagnostics()
 		keymaps(bufnr, client)
 		highlight_references(bufnr, client)
 	end,
