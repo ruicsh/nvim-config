@@ -94,16 +94,38 @@ return {
 		end,
 
 		main = "nvim-treesitter.configs",
-		build = ":TSUpdate",
-		event = "BufReadPost",
 		branch = "master",
+		build = ":TSUpdate",
+		lazy = false,
 	},
 	{
 		-- Syntax aware text objects.
 		-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		"nvim-treesitter/nvim-treesitter-textobjects",
+
+		branch = "master",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
+	},
+	{
+		-- Show code context.
+		-- https://github.com/nvim-treesitter/nvim-treesitter-context
+		"nvim-treesitter/nvim-treesitter-context",
+		keys = function()
+			local function jump_to_context()
+				require("treesitter-context").go_to_context(vim.v.count1)
+			end
+
+			local mappings = {
+				{ "[s", jump_to_context, "Jump to previous context" },
+			}
+
+			return vim.fn.get_lazy_keys_conf(mappings, "AST")
+		end,
+		opts = {
+			separator = "─",
+		},
+		event = "BufReadPost",
 	},
 }

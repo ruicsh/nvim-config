@@ -393,9 +393,14 @@ loadColorSet({
 	SnacksPickerMatch = { fg = c.nord4, bg = c.nord3 },
 })
 
+-- treesitter-context
+loadColorSet({
+	TreesitterContextSeparator = { fg = c.neutral_800 },
+})
+
 -- visual-whitespace.nvim
 loadColorSet({
-	VisualNonText = { fg = c.nord3_700, bg = c.nord1 },
+	VisualNonText = { fg = c.nord3_500, bg = c.nord1 },
 })
 
 -- yanky

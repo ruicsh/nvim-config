@@ -29,7 +29,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 ### Code
 
 - [autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename tags
-- [biscuits](https://github.com/code-biscuits/nvim-biscuits) - Closing brackets annotations
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot-chat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
@@ -86,6 +85,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) - Tools installer
 - [mason](https://github.com/mason-org/mason.nvim) - LSP package manager
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - LSP config
+- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Code context
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
