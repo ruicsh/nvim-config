@@ -194,7 +194,7 @@ o.backup = false -- Do not create backup files. `:h 'backup'`
 
 -- 18 the swap file {{{
 o.swapfile = false -- Stop creating swp files. `:h 'swapfile'`
-o.updatetime = 2000 -- Faster CursorHold. `:h 'updatetime'`
+o.updatetime = 100 -- Faster CursorHold. `:h 'updatetime'`
 -- }}}
 
 -- 19 command line editing {{{
