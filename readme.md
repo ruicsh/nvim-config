@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>53 plugins</sub>
+<sub>52 plugins</sub>
 
 ### Code
 
@@ -42,8 +42,8 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 ### Editor
 
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
-- [boole](https://github.com/nat-418/boole.nvim) - Toggle between values
 - [bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix window
+- [dial](https://github.com/monaqa/dial.nvim) - Enhanced increment/decrement
 - [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
@@ -55,7 +55,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [rsi](https://github.com/tpope/vim-rsi) - Readline keybinds for insert mdoe
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
-- [text-case](https://github.com/johmsalas/text-case.nvim) - Convert text cases
 - [visual-whitespace](https://github.com/mcauley-penney/visual-whitespace.nvim) - Render whitespace
 - [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
 
@@ -258,21 +257,6 @@ Random features added.
 - `q` quotes (", ', `)
 - `s` single word in different cases
 - `t` HTML tags
-
-### Change text cases
-
-- `~,` to comma,case
-- `~-` to kebab-case
-- `~.` to dot.case
-- `~/` to path/case
-- `~_` to snake_case
-- `~C` to CONSTANT_CASE
-- `~S` to Phrase case
-- `~U` to UPPER CASE
-- `~c` to camelCase
-- `~p` to PascalCase
-- `~t` to Title Case
-- `~u` to lower case
 
 ### Yank current filepath
 

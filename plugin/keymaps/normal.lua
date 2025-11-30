@@ -235,6 +235,7 @@ k("%p", yank_path("%:p"), { desc = "Yank filename (absolute)" })
 
 -- Miscellaneous {{{
 --
+
 k("<leader>v", "<c-v>", { desc = "Enter visual block mode" }) -- `:h <c-v>`
 k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
 k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
@@ -243,8 +244,6 @@ k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
 k("gf", ":edit <cfile><CR>") -- Allow `gf` to open non-existing files `:h gf`
 k("<f1>", "<nop>", { desc = "Disable F1 help" })
 
--- Disable tilde key to avoid clash with text-case.nvim
-k("~", "<nop>", { desc = "Disable tilde key" })
 --
 -- }}}
 
