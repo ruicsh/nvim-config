@@ -1,5 +1,5 @@
--- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
-local PARSERS = {
+-- https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md
+local LANGUAGES = {
 	"angular",
 	"bash",
 	"css",
@@ -39,71 +39,60 @@ local PARSERS = {
 
 return {
 	{
-		-- AST code parser
+		-- AST code parser.
 		-- https://github.com/nvim-treesitter/nvim-treesitter
 		"nvim-treesitter/nvim-treesitter",
-		opts = function()
-			local disabled = vim.fn.env_get_list("TREESITTER_DISABLED_PARSERS")
-			local ensure_installed = {}
-			for _, parser in ipairs(PARSERS) do
-				if not vim.tbl_contains(disabled, parser) then
-					table.insert(ensure_installed, parser)
-				end
-			end
+		config = function()
+			require("nvim-treesitter").install(LANGUAGES)
 
-			return {
-				auto_install = true, -- Auto-install languages that are not installed
-				ensure_installed = ensure_installed,
-				highlight = {
-					enable = true,
-					disable = function(_, buf)
-						local max_filesize = 1024 * 1024 -- 1 Mb threshold
-						local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
-						if ok and stats and stats.size > max_filesize then
-							return true
-						end
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("treesitter.setup", {}),
+				callback = function(args)
+					local bufnr = args.buf
+					local filetype = args.match
 
-						return false
-					end,
-				},
-				indent = {
-					enable = true,
-				},
-				textobjects = {
-					move = {
-						enable = true,
-						goto_next_start = {
-							["]f"] = "@function.outer",
-							["]a"] = "@parameter.inner",
-						},
-						goto_next_end = {
-							["]F"] = "@function.outer",
-							["]A"] = "@parameter.inner",
-						},
-						goto_previous_start = {
-							["[f"] = "@function.outer",
-							["[a"] = "@parameter.inner",
-						},
-						goto_previous_end = {
-							["[F"] = "@function.outer",
-							["[A"] = "@parameter.inner",
-						},
-					},
-				},
-			}
+					local language = vim.treesitter.language.get_lang(filetype) or filetype
+					if not vim.treesitter.language.add(language) then
+						return
+					end
+
+					vim.treesitter.start(bufnr, language)
+				end,
+			})
 		end,
 
-		main = "nvim-treesitter.configs",
-		branch = "master",
+		branch = "main",
 		build = ":TSUpdate",
-		lazy = false,
 	},
 	{
 		-- Syntax aware text objects.
 		-- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		keys = function()
+			local ts_move = require("nvim-treesitter-textobjects.move")
 
-		branch = "master",
+			local function go_to(direction, query)
+				return function()
+					ts_move["goto_" .. direction .. "_start"](query, "textobjects")
+				end
+			end
+
+			local mappings = {
+				{ "]f", go_to("next", "@function.outer"), "Next function" },
+				{ "[f", go_to("previous", "@function.outer"), "Previous function" },
+				{ "]a", go_to("next", "@parameter.inner"), "Next parameter" },
+				{ "[a", go_to("previous", "@parameter.inner"), "Previous parameter" },
+			}
+
+			return vim.fn.get_lazy_keys_conf(mappings, "AST Goto")
+		end,
+		opts = {
+			move = {
+				set_jumps = true,
+			},
+		},
+
+		branch = "main",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
@@ -126,6 +115,7 @@ return {
 		opts = {
 			separator = "─",
 		},
+
 		event = "BufReadPost",
 	},
 }

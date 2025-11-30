@@ -1,6 +1,5 @@
 vim.loader.enable()
 
--- Colorscheme
 vim.cmd.colorscheme("nordstone")
 
 -- Leader key

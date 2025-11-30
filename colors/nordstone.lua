@@ -400,7 +400,7 @@ loadColorSet({
 
 -- visual-whitespace.nvim
 loadColorSet({
-	VisualNonText = { fg = c.nord3_500, bg = c.nord1 },
+	VisualNonText = { fg = c.nord3_700, bg = c.nord1 },
 })
 
 -- yanky
@@ -411,121 +411,86 @@ loadColorSet({
 
 -- SYNTAX
 loadColorSet({
-	["String"] = { fg = c.nord8 },
-	["@Special"] = { fg = c.nord13 },
+	bold = { style = "bold" }, -- (preferred) bold text
+	Boolean = { fg = c.nord9 }, -- a boolean constant: TRUE, false
+	Character = { fg = c.nord14 }, -- a character constant: 'c', '\n'
+	Comment = { fg = c.nord3_500 }, -- any comment
+	Conditional = { fg = c.nord9 }, -- if, then, else, endif, switch, etc.
+	Constant = { fg = c.nord13 }, -- (preferred) any constant
+	Debug = { fg = c.nord4 }, -- debugging statements
+	Define = { fg = c.nord9 }, -- preprocessor #define
+	Delimiter = { fg = c.nord6 }, -- character that needs attention
+	Error = { fg = c.nord11 }, -- (preferred) any erroneous construct
+	Exception = { fg = c.nord9 }, -- try, catch, throw
+	Float = { fg = c.nord15 }, -- a floating point constant: 2.3e10
+	Function = { fg = c.nord8 }, -- function name (also: methods for classes)
+	Identifier = { fg = c.nord9 }, -- (preferred) any variable name
+	Include = { fg = c.nord9 }, -- preprocessor #include
+	Italic = { style = "italic" }, -- (preferred) italic text
+	Keyword = { fg = c.nord9 }, -- any other keyword
+	Label = { fg = c.nord9 }, -- case, default, etc.
+	Macro = { link = "Define" }, -- same as Define
+	Number = { fg = c.nord15 }, -- a number constant: 234, 0xff
+	Operator = { fg = c.nord9 }, -- "sizeof", "+", "*", etc.
+	PreCondit = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
+	PreProc = { fg = c.nord9 }, -- (preferred) generic Preprocessor
+	Repeat = { fg = c.nord9 }, -- for, do, while, etc.
+	Special = { fg = c.nord4 }, -- (preferred) any special symbol
+	SpecialChar = { fg = c.nord13 }, -- special character in a constant
+	SpecialComment = { fg = c.nord8 }, -- special things inside a comment
+	Statement = { fg = c.nord9 }, -- (preferred) any statement
+	StorageClass = { fg = c.nord9 }, -- static, register, volatile, etc.
+	String = { fg = c.nord14 }, -- a string constant: "this is a string"
+	Structure = { fg = c.nord9 }, -- struct, union, enum, etc.
+	Tag = { fg = c.nord4 }, -- you can use CTRL-] on this
+	Todo = { fg = c.nord13, bg = "NONE" }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+	Type = { fg = c.nord8 }, -- (preferred) int, long, char, etc.
+	Typedef = { fg = c.nord9 }, -- A typedef
+	Underlined = { underline = true }, -- (preferred) text that stands out, HTML links
 
-	["@attribute"] = { fg = c.nord7 },
-	["@boolean"] = { fg = c.nord9 },
-	["@character"] = { fg = c.nord14 },
-	["@comment"] = { fg = c.nord3_500 },
-	["@conditional"] = { fg = c.nord9 },
-	["@constant"] = { fg = c.nord13 },
-	["@constant.builtin"] = { fg = c.nord7 },
-	["@constant.macro"] = { fg = c.nord7 },
-	["@constructor"] = { fg = c.nord7 },
-	["@diff.delta"] = { link = "diffChanged" },
-	["@diff.minus"] = { link = "diffRemoved" },
-	["@diff.plus"] = { link = "diffAdded" },
-	["@error"] = { fg = c.nord11 },
-	["@exception"] = { fg = c.nord15 },
-	["@field"] = { fg = c.nord4 },
-	["@float"] = { fg = c.nord15 },
-	["@function"] = { fg = c.nord8 },
-	["@function.builtin"] = { fg = c.nord7 },
-	["@function.macro"] = { fg = c.nord7 },
-	["@include"] = { fg = c.nord9 },
-	["@keyword"] = { fg = c.nord9 },
-	["@keyword.function"] = { fg = c.nord9 },
-	["@keyword.operator"] = { fg = c.nord9 },
-	["@keyword.return"] = { fg = c.nord9 },
-	["@label"] = { fg = c.nord15 },
-	["@markup"] = { fg = c.nord10 },
-	["@markup.heading.html"] = { fg = c.nord4 },
-	["@method"] = { fg = c.nord8 },
-	["@namespace"] = { fg = c.nord4 },
-	["@none"] = { fg = c.nord4 },
-	["@none.html"] = { fg = c.nord4 },
-	["@none.tsx"] = { link = "@none.html" },
-	["@number"] = { fg = c.nord15 },
-	["@operator"] = { fg = c.nord9 },
-	["@parameter"] = { fg = c.nord10 },
-	["@property"] = { fg = c.nord4 },
-	["@punctuation.bracket"] = { fg = c.nord8 },
-	["@punctuation.delimiter"] = { fg = c.nord8 },
-	["@punctuation.special"] = { fg = c.nord8 },
-	["@repeat"] = { fg = c.nord9 },
-	["@string"] = { fg = c.nord14 },
-	["@string.escape"] = { fg = c.nord15 },
-	["@string.regex"] = { fg = c.nord7 },
-	["@symbol"] = { fg = c.nord15 },
-	["@tag"] = { fg = c.nord9 },
-	["@tag.attribute"] = { fg = c.nord7 },
-	["@tag.builtin.tsx"] = { link = "@type.builtin" },
-	["@tag.delimiter"] = { fg = c.nord9 },
-	["@text"] = { fg = c.nord4 },
-	["@text.emphasis"] = { fg = c.nord10 },
-	["@text.literal"] = { fg = c.nord4 },
-	["@text.math"] = { fg = c.nord7 },
-	["@text.reference"] = { fg = c.nord15 },
-	["@text.strike"] = { fg = c.nord4, style = "strikethrough" },
-	["@text.strong"] = { fg = c.nord10, bg = "NONE" },
-	["@text.title"] = { fg = c.nord10, bg = "NONE" },
-	["@text.underline"] = { fg = c.nord4, bg = "NONE", style = "underline" },
-	["@text.uri"] = { fg = c.nord14, style = "underline" },
-	["@type"] = { fg = c.nord4 },
-	["@type.builtin"] = { fg = c.nord7 },
-	["@variable"] = { fg = c.nord4 },
+	-- Angular
+	["@tag.attribute.angular"] = { link = "htmlArg" },
+	["@tag.delimiter.angular"] = { link = "htmlTag" },
+	["@tag.angular"] = { link = "htmlTag" },
 
-	["@lsp.type.class.typescript"] = { fg = c.nord7 },
-	["@lsp.type.interface.typescript"] = { fg = c.nord7 },
-
-	["@attribute.typescript"] = { fg = c.nord11 },
-	["@variable.builtin.typescript"] = { fg = c.nord9 },
-
-	-- angular
-	["@function.angular"] = { fg = c.nord12 },
-	["@keyword.angular"] = { fg = c.nord7 },
-	["@variable.angular"] = { fg = c.nord12 },
-	["@none.angular"] = { fg = c.nord4 },
-
-	-- css
-	["@keyword.import.css"] = { fg = c.nord7 },
+	-- CSS
+	["@keyword.directive.css"] = { fg = c.nord12 },
+	["@property.css"] = { fg = c.nord4 },
 	["@string.css"] = { fg = c.nord9 },
-	["@type.css"] = { fg = c.nord7 },
+	["@variable.css"] = { fg = c.nord7 },
 
-	-- markdown
+	-- HTML
+	htmlArg = { fg = c.nord7 }, -- tag attributes
+	htmlTag = { fg = c.nord9 }, -- tag names
+	htmlTagN = { fg = c.nord8 }, -- custom tag names
+
+	-- Lua
+	["@constructor.lua"] = { fg = c.nord8 },
+	["@lsp.type.property.lua"] = { fg = c.nord4 },
+	["@property.lua"] = { fg = c.nord4 },
+
+	-- Markdown
 	["@markup.heading.1.markdown"] = { fg = c.nord9 },
 	["@markup.heading.2.markdown"] = { fg = c.nord9 },
 	["@markup.heading.3.markdown"] = { fg = c.nord9 },
 	["@markup.heading.4.markdown"] = { fg = c.nord9 },
 	["@markup.heading.5.markdown"] = { fg = c.nord9 },
 	["@markup.heading.6.markdown"] = { fg = c.nord9 },
-	["@punctuation.special.markdown"] = { fg = c.nord3 },
-	["@markup.raw.block.markdown"] = { fg = c.nord3_900 },
-	["@markup.raw.markdown_inline"] = { fg = c.nord8 },
-	["markdownLinkText"] = { link = "@markup.link.label.markdown_inline" },
-	["markdownLinkDelimiter"] = { link = "@markup.link.markdown_inline" },
-	["markdownLinkUrl"] = { link = "@markup.link.url.markdown_inline" },
-
-	-- markdown_inline
 	["@markup.link.label.markdown_inline"] = { fg = c.nord8 },
-	["@markup.link.url.markdown_inline"] = { fg = c.nord3_700 },
-	["@markup.link.markdown_inline"] = { fg = c.nord3_700 },
-	["@conceal.markdown_inline"] = { fg = c.nord3 },
+	["@markup.link.markdown"] = { fg = c.nord4 },
+	["@markup.raw.block.markdown"] = { fg = c.nord7 },
+	["@markup.raw.markdown_inline"] = { fg = c.nord7 },
+	["@punctuation.special.markdown"] = { fg = c.nord3 },
 
-	-- diff
-	["@attribute.diff"] = { fg = c.nord13 },
-	["@string.special.path.diff"] = { fg = c.nord3_900 },
-	["@constant.diff"] = { fg = c.nord3_500 },
-
-	-- SCSS
-	["@keyword.import.scss"] = { link = "@keyword.import.css" },
+	-- Sass
+	["@keyword.directive.scss"] = { link = "@keyword.directive.css" },
+	["@property.scss"] = { link = "@property.css" },
+	["@variable.scss"] = { link = "@variable.css" },
 	["@string.scss"] = { link = "@string.css" },
-	["@type.scss"] = { link = "@type.css" },
 
-	-- JSON
-	["@property.json"] = { link = "@tag" },
-	["@punctuation.bracket.json"] = { fg = c.nord3_700 },
-	["@boolean.json"] = { fg = c.nord4 },
-	["@string.json"] = { fg = c.nord14 },
+	-- TSX
+	["@tag.attribute.tsx"] = { link = "htmlArg" },
+	["@tag.builtin.tsx"] = { link = "htmlTag" },
+	["@tag.delimiter.tsx"] = { link = "htmlTag" },
+	["@tag.tsx"] = { link = "htmlTagN" },
 })
