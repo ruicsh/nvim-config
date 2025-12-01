@@ -1,3 +1,7 @@
+if vim.fn.is_windows() then
+	return {}
+end
+
 -- https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md
 local LANGUAGES = {
 	"angular",
