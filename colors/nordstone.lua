@@ -102,8 +102,6 @@ loadColorSet({
 	FloatTitle = { fg = c.nord4, bg = "NONE" },
 	FoldColumn = { fg = c.nord3_500 },
 	Folded = { fg = c.nord9 },
-	Function = { fg = c.nord8 },
-	Identifier = { fg = c.nord8 },
 	IncSearch = { link = "CurSearch" },
 	InsertMode = { fg = c.nord14, bg = "NONE", style = "reverse" },
 	LineNr = { fg = c.neutral_500 },
@@ -163,6 +161,121 @@ loadColorSet({
 	diffOldFile = { fg = c.nord9 },
 	diffRemoved = { fg = c.nord11, bg = "NONE" },
 	diffSubname = { fg = c.nord3_900, style = "bold" },
+})
+
+-- SYNTAX
+loadColorSet({
+	Boolean = { fg = c.nord9 }, -- a boolean constant: TRUE, false
+	Character = { fg = c.nord14 }, -- a character constant: 'c', '\n'
+	Comment = { fg = c.nord3_500 }, -- any comment
+	Conditional = { fg = c.nord9 }, -- if, then, else, endif, switch, etc.
+	Constant = { fg = c.nord13 }, -- (preferred) any constant
+	Debug = { fg = c.nord4 }, -- debugging statements
+	Define = { fg = c.nord9 }, -- preprocessor #define
+	Delimiter = { fg = c.nord6 }, -- character that needs attention
+	Error = { fg = c.nord11 }, -- (preferred) any erroneous construct
+	Exception = { fg = c.nord9 }, -- try, catch, throw
+	Float = { fg = c.nord15 }, -- a floating point constant: 2.3e10
+	Function = { fg = c.nord8 }, -- function name (also: methods for classes)
+	Identifier = { fg = c.nord9 }, -- (preferred) any variable name
+	Include = { fg = c.nord9 }, -- preprocessor #include
+	Keyword = { fg = c.nord9 }, -- any other keyword
+	Label = { fg = c.nord9 }, -- case, default, etc.
+	Macro = { link = "Define" }, -- same as Define
+	Number = { fg = c.nord15 }, -- a number constant: 234, 0xff
+	Operator = { fg = c.nord9 }, -- "sizeof", "+", "*", etc.
+	PreCondit = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
+	PreProc = { fg = c.nord9 }, -- (preferred) generic Preprocessor
+	Repeat = { fg = c.nord9 }, -- for, do, while, etc.
+	Special = { fg = c.nord4 }, -- (preferred) any special symbol
+	SpecialChar = { fg = c.nord13 }, -- special character in a constant
+	SpecialComment = { fg = c.nord8 }, -- special things inside a comment
+	Statement = { fg = c.nord9 }, -- (preferred) any statement
+	StorageClass = { fg = c.nord9 }, -- static, register, volatile, etc.
+	String = { fg = c.nord14 }, -- a string constant: "this is a string"
+	Structure = { fg = c.nord9 }, -- struct, union, enum, etc.
+	Tag = { fg = c.nord4 }, -- you can use CTRL-] on this
+	Title = { fg = c.nord9 },
+	Todo = { fg = c.nord13, bg = "NONE" }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+	Type = { fg = c.nord8 }, -- (preferred) int, long, char, etc.
+	Typedef = { fg = c.nord9 }, -- A typedef
+
+	-- attributes
+	Bold = { style = "bold" }, -- (preferred) bold text
+	Italic = { style = "italic" }, -- (preferred) italic text
+	Underlined = { style = "underline" }, -- (preferred) text that stands out, HTML links
+
+	-- Angular
+	["@tag.attribute.angular"] = { link = "htmlArg" },
+	["@tag.delimiter.angular"] = { link = "htmlTag" },
+	["@tag.angular"] = { link = "htmlTag" },
+
+	-- CSS
+	["@keyword.directive.css"] = { fg = c.nord12 },
+	["@property.css"] = { fg = c.nord4 },
+	["@string.css"] = { fg = c.nord9 },
+	["@variable.css"] = { fg = c.nord7 },
+	cssAttr = { link = "@string.css" },
+	cssProp = { link = "@property.css" },
+	cssUnitDecorators = { link = "@string.css" },
+
+	-- HTML
+	["@tag.delimiter"] = { link = "Statement" },
+	["@tag.html"] = { link = "Statement" },
+	htmlArg = { fg = c.nord7 },
+	htmlTag = { fg = c.nord9 },
+	htmlTagN = { fg = c.nord8 },
+
+	-- JSON
+	["@constant.builtin.json"] = { link = "Boolean" },
+	jsonNull = { link = "Boolean" },
+
+	-- Lua
+	["@constructor.lua"] = { fg = c.nord8 },
+	["@property.lua"] = { fg = c.nord4 },
+	["@lsp.type.property.lua"] = { link = "@property.lua" },
+
+	-- Markdown
+	["@markup.heading.1.markdown"] = { fg = c.nord9 },
+	["@markup.heading.2.markdown"] = { fg = c.nord9 },
+	["@markup.heading.3.markdown"] = { fg = c.nord9 },
+	["@markup.heading.4.markdown"] = { fg = c.nord9 },
+	["@markup.heading.5.markdown"] = { fg = c.nord9 },
+	["@markup.heading.6.markdown"] = { fg = c.nord9 },
+	["@markup.link.label.markdown_inline"] = { link = "String" },
+	["@markup.link.markdown"] = { fg = c.nord4 },
+	["@markup.raw.block.markdown"] = { fg = c.nord7 },
+	["@markup.raw.markdown_inline"] = { fg = c.nord7 },
+	["@punctuation.special.markdown"] = { fg = c.nord3 },
+	markdownCode = { link = "@markup.raw.block.markdown" },
+	markdownCodeBlock = { link = "markdownCode" },
+	markdownDelimiter = { link = "Title" },
+	markdownHeadingDelimiter = { link = "Title" },
+	markdownLinkText = { link = "@markup.link.label.markdown_inline" },
+	markdownUrl = { link = "@markup.link.markdown" },
+
+	-- Sass
+	["@keyword.directive.scss"] = { link = "@keyword.directive.css" },
+	["@property.scss"] = { link = "@property.css" },
+	["@variable.scss"] = { link = "@variable.css" },
+	["@string.scss"] = { link = "@string.css" },
+	sassMedia = { link = "@keyword.directive.css" },
+
+	-- TSX
+	["@tag.attribute.tsx"] = { link = "htmlArg" },
+	["@tag.builtin.tsx"] = { link = "htmlTag" },
+	["@tag.delimiter.tsx"] = { link = "htmlTag" },
+	["@tag.tsx"] = { link = "htmlTagN" },
+	["@type.builtin.tsx"] = { link = "Type" },
+
+	-- TypeScript
+	typescriptEnum = { link = "Type" },
+	typescriptExport = { link = "Keyword" },
+	typescriptIdentifierName = { link = "Constant" },
+	typescriptImport = { link = "Keyword" },
+	typescriptImportType = { link = "Keyword" },
+	typescriptMember = { link = "Identifier" },
+	typescriptTypeReference = { link = "Type" },
 })
 
 -- TERMINAL
@@ -407,90 +520,4 @@ loadColorSet({
 loadColorSet({
 	YankyPut = { link = "IncSearch" },
 	YankyYanked = { link = "IncSearch" },
-})
-
--- SYNTAX
-loadColorSet({
-	bold = { style = "bold" }, -- (preferred) bold text
-	Boolean = { fg = c.nord9 }, -- a boolean constant: TRUE, false
-	Character = { fg = c.nord14 }, -- a character constant: 'c', '\n'
-	Comment = { fg = c.nord3_500 }, -- any comment
-	Conditional = { fg = c.nord9 }, -- if, then, else, endif, switch, etc.
-	Constant = { fg = c.nord13 }, -- (preferred) any constant
-	Debug = { fg = c.nord4 }, -- debugging statements
-	Define = { fg = c.nord9 }, -- preprocessor #define
-	Delimiter = { fg = c.nord6 }, -- character that needs attention
-	Error = { fg = c.nord11 }, -- (preferred) any erroneous construct
-	Exception = { fg = c.nord9 }, -- try, catch, throw
-	Float = { fg = c.nord15 }, -- a floating point constant: 2.3e10
-	Function = { fg = c.nord8 }, -- function name (also: methods for classes)
-	Identifier = { fg = c.nord9 }, -- (preferred) any variable name
-	Include = { fg = c.nord9 }, -- preprocessor #include
-	Italic = { style = "italic" }, -- (preferred) italic text
-	Keyword = { fg = c.nord9 }, -- any other keyword
-	Label = { fg = c.nord9 }, -- case, default, etc.
-	Macro = { link = "Define" }, -- same as Define
-	Number = { fg = c.nord15 }, -- a number constant: 234, 0xff
-	Operator = { fg = c.nord9 }, -- "sizeof", "+", "*", etc.
-	PreCondit = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
-	PreProc = { fg = c.nord9 }, -- (preferred) generic Preprocessor
-	Repeat = { fg = c.nord9 }, -- for, do, while, etc.
-	Special = { fg = c.nord4 }, -- (preferred) any special symbol
-	SpecialChar = { fg = c.nord13 }, -- special character in a constant
-	SpecialComment = { fg = c.nord8 }, -- special things inside a comment
-	Statement = { fg = c.nord9 }, -- (preferred) any statement
-	StorageClass = { fg = c.nord9 }, -- static, register, volatile, etc.
-	String = { fg = c.nord14 }, -- a string constant: "this is a string"
-	Structure = { fg = c.nord9 }, -- struct, union, enum, etc.
-	Tag = { fg = c.nord4 }, -- you can use CTRL-] on this
-	Todo = { fg = c.nord13, bg = "NONE" }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-	Type = { fg = c.nord8 }, -- (preferred) int, long, char, etc.
-	Typedef = { fg = c.nord9 }, -- A typedef
-	Underlined = { underline = true }, -- (preferred) text that stands out, HTML links
-
-	-- Angular
-	["@tag.attribute.angular"] = { link = "htmlArg" },
-	["@tag.delimiter.angular"] = { link = "htmlTag" },
-	["@tag.angular"] = { link = "htmlTag" },
-
-	-- CSS
-	["@keyword.directive.css"] = { fg = c.nord12 },
-	["@property.css"] = { fg = c.nord4 },
-	["@string.css"] = { fg = c.nord9 },
-	["@variable.css"] = { fg = c.nord7 },
-
-	-- HTML
-	htmlArg = { fg = c.nord7 }, -- tag attributes
-	htmlTag = { fg = c.nord9 }, -- tag names
-	htmlTagN = { fg = c.nord8 }, -- custom tag names
-
-	-- Lua
-	["@constructor.lua"] = { fg = c.nord8 },
-	["@lsp.type.property.lua"] = { fg = c.nord4 },
-	["@property.lua"] = { fg = c.nord4 },
-
-	-- Markdown
-	["@markup.heading.1.markdown"] = { fg = c.nord9 },
-	["@markup.heading.2.markdown"] = { fg = c.nord9 },
-	["@markup.heading.3.markdown"] = { fg = c.nord9 },
-	["@markup.heading.4.markdown"] = { fg = c.nord9 },
-	["@markup.heading.5.markdown"] = { fg = c.nord9 },
-	["@markup.heading.6.markdown"] = { fg = c.nord9 },
-	["@markup.link.label.markdown_inline"] = { fg = c.nord8 },
-	["@markup.link.markdown"] = { fg = c.nord4 },
-	["@markup.raw.block.markdown"] = { fg = c.nord7 },
-	["@markup.raw.markdown_inline"] = { fg = c.nord7 },
-	["@punctuation.special.markdown"] = { fg = c.nord3 },
-
-	-- Sass
-	["@keyword.directive.scss"] = { link = "@keyword.directive.css" },
-	["@property.scss"] = { link = "@property.css" },
-	["@variable.scss"] = { link = "@variable.css" },
-	["@string.scss"] = { link = "@string.css" },
-
-	-- TSX
-	["@tag.attribute.tsx"] = { link = "htmlArg" },
-	["@tag.builtin.tsx"] = { link = "htmlTag" },
-	["@tag.delimiter.tsx"] = { link = "htmlTag" },
-	["@tag.tsx"] = { link = "htmlTagN" },
 })
