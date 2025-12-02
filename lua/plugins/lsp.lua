@@ -73,7 +73,7 @@ return {
 
 			local disabled_packages = vim.fn.env_get_list("MASON_DISABLED_PACKAGES")
 			local disabled_servers = vim.fn.env_get_list("LSP_DISABLED_SERVERS")
-			local disabled = vim.tbl_deep_extend("force", {}, disabled_packages, disabled_servers)
+			local disabled = vim.list_extend(vim.list_slice(disabled_packages), disabled_servers)
 
 			-- Filter out disabled packages and servers
 			packages = vim.tbl_filter(function(pkg)
