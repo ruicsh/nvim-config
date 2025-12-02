@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>52 plugins</sub>
+<sub>53 plugins</sub>
 
 ### Code
 
@@ -55,6 +55,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [rsi](https://github.com/tpope/vim-rsi) - Readline keybinds for insert mdoe
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
+- [text-case](https://github.com/johmsalas/text-case.nvim) - Convert text cases
 - [visual-whitespace](https://github.com/mcauley-penney/visual-whitespace.nvim) - Render whitespace
 - [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
 
@@ -257,6 +258,16 @@ Random features added.
 - `q` quotes (", ', `)
 - `s` single word in different cases
 - `t` HTML tags
+
+### Change text cases
+
+- `ga-` to kebab-case
+- `ga_` to snake_case
+- `gaC` to CONSTANT_CASE
+- `gaU` to UPPER CASE
+- `gac` to camelCase
+- `gap` to PascalCase
+- `gau` to lower case
 
 ### Yank current filepath
 
