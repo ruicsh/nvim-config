@@ -30,18 +30,7 @@ return {
 		local augend = require("dial.augend")
 		require("dial.config").augends:register_group({
 			default = {
-				augend.case.new({
-					cyclic = true,
-					types = {
-						"PascalCase",
-						"camelCase",
-						"snake_case",
-						"kebab-case",
-						"SCREAMING_SNAKE_CASE",
-					},
-				}),
 				augend.constant.alias.bool,
-				augend.constant.new({ elements = { "let", "const" } }),
 				augend.date.alias["%Y-%m-%d"],
 				augend.integer.alias.decimal,
 				augend.integer.alias.hex,
