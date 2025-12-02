@@ -165,10 +165,6 @@ return {
 			},
 			sources = {
 				buffers = {
-					layout = {
-						preview = false,
-						preset = "vertical",
-					},
 					sort_lastused = true,
 				},
 				git_log = {
