@@ -1,8 +1,12 @@
+vim.opt_local.expandtab = true
 vim.opt_local.linebreak = true -- Break lines at word boundaries
 vim.opt_local.modifiable = true
 vim.opt_local.number = false
 vim.opt_local.relativenumber = false
+vim.opt_local.shiftwidth = 2
 vim.opt_local.signcolumn = "yes:1"
+vim.opt_local.softtabstop = 2
+vim.opt_local.tabstop = 2
 vim.opt_local.textwidth = 80 -- Hard wrap at 80 characters
 vim.opt_local.wrap = true -- Enable line wrapping
 

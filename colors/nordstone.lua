@@ -91,10 +91,6 @@ loadColorSet({
 	CursorIM = { fg = c.nord5, bg = "NONE", style = "reverse" },
 	CursorLine = { bg = c.neutral_800 },
 	CursorLineNr = { fg = c.nord4 },
-	DiffAdd = { bg = c.nord14_800 },
-	DiffChange = { bg = c.nord0 },
-	DiffDelete = { bg = c.nord11_900 },
-	DiffText = { bg = c.nord3 },
 	Directory = { fg = c.nord9 },
 	EndOfBuffer = { fg = c.nord1 },
 	ErrorMsg = { fg = "NONE" },
@@ -152,15 +148,12 @@ loadColorSet({
 	healthSuccess = { fg = c.nord14 },
 	healthWarning = { fg = c.nord15 },
 	-- diff
-	diffAdded = { fg = c.nord14, bg = "NONE" },
-	diffChanged = { fg = c.nord13, bg = "NONE" },
-	diffFile = { fg = c.nord7 },
-	diffIndexLine = { fg = c.nord9 },
-	diffLine = { fg = c.nord9 },
-	diffNewFile = { fg = c.nord9 },
-	diffOldFile = { fg = c.nord9 },
-	diffRemoved = { fg = c.nord11, bg = "NONE" },
-	diffSubname = { fg = c.nord3_900, style = "bold" },
+	Added = { fg = c.nord14, bg = "NONE" },
+	DiffAdd = { bg = c.nord14_800 },
+	DiffChange = { bg = c.nord0 },
+	DiffDelete = { bg = c.nord11_900 },
+	DiffText = { bg = c.nord3 },
+	Removed = { fg = c.nord11, bg = "NONE" },
 })
 
 -- SYNTAX
@@ -218,6 +211,9 @@ loadColorSet({
 	cssAttr = { link = "@string.css" },
 	cssProp = { link = "@property.css" },
 	cssUnitDecorators = { link = "@string.css" },
+
+	-- gitcommit
+	["@markup.heading.gitcommit"] = { link = "Normal" },
 
 	-- HTML
 	["@tag.delimiter"] = { link = "Statement" },
@@ -436,6 +432,16 @@ loadColorSet({
 	fugitiveUnmergedHeading = { fg = c.nord13 },
 	fugitiveUnstagedHeading = { fg = c.nord13 },
 	fugitiveUntrackedHeading = { fg = c.nord11 },
+	-- diff
+	diffAdded = { link = "Added" },
+	diffChanged = { fg = c.nord13, bg = "NONE" },
+	diffFile = { fg = c.nord7 },
+	diffIndexLine = { fg = c.nord9 },
+	diffLine = { fg = c.nord9 },
+	diffNewFile = { fg = c.nord9 },
+	diffOldFile = { fg = c.nord9 },
+	diffRemoved = { link = "Removed" },
+	diffSubname = { fg = c.nord3_900, style = "bold" },
 	-- git show
 	gitDiff = { fg = c.nord4 },
 	-- git log
