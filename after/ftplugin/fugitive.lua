@@ -29,8 +29,8 @@ end, { desc = "Close" })
 
 -- Commit in new vertical split
 k("n", "cc", function()
+	vim.cmd.only()
 	vim.cmd("vertical Git commit")
-	vim.cmd.wincmd("L")
 end, { desc = "Commit in new tab" })
 
 -- Always open file under cursor in vertical split
