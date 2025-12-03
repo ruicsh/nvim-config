@@ -522,6 +522,11 @@ loadColorSet({
 	VisualNonText = { fg = c.nord3_700, bg = c.nord1 },
 })
 
+-- winshift.nvim
+loadColorSet({
+	WinShiftFocused = { bg = c.neutral_800 },
+})
+
 -- yanky
 loadColorSet({
 	YankyPut = { link = "IncSearch" },
