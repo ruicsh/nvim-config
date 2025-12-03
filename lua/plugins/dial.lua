@@ -30,8 +30,31 @@ return {
 		local augend = require("dial.augend")
 		require("dial.config").augends:register_group({
 			default = {
-				augend.constant.alias.bool,
+				augend.constant.alias.alpha,
+				augend.constant.alias.Alpha,
+				augend.constant.new({
+					elements = { "false", "true" },
+					cyclic = false,
+					preserve_case = true,
+				}),
+				augend.constant.new({
+					elements = { "no", "yes" },
+					cyclic = false,
+					preserve_case = true,
+				}),
+				augend.constant.new({
+					elements = { "off", "on" },
+					cyclic = false,
+					preserve_case = true,
+				}),
+				augend.date.alias["%Y/%m/%d"],
+				augend.date.alias["%m/%d/%Y"],
+				augend.date.alias["%d/%m/%Y"],
+				augend.date.alias["%m/%d/%y"],
+				augend.date.alias["%m/%d"],
 				augend.date.alias["%Y-%m-%d"],
+				augend.date.alias["%H:%M:%S"],
+				augend.date.alias["%H:%M"],
 				augend.integer.alias.decimal,
 				augend.integer.alias.hex,
 				augend.semver.alias.semver,
