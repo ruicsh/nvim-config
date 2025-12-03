@@ -3,13 +3,32 @@
 
 return {
 	"nvim-mini/mini.bracketed",
+	keys = function()
+		local mb = require("mini.bracketed")
+
+		local function goto_diag_error(direction)
+			return function()
+				local opts = { severity = vim.diagnostic.severity.ERROR }
+				mb.diagnostic(direction, opts)
+			end
+		end
+
+		local mappings = {
+			{ "[E", goto_diag_error("first"), "LSP: First diagnostic error" },
+			{ "[e", goto_diag_error("backward"), "LSP: Previous diagnostic error" },
+			{ "]e", goto_diag_error("forward"), "LSP: Next diagnostic error" },
+			{ "]E", goto_diag_error("last"), "LSP: Last diagnostic error" },
+		}
+
+		return vim.fn.get_lazy_keys_conf(mappings, "")
+	end,
 	opts = {
 		buffer = { suffix = "b", options = {} },
 		comment = { suffix = "", options = {} },
 		conflict = { suffix = "x", options = {} },
 		diagnostic = { suffix = "d", options = {} },
 		file = { suffix = "", options = {} },
-		indent = { suffix = "i", options = {} },
+		indent = { suffix = "", options = {} },
 		jump = { suffix = ";", options = {} },
 		location = { suffix = "l", options = {} },
 		oldfile = { suffix = "o", options = {} },
