@@ -149,7 +149,7 @@ return {
 					title_pos = "center",
 					width = 0.7,
 					{ win = "input", height = 1, border = "bottom" },
-					{ win = "list", border = "none", height = 0.2 },
+					{ win = "list", border = "none", height = 0.3 },
 					{ win = "preview", title = "{preview}", border = "top" },
 				},
 			},
