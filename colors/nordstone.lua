@@ -525,6 +525,7 @@ loadColorSet({
 -- winshift.nvim
 loadColorSet({
 	WinShiftFocused = { bg = c.neutral_800 },
+	WinShiftWindowPicker = { fg = c.nord0, bg = c.nord9 },
 })
 
 -- yanky

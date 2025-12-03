@@ -2,7 +2,7 @@
 -- https://github.com/sindrets/winshift.nvim
 
 return {
-	"sindrets/winshift.nvim",
+	"ruicsh/winshift.nvim",
 	keys = function()
 		local mappings = {
 			{ "<c-w>m", "<cmd>WinShift<cr>", "Move" },
@@ -15,6 +15,7 @@ return {
 	end,
 	opts = {
 		focused_hl_group = "WinShiftFocused",
+		window_picker_hl_group = "WinShiftWindowPicker",
 		disable_defaults = true,
 		win_move_mode = {
 			["h"] = "left",
@@ -26,6 +27,10 @@ return {
 			["K"] = "far_up",
 			["L"] = "far_right",
 		},
+		after_swap = function()
+			-- Equalize window sizes after a swap
+			vim.cmd("wincmd =")
+		end,
 	},
 
 	cmd = "WinShift",
