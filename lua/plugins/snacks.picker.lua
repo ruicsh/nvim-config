@@ -174,6 +174,18 @@ return {
 					end,
 					title = "Git: Search Log",
 				},
+				git_status = {
+					win = {
+						input = {
+							keys = {
+								["<tab>"] = false,
+								["<c-r>"] = false,
+								["<c-s>"] = { "git_stage", mode = { "n", "i" } },
+								["<c-x>"] = { "git_restore", mode = { "n", "i" }, nowait = true },
+							},
+						},
+					},
+				},
 				grep = {
 					exclude = { "package-lock.json", "lazy-lock.json" },
 					hidden = true,
@@ -191,6 +203,20 @@ return {
 					layout = {
 						preview = false,
 						preset = "vertical",
+					},
+				},
+				select = {
+					layout = {
+						layout = {
+							border = "rounded",
+							box = "vertical",
+							height = 0.4,
+							preview = false,
+							title = "{title}",
+							title_pos = "center",
+							{ win = "input", height = 1, border = "bottom" },
+							{ win = "list", border = "none", height = 0.2 },
+						},
 					},
 				},
 				yanky = {
