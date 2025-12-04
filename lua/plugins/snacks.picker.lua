@@ -107,6 +107,7 @@ return {
 
 			-- git
 			{ "<leader>h/", snacks.picker.git_log, "Git: Search Log" },
+			{ "<leader>hb", snacks.picker.git_branches, "Git: Branches" },
 			{ "<leader>hh", snacks.picker.git_status, "Git: Status" },
 
 			-- neovim

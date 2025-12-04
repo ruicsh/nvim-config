@@ -402,19 +402,20 @@ Random features added.
 
 - `[c` previous change
 - `]c` next change
+- `<leader>h$` blame line
 - `<leader>h%` current file history
 - `<leader>h~` diff {git-rev}
 - `<leader>hP` push --force-with-lease
-- `<leader>hb` blame line
+- `<leader>hR` reset buffer
+- `<leader>hS` stage buffer
+- `<leader>hb` branches
 - `<leader>hd` diff HEAD
 - `<leader>he` log file
 - `<leader>hh` status
 - `<leader>hl` log
 - `<leader>hp` push
 - `<leader>hr` reset hunk
-- `<leader>hR` reset buffer
 - `<leader>hs` stage hunk
-- `<leader>hS` stage buffer
 - `<leader>hu` push --set-upstream origin HEAD
 - `<leader>hx` open file in browser
 

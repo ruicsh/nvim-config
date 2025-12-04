@@ -45,7 +45,7 @@ return {
 			{ "<leader>hl", ":DiffviewFileHistory<cr>", "Log" },
 			{ "<leader>h%", ":DiffviewFileHistory %<cr>", "Log for file" },
 			{ "<leader>hl", ":'<,'>DiffviewFileHistory<cr>", "Log visual selection", { mode = "v" } },
-			{ "<leader>hb", git_blame_line, "Blame line" },
+			{ "<leader>h$", git_blame_line, "Blame line" },
 			{ "<leader>h~", diff_back, "Diffview HEAD~{count}..HEAD" },
 		}
 
