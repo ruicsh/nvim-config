@@ -11,16 +11,18 @@ local function create_floating_panel_window(options)
 	local width = math.floor(vim.o.columns * 0.5)
 	local height = vim.o.lines - vim.o.cmdheight - 1
 
-	local bufnr_wrapper = 0
-	if options.bufnr and not padding_left then
-		bufnr_wrapper = options.bufnr
-	else
-		bufnr_wrapper = vim.api.nvim_create_buf(false, true)
-	end
-
+	-- If there's any padding, we need a window wrapper
 	local has_wrapper_window = padding_left
 
-	local winnr = vim.api.nvim_open_win(bufnr_wrapper, not has_wrapper_window, {
+	-- Create a blank buffer or reuse the provided one
+	local bufnr = 0
+	if options.bufnr and not padding_left then
+		bufnr = options.bufnr
+	else
+		bufnr = vim.api.nvim_create_buf(false, false)
+	end
+
+	local winnr = vim.api.nvim_open_win(bufnr, not has_wrapper_window, {
 		anchor = "NE",
 		border = { "", "", "", "", "", "", "", "│" },
 		col = vim.o.columns,
@@ -32,10 +34,14 @@ local function create_floating_panel_window(options)
 		width = width,
 	})
 
+	-- Identify the window as a side panel, content or wrapper
+	vim.api.nvim_win_set_var(winnr, "side_panel", has_wrapper_window and "wrapper" or "content")
+
 	-- Create another window inside the floating window with padding-left
 	if has_wrapper_window then
-		local bufnr_content = options.bufnr or vim.api.nvim_create_buf(false, true)
-		vim.api.nvim_open_win(bufnr_content, true, {
+		bufnr = options.bufnr or vim.api.nvim_create_buf(false, false)
+
+		winnr = vim.api.nvim_open_win(bufnr, true, {
 			border = { "" },
 			col = padding_left,
 			focusable = true,
@@ -46,13 +52,8 @@ local function create_floating_panel_window(options)
 			width = width - padding_left,
 		})
 
-		vim.keymap.set("n", "q", function()
-			vim.ux.close_side_panels()
-		end, { buffer = bufnr_content, silent = true })
-	else
-		vim.keymap.set("n", "q", function()
-			vim.ux.close_side_panels()
-		end, { buffer = bufnr_wrapper, silent = true })
+		-- Identify the window as a side panel
+		vim.api.nvim_win_set_var(winnr, "side_panel", "content")
 	end
 end
 
@@ -91,11 +92,25 @@ vim.ux.open_side_panel = function(options)
 	end
 end
 
+-- Focus the first side panel found
+vim.ux.focus_side_panel = function()
+	for _, winnr in ipairs(vim.api.nvim_list_wins()) do
+		local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
+		if ok and side_panel == "content" then
+			vim.api.nvim_set_current_win(winnr)
+			return
+		end
+	end
+end
+
 -- Close all floating panels
 vim.ux.close_side_panels = function()
 	for _, winnr in ipairs(vim.api.nvim_list_wins()) do
-		if vim.api.nvim_win_get_config(winnr).relative ~= "" then
-			vim.api.nvim_win_close(winnr, true)
+		local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
+		if ok and (side_panel == "content" or side_panel == "wrapper") then
+			vim.schedule(function()
+				vim.api.nvim_win_close(winnr, true)
+			end)
 		end
 	end
 end

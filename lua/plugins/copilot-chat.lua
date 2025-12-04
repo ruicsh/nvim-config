@@ -985,6 +985,9 @@ return {
 			history_path = CHAT_HISTORY_DIR, -- Default path to stored history
 			log_level = "warn",
 			mappings = {
+				close = {
+					normal = "",
+				},
 				submit_prompt = {
 					normal = "<c-s>",
 					insert = "<c-s>",

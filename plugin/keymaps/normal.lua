@@ -111,9 +111,17 @@ k("<bs>", ":b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
 --
 -- Switch windows
 k("<bar>", "<c-w>w", { desc = "Next window" }) -- `:h CTRL-W_w`
+k("<c-w>;", vim.ux.focus_side_panel, { desc = "Focus side panel" }) -- Focus the first side panel
 
 -- Close window, not if it's the last one
 k("q", function()
+	local winnr = vim.api.nvim_get_current_win()
+	local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
+	if ok and side_panel == "content" then
+		vim.ux.close_side_panels()
+		return
+	end
+
 	-- List all windows, discard non-focusable ones
 	local num_wins = #vim.api.nvim_list_wins()
 	for _, winnr in ipairs(vim.api.nvim_list_wins()) do
@@ -140,6 +148,7 @@ k("q", function()
 end, { expr = true, silent = true, desc = "Close buffer/window" })
 
 k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
+k("<leader>q", vim.ux.close_side_panels, { desc = "Close side panels" }) -- Close all side panels
 
 -- Same as `:h ctrl-w_T` but without closing the current window
 k("<c-w>t", function()
@@ -153,9 +162,6 @@ k("<c-w>>", ":vertical resize +5<cr>", { desc = "Increase window width" })
 k("<c-w><", ":vertical resize -5<cr>", { desc = "Decrease window width" })
 k("<c-w>+", ":resize +5<cr>", { desc = "Increase window height" })
 k("<c-w>-", ":resize -5<cr>", { desc = "Decrease window height" })
-
--- Close all side panels
-k("<leader>qq", vim.ux.close_side_panels, { desc = "Close all side panels" })
 
 -- Toggle quickfix list
 k("<leader>cc", function()
