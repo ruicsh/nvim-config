@@ -1,6 +1,6 @@
 -- Help files.
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/help", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/open-help-panel", { clear = true })
 
 -- Open help on floating side panel (or re-use panel if opened).
 vim.api.nvim_create_autocmd("CmdLineLeave", {
@@ -10,35 +10,31 @@ vim.api.nvim_create_autocmd("CmdLineLeave", {
 		local cmd = vim.fn.getcmdline()
 		if cmd:match("^help%s") or cmd:match("^h%s") or cmd == "h" or cmd == "help" then
 			local buffers = vim.fn.getbufinfo({ bufloaded = 1 })
-			local help_buf_id
+			local help_bufnr = nil
 
+			-- Check if a help buffer is already opened.
 			for _, buf in ipairs(buffers) do
 				local ft = vim.api.nvim_get_option_value("filetype", { buf = buf.bufnr })
 				if ft == "help" then
-					help_buf_id = buf.bufnr
+					help_bufnr = buf.bufnr
 					break
 				end
 			end
 
-			if help_buf_id then
-				local win_ids = vim.fn.win_findbuf(help_buf_id)
+			-- If help buffer is already opened, switch to its window.
+			if help_bufnr then
+				local win_ids = vim.fn.win_findbuf(help_bufnr)
 				if #win_ids > 0 then
 					vim.api.nvim_set_current_win(win_ids[1])
 					return
 				end
 			end
-		end
-	end,
-})
 
--- Always open help panel on the floating panel to the right.
-vim.api.nvim_create_autocmd("FileType", {
-	group = augroup,
-	pattern = "help",
-	callback = function()
-		vim.ux.open_side_panel({
-			mode = "replace",
-			padding_left = 2,
-		})
+			-- Open new help page in the side panel
+			vim.ux.open_side_panel({
+				mode = "replace",
+				padding_left = 2,
+			})
+		end
 	end,
 })

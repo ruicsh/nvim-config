@@ -122,7 +122,6 @@ Custom configuration, keymaps, and features dependent on the file's type.
 |                                                                                               |            |
 | --------------------------------------------------------------------------------------------- | ---------- |
 | [dockerfile](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/dockerfile.lua) | Dockerfile |
-| [help](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/help.lua)             | help       |
 | [oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/oil.lua)               | Oil        |
 | [python](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/python.lua)         | Python     |
 
@@ -135,6 +134,7 @@ New features built around autocmds (events).
 | [auto-close-buffer-if-deleted](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-close-buffer-if-deleted.lua) | Auto close buffer when deleted from disk            |
 | [auto-resize-splits](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-resize-splits.lua)                     | Auto resize splits when window is resized           |
 | [cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline.lua)                                           | Clean up after use, hide hit-enter messages on blur |
+| [open-help-panel](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-help-panel.lua)                           | Open Help in side panel                             |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua)   | Show cursorline only on active window.              |
 
 ### Custom
