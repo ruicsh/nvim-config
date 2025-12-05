@@ -64,7 +64,7 @@ return {
 			},
 		},
 		hint = "floating-big-letter",
-		selection_chars = "asdfjkl",
+		selection_chars = "asdfqwerzxcv",
 		show_prompt = false,
 	},
 
