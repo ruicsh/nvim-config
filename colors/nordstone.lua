@@ -181,7 +181,7 @@ loadColorSet({
 	PreCondit = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
 	PreProc = { fg = c.nord9 }, -- (preferred) generic Preprocessor
 	Repeat = { fg = c.nord9 }, -- for, do, while, etc.
-	Special = { fg = c.nord4 }, -- (preferred) any special symbol
+	Special = { fg = c.nord9 }, -- (preferred) any special symbol
 	SpecialChar = { fg = c.nord13 }, -- special character in a constant
 	SpecialComment = { fg = c.nord8 }, -- special things inside a comment
 	Statement = { fg = c.nord9 }, -- (preferred) any statement
@@ -263,16 +263,21 @@ loadColorSet({
 	["@tag.builtin.tsx"] = { link = "htmlTag" },
 	["@tag.delimiter.tsx"] = { link = "htmlTag" },
 	["@tag.tsx"] = { link = "htmlTagN" },
-	["@type.builtin.tsx"] = { link = "Type" },
+	["@type.builtin.tsx"] = { link = "@type.builtin.typescript" },
 
 	-- TypeScript
+	["@lsp.type.property.typescript"] = { link = "@variable" },
+	["@type.builtin.typescript"] = { link = "Special" },
 	typescriptEnum = { link = "Type" },
 	typescriptExport = { link = "Keyword" },
 	typescriptIdentifierName = { link = "Constant" },
 	typescriptImport = { link = "Keyword" },
 	typescriptImportType = { link = "Keyword" },
-	typescriptMember = { link = "Identifier" },
+	typescriptMember = { link = "@lsp.type.property.typescript" },
 	typescriptTypeReference = { link = "Type" },
+
+	-- TypeScriptReact
+	["@lsp.type.property.typescriptreact"] = { link = "@lsp.type.property.typescript" },
 })
 
 -- TERMINAL
@@ -352,6 +357,7 @@ loadColorSet({
 	DiagnosticUnderlineHint = { link = "LspDiagnosticsUnderlineHint" },
 	DiagnosticUnderlineInfo = { link = "LspDiagnosticsUnderlineInformation" },
 	DiagnosticUnderlineWarn = { link = "LspDiagnosticsUnderlineWarning" },
+	DiagnosticUnnecessary = { fg = c.nord3_700 },
 	DiagnosticVirtualTextError = { link = "LspDiagnosticsVirtualTextError" },
 	DiagnosticVirtualTextHint = { link = "LspDiagnosticsVirtualTextHint" },
 	DiagnosticVirtualTextInfo = { link = "LspDiagnosticsVirtualTextInformation" },
