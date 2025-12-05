@@ -172,9 +172,9 @@ Random features added.
 
 ### Bookmarks
 
-- `,{a,s,d,f,g}` jump to
-- `,{a,s,d,f,g}` save to
-- `<leader>,,` list
+- `\{a,s,d,f,g}` jump to
+- `\\{a,s,d,f,g}` save to
+- `<leader>\\` list
 
 ### Alternate buffer
 
