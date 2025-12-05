@@ -110,7 +110,6 @@ k("<bs>", ":b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
 -- Windows {{{
 --
 -- Switch windows
-k("<bar>", "<c-w>w", { desc = "Next window" }) -- `:h CTRL-W_w`
 k("<c-w>;", vim.ux.focus_side_panel, { desc = "Focus side panel" }) -- Focus the first side panel
 
 -- Close window, not if it's the last one

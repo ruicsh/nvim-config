@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>54 plugins</sub>
+<sub>55 plugins</sub>
 
 ### Code
 
@@ -57,6 +57,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
 - [text-case](https://github.com/johmsalas/text-case.nvim) - Convert text cases
 - [visual-whitespace](https://github.com/mcauley-penney/visual-whitespace.nvim) - Render whitespace
+- [window-picker](https://github.com/s1n7ax/nvim-window-picker) - Window picker
 - [winshift](https://github.com/sindrets/winshift.nvim) - Rearrange windows
 - [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
 
