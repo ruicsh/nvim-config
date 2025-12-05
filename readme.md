@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>55 plugins</sub>
+<sub>56 plugins</sub>
 
 ### Code
 
@@ -41,6 +41,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Editor
 
+- [auto-session](https://github.com/rmagatti/auto-session) - Session management
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix window
 - [dial](https://github.com/monaqa/dial.nvim) - Enhanced increment/decrement
@@ -57,7 +58,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
 - [text-case](https://github.com/johmsalas/text-case.nvim) - Convert text cases
 - [visual-whitespace](https://github.com/mcauley-penney/visual-whitespace.nvim) - Render whitespace
-- [window-picker](https://github.com/s1n7ax/nvim-window-picker) - Window picker
 - [winshift](https://github.com/sindrets/winshift.nvim) - Rearrange windows
 - [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
 
@@ -78,6 +78,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
 - [portal](https://github.com/cbochs/portal.nvim) - Location list preview
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
+- [window-picker](https://github.com/s1n7ax/nvim-window-picker) - Window picker
 
 ### LSP/Syntax/Tools
 
@@ -148,7 +149,6 @@ Random features added.
 | [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)                 | AST aware indentation                  |
 | [lsp-highlight-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-highlight-references.lua) | Highlight references (LSP)             |
 | [lsp-jump-to-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-jump-to-references.lua)     | Jump to references (LSP)               |
-| [sessions](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/sessions.lua)                                 | Session management                     |
 | [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)                         | Display :messages on a separate window |
 
 ## Keymaps
