@@ -67,7 +67,8 @@ local NordStoneColors = {
 	nord14_800 = "#202a18",
 	nord15 = "#b48ead",
 	neutral_900 = "#171717",
-	neutral_880 = "#1a1a1a",
+	neutral_880 = "#181818",
+	neutral_850 = "#1a1a1a",
 	neutral_800 = "#262626",
 	neutral_700 = "#404040",
 	neutral_600 = "#525252",
@@ -150,9 +151,9 @@ loadColorSet({
 	-- diff
 	Added = { fg = c.nord14, bg = "NONE" },
 	DiffAdd = { bg = c.nord14_800 },
-	DiffChange = { bg = c.nord0 },
+	DiffChange = { bg = c.neutral_850 },
 	DiffDelete = { bg = c.nord11_900 },
-	DiffText = { bg = c.nord3 },
+	DiffText = { bg = c.nord0 },
 	Removed = { fg = c.nord11, bg = "NONE" },
 })
 
@@ -395,7 +396,7 @@ loadColorSet({
 loadColorSet({
 	BlinkCmpDocBorder = { link = "FloatBorder" },
 	BlinkCmpDocSeparator = { link = "FloatBorder" },
-	BlinkCmpMenu = { bg = c.neutral_880 },
+	BlinkCmpMenu = { bg = c.neutral_850 },
 	BlinkCmpMenuBorder = { link = "FloatBorder" },
 	BlinkCmpSignatureHelpBorder = { link = "FloatBorder" },
 })
@@ -409,7 +410,7 @@ loadColorSet({
 
 -- Diffview.nvim
 loadColorSet({
-	DiffviewDiffDeleteDim = { bg = c.neutral_800 },
+	DiffviewDiffDeleteDim = { bg = c.neutral_880 },
 	DiffviewFilePanelCounter = { fg = c.nord8 },
 	DiffviewSecondary = { fg = c.nord14 },
 })
