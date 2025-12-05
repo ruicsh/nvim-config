@@ -104,11 +104,4 @@ k("gr/", '"hy:%s/\\<<c-r>h\\>//g<left><left>', { desc = "Replace selection" })
 --
 -- }}}
 
--- Windows {{{
---
-k("<bslash>", "<esc><c-w>p", { desc = "Windows: Previous" }) -- `:h CTRL-W_p`
-k("<bar>", "<esc><c-w>w", { desc = "Windows: Cycle" }) -- `:h CTRL-W_w`
---
--- }}}
-
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0

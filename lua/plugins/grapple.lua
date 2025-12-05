@@ -40,13 +40,13 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader>\\\\", "<cmd>Grapple toggle_tags<cr>", "Toggle menu" },
+			{ "<leader><bslash><bslash>", "<cmd>Grapple toggle_tags<cr>", "Toggle menu" },
 		}
 
 		-- Add markings for easier access and saving
 		for _, name in ipairs({ "a", "s", "d", "f", "g", "h", "j", "k", "l" }) do
-			table.insert(mappings, { "\\" .. name, jump_to_tag(name), "Jump to " .. name })
-			table.insert(mappings, { "\\\\" .. name, toggle_tag(name), "Toggle " .. name })
+			table.insert(mappings, { "<bslash>" .. name, jump_to_tag(name), "Jump to " .. name })
+			table.insert(mappings, { "<bslash><bslash>" .. name, toggle_tag(name), "Toggle " .. name })
 		end
 
 		return vim.fn.get_lazy_keys_conf(mappings, "Bookmarks")
