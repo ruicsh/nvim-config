@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>56 plugins</sub>
+<sub>57 plugins</sub>
 
 ### Code
 
@@ -44,6 +44,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [auto-session](https://github.com/rmagatti/auto-session) - Session management
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix window
+- [demicolon](https://github.com/mawkler/demicolon.nvim) - Overload ';' and ','
 - [dial](https://github.com/monaqa/dial.nvim) - Enhanced increment/decrement
 - [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
