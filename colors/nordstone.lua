@@ -311,13 +311,6 @@ loadColorSet({
 	FoldedHeading = { fg = c.nord4 },
 })
 
--- quickfix
-loadColorSet({
-	qfDirectory = { fg = c.nord9 },
-	qfFileName = { fg = c.nord4 },
-	qfSnippet = { fg = c.nord3_900 },
-})
-
 -- LSP
 loadColorSet({
 	LspDiagnosticsDefaultError = { fg = c.nord11 },

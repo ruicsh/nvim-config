@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>60 plugins</sub>
+<sub>61 plugins</sub>
 
 ### Code
 
@@ -63,6 +63,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [incline.nvim](https://github.com/b0o/incline.nvim) - Floating winline
 - [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
+- [quicker](https://github.com/stevearc/quicker.nvim) - QuickFix format and highlights
 - [smart-splits](https://github.com/mrjones2014/smart-splits.nvim) - Windows resize
 - [window-picker](https://github.com/s1n7ax/nvim-window-picker) - Window picker
 - [winshift](https://github.com/sindrets/winshift.nvim) - Rearrange windows
@@ -108,13 +109,12 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 Complex configuration options.
 
-|                                                                                                        |                                                           |
-| ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
-| [foldtext](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/foldtext.lua)                 | Text displayed for a closed fold                          |
-| [formatoptions](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/formatoptions.lua)       | Format options                                            |
-| [standard-plugins](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/standard-plugins.lua) | Disable unused standard plugins                           |
-| [quickfixtextfunc](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/quickfixtextfunc.lua) | Text to display in the quickfix and location list windows |
-| [statusline](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/statusline.lua)             | Content of the status line                                |
+|                                                                                                        |                                  |
+| ------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| [foldtext](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/foldtext.lua)                 | Text displayed for a closed fold |
+| [formatoptions](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/formatoptions.lua)       | Format options                   |
+| [standard-plugins](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/standard-plugins.lua) | Disable unused standard plugins  |
+| [statusline](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/statusline.lua)             | Content of the status line       |
 
 ### Commands
 
