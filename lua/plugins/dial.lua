@@ -34,17 +34,17 @@ return {
 				augend.constant.alias.Alpha,
 				augend.constant.new({
 					elements = { "false", "true" },
-					cyclic = false,
+					cyclic = true,
 					preserve_case = true,
 				}),
 				augend.constant.new({
 					elements = { "no", "yes" },
-					cyclic = false,
+					cyclic = true,
 					preserve_case = true,
 				}),
 				augend.constant.new({
 					elements = { "off", "on" },
-					cyclic = false,
+					cyclic = true,
 					preserve_case = true,
 				}),
 				augend.date.alias["%Y/%m/%d"],
