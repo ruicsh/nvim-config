@@ -35,7 +35,7 @@ return {
 		quickfix = { suffix = "q", options = {} },
 		treesitter = { suffix = "t", options = {} },
 		undo = { suffix = "u", options = {} },
-		window = { suffix = "w", options = {} },
+		window = { suffix = "", options = {} },
 		yank = { suffix = "y", options = {} },
 	},
 }
