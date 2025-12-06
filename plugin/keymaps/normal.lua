@@ -25,9 +25,8 @@ k("{", "6gkg0", { desc = "Jump up 6 lines" })
 k("}", "6gjg0", { desc = "Jump down 6 lines" })
 
 -- For small jumps, use visual lines. `:h gk`
--- Store relative line number jumps in the jumplist, by setting a mark. `:h m'`
-k("k", [[v:count > 0 ? "m'" . v:count . "k" : "gk"]], { expr = true })
-k("j", [[v:count > 0 ? "m'" . v:count . "j" : "gj"]], { expr = true })
+k("k", [[v:count > 0 ? "k" : "gk"]], { expr = true })
+k("j", [[v:count > 0 ? "j" : "gj"]], { expr = true })
 
 -- Jump to mark `:h map-backtick`
 k("'", "`", { desc = "Jump to mark position" })
@@ -43,14 +42,11 @@ k("U", "<c-r>", { desc = "Redo" }) -- `:h ctrl-r`
 k("V", "v$") -- Select until end of line
 k("vv", "V") -- Enter visual line wise mode `:h V`
 
--- Keep cursor in place when joining words
+-- Keep cursor in place when joining lines
 k("J", "mzJ`z:delmarks z<cr>")
 
 -- Save file
-local save_keys = { "<c-s>", "<d-s>" }
-for _, key in ipairs(save_keys) do
-	k(key, "<cmd>silent! update | redraw<cr>", { desc = "Save" })
-end
+k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
 
 -- Don't store on register when changing text or deleting a character.
 local black_hole_commands = { "C", "c", "cc", "x", "X" }
@@ -81,12 +77,6 @@ k("<c-w>/", function()
 	end
 end, { desc = "Search for first occurrence of word under cursor in new window" })
 
--- Clear search highlight when moving back to position before starting the search
-k("'s", function()
-	vim.cmd("normal! `s")
-	vim.cmd.nohlsearch()
-end, { desc = "Jump to where search started" })
-
 -- Web search
 k("gw/", function()
 	local query = vim.fn.expand("<cword>")
@@ -109,8 +99,8 @@ k("<bs>", ":b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
 
 -- Windows {{{
 --
--- Switch windows
-k("<c-w>;", vim.ux.focus_side_panel, { desc = "Focus side panel" }) -- Focus the first side panel
+-- Focus side panel
+k("<c-w>;", vim.ux.focus_side_panel, { desc = "Focus side panel" })
 
 -- Close window, not if it's the last one
 k("q", function()
@@ -155,12 +145,6 @@ k("<c-w>t", function()
 	require("snacks").bufdelete.delete() -- Close current buffer, keep window layout
 	vim.cmd("tabedit " .. file) -- Open the file in a new tab
 end, { desc = "Windows: Move to new tab" })
-
--- Resize windows `:h :resize`
-k("<c-w>>", ":vertical resize +5<cr>", { desc = "Increase window width" })
-k("<c-w><", ":vertical resize -5<cr>", { desc = "Decrease window width" })
-k("<c-w>+", ":resize +5<cr>", { desc = "Increase window height" })
-k("<c-w>-", ":resize -5<cr>", { desc = "Decrease window height" })
 
 -- Toggle quickfix list
 k("<leader>cc", function()
@@ -246,7 +230,6 @@ k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
 k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
 k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h :help`
 k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
-k("gf", ":edit <cfile><CR>") -- Allow `gf` to open non-existing files `:h gf`
 k("<f1>", "<nop>", { desc = "Disable F1 help" })
 
 --

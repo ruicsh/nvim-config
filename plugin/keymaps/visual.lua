@@ -23,12 +23,8 @@ k("{", "6k")
 k("}", "6j")
 
 -- Use visual lines. `:h gk`
-k("k", function()
-	return vim.v.count > 0 and "k" or "gk"
-end, { expr = true })
-k("j", function()
-	return vim.v.count > 0 and "j" or "gj"
-end, { expr = true })
+k("k", [[ v:count > 0 ? 'k' : 'gk' ]], { expr = true })
+k("j", [[ v:count > 0 ? 'j' : 'gj' ]], { expr = true })
 
 --
 -- }}}
@@ -39,10 +35,7 @@ k("Y", "y$") -- Make Y behave like normal mode
 k("yy", "y") -- So that yanking has no delay (because of `yc`)
 
 -- Save file
-local save_keys = { "<c-s>", "<d-s>" }
-for _, key in ipairs(save_keys) do
-	k(key, "<cmd>silent! update | redraw<cr>", { desc = "Save", unique = false })
-end
+k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
 
 -- Indent/dedent selection
 k(">", ">gv") -- Reselect after indent

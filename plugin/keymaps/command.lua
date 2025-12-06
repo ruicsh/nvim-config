@@ -9,14 +9,12 @@ end
 --
 -- }}}
 
--- Navigation {{{
+-- Search {{{
 --
 -- Browse search matches without leaving command mode
 k("<c-n>", "<c-g>") -- `:h c_ctrl-g`
 k("<c-p>", "<c-t>") -- `:h c_ctrl-t`
 
--- Replacements for keys overridden by vim-rsi
-k("<c-]>", "<c-f>") -- Open command line window `:h c_CTRL-F`
 --
 -- }}}
 
