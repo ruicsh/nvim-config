@@ -24,11 +24,12 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>59 plugins</sub>
+<sub>60 plugins</sub>
 
 ### Code
 
 - [autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename tags
+- [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [comment](https://github.com/numToStr/Comment.nvim) - Comments
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot-chat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
@@ -43,25 +44,28 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 ### Editor
 
 - [auto-session](https://github.com/rmagatti/auto-session) - Session management
-- [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
-- [bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix window
-- [demicolon](https://github.com/mawkler/demicolon.nvim) - Overload ';' and ','
 - [dial](https://github.com/monaqa/dial.nvim) - Enhanced increment/decrement
-- [incline.nvim](https://github.com/b0o/incline.nvim) - Floating statusline
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
 - [mini.bracketed](https://github.com/nvim-mini/mini.bracketed) - Navigation with square brackets
-- [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
 - [mini.move](https://github.com/nvim-mini/mini.move) - Move lines/selection
-- [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
 - [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action
 - [rsi](https://github.com/tpope/vim-rsi) - Readline keybinds for insert mdoe
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
 - [text-case](https://github.com/johmsalas/text-case.nvim) - Convert text cases
 - [visual-whitespace](https://github.com/mcauley-penney/visual-whitespace.nvim) - Render whitespace
-- [winshift](https://github.com/sindrets/winshift.nvim) - Rearrange windows
 - [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
+
+### Windows
+
+- [bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix window
+- [incline.nvim](https://github.com/b0o/incline.nvim) - Floating winline
+- [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
+- [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
+- [smart-splits](https://github.com/mrjones2014/smart-splits.nvim) - Windows resize
+- [window-picker](https://github.com/s1n7ax/nvim-window-picker) - Window picker
+- [winshift](https://github.com/sindrets/winshift.nvim) - Rearrange windows
 
 ### Git
 
@@ -72,6 +76,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Navigation
 
+- [demicolon](https://github.com/mawkler/demicolon.nvim) - Overload ';' and ','
 - [flash](https://github.com/folke/flash.nvim) - Jump with labels
 - [grapple](https://github.com/cbochs/grapple.nvim) - File bookmarks
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
@@ -80,7 +85,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
 - [portal](https://github.com/cbochs/portal.nvim) - Location list preview
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
-- [window-picker](https://github.com/s1n7ax/nvim-window-picker) - Window picker
 
 ### LSP/Syntax/Tools
 
