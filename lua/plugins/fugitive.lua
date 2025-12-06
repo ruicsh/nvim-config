@@ -14,7 +14,7 @@ return {
 			{ "<leader>hH", open_git_status, "Status" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Git")
+		return vim.fn.get_lazy_keys_config(mappings, "Git")
 	end,
 
 	event = "VeryLazy",

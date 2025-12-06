@@ -13,7 +13,7 @@ return {
 			{ "=y", "<cmd>:Other story<cr>", "" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Alternate")
+		return vim.fn.get_lazy_keys_config(mappings, "Alternate")
 	end,
 	opts = {
 		mappings = {

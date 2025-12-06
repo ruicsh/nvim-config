@@ -10,7 +10,7 @@ return {
 			{ "<leader>hx", snacks.gitbrowse.open, "Open file in browser" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Git")
+		return vim.fn.get_lazy_keys_config(mappings, "Git")
 	end)(),
 	ops = {
 		gitbrowse = {

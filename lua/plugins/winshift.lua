@@ -11,7 +11,7 @@ return {
 			{ "<c-w><c-x>", "<cmd>WinShift swap<cr>", "Swap" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Windows")
+		return vim.fn.get_lazy_keys_config(mappings, "Windows")
 	end,
 	opts = {
 		focused_hl_group = "WinShiftFocused",

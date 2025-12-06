@@ -1,7 +1,7 @@
 vim.fn = vim.fn or {}
 
 -- Takes a table of keys, returns a keymaps lazy config
-vim.fn.get_lazy_keys_conf = function(mappings, desc_prefix)
+vim.fn.get_lazy_keys_config = function(mappings, desc_prefix)
 	return vim.tbl_map(function(mapping)
 		local lhs = mapping[1]
 		local rhs = mapping[2]

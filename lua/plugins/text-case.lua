@@ -54,7 +54,7 @@ return {
 			{ prefix_op .. "u", operator("to_lower_case"), "Lower" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Text Case")
+		return vim.fn.get_lazy_keys_config(mappings, "Text Case")
 	end,
 	opts = {
 		default_keymappings_enabled = false,

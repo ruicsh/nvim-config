@@ -23,7 +23,7 @@ return {
 			{ "g<c-x>", map("decrement", "gvisual"), "Decrement", { mode = "x" } },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Dial")
+		return vim.fn.get_lazy_keys_config(mappings, "Dial")
 	end,
 
 	config = function()

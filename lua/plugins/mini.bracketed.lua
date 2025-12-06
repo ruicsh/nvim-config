@@ -20,7 +20,7 @@ return {
 			{ "]E", goto_diag_error("last"), "LSP: Last diagnostic error" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "")
+		return vim.fn.get_lazy_keys_config(mappings, "")
 	end,
 	opts = {
 		buffer = { suffix = "b", options = {} },

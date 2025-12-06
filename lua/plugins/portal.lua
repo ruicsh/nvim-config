@@ -9,7 +9,7 @@ return {
 			{ "<leader>]", ":Portal jumplist forward<cr>", "Forward" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Portal")
+		return vim.fn.get_lazy_keys_config(mappings, "Portal")
 	end,
 	opts = {
 		escape = {

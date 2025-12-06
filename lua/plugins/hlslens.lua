@@ -32,7 +32,7 @@ return {
 			{ "g#", start_search("g#"), "Search word under cursor backward (partial)" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Search")
+		return vim.fn.get_lazy_keys_config(mappings, "Search")
 	end,
 	opts = {
 		calm_down = true,

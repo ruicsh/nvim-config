@@ -11,7 +11,7 @@ return {
 			{ "<leader><s-v>", flash.treesitter, "Treesitter", mode = { "n", "x", "o" } },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Flash")
+		return vim.fn.get_lazy_keys_config(mappings, "Flash")
 	end,
 	opts = {
 		highlight = {

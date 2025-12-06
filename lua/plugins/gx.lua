@@ -8,7 +8,7 @@ return {
 			{ "gx", "<cmd>Browse<cr>", "Open file/url at cursor", mode = { "n", "x" } },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings)
+		return vim.fn.get_lazy_keys_config(mappings)
 	end,
 	opts = {
 		handlers = {

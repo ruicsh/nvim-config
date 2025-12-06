@@ -17,7 +17,7 @@ return {
 			{ "<a-l>", tw.swap_right, "Swap right" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(keymaps, "AST")
+		return vim.fn.get_lazy_keys_config(keymaps, "AST")
 	end,
 	opts = {
 		highlight = true,

@@ -20,7 +20,7 @@ return {
 			{ "<leader>xc", x.cancel, "Cancel" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Substitute")
+		return vim.fn.get_lazy_keys_config(mappings, "Substitute")
 	end,
 	opts = {
 		exchange = {},

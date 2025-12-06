@@ -49,7 +49,7 @@ return {
 			{ "<leader>h~", diff_back, "Diffview HEAD~{count}..HEAD" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Git")
+		return vim.fn.get_lazy_keys_config(mappings, "Git")
 	end,
 	opts = function()
 		local diffview = require("diffview")

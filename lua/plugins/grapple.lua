@@ -49,7 +49,7 @@ return {
 			table.insert(mappings, { "<bslash><bslash>" .. name, toggle_tag(name), "Toggle " .. name })
 		end
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Bookmarks")
+		return vim.fn.get_lazy_keys_config(mappings, "Bookmarks")
 	end,
 	opts = {
 		name_pos = "start",

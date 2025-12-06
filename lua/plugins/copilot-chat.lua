@@ -797,7 +797,7 @@ return {
 			{ "<leader>am", chat.select_model, "Models" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "AI")
+		return vim.fn.get_lazy_keys_config(mappings, "AI")
 	end,
 	config = function()
 		local chat = require("CopilotChat")

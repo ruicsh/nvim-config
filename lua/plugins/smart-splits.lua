@@ -13,7 +13,7 @@ return {
 			{ "<c-w>-", ss.resize_down, "Resize split down" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Windows")
+		return vim.fn.get_lazy_keys_config(mappings, "Windows")
 	end,
 	opts = {
 		default_amount = 5,

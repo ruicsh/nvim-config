@@ -54,7 +54,7 @@ return {
 			{ "<c-w><c-w>", pick_window, "Pick a window" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Window Picker")
+		return vim.fn.get_lazy_keys_config(mappings, "Window Picker")
 	end,
 	opts = {
 		filter_rules = {

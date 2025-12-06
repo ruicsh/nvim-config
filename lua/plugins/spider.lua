@@ -19,6 +19,6 @@ return {
 			{ "ge", motion("ge"), "End of previous", mode = { "n", "o", "x" } },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Words")
+		return vim.fn.get_lazy_keys_config(mappings, "Words")
 	end,
 }

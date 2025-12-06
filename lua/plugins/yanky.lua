@@ -55,7 +55,7 @@ return {
 			{ "=P", "<Plug>(YankyPutBeforeFilter)", "Put before applying a filter" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Yanky")
+		return vim.fn.get_lazy_keys_config(mappings, "Yanky")
 	end,
 	opts = {
 		highlight = {

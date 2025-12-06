@@ -11,7 +11,7 @@ return {
 			{ "<leader>bn", ":TestNearest<cr>", "Run nearest" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Tests")
+		return vim.fn.get_lazy_keys_config(mappings, "Tests")
 	end,
 	config = function()
 		-- Use npx to run test runners

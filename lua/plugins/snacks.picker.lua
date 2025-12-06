@@ -117,7 +117,7 @@ return {
 			{ "<leader>nk", snacks.picker.keymaps, "Keymaps" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings)
+		return vim.fn.get_lazy_keys_config(mappings)
 	end)(),
 	priority = 1000, -- Ensure this is loaded before other plugins that might use snacks
 	opts = {

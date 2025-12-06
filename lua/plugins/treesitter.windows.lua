@@ -88,7 +88,7 @@ return {
 				{ "[s", jump_to_context, "Jump to previous context" },
 			}
 
-			return vim.fn.get_lazy_keys_conf(mappings, "AST")
+			return vim.fn.get_lazy_keys_config(mappings, "AST")
 		end,
 		opts = {
 			separator = "─",

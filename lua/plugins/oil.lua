@@ -15,7 +15,7 @@ return {
 			{ "_", open_cwd, "Open cwd" },
 		}
 
-		return vim.fn.get_lazy_keys_conf(mappings, "Oil")
+		return vim.fn.get_lazy_keys_config(mappings, "Oil")
 	end,
 
 	opts = {
