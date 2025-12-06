@@ -34,6 +34,7 @@ return {
 			["<c-w>t"] = "actions.select_tab",
 			["<c-w>v"] = "actions.select_vsplit",
 			["<cr>"] = "actions.select",
+			["<tab>"] = "actions.preview",
 			["_"] = "actions.open_cwd",
 			["g?"] = "actions.show_help",
 			["gs"] = "actions.change_sort",
