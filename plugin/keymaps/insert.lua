@@ -12,8 +12,9 @@ end
 -- Editing {{{
 --
 
--- Paste from clipboard `:h i_ctrl-r`
-k("<c-v>", "<c-r>+")
+-- Paste from clipboard `:h i_ctrl-r_ctrl-o`
+-- Insert contents literally and don't auto-indent
+k("<c-v>", "<c-r><c-o>+")
 
 -- Make undo work word by word (`:h i_CTRL-G_u`)
 local undo_keys = { "<space>", ";", ",", ".", "!", "?", ">", ")", "]", "}" }

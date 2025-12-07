@@ -37,6 +37,7 @@ k("'", "`", { desc = "Jump to mark position" })
 -- Editing {{{
 --
 k("U", "<c-r>", { desc = "Redo" }) -- `:h ctrl-r`
+k("<c-v>", "p") -- Paste from clipboard `:h p`
 
 -- Keep same logic from `y/c/d` on `v`
 k("V", "v$") -- Select until end of line
