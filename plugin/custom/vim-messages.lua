@@ -1,7 +1,8 @@
--- List :messages in a separate window
--- https://github.com/deathbeam/dotfiles/blob/master/vim/.vimrc
+-- List :messages in a separate floating window
 
 local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/vim-messages", { clear = true })
+
+local vim_messages_winnr = nil
 
 vim.api.nvim_create_user_command("VimMessages", function()
 	-- List messages
@@ -26,7 +27,7 @@ vim.api.nvim_create_user_command("VimMessages", function()
 	local buf = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(buf, 0, -1, false, filtered_lines)
 
-	local win = vim.api.nvim_open_win(buf, true, {
+	local winnr = vim.api.nvim_open_win(buf, true, {
 		border = { "─", "─", "─", "", "", "─", "", "" }, -- Only top border
 		col = col,
 		height = height,
@@ -38,14 +39,23 @@ vim.api.nvim_create_user_command("VimMessages", function()
 		zindex = 300,
 	})
 
-	vim.api.nvim_set_option_value("wrap", true, { win = win })
-	vim.api.nvim_set_option_value("number", true, { win = win })
-	vim.api.nvim_set_option_value("numberwidth", 3, { win = win })
+	vim_messages_winnr = winnr
+
+	vim.api.nvim_set_option_value("wrap", true, { win = winnr })
+	vim.api.nvim_set_option_value("number", true, { win = winnr })
+	vim.api.nvim_set_option_value("numberwidth", 3, { win = winnr })
 	vim.api.nvim_set_option_value("filetype", "vim-messages", { buf = buf })
 	vim.api.nvim_set_option_value("modifiable", false, { buf = buf })
 
 	-- Set cursor to the last line
-	vim.api.nvim_win_set_cursor(win, { vim.api.nvim_buf_line_count(buf), 0 })
+	vim.api.nvim_win_set_cursor(winnr, { vim.api.nvim_buf_line_count(buf), 0 })
+end, {})
+
+vim.api.nvim_create_user_command("VimMessagesClose", function()
+	if vim_messages_winnr and vim.api.nvim_win_is_valid(vim_messages_winnr) then
+		vim.api.nvim_win_close(vim_messages_winnr, true)
+		vim_messages_winnr = nil
+	end
 end, {})
 
 vim.api.nvim_create_autocmd("FileType", {

@@ -137,7 +137,10 @@ k("q", function()
 end, { expr = true, silent = true, desc = "Close buffer/window" })
 
 k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
-k("<leader>q", vim.ux.close_side_panels, { desc = "Close side panels" }) -- Close all side panels
+k("<leader>q", function()
+	vim.ux.close_side_panels()
+	vim.cmd("VimMessagesClose")
+end, { desc = "Close side panels" }) -- Close all side panels
 
 -- Same as `:h ctrl-w_T` but without closing the current window
 k("<c-w>t", function()
