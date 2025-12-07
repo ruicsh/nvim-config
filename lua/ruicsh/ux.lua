@@ -74,6 +74,15 @@ vim.ux.open_side_panel = function(options)
 			local pos = vim.api.nvim_win_get_cursor(winnr)
 			local bufnr = vim.api.nvim_get_current_buf()
 
+			-- Store visual selection if any
+			local mode = vim.fn.mode()
+			local visual_selection = nil
+			if mode == "v" or mode == "V" or mode == "\22" then
+				local start_pos = vim.fn.getpos("'<")
+				local end_pos = vim.fn.getpos("'>")
+				visual_selection = { start_pos = start_pos, end_pos = end_pos }
+			end
+
 			-- Replace the buffer in the options to open in the floating panel
 			options.bufnr = bufnr
 
@@ -81,6 +90,13 @@ vim.ux.open_side_panel = function(options)
 
 			-- Restore cursor position
 			vim.api.nvim_win_set_cursor(0, pos)
+
+			-- Restore visual selection if any
+			if visual_selection then
+				vim.api.nvim_win_set_cursor(0, { visual_selection.start_pos[2], visual_selection.start_pos[3] - 1 })
+				vim.cmd("normal! v")
+				vim.api.nvim_win_set_cursor(0, { visual_selection.end_pos[2], visual_selection.end_pos[3] - 1 })
+			end
 
 			-- Close the old window
 			if vim.api.nvim_win_is_valid(winnr) then
