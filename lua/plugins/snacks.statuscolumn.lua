@@ -5,7 +5,7 @@ return {
 	"folke/snacks.nvim",
 	opts = {
 		statuscolumn = {
-			left = { "sign", "git" },
+			left = { "mark", "sign", "git" },
 			right = { "fold" },
 		},
 	},
