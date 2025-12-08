@@ -176,6 +176,7 @@ return {
 					title = "Git: Search Log",
 				},
 				git_status = {
+					show_empty = true,
 					win = {
 						input = {
 							keys = {
