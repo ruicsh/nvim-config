@@ -198,7 +198,11 @@ return {
 				help = {
 					confirm = function(picker, item)
 						picker:close()
-						vim.cmd("help " .. item.tag)
+						vim.ux.open_side_panel({
+							cmd = "help " .. item.tag,
+							mode = "replace",
+							padding_left = 2,
+						})
 					end,
 				},
 				registers = {
