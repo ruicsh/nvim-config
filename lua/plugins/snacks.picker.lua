@@ -188,11 +188,12 @@ return {
 					},
 				},
 				grep = {
-					exclude = { "package-lock.json", "lazy-lock.json" },
+					exclude = vim.fn.env_get_list("GREP_EXCLUDE_FILES"),
 					hidden = true,
 				},
 				grep_word = {
-					exclude = { "package-lock.json", "lazy-lock.json" },
+					exclude = vim.fn.env_get_list("GREP_EXCLUDE_FILES"),
+					hidden = true,
 				},
 				help = {
 					confirm = function(picker, item)
