@@ -117,6 +117,7 @@ return {
 			return vim.fn.get_lazy_keys_config(mappings, "AST")
 		end,
 		opts = {
+			max_lines = 5,
 			separator = "─",
 		},
 

@@ -86,5 +86,5 @@ return {
 		end,
 	},
 
-	event = { "BufReadPost", "BufNewFile" },
+	event = { "BufReadPost" },
 }
