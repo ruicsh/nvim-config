@@ -234,6 +234,13 @@ return {
 				},
 			},
 			ui_select = true,
+			win = {
+				input = {
+					keys = {
+						["<esc>"] = { "close", mode = { "n", "i" } },
+					},
+				},
+			},
 		},
 	},
 
