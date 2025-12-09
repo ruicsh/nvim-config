@@ -223,8 +223,10 @@ o.guicursor = { -- `:h 'guicursor'`
 	"o:hor50", -- Operator-pending: horizontal bar cursor with 50% height
 }
 o.sessionoptions = { -- `:h 'sessionoptions'`
+	"buffers", -- Save all buffers.
 	"curdir", -- Save current directory.
 	"folds", -- Save folds.
+	"globals", -- Save global variables.
 	"help", -- Save help windows.
 	"tabpages", -- Save tab pages.
 	"terminal", -- Save terminal windows.
