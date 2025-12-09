@@ -166,6 +166,7 @@ return {
 			},
 			sources = {
 				buffers = {
+					format = "file",
 					sort_lastused = true,
 				},
 				git_log = {
