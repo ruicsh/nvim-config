@@ -26,13 +26,6 @@ local PACKAGES = {
 
 return {
 	{
-		-- Native LSP configuration
-		-- https://github.com/neovim/nvim-lspconfig
-		"neovim/nvim-lspconfig",
-		enabled = not os.getenv("NVIM_GIT_DIFF"),
-		lazy = false,
-	},
-	{
 		-- Install LSP servers and 3rd-party tools
 		-- https://github.com/mason-org/mason.nvim
 		"mason-org/mason.nvim",
