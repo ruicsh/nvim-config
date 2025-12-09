@@ -239,6 +239,7 @@ return {
 				input = {
 					keys = {
 						["<esc>"] = { "close", mode = { "n", "i" } },
+						["<c-q>"] = { "trouble_open", mode = { "n", "i" } },
 					},
 				},
 			},

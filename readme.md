@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>65 plugins</sub>
+<sub>64 plugins</sub>
 
 ### Code
 
@@ -60,15 +60,14 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 ### Windows
 
 - [auto-session](https://github.com/rmagatti/auto-session) - Session management
-- [bqf](https://github.com/kevinhwang91/nvim-bqf) - Better quickfix window
 - [hbac](https://github.com/axkirillov/hbac.nvim) - Buffer auto-closer
 - [incline.nvim](https://github.com/b0o/incline.nvim) - Floating winline
 - [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
-- [quicker](https://github.com/stevearc/quicker.nvim) - QuickFix format and highlights
 - [scope](https://github.com/tiagovla/scope.nvim) - Tab scoping
 - [smart-splits](https://github.com/mrjones2014/smart-splits.nvim) - Windows resize
 - [toggleterm](https://github.com/akinsho/toggleterm.nvim) - Terminal window
+- [trouble](https://github.com/folke/trouble.nvim/) - Quickfix list
 - [window-picker](https://github.com/s1n7ax/nvim-window-picker) - Window picker
 - [winshift](https://github.com/sindrets/winshift.nvim) - Rearrange windows
 

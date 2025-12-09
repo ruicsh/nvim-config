@@ -150,15 +150,6 @@ k("<c-w>t", function()
 	vim.cmd("tabedit " .. file) -- Open the file in a new tab
 end, { desc = "Windows: Move to new tab" })
 
--- Toggle quickfix list
-k("<leader>cc", function()
-	local winid = vim.fn.getqflist({ winid = 0 }).winid
-	if winid > 0 then
-		vim.cmd("cclose")
-	else
-		vim.cmd("copen")
-	end
-end, { desc = "Toggle quickfix list" })
 --
 -- }}}
 
