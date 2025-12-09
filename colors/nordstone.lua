@@ -471,8 +471,8 @@ loadColorSet({
 
 -- incline.nvim
 loadColorSet({
-	InclineNormal = { fg = c.nord7, bg = "NONE" },
-	InclineNormalNC = { fg = c.nord7, bg = "NONE" },
+	InclineNormal = { fg = c.nord3_700, bg = "NONE" },
+	InclineNormalNC = { link = "InclineNormal" },
 })
 
 -- mini.hipatterns
