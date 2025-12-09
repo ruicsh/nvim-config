@@ -92,6 +92,8 @@ return {
 		end,
 		opts = {
 			max_lines = 5,
+			mode = "topline",
+			multiwindow = true,
 			separator = "─",
 		},
 		event = "BufReadPost",
