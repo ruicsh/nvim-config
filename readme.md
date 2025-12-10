@@ -176,13 +176,13 @@ Random features added.
 
 - `<bs>` switch to last
 - `q` close
-- `<leader>;;` list
+- `<leader>;` list
 
 ### Bookmarks
 
 - `\{a,s,d,f,g}` jump to
 - `\\{a,s,d,f,g}` save to
-- `<leader>\\` list
+- `<leader>\` list
 
 ### Alternate buffer
 
@@ -229,10 +229,8 @@ Random features added.
 
 ### Editing
 
-- `[<space>` add blank line above cursor
-- `]<space>` add blank line below cursor
-- `[p` paste to new line above
-- `]p` paste to new line below
+- `[<space>` add blank line above cursor (`]<space>` below)
+- `[p` paste to new line above (`]p` below)
 - `ycc` duplicate a line, comment out the first line.
 - `<a-up>` move selection up
 - `<a-down>` move selection down
@@ -381,8 +379,6 @@ Random features added.
 - `<a-l>` swap with right node
 - `]a` jump to next parameter start (`[a` previous)
 - `]f` jump to next function start (`[f` previous)
-- `]A` jump to next parameter end (`[A` previous)
-- `]F` jump to next function end (`[F` previous)
 
 ### LSP
 
@@ -401,15 +397,12 @@ Random features added.
 - `<c-w>]` jump to definition (vsplit)
 - `<leader>dd` open diagnostics (buffer)
 - `<leader>dD` open diagnostics (workspace)
-- `[r` jump to previous symbol reference
-- `]r` jump to next symbol reference
-- `[x` jump to previous error
-- `]x` jump to next error
+- `[r` jump to previous symbol reference (`]r` next)
+- `[x` jump to previous error (`]x` next)
 
 ### Git
 
-- `[c` previous change
-- `]c` next change
+- `[c` previous change (`]c` next)
 - `<leader>h$` blame line
 - `<leader>h%` current file history
 - `<leader>h~` diff {git-rev}
@@ -429,8 +422,7 @@ Random features added.
 
 ### Git merge conflicts
 
-- `[x` previous conflict
-- `]x` next conflict
+- `[x` previous conflict (`]x` next)
 - `c0` choose none
 - `cb` choose both
 - `co` choose ours

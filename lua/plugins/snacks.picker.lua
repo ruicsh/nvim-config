@@ -93,7 +93,7 @@ return {
 		local mappings = {
 			-- files
 			{ "<leader><space>", snacks.picker.smart, "Files" },
-			{ "<leader>;;", snacks.picker.buffers, "Buffers" },
+			{ "<leader>;", snacks.picker.buffers, "Buffers" },
 
 			-- search
 			{ "<leader>/", snacks.picker.grep, "Search: Workspace" },
@@ -101,10 +101,10 @@ return {
 			{ "<leader>g/", snacks.picker.grep_word, "Search: Current word" },
 
 			-- current state
+			{ "<leader>'", snacks.picker.marks, "Marks" },
 			{ "<leader>.", snacks.picker.resume, "Last picker" },
-			{ "<leader>''", snacks.picker.marks, "Marks" },
-			{ '<leader>""', snacks.picker.registers, "Command history" },
 			{ "<leader>[", snacks.picker.jumps, "Jumps" },
+			{ '<leader>"', snacks.picker.registers, "Command history" },
 
 			-- git
 			{ "<leader>h/", snacks.picker.git_log, "Git: Search Log" },
@@ -241,6 +241,11 @@ return {
 					keys = {
 						["<esc>"] = { "close", mode = { "n", "i" } },
 						["<c-q>"] = { "trouble_open", mode = { "n", "i" } },
+					},
+				},
+				preview = {
+					wo = {
+						foldenable = false,
 					},
 				},
 			},

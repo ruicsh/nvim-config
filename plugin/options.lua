@@ -226,9 +226,7 @@ o.sessionoptions = { -- `:h 'sessionoptions'`
 	"curdir", -- Save current directory.
 	"folds", -- Save folds.
 	"globals", -- Save global variables.
-	"help", -- Save help windows.
 	"tabpages", -- Save tab pages.
-	"terminal", -- Save terminal windows.
 	"winpos", -- Save window positions.
 	"winsize", -- Save window sizes.
 }

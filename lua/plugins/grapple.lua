@@ -40,7 +40,7 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader><bslash><bslash>", "<cmd>Grapple toggle_tags<cr>", "Toggle menu" },
+			{ "<leader><bslash>", "<cmd>Grapple toggle_tags<cr>", "Toggle menu" },
 		}
 
 		-- Add markings for easier access and saving
