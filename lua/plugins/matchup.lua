@@ -14,7 +14,7 @@ return {
 		local k = vim.keymap.set
 
 		-- Use `m` instead of `%`
-		k("n", "mm", "<plug>(matchup-%)", { desc = "Next match word" }) -- Don't override the mark key in normal mode
+		k("n", "mm", "m'<plug>(matchup-%)", { desc = "Next match word" }) -- Don't override the mark key in normal mode
 		k({ "o", "x" }, "m", "<plug>(matchup-%)", { desc = "Next match word" })
 		k({ "n", "o", "x" }, "gm", "<plug>(matchup-g%)", { desc = "Previous match word" })
 		k({ "n", "o", "x" }, "[m", "<plug>(matchup-[%)", { desc = "Previous outer open word" })

@@ -104,6 +104,7 @@ return {
 			{ "<leader>.", snacks.picker.resume, "Last picker" },
 			{ "<leader>''", snacks.picker.marks, "Marks" },
 			{ '<leader>""', snacks.picker.registers, "Command history" },
+			{ "<leader>[", snacks.picker.jumps, "Jumps" },
 
 			-- git
 			{ "<leader>h/", snacks.picker.git_log, "Git: Search Log" },

@@ -77,6 +77,10 @@ return {
 
 			local function go_to(direction, query)
 				return function()
+					-- If it's moving to a function, add jump to jumplist (native behavior).
+					if vim.startswith(query, "@function") then
+						vim.cmd("normal! m'")
+					end
 					ts_move["goto_" .. direction .. "_start"](query, "textobjects")
 				end
 			end

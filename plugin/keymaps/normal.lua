@@ -21,8 +21,12 @@ end
 -- https://nanotipsforvim.prose.sh/vertical-navigation-%E2%80%93-without-relative-line-numbers
 -- Always jump on visual lines, not actual lines. `:h gj`
 -- Always jump to the start of the line. `:h g0`
-k("{", "6gkg0", { desc = "Jump up 6 lines" })
-k("}", "6gjg0", { desc = "Jump down 6 lines" })
+k("{", "m'6gkg0", { desc = "Jump up 6 lines" })
+k("}", "m'6gjg0", { desc = "Jump down 6 lines" })
+
+-- Jump back and forward in jump list
+k("[[", "<c-o>", { desc = "Jump back" }) -- `:h <c-o>`
+k("]]", "<c-i>", { desc = "Jump forward" }) -- `:h <c-i>`
 
 -- For small jumps, use visual lines. `:h gk`
 k("k", [[v:count > 0 ? "k" : "gk"]], { expr = true })

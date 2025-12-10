@@ -201,8 +201,7 @@ Random features added.
 - `s` jump with labels
 - `'{a-z}'` jump to marked position
 - `mm` jump to matching pair
-- `<leader>[` jump to earlier position
-- `<leader>]` jump to later position
+- `[[` jump to earlier position (`]]` later)
 
 ### Windows
 
