@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>64 plugins</sub>
+<sub>63 plugins</sub>
 
 ### Code
 
@@ -80,7 +80,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Navigation
 
-- [demicolon](https://github.com/mawkler/demicolon.nvim) - Overload ';' and ','
 - [flash](https://github.com/folke/flash.nvim) - Jump with labels
 - [grapple](https://github.com/cbochs/grapple.nvim) - File bookmarks
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
