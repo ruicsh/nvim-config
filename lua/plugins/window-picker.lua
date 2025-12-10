@@ -10,12 +10,11 @@ return {
 			local tabid = vim.api.nvim_get_current_tabpage()
 			local wins = vim.api.nvim_tabpage_list_wins(tabid)
 
+			-- Count only non-floating windows
 			local available = {}
-			-- Filter out windows with excluded filetypes.
 			for _, win in ipairs(wins) do
-				local buf = vim.api.nvim_win_get_buf(win)
-				local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-				if ft ~= "" and ft ~= "incline" and ft ~= "mininotify" then
+				local is_float = vim.api.nvim_win_get_config(win).relative ~= ""
+				if not is_float then
 					table.insert(available, win)
 				end
 			end
