@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>63 plugins</sub>
+<sub>62 plugins</sub>
 
 ### Code
 
@@ -86,7 +86,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [hlslens](https://github.com/kevinhwang91/nvim-hlslens) - Browse search results
 - [oil](https://github.com/stevearc/oil.nvim) - Files explorer
 - [other](https://github.com/rgroli/other.nvim) - Open alternative files
-- [portal](https://github.com/cbochs/portal.nvim) - Location list preview
 - [snacks.picker](https://github.com/folke/snacks.nvim/blob/main/docs/picker.md) - Pickers
 
 ### LSP/Syntax/Tools
