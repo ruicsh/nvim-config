@@ -7,7 +7,7 @@ return {
 		max_height = 50,
 		padding_top = 1,
 		padding_right = 1,
-		toggle_event = { "InsertEnter" },
+		toggle_event = { "InsertEnter", "InsertLeave" },
 	},
 
 	event = "LspAttach",
