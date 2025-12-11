@@ -37,8 +37,8 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
 - [mini.pairs](https://github.com/nvim-mini/mini.pairs) - Auto-pairs
-- [mini.splitjoin](https://github.com/nvim-mini/mini.splitjoin) - Splitting/joining blocks of code
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
+- [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
 - [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware actions
 
 ### Editor
