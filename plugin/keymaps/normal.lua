@@ -190,6 +190,8 @@ k("<c-w>]", "<c-w>o<c-w>v<c-]><c-w>L", { desc = "LSP: Jump to definition (vsplit
 
 -- Instead of using quickfix list, use snacks.picker
 k("grr", picker.lsp_references, { desc = "LSP: References", unique = false })
+k("grI", picker.lsp_incoming_calls, { desc = "LSP: Incoming Calls" })
+k("grO", picker.lsp_outgoing_calls, { desc = "LSP: Outgoing Calls" })
 k("gO", picker.lsp_symbols, { desc = "LSP: Symbols", unique = false })
 k("<leader>dD", picker.diagnostics, { desc = "Diagnostics: Workspace" })
 k("<leader>dd", picker.diagnostics_buffer, { desc = "Diagnostics: File" })
