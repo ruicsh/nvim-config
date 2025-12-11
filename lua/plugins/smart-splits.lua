@@ -7,10 +7,10 @@ return {
 		local ss = require("smart-splits")
 
 		local mappings = {
-			{ "<c-w>>", ss.resize_right, "Resize split right" },
-			{ "<c-w><", ss.resize_left, "Resize split left" },
-			{ "<c-w>+", ss.resize_up, "Resize split up" },
-			{ "<c-w>-", ss.resize_down, "Resize split down" },
+			{ "<c-w>>", ss.resize_right, "Resize right" },
+			{ "<c-w><", ss.resize_left, "Resize left" },
+			{ "<c-w>+", ss.resize_up, "Resize up" },
+			{ "<c-w>-", ss.resize_down, "Resize down" },
 		}
 
 		return vim.fn.get_lazy_keys_config(mappings, "Windows")
