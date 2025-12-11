@@ -373,10 +373,10 @@ Random features added.
 - `<c-j>` jump to next sibling node
 - `<c-k>` jump to previous sibling node
 - `<c-l>` jump to child node
-- `<a-h>` swap with left node
-- `<a-j>` swap with down node
-- `<a-k>` swap with up node
-- `<a-l>` swap with right node
+- `<c-H>` swap with left node
+- `<c-J>` swap with down node
+- `<c-K>` swap with up node
+- `<c-L>` swap with right node
 - `]a` jump to next parameter start (`[a` previous)
 - `]f` jump to next function start (`[f` previous)
 
