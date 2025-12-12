@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>62 plugins</sub>
+<sub>61 plugins</sub>
 
 ### Code
 
@@ -67,7 +67,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [scope](https://github.com/tiagovla/scope.nvim) - Tab scoping
 - [smart-splits](https://github.com/mrjones2014/smart-splits.nvim) - Windows resize
 - [toggleterm](https://github.com/akinsho/toggleterm.nvim) - Terminal window
-- [trouble](https://github.com/folke/trouble.nvim/) - Quickfix list
 - [window-picker](https://github.com/s1n7ax/nvim-window-picker) - Window picker
 - [winshift](https://github.com/sindrets/winshift.nvim) - Rearrange windows
 

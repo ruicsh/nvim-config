@@ -105,6 +105,8 @@ return {
 			{ "<leader>.", snacks.picker.resume, "Last picker" },
 			{ "<leader>[", snacks.picker.jumps, "Jumps" },
 			{ '<leader>"', snacks.picker.registers, "Command history" },
+			{ "<leader>u", snacks.picker.undo, "Command history" },
+			{ "<leader>c", snacks.picker.qflist, "Quickfix" },
 
 			-- git
 			{ "<leader>h/", snacks.picker.git_log, "Git: Search Log" },
@@ -123,6 +125,14 @@ return {
 	priority = 1000, -- Ensure this is loaded before other plugins that might use snacks
 	opts = {
 		picker = {
+			actions = {
+				qflist = function(picker)
+					local snacks = require("snacks")
+					snacks.picker.actions.qflist(picker)
+					vim.cmd("cclose")
+					snacks.picker.qflist()
+				end,
+			},
 			db = { sqlite3_path = vim.fn.env_get("SNACKS_PICKER_DB_SQLITE3_PATH") },
 			enabled = true,
 			formatters = {
@@ -239,7 +249,7 @@ return {
 				input = {
 					keys = {
 						["<esc>"] = { "close", mode = { "n", "i" } },
-						["<c-q>"] = { "trouble_open", mode = { "n", "i" } },
+						["<c-q>"] = { "qflist", mode = { "n", "i" } },
 					},
 				},
 				preview = {
