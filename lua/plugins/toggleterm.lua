@@ -26,7 +26,7 @@ return {
 				vim.keymap.set("t", lhs, rhs, opts)
 			end
 
-			k("<c-[>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+			k("<c-]>", [[<c-\><c-n>]], { desc = "Exit terminal mode" })
 		end,
 		open_mapping = "<c-t>",
 	},
