@@ -29,7 +29,6 @@ o.fillchars = { -- `:h 'fillchars'`
 	foldopen = "", -- Opened fold.
 	foldsep = " ", -- Open fold middle marker
 }
-o.lazyredraw = true -- Don't redraw when executing macros. `:h 'lazyredraw'`
 o.messagesopt = "wait:500,history:1000" -- Option settings for outputting messages. `:h 'messagesopt'`
 o.number = true -- Show line numbers. `:h 'number'`
 o.numberwidth = 5 -- More space on the gutter column. `:h 'numberwidth'`
