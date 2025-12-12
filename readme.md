@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>61 plugins</sub>
+<sub>62 plugins</sub>
 
 ### Code
 
@@ -43,6 +43,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Editor
 
+- [cutlass](https://github.com/gbprod/cutlass.nvim) - Cut action
 - [dial](https://github.com/monaqa/dial.nvim) - Enhanced increment/decrement
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
@@ -291,7 +292,7 @@ Random features added.
 - `ys{motion}{char}` add surrounding character
 - `ds{char}` delete surrounding character
 - `cs{target}{replacement}` replace surrounding character
-- `S{char}` add surrounding character to selection
+- `S{char}` add surrounding character (visual mode)
 - `<leader>x{motion1}<leader>x{motion2}` exchange
 - `<leader>r{motion}` replace
 - `<leader>s{motion}` sort

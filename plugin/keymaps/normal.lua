@@ -53,18 +53,6 @@ k("J", "mzJ`z:delmarks z<cr>")
 -- Save file
 k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
 
--- Don't store on register when changing text or deleting a character.
-local black_hole_commands = { "C", "c", "cc", "x", "X" }
-for _, key in pairs(black_hole_commands) do
-	k(key, '"_' .. key) -- `:h "_`
-end
-
--- Don't store empty lines in register.
--- https://nanotipsforvim.prose.sh/keeping-your-register-clean-from-dd
-k("dd", function()
-	return vim.fn.getline(".") == "" and '"_dd' or "dd"
-end, { expr = true })
-
 -- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 k("cn", "*``cgn", { desc = "Change word (forward)" }) -- `:h gn`
 k("cN", "*``cgN", { desc = "Change word (backward)" }) -- `:h gN`
