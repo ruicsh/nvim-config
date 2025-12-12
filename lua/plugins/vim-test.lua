@@ -21,9 +21,7 @@ return {
 		-- Open side panel with terminal for test output
 		vim.g["test#custom_strategies"] = {
 			my_neovim = function(cmd)
-				vim.ux.open_side_panel({
-					padding_left = 2,
-				})
+				vim.ux.open_side_panel()
 
 				vim.fn.termopen(cmd) -- Create a terminal buffer and run the command
 				vim.cmd.stopinsert() -- Make sure we are not in insert mode

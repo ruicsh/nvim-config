@@ -204,7 +204,6 @@ return {
 						vim.ux.open_side_panel({
 							cmd = "help " .. item.tag,
 							mode = "replace",
-							padding_left = 2,
 						})
 					end,
 				},

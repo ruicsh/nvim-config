@@ -118,7 +118,6 @@ return {
 						vim.ux.open_side_panel({
 							cmd = "help " .. help_tag,
 							mode = "replace",
-							padding_left = 2,
 						})
 						return true
 					end
@@ -129,7 +128,6 @@ return {
 						vim.ux.open_side_panel({
 							cmd = "help " .. help_tag,
 							mode = "replace",
-							padding_left = 2,
 						})
 						return true
 					end

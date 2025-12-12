@@ -111,7 +111,7 @@ k("<c-w>;", vim.ux.focus_side_panel, { desc = "Focus side panel" })
 k("q", function()
 	local winnr = vim.api.nvim_get_current_win()
 	local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
-	if ok and side_panel == "content" then
+	if ok and side_panel then
 		vim.ux.close_side_panels()
 		return
 	end
