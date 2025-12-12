@@ -246,10 +246,17 @@ local function new_chat_window(prompt, opts)
 		}
 	else
 		opts.window = {
-			layout = "replace",
+			anchor = "NE",
+			border = { "", "", "", "", "", "", "", "│" },
+			col = vim.o.columns,
+			focusable = true,
+			height = vim.o.lines - vim.o.cmdheight - 1,
+			layout = "float",
+			relative = "editor",
+			row = 0,
+			style = "minimal",
+			width = math.floor(vim.o.columns * 0.5),
 		}
-
-		vim.ux.open_side_panel()
 	end
 
 	vim.g.copilot_chat_title = nil -- Reset chat title used for saving chat history
