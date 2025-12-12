@@ -166,7 +166,7 @@ loadColorSet({
 	Constant = { fg = c.nord13 }, -- (preferred) any constant
 	Debug = { fg = c.nord4 }, -- debugging statements
 	Define = { fg = c.nord9 }, -- preprocessor #define
-	Delimiter = { fg = c.nord6 }, -- character that needs attention
+	Delimiter = { fg = c.nord3_700 }, -- character that needs attention
 	Error = { fg = c.nord11 }, -- (preferred) any erroneous construct
 	Exception = { fg = c.nord9 }, -- try, catch, throw
 	Float = { fg = c.nord15 }, -- a floating point constant: 2.3e10
