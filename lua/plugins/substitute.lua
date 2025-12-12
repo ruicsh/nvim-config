@@ -11,7 +11,7 @@ return {
 			-- Substitute
 			{ "<leader>r", s.operator, "Operator" },
 			{ "<leader>rr", s.line, "Line" },
-			{ "<leader>r$", s.eol, "End of line" },
+			{ "<leader>R", s.eol, "End of line" },
 			{ "<leader>r", s.visual, "Selection", { mode = "x" } },
 			-- Exchange
 			{ "<leader>x", x.operator, "Operator" },
@@ -24,5 +24,8 @@ return {
 	end,
 	opts = {
 		exchange = {},
+		highlight_substituted_text = {
+			timer = 200,
+		},
 	},
 }
