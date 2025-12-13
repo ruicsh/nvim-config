@@ -85,6 +85,21 @@ local grep_directory = function()
 	end
 end
 
+local layout_no_preview = {
+	preview = false,
+	layout = {
+		backdrop = false,
+		border = "rounded",
+		box = "vertical",
+		height = 0.9,
+		title = "{title} {live} {flags}",
+		title_pos = "center",
+		width = 0.7,
+		{ win = "input", height = 1, border = "bottom" },
+		{ win = "list", border = "none" },
+	},
+}
+
 return {
 	"folke/snacks.nvim",
 	keys = (function()
@@ -104,7 +119,7 @@ return {
 			{ "<leader>'", snacks.picker.marks, "Marks" },
 			{ "<leader>.", snacks.picker.resume, "Last picker" },
 			{ "<leader>[", snacks.picker.jumps, "Jumps" },
-			{ '<leader>"', snacks.picker.registers, "Command history" },
+			{ '<leader>"', snacks.picker.registers, "Registers" },
 			{ "<leader>u", snacks.picker.undo, "Command history" },
 			{ "<leader>c", snacks.picker.qflist, "Quickfix" },
 
@@ -218,10 +233,7 @@ return {
 					end,
 				},
 				registers = {
-					layout = {
-						preview = false,
-						preset = "vertical",
-					},
+					layout = layout_no_preview,
 				},
 				select = {
 					layout = {
@@ -238,10 +250,7 @@ return {
 					},
 				},
 				yanky = {
-					layout = {
-						preview = false,
-						preset = "vertical",
-					},
+					layout = layout_no_preview,
 				},
 			},
 			ui_select = true,
