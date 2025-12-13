@@ -41,7 +41,6 @@ k("'", "`", { desc = "Jump to mark position" })
 -- Editing {{{
 --
 k("U", "<c-r>", { desc = "Redo" }) -- `:h ctrl-r`
-k("<c-v>", "p") -- Paste from clipboard `:h p`
 
 -- Keep same logic from `y/c/d` on `v`
 k("V", "v$") -- Select until end of line
@@ -96,12 +95,6 @@ k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" 
 --
 -- }}}
 
--- Buffers {{{
---
-k("<bs>", ":b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
---
--- }}}
-
 -- Windows {{{
 --
 -- Focus side panel
@@ -109,6 +102,7 @@ k("<c-w>;", vim.ux.focus_side_panel, { desc = "Focus side panel" })
 
 -- Close window, not if it's the last one
 k("q", function()
+	-- If current window is a side panel, close all side panels and return
 	local winnr = vim.api.nvim_get_current_win()
 	local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
 	if ok and side_panel then
@@ -167,20 +161,6 @@ k("]<tab>", ":tabnext<cr>", { desc = "Tabs: Next" }) -- `:h :tabnext`
 --
 -- }}}
 
--- Folds {{{
---
--- Toggle folds based on current fold level
-k("<tab>", function()
-	local level = vim.fn.foldlevel(".")
-	if level == 1 then
-		return "za"
-	elseif level > 1 then
-		return "zA"
-	end
-end, { expr = true, desc = "Toggle folds" })
---
--- }}}
-
 -- LSP {{{
 --
 local picker = require("snacks.picker")
@@ -190,12 +170,12 @@ k("<cr>", picker.lsp_definitions, { desc = "LSP: Jump to definition" })
 k("<c-w>]", "<c-w>o<c-w>v<c-]><c-w>L", { desc = "LSP: Jump to definition (vsplit)" }) -- `:h CTRL-]`
 
 -- Instead of using quickfix list, use snacks.picker
-k("grr", picker.lsp_references, { desc = "LSP: References", unique = false })
-k("grI", picker.lsp_incoming_calls, { desc = "LSP: Incoming Calls" })
-k("grO", picker.lsp_outgoing_calls, { desc = "LSP: Outgoing Calls" })
-k("gO", picker.lsp_symbols, { desc = "LSP: Symbols", unique = false })
 k("<leader>dD", picker.diagnostics, { desc = "Diagnostics: Workspace" })
 k("<leader>dd", picker.diagnostics_buffer, { desc = "Diagnostics: File" })
+k("gO", picker.lsp_symbols, { desc = "LSP: Symbols", unique = false })
+k("grI", picker.lsp_incoming_calls, { desc = "LSP: Incoming Calls" })
+k("grO", picker.lsp_outgoing_calls, { desc = "LSP: Outgoing Calls" })
+k("grr", picker.lsp_references, { desc = "LSP: References", unique = false })
 
 --
 -- }}}
@@ -227,12 +207,11 @@ k("%p", yank_path("%:p"), { desc = "Yank filename (absolute)" })
 -- Miscellaneous {{{
 --
 
+k("<bs>", ":b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
+k("<f1>", "<nop>") -- Disable F1 help
 k("<leader>v", "<c-v>", { desc = "Enter visual block mode" }) -- `:h <c-v>`
+k("<tab>", "zA", { desc = "Toggle folds" }) -- `:h zA`
 k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
-k("g:", ":lua = ", { desc = "Evaluate Lua expression" }) -- `:h :lua`
-k("gK", ":help <c-r><c-w><cr>", { desc = "Help for word under cursor" }) -- `:h :help`
-k("gV", "`[v`]", { desc = "Reselect last changed or yanked text" }) -- `:h `[`
-k("<f1>", "<nop>", { desc = "Disable F1 help" })
 
 --
 -- }}}

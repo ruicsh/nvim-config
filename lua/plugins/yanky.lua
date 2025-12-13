@@ -8,6 +8,7 @@ return {
 			{ "<leader>p", ":lua Snacks.picker.yanky()<cr>", "History", mode = { "n", "x" } },
 			{ "y", "<Plug>(YankyYank)", "Yank", { mode = { "n", "x" } } },
 			{ "p", "<Plug>(YankyPutAfter)", "Put after", { mode = { "n", "x" } } },
+			{ "<c-v>", "<Plug>(YankyPutAfter)", "Put after", { mode = { "n", "x" } } },
 			{ "P", "<Plug>(YankyPutBefore)", "Put before", { mode = { "n", "x" } } },
 			{ "<c-p>", "<Plug>(YankyPreviousEntry)", "Select previous" },
 			{ "<c-n>", "<Plug>(YankyNextEntry)", "Select next" },
