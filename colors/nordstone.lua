@@ -151,7 +151,7 @@ loadColorSet({
 	-- diff
 	Added = { fg = c.nord14, bg = "NONE" },
 	DiffAdd = { bg = c.nord14_800 },
-	DiffChange = { bg = c.neutral_850 },
+	DiffChange = { bg = c.neutral_800 },
 	DiffDelete = { bg = c.nord11_900 },
 	DiffText = { bg = c.nord0 },
 	Removed = { fg = c.nord11, bg = "NONE" },
@@ -411,7 +411,7 @@ loadColorSet({
 
 -- Diffview.nvim
 loadColorSet({
-	DiffviewDiffDeleteDim = { bg = c.neutral_880 },
+	DiffviewDiffDeleteDim = { bg = c.neutral_850 },
 	DiffviewFilePanelCounter = { fg = c.nord8 },
 	DiffviewSecondary = { fg = c.nord14 },
 })
@@ -430,7 +430,7 @@ loadColorSet({
 	fugitiveRemoteHeading = { fg = c.nord9 },
 	fugitiveStagedHeading = { fg = c.nord14 },
 	fugitiveStashedHeading = { fg = c.nord12 },
-	fugitiveSymbolicRef = { fg = c.nord9 },
+	fugitiveSymbolicRef = { fg = c.nord4 },
 	fugitiveUnmergedHeading = { fg = c.nord13 },
 	fugitiveUnstagedHeading = { fg = c.nord13 },
 	fugitiveUntrackedHeading = { fg = c.nord11 },

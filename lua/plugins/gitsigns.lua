@@ -10,6 +10,13 @@ local icons = {
 	Untracked = "┃",
 }
 
+local EXCLUDE_FILETYPES = {
+	"lazy",
+	"mason",
+	"toggleterm",
+	"fugitive",
+}
+
 return {
 	"lewis6991/gitsigns.nvim",
 	opts = {
@@ -37,6 +44,14 @@ return {
 			virt_text_pos = "right_align",
 		},
 		on_attach = function(bufnr)
+			-- Don't attach to excluded filetypes
+			local ft = vim.bo[bufnr].filetype
+			for _, excluded_ft in ipairs(EXCLUDE_FILETYPES) do
+				if ft == excluded_ft then
+					return
+				end
+			end
+
 			local gs = package.loaded.gitsigns
 
 			-- Set keymap, but only if it's not already set
