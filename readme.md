@@ -43,7 +43,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Editor
 
-- [cutlass](https://github.com/gbprod/cutlass.nvim) - Cut action
 - [dial](https://github.com/monaqa/dial.nvim) - Enhanced increment/decrement
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
