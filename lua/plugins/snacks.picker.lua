@@ -232,6 +232,9 @@ return {
 						})
 					end,
 				},
+				lsp_incoming_calls = {
+					auto_confirm = false,
+				},
 				registers = {
 					layout = layout_no_preview,
 				},
