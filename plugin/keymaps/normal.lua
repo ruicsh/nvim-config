@@ -210,7 +210,7 @@ k("%p", yank_path("%:p"), { desc = "Yank filename (absolute)" })
 k("<bs>", ":b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
 k("<f1>", "<nop>") -- Disable F1 help
 k("<leader>v", "<c-v>", { desc = "Enter visual block mode" }) -- `:h <c-v>`
-k("<tab>", "zA", { desc = "Toggle folds" }) -- `:h zA`
+k("<tab>", "za", { desc = "Toggle folds" }) -- `:h za`
 k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
 
 --

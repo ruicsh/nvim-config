@@ -244,6 +244,7 @@ return {
 							preview = false,
 							title = "{title}",
 							title_pos = "center",
+							width = 0.5,
 							{ win = "input", height = 1, border = "bottom" },
 							{ win = "list", border = "none", height = 0.2 },
 						},
