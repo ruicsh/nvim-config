@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>62 plugins</sub>
+<sub>61 plugins</sub>
 
 ### Code
 
@@ -49,7 +49,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [mini.bracketed](https://github.com/nvim-mini/mini.bracketed) - Navigation with square brackets
 - [mini.move](https://github.com/nvim-mini/mini.move) - Move lines/selection
 - [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action
-- [rsi](https://github.com/tpope/vim-rsi) - Readline keybinds for insert mode
+- [readline](https://github.com/assistcontrol/readline.nvim) - Readline motions (insert and command mode)
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [spider](https://github.com/chrisgrieser/nvim-spider) - Move by subwords
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action

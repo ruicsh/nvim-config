@@ -18,10 +18,4 @@ k("<c-p>", "<c-t>") -- `:h c_ctrl-t`
 --
 -- }}}
 
--- Editing {{{
---
-k("<c-k>", "<c-\\>estrpart(getcmdline(), 0, getcmdpos()-1)<cr>") -- Delete line forward
---
--- }}}
-
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable
