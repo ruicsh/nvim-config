@@ -19,6 +19,9 @@ return {
 			backdrop = false,
 			matches = false,
 		},
+		label = {
+			uppercase = false,
+		},
 		labels = "asdfqwerzxcv", -- Limit labels to left side of the keyboard
 		modes = {
 			char = {
