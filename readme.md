@@ -175,7 +175,7 @@ Random features added.
 
 - `<bs>` switch to last
 - `q` close
-- `<leader>;` list
+- `<leader>,` list
 
 ### Bookmarks
 
