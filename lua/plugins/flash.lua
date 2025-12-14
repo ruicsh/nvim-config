@@ -46,10 +46,6 @@ return {
 		prompt = {
 			enabled = false,
 		},
-		remote_op = {
-			restore = true,
-			motion = true,
-		},
 		search = {
 			wrap = true,
 		},

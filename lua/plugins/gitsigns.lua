@@ -36,7 +36,7 @@ return {
 			changedelete = { text = icons.ChangeDelete },
 			untracked = { text = icons.Untracked },
 		},
-		attach_to_untracked = true,
+		attach_to_untracked = false,
 		current_line_blame = true,
 		current_line_blame_formatter = "<author_time:%R> - <summary>",
 		current_line_blame_opts = {

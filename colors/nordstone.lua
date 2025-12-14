@@ -139,7 +139,7 @@ loadColorSet({
 	ToolbarButton = { fg = c.nord4, bg = "NONE", style = "bold" },
 	ToolbarLine = { fg = c.nord4, bg = c.nord1 },
 	VertSplit = { fg = c.nord2, bg = "NONE" },
-	Visual = { fg = c.nord4, bg = c.nord3 },
+	Visual = { fg = c.nord4, bg = c.nord1 },
 	VisualMode = { fg = c.nord0, bg = c.nord9 },
 	WarningMsg = { fg = c.nord15 },
 	Warnings = { fg = c.nord15 },
@@ -418,7 +418,7 @@ loadColorSet({
 
 -- flash.nvim
 loadColorSet({
-	FlashLabel = { fg = c.nord13, bg = "NONE" },
+	FlashLabel = { fg = c.nord0, bg = c.nord13 },
 })
 
 -- Fugitive
@@ -471,8 +471,8 @@ loadColorSet({
 
 -- incline.nvim
 loadColorSet({
-	InclineNormal = { fg = c.nord3_700, bg = "NONE" },
-	InclineNormalNC = { link = "InclineNormal" },
+	InclineNormal = { fg = c.nord4, bg = "NONE" },
+	InclineNormalNC = { fg = c.nord3_700, bg = "NONE" },
 })
 
 -- mini.hipatterns
@@ -496,11 +496,6 @@ loadColorSet({
 	HlSearchLensNear = { fg = c.nord13, bg = "NONE" },
 })
 
--- portal.nvim
-loadColorSet({
-	PortalLabel = { fg = c.nord0, bg = c.nord8 },
-})
-
 -- other.nvim
 loadColorSet({
 	OtherUnderlined = { fg = c.nord12, bg = c.neutral_900 },
@@ -520,7 +515,7 @@ loadColorSet({
 
 -- visual-whitespace.nvim
 loadColorSet({
-	VisualNonText = { fg = c.nord3_700, bg = c.nord3 },
+	VisualNonText = { fg = c.nord3_700, bg = c.nord1 },
 })
 
 -- winshift.nvim
