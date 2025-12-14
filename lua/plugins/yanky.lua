@@ -5,7 +5,7 @@ return {
 	"gbprod/yanky.nvim",
 	keys = function()
 		local mappings = {
-			{ "<leader>p", ":lua Snacks.picker.yanky()<cr>", "History", mode = { "n", "x" } },
+			{ "<leader>p", ":lua Snacks.picker.yanky()<cr>", "History", { mode = { "n", "x" } } },
 			{ "y", "<Plug>(YankyYank)", "Yank", { mode = { "n", "x" } } },
 			{ "p", "<Plug>(YankyPutAfter)", "Put after", { mode = { "n", "x" } } },
 			{ "<c-v>", "<Plug>(YankyPutAfter)", "Put after", { mode = { "n", "x" } } },

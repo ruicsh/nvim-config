@@ -13,10 +13,10 @@ return {
 		end
 
 		local mappings = {
-			{ "w", motion("w"), "Next", mode = { "n", "o", "x" } },
-			{ "e", motion("e"), "End", mode = { "n", "o", "x" } },
-			{ "b", motion("b"), "Previous", mode = { "n", "o", "x" } },
-			{ "ge", motion("ge"), "End of previous", mode = { "n", "o", "x" } },
+			{ "w", motion("w"), "Next", { mode = { "n", "o", "x" } } },
+			{ "e", motion("e"), "End", { mode = { "n", "o", "x" } } },
+			{ "b", motion("b"), "Previous", { mode = { "n", "o", "x" } } },
+			{ "ge", motion("ge"), "End of previous", { mode = { "n", "o", "x" } } },
 		}
 
 		return vim.fn.get_lazy_keys_config(mappings, "Words")
