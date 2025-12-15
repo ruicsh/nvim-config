@@ -85,21 +85,6 @@ local grep_directory = function()
 	end
 end
 
-local layout_no_preview = {
-	preview = false,
-	layout = {
-		backdrop = false,
-		border = "rounded",
-		box = "vertical",
-		height = 0.9,
-		title = "{title} {live} {flags}",
-		title_pos = "center",
-		width = 0.7,
-		{ win = "input", height = 1, border = "bottom" },
-		{ win = "list", border = "none" },
-	},
-}
-
 return {
 	"folke/snacks.nvim",
 	keys = (function()
@@ -166,18 +151,50 @@ return {
 			jump = {
 				reuse_win = true,
 			},
-			layout = {
-				layout = {
-					backdrop = false,
-					border = "rounded",
-					box = "vertical",
-					height = 0.9,
-					title = "{title} {live} {flags}",
-					title_pos = "center",
-					width = 0.7,
-					{ win = "input", height = 1, border = "bottom" },
-					{ win = "list", border = "none", height = 0.3 },
-					{ win = "preview", title = "{preview}", border = "top" },
+			layout = "default",
+			layouts = {
+				default = {
+					preview = true,
+					layout = {
+						backdrop = false,
+						border = "rounded",
+						box = "vertical",
+						height = 0.9,
+						title = "{title} {live} {flags}",
+						title_pos = "center",
+						width = 0.7,
+						{ win = "input", height = 1, border = "bottom" },
+						{ win = "list", border = "none", height = 0.3 },
+						{ win = "preview", title = "{preview}", border = "top" },
+					},
+				},
+				no_preview = {
+					preview = false,
+					layout = {
+						backdrop = false,
+						border = "rounded",
+						box = "vertical",
+						height = 0.9,
+						title = "{title}",
+						title_pos = "center",
+						width = 0.7,
+						{ win = "input", height = 1, border = "bottom" },
+						{ win = "list", border = "none" },
+					},
+				},
+				select = {
+					preview = false,
+					layout = {
+						backdrop = false,
+						border = "rounded",
+						box = "vertical",
+						height = 0.4,
+						title = "{title}",
+						title_pos = "center",
+						width = 0.5,
+						{ win = "input", height = 1, border = "bottom" },
+						{ win = "list", border = "none", height = 0.2 },
+					},
 				},
 			},
 			matcher = {
@@ -235,26 +252,17 @@ return {
 				lsp_incoming_calls = {
 					auto_confirm = false,
 				},
+				lsp_outgoing_calls = {
+					auto_confirm = false,
+				},
 				registers = {
-					layout = layout_no_preview,
+					layout = "no_preview",
 				},
 				select = {
-					layout = {
-						layout = {
-							border = "rounded",
-							box = "vertical",
-							height = 0.4,
-							preview = false,
-							title = "{title}",
-							title_pos = "center",
-							width = 0.5,
-							{ win = "input", height = 1, border = "bottom" },
-							{ win = "list", border = "none", height = 0.2 },
-						},
-					},
+					layout = { layout = "select" },
 				},
 				yanky = {
-					layout = layout_no_preview,
+					layout = "no_preview",
 				},
 			},
 			ui_select = true,
