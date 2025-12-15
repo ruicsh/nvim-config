@@ -235,30 +235,6 @@ end
 local function new_chat_window(prompt, opts)
 	local chat = require("CopilotChat")
 
-	if opts.inline then
-		opts.window = {
-			layout = "float",
-			relative = "cursor",
-			width = 80,
-			height = 20,
-			row = -21,
-			col = 3,
-		}
-	else
-		opts.window = {
-			anchor = "NE",
-			border = { "", "", "", "", "", "", "", "│" },
-			col = vim.o.columns,
-			focusable = true,
-			height = vim.o.lines - vim.o.cmdheight - 1,
-			layout = "float",
-			relative = "editor",
-			row = 0,
-			style = "minimal",
-			width = math.floor(vim.o.columns * 0.5),
-		}
-	end
-
 	vim.g.copilot_chat_title = nil -- Reset chat title used for saving chat history
 	chat.reset()
 
@@ -340,7 +316,7 @@ local function get_model_for_operation(operation_type)
 	return selected_model
 end
 
-local function open_chat(type, opts)
+local function open_chat(type)
 	return function()
 		local sticky = {}
 
@@ -360,7 +336,6 @@ local function open_chat(type, opts)
 		end
 
 		new_chat_window("", {
-			inline = opts and opts.inline or false,
 			model = model,
 			sticky = sticky,
 			system_prompt = system_prompt,
@@ -698,9 +673,6 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 		model = vim.fn.getenv("COPILOT_MODEL_REASON"),
 		sticky = { "#gitdiff:staged" },
 		system_prompt = "/COPILOT_REVIEW",
-		window = {
-			layout = "replace",
-		},
 	})
 end, {})
 
@@ -772,12 +744,6 @@ return {
 			{ "<leader>as", open_chat("search"), "Search" },
 			{ "<leader>aq", open_chat("architect"), "Architect" },
 
-			-- inline chat
-			{ "<leader>aA", open_chat("assistance", { inline = true }), "Assistance", { mode = { "n", "v" } } },
-			{ "<leader>aG", open_chat("generic", { inline = true }), "Assistance" },
-			{ "<leader>aS", open_chat("search", { inline = true }), "Search" },
-			{ "<leader>aQ", open_chat("architect", { inline = true }), "Architect" },
-
 			-- actions
 			{ "<leader>ae", action("explain"), "Explain", { mode = { "n", "v" } } },
 			{ "<leader>af", action("fix"), "Fix", { mode = { "n", "v" } } },
@@ -786,15 +752,6 @@ return {
 			{ "<leader>ar", action("review"), "Review", { mode = { "n", "v" } } },
 			{ "<leader>at", action("tests"), "Tests", { mode = { "n", "v" } } },
 			{ "<leader>an", action("refactor"), "Refactor", { mode = { "n", "v" } } },
-
-			-- actions inline
-			{ "<leader>aE", action("explain", { inline = true }), "Explain", { mode = "v" } },
-			{ "<leader>aF", action("fix", { inline = true }), "Fix", { mode = { "v" } } },
-			{ "<leader>aI", action("implement", { inline = true }), "Implement", { mode = "v" } },
-			{ "<leader>aO", action("optimize", { inline = true }), "Optimize", { mode = "v" } },
-			{ "<leader>aR", action("review", { inline = true }), "Review", { mode = { "v" } } },
-			{ "<leader>aT", action("tests", { inline = true }), "Tests", { mode = "v" } },
-			{ "<leader>aN", action("refactor", { inline = true }), "Refactor", { mode = "v" } },
 
 			-- git
 			{ "<leader>ap", ":CopilotPrReview<cr>", "PR review" },
@@ -1011,8 +968,16 @@ return {
 			show_help = false,
 			show_folds = true,
 			window = {
-				layout = "vertical",
-				title = "",
+				anchor = "NE",
+				border = { "", "", "", "", "", "", "", "│" },
+				col = vim.o.columns,
+				focusable = true,
+				height = vim.o.lines - vim.o.cmdheight - 1,
+				layout = "float",
+				relative = "editor",
+				row = 0,
+				style = "minimal",
+				width = math.floor(vim.o.columns * 0.5),
 			},
 		})
 	end,

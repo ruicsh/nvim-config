@@ -61,7 +61,6 @@ return {
 		},
 	},
 
-	cmd = { "Grapple" },
 	dependncies = {
 		{ "nvim-tree/nvim-web-devicons" },
 	},
