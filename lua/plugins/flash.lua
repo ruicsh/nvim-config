@@ -27,8 +27,8 @@ return {
 			char = {
 				char_actions = function(motion)
 					return {
-						[motion:lower()] = "next",
-						[motion:upper()] = "prev",
+						[motion] = "next",
+						[motion:match("%l") and motion:upper() or motion:lower()] = "prev",
 					}
 				end,
 				highlight = {
