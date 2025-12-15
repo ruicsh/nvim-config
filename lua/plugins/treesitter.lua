@@ -121,7 +121,7 @@ return {
 			return vim.fn.get_lazy_keys_config(mappings, "AST")
 		end,
 		opts = {
-			max_lines = 5,
+			max_lines = 3,
 			mode = "topline",
 			multiwindow = true,
 			separator = "─",

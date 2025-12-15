@@ -978,6 +978,7 @@ return {
 				row = 0,
 				style = "minimal",
 				width = math.floor(vim.o.columns * 0.5),
+				zindex = 50,
 			},
 		})
 	end,
