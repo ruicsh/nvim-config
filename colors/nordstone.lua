@@ -127,7 +127,7 @@ loadColorSet({
 	SpellCap = { fg = c.nord7, bg = "NONE", style = "undercurl" },
 	SpellLocal = { fg = c.nord8, bg = "NONE", style = "undercurl" },
 	SpellRare = { fg = c.nord9, bg = "NONE", style = "undercurl" },
-	StatusLine = { fg = c.nord4, bg = "NONE" },
+	StatusLine = { fg = c.nord3_900, bg = "NONE" },
 	StatusLineNC = { fg = c.nord4, bg = "NONE" },
 	StatusLineTerm = { fg = c.nord4, bg = "NONE" },
 	StatusLineTermNC = { fg = c.nord4, bg = "NONE" },
@@ -374,7 +374,7 @@ local cmode = {
 loadColorSet({
 	StatusLineBookmark = { fg = c.nord13 },
 	StatusLineFileChanged = { fg = c.nord8 },
-	StatusLineGitStatus = { fg = c.nord4 },
+	StatusLineGitStatus = { link = "StatusLine" },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
 	StatusLineModeInsert = { bg = cmode.i },
@@ -387,7 +387,7 @@ loadColorSet({
 	StatusLineModePendingText = { fg = cmode.o },
 	StatusLineModeVisual = { bg = cmode.x },
 	StatusLineModeVisualText = { fg = cmode.x },
-	StatusLineProject = { fg = c.nord4 },
+	StatusLineProject = { link = "StatusLine" },
 	StatusLineSeparator = { fg = c.nord3 },
 })
 
