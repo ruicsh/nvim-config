@@ -14,18 +14,17 @@ return {
 		return vim.fn.get_lazy_keys_config(mappings, "ZenMode")
 	end)(),
 	opts = {
-		styles = {
-			zen = {
+		zen = {
+			toggles = {
+				dim = false,
+			},
+			win = {
 				keys = {
 					["q"] = false,
 					["<leader>z"] = false,
 				},
+				width = tonumber(vim.fn.env_get("ZEN_MODE_WINDOW_WIDTH")),
 				zindex = 100,
-			},
-		},
-		zen = {
-			toggles = {
-				dim = false,
 			},
 		},
 	},
