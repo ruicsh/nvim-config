@@ -209,7 +209,13 @@ return {
 			},
 			sources = {
 				buffers = {
+					filter = {
+						filter = function(item)
+							return item.name ~= ""
+						end,
+					},
 					format = "file",
+					show_empty = true,
 					sort_lastused = true,
 				},
 				git_log = {
@@ -217,6 +223,7 @@ return {
 						picker:close()
 						vim.cmd("DiffviewOpen " .. item.commit .. "^!")
 					end,
+					show_empty = true,
 					title = "Git: Search Log",
 				},
 				git_status = {
@@ -239,6 +246,7 @@ return {
 				grep_word = {
 					exclude = vim.fn.env_get_list("GREP_EXCLUDE_FILES"),
 					hidden = true,
+					show_empty = true,
 				},
 				help = {
 					confirm = function(picker, item)
@@ -251,9 +259,14 @@ return {
 				},
 				lsp_incoming_calls = {
 					auto_confirm = false,
+					show_empty = true,
 				},
 				lsp_outgoing_calls = {
 					auto_confirm = false,
+					show_empty = true,
+				},
+				qflist = {
+					show_empty = true,
 				},
 				registers = {
 					layout = "no_preview",
@@ -263,6 +276,7 @@ return {
 				},
 				yanky = {
 					layout = "no_preview",
+					show_empty = true,
 				},
 			},
 			ui_select = true,
