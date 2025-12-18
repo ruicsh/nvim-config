@@ -258,6 +258,7 @@ local function customize_chat_window()
 			vim.opt_local.foldlevel = 999
 			vim.opt_local.foldlevelstart = 99
 			vim.opt_local.formatoptions:remove("r")
+			vim.api.nvim_win_set_var(0, "side_panel", true)
 		end,
 	})
 end
