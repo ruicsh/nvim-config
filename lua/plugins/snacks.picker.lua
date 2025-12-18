@@ -182,20 +182,6 @@ return {
 						{ win = "list", border = "none" },
 					},
 				},
-				select = {
-					preview = false,
-					layout = {
-						backdrop = false,
-						border = "rounded",
-						box = "vertical",
-						height = 0.4,
-						title = "{title}",
-						title_pos = "center",
-						width = 0.5,
-						{ win = "input", height = 1, border = "bottom" },
-						{ win = "list", border = "none", height = 0.2 },
-					},
-				},
 			},
 			matcher = {
 				cwd_bonus = true,
@@ -270,9 +256,6 @@ return {
 				},
 				registers = {
 					layout = "no_preview",
-				},
-				select = {
-					layout = { layout = "select" },
 				},
 				yanky = {
 					layout = "no_preview",
