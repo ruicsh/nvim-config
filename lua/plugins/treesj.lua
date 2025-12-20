@@ -13,6 +13,7 @@ return {
 		return vim.fn.get_lazy_keys_config(mappings, "Treesj")
 	end,
 	opts = {
+		max_join_length = 100000000, -- No limit
 		use_default_keymaps = false,
 	},
 	dependencies = {
