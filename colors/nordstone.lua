@@ -419,6 +419,7 @@ loadColorSet({
 -- flash.nvim
 loadColorSet({
 	FlashLabel = { fg = c.nord0, bg = c.nord13 },
+	FlashNoLabel = { bg = "NONE" },
 })
 
 -- Fugitive

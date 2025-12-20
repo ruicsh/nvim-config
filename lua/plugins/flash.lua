@@ -31,12 +31,14 @@ return {
 						[motion:match("%l") and motion:upper() or motion:lower()] = "prev",
 					}
 				end,
+				config = function(opts)
+					opts.highlight.groups.label = "FlashNoLabel"
+				end,
 				highlight = {
 					backdrop = false,
 				},
 				jump_labels = false,
 				keys = { "f", "F", "t", "T" },
-				multi_line = false,
 			},
 			treesitter = {
 				actions = {
