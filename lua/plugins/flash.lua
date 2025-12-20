@@ -32,7 +32,7 @@ return {
 					}
 				end,
 				config = function(opts)
-					opts.highlight.groups.label = "FlashNoLabel"
+					opts.highlight.groups.label = "FlashLabelCharMode"
 				end,
 				highlight = {
 					backdrop = false,
