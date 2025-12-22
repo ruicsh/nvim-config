@@ -297,6 +297,13 @@ Random features added.
 - `<leader>r{motion}` replace
 - `<leader>s{motion}` sort
 
+### MultiCursor
+
+- `<s-up>` Add cursor above (`<s-down>` for below)
+- `<leader><s-up>` Skip cursor above (`<leader><s-down>` for below)
+- `<leader>x` delete cursor
+- `<esc>` Clear cursors
+
 ### Completion
 
 - `<c-n>` show/next entry

@@ -20,10 +20,10 @@ return {
 
 		local mappings = {
 			-- Add or skip cursor above/below the main cursor.
-			{ "<c-s-up>", lineAddCursor(-1), "Add cursor above", { mode = { "n", "x" } } },
-			{ "<c-s-down>", lineAddCursor(1), "Add cursor below", { mode = { "n", "x" } } },
-			{ "<leader><c-s-up>", lineSkipCursor(-1), "Skip cursor above", { mode = { "n", "x" } } },
-			{ "<leader><c-s-down>", lineSkipCursor(1), "Skip cursor below", { mode = { "n", "x" } } },
+			{ "<s-up>", lineAddCursor(-1), "Add cursor above", { mode = { "n", "x" } } },
+			{ "<s-down>", lineAddCursor(1), "Add cursor below", { mode = { "n", "x" } } },
+			{ "<leader><s-up>", lineSkipCursor(-1), "Skip cursor above", { mode = { "n", "x" } } },
+			{ "<leader><s-down>", lineSkipCursor(1), "Skip cursor below", { mode = { "n", "x" } } },
 		}
 
 		return vim.fn.get_lazy_keys_config(mappings, "Multicursor")

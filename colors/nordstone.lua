@@ -409,7 +409,7 @@ loadColorSet({
 	CopilotChatSeparator = { fg = c.neutral_700 },
 })
 
--- Diffview.nvim
+-- diffview.nvim
 loadColorSet({
 	DiffviewDiffDeleteDim = { bg = c.neutral_850 },
 	DiffviewFilePanelCounter = { fg = c.nord8 },
@@ -422,7 +422,7 @@ loadColorSet({
 	FlashLabelCharMode = { bg = "NONE", style = "underline" },
 })
 
--- Fugitive
+-- fugitive
 loadColorSet({
 	-- git status
 	fugitiveHunk = { fg = c.nord3_900 },
@@ -470,6 +470,12 @@ loadColorSet({
 	GitSignsDeleteInline = { link = "GitSignsBlank" },
 })
 
+-- hlslens.nvim
+loadColorSet({
+	HlSearchLens = { fg = c.nord3_700, bg = "NONE" },
+	HlSearchLensNear = { fg = c.nord13, bg = "NONE" },
+})
+
 -- incline.nvim
 loadColorSet({
 	InclineNormal = { fg = c.nord4, bg = "NONE" },
@@ -481,20 +487,9 @@ loadColorSet({
 	MiniHipatternsDebugStatement = { fg = c.nord12 },
 })
 
--- filetypes/oil.lua
+-- multicursor.nvim
 loadColorSet({
-	OilGitAdded = { fg = c.nord14, bg = "NONE" },
-	OilGitModified = { fg = c.nord13, bg = "NONE" },
-	OilGitDeleted = { fg = c.nord11, bg = "NONE" },
-	OilGitRenamed = { fg = c.nord13, bg = "NONE" },
-	OilGitUntracked = { fg = c.nord14, bg = "NONE" },
-	OilGitIgnored = { fg = c.nord3_500, bg = "NONE" },
-})
-
--- hlslens.nvim
-loadColorSet({
-	HlSearchLens = { fg = c.nord3_700, bg = "NONE" },
-	HlSearchLensNear = { fg = c.nord13, bg = "NONE" },
+	MultiCursorCursor = { fg = c.nord0, bg = c.nord4 },
 })
 
 -- other.nvim
@@ -529,4 +524,14 @@ loadColorSet({
 loadColorSet({
 	YankyPut = { link = "IncSearch" },
 	YankyYanked = { link = "IncSearch" },
+})
+
+-- filetypes/oil.lua
+loadColorSet({
+	OilGitAdded = { fg = c.nord14, bg = "NONE" },
+	OilGitModified = { fg = c.nord13, bg = "NONE" },
+	OilGitDeleted = { fg = c.nord11, bg = "NONE" },
+	OilGitRenamed = { fg = c.nord13, bg = "NONE" },
+	OilGitUntracked = { fg = c.nord14, bg = "NONE" },
+	OilGitIgnored = { fg = c.nord3_500, bg = "NONE" },
 })
