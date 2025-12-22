@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>62 plugins</sub>
+<sub>63 plugins</sub>
 
 ### Code
 
@@ -75,8 +75,8 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim) - diff, conflicts
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
+- [gitportal](https://codeberg.org/trevorhauter/gitportal.nvim) - Open remote
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
-- [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote
 
 ### Navigation
 
