@@ -97,7 +97,9 @@ vim.ux.close_side_panels = function()
 		local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
 		if ok and side_panel then
 			vim.schedule(function()
-				vim.api.nvim_win_close(winnr, true)
+				if vim.api.nvim_win_is_valid(winnr) then
+					vim.api.nvim_win_close(winnr, true)
+				end
 			end)
 		end
 	end
