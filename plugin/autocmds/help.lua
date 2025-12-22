@@ -30,10 +30,17 @@ vim.api.nvim_create_autocmd("CmdLineLeave", {
 				end
 			end
 
-			-- Open new help page in the side panel
-			vim.ux.open_side_panel({
-				mode = "replace",
-			})
+			-- If there's a valid help windo, move it to the side panel
+			vim.schedule(function()
+				local ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+				if ft ~= "help" then
+					return
+				end
+
+				vim.ux.open_side_panel({
+					mode = "replace",
+				})
+			end)
 		end
 	end,
 })
