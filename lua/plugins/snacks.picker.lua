@@ -127,6 +127,33 @@ return {
 	opts = {
 		picker = {
 			actions = {
+				git_branch_diff = function(picker, item)
+					picker:close()
+
+					-- Open diffview for the branch compared to the default branch
+					local base = T.git.default_branch()
+					vim.cmd("DiffviewOpen " .. base .. "..." .. item.branch)
+				end,
+				git_branch_ai_review = function(picker, item)
+					picker:close()
+
+					-- Get the git diff for the branch
+					local base = T.git.default_branch()
+					local ref = string.format("%s...%s", base, item.branch)
+					local diff = T.git.diff(ref)
+					if diff == "" then
+						vim.notify("No changes found in branch " .. item.branch)
+						return
+					end
+
+					-- Use Copilot Chat to ask for a review of the changes
+					local chat = require("CopilotChat")
+					local prompt = table.concat({ "> /review", " ", "```diff", diff, "```" }, "\n")
+					chat.ask(prompt, {
+						model = T.env.get("COPILOT_MODEL_REASON"),
+						system_prompt = "/COPILOT_INSTRUCTIONS",
+					})
+				end,
 				qflist = function(picker)
 					local snacks = require("snacks")
 					snacks.picker.actions.qflist(picker)
@@ -204,6 +231,23 @@ return {
 					format = "file",
 					show_empty = true,
 					sort_lastused = true,
+				},
+				git_branches = {
+					all = true,
+					format = function(item)
+						local a = Snacks.picker.util.align
+						local icon = item.current and { a("", 2), "SnacksPickerGitBranchCurrent" } or { a("", 2) }
+						local branch = { a(item.branch, 0, { truncate = false }), "SnacksPickerGitBranch" }
+						return { icon, branch }
+					end,
+					win = {
+						input = {
+							keys = {
+								["<c-s-d>"] = { "git_branch_diff", mode = { "n", "i" } },
+								["<c-s>"] = { "git_branch_ai_review", mode = { "n", "i" } },
+							},
+						},
+					},
 				},
 				git_log = {
 					confirm = function(picker, item)
