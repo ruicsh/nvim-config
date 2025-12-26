@@ -18,12 +18,31 @@ return {
 			end
 		end
 
+		local function matchAddCursor(direction)
+			return function()
+				mc.matchAddCursor(direction)
+			end
+		end
+
+		local function matchSkipCursor(direction)
+			return function()
+				mc.matchSkipCursor(direction)
+			end
+		end
+
 		return {
 			-- Add or skip cursor above/below the main cursor.
-			{ "<s-up>", lineAddCursor(-1), desc = "Cursor: Add above", mode = { "n", "x" } },
-			{ "<s-down>", lineAddCursor(1), desc = "Cursor: Add below", mode = { "n", "x" } },
-			{ "<leader><s-up>", lineSkipCursor(-1), desc = "Cursor: Skip above", mode = { "n", "x" } },
-			{ "<leader><s-down>", lineSkipCursor(1), desc = "Cursor: Skip below", mode = { "n", "x" } },
+			{ "<s-up>", lineAddCursor(-1), desc = "MultiCursor: Add above", mode = { "n", "x" } },
+			{ "<s-down>", lineAddCursor(1), desc = "MultiCursor: Add below", mode = { "n", "x" } },
+			{ "<leader><s-up>", lineSkipCursor(-1), desc = "MultiCursor: Skip above", mode = { "n", "x" } },
+			{ "<leader><s-down>", lineSkipCursor(1), desc = "MultiCursor: Skip below", mode = { "n", "x" } },
+
+			{ "<leader>mn", matchAddCursor(1), desc = "MultiCursor: Add next match", mode = { "n", "x" } },
+			{ "<leader>mN", matchAddCursor(-1), desc = "MultiCursor: Add previous match", mode = { "n", "x" } },
+			{ "<leader>ms", matchSkipCursor(1), desc = "MultiCursor: Skip next match", mode = { "n", "x" } },
+			{ "<leader>mS", matchSkipCursor(-1), desc = "MultiCursor: Skip previous match", mode = { "n", "x" } },
+
+			{ "<leader>mm", mc.toggleCursor, desc = "MultiCursor: Toggle", mode = { "n", "x" } },
 		}
 	end,
 	config = function()

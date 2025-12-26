@@ -42,11 +42,11 @@ return {
 		end
 
 		return {
-			{ "glk", insert_breakpoint("below"), desc = "Logs: Insert debugger statement (below)" },
-			{ "glK", insert_breakpoint("above"), desc = "Logs: Insert debugger statement (above)" },
-			{ "glt", insert_time_log("below"), desc = "Logs: Timestamp below" },
-			{ "glT", insert_time_log("above"), desc = "Logs: Timestamp above" },
-			{ "<leader>glt", insert_time_log("surround"), desc = "Logs: Timestamp above/below" },
+			{ "glk", insert_breakpoint("below"), desc = "Debug: Insert debugger statement (below)" },
+			{ "glK", insert_breakpoint("above"), desc = "Debug: Insert debugger statement (above)" },
+			{ "glt", insert_time_log("below"), desc = "Debug: Timestamp below" },
+			{ "glT", insert_time_log("above"), desc = "Debug: Timestamp above" },
+			{ "<leader>glt", insert_time_log("surround"), desc = "Debug: Timestamp above/below" },
 		}
 	end,
 	opts = {

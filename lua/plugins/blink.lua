@@ -29,7 +29,6 @@ local DISABLED_BUFTYPES = {
 
 return {
 	"saghen/blink.cmp",
-
 	opts = {
 		completion = {
 			accept = {

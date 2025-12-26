@@ -24,9 +24,9 @@ return {
 			end
 		end
 
-		local prefix_cw = "ga"
-		local prefix_lsp = "<leader>ga"
-		local prefix_op = "gao"
+		local prefix_cw = "gs"
+		local prefix_lsp = "<leader>gs"
+		local prefix_op = "gso"
 
 		return {
 			{ prefix_cw .. "-", current_word("to_dash_case"), desc = "TextCase: Dash", mode = { "n", "x" } },
