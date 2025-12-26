@@ -1,6 +1,8 @@
 -- Navigation around the AST tree.
 -- https://github.com/aaronik/treewalker.nvim
 
+local T = require("lib")
+
 return {
 	"aaronik/treewalker.nvim",
 	keys = function()
@@ -13,7 +15,7 @@ return {
 			{ "<c-l>", tw.move_in, desc = "AST: Jump to child", mode = { "n", "v" } },
 		}
 
-		if vim.fn.is_windows() then
+		if T.fn.is_windows() then
 			table.insert(mappings, { "<c-H>", tw.swap_left, desc = "AST: Swap left" })
 			table.insert(mappings, { "<c-J>", tw.swap_down, desc = "AST: Swap down" })
 			table.insert(mappings, { "<c-K>", tw.swap_up, desc = "AST: Swap up" })

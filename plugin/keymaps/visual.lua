@@ -1,5 +1,7 @@
 -- Visual mode keymaps `:h visual-index`
 
+local T = require("lib")
+
 -- Setup {{{
 --
 local function k(lhs, rhs, opts)
@@ -86,7 +88,7 @@ k("/", "<esc>/\\%V", { desc = "Search inside selection" }) -- `:h /\%V`
 k("gw/", function()
 	local selection = vim.fn.getregion(vim.fn.getpos("."), vim.fn.getpos("v"), { type = vim.fn.mode() })
 	local query = vim.trim(table.concat(selection, " "))
-	local encoded = vim.fn.urlencode(query)
+	local encoded = T.fn.urlencode(query)
 	local url = ("https://google.com/search?q=%s"):format(encoded)
 	vim.cmd("Browse " .. url)
 	vim.api.nvim_input("<esc>")

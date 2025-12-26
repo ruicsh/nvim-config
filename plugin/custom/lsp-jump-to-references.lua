@@ -1,5 +1,7 @@
 -- Jump to references within the current buffer
 
+local T = require("lib")
+
 local augroup = vim.api.nvim_create_augroup("ruicsh/custom/lsp-jump-to-references", { clear = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -73,7 +75,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 					on_list = function(options)
 						-- Filter out references that are not in the current buffer
 						local current_filename = vim.api.nvim_buf_get_name(0):lower()
-						if vim.fn.has("win32") == 1 then
+						if T.fn.is_windows() then
 							current_filename = current_filename:gsub("/", "\\")
 						end
 						local items = vim.tbl_filter(function(item)

@@ -86,7 +86,7 @@ end, { desc = "Search for first occurrence of word under cursor in new window" }
 -- Web search
 k("gw/", function()
 	local query = vim.fn.expand("<cword>")
-	local encoded = vim.fn.urlencode(query)
+	local encoded = T.fn.urlencode(query)
 	local url = ("https://google.com/search?q=%s"):format(encoded)
 	vim.cmd("Browse " .. url)
 end, { desc = "Search web for word under cursor" })

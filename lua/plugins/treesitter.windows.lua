@@ -1,4 +1,6 @@
-if not vim.fn.is_windows() then
+local T = require("lib")
+
+if not T.fn.is_windows() then
 	return {}
 end
 

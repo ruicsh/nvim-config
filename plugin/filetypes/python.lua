@@ -1,5 +1,7 @@
 local augroup = vim.api.nvim_create_augroup("ruicsh/filetype/python", { clear = true })
 
+local T = require("lib")
+
 -- Find virtual environment in current project
 local function find_venv()
 	local cwd = vim.fn.getcwd()
@@ -30,8 +32,7 @@ local function find_venv()
 
 		for _, venv in ipairs(possible_venvs) do
 			-- Check for bin/activate (Unix) or Scripts/activate.bat (Windows)
-			local is_windows = vim.fn.has("win32") == 1
-			local activation_script = is_windows and "Scripts/activate.bat" or "bin/activate"
+			local activation_script = T.fn.is_windows() and "Scripts/activate.bat" or "bin/activate"
 			local venv_path = venv .. "/" .. activation_script
 
 			if vim.fn.filereadable(venv_path) == 1 then
