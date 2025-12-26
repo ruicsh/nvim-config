@@ -26,10 +26,6 @@ end
 k("{", "m'6gkg0", { desc = "Jump up 6 lines" })
 k("}", "m'6gjg0", { desc = "Jump down 6 lines" })
 
--- Jump back and forward in jump list
-k("[[", "<c-o>", { desc = "Jump back" }) -- `:h <c-o>`
-k("]]", "<c-i>", { desc = "Jump forward" }) -- `:h <c-i>`
-
 -- For small jumps, use visual lines. `:h gk`
 k("k", [[v:count > 0 ? "k" : "gk"]], { expr = true })
 k("j", [[v:count > 0 ? "j" : "gj"]], { expr = true })

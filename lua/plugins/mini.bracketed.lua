@@ -27,7 +27,7 @@ return {
 		diagnostic = { suffix = "d", options = {} },
 		file = { suffix = "", options = {} },
 		indent = { suffix = "", options = {} },
-		jump = { suffix = "", options = {} },
+		jump = { suffix = ";", options = {} },
 		location = { suffix = "l", options = {} },
 		oldfile = { suffix = "o", options = {} },
 		quickfix = { suffix = "q", options = {} },
