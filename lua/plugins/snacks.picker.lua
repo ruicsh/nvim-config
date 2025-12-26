@@ -243,7 +243,7 @@ return {
 					win = {
 						input = {
 							keys = {
-								["<c-s-d>"] = { "git_branch_diff", mode = { "n", "i" } },
+								["<c-h>"] = { "git_branch_diff", mode = { "n", "i" } },
 								["<c-s>"] = { "git_branch_ai_review", mode = { "n", "i" } },
 							},
 						},
