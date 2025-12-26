@@ -13,22 +13,14 @@ return {
 	"sindrets/diffview.nvim",
 	keys = function()
 		local function git_blame_line()
-			local notify = require("mini.notify")
-			local blame = vim.git.blame()
-
-			if blame.commit:match("^00000000") or blame.commit == "fatal" then
-				local id = notify.add("Not commited yet.", "WARN")
-				vim.defer_fn(function()
-					notify.remove(id)
-				end, 3000)
-
+			local blame = T.git.blame_line()
+			local commit = blame:match("^(%w+)")
+			if not commit or commit == "" or commit:match("^00000000") then
+				vim.notify("Not committed yet.")
 				return
 			end
 
-			_G.diffview_blame = blame
-
-			local cmd = "DiffviewOpen " .. blame.commit .. "^! --selected-file=" .. vim.fn.expand("%")
-			vim.cmd(cmd)
+			vim.cmd("DiffviewOpen " .. commit .. "^! --selected-file=" .. vim.fn.expand("%"))
 		end
 
 		local function diff_back()
@@ -76,6 +68,11 @@ return {
 
 		return {
 			enhanced_diff_hl = true, -- ':h diffview-config-enhanced_diff_hl'
+			file_panel = {
+				win_config = {
+					width = 50,
+				},
+			},
 			keymaps = {
 				file_panel = {
 					["<c-n>"] = actions.select_next_entry,
@@ -130,6 +127,12 @@ return {
 				end,
 			},
 			view = {
+				default = {
+					layout = "diff2_vertical",
+				},
+				file_history = {
+					layout = "diff2_horizontal",
+				},
 				merge_tool = {
 					layout = "diff3_mixed",
 				},
