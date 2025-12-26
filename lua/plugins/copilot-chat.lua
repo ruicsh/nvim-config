@@ -738,31 +738,26 @@ return {
 	keys = function()
 		local chat = require("CopilotChat")
 
-		local mappings = {
+		return {
 			-- chat
-			{ "<leader>aa", open_chat("assistance"), "Assistance", { mode = { "n", "v" } } },
-			{ "<leader>ag", open_chat("generic"), "Generic" },
-			{ "<leader>as", open_chat("search"), "Search" },
-			{ "<leader>aq", open_chat("architect"), "Architect" },
+			{ "<leader>aa", open_chat("assistance"), desc = "AI: Assistance", mode = { "n", "v" } },
+			{ "<leader>ag", open_chat("generic"), desc = "AI: Generic" },
+			{ "<leader>as", open_chat("search"), desc = "AI: Search" },
+			{ "<leader>aq", open_chat("architect"), desc = "AI: Architect" },
 
 			-- actions
-			{ "<leader>ae", action("explain"), "Explain", { mode = { "n", "v" } } },
-			{ "<leader>af", action("fix"), "Fix", { mode = { "n", "v" } } },
-			{ "<leader>ai", action("implement"), "Implement", { mode = { "n", "v" } } },
-			{ "<leader>ao", action("optimize"), "Optimize", { mode = { "n", "v" } } },
-			{ "<leader>ar", action("review"), "Review", { mode = { "n", "v" } } },
-			{ "<leader>at", action("tests"), "Tests", { mode = { "n", "v" } } },
-			{ "<leader>an", action("refactor"), "Refactor", { mode = { "n", "v" } } },
-
-			-- git
-			{ "<leader>ap", ":CopilotPrReview<cr>", "PR review" },
+			{ "<leader>ae", action("explain"), desc = "AI: Explain", mode = { "n", "v" } },
+			{ "<leader>af", action("fix"), desc = "AI: Fix", mode = { "n", "v" } },
+			{ "<leader>ai", action("implement"), desc = "AI: Implement", mode = { "n", "v" } },
+			{ "<leader>ao", action("optimize"), desc = "AI: Optimize", mode = { "n", "v" } },
+			{ "<leader>ar", action("review"), desc = "AI: Review", mode = { "n", "v" } },
+			{ "<leader>at", action("tests"), desc = "AI: Tests", mode = { "n", "v" } },
+			{ "<leader>an", action("refactor"), desc = "AI: Refactor", mode = { "n", "v" } },
 
 			-- utilities
-			{ "<leader>ah", list_chat_history, "List chat history" },
-			{ "<leader>am", chat.select_model, "Models" },
+			{ "<leader>ah", list_chat_history, desc = "AI: List chat history" },
+			{ "<leader>am", chat.select_model, desc = "AI: Models" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "AI")
 	end,
 	config = function()
 		local chat = require("CopilotChat")

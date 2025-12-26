@@ -5,13 +5,12 @@ return {
 	"folke/snacks.nvim",
 	keys = (function()
 		local snacks = require("snacks")
+		local zen = snacks.zen
 
-		local mappings = {
-			{ "<leader>z", snacks.zen.zen, "Toggle" },
-			{ "<c-w>z", snacks.zen.zoom, "Zoom" },
+		return {
+			{ "<leader>z", zen.zen, desc = "ZenMode: Toggle" },
+			{ "<c-w>z", zen.zoom, desc = "ZenMode: Zoom" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "ZenMode")
 	end)(),
 	opts = {
 		zen = {

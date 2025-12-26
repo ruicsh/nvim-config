@@ -41,15 +41,13 @@ return {
 			end
 		end
 
-		local mappings = {
-			{ "glk", insert_breakpoint("below"), "Insert debugger statement (below)" },
-			{ "glK", insert_breakpoint("above"), "Insert debugger statement (above)" },
-			{ "glt", insert_time_log("below"), "Timestamp below" },
-			{ "glT", insert_time_log("above"), "Timestamp above" },
-			{ "<leader>glt", insert_time_log("surround"), "Timestamp above/below" },
+		return {
+			{ "glk", insert_breakpoint("below"), desc = "Logs: Insert debugger statement (below)" },
+			{ "glK", insert_breakpoint("above"), desc = "Logs: Insert debugger statement (above)" },
+			{ "glt", insert_time_log("below"), desc = "Logs: Timestamp below" },
+			{ "glT", insert_time_log("above"), desc = "Logs: Timestamp above" },
+			{ "<leader>glt", insert_time_log("surround"), desc = "Logs: Timestamp above/below" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Logs")
 	end,
 	opts = {
 		keymaps = {

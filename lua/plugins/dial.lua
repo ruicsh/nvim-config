@@ -12,18 +12,16 @@ return {
 			end
 		end
 
-		local mappings = {
-			{ "<c-a>", map("increment", "normal"), "Increment" },
-			{ "<c-x>", map("decrement", "normal"), "Decrement" },
-			{ "g<c-a>", map("increment", "gnormal"), "Increment" },
-			{ "g<c-x>", map("decrement", "gnormal"), "Decrement" },
-			{ "<c-a>", map("increment", "visual"), "Increment", { mode = "x" } },
-			{ "<c-x>", map("decrement", "visual"), "Decrement", { mode = "x" } },
-			{ "g<c-a>", map("increment", "gvisual"), "Increment", { mode = "x" } },
-			{ "g<c-x>", map("decrement", "gvisual"), "Decrement", { mode = "x" } },
+		return {
+			{ "<c-a>", map("increment", "normal"), desc = "Dial: Increment" },
+			{ "<c-x>", map("decrement", "normal"), desc = "Dial: Decrement" },
+			{ "g<c-a>", map("increment", "gnormal"), desc = "Dial: Increment" },
+			{ "g<c-x>", map("decrement", "gnormal"), desc = "Dial: Decrement" },
+			{ "<c-a>", map("increment", "visual"), desc = "Dial: Increment", mode = "x" },
+			{ "<c-x>", map("decrement", "visual"), desc = "Dial: Decrement", mode = "x" },
+			{ "g<c-a>", map("increment", "gvisual"), desc = "Dial: Increment", mode = "x" },
+			{ "g<c-x>", map("decrement", "gvisual"), desc = "Dial: Decrement", mode = "x" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Dial")
 	end,
 
 	config = function()

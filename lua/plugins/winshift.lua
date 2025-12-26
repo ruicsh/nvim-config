@@ -3,16 +3,12 @@
 
 return {
 	"ruicsh/winshift.nvim",
-	keys = function()
-		local mappings = {
-			{ "<c-w>m", "<cmd>WinShift<cr>", "Move" },
-			{ "<c-w><c-m>", "<cmd>WinShift<cr>", "Move" },
-			{ "<c-w>x", "<cmd>WinShift swap<cr>", "Swap" },
-			{ "<c-w><c-x>", "<cmd>WinShift swap<cr>", "Swap" },
-		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Windows")
-	end,
+	keys = {
+		{ "<c-w>m", ":WinShift<cr>", desc = "Windows: Move" },
+		{ "<c-w><c-m>", ":WinShift<cr>", desc = "Windows: Move" },
+		{ "<c-w>x", ":WinShift swap<cr>", desc = "Windows: Swap" },
+		{ "<c-w><c-x>", ":WinShift swap<cr>", desc = "Windows: Swap" },
+	},
 	opts = {
 		focused_hl_group = "WinShiftFocused",
 		window_picker_hl_group = "WinShiftWindowPicker",

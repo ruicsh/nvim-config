@@ -4,22 +4,20 @@
 return {
 	"assistcontrol/readline.nvim",
 	keys = function()
-		local readline = require("readline")
+		local r = require("readline")
 
-		local mappings = {
-			{ "<a-b>", readline.backward_word, "Jump word (backward)", { mode = { "i", "c" } } },
-			{ "<a-f>", readline.forward_word, "Jump word (forward)", { mode = { "i", "c" } } },
-			{ "<c-a>", readline.beginning_of_line, "Beginning of line", { mode = { "i", "c" } } },
-			{ "<c-b>", "<left>", "Jump character (backward)", { mode = { "i", "c" } } },
-			{ "<c-d>", readline.kill_word, "Delete word (forward)", { mode = { "i", "c" } } },
-			{ "<c-e>", readline.end_of_line, "End of line", { mode = { "i", "c" } } },
-			{ "<c-f>", "<right>", "Jump character (forward)", { mode = { "i", "c" } } },
-			{ "<c-k>", readline.kill_line, "Delete line (forward)", { mode = { "i", "c" } } },
-			{ "<c-u>", readline.backward_kill_line, "Delete line (backward)", { mode = { "i", "c" } } },
-			{ "<c-w>", readline.unix_word_rubout, "Delete word (backward)", { mode = { "i", "c" } } },
+		return {
+			{ "<a-b>", r.backward_word, desc = "Readline: Jump word (backward)", mode = { "i", "c" } },
+			{ "<a-f>", r.forward_word, desc = "Jump word (forward)", mode = { "i", "c" } },
+			{ "<c-a>", r.beginning_of_line, desc = "Beginning of line", mode = { "i", "c" } },
+			{ "<c-b>", "<left>", desc = "Jump character (backward)", mode = { "i", "c" } },
+			{ "<c-d>", r.kill_word, desc = "Delete word (forward)", mode = { "i", "c" } },
+			{ "<c-e>", r.end_of_line, desc = "End of line", mode = { "i", "c" } },
+			{ "<c-f>", "<right>", desc = "Jump character (forward)", mode = { "i", "c" } },
+			{ "<c-k>", r.kill_line, desc = "Delete line (forward)", mode = { "i", "c" } },
+			{ "<c-u>", r.backward_kill_line, desc = "Delete line (backward)", mode = { "i", "c" } },
+			{ "<c-w>", r.unix_word_rubout, desc = "Delete word (backward)", mode = { "i", "c" } },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Readline")
 	end,
 	config = function() end,
 }

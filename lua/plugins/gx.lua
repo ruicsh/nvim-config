@@ -3,13 +3,9 @@
 
 return {
 	"chrishrb/gx.nvim",
-	keys = function()
-		local mappings = {
-			{ "gx", "<cmd>Browse<cr>", "Open file/url at cursor", { mode = { "n", "x" } } },
-		}
-
-		return vim.fn.get_lazy_keys_config(mappings)
-	end,
+	keys = {
+		{ "gx", ":Browse<cr>", desc = "Open file/url at cursor", mode = { "n", "x" } },
+	},
 	opts = {
 		handlers = {
 			js_imports = {

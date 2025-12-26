@@ -3,23 +3,19 @@
 
 return {
 	"gbprod/yanky.nvim",
-	keys = function()
-		local mappings = {
-			{ "<leader>p", ":lua Snacks.picker.yanky()<cr>", "History", { mode = { "n", "x" } } },
-			{ "y", "<Plug>(YankyYank)", "Yank", { mode = { "n", "x" } } },
-			{ "p", "<Plug>(YankyPutAfter)", "Put after", { mode = { "n", "x" } } },
-			{ "<c-v>", "<Plug>(YankyPutAfter)", "Put after", { mode = { "n", "x" } } },
-			{ "P", "<Plug>(YankyPutBefore)", "Put before", { mode = { "n", "x" } } },
-			{ "<c-p>", "<Plug>(YankyPreviousEntry)", "Select previous" },
-			{ "<c-n>", "<Plug>(YankyNextEntry)", "Select next" },
-			{ "]p", "<Plug>(YankyPutIndentAfterLinewise)", "Put after (linewise)" },
-			{ "[p", "<Plug>(YankyPutIndentBeforeLinewise)", "Put before (linewise)" },
-			{ "]P", "<Plug>(YankyPutIndentAfterLinewise)", "Put after (linewise)" },
-			{ "[P", "<Plug>(YankyPutIndentBeforeLinewise)", "Put before (linewise)" },
-		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Yanky")
-	end,
+	keys = {
+		{ "<leader>p", ":lua Snacks.picker.yanky()<cr>", desc = "Clipboard: History", mode = { "n", "x" } },
+		{ "y", "<Plug>(YankyYank)", desc = "Clipboard: Yank", mode = { "n", "x" } },
+		{ "p", "<Plug>(YankyPutAfter)", desc = "Clipboard: Put after", mode = { "n", "x" } },
+		{ "<c-v>", "<Plug>(YankyPutAfter)", desc = "Clipboard: Put after", mode = { "n", "x" } },
+		{ "P", "<Plug>(YankyPutBefore)", desc = "Clipboard: Put before", mode = { "n", "x" } },
+		{ "<c-p>", "<Plug>(YankyPreviousEntry)", desc = "Clipboard: Select previous" },
+		{ "<c-n>", "<Plug>(YankyNextEntry)", desc = "Clipboard: Select next" },
+		{ "]p", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Clipboard: Put after (linewise)" },
+		{ "[p", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Clipboard: Put before (linewise)" },
+		{ "]P", "<Plug>(YankyPutIndentAfterLinewise)", desc = "Clipboard: Put after (linewise)" },
+		{ "[P", "<Plug>(YankyPutIndentBeforeLinewise)", desc = "Clipboard: Put before (linewise)" },
+	},
 	opts = {
 		highlight = {
 			timer = 200,

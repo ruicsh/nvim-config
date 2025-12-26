@@ -10,11 +10,9 @@ return {
 			vim.cmd.only()
 		end
 
-		local mappings = {
-			{ "<leader>hH", open_git_status, "Status" },
+		return {
+			{ "<leader>hH", open_git_status, desc = "Git: Status" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Git")
 	end,
 
 	event = "VeryLazy",

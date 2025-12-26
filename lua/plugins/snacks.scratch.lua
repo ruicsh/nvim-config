@@ -5,11 +5,12 @@ return {
 	"folke/snacks.nvim",
 	keys = (function()
 		local snacks = require("snacks")
-		local mappings = {
-			{ "<leader>e", snacks.scratch.open, "Toggle" },
-			{ "<leader>E", snacks.scratch.select, "Select" },
+		local scratch = snacks.scratch
+
+		return {
+			{ "<leader>e", scratch.open, desc = "Scratchpad: Toggle" },
+			{ "<leader>E", scratch.select, desc = "Scratchpad: Select" },
 		}
-		return vim.fn.get_lazy_keys_config(mappings, "Scratchpad")
 	end)(),
 	opts = {
 		styles = {

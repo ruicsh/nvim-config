@@ -47,13 +47,11 @@ return {
 			end
 		end
 
-		local mappings = {
-			{ "<bar>", pick_window, "Pick" },
-			{ "<c-w>w", pick_window, "Pick" },
-			{ "<c-w><c-w>", pick_window, "Pick" },
+		return {
+			{ "<bar>", pick_window, desc = "Windows: Pick" },
+			{ "<c-w>w", pick_window, desc = "Windows: Pick" },
+			{ "<c-w><c-w>", pick_window, desc = "Windows: Pick" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Windows")
 	end,
 	opts = {
 		filter_rules = {

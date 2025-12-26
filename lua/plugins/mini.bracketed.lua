@@ -13,14 +13,12 @@ return {
 			end
 		end
 
-		local mappings = {
-			{ "[E", goto_diag_error("first"), "LSP: First diagnostic error" },
-			{ "[e", goto_diag_error("backward"), "LSP: Previous diagnostic error" },
-			{ "]e", goto_diag_error("forward"), "LSP: Next diagnostic error" },
-			{ "]E", goto_diag_error("last"), "LSP: Last diagnostic error" },
+		return {
+			{ "[E", goto_diag_error("first"), desc = "LSP: First diagnostic error" },
+			{ "[e", goto_diag_error("backward"), desc = "LSP: Previous diagnostic error" },
+			{ "]e", goto_diag_error("forward"), desc = "LSP: Next diagnostic error" },
+			{ "]E", goto_diag_error("last"), desc = "LSP: Last diagnostic error" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "")
 	end,
 	opts = {
 		buffer = { suffix = "b", options = {} },

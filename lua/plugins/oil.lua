@@ -10,12 +10,10 @@ return {
 			oil.open(vim.fn.getcwd())
 		end
 
-		local mappings = {
-			{ "-", ":Oil<cr>", "Open parent" },
-			{ "_", open_cwd, "Open cwd" },
+		return {
+			{ "-", ":Oil<cr>", desc = "Oil: Open parent" },
+			{ "_", open_cwd, desc = "Oil: Open cwd" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Oil")
 	end,
 
 	opts = {

@@ -2,6 +2,7 @@
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 
 -- Open a ui.select to search for a directory to search in
+-- Open picker.select to search for a directory to search in
 local grep_directory = function()
 	local snacks = require("snacks")
 	local has_fd = vim.fn.executable("fd") == 1
@@ -89,38 +90,37 @@ return {
 	"folke/snacks.nvim",
 	keys = (function()
 		local snacks = require("snacks")
+		local picker = snacks.picker
 
-		local mappings = {
+		return {
 			-- files
-			{ "<leader><space>", snacks.picker.smart, "Files" },
-			{ "<leader>,", snacks.picker.buffers, "Buffers" },
+			{ "<leader><space>", picker.smart, desc = "Files" },
+			{ "<leader>,", picker.buffers, desc = "Buffers" },
 
 			-- search
-			{ "<leader>/", snacks.picker.grep, "Search: Workspace" },
-			{ "<leader>?", grep_directory, "Search: Directory" },
-			{ "<leader>g/", snacks.picker.grep_word, "Search: Current word" },
+			{ "<leader>/", picker.grep, desc = "Search: Workspace" },
+			{ "<leader>?", grep_directory, desc = "Search: Directory" },
+			{ "<leader>g/", picker.grep_word, desc = "Search: Current word" },
 
 			-- current state
-			{ "<leader>'", snacks.picker.marks, "Marks" },
-			{ "<leader>.", snacks.picker.resume, "Last picker" },
-			{ "<leader>[", snacks.picker.jumps, "Jumps" },
-			{ '<leader>"', snacks.picker.registers, "Registers" },
-			{ "<leader>u", snacks.picker.undo, "Command history" },
-			{ "<leader>c", snacks.picker.qflist, "Quickfix" },
+			{ "<leader>'", picker.marks, desc = "Marks" },
+			{ "<leader>.", picker.resume, desc = "Last picker" },
+			{ "<leader>[", picker.jumps, desc = "Jumps" },
+			{ '<leader>"', picker.registers, desc = "Registers" },
+			{ "<leader>u", picker.undo, desc = "Command history" },
+			{ "<leader>c", picker.qflist, desc = "Quickfix" },
 
 			-- git
-			{ "<leader>h/", snacks.picker.git_log, "Git: Search Log" },
-			{ "<leader>hb", snacks.picker.git_branches, "Git: Branches" },
-			{ "<leader>hh", snacks.picker.git_status, "Git: Status" },
+			{ "<leader>h/", picker.git_log, desc = "Git: Search Log" },
+			{ "<leader>hb", picker.git_branches, desc = "Git: Branches" },
+			{ "<leader>hh", picker.git_status, desc = "Git: Status" },
 
 			-- neovim
-			{ "<leader>nH", snacks.picker.highlights, "Highlights" },
-			{ "<leader>na", snacks.picker.autocmds, "Autocmds" },
-			{ "<leader>nh", snacks.picker.help, "Help" },
-			{ "<leader>nk", snacks.picker.keymaps, "Keymaps" },
+			{ "<leader>nH", picker.highlights, desc = "Highlights" },
+			{ "<leader>na", picker.autocmds, desc = "Autocmds" },
+			{ "<leader>nh", picker.help, desc = "Help" },
+			{ "<leader>nk", picker.keymaps, desc = "Keymaps" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings)
 	end)(),
 	priority = 1000, -- Ensure this is loaded before other plugins that might use snacks
 	opts = {

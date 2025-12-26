@@ -6,14 +6,12 @@ return {
 	keys = function()
 		local ss = require("smart-splits")
 
-		local mappings = {
-			{ "<c-w>>", ss.resize_right, "Resize right" },
-			{ "<c-w><", ss.resize_left, "Resize left" },
-			{ "<c-w>+", ss.resize_up, "Resize up" },
-			{ "<c-w>-", ss.resize_down, "Resize down" },
+		return {
+			{ "<c-w>>", ss.resize_right, "Windows: Resize right" },
+			{ "<c-w><", ss.resize_left, "Windows: Resize left" },
+			{ "<c-w>+", ss.resize_up, "Windows: Resize up" },
+			{ "<c-w>-", ss.resize_down, "Windows: Resize down" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Windows")
 	end,
 	opts = {
 		default_amount = 5,

@@ -21,18 +21,16 @@ return {
 			end
 		end
 
-		local mappings = {
-			{ "n", browse("n"), "Next result" },
-			{ "N", browse("N"), "Previous result" },
-			{ "*", start_search("*"), "Search word under cursor forward" },
-			{ "g/", start_search("*"), "Search word under cursor forward" },
-			{ "[/", start_search("[<c-i>"), "Search word under cursor forward" },
-			{ "#", start_search("#"), "Search word under cursor backward" },
-			{ "g*", start_search("g*"), "Search word under cursor forward (partial)" },
-			{ "g#", start_search("g#"), "Search word under cursor backward (partial)" },
+		return {
+			{ "n", browse("n"), desc = "Search: Next result" },
+			{ "N", browse("N"), desc = "Search: Previous result" },
+			{ "*", start_search("*"), desc = "Search: Word under cursor forward" },
+			{ "g/", start_search("*"), desc = "Search: Word under cursor forward" },
+			{ "[/", start_search("[<c-i>"), desc = "Search: Word under cursor forward" },
+			{ "#", start_search("#"), desc = "Search: Word under cursor backward" },
+			{ "g*", start_search("g*"), desc = "Search: Word under cursor forward (partial)" },
+			{ "g#", start_search("g#"), desc = "Search: Word under cursor backward (partial)" },
 		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Search")
 	end,
 	opts = {
 		calm_down = true,

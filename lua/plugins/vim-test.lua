@@ -3,16 +3,12 @@
 
 return {
 	"vim-test/vim-test",
-	keys = function()
-		local mappings = {
-			{ "<leader>b%", ":TestFile<cr>", "Run file" },
-			{ "<leader>ba", ":TestSuite<cr>", "Run all" },
-			{ "<leader>bb", ":TestLast<cr>", "Run last" },
-			{ "<leader>bn", ":TestNearest<cr>", "Run nearest" },
-		}
-
-		return vim.fn.get_lazy_keys_config(mappings, "Tests")
-	end,
+	keys = {
+		{ "<leader>b%", ":TestFile<cr>", desc = "Tests: Run file" },
+		{ "<leader>ba", ":TestSuite<cr>", desc = "Tests: Run all" },
+		{ "<leader>bb", ":TestLast<cr>", desc = "Tests: Run last" },
+		{ "<leader>bn", ":TestNearest<cr>", desc = "Tests: Run nearest" },
+	},
 	config = function()
 		-- Use npx to run test runners
 		vim.g["test#javascript#vitest#executable"] = "npx vitest"

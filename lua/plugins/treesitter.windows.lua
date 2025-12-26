@@ -84,11 +84,9 @@ return {
 				require("treesitter-context").go_to_context(vim.v.count1)
 			end
 
-			local mappings = {
-				{ "[s", jump_to_context, "Jump to previous context" },
+			return {
+				{ "[s", jump_to_context, desc = "AST: Jump to previous context" },
 			}
-
-			return vim.fn.get_lazy_keys_config(mappings, "AST")
 		end,
 		opts = {
 			max_lines = 5,
