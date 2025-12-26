@@ -1,6 +1,8 @@
 -- GitHub Copilot suggestions
 -- https://github.com/zbirenbaum/copilot.lua
 
+local T = require("lib")
+
 return {
 	"zbirenbaum/copilot.lua",
 	opts = {
@@ -22,7 +24,7 @@ return {
 			enabled = false,
 		},
 		suggestion = {
-			enabled = vim.fn.env_get("COPILOT_DISABLE_SUGGESTIONS") ~= "true",
+			enabled = not T.env.get_bool("COPILOT_DISABLE_SUGGESTIONS"),
 			auto_trigger = true,
 			keymap = {
 				accept = "<c-]>",
@@ -37,7 +39,7 @@ return {
 	config = function(_, opts)
 		local copilot = require("copilot")
 
-		vim.g.copilot_proxy = vim.fn.env_get("COPILOT_PROXY")
+		vim.g.copilot_proxy = T.env.get("COPILOT_PROXY")
 
 		copilot.setup(opts)
 	end,

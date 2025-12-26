@@ -117,14 +117,6 @@ Complex configuration options.
 | [standard-plugins](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/standard-plugins.lua) | Disable unused standard plugins  |
 | [statusline](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/statusline.lua)             | Content of the status line       |
 
-### Commands
-
-Custom built commands to be invoked on the `cmdline` or with keymaps.
-
-|                                                                                                  |                                                         |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| [LoadEnvVars](https://github.com/ruicsh/nvim-config/blob/main/plugin/commands/load-env-vars.lua) | Load environment variables, global, and project scoped. |
-
 ### Filetypes
 
 Custom configuration, keymaps, and features dependent on the file's type.

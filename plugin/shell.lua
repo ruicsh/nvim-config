@@ -1,4 +1,6 @@
-local env_shell = vim.fn.env_get("USE_SHELL")
+local T = require("lib")
+
+local env_shell = T.env.get("USE_SHELL")
 
 local options = {}
 

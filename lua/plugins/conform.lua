@@ -1,6 +1,8 @@
 -- Formatter
 -- https://github.com/stevearc/conform.nvim
 
+local T = require("lib")
+
 return {
 	"stevearc/conform.nvim",
 	opts = {
@@ -22,7 +24,7 @@ return {
 		},
 		format_on_save = function()
 			-- Stop if we disabled formatting on save.
-			if vim.fn.env_get("FORMAT_ON_SAVE") == "false" then
+			if not T.env.get_bool("FORMAT_ON_SAVE") then
 				return nil
 			end
 

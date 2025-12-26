@@ -1,5 +1,7 @@
 -- Apply Git status highlights in Oil file manager
 
+local T = require("lib")
+
 local augroup = vim.api.nvim_create_augroup("ruicsh/filetype/oil", { clear = true })
 local ns = vim.api.nvim_create_namespace("ruicsh/filetype/oil")
 
@@ -202,7 +204,7 @@ end
 local is_initialized = false
 
 local function initialize()
-	if is_initialized or vim.fn.env_get("OIL_DISABLE_GIT_HIGHLIGHTS") == "true" then
+	if is_initialized or T.env.get_bool("OIL_DISABLE_GIT_HIGHLIGHTS") then
 		return
 	end
 

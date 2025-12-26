@@ -1,7 +1,8 @@
 -- Pickers.
 -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md
 
--- Open a ui.select to search for a directory to search in
+local T = require("lib")
+
 -- Open picker.select to search for a directory to search in
 local grep_directory = function()
 	local snacks = require("snacks")
@@ -133,7 +134,7 @@ return {
 					snacks.picker.qflist()
 				end,
 			},
-			db = { sqlite3_path = vim.fn.env_get("SNACKS_PICKER_DB_SQLITE3_PATH") },
+			db = { sqlite3_path = T.env.get("SNACKS_PICKER_DB_SQLITE3_PATH") },
 			enabled = true,
 			formatters = {
 				file = {
@@ -226,11 +227,11 @@ return {
 					},
 				},
 				grep = {
-					exclude = vim.fn.env_get_list("GREP_EXCLUDE_FILES"),
+					exclude = T.env.get_list("GREP_EXCLUDE_FILES"),
 					hidden = true,
 				},
 				grep_word = {
-					exclude = vim.fn.env_get_list("GREP_EXCLUDE_FILES"),
+					exclude = T.env.get_list("GREP_EXCLUDE_FILES"),
 					hidden = true,
 					show_empty = true,
 				},

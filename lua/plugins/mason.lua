@@ -1,3 +1,5 @@
+local T = require("lib")
+
 -- https://mason-registry.dev/registry/list
 local PACKAGES = {
 	-- LSP
@@ -64,8 +66,8 @@ return {
 		opts = function()
 			local packages = vim.tbl_deep_extend("force", {}, PACKAGES)
 
-			local disabled_packages = vim.fn.env_get_list("MASON_DISABLED_PACKAGES")
-			local disabled_servers = vim.fn.env_get_list("LSP_DISABLED_SERVERS")
+			local disabled_packages = T.env.get_list("MASON_DISABLED_PACKAGES")
+			local disabled_servers = T.env.get_list("LSP_DISABLED_SERVERS")
 			local disabled = vim.list_extend(vim.list_slice(disabled_packages), disabled_servers)
 
 			-- Filter out disabled packages and servers

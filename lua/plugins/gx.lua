@@ -137,7 +137,7 @@ return {
 		local gx = require("gx")
 
 		-- We're probably running in a Windows environment or in a WSL environment
-		if vim.fn.env_get("USE_BROWSER") == "edge" then
+		if T.env.get("USE_BROWSER") == "edge" then
 			local is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
 			local is_windows = vim.fn.has("win32") == 1 and not is_wsl
 			-- Needs full path when running on CommandPrompt

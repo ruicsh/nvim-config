@@ -1,6 +1,8 @@
 -- Zen mode and zoom.
 -- https://github.com/folke/snacks.nvim/blob/main/docs/zen.md
 
+local T = require("lib")
+
 return {
 	"folke/snacks.nvim",
 	keys = (function()
@@ -22,7 +24,7 @@ return {
 					["q"] = false,
 					["<leader>z"] = false,
 				},
-				width = tonumber(vim.fn.env_get("ZEN_MODE_WINDOW_WIDTH")),
+				width = T.env.get_number("ZEN_MODE_WINDOW_WIDTH"),
 				zindex = 100,
 			},
 		},

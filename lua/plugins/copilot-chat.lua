@@ -3,6 +3,8 @@
 -- https://docs.github.com/en/copilot/concepts/billing/copilot-requests
 -- https://lmarena.ai/leaderboard/webdev
 
+local T = require("lib")
+
 local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/copilot-chat", { clear = true })
 
 local CHAT_HISTORY_DIR = vim.fn.stdpath("data") .. "/copilot-chats"
@@ -228,7 +230,7 @@ local function save_chat(response)
 			return gen_response
 		end,
 		headless = true, -- Disable updating chat buffer and history with this question
-		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
+		model = T.env.get("COPILOT_MODEL_CHEAP"),
 	})
 end
 
@@ -305,12 +307,11 @@ local function get_model_for_operation(operation_type)
 	end
 
 	-- Retrieve model with safety checks
-	local selected_model = vim.fn.getenv(env_var)
+	local selected_model = T.env.get(env_var)
 	if not selected_model or selected_model == vim.NIL then
-		vim.notify(
-			string.format("Warning: Environment variable %s not set for operation '%s'", env_var, operation_type),
-			vim.log.levels.WARN
-		)
+		local msg =
+			string.format("Warning: Environment variable %s not set for operation '%s'", env_var, operation_type)
+		vim.notify(msg, vim.log.levels.WARN)
 		return nil -- Could add default fallback here
 	end
 
@@ -536,7 +537,7 @@ local function list_chat_history()
 			local display = " " .. formatted_title
 
 			local mtime = vim.fn.getftime(item.file)
-			local date = vim.fn.fmt_relative_time(mtime)
+			local date = T.fn.fmt_relative_time(mtime)
 
 			return {
 				{ string.format("%-5s", date), "SnacksPickerLabel" },
@@ -621,16 +622,16 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 	local bufnr = vim.api.nvim_get_current_buf()
 
 	-- Determine which prompt command to use based on work environment
-	local is_work_env = vim.fn.getenv("IS_WORK") == "true"
+	local is_work_env = T.env.get_bool("IS_WORK")
 	local prompt = "/" .. (is_work_env and "commitwork" or "commit")
 
 	chat.reset() -- Reset previous chat state
 
-	vim.fn.start_spinner(bufnr, "Generating commit message...")
+	T.fn.start_spinner(bufnr, "Generating commit message...")
 
 	chat.ask(prompt, {
 		callback = function(response)
-			vim.fn.stop_spinner(bufnr)
+			T.fn.stop_spinner(bufnr)
 
 			-- Convert response to table of lines and ensure it's always an array
 			local lines = type(response) == "string" and vim.split(response, "\n")
@@ -645,7 +646,7 @@ vim.api.nvim_create_user_command("CopilotCommitMessage", function()
 			return response
 		end,
 		headless = true,
-		model = vim.fn.getenv("COPILOT_MODEL_CHEAP"),
+		model = T.env.get("COPILOT_MODEL_CHEAP"),
 		sticky = { "#gitdiff:staged" },
 		system_prompt = "/COPILOT_INSTRUCTIONS",
 	})
@@ -671,65 +672,9 @@ vim.api.nvim_create_user_command("CopilotCodeReview", function()
 			vim.keymap.set("n", "<c-]>", accept_code_review, { buffer = true })
 			return response
 		end,
-		model = vim.fn.getenv("COPILOT_MODEL_REASON"),
+		model = T.env.get("COPILOT_MODEL_REASON"),
 		sticky = { "#gitdiff:staged" },
 		system_prompt = "/COPILOT_REVIEW",
-	})
-end, {})
-
-vim.api.nvim_create_user_command("CopilotPrReview", function()
-	local snacks = require("snacks")
-	local branches = vim.git.list_remote_branches()
-
-	local items = {}
-	for i, branch in ipairs(branches) do
-		table.insert(items, {
-			idx = i,
-			file = branch.name,
-			text = branch.name,
-			time = branch.time,
-		})
-	end
-
-	snacks.picker({
-		title = "Select a branch to review",
-		items = items,
-		layout = {
-			preset = "vertical",
-			hidden = { "preview" },
-		},
-		format = function(item)
-			local time = vim.fn.fmt_relative_time(item.time)
-
-			return {
-				{ string.format("%-5s", time), "SnacksPickerLabel" },
-				{ item.file },
-			}
-		end,
-		confirm = function(picker, item)
-			picker:close()
-
-			vim.git.diff_branch(item.text, function(diff)
-				local prompt = table.concat({
-					"> /review",
-					" ",
-					"```gitcommit",
-					table.concat(diff.commit_lines, "\n"),
-					"```",
-					" ",
-					"```diff",
-					table.concat(diff.diff_lines, "\n"),
-					"```",
-				}, "\n")
-
-				vim.schedule(function()
-					new_chat_window(prompt, {
-						model = vim.fn.getenv("COPILOT_MODEL_REASON"),
-						system_prompt = "/COPILOT_INSTRUCTIONS",
-					})
-				end)
-			end)
-		end,
 	})
 end, {})
 
@@ -764,9 +709,8 @@ return {
 		local utils = require("CopilotChat.utils")
 		local resources = require("CopilotChat.resources")
 
-		vim.fn.load_env_file() -- Make sure the env file is loaded
 		customize_chat_window()
-		local proxy = vim.fn.env_get("COPILOT_PROXY")
+		local proxy = T.env.get("COPILOT_PROXY")
 		local prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts")
 
 		chat.setup({
@@ -956,7 +900,7 @@ return {
 					normal = "g?",
 				},
 			},
-			model = vim.fn.getenv("COPILOT_MODEL_CODEGEN"),
+			model = T.env.get("COPILOT_MODEL_CODEGEN"),
 			prompts = prompts,
 			proxy = proxy,
 			remember_as_sticky = false,

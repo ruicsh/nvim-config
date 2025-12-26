@@ -1,6 +1,8 @@
 -- Autocomplete
 -- https://cmp.saghen.dev
 
+local T = require("lib")
+
 local DISABLED_FILETYPES = {
 	"DiffviewFileHistory",
 	"DiffviewFiles",
@@ -94,7 +96,7 @@ return {
 			)
 		end,
 		fuzzy = {
-			implementation = vim.fn.env_get("BLINK_FUZZY_IMPLEMENTATION") or "prefer_rust_with_warning",
+			implementation = T.env.get("BLINK_FUZZY_IMPLEMENTATION") or "prefer_rust_with_warning",
 			sorts = { "exact", "score", "sort_text" },
 		},
 		keymap = {
