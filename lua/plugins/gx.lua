@@ -1,6 +1,8 @@
 -- Implementation of gx without the need of netrw
 -- https://github.com/chrishrb/gx.nvim
 
+local T = require("lib")
+
 return {
 	"chrishrb/gx.nvim",
 	keys = {
@@ -111,7 +113,7 @@ return {
 					-- Match :h or :help followed by help tag
 					local help_tag = line:match(":h%s+([%w_%-%.%:']+)") or line:match(":help%s+([%w_%-%.%:']+)")
 					if help_tag then
-						vim.ux.open_side_panel({
+						T.ui.open_side_panel({
 							cmd = "help " .. help_tag,
 							mode = "replace",
 						})
@@ -121,7 +123,7 @@ return {
 					-- Match standalone help tags like |i_ctrl-a|
 					local tag = line:match("|([%w_%-%.%:']+)|")
 					if tag then
-						vim.ux.open_side_panel({
+						T.ui.open_side_panel({
 							cmd = "help " .. help_tag,
 							mode = "replace",
 						})

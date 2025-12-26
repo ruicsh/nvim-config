@@ -1,6 +1,8 @@
 -- Test runner
 -- https://github.com/vim-test/vim-test
 
+local T = require("lib")
+
 return {
 	"vim-test/vim-test",
 	keys = {
@@ -17,7 +19,7 @@ return {
 		-- Open side panel with terminal for test output
 		vim.g["test#custom_strategies"] = {
 			my_neovim = function(cmd)
-				vim.ux.open_side_panel()
+				T.ui.open_side_panel()
 
 				vim.fn.termopen(cmd) -- Create a terminal buffer and run the command
 				vim.cmd.stopinsert() -- Make sure we are not in insert mode

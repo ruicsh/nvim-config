@@ -238,7 +238,7 @@ return {
 				help = {
 					confirm = function(picker, item)
 						picker:close()
-						vim.ux.open_side_panel({
+						T.ui.open_side_panel({
 							cmd = "help " .. item.tag,
 							mode = "replace",
 						})

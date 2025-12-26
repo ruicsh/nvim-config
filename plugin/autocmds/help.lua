@@ -1,5 +1,7 @@
 -- Help files.
 
+local T = require("lib")
+
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/help", { clear = true })
 
 -- Open help on floating side panel (or re-use panel if opened).
@@ -37,7 +39,7 @@ vim.api.nvim_create_autocmd("CmdLineLeave", {
 					return
 				end
 
-				vim.ux.open_side_panel({
+				T.ui.open_side_panel({
 					mode = "replace",
 				})
 			end)

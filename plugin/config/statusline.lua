@@ -1,5 +1,7 @@
 -- Statusline configuration
 
+local T = require("lib")
+
 local function sep()
 	return "%#StatusLineSeparator#|%#StatusLine#"
 end
@@ -129,7 +131,7 @@ local function c_filename()
 			line = line .. vim.fn.fnamemodify(path:sub(7), ":.")
 		else
 			local display = vim.fn.fnamemodify(path, ":t")
-			if not vim.ux.is_narrow_screen() then
+			if not T.ui.is_narrow_screen() then
 				display = vim.fn.fnamemodify(path, ":~:.")
 				local parts = vim.split(display, "/", { plain = true })
 				local len = #parts
@@ -196,7 +198,7 @@ local function c_git_branch()
 		return ""
 	end
 
-	if vim.ux.is_narrow_screen() and #head > 15 then
+	if T.ui.is_narrow_screen() and #head > 15 then
 		head = head:sub(1, 20) .. "..."
 	end
 

@@ -1,6 +1,8 @@
 -- Git diffview
 -- https://github.com/sindrets/diffview.nvim
 
+local T = require("lib")
+
 -- Used by `git df` to open diffview in a single tab
 vim.api.nvim_create_user_command("DiffviewOpenOnly", function()
 	vim.cmd("DiffviewOpen")
@@ -59,7 +61,7 @@ return {
 			vim.cmd("Git")
 			vim.cmd("wincmd o")
 
-			local prefix = vim.ux.is_narrow_screen() and "" or "vertical"
+			local prefix = T.ui.is_narrow_screen() and "" or "vertical"
 			vim.cmd(prefix .. " Git commit")
 		end
 

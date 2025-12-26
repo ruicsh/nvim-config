@@ -1,5 +1,7 @@
 -- Normal mode keymaps `:h normal-index`
 
+local T = require("lib")
+
 -- Setup {{{
 --
 local function k(lhs, rhs, opts)
@@ -98,7 +100,7 @@ k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" 
 -- Windows {{{
 --
 -- Focus side panel
-k("<c-w>;", vim.ux.focus_side_panel, { desc = "Focus side panel" })
+k("<c-w>;", T.ui.focus_side_panel, { desc = "Focus side panel" })
 
 -- Close window, not if it's the last one
 k("q", function()
@@ -106,7 +108,7 @@ k("q", function()
 	local winnr = vim.api.nvim_get_current_win()
 	local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
 	if ok and side_panel then
-		vim.ux.close_side_panels()
+		T.ui.close_side_panels()
 		return
 	end
 
@@ -137,7 +139,7 @@ end, { expr = true, silent = true, desc = "Close buffer/window" })
 
 k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
 k("<leader>q", function()
-	vim.ux.close_side_panels()
+	T.ui.close_side_panels()
 	vim.cmd("VimMessagesClose")
 	vim.cmd("CopilotChatClose")
 end, { desc = "Close side panels" }) -- Close all side panels
