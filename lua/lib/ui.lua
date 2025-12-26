@@ -1,8 +1,4 @@
-vim.ux = vim.ux or {}
-
-vim.ux.is_narrow_screen = function()
-	return vim.o.columns < 170
-end
+local M = {}
 
 local function create_floating_panel_window(options)
 	options = options or {}
@@ -29,11 +25,15 @@ local function create_floating_panel_window(options)
 	vim.api.nvim_win_set_var(winnr, "side_panel", true)
 end
 
+M.is_narrow_screen = function()
+	return vim.o.columns < 170
+end
+
 -- Open a floating window on the right side, half the width of the screen
-vim.ux.open_side_panel = function(options)
+M.open_side_panel = function(options)
 	options = options or {}
 
-	vim.ux.close_side_panels()
+	M.close_side_panels()
 
 	if options.cmd then
 		vim.cmd(options.cmd)
@@ -79,7 +79,7 @@ vim.ux.open_side_panel = function(options)
 end
 
 -- Focus the first side panel found
-vim.ux.focus_side_panel = function()
+M.focus_side_panel = function()
 	for _, winnr in ipairs(vim.api.nvim_list_wins()) do
 		local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
 		if ok and side_panel then
@@ -90,7 +90,7 @@ vim.ux.focus_side_panel = function()
 end
 
 -- Close all floating panels
-vim.ux.close_side_panels = function()
+M.close_side_panels = function()
 	for _, winnr in ipairs(vim.api.nvim_list_wins()) do
 		local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
 		if ok and side_panel then
@@ -102,3 +102,5 @@ vim.ux.close_side_panels = function()
 		end
 	end
 end
+
+return M
