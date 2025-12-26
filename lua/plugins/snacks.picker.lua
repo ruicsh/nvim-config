@@ -106,7 +106,7 @@ return {
 			-- current state
 			{ "<leader>'", picker.marks, desc = "Marks" },
 			{ "<leader>.", picker.resume, desc = "Last picker" },
-			{ "<leader>[", picker.jumps, desc = "Jumps" },
+			{ "<leader>;", picker.jumps, desc = "Jumps" },
 			{ '<leader>"', picker.registers, desc = "Registers" },
 			{ "<leader>u", picker.undo, desc = "Command history" },
 			{ "<leader>c", picker.qflist, desc = "Quickfix" },
