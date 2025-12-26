@@ -23,7 +23,7 @@ for _, key in ipairs(undo_keys) do
 end
 
 -- Always exit insert mode when saving.
-k("<c-s>", "<cmd>silent! update | redraw<cr><esc>", { desc = "Save", unique = false })
+k("<c-s>", ":silent! update | redraw<cr><esc>", { desc = "Save", unique = false })
 --
 -- }}}
 

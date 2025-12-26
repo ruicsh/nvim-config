@@ -50,7 +50,7 @@ k("vv", "V") -- Enter visual line wise mode `:h V`
 k("J", "mzJ`z:delmarks z<cr>")
 
 -- Save file
-k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
+k("<c-s>", ":silent! update | redraw<cr>", { desc = "Save" })
 
 -- Don't store on register when changing text or deleting a character.
 local black_hole_commands = { "C", "c", "cc", "x", "X" }
