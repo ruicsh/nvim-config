@@ -28,6 +28,6 @@ return {
 
 			k("<c-]>", [[<c-\><c-n>]], { desc = "Exit terminal mode" })
 		end,
-		open_mapping = "<c-t>",
+		open_mapping = "<c-bslash>",
 	},
 }
