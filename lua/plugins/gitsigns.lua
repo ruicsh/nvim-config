@@ -97,9 +97,6 @@ return {
 			k("v", "<leader>hr", function()
 				gs.reset_hunk({ vim.fn.line("'."), vim.fn.line("v") })
 			end, { desc = "Git: reset hunk" })
-
-			-- Preview
-			k("n", "<leader>hd", gs.preview_hunk, { desc = "Git: preview hunk" })
 		end,
 	},
 
