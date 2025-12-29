@@ -95,8 +95,6 @@ k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" 
 
 -- Windows {{{
 --
--- Focus side panel
-k("<c-w>;", T.ui.focus_side_panel, { desc = "Focus side panel" })
 
 -- Close window, not if it's the last one
 k("q", function()

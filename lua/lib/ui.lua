@@ -78,17 +78,6 @@ M.open_side_panel = function(options)
 	end
 end
 
--- Focus the first side panel found
-M.focus_side_panel = function()
-	for _, winnr in ipairs(vim.api.nvim_list_wins()) do
-		local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
-		if ok and side_panel then
-			vim.api.nvim_set_current_win(winnr)
-			return
-		end
-	end
-end
-
 -- Close all floating panels
 M.close_side_panels = function()
 	for _, winnr in ipairs(vim.api.nvim_list_wins()) do

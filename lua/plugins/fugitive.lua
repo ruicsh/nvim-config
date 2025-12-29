@@ -12,7 +12,6 @@ return {
 
 		return {
 			{ "<leader>hH", open_git_status, desc = "Git: Status" },
-			{ "<leader>hd", ":Ghdiffsplit<cr>", desc = "Git: Diff" },
 		}
 	end,
 
