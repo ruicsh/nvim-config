@@ -13,7 +13,12 @@ return {
 	"sindrets/diffview.nvim",
 	keys = function()
 		local function git_blame_line()
-			local blame = T.git.blame_line()
+			local blame, msg = T.git.blame_line()
+			if not blame then
+				vim.notify(msg or "Failed to get git blame.")
+				return
+			end
+
 			local commit = blame:match("^(%w+)")
 			if not commit or commit == "" or commit:match("^00000000") then
 				vim.notify("Not committed yet.")
