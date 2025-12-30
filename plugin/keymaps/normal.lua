@@ -48,7 +48,7 @@ k("vv", "V") -- Enter visual line wise mode `:h V`
 k("J", "mzJ`z:delmarks z<cr>")
 
 -- Save file
-k("<c-s>", ":silent! update | redraw<cr>", { desc = "Save" })
+k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
 
 -- Don't store on register when changing text or deleting a character.
 local black_hole_commands = { "C", "c", "cc", "x", "X" }
@@ -88,7 +88,7 @@ k("gw/", function()
 end, { desc = "Search web for word under cursor" })
 
 -- Replace current word under cursor
-k("gr/", ":%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" })
+k("gr/", "<cmd>%s/\\<<c-r><c-w>\\>//g<left><left>", { desc = "Replace current word" })
 
 --
 -- }}}
@@ -125,13 +125,13 @@ k("q", function()
 	end
 
 	if num_wins == 1 then
-		return ":bdelete<cr>" -- `:h :bd`
+		return "<cmd>bdelete<cr>" -- `:h :bd`
 	end
 
 	return "<c-w>q" -- `:h CTRL-W_q`
 end, { expr = true, silent = true, desc = "Close buffer/window" })
 
-k("<c-q>", ":qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
+k("<c-q>", "<cmd>qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit Vim
 k("<leader>q", function()
 	T.ui.close_side_panels()
 	vim.cmd("VimMessagesClose")
@@ -150,10 +150,10 @@ end, { desc = "Windows: Move to new tab" })
 
 -- Tabs {{{
 --
-k("<leader><tab><tab>", ":tabnew<cr>", { desc = "Tabs: New" }) -- `:h :tabnew`
-k("<leader><tab>q", ":tabclose<cr>", { desc = "Tabs: Close" }) -- `:h :tabclose`
-k("[<tab>", ":tabprevious<cr>", { desc = "Tabs: Previous" }) -- `:h :tabprevious`
-k("]<tab>", ":tabnext<cr>", { desc = "Tabs: Next" }) -- `:h :tabnext`
+k("<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "Tabs: New" }) -- `:h :tabnew`
+k("<leader><tab>q", "<cmd>tabclose<cr>", { desc = "Tabs: Close" }) -- `:h :tabclose`
+k("[<tab>", "<cmd>tabprevious<cr>", { desc = "Tabs: Previous" }) -- `:h :tabprevious`
+k("]<tab>", "<cmd>tabnext<cr>", { desc = "Tabs: Next" }) -- `:h :tabnext`
 
 for i = 1, 9 do
 	k("<leader><tab>" .. i, i .. "gt", { desc = "Tabs: Go to " .. i }) -- `:h :gt`
@@ -207,7 +207,7 @@ k("%p", yank_path("%:p"), { desc = "Yank filename (absolute)" })
 -- Miscellaneous {{{
 --
 
-k("<bs>", ":b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
+k("<bs>", "<cmd>b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
 k("<f1>", "<nop>") -- Disable F1 help
 k("<leader>v", "<c-v>", { desc = "Enter visual block mode" }) -- `:h <c-v>`
 k("<tab>", "za", { desc = "Toggle folds" }) -- `:h za`

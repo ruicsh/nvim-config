@@ -6,9 +6,9 @@ local function k(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, options)
 end
 
-k("n", "<leader>hp", ":Git push<cr>", { desc = "push" })
-k("n", "<leader>hP", ":Git push --force-with-lease<cr>", { desc = "push --force-with-lease" })
-k("n", "<leader>hu", ":Git push -u origin HEAD<cr>", { desc = "push -u origin HEAD" })
+k("n", "<leader>hp", "<cmd>Git push<cr>", { desc = "push" })
+k("n", "<leader>hP", "<cmd>Git push --force-with-lease<cr>", { desc = "push --force-with-lease" })
+k("n", "<leader>hu", "<cmd>Git push -u origin HEAD<cr>", { desc = "push -u origin HEAD" })
 
 -- Diffview for commit under cursor
 k("n", "<leader>hd", function()
@@ -19,7 +19,7 @@ k("n", "<leader>hd", function()
 	end
 end, { desc = "Diff" })
 
-k("n", "<leader>ar", ":CopilotCodeReview<cr>", { desc = "Code Review" })
+k("n", "<leader>ar", "<cmd>CopilotCodeReview<cr>", { desc = "Code Review" })
 
 k("n", "<tab>", "=", { desc = "Toggle section", remap = true })
 k("n", "q", function()

@@ -40,7 +40,7 @@ return {
 		end
 
 		local mappings = {
-			{ "<leader><bslash>", ":Grapple toggle_tags<cr>", desc = "Bookmarks: Toggle menu" },
+			{ "<leader><bslash>", "<cmd>Grapple toggle_tags<cr>", desc = "Bookmarks: Toggle menu" },
 		}
 
 		-- Add markings for easier access and saving

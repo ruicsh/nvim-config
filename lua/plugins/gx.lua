@@ -6,7 +6,7 @@ local T = require("lib")
 return {
 	"chrishrb/gx.nvim",
 	keys = {
-		{ "gx", ":Browse<cr>", desc = "Open file/url at cursor", mode = { "n", "x" } },
+		{ "gx", "<cmd>Browse<cr>", desc = "Open file/url at cursor", mode = { "n", "x" } },
 	},
 	opts = {
 		handlers = {

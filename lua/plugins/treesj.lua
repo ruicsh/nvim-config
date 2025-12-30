@@ -4,7 +4,7 @@
 return {
 	"Wansmer/treesj",
 	keys = {
-		{ "<leader>j", ":TSJToggle<cr>", desc = "Toggle split/join" },
+		{ "<leader>j", "<cmd>TSJToggle<cr>", desc = "Toggle split/join" },
 	},
 	opts = {
 		max_join_length = 100000000, -- No limit

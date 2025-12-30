@@ -19,6 +19,6 @@ local function accept_commit_message()
 end
 
 k({ "n", "i" }, "<c-s>", accept_commit_message, opts)
-k("n", "<leader>ac", ":CopilotCommitMessage<cr>", opts)
-k("n", "q", ":q!<cr>", opts) -- Close the buffer
-k("n", "<leader>hd", ":DiffviewOpen --staged<cr>", opts) -- Open Diffview with staged changes
+k("n", "<leader>ac", "<cmd>CopilotCommitMessage<cr>", opts)
+k("n", "q", "<cmd>q!<cr>", opts) -- Close the buffer
+k("n", "<leader>hd", "<cmd>DiffviewOpen --staged<cr>", opts) -- Open Diffview with staged changes

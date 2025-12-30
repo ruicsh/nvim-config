@@ -6,10 +6,10 @@ local T = require("lib")
 return {
 	"vim-test/vim-test",
 	keys = {
-		{ "<leader>b%", ":TestFile<cr>", desc = "Tests: Run file" },
-		{ "<leader>ba", ":TestSuite<cr>", desc = "Tests: Run all" },
-		{ "<leader>bb", ":TestLast<cr>", desc = "Tests: Run last" },
-		{ "<leader>bn", ":TestNearest<cr>", desc = "Tests: Run nearest" },
+		{ "<leader>b%", "<cmd>TestFile<cr>", desc = "Tests: Run file" },
+		{ "<leader>ba", "<cmd>TestSuite<cr>", desc = "Tests: Run all" },
+		{ "<leader>bb", "<cmd>TestLast<cr>", desc = "Tests: Run last" },
+		{ "<leader>bn", "<cmd>TestNearest<cr>", desc = "Tests: Run nearest" },
 	},
 	config = function()
 		-- Use npx to run test runners

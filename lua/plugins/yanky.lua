@@ -4,7 +4,7 @@
 return {
 	"gbprod/yanky.nvim",
 	keys = {
-		{ "<leader>p", ":lua Snacks.picker.yanky()<cr>", desc = "Clipboard: History", mode = { "n", "x" } },
+		{ "<leader>p", "<cmd>lua Snacks.picker.yanky()<cr>", desc = "Clipboard: History", mode = { "n", "x" } },
 		{ "y", "<Plug>(YankyYank)", desc = "Clipboard: Yank", mode = { "n", "x" } },
 		{ "p", "<Plug>(YankyPutAfter)", desc = "Clipboard: Put after", mode = { "n", "x" } },
 		{ "<c-v>", "<Plug>(YankyPutAfter)", desc = "Clipboard: Put after", mode = { "n", "x" } },

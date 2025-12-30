@@ -4,12 +4,12 @@
 return {
 	"rgroli/other.nvim",
 	keys = {
-		{ "==", ":Other<cr>", desc = "Alternate: Open alternate file" },
-		{ "=<space>", ":Other source<cr>", desc = "Alternate: Open source file" },
-		{ "=s", ":Other style<cr>", desc = "Alternate: Open style file" },
-		{ "=b", ":Other test<cr>", desc = "Alternate: Open test file" },
-		{ "=m", ":Other template<cr>", desc = "Alternate: Open template file" },
-		{ "=y", ":Other story<cr>", desc = "Alternate: Open story file" },
+		{ "==", "<cmd>Other<cr>", desc = "Alternate: Open alternate file" },
+		{ "=<space>", "<cmd>Other source<cr>", desc = "Alternate: Open source file" },
+		{ "=s", "<cmd>Other style<cr>", desc = "Alternate: Open style file" },
+		{ "=b", "<cmd>Other test<cr>", desc = "Alternate: Open test file" },
+		{ "=m", "<cmd>Other template<cr>", desc = "Alternate: Open template file" },
+		{ "=y", "<cmd>Other story<cr>", desc = "Alternate: Open story file" },
 	},
 	opts = {
 		mappings = {

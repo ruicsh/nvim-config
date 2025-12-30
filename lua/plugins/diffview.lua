@@ -40,10 +40,10 @@ return {
 		end
 
 		return {
-			{ "<leader>hD", ":DiffviewOpen<cr>", desc = "Git: Diffview" },
-			{ "<leader>hl", ":DiffviewFileHistory<cr>", desc = "Git: Log" },
-			{ "<leader>h%", ":DiffviewFileHistory %<cr>", desc = "Git: Log for file" },
-			{ "<leader>hl", ":'<,'>DiffviewFileHistory<cr>", desc = "Git: Log visual selection", mode = "v" },
+			{ "<leader>hD", "<cmd>DiffviewOpen<cr>", desc = "Git: Diffview" },
+			{ "<leader>hl", "<cmd>DiffviewFileHistory<cr>", desc = "Git: Log" },
+			{ "<leader>h%", "<cmd>DiffviewFileHistory %<cr>", desc = "Git: Log for file" },
+			{ "<leader>hl", "<cmd>'<,'>DiffviewFileHistory<cr>", desc = "Git: Log visual selection", mode = "v" },
 			{ "<leader>h$", git_blame_line, desc = "Git: Blame line" },
 			{ "<leader>h~", diff_back, desc = "Git: Diffview HEAD~{count}..HEAD" },
 		}

@@ -37,7 +37,7 @@ k("Y", "y$") -- Make Y behave like normal mode
 k("yy", "y") -- So that yanking has no delay (because of `yc`)
 
 -- Save file
-k("<c-s>", ":silent! update | redraw<cr>", { desc = "Save" })
+k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
 
 -- Indent/dedent selection
 k(">", ">gv") -- Reselect after indent
@@ -63,7 +63,7 @@ k("<s-a>", function()
 end, { expr = true })
 
 -- Repeat last change across visual selection
-k(".", ":normal .<cr>", { desc = "Repeat last change" }) -- `:h .`
+k(".", "<cmd>normal .<cr>", { desc = "Repeat last change" }) -- `:h .`
 
 --
 -- }}}

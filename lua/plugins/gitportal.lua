@@ -2,10 +2,11 @@
 -- https://codeberg.org/trevorhauter/gitportal.nvim
 
 return {
-	"https://codeberg.org/trevorhauter/gitportal.nvim",
+	-- "https://codeberg.org/trevorhauter/gitportal.nvim",
+	dir = "/Users/ruic/code/gitportal.nvim",
 	keys = {
-		{ "<leader>hx", ":GitPortal browse_file<cr>", desc = "Git: Open in browser", mode = { "n", "x" } },
-		{ "<leader>hX", ":GitPortal open_link<cr>", desc = "Git: Open in neovim" },
+		{ "<leader>hx", "<cmd>GitPortal browse_file<cr>", desc = "Git: Open in browser", mode = { "n", "x" } },
+		{ "<leader>hX", "<cmd>GitPortal open_link<cr>", desc = "Git: Open in neovim" },
 	},
 	opts = {
 		switch_branch_or_commit_upon_ingestion = "ask_first",

@@ -4,10 +4,10 @@
 return {
 	"ruicsh/winshift.nvim",
 	keys = {
-		{ "<c-w>m", ":WinShift<cr>", desc = "Windows: Move" },
-		{ "<c-w><c-m>", ":WinShift<cr>", desc = "Windows: Move" },
-		{ "<c-w>x", ":WinShift swap<cr>", desc = "Windows: Swap" },
-		{ "<c-w><c-x>", ":WinShift swap<cr>", desc = "Windows: Swap" },
+		{ "<c-w>m", "<cmd>WinShift<cr>", desc = "Windows: Move" },
+		{ "<c-w><c-m>", "<cmd>WinShift<cr>", desc = "Windows: Move" },
+		{ "<c-w>x", "<cmd>WinShift swap<cr>", desc = "Windows: Swap" },
+		{ "<c-w><c-x>", "<cmd>WinShift swap<cr>", desc = "Windows: Swap" },
 	},
 	opts = {
 		focused_hl_group = "WinShiftFocused",

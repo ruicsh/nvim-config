@@ -11,7 +11,7 @@ return {
 		end
 
 		return {
-			{ "-", ":Oil<cr>", desc = "Oil: Open parent" },
+			{ "-", "<cmd>Oil<cr>", desc = "Oil: Open parent" },
 			{ "_", open_cwd, desc = "Oil: Open cwd" },
 		}
 	end,
