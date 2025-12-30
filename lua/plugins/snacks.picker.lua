@@ -252,11 +252,13 @@ return {
 					confirm = function(picker, item)
 						picker:close()
 						local selected = picker:selected()
-						if #selected > 1 then
+						if #selected == 1 then
+							vim.cmd("DiffviewOpen " .. selected[1].commit .. "^..HEAD")
+						elseif #selected > 1 then
 							-- If multiple commits are selected, open a diffview for the range
-							local first = selected[1].commit
-							local last = selected[2].commit
-							vim.cmd("DiffviewOpen " .. first .. ".." .. last)
+							local first = selected[2].commit
+							local last = selected[1].commit
+							vim.cmd("DiffviewOpen " .. first .. "^.." .. last)
 						else
 							vim.cmd("DiffviewOpen " .. item.commit .. "^!")
 						end
