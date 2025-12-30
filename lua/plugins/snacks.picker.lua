@@ -251,7 +251,15 @@ return {
 				git_log = {
 					confirm = function(picker, item)
 						picker:close()
-						vim.cmd("DiffviewOpen " .. item.commit .. "^!")
+						local selected = picker:selected()
+						if #selected > 1 then
+							-- If multiple commits are selected, open a diffview for the range
+							local first = selected[1].commit
+							local last = selected[2].commit
+							vim.cmd("DiffviewOpen " .. first .. ".." .. last)
+						else
+							vim.cmd("DiffviewOpen " .. item.commit .. "^!")
+						end
 					end,
 					title = "Git: Search Log",
 				},
