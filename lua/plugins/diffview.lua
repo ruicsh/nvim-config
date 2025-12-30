@@ -82,7 +82,7 @@ return {
 				file_panel = {
 					["<c-n>"] = actions.select_next_entry,
 					["<c-p>"] = actions.select_prev_entry,
-					["<leader><tab>q"] = quit,
+					["q"] = quit,
 					["<cr>"] = actions.focus_entry,
 					["<tab>"] = actions.select_entry,
 					["K"] = actions.open_commit_log,
@@ -93,7 +93,7 @@ return {
 					["<c-k>"] = actions.select_prev_commit,
 					["<c-n>"] = actions.select_next_entry,
 					["<c-p>"] = actions.select_prev_entry,
-					["<leader><tab>q"] = quit,
+					["q"] = quit,
 					["<cr>"] = actions.focus_entry,
 					["<tab>"] = actions.select_entry,
 					["K"] = actions.open_commit_log,
@@ -103,7 +103,6 @@ return {
 					end,
 				},
 				help_panel = {
-					["<leader><tab>q"] = quit,
 					["q"] = actions.close,
 				},
 				view = {
@@ -119,7 +118,7 @@ return {
 					["<leader>cB"] = false,
 					["<leader>cO"] = false,
 					["<leader>cT"] = false,
-					["<leader><tab>q"] = quit,
+					["q"] = quit,
 				},
 			},
 			hooks = {
