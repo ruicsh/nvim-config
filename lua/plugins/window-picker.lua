@@ -21,6 +21,10 @@ return {
 
 			-- Only one window, do nothing.
 			if #available == 1 then
+				-- If not already in the only available window, switch to it
+				if available[1] ~= vim.api.nvim_get_current_win() then
+					vim.api.nvim_set_current_win(available[1])
+				end
 				return
 			end
 
@@ -64,7 +68,7 @@ return {
 			{ "<bar>", pick_window, desc = "Windows: Pick" },
 			{ "<c-w>w", pick_window, desc = "Windows: Pick" },
 			{ "<c-w><c-w>", pick_window, desc = "Windows: Pick" },
-			{ "<c-w><s-w>", pick_floating_window, desc = "Windows: Pick Floating" },
+			{ "<c-w>W", pick_floating_window, desc = "Windows: Pick Floating" },
 		}
 	end,
 	opts = {
