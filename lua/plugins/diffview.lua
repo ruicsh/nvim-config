@@ -54,7 +54,7 @@ return {
 
 		local function git_commit()
 			vim.cmd("DiffviewClose")
-			vim.cmd.tabnew()
+			vim.cmd("tabnew")
 			vim.cmd("Git")
 			vim.cmd("wincmd o")
 

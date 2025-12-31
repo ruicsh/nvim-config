@@ -5,9 +5,9 @@ return {
 	"tpope/vim-fugitive",
 	keys = function()
 		local function open_git_status()
-			vim.cmd.tabnew()
+			vim.cmd("tabnew")
 			vim.cmd("vertical Git")
-			vim.cmd.only()
+			vim.cmd("only")
 		end
 
 		return {

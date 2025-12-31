@@ -34,9 +34,9 @@ local function loadColorSet(colorSet)
 end
 
 -- Reset highlighting
-vim.cmd.highlight("clear")
+vim.cmd("highlight clear")
 if vim.fn.exists("syntax_on") then
-	vim.cmd.syntax("reset")
+	vim.cmd("syntax reset")
 end
 
 vim.g.colors_name = "nordstone"

@@ -35,7 +35,7 @@ return {
 					grapple.tag({ name = name })
 				end
 
-				vim.cmd.redrawstatus()
+				vim.cmd("redrawstatus")
 			end
 		end
 

@@ -71,7 +71,7 @@ return {
 			local function nav_hunk(diff_cmd, direction)
 				local function fn()
 					if vim.wo.diff then
-						vim.cmd.normal({ diff_cmd, bang = true })
+						vim.cmd("normal! " .. diff_cmd)
 					else
 						gs.nav_hunk(direction)
 					end

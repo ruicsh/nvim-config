@@ -1,6 +1,6 @@
 vim.loader.enable()
 
-vim.cmd.colorscheme("nordstone")
+vim.cmd("colorscheme nordstone")
 
 -- Leader key
 -- needs to be set before lazy.nvim
