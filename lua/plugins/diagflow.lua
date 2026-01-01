@@ -7,6 +7,7 @@ return {
 		max_height = 50,
 		padding_top = 1,
 		padding_right = 1,
+		scope = "line",
 		toggle_event = { "InsertEnter", "InsertLeave" },
 	},
 
