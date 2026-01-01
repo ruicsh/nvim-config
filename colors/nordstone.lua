@@ -319,7 +319,7 @@ loadColorSet({
 	DiagnosticHint = { fg = c.nord9 },
 	DiagnosticInfo = { fg = c.nord10 },
 	DiagnosticWarn = { fg = c.nord13 },
-	DiagnosticUnderlineError = { style = "underline" },
+	DiagnosticUnderlineError = { sp = c.nord12, style = "underline" },
 	DiagnosticUnderlineHint = {},
 	DiagnosticUnderlineInfo = {},
 	DiagnosticUnderlineWarn = { style = "underline" },
