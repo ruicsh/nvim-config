@@ -29,9 +29,14 @@ return {
 		end
 
 		local function diff_back()
+			if vim.v.count > 0 then
+				vim.cmd("DiffviewOpen HEAD~" .. tostring(vim.v.count))
+				return
+			end
+
 			require("snacks.input").input({
 				prompt = "Diffview {git-rev}: ",
-				default = "HEAD..HEAD~" .. tostring(vim.v.count > 0 and vim.v.count or 1),
+				default = "HEAD~1",
 			}, function(input)
 				if input then
 					vim.cmd("DiffviewOpen " .. input)
