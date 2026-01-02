@@ -131,7 +131,7 @@ loadColorSet({
 	StatusLineNC = { fg = c.nord4, bg = "NONE" },
 	StatusLineTerm = { fg = c.nord4, bg = "NONE" },
 	StatusLineTermNC = { fg = c.nord4, bg = "NONE" },
-	Substitute = { fg = c.nord0, bg = c.nord12 },
+	Substitute = { fg = c.nord0, bg = c.nord7 },
 	TabLine = { fg = c.nord3_900 },
 	TabLineFill = {},
 	TabLineSel = { fg = c.nord3_900 },
