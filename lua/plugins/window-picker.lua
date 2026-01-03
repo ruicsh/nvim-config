@@ -55,9 +55,18 @@ return {
 			local tabid = vim.api.nvim_get_current_tabpage()
 			local wins = vim.api.nvim_tabpage_list_wins(tabid)
 
+			local DISABLED_FILETYPES = {
+				"incline",
+				"mininotify",
+			}
+
 			for _, winnr in ipairs(wins) do
+				local bufnr = vim.api.nvim_win_get_buf(winnr)
+				local ft = vim.bo[bufnr].filetype
 				local is_float = vim.api.nvim_win_get_config(winnr).relative ~= ""
-				if is_float then
+				local is_ts_context = vim.w[winnr].treesitter_context or vim.w[winnr].treesitter_context_line_number
+
+				if is_float and not vim.tbl_contains(DISABLED_FILETYPES, ft) and not is_ts_context then
 					vim.api.nvim_set_current_win(winnr)
 					return
 				end
