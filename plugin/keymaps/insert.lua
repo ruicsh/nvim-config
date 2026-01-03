@@ -27,4 +27,12 @@ k("<c-s>", "<cmd>silent! update | redraw<cr><esc>", { desc = "Save", unique = fa
 --
 -- }}}
 
+-- Miscellaneous {{{
+--
+
+k("<c-p>", "<nop>") -- Disable native completion popup
+
+--
+-- }}}
+
 -- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0:foldenable

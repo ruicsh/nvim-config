@@ -30,6 +30,18 @@ local DISABLED_BUFTYPES = {
 return {
 	"saghen/blink.cmp",
 	opts = {
+		cmdline = {
+			enabled = true,
+			completion = {
+				menu = {
+					auto_show = true,
+				},
+			},
+			keymap = {
+				preset = "inherit",
+				["<cr>"] = { "select_accept_and_enter", "fallback" },
+			},
+		},
 		completion = {
 			accept = {
 				auto_brackets = {
@@ -47,7 +59,7 @@ return {
 			},
 			list = {
 				selection = {
-					auto_insert = true,
+					auto_insert = false,
 				},
 			},
 			menu = {
@@ -99,13 +111,13 @@ return {
 			sorts = { "exact", "score", "sort_text" },
 		},
 		keymap = {
-			["<c-q>"] = { "hide", "fallback" },
-			["<c-j>"] = { "select_next", "fallback" },
-			["<c-k>"] = { "select_prev", "fallback" },
-			["<c-m>"] = { "select_and_accept", "fallback" },
-			["<c-n>"] = { "select_next", "show", "fallback" },
+			["<c-e>"] = { "hide_signature", "cancel", "fallback" },
+			["<c-b>"] = { "scroll_documentation_up", "fallback" },
+			["<c-f>"] = { "show_documentation", "scroll_documentation_down", "fallback" },
+			["<c-n>"] = { "show", "select_next", "fallback" },
 			["<c-p>"] = { "select_prev", "fallback" },
 			["<cr>"] = { "select_and_accept", "fallback" },
+			["<tab>"] = { "select_and_accept", "fallback" },
 		},
 		signature = {
 			enabled = true,
@@ -116,7 +128,7 @@ return {
 			},
 		},
 		sources = {
-			default = { "snippets", "buffer", "lsp" },
+			default = { "buffer", "lsp" },
 		},
 	},
 

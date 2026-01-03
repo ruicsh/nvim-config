@@ -301,9 +301,9 @@ Random features added.
 - `<c-n>` show/next entry
 - `<c-p>` previous entry
 - `<cr>` confirm
-- `<c-q>` hide
-- `<c-u>` scroll docs up
-- `<c-d>` scroll docs down
+- `<c-e>` hide
+- `<c-f>` scroll docs forward
+- `<c-b>` scroll docs backward
 
 ### Snippets
 
