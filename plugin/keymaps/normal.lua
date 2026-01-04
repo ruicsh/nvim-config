@@ -161,25 +161,6 @@ end
 --
 -- }}}
 
--- LSP {{{
---
-local picker = require("snacks.picker")
-
--- Alternatives to `gd`
-k("<cr>", picker.lsp_definitions, { desc = "LSP: Jump to definition" })
-k("<c-w>]", "<c-w>o<c-w>v<c-]><c-w>L", { desc = "LSP: Jump to definition (vsplit)" }) -- `:h CTRL-]`
-
--- Instead of using quickfix list, use snacks.picker
-k("<leader>dD", picker.diagnostics, { desc = "Diagnostics: Workspace" })
-k("<leader>dd", picker.diagnostics_buffer, { desc = "Diagnostics: File" })
-k("gO", picker.lsp_symbols, { desc = "LSP: Symbols", unique = false })
-k("grI", picker.lsp_incoming_calls, { desc = "LSP: Incoming Calls" })
-k("grO", picker.lsp_outgoing_calls, { desc = "LSP: Outgoing Calls" })
-k("grr", picker.lsp_references, { desc = "LSP: References", unique = false })
-
---
--- }}}
-
 -- Yank current path {{{
 --
 local function yank_path(fmt)
