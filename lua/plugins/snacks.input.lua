@@ -5,5 +5,14 @@ return {
 	"folke/snacks.nvim",
 	opts = {
 		input = {},
+		styles = {
+			input = {
+				keys = {
+					i_esc = { "<esc>", { "cancel" }, mode = "i", expr = true },
+				},
+				row = 0.3,
+				title_pos = "left",
+			},
+		},
 	},
 }

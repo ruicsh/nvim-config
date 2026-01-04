@@ -475,6 +475,8 @@ loadColorSet({
 -- snacks.nvim
 loadColorSet({
 	SnacksIndentScope = { fg = c.nord3_500 },
+	SnacksInputBorder = { fg = c.neutral_600, bg = "NONE" },
+	SnacksInputTitle = { fg = c.nord9 },
 	SnacksPickerDir = { fg = c.nord3_500 },
 	SnacksPickerMatch = { fg = c.nord4, bg = c.nord3 },
 })
