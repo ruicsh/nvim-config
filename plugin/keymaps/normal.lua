@@ -161,6 +161,22 @@ end
 --
 -- }}}
 
+-- LSP {{{
+--
+-- Override default LSP keymaps with snacks.picker variants
+local picker = require("snacks.picker")
+
+k("gO", picker.lsp_symbols, { desc = "Symbols", unique = false })
+k("grr", picker.lsp_references, { desc = "References", unique = false })
+k("grI", picker.lsp_incoming_calls, { desc = "Incoming Calls" })
+k("grO", picker.lsp_outgoing_calls, { desc = "Outgoing Calls" })
+
+-- Instead of using quickfix list, use snacks.picker
+k("<leader>dD", picker.diagnostics, { desc = "Diagnostics (workspace)" })
+k("<leader>dd", picker.diagnostics_buffer, { desc = "Diagnostics (file)" })
+--
+-- }}}
+
 -- Yank current path {{{
 --
 local function yank_path(fmt)
