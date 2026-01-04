@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>63 plugins</sub>
+<sub>64 plugins</sub>
 
 ### Code
 
@@ -37,6 +37,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
 - [mini.pairs](https://github.com/nvim-mini/mini.pairs) - Auto-pairs
+- [refactoring](https://github.com/ThePrimeagen/refactoring.nvim) - Refactoring
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
 - [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware actions
@@ -62,7 +63,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [auto-session](https://github.com/rmagatti/auto-session) - Session management
 - [hbac](https://github.com/axkirillov/hbac.nvim) - Buffer auto-closer
-- [incline.nvim](https://github.com/b0o/incline.nvim) - Floating winline
+- [incline](https://github.com/b0o/incline.nvim) - Floating winline
 - [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
 - [scope](https://github.com/tiagovla/scope.nvim) - Tab scoping
@@ -73,10 +74,10 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Git
 
-- [diffview.nvim](https://github.com/sindrets/diffview.nvim) - diff, conflicts
+- [diffview](https://github.com/sindrets/diffview.nvim) - diff, conflicts
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [gitportal](https://codeberg.org/trevorhauter/gitportal.nvim) - Open remote
-- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
+- [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
 
 ### Navigation
 
