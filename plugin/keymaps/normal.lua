@@ -166,14 +166,14 @@ end
 -- Override default LSP keymaps with snacks.picker variants
 local picker = require("snacks.picker")
 
-k("gO", picker.lsp_symbols, { desc = "Symbols", unique = false })
-k("grr", picker.lsp_references, { desc = "References", unique = false })
-k("grI", picker.lsp_incoming_calls, { desc = "Incoming Calls" })
-k("grO", picker.lsp_outgoing_calls, { desc = "Outgoing Calls" })
+k("gO", picker.lsp_symbols, { desc = "LSP: Symbols", unique = false })
+k("grr", picker.lsp_references, { desc = "LSP: References", unique = false })
+k("grI", picker.lsp_incoming_calls, { desc = "LSP: Incoming Calls" })
+k("grO", picker.lsp_outgoing_calls, { desc = "LSP: Outgoing Calls" })
 
 -- Instead of using quickfix list, use snacks.picker
-k("<leader>dD", picker.diagnostics, { desc = "Diagnostics (workspace)" })
-k("<leader>dd", picker.diagnostics_buffer, { desc = "Diagnostics (file)" })
+k("<leader>dD", picker.diagnostics, { desc = "LSP: Diagnostics (workspace)" })
+k("<leader>dd", picker.diagnostics_buffer, { desc = "LSP: Diagnostics (file)" })
 --
 -- }}}
 
