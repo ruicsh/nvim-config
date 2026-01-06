@@ -4,6 +4,7 @@
 return {
 	"sQVe/sort.nvim",
 	opts = {
+		ignore_case = true,
 		mappings = {
 			motion = false,
 			operator = "<leader>s",
