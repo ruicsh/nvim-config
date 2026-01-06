@@ -31,12 +31,6 @@ return {
 	"saghen/blink.cmp",
 	opts = {
 		cmdline = {
-			enabled = true,
-			completion = {
-				menu = {
-					auto_show = true,
-				},
-			},
 			keymap = {
 				preset = "inherit",
 				["<cr>"] = { "select_accept_and_enter", "fallback" },
