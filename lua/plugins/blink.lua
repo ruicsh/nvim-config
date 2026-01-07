@@ -105,13 +105,14 @@ return {
 			sorts = { "exact", "score", "sort_text" },
 		},
 		keymap = {
-			["<c-e>"] = { "hide_signature", "cancel", "fallback" },
 			["<c-b>"] = { "scroll_documentation_up", "fallback" },
+			["<c-e>"] = { "hide_signature", "cancel", "fallback" },
 			["<c-f>"] = { "show_documentation", "scroll_documentation_down", "fallback" },
 			["<c-n>"] = { "show", "select_next", "fallback" },
 			["<c-p>"] = { "select_prev", "fallback" },
 			["<cr>"] = { "select_and_accept", "fallback" },
-			["<tab>"] = { "select_and_accept", "fallback" },
+			["<s-tab>"] = { "select_prev", "fallback" },
+			["<tab>"] = { "show", "select_next", "fallback" },
 		},
 		signature = {
 			enabled = true,
