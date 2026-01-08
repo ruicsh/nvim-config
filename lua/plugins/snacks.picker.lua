@@ -3,6 +3,22 @@
 
 local T = require("lib")
 
+-- Confirm action for git_log pickers
+local git_log_on_confirm = function(picker, item)
+	picker:close()
+	local selected = picker:selected()
+	if #selected == 1 then
+		vim.cmd("CodeDiff " .. selected[1].commit .. "~1  HEAD")
+	elseif #selected > 1 then
+		-- If multiple commits are selected, open a diff for the range
+		local first = selected[2].commit
+		local last = selected[1].commit
+		vim.cmd("CodeDiff " .. first .. "~1  " .. last)
+	else
+		vim.cmd("CodeDiff " .. item.commit .. " " .. item.commit .. "~1")
+	end
+end
+
 -- Open picker.select to search for a directory to search in
 local grep_directory = function()
 	local snacks = require("snacks")
@@ -115,6 +131,7 @@ return {
 			{ "<leader>h/", picker.git_log, desc = "Git: Search Log" },
 			{ "<leader>hb", picker.git_branches, desc = "Git: Branches" },
 			{ "<leader>hh", picker.git_status, desc = "Git: Status" },
+			{ "<leader>h%", picker.git_log_file, desc = "Git: Log for file" },
 
 			-- neovim
 			{ "<leader>nH", picker.highlights, desc = "Highlights" },
@@ -130,9 +147,9 @@ return {
 				git_branch_diff = function(picker, item)
 					picker:close()
 
-					-- Open diffview for the branch compared to the default branch
+					-- Open diff for the branch compared to the default branch
 					local base = T.git.default_branch()
-					vim.cmd("DiffviewOpen " .. base .. "..." .. item.branch)
+					vim.cmd("CodeDiff " .. base .. " " .. item.branch)
 				end,
 				git_branch_ai_review = function(picker, item)
 					picker:close()
@@ -249,21 +266,12 @@ return {
 					},
 				},
 				git_log = {
-					confirm = function(picker, item)
-						picker:close()
-						local selected = picker:selected()
-						if #selected == 1 then
-							vim.cmd("DiffviewOpen " .. selected[1].commit .. "^..HEAD")
-						elseif #selected > 1 then
-							-- If multiple commits are selected, open a diffview for the range
-							local first = selected[2].commit
-							local last = selected[1].commit
-							vim.cmd("DiffviewOpen " .. first .. "^.." .. last)
-						else
-							vim.cmd("DiffviewOpen " .. item.commit .. "^!")
-						end
-					end,
-					title = "Git: Search Log",
+					confirm = git_log_on_confirm,
+					title = "Git: Search log",
+				},
+				git_log_file = {
+					confirm = git_log_on_confirm,
+					title = "Git: Search log for file",
 				},
 				git_status = {
 					win = {

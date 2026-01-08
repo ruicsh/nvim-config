@@ -21,4 +21,3 @@ end
 k({ "n", "i" }, "<c-s>", accept_commit_message, opts)
 k("n", "<leader>ac", "<cmd>CopilotCommitMessage<cr>", opts)
 k("n", "q", "<cmd>q!<cr>", opts) -- Close the buffer
-k("n", "<leader>hd", "<cmd>DiffviewOpen --staged<cr>", opts) -- Open Diffview with staged changes

@@ -384,13 +384,6 @@ loadColorSet({
 	CopilotChatSeparator = { fg = c.neutral_700 },
 })
 
--- diffview.nvim
-loadColorSet({
-	DiffviewDiffDeleteDim = { bg = c.neutral_850 },
-	DiffviewFilePanelCounter = { fg = c.nord8 },
-	DiffviewSecondary = { fg = c.nord14 },
-})
-
 -- flash.nvim
 loadColorSet({
 	FlashLabel = { fg = c.nord0, bg = c.nord13 },

@@ -3,8 +3,6 @@
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/auto-delete-buffer-if-deleted", { clear = true })
 
 local IGNORE_FILETYPES = {
-	"DiffviewFileHistory",
-	"DiffviewFiles",
 	"copilot-chat",
 	"git",
 	"fugitive",

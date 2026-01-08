@@ -17,7 +17,6 @@ codegen
 commitizen
 css
 cwd
-diffview
 docker
 dockerfile
 entrypoint

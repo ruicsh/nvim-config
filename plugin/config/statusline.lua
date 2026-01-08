@@ -117,10 +117,8 @@ local function c_filename()
 		line = line .. "GIT STATUS"
 	elseif ft == "gitcommit" then
 		line = line .. "GIT COMMIT"
-	elseif ft == "DiffviewFiles" then
+	elseif ft == "codediff-explorer" then
 		line = line .. "GIT DIFF"
-	elseif ft == "DiffviewFileHistory" then
-		line = line .. "GIT LOG"
 	elseif ft == "gitrebase" then
 		line = line .. "GIT REBASE"
 	elseif ft == "" or ft == "copilot-chat" or ft == "messages" then
