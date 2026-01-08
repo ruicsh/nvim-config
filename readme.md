@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>64 plugins</sub>
+<sub>63 plugins</sub>
 
 ### Code
 
@@ -63,7 +63,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [auto-session](https://github.com/rmagatti/auto-session) - Session management
 - [hbac](https://github.com/axkirillov/hbac.nvim) - Buffer auto-closer
-- [incline](https://github.com/b0o/incline.nvim) - Floating winline
 - [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
 - [scope](https://github.com/tiagovla/scope.nvim) - Tab scoping

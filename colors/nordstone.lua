@@ -348,7 +348,7 @@ local cmode = {
 -- status-line
 loadColorSet({
 	StatusLineBookmark = { fg = c.nord8 },
-	StatusLineFileChanged = { fg = c.nord8 },
+	StatusLineFileChanged = { fg = c.nord13 },
 	StatusLineGitStatus = { link = "StatusLine" },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
@@ -449,12 +449,6 @@ loadColorSet({
 loadColorSet({
 	HlSearchLens = { fg = c.nord3_700, bg = "NONE" },
 	HlSearchLensNear = { fg = c.nord13, bg = "NONE" },
-})
-
--- incline.nvim
-loadColorSet({
-	InclineNormal = { fg = c.nord4, bg = "NONE" },
-	InclineNormalNC = { fg = c.nord3_700, bg = "NONE" },
 })
 
 -- mini.hipatterns

@@ -56,7 +56,6 @@ return {
 			local wins = vim.api.nvim_tabpage_list_wins(tabid)
 
 			local DISABLED_FILETYPES = {
-				"incline",
 				"mininotify",
 			}
 
@@ -83,7 +82,7 @@ return {
 	opts = {
 		filter_rules = {
 			bo = {
-				filetype = { "mininotify", "incline" },
+				filetype = { "mininotify" },
 				buftype = { "nofile" },
 			},
 		},
