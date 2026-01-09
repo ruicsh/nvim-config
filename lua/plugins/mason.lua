@@ -15,6 +15,7 @@ local PACKAGES = {
 	"jsonls",
 	"lua_ls",
 	"pyright",
+	"tailwindcss",
 	"ts_ls",
 	"yamlls",
 	-- Format

@@ -109,15 +109,6 @@ return {
 		-- Show code context.
 		-- https://github.com/nvim-treesitter/nvim-treesitter-context
 		"nvim-treesitter/nvim-treesitter-context",
-		keys = function()
-			local function jump_to_context()
-				require("treesitter-context").go_to_context(vim.v.count1)
-			end
-
-			return {
-				{ "[s", jump_to_context, desc = "AST: Jump to previous context" },
-			}
-		end,
 		opts = {
 			max_lines = 3,
 			mode = "topline",

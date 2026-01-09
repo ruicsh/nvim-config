@@ -468,6 +468,11 @@ loadColorSet({
 	SnacksPickerMatch = { fg = c.nord4, bg = c.nord3 },
 })
 
+-- tailwind-fold.nvim
+loadColorSet({
+	TailwindConceal = { link = "Normal" },
+})
+
 -- treesitter-context
 loadColorSet({
 	TreesitterContextSeparator = { fg = c.neutral_800 },
