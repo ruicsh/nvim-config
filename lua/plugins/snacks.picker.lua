@@ -15,7 +15,7 @@ local git_log_on_confirm = function(picker, item)
 		local last = selected[1].commit
 		vim.cmd("CodeDiff " .. first .. "~1  " .. last)
 	else
-		vim.cmd("CodeDiff " .. item.commit .. " " .. item.commit .. "~1")
+		vim.cmd("CodeDiff " .. item.commit .. "~1 " .. item.commit)
 	end
 end
 
