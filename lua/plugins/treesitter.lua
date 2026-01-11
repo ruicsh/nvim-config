@@ -92,6 +92,8 @@ return {
 				{ "[f", go_to("previous", "@function.outer"), desc = "AST: Previous function" },
 				{ "]a", go_to("next", "@parameter.inner"), desc = "AST: Next parameter" },
 				{ "[a", go_to("previous", "@parameter.inner"), desc = "AST: Previous parameter" },
+				{ "]s", go_to("next", "@css_class_attr_value"), desc = "AST: Next className" },
+				{ "[s", go_to("previous", "@css_class_attr_value"), desc = "AST: Previous className" },
 			}
 		end,
 		opts = {

@@ -16,6 +16,7 @@ local PACKAGES = {
 	"lua_ls",
 	"pyright",
 	"tailwindcss",
+	"ts_query_ls",
 	"ts_ls",
 	"yamlls",
 	-- Format
