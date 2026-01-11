@@ -85,7 +85,7 @@ vim.g.nordstone_colors = NordStoneColors
 loadColorSet({
 	ColorColumn = { fg = "NONE", bg = "NONE" },
 	CommandMode = { fg = c.nord4, bg = "NONE", style = "reverse" },
-	Conceal = { fg = c.nord1 },
+	Conceal = { link = "Normal" },
 	CurSearch = { fg = c.nord1, bg = c.nord9 },
 	Cursor = { fg = c.nord4, bg = "NONE", style = "reverse" },
 	CursorColumn = { fg = "NONE", bg = c.nord0 },
@@ -189,7 +189,7 @@ loadColorSet({
 	String = { fg = c.nord14 }, -- a string constant: "this is a string"
 	Structure = { fg = c.nord9 }, -- struct, union, enum, etc.
 	Tag = { fg = c.nord4 }, -- you can use CTRL-] on this
-	Title = { fg = c.nord9 },
+	Title = { fg = c.nord4 },
 	Todo = { fg = c.nord13, bg = "NONE" }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 	Type = { fg = c.nord8 }, -- (preferred) int, long, char, etc.
 	Typedef = { fg = c.nord9 }, -- A typedef
@@ -466,11 +466,6 @@ loadColorSet({
 	SnacksInputTitle = { fg = c.nord9 },
 	SnacksPickerDir = { fg = c.nord3_500 },
 	SnacksPickerMatch = { fg = c.nord4, bg = c.nord3 },
-})
-
--- tailwind-fold.nvim
-loadColorSet({
-	TailwindConceal = { link = "Normal" },
 })
 
 -- treesitter-context
