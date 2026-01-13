@@ -3,6 +3,30 @@
 
 local T = require("lib")
 
+local augroup = vim.api.nvim_create_augroup("ruicsh/plugins/vim-test", { clear = true })
+
+-- Check if the file is an end-to-end test file
+local function is_e2e_file(file)
+	for _, ext in ipairs({ "js", "jsx", "mjs", "ts", "tsx" }) do
+		if string.match(file, "/e2e/.*%." .. ext .. "$") then
+			return true
+		end
+	end
+end
+
+-- Auto-set the runner based on current file
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = augroup,
+	pattern = { "*.js", "*.jsx", "*.mjs", "*.ts", "*.tsx" },
+	callback = function()
+		if is_e2e_file(vim.fn.expand("%:p")) then
+			vim.g["test#javascript#runner"] = "playwright"
+		else
+			vim.g["test#javascript#runner"] = "vitest"
+		end
+	end,
+})
+
 return {
 	"vim-test/vim-test",
 	keys = {
@@ -12,13 +36,16 @@ return {
 		{ "<leader>bn", "<cmd>TestNearest<cr>", desc = "Tests: Run nearest" },
 	},
 	config = function()
+		-- Enable JavaScript runners: Vitest, Jest, Playwright (faster runner detection)
+		vim.g["test#enabled_runners"] = { "javascript#vitest", "javascript#playwright" }
+
 		-- Use npx to run test runners
 		vim.g["test#javascript#vitest#executable"] = "npx vitest"
 		vim.g["test#javascript#jest#executable"] = "npx jest"
 
 		-- Open side panel with terminal for test output
 		vim.g["test#custom_strategies"] = {
-			my_neovim = function(cmd)
+			custom = function(cmd)
 				T.ui.open_side_panel()
 
 				vim.fn.termopen(cmd) -- Create a terminal buffer and run the command
@@ -29,7 +56,7 @@ return {
 		}
 
 		-- Use custom strategy
-		vim.g["test#strategy"] = "my_neovim"
+		vim.g["test#strategy"] = "custom"
 	end,
 
 	cmd = { "TestLast", "TestNearest", "TestFile", "TestSuite" },
