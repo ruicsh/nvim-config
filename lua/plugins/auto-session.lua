@@ -4,7 +4,7 @@
 return {
 	"rmagatti/auto-session",
 	opts = {
-		close_filetypes_on_save = { "fugitive", "checkhealth", "terminal", "gitcommit" },
+		close_filetypes_on_save = { "checkhealth", "fugitive", "git", "gitcommit", "terminal" },
 		git_auto_restore_on_branch_change = true,
 		git_use_branch_name = true,
 		purge_after_minutes = 14400,
