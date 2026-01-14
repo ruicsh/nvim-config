@@ -1,6 +1,9 @@
 vim.opt_local.wrap = false
 vim.opt_local.buflisted = false
 
+-- Jump to the first entry
+vim.cmd("normal ]/")
+
 local function k(mode, lhs, rhs, opts)
 	local options = vim.tbl_extend("force", { buffer = 0 }, opts or {})
 	vim.keymap.set(mode, lhs, rhs, options)

@@ -10,6 +10,9 @@ vim.opt_local.tabstop = 2
 vim.opt_local.textwidth = 80 -- Hard wrap at 80 characters
 vim.opt_local.wrap = true -- Enable line wrapping
 
+-- Start in insert mode
+vim.cmd("startinsert")
+
 local k = vim.keymap.set
 local opts = { buffer = 0 }
 
