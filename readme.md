@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>66 plugins</sub>
+<sub>67 plugins</sub>
 
 ### Code
 
@@ -77,6 +77,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [gitportal](https://codeberg.org/trevorhauter/gitportal.nvim) - Open remote
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
+- [oil-git](https://github.com/malewicz1337/oil-git.nvim) - files explorer integration
 
 ### Navigation
 
@@ -124,7 +125,6 @@ Custom configuration, keymaps, and features dependent on the file's type.
 |                                                                                               |            |
 | --------------------------------------------------------------------------------------------- | ---------- |
 | [dockerfile](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/dockerfile.lua) | Dockerfile |
-| [oil](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/oil.lua)               | Oil        |
 | [python](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/python.lua)         | Python     |
 
 ### Autocmds
