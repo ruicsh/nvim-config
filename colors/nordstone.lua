@@ -407,7 +407,9 @@ loadColorSet({
 	diffAdded = { link = "Added" },
 	diffChanged = { fg = c.nord13, bg = "NONE" },
 	diffFile = { fg = c.nord7 },
+	diffIgnored = { fg = c.nord3_500 },
 	diffIndexLine = { fg = c.nord9 },
+	diffRenamed = { fg = c.nord15 },
 	diffLine = { fg = c.nord9 },
 	diffNewFile = { fg = c.nord9 },
 	diffOldFile = { fg = c.nord9 },
@@ -488,14 +490,4 @@ loadColorSet({
 loadColorSet({
 	YankyPut = { link = "IncSearch" },
 	YankyYanked = { link = "IncSearch" },
-})
-
--- filetypes/oil.lua
-loadColorSet({
-	OilGitAdded = { fg = c.nord14, bg = "NONE" },
-	OilGitModified = { fg = c.nord13, bg = "NONE" },
-	OilGitDeleted = { fg = c.nord11, bg = "NONE" },
-	OilGitRenamed = { fg = c.nord13, bg = "NONE" },
-	OilGitUntracked = { fg = c.nord14, bg = "NONE" },
-	OilGitIgnored = { fg = c.nord3_500, bg = "NONE" },
 })
