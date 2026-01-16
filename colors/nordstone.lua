@@ -446,6 +446,12 @@ loadColorSet({
 	HlSearchLensNear = { fg = c.nord13, bg = "NONE" },
 })
 
+-- incline.nvim
+loadColorSet({
+	InclineNormal = { fg = c.nord3_500 },
+	InclineNormalNC = { link = "InclineNormal" },
+})
+
 -- mini.hipatterns
 loadColorSet({
 	MiniHipatternsDebugStatement = { fg = c.nord12 },
