@@ -197,6 +197,15 @@ local setup_autocmds = function()
 		end,
 	})
 
+	-- Clear highlights when leaving Oil buffer
+	vim.api.nvim_create_autocmd("BufHidden", {
+		group = augroup,
+		pattern = "oil://*",
+		callback = function()
+			clear_highlights()
+		end,
+	})
+
 	-- Refresh when oil buffer content changes (file operations)
 	vim.api.nvim_create_autocmd("BufWritePost", {
 		group = augroup,
