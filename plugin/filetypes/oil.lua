@@ -59,6 +59,7 @@ local function get_git_status(callback)
 		"--porcelain=v1",
 		"--short",
 		"--untracked-files=all",
+		"-z",
 		".",
 	}, { text = true, cwd = current_dir }, function(result)
 		if result.code ~= 0 or not result.stdout or result.stdout == "" then
@@ -67,21 +68,9 @@ local function get_git_status(callback)
 		end
 
 		local status = {}
-		for line in result.stdout:gmatch("[^\r\n]+") do
+		for _, line in ipairs(vim.split(result.stdout, "\0", { plain = true })) do
 			if #line >= 3 then
-				local status_code = line:sub(1, 2)
-				local filepath = line:sub(4)
-
-				if status_code:sub(1, 1) == "R" then
-					local arrow_pos = filepath:find(" %-> ")
-					if arrow_pos then
-						filepath = filepath:sub(arrow_pos + 4)
-					end
-				end
-
-				if filepath:sub(1, 2) == "./" then
-					filepath = filepath:sub(3)
-				end
+				local status_code, filepath = line:match("^(..) (.+)$")
 				local abs_path = vim.fs.joinpath(git_root, filepath)
 				status[abs_path] = status_code
 			end
@@ -97,7 +86,7 @@ local function clear_highlights()
 	vim.fn.clearmatches()
 end
 
--- Build reverse index: dir_path -> { has_added = true, has_changed = true, ... }
+-- Build reverse index: dir_path -> status_code
 local function build_dir_status_index(git_status)
 	local dir_status_index = {}
 
@@ -209,17 +198,8 @@ local setup_autocmds = function()
 		end,
 	})
 
-	-- Clear highlights when leaving Oil buffer
-	vim.api.nvim_create_autocmd("BufLeave", {
-		group = augroup,
-		pattern = "oil://*",
-		callback = function()
-			clear_highlights()
-		end,
-	})
-
 	-- Refresh when oil buffer content changes (file operations)
-	vim.api.nvim_create_autocmd({ "BufWritePost", "TextChanged", "TextChangedI" }, {
+	vim.api.nvim_create_autocmd("BufWritePost", {
 		group = augroup,
 		pattern = "oil://*",
 		callback = function()
