@@ -21,7 +21,7 @@ local function get_symbol_hl_group(status_code)
 	elseif first_char == "R" or second_char == "R" then
 		return "→", "diffRenamed"
 	elseif first_char == "D" or second_char == "D" then
-		return "-", "diffRemoved"
+		return "-", "diffChanged"
 	elseif first_char == "?" then
 		return "?", "diffFile"
 	elseif first_char == "!" then
