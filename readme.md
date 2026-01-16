@@ -264,13 +264,13 @@ Random features added.
 
 ### Change text cases
 
-- `ga-` to kebab-case
-- `ga_` to snake_case
-- `gaC` to CONSTANT_CASE
-- `gaU` to UPPER CASE
-- `gac` to camelCase
-- `gap` to PascalCase
-- `gau` to lower case
+- `<leader>~-` to kebab-case
+- `<leader>~_` to snake_case
+- `<leader>~C` to CONSTANT_CASE
+- `<leader>~U` to UPPER CASE
+- `<leader>~c` to camelCase
+- `<leader>~p` to PascalCase
+- `<leader>~u` to lower case
 
 ### Yank current filepath
 
