@@ -56,11 +56,9 @@ local function get_git_status(callback)
 		"-c",
 		"core.quotepath=false",
 		"status",
-		"--ignored=traditional",
-		"--ignore-submodules=all",
 		"--porcelain=v1",
-		"--untracked-files=all",
 		"--short",
+		"--untracked-files=all",
 		".",
 	}, { text = true, cwd = current_dir }, function(result)
 		if result.code ~= 0 or not result.stdout or result.stdout == "" then
