@@ -125,7 +125,7 @@ local function apply_git_highlights()
 
 			clear_highlights()
 
-			for linenr, oil_line in ipairs(oil_lines) do
+			for linenr in ipairs(oil_lines) do
 				local entry = oil.get_entry_on_line(bufnr, linenr)
 				if entry then
 					local path = vim.fs.joinpath(current_dir, entry.name)
@@ -141,15 +141,14 @@ local function apply_git_highlights()
 					-- Apply highlights based on status code
 					local symbol, hl_group = get_symbol_hl_group(status_code)
 					if symbol and hl_group then
-						local name_start = oil_line:find(entry.name, 1, true)
-						if name_start then
-							vim.fn.matchaddpos(hl_group, { { linenr, name_start, #entry.name } })
-							vim.api.nvim_buf_set_extmark(bufnr, ns, linenr - 1, 0, {
-								virt_text = { { symbol, hl_group } },
-								virt_text_pos = "eol",
-								hl_mode = "combine",
-							})
-						end
+						-- Highlight whole line
+						vim.fn.matchaddpos(hl_group, { linenr })
+
+						vim.api.nvim_buf_set_extmark(bufnr, ns, linenr - 1, 0, {
+							virt_text = { { symbol, hl_group } },
+							virt_text_pos = "eol",
+							hl_mode = "combine",
+						})
 					end
 				end
 			end
