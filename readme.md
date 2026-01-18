@@ -38,10 +38,10 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
 - [mini.pairs](https://github.com/nvim-mini/mini.pairs) - Auto-pairs
 - [refactoring](https://github.com/ThePrimeagen/refactoring.nvim) - Refactoring
+- [tailwind-hover](https://github.com/ruicsh/tailwind-hover.nvim) - Tailwind CSS hover
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
 - [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware actions
-- [tw-values](https://github.com/MaximilianLloyd/tw-values.nvim) - tailwindcss values
 
 ### Editor
 
