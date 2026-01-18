@@ -448,7 +448,7 @@ loadColorSet({
 
 -- incline.nvim
 loadColorSet({
-	InclineNormal = { fg = c.nord3_500 },
+	InclineNormal = { fg = c.nord4_900 },
 	InclineNormalNC = { link = "InclineNormal" },
 })
 
