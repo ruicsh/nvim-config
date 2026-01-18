@@ -123,20 +123,20 @@ return {
 			{ "<leader>'", picker.marks, desc = "Marks" },
 			{ "<leader>.", picker.resume, desc = "Last picker" },
 			{ "<leader>;", picker.jumps, desc = "Jumps" },
-			{ '<leader>"', picker.registers, desc = "Registers" },
-			{ "<leader>u", picker.undo, desc = "Command history" },
 			{ "<leader>c", picker.qflist, desc = "Quickfix" },
+			{ "<leader>u", picker.undo, desc = "Command history" },
+			{ '<leader>"', picker.registers, desc = "Registers" },
 
 			-- git
+			{ "<leader>h%", picker.git_log_file, desc = "Git: Log for file" },
 			{ "<leader>h/", picker.git_log, desc = "Git: Search Log" },
 			{ "<leader>hb", picker.git_branches, desc = "Git: Branches" },
 			{ "<leader>hh", picker.git_status, desc = "Git: Status" },
-			{ "<leader>h%", picker.git_log_file, desc = "Git: Log for file" },
 
 			-- neovim
-			{ "<leader>nH", picker.highlights, desc = "Highlights" },
 			{ "<leader>na", picker.autocmds, desc = "Autocmds" },
 			{ "<leader>nh", picker.help, desc = "Help" },
+			{ "<leader>nH", picker.highlights, desc = "Highlights" },
 			{ "<leader>nk", picker.keymaps, desc = "Keymaps" },
 		}
 	end)(),
@@ -311,6 +311,16 @@ return {
 				registers = {
 					layout = "no_preview",
 				},
+				undo = {
+					win = {
+						input = {
+							keys = {
+								["<c-y>"] = { "yank_add", mode = { "n", "i" } },
+								["<c-d>"] = { "yank_del", mode = { "n", "i" } },
+							},
+						},
+					},
+				},
 				yanky = {
 					layout = "no_preview",
 				},
@@ -320,7 +330,7 @@ return {
 				input = {
 					keys = {
 						["<esc>"] = { "close", mode = { "n", "i" } },
-						["<c-q>"] = { "qflist", mode = { "n", "i" } },
+						["<c-c>"] = { "qflist", mode = { "n", "i" } },
 					},
 				},
 				preview = {
