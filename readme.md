@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>66 plugins</sub>
+<sub>67 plugins</sub>
 
 ### Code
 
@@ -41,6 +41,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
 - [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware actions
+- [tw-values](https://github.com/MaximilianLloyd/tw-values.nvim) - tailwindcss values
 
 ### Editor
 
