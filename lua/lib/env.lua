@@ -34,8 +34,8 @@ M.load = function()
 	-- Load the env file only once
 	if not is_loaded then
 		load_from_dir(vim.fn.stdpath("config")) -- Neovim configuration directory
-		load_from_dir(vim.fn.getcwd()) -- Current working directory
 		load_from_dir(vim.fs.root(vim.fn.getcwd(), ".git")) -- Git root directory
+		load_from_dir(vim.fn.getcwd()) -- Current working directory
 		is_loaded = true
 	end
 end
