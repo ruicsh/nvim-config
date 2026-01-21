@@ -40,6 +40,7 @@ local LANGUAGES = {
 	"typescript",
 	"vim",
 	"vue",
+	"xml",
 	"yaml",
 }
 

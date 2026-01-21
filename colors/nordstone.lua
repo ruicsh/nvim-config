@@ -188,7 +188,7 @@ loadColorSet({
 	StorageClass = { fg = c.nord9 }, -- static, register, volatile, etc.
 	String = { fg = c.nord14 }, -- a string constant: "this is a string"
 	Structure = { fg = c.nord9 }, -- struct, union, enum, etc.
-	Tag = { fg = c.nord4 }, -- you can use CTRL-] on this
+	Tag = { fg = c.nord9 }, -- you can use CTRL-] on this
 	Title = { fg = c.nord4 },
 	Todo = { fg = c.nord13, bg = "NONE" }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 	Type = { fg = c.nord8 }, -- (preferred) int, long, char, etc.
@@ -280,6 +280,9 @@ loadColorSet({
 
 	-- TypeScriptReact
 	["@lsp.type.property.typescriptreact"] = { link = "@lsp.type.property.typescript" },
+
+	-- XML
+	["@none.xml"] = { fg = c.nord4 },
 })
 
 -- TERMINAL

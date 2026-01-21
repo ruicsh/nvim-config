@@ -28,6 +28,7 @@ local LANGUAGES = {
 	"tsx",
 	"typescript",
 	"vim",
+	"xml",
 	"yaml",
 }
 
