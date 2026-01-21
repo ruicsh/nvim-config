@@ -191,12 +191,12 @@ local function yank_path(fmt)
 	end
 end
 
-k("%%", yank_path("%:."), { desc = "Yank filename (relative)" })
-k("%D", yank_path("%:p:h"), { desc = "Yank directory (absolute)" })
-k("%d", yank_path("%:.:h"), { desc = "Yank directory (relative)" })
-k("%f", yank_path("%:t"), { desc = "Yank basename (with extension)" })
-k("%n", yank_path("%:t:r"), { desc = "Yank basename (no extension)" })
-k("%p", yank_path("%:p"), { desc = "Yank filename (absolute)" })
+k("y%", yank_path("%:."), { desc = "Yank filename (relative)" })
+k("yD", yank_path("%:p:h"), { desc = "Yank directory (absolute)" })
+k("yd", yank_path("%:.:h"), { desc = "Yank directory (relative)" })
+k("yf", yank_path("%:t"), { desc = "Yank basename (with extension)" })
+k("yn", yank_path("%:t:r"), { desc = "Yank basename (no extension)" })
+k("yp", yank_path("%:p"), { desc = "Yank filename (absolute)" })
 
 --
 -- }}}
