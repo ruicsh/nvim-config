@@ -42,6 +42,8 @@ return {
 			{ "<leader>hD", "<cmd>CodeDiff<cr>", desc = "Git: Diff" },
 			{ "<leader>h$", git_blame_line, desc = "Git: Blame line" },
 			{ "<leader>h~", diff_back, desc = "Git: Diff HEAD~{count}..HEAD" },
+			{ "<leader>hl", "<cmd>CodeDiff history<cr>", desc = "Git: Log" },
+			{ "<leader>h%", "<cmd>CodeDiff history %<cr>", desc = "Git: Log for file" },
 		}
 	end,
 	opts = {
@@ -60,6 +62,9 @@ return {
 				accept_incoming = "ct",
 				accept_both = "cb",
 				discard = "cx",
+			},
+			history = {
+				select = "<tab>",
 			},
 		},
 	},
