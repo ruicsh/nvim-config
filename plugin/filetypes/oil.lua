@@ -42,9 +42,9 @@ local function get_git_status(callback)
 		return
 	end
 
-	local rel_path = vim.fs.relpath(current_dir, git_root) or "."
-	if rel_path == "" then
-		rel_path = "."
+	local path = vim.fs.relpath(git_root, current_dir) or "."
+	if path == "" then
+		path = "."
 	end
 
 	-- Use git -c core.quotepath=false for Windows compatibility
@@ -60,8 +60,8 @@ local function get_git_status(callback)
 		"--short",
 		"--untracked-files=all",
 		"-z",
-		".",
-	}, { text = true, cwd = current_dir }, function(result)
+		path,
+	}, { text = true, cwd = git_root }, function(result)
 		if result.code ~= 0 or not result.stdout or result.stdout == "" then
 			callback({})
 			return
