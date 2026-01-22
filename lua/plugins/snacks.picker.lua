@@ -150,6 +150,30 @@ return {
 					vim.cmd("cclose")
 					snacks.picker.qflist()
 				end,
+				qflist_delete_item = function(picker, item)
+					if not item or not item.item then
+						return
+					end
+
+					-- Remove from picker
+					picker.finder.items = vim.tbl_filter(function(finder_item)
+						return not (
+							finder_item.item
+							and finder_item.item.bufnr == item.item.bufnr
+							and finder_item.item.lnum == item.item.lnum
+							and finder_item.item.col == item.item.col
+							and finder_item.item.text == item.item.text
+						)
+					end, picker.finder.items)
+
+					-- Update qflist using picker items
+					local new_items = vim.tbl_map(function(finder_item)
+						return finder_item.item
+					end, picker.finder.items)
+					vim.fn.setqflist({}, "r", { items = new_items })
+
+					picker.matcher:run(picker)
+				end,
 			},
 			db = { sqlite3_path = T.env.get("SNACKS_PICKER_DB_SQLITE3_PATH") },
 			enabled = true,
@@ -314,6 +338,15 @@ return {
 				},
 				lsp_outgoing_calls = {
 					auto_confirm = false,
+				},
+				qflist = {
+					win = {
+						input = {
+							keys = {
+								["<c-x>"] = { "qflist_delete_item", mode = { "n", "i" } },
+							},
+						},
+					},
 				},
 				registers = {
 					layout = "no_preview",
