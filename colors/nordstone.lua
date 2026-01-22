@@ -79,7 +79,7 @@ local NordStoneColors = {
 local c = NordStoneColors
 
 -- Make colours available globally for external access
-vim.g.nordstone_colors = NordStoneColors
+vim.g.theme_colors = NordStoneColors
 
 -- EDITOR
 loadColorSet({
@@ -453,6 +453,7 @@ loadColorSet({
 loadColorSet({
 	InclineNormal = { fg = c.nord4_900 },
 	InclineNormalNC = { link = "InclineNormal" },
+	InclineModified = { fg = c.nord13 },
 })
 
 -- mini.hipatterns
