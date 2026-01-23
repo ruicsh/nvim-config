@@ -1,9 +1,4 @@
--- Apply Git status highlights in Oil file manager
-
-local T = require("lib")
-
-local augroup = vim.api.nvim_create_augroup("ruicsh/filetype/oil", { clear = true })
-local ns = vim.api.nvim_create_namespace("ruicsh/filetype/oil")
+local ns = vim.api.nvim_create_namespace("ruicsh/ftplugin/oil")
 
 -- Return symbol and highlight group for a given git status code
 local function get_symbol_hl_group(status_code)
@@ -187,45 +182,30 @@ local function safe_apply_highlights()
 	apply_git_highlights()
 end
 
--- Set up autocommands for Oil git highlights
-local setup_autocmds = function()
-	vim.api.nvim_create_autocmd("BufEnter", {
-		group = augroup,
-		pattern = "oil://*",
-		callback = function()
-			safe_apply_highlights()
-		end,
-	})
+local augroup = vim.api.nvim_create_augroup("ruicsh/ftplugin/oil", { clear = true })
 
-	-- Clear highlights when leaving Oil buffer
-	vim.api.nvim_create_autocmd("BufHidden", {
-		group = augroup,
-		pattern = "oil://*",
-		callback = function()
-			clear_highlights()
-		end,
-	})
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = augroup,
+	pattern = "oil://*",
+	callback = function()
+		safe_apply_highlights()
+	end,
+})
 
-	-- Refresh when oil buffer content changes (file operations)
-	vim.api.nvim_create_autocmd("BufWritePost", {
-		group = augroup,
-		pattern = "oil://*",
-		callback = function()
-			vim.schedule(apply_git_highlights)
-		end,
-	})
-end
+-- Clear highlights when leaving Oil buffer
+vim.api.nvim_create_autocmd("BufHidden", {
+	group = augroup,
+	pattern = "oil://*",
+	callback = function()
+		clear_highlights()
+	end,
+})
 
-local is_initialized = false
-
-local function initialize()
-	if is_initialized or T.env.get_bool("OIL_DISABLE_GIT_HIGHLIGHTS") then
-		return
-	end
-
-	setup_autocmds()
-
-	is_initialized = true
-end
-
-initialize()
+-- Refresh when oil buffer content changes (file operations)
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = augroup,
+	pattern = "oil://*",
+	callback = function()
+		vim.schedule(apply_git_highlights)
+	end,
+})

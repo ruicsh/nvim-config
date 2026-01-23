@@ -1,9 +1,5 @@
--- Dockerfile
-
-local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/dockerfile", { clear = true })
-
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	group = augroup,
+	group = vim.api.nvim_create_augroup("ruicsh/ftplugin/dockerfile", { clear = true }),
 	pattern = { "Dockerfile", "dockerfile", "dockerfile.*" },
 	callback = function()
 		-- Ignore this file

@@ -64,7 +64,7 @@ local function find_venv()
 		end
 	end
 
-	vim.fn.notify("No virtual environment found.")
+	vim.notify("No virtual environment found.")
 
 	return nil
 end
@@ -102,7 +102,7 @@ local function auto_activate_venv()
 	-- Update Neovim Python provider
 	vim.g.python3_host_prog = python_path
 
-	vim.fn.notify("Activated venv: " .. venv)
+	vim.notify("Activated venv: " .. venv)
 
 	return python_path
 end
