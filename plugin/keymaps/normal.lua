@@ -179,24 +179,17 @@ k("<leader>dd", picker.diagnostics_buffer, { desc = "LSP: Diagnostics (file)" })
 
 -- Yank current path {{{
 --
-local function yank_path(fmt)
-	return function()
-		local path = vim.fn.expand(fmt)
-		if path == "" then
-			vim.notify("No file name", vim.log.levels.WARN)
-			return
-		end
-		vim.fn.setreg("+", path) -- `:h setreg()`
-		vim.notify(("Yanked %s"):format(path), vim.log.levels.INFO)
+local function yank_current_path()
+	local path = vim.fn.expand("%:.")
+	if path == "" then
+		vim.notify("No file name", vim.log.levels.WARN)
+		return
 	end
+	vim.fn.setreg("+", path) -- `:h setreg()`
+	vim.notify(("Yanked %s"):format(path), vim.log.levels.INFO)
 end
 
-k("y%", yank_path("%:."), { desc = "Yank filename (relative)" })
-k("yD", yank_path("%:p:h"), { desc = "Yank directory (absolute)" })
-k("yd", yank_path("%:.:h"), { desc = "Yank directory (relative)" })
-k("yf", yank_path("%:t"), { desc = "Yank basename (with extension)" })
-k("yn", yank_path("%:t:r"), { desc = "Yank basename (no extension)" })
-k("yp", yank_path("%:p"), { desc = "Yank filename (absolute)" })
+k("y%", yank_current_path, { desc = "Yank filename (relative)" })
 
 --
 -- }}}
