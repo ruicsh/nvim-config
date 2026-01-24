@@ -4,9 +4,11 @@
 return {
 	"ruicsh/tailwind-hover.nvim",
 	keys = {
-		{ "<leader><s-k>", "<cmd>TailwindHover<cr>", desc = "Tailwind: Hover" },
+		{ "<s-k>", "<cmd>TailwindHover<cr>", desc = "Tailwind: Hover" },
 	},
-	opts = {},
+	opts = {
+		fallback_to_lsp_hover = true,
+	},
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 	},
