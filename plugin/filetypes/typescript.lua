@@ -1,7 +1,10 @@
--- Custom LSP code action keybindings
+-- TypeScript LSP Code Actions
+
+local augroup = vim.api.nvim_create_augroup("ruicsh/typescript/lsp-code-actions", { clear = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("ruicsh/typescript/lsp-code-actions", { clear = true }),
+	group = augroup,
+	pattern = "*.ts,*.tsx",
 	callback = function()
 		local function code_action(action)
 			return function()
