@@ -12,7 +12,7 @@ return {
 			local modified = vim.bo[props.buf].modified
 			return {
 				filename,
-				modified and { " [*]", guifg = vim.g.theme_colors.nord13 } or "",
+				modified and { " [+]", guifg = vim.g.theme_colors.nord13 } or "",
 			}
 		end,
 	},
