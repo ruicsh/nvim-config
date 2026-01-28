@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>68 plugins</sub>
+<sub>67 plugins</sub>
 
 ### Code
 
@@ -93,7 +93,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### LSP/Syntax/Tools
 
-- [diagflow](https://github.com/dgagn/diagflow.nvim) - Diagnostics display
 - [kulala](https://github.com/mistweaverco/kulala.nvim) - HTTP client
 - [mason-lspconfig](https://github.com/mason-org/mason-lspconfig.nvim) - Bridge between mason and lspconfig
 - [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) - Tools installer
