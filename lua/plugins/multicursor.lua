@@ -37,10 +37,10 @@ return {
 			{ "<leader><s-up>", lineSkipCursor(-1), desc = "MultiCursor: Skip above", mode = { "n", "x" } },
 			{ "<leader><s-down>", lineSkipCursor(1), desc = "MultiCursor: Skip below", mode = { "n", "x" } },
 
-			{ "<leader>mn", matchAddCursor(1), desc = "MultiCursor: Add next match", mode = { "n", "x" } },
-			{ "<leader>mN", matchAddCursor(-1), desc = "MultiCursor: Add previous match", mode = { "n", "x" } },
-			{ "<leader>ms", matchSkipCursor(1), desc = "MultiCursor: Skip next match", mode = { "n", "x" } },
-			{ "<leader>mS", matchSkipCursor(-1), desc = "MultiCursor: Skip previous match", mode = { "n", "x" } },
+			{ "<c-s-down>", matchAddCursor(1), desc = "MultiCursor: Add next match", mode = { "n", "x" } },
+			{ "<c-s-up>", matchAddCursor(-1), desc = "MultiCursor: Add previous match", mode = { "n", "x" } },
+			{ "<leader><c-s-down>", matchSkipCursor(1), desc = "MultiCursor: Skip next match", mode = { "n", "x" } },
+			{ "<leader><c-s-up>", matchSkipCursor(-1), desc = "MultiCursor: Skip previous match", mode = { "n", "x" } },
 
 			{ "<leader>mm", mc.toggleCursor, desc = "MultiCursor: Toggle", mode = { "n", "x" } },
 		}

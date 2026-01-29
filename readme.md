@@ -292,10 +292,12 @@ Random features added.
 
 ### MultiCursor
 
-- `<s-up>` Add cursor above (`<s-down>` for below)
-- `<leader><s-up>` Skip cursor above (`<leader><s-down>` for below)
+- `<s-down>` add cursor below (`<s-up>` for above)
+- `<leader><s-down>` skip cursor below (`<leader><s-up>` for above)
+- `<c-s-down>` add cursor to next match (`<c-s-up>` for previous)
+- `<leader><c-s-down>` skip cursor next match (`<leader><c-s-up>` for previous)
 - `<leader>x` delete cursor
-- `<esc>` Clear cursors
+- `<esc>` clear cursors
 
 ### Completion
 
