@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>67 plugins</sub>
+<sub>66 plugins</sub>
 
 ### Code
 
@@ -39,7 +39,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [mini.pairs](https://github.com/nvim-mini/mini.pairs) - Auto-pairs
 - [refactoring](https://github.com/ThePrimeagen/refactoring.nvim) - Refactoring
 - [tailwind-hover](https://github.com/ruicsh/tailwind-hover.nvim) - Tailwind CSS hover
-- [template-string](https://github.com/axelvc/template-string.nvim) - JS template string
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
 - [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware actions
