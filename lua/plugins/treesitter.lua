@@ -121,10 +121,4 @@ return {
 
 		event = "BufReadPost",
 	},
-	{
-		-- Auto close and rename HTML tags
-		-- https://github.com/windwp/nvim-ts-autotag
-		"windwp/nvim-ts-autotag",
-		opts = {},
-	},
 }
