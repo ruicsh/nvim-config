@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>65 plugins</sub>
+<sub>64 plugins</sub>
 
 ### Code
 
@@ -36,7 +36,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
 - [mini.pairs](https://github.com/nvim-mini/mini.pairs) - Auto-pairs
-- [refactoring](https://github.com/ThePrimeagen/refactoring.nvim) - Refactoring
 - [tailwind-hover](https://github.com/ruicsh/tailwind-hover.nvim) - Tailwind CSS hover
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
