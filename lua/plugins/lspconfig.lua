@@ -5,4 +5,20 @@ return {
 	"neovim/nvim-lspconfig",
 	enabled = not os.getenv("NVIM_GIT_DIFF"),
 	lazy = false,
+	opts = {
+		servers = {
+			tailwindcss = {
+				settings = {
+					tailwindCSS = {
+						classFunctions = { "cva", "cx" },
+					},
+				},
+			},
+		},
+	},
+	config = function(_, opts)
+		for server, server_opts in pairs(opts.servers) do
+			vim.lsp.config(server, server_opts)
+		end
+	end,
 }
