@@ -10,7 +10,7 @@ return {
 			tailwindcss = {
 				settings = {
 					tailwindCSS = {
-						classFunctions = { "cva", "cx" },
+						classFunctions = { "cva", "cx", "tv" },
 					},
 				},
 			},
