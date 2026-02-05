@@ -24,10 +24,11 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>64 plugins</sub>
+<sub>65 plugins</sub>
 
 ### Code
 
+- [autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename tags
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [comment](https://github.com/numToStr/Comment.nvim) - Comments
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
