@@ -193,7 +193,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- Clear highlights when leaving Oil buffer
-vim.api.nvim_create_autocmd("BufHidden", {
+vim.api.nvim_create_autocmd("BufLeave", {
 	group = augroup,
 	pattern = "oil://*",
 	callback = function()
