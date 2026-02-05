@@ -79,6 +79,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [git-conflict](https://github.com/akinsho/git-conflict.nvim) - merge conflicts
 - [gitportal](https://codeberg.org/trevorhauter/gitportal.nvim) - Open remote
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
+- [mini.git](https://github.com/nvim-mini/mini.git) - helpers
 
 ### Navigation
 
