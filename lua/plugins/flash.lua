@@ -7,7 +7,6 @@ return {
 		local flash = require("flash")
 
 		return {
-			{ "s", flash.jump, desc = "Flash: Jump" },
 			{ "r", flash.remote, desc = "Flash: Remote", mode = "o" },
 			{ "<leader><s-v>", flash.treesitter, desc = "Flash: Treesitter" },
 		}
@@ -37,6 +36,9 @@ return {
 				},
 				jump_labels = false,
 				keys = { "f", "F", "t", "T" },
+			},
+			search = {
+				enabled = true,
 			},
 			treesitter = {
 				actions = {

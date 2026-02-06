@@ -285,9 +285,9 @@ Random features added.
 
 ### Operators
 
-- `ys{motion}{char}` add surrounding character
-- `ds{char}` delete surrounding character
-- `cs{target}{replacement}` replace surrounding character
+- `sa{motion}{char}` add surrounding character
+- `sd{char}` delete surrounding character
+- `sr{target}{replacement}` replace surrounding character
 - `S{char}` add surrounding character (visual mode)
 - `<leader>x{motion1}<leader>x{motion2}` exchange
 - `<leader>r{motion}` replace
