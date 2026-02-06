@@ -24,10 +24,11 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>66 plugins</sub>
+<sub>67 plugins</sub>
 
 ### Code
 
+- [autopairs](https://github.com/windwp/nvim-autopairs) - Auto-pairs
 - [autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename tags
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [comment](https://github.com/numToStr/Comment.nvim) - Comments
@@ -36,7 +37,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
-- [mini.pairs](https://github.com/nvim-mini/mini.pairs) - Auto-pairs
 - [tailwind-hover](https://github.com/ruicsh/tailwind-hover.nvim) - Tailwind CSS hover
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
