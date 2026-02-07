@@ -890,7 +890,8 @@ return {
 			log_level = "warn",
 			mappings = {
 				close = {
-					normal = "",
+					normal = "<c-d>",
+					insert = "<c-d>",
 				},
 				submit_prompt = {
 					normal = "<c-s>",

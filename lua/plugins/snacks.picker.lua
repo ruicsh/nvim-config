@@ -371,6 +371,7 @@ return {
 					keys = {
 						["<esc>"] = { "close", mode = { "n", "i" } },
 						["<c-c>"] = { "qflist", mode = { "n", "i" } },
+						["<c-d>"] = { "close", mode = { "n", "i" } },
 					},
 				},
 				preview = {
