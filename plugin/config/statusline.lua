@@ -128,16 +128,22 @@ local function c_filename()
 		if ft == "oil" then
 			line = line .. vim.fn.fnamemodify(path:sub(7), ":.")
 		else
-			local display = vim.fn.fnamemodify(path, ":t")
-			if not T.ui.is_narrow_screen() then
-				display = vim.fn.fnamemodify(path, ":~:.")
-				local parts = vim.split(display, "/", { plain = true })
-				local len = #parts
-				if len > 3 then
-					display = table.concat({ parts[len - 2], parts[len - 1], parts[len] }, "/")
-				end
+			local devicons = require("nvim-web-devicons")
+			local fullpath = vim.api.nvim_buf_get_name(0)
+			local filename = vim.fn.fnamemodify(fullpath, ":t")
+			local relpath = vim.fn.fnamemodify(fullpath, ":.:h")
+			local icon, icon_color = devicons.get_icon(filename, nil, { default = true })
+
+			-- Icon with color
+			if icon and icon_color then
+				local hl_group = "StatusLineFileIconDynamic"
+				vim.api.nvim_set_hl(0, hl_group, { link = icon_color })
+				line = line .. "%#" .. hl_group .. "#" .. icon .. " "
 			end
-			line = line .. display
+			line = line .. "%#StatusLineFilename#" .. filename
+			if relpath ~= "." then
+				line = line .. " %#StatusLineFilePath#" .. relpath
+			end
 		end
 	end
 

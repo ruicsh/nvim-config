@@ -144,6 +144,8 @@ loadColorSet({
 	WarningMsg = { fg = c.nord15 },
 	Warnings = { fg = c.nord15 },
 	WildMenu = { fg = c.nord12, bg = "NONE", style = "bold" },
+	WinBar = { fg = c.nord4, bg = "NONE" },
+	WinBarNC = { fg = c.nord4, bg = "NONE" },
 	WinSeparator = { fg = c.neutral_600, bg = "NONE" },
 	healthError = { fg = c.nord11 },
 	healthSuccess = { fg = c.nord14 },
@@ -352,6 +354,8 @@ local cmode = {
 loadColorSet({
 	StatusLineBookmark = { fg = c.nord8 },
 	StatusLineFileChanged = { fg = c.nord13 },
+	StatusLineFilename = { fg = c.nord4 },
+	StatusLineFilePath = { fg = c.nord3_700 },
 	StatusLineGitStatus = { link = "StatusLine" },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
@@ -451,9 +455,11 @@ loadColorSet({
 
 -- incline.nvim
 loadColorSet({
-	InclineNormal = { fg = c.nord4_900 },
-	InclineNormalNC = { link = "InclineNormal" },
+	InclineNormal = { fg = c.nord4 },
+	InclineNormalNC = { fg = c.nord3_700 },
 	InclineModified = { fg = c.nord13 },
+	InclinePath = { fg = c.nord3_700 },
+	InclinePathNC = { fg = c.nord3_500 },
 })
 
 -- mini.hipatterns
