@@ -12,9 +12,11 @@ local function c_lsp_diagnostics(props)
 		if count and count > 0 then
 			local icon = k:sub(1, 1):upper()
 			if k == "error" then
-				table.insert(lines, { icon .. count .. " ", group = "InclineLspDiagnosticsError" })
+				local group = props.focused and "InclineLspDiagnosticsError" or "InclineSecondaryNC"
+				table.insert(lines, { icon .. count .. " ", group = group })
 			else
-				table.insert(lines, { icon .. count .. " ", group = "InclineLspDiagnostics" })
+				local group = props.focused and "InclineSecondary" or "InclineSecondaryNC"
+				table.insert(lines, { icon .. count .. " ", group = group })
 			end
 		end
 	end
@@ -37,9 +39,10 @@ local function c_filename(props)
 	table.insert(lines, { icon .. " ", group = icon_color })
 	table.insert(lines, { filename .. " ", group = props.focused and "InclineNormal" or "InclineNormalNC" })
 	if vim.bo[props.buf].modified then
-		table.insert(lines, { "[+] ", group = "InclineModified" })
+		local group = props.focused and "InclineModified" or "InclineNormalNC"
+		table.insert(lines, { "[+] ", group = group })
 	end
-	table.insert(lines, { path, group = props.focused and "InclinePath" or "InclinePathNC" })
+	table.insert(lines, { path, group = props.focused and "InclineSecondary" or "InclineSecondaryNC" })
 
 	return lines
 end

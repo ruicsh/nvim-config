@@ -455,13 +455,12 @@ loadColorSet({
 
 -- incline.nvim
 loadColorSet({
-	InclineLspDiagnostics = { fg = c.nord3_700 },
 	InclineLspDiagnosticsError = { fg = c.nord11 },
 	InclineModified = { fg = c.nord13 },
 	InclineNormal = { fg = c.nord4 },
 	InclineNormalNC = { fg = c.nord3_700 },
-	InclinePath = { fg = c.nord3_700 },
-	InclinePathNC = { fg = c.nord3_500 },
+	InclineSecondary = { fg = c.nord3_700 },
+	InclineSecondaryNC = { fg = c.nord3_500 },
 })
 
 -- mini.hipatterns
