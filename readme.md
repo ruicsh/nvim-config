@@ -34,6 +34,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [comment](https://github.com/numToStr/Comment.nvim) - Comments
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot-chat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
+- [copilot-lsp](https://github.com/copilotlsp-nvim/copilot-lsp) - Copilot LSP
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
@@ -328,6 +329,7 @@ Random features added.
 ### AI suggestions
 
 - `<c-]>` accept
+- `<c-}>` accept next edit
 - `<a-e>` dismiss
 - `<a-]>` accept word
 - `<a-[>` accept line
