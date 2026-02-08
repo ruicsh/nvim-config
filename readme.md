@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>67 plugins</sub>
+<sub>66 plugins</sub>
 
 ### Code
 
@@ -102,7 +102,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) - Language aware comments
-- [overseer](https://github.com/stevearc/overseer.nvim/) - Task runner
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
 - [vim-test](https://github.com/vim-test/vim-test) - Test runner
 - [wakatime](https://github.com/wakatime/vim-wakatime) - Time tracking
