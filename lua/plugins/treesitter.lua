@@ -7,6 +7,7 @@ end
 -- https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md
 local LANGUAGES = {
 	"angular",
+	"astro",
 	"bash",
 	"css",
 	"csv",

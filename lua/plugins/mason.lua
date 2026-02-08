@@ -4,6 +4,7 @@ local T = require("lib")
 local PACKAGES = {
 	-- LSP
 	"ansiblels",
+	"astro-language-server",
 	"css_variables",
 	"cssls",
 	"cssmodules_ls",
