@@ -51,7 +51,7 @@ return {
 	"b0o/incline.nvim",
 	opts = {
 		hide = {
-			cursorline = "focused_win",
+			cursorline = true,
 		},
 		render = function(props)
 			return {

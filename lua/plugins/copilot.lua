@@ -23,14 +23,6 @@ return {
 		panel = {
 			enabled = false,
 		},
-		nes = {
-			enabled = true,
-			keymap = {
-				accept_and_go = false,
-				accept = "<c-}>",
-				dismiss = "<esc>",
-			},
-		},
 		suggestion = {
 			enabled = not T.env.get_bool("COPILOT_DISABLE_SUGGESTIONS"),
 			auto_trigger = true,
@@ -54,14 +46,4 @@ return {
 
 	cmd = "Copilot",
 	event = "InsertEnter",
-	dependencies = {
-		{
-			-- AI-powered code suggestions via LSP
-			-- https://github.com/copilotlsp-nvim/copilot-lsp
-			"copilotlsp-nvim/copilot-lsp",
-			config = function()
-				vim.g.copilot_nes_debounce = 500
-			end,
-		},
-	},
 }
