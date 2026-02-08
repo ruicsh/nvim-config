@@ -6,7 +6,6 @@ M.after_ftplugin = function()
 	-- Toggle Tailwind class conceal
 	vim.keymap.set("n", "<leader>tt", function()
 		local cl = vim.api.nvim_get_option_value("conceallevel", { scope = "local" })
-		print("ruic[2]: tailwindcss.lua:8 cl=" .. vim.inspect(cl))
 		vim.opt_local.conceallevel = cl == 1 and 0 or 1
 	end, { buffer = true, desc = "Toggle Tailwind class conceal" })
 end
