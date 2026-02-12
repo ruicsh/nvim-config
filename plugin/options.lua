@@ -182,7 +182,7 @@ o.diffopt = { -- `:h 'diffopt'`
 -- 16 mapping {{{
 o.timeout = true -- Enable mapped sequences. `:h 'timeout'`
 o.timeoutlen = 500 -- Wait time for a possible new key `:h 'timeoutlen'`
-o.ttimeoutlen = 10 -- Wait time for a key code sequence to complete. `:h 'ttimeoutlen'`
+o.ttimeoutlen = 50 -- Wait time for a key code sequence to complete. `:h 'ttimeoutlen'`
 -- }}}
 
 -- 17 reading and writing files {{{
