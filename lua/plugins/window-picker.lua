@@ -51,7 +51,7 @@ return {
 			end
 		end
 
-		local function pick_floating_window()
+		local pick_floating_window = function()
 			local tabid = vim.api.nvim_get_current_tabpage()
 			local wins = vim.api.nvim_tabpage_list_wins(tabid)
 
@@ -73,11 +73,24 @@ return {
 			end
 		end
 
+		local close_window = function()
+			local picked_window_id = picker.pick_window({
+				filter_rules = {
+					include_current_win = false,
+				},
+			})
+
+			if picked_window_id then
+				vim.api.nvim_win_close(picked_window_id, true)
+			end
+		end
+
 		return {
 			{ "<bar>", pick_window, desc = "Windows: Pick" },
 			{ "<c-w>w", pick_window, desc = "Windows: Pick" },
 			{ "<c-w><c-w>", pick_window, desc = "Windows: Pick" },
 			{ "<c-w>W", pick_floating_window, desc = "Windows: Pick Floating" },
+			{ "<c-w>c", close_window, desc = "Windows: Pick and Close" },
 		}
 	end,
 	opts = {
