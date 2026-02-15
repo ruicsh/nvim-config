@@ -197,6 +197,7 @@ o.updatetime = 100 -- Faster CursorHold. `:h 'updatetime'`
 
 -- 19 command line editing {{{
 o.cedit = "<c-F>" -- Key to enter command-line window. `:h 'cedit'`
+o.history = 200 -- Number of command and search history to keep. `:h 'history'`
 o.wildignore:append({ -- Ignore on filename completion. `:h 'wildignore'`
 	".DS_store",
 	"**/node_modules/**",
