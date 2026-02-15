@@ -104,7 +104,7 @@ return {
 		},
 		keymap = {
 			["<c-b>"] = { "scroll_documentation_up", "fallback" },
-			["<c-e>"] = { "hide_signature", "cancel", "fallback" },
+			["<c-e>"] = { "hide", "hide_signature", "cancel", "fallback" },
 			["<c-f>"] = { "show_documentation", "scroll_documentation_down", "fallback" },
 			["<c-n>"] = { "show", "select_next", "fallback" },
 			["<c-p>"] = { "select_prev", "fallback" },
