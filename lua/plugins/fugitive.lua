@@ -14,7 +14,10 @@ return {
 
 		local function git_diff_file()
 			local line_content = vim.api.nvim_get_current_line()
-			vim.cmd("Git diff HEAD %")
+			local cmd = "Git diff HEAD %"
+
+			T.ui.open_side_panel({ cmd = cmd, mode = "replace" })
+
 			-- Escape special chars for search
 			local pattern = vim.fn.escape(line_content, [[\/.*$^~[]])
 			-- Search for the line content in the diff buffer
