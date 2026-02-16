@@ -128,10 +128,11 @@ return {
 			{ '<leader>"', picker.registers, desc = "Registers" },
 
 			-- git
+			{ "<leader>h$", picker.git_log_line, desc = "Git: Blame line" },
 			{ "<leader>h%", picker.git_log_file, desc = "Git: Log for file" },
-			{ "<leader>h/", picker.git_log, desc = "Git: Search Log" },
 			{ "<leader>hb", picker.git_branches, desc = "Git: Branches" },
 			{ "<leader>hh", picker.git_status, desc = "Git: Status" },
+			{ "<leader>hl", picker.git_log, desc = "Git: Search Log" },
 
 			-- neovim
 			{ "<leader>na", picker.autocmds, desc = "Autocmds" },
