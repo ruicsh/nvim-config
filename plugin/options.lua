@@ -54,6 +54,7 @@ o.splitbelow = true -- Open a new horizontal split below. `:h 'splitbelow'`
 o.splitkeep = "cursor" -- Keep text on the same screen line when splitting. `:h 'splitkeep'`
 o.splitright = true -- Open a new vertical split to the right. `:h 'splitright'`
 o.statusline = "%!v:lua._G.status_line()" -- statusline format `h 'statusline'`
+o.winbar = " "
 -- }}}
 
 -- 7 multiple tab pages {{{

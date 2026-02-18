@@ -50,15 +50,17 @@ end
 return {
 	"b0o/incline.nvim",
 	opts = {
-		hide = {
-			cursorline = true,
-		},
 		render = function(props)
 			return {
 				c_lsp_diagnostics(props),
 				c_filename(props),
 			}
 		end,
+		window = {
+			overlap = {
+				winbar = true,
+			},
+		},
 	},
 
 	event = "VeryLazy",
