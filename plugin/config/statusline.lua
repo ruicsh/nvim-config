@@ -236,12 +236,6 @@ local function c_tabs()
 	return table.concat(tabs, "")
 end
 
--- Show Quickfix status
-local c_quickfix = function()
-	local title = vim.fn.getqflist({ title = 1 }).title
-	return "%#StatusLine#" .. title .. " [%l/%L] %p%%"
-end
-
 -- Show AI Assistant model
 local function c_copilot_chat()
 	local ft = vim.bo.filetype
@@ -268,7 +262,7 @@ local function c_copilot_chat()
 end
 
 -- Construct the statusline (default)
-function _G.status_line()
+function _G.statusline()
 	local hl = "%#StatusLine#"
 
 	local components = {
@@ -295,18 +289,4 @@ function _G.status_line()
 	end
 
 	return table.concat(filtered_components, " ")
-end
-
--- Used on Quickfix window
-function _G.status_line_qf()
-	local hl = "%#StatusLine#"
-
-	return table.concat({
-		hl,
-		c_mode(),
-		c_quickfix(),
-		"%=",
-		c_lsp_diagnostics(),
-		c_tabs(),
-	}, " ")
 end

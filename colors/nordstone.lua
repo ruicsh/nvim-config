@@ -350,7 +350,7 @@ local cmode = {
 	_ = c.nord11, -- `#bf616a`
 }
 
--- status-line
+-- statusline
 loadColorSet({
 	StatusLineBookmark = { fg = c.nord8 },
 	StatusLineFileChanged = { fg = c.nord13 },
@@ -371,6 +371,16 @@ loadColorSet({
 	StatusLineModeVisualText = { fg = cmode.x },
 	StatusLineProject = { link = "StatusLine" },
 	StatusLineSeparator = { fg = c.nord3 },
+})
+
+-- winbar
+loadColorSet({
+	WinbarLspDiagnosticsError = { fg = c.nord11 },
+	WinbarModified = { fg = c.nord13 },
+	WinbarNormal = { fg = c.nord4 },
+	WinbarNormalNC = { fg = c.nord3_700 },
+	WinbarSecondary = { fg = c.nord3_700 },
+	WinbarSecondaryNC = { fg = c.nord3_500 },
 })
 
 -- PLUGINS
@@ -451,16 +461,6 @@ loadColorSet({
 loadColorSet({
 	HlSearchLens = { fg = c.nord3_700, bg = "NONE" },
 	HlSearchLensNear = { fg = c.nord13, bg = "NONE" },
-})
-
--- incline.nvim
-loadColorSet({
-	InclineLspDiagnosticsError = { fg = c.nord11 },
-	InclineModified = { fg = c.nord13 },
-	InclineNormal = { fg = c.nord4 },
-	InclineNormalNC = { fg = c.nord3_700 },
-	InclineSecondary = { fg = c.nord3_700 },
-	InclineSecondaryNC = { fg = c.nord3_500 },
 })
 
 -- mini.hipatterns

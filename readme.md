@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>66 plugins</sub>
+<sub>65 plugins</sub>
 
 ### Code
 
@@ -63,7 +63,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [auto-session](https://github.com/rmagatti/auto-session) - Session management
 - [hbac](https://github.com/axkirillov/hbac.nvim) - Buffer auto-closer
-- [incline](https://github.com/b0o/incline.nvim) - Floating winbar
 - [mini.clue](https://github.com/nvim-mini/mini.clue) - Keybindings helper
 - [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
 - [scope](https://github.com/tiagovla/scope.nvim) - Tab scoping
@@ -116,7 +115,8 @@ Complex configuration options.
 | [foldtext](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/foldtext.lua)                 | Text displayed for a closed fold |
 | [formatoptions](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/formatoptions.lua)       | Format options                   |
 | [standard-plugins](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/standard-plugins.lua) | Disable unused standard plugins  |
-| [statusline](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/statusline.lua)             | Content of the status line       |
+| [statusline](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/statusline.lua)             | Content of the statusline        |
+| [winbar](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/winbar.lua)                     | Content of the winbar            |
 
 ### Filetypes
 
