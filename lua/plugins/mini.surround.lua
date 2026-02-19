@@ -5,12 +5,12 @@ return {
 	"nvim-mini/mini.surround",
 	opts = {
 		mappings = {
-			add = "sa",
-			delete = "sd",
-			find = "sf",
-			find_left = "sF",
-			highlight = "sh",
-			replace = "sr",
+			add = "ys",
+			delete = "ds",
+			find = "",
+			find_left = "",
+			highlight = "",
+			replace = "cs",
 
 			suffix_last = "",
 			suffix_next = "",
@@ -35,10 +35,10 @@ return {
 		require("mini.surround").setup(opts)
 
 		-- `:h MiniSurround-vim-surround-config`
-		vim.keymap.del("x", "sa")
+		vim.keymap.del("x", "ys")
 		vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
 
 		-- Make special mapping for "add surrounding for line"
-		vim.keymap.set("n", "saa", "sa_", { remap = true })
+		vim.keymap.set("n", "yss", "ys_", { remap = true })
 	end,
 }

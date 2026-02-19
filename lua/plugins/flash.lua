@@ -7,7 +7,7 @@ return {
 		local flash = require("flash")
 
 		return {
-			{ "r", flash.remote, desc = "Flash: Remote", mode = "o" },
+			{ "s", flash.jump, desc = "Flash: Jump" },
 			{ "<leader><s-v>", flash.treesitter, desc = "Flash: Treesitter" },
 		}
 	end,
@@ -37,9 +37,6 @@ return {
 				jump_labels = false,
 				keys = { "f", "F", "t", "T" },
 			},
-			search = {
-				enabled = true,
-			},
 			treesitter = {
 				actions = {
 					["<c-a>"] = "next", -- Increment selection
@@ -50,9 +47,6 @@ return {
 		},
 		prompt = {
 			enabled = false,
-		},
-		search = {
-			wrap = true,
 		},
 	},
 
