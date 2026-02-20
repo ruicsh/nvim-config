@@ -65,6 +65,180 @@ return {
 					word = false,
 					cyclic = true,
 				}),
+				augend.constant.new({
+					-- Tailwind CSS font-stretch classes
+					elements = {
+						"font-stretch-ultra-condensed",
+						"font-stretch-extra-condensed",
+						"font-stretch-condensed",
+						"font-stretch-semi-condensed",
+						"font-stretch-normal",
+						"font-stretch-semi-expanded",
+						"font-stretch-expanded",
+						"font-stretch-extra-expanded",
+						"font-stretch-ultra-expanded",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS font-weight classes
+						"font-thin",
+						"font-extralight",
+						"font-light",
+						"font-normal",
+						"font-medium",
+						"font-semibold",
+						"font-bold",
+						"font-extrabold",
+						"font-black",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS justify-content classes
+						"justify-start",
+						"justify-end",
+						"justify-center",
+						"justify-between",
+						"justify-around",
+						"justify-evenly",
+						"justify-stretch",
+						"justify-baseline",
+						"justify-normal",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS line-height classes
+						"leading-none",
+						"leading-tight",
+						"leading-snug",
+						"leading-normal",
+						"leading-relaxed",
+						"leading-loose",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS align-items classes
+						"items-start",
+						"items-end",
+						"items-center",
+						"items-baseline",
+						"items-stretch",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS position classes
+						"static",
+						"fixed",
+						"absolute",
+						"relative",
+						"sticky",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS border-radius classes
+						"rounded-none",
+						"rounded-xs",
+						"rounded-sm",
+						"rounded-md",
+						"rounded-lg",
+						"rounded-xl",
+						"rounded-2xl",
+						"rounded-3xl",
+						"rounded-4xl",
+						"rounded-full",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS box-shadow classes
+						"shadow-none",
+						"shadow-2xs",
+						"shadow-xs",
+						"shadow-sm",
+						"shadow-md",
+						"shadow-lg",
+						"shadow-xl",
+						"shadow-2xl",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS font-size classes
+						"text-xs",
+						"text-sm",
+						"text-base",
+						"text-lg",
+						"text-xl",
+						"text-2xl",
+						"text-3xl",
+						"text-4xl",
+						"text-5xl",
+						"text-6xl",
+						"text-7xl",
+						"text-8xl",
+						"text-9xl",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS text-align classes
+						"text-left",
+						"text-center",
+						"text-right",
+						"text-justify",
+						"text-start",
+						"text-end",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS text-wrap classes
+						"text-wrap",
+						"text-nowrap",
+						"text-balance",
+						"text-pretty",
+					},
+					word = false,
+					cyclic = true,
+				}),
+				augend.constant.new({
+					elements = {
+						-- Tailwind CSS letter-spacing classes
+						"tracking-tighter",
+						"tracking-tight",
+						"tracking-normal",
+						"tracking-wide",
+						"tracking-wider",
+						"tracking-widest",
+					},
+					word = false,
+					cyclic = true,
+				}),
 				augend.date.alias["%Y/%m/%d"],
 				augend.date.alias["%m/%d/%Y"],
 				augend.date.alias["%d/%m/%Y"],
