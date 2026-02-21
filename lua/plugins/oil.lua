@@ -57,6 +57,7 @@ return {
 		default_file_explorer = true,
 		keymaps = {
 			["-"] = "actions.parent",
+			["<bs>"] = "actions.parent",
 			["<c-w>s"] = "actions.select_split",
 			["<c-w>t"] = "actions.select_tab",
 			["<c-w>v"] = "actions.select_vsplit",
