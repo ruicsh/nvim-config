@@ -208,6 +208,32 @@ local function add_tailwind_rules(default)
 		"leading-relaxed",
 		"leading-loose",
 	}
+	local blend_modes = {
+		"normal",
+		"multiply",
+		"screen",
+		"overlay",
+		"darken",
+		"lighten",
+		"color-dodge",
+		"color-burn",
+		"hard-light",
+		"soft-light",
+		"difference",
+		"exclusion",
+		"hue",
+		"saturation",
+		"color",
+		"luminosity",
+		"plus-lighter",
+		"plus-darker",
+	}
+	local mix_blend_mode = {}
+	local bg_blend_mode = {}
+	for _, mode in ipairs(blend_modes) do
+		table.insert(mix_blend_mode, "mix-blend-" .. mode)
+		table.insert(bg_blend_mode, "bg-blend-" .. mode)
+	end
 	local position = { "static", "fixed", "absolute", "relative", "sticky" }
 	local text_align = { "text-left", "text-center", "text-right", "text-justify", "text-start", "text-end" }
 	local text_wrap = { "text-wrap", "text-nowrap", "text-balance", "text-pretty" }
@@ -222,6 +248,7 @@ local function add_tailwind_rules(default)
 
 	local tw_rules = {
 		align_items,
+		bg_blend_mode,
 		bg_linear,
 		bg_position,
 		bg_repeat,
@@ -243,6 +270,7 @@ local function add_tailwind_rules(default)
 		font_weight,
 		justify_content,
 		line_height,
+		mix_blend_mode,
 		position,
 		text_align,
 		text_wrap,
