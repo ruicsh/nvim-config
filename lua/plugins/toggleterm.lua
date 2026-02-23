@@ -29,5 +29,6 @@ return {
 			k("<c-]>", [[<c-\><c-n>]], { desc = "Exit terminal mode" })
 		end,
 		open_mapping = "<c-bslash>",
+		persist_mode = false,
 	},
 }
