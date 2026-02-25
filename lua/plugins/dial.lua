@@ -70,6 +70,11 @@ return {
 		-- TypeScript specific augends.
 		local typescript_augends = {
 			augend.constant.new({
+				elements = { "let", "const" },
+				word = true,
+				cyclic = true,
+			}),
+			augend.constant.new({
 				elements = { "!==", "===" },
 				word = false,
 				cyclic = true,
