@@ -100,6 +100,7 @@ return {
 		}
 
 		for ft, augends in pairs(dials_by_ft) do
+			vim.list_extend(augends, default)
 			config.augends:on_filetype({ [ft] = augends })
 		end
 	end,
