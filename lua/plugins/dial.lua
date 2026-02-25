@@ -46,37 +46,61 @@ return {
 				cyclic = true,
 				preserve_case = true,
 			}),
-			augend.constant.new({
-				elements = { "!==", "===" },
-				word = false,
-				cyclic = true,
-			}),
-			augend.constant.new({
-				elements = { "!=", "==" },
-				word = false,
-				cyclic = true,
-			}),
-			augend.constant.new({
-				elements = { "and", "or" },
-				word = true,
-				cyclic = true,
-			}),
-			augend.constant.new({
-				elements = { "&&", "||" },
-				word = false,
-				cyclic = true,
-			}),
-			augend.constant.new({
-				-- TypeScript primitive types
-				elements = { "string", "number", "boolean", "undefined", "null" },
-				word = true,
-				cyclic = true,
-			}),
 			augend.integer.alias.decimal,
 		}
 
 		config.augends:register_group({
 			default = default,
 		})
+
+		-- JSON specific augends.
+		local json_augends = {
+			augend.semver.alias.semver,
+		}
+
+		-- Lua specific augends.
+		local lua_augends = {
+			augend.constant.new({
+				elements = { "and", "or" },
+				word = true,
+				cyclic = true,
+			}),
+		}
+
+		-- TypeScript specific augends.
+		local typescript_augends = {
+			augend.constant.new({
+				elements = { "!==", "===" },
+				word = false,
+				cyclic = true,
+			}),
+			augend.constant.new({
+				elements = { "&&", "||", "??" },
+				word = false,
+				cyclic = true,
+			}),
+			augend.constant.new({
+				elements = { "string", "number", "boolean", "undefined", "null" },
+				word = true,
+				cyclic = true,
+			}),
+			augend.constant.new({
+				elements = { "interface", "type" },
+				word = true,
+				cyclic = true,
+			}),
+		}
+
+		local dials_by_ft = {
+			astro = typescript_augends,
+			json = json_augends,
+			lua = lua_augends,
+			typescriptreact = typescript_augends,
+			typescript = typescript_augends,
+		}
+
+		for ft, augends in pairs(dials_by_ft) do
+			config.augends:on_filetype({ [ft] = augends })
+		end
 	end,
 }
