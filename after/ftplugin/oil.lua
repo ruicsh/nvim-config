@@ -151,44 +151,16 @@ local function apply_git_highlights()
 	end)
 end
 
--- Safely apply highlights, retrying if Oil is not ready
-local function safe_apply_highlights()
-	local oil = require("oil")
-	local current_dir = oil.get_current_dir()
-
-	if not current_dir then
-		-- Oil not ready, retry
-		vim.defer_fn(safe_apply_highlights, 25)
-		return
-	end
-
-	-- Check if Oil has populated the buffer with entries
-	local bufnr = vim.api.nvim_get_current_buf()
-	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-	local has_entries = false
-
-	for i = 1, math.min(#lines, 5) do -- Check first few lines
-		if oil.get_entry_on_line(bufnr, i) then
-			has_entries = true
-			break
-		end
-	end
-
-	if not has_entries and #lines > 0 then
-		vim.defer_fn(safe_apply_highlights, 25)
-		return
-	end
-
-	apply_git_highlights()
-end
-
 local augroup = vim.api.nvim_create_augroup("ruicsh/ftplugin/oil", { clear = true })
 
-vim.api.nvim_create_autocmd("BufEnter", {
+-- Apply highlights after Oil has fully loaded the buffer
+vim.api.nvim_create_autocmd("User", {
 	group = augroup,
-	pattern = "oil://*",
-	callback = function()
-		safe_apply_highlights()
+	pattern = "OilEnter",
+	callback = function(args)
+		if vim.api.nvim_get_current_buf() == args.data.buf and require("oil").get_current_dir() then
+			apply_git_highlights()
+		end
 	end,
 })
 

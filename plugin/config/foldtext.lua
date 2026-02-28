@@ -15,9 +15,7 @@ local NODES_TO_HIGHLIGHT = {
 -- Cache highlight groups by filetype and node name for better performance
 local highlight_cache = {}
 
-local function get_hl_group(name)
-	local ft = vim.bo.filetype
-
+local function get_hl_group(ft, name)
 	-- Create cache key
 	local cache_key = ft .. "_" .. name
 
@@ -70,7 +68,7 @@ function _G.custom_fold_text()
 			end
 			line_pos = end_col
 			local text = vim.treesitter.get_node_text(node, 0)
-			local hl = get_hl_group(name)
+			local hl = get_hl_group(ft, name)
 			if prev_range ~= nil and range[1] == prev_range[1] and range[2] == prev_range[2] then
 				result[#result] = { text, hl }
 			else

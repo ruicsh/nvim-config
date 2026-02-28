@@ -70,7 +70,7 @@ local FILETYPE_CONFIGS = {
 		prompts = { "rust" },
 	},
 	storybook = {
-		alernate = ".tsx",
+		alternate = ".tsx",
 		patterns = { "%.stories%.tsx$" },
 		priority = 5000,
 		prompts = { "storybook" },
@@ -101,6 +101,18 @@ local FILETYPE_CONFIGS = {
 		prompts = { "vimscript" },
 	},
 }
+
+-- Pre-sort FILETYPE_CONFIGS by priority descending (computed once at load time)
+local SORTED_FILETYPE_CONFIGS = (function()
+	local sorted = {}
+	for _, config in pairs(FILETYPE_CONFIGS) do
+		table.insert(sorted, config)
+	end
+	table.sort(sorted, function(a, b)
+		return (a.priority or 0) > (b.priority or 0)
+	end)
+	return sorted
+end)()
 
 local function read_prompt_file(basename)
 	local config_dir = tostring(vim.fn.stdpath("config"))
@@ -145,18 +157,7 @@ local function get_config_by_filetype()
 	local ft = vim.bo.filetype
 	local filename = vim.fn.expand("%:t")
 
-	-- Sort FILETYPE_CONFIGS by priority, descending
-	local sorted_configs = {}
-	for _, config in pairs(FILETYPE_CONFIGS) do
-		table.insert(sorted_configs, config)
-	end
-	table.sort(sorted_configs, function(a, b)
-		local a_priority = a.priority or 0
-		local b_priority = b.priority or 0
-		return a_priority > b_priority
-	end)
-
-	for _, config in pairs(sorted_configs) do
+	for _, config in pairs(SORTED_FILETYPE_CONFIGS) do
 		local matches = false
 
 		-- Check file patterns if defined

@@ -2,6 +2,12 @@
 
 local T = require("lib")
 
+local devicons = require("nvim-web-devicons")
+local grapple = require("grapple")
+
+-- Cache for dynamic file icon highlight group to avoid set_hl on every redraw
+local icon_hl_cache = {}
+
 local function sep()
 	return "%#StatusLineSeparator#|%#StatusLine#"
 end
@@ -128,16 +134,18 @@ local function c_filename()
 		if ft == "oil" then
 			line = line .. vim.fn.fnamemodify(path:sub(7), ":.")
 		else
-			local devicons = require("nvim-web-devicons")
 			local fullpath = vim.api.nvim_buf_get_name(0)
 			local filename = vim.fn.fnamemodify(fullpath, ":t")
 			local relpath = vim.fn.fnamemodify(fullpath, ":.:h")
 			local icon, icon_color = devicons.get_icon(filename, nil, { default = true })
 
-			-- Icon with color
+			-- Icon with color (only call set_hl when the color changes)
 			if icon and icon_color then
 				local hl_group = "StatusLineFileIconDynamic"
-				vim.api.nvim_set_hl(0, hl_group, { link = icon_color })
+				if icon_hl_cache[hl_group] ~= icon_color then
+					vim.api.nvim_set_hl(0, hl_group, { link = icon_color })
+					icon_hl_cache[hl_group] = icon_color
+				end
 				line = line .. "%#" .. hl_group .. "#" .. icon .. " "
 			end
 			line = line .. "%#StatusLineFilename#" .. filename
@@ -152,7 +160,7 @@ end
 
 -- Show bookmark (using 'grapple' plugin)
 local function c_bookmark()
-	local index = require("grapple").name_or_index()
+	local index = grapple.name_or_index()
 	if not index then
 		return ""
 	end
@@ -202,7 +210,7 @@ local function c_git_branch()
 		return ""
 	end
 
-	if T.ui.is_narrow_screen() and #head > 15 then
+	if T.ui.is_narrow_screen() and #head > 20 then
 		head = head:sub(1, 20) .. "..."
 	end
 
@@ -226,9 +234,9 @@ local function c_tabs()
 
 	local tabs = {}
 	for i = 1, n_tabs, 1 do
-		local isSelected = vim.fn.tabpagenr() == i
-		local hl = (isSelected and "%#TabLineSel#" or "%#TabLine#")
-		local icon = isSelected and "" or ""
+		local is_selected = vim.fn.tabpagenr() == i
+		local hl = (is_selected and "%#TabLineSel#" or "%#TabLine#")
+		local icon = is_selected and "" or ""
 		local cell = hl .. icon .. " "
 		table.insert(tabs, cell)
 	end

@@ -54,7 +54,7 @@ return {
 			require("nvim-treesitter").install(LANGUAGES)
 
 			vim.api.nvim_create_autocmd("FileType", {
-				group = vim.api.nvim_create_augroup("treesitter.setup", {}),
+				group = vim.api.nvim_create_augroup("treesitter.setup", { clear = true }),
 				callback = function(args)
 					local bufnr = args.buf
 					local filetype = args.match
