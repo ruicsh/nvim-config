@@ -24,14 +24,13 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>65 plugins</sub>
+<sub>64 plugins</sub>
 
 ### Code
 
 - [autopairs](https://github.com/windwp/nvim-autopairs) - Auto-pairs
 - [autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename tags
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
-- [comment](https://github.com/numToStr/Comment.nvim) - Comments
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [copilot-chat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
@@ -101,7 +100,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Code context
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
-- [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) - Language aware comments
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
 - [vim-test](https://github.com/vim-test/vim-test) - Test runner
 - [wakatime](https://github.com/wakatime/vim-wakatime) - Time tracking

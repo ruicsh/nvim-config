@@ -13,7 +13,7 @@ M.default_branch = function()
 	return result.stdout:gsub("%s+$", "")
 end
 
-M.diff = function(ref, cb)
+M.diff = function(ref)
 	-- To ignore files (ex. package-lock.json) add 'package-lock.json -diff' to .gitattributes
 	local args = { "git", "diff", "--no-color", ref }
 
