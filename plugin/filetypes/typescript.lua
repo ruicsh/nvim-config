@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			{ "<leader>io", "source.organizeImports.ts", "TS: Organize Imports" },
 			{ "<leader>ir", "source.removeUnused.ts", "TS: Remove Unused" },
 			{ "<leader>is", "source.sortImports.ts", "TS: Sort Imports" },
-			{ "<leader>iu", "source.removeUnusedImports.ts", "TS: Organize Imports" },
+			{ "<leader>iu", "source.removeUnusedImports.ts", "TS: Remove Unused Imports" },
 		}
 
 		for _, mapping in ipairs(mappings) do

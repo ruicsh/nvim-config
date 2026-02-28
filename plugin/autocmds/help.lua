@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("CmdlineLeave", {
 				end
 			end
 
-			-- If there's a valid help windo, move it to the side panel
+			-- If there's a valid help window, move it to the side panel
 			vim.schedule(function()
 				local ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
 				if ft ~= "help" then

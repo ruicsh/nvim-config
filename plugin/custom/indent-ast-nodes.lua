@@ -140,5 +140,5 @@ local function indent_node(direction)
 	end
 end
 
-k("g<", indent_node("<"))
-k("g>", indent_node(">"))
+k("g<", indent_node("<"), { desc = "Outdent AST node" })
+k("g>", indent_node(">"), { desc = "Indent AST node" })

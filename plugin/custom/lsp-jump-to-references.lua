@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local current_word = nil
 		local cache_items = nil
 
-		local function find_ajdacent_reference(items, direction)
+		local function find_adjacent_reference(items, direction)
 			if direction == "first" then
 				return 1
 			end
@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 				-- If we are jumping on the same word, we can use the cached list
 				if current_word == vim.fn.expand("<cword>") then
-					local adjacent_ref = find_ajdacent_reference(cache_items, direction)
+					local adjacent_ref = find_adjacent_reference(cache_items, direction)
 					vim.cmd("ll " .. adjacent_ref)
 					return
 				end
@@ -96,7 +96,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 						-- Set the quickfix list and jump to the adjacent reference
 						vim.fn.setloclist(0, {}, "r", { items = items })
-						local adjacent_ref = find_ajdacent_reference(cache_items, direction)
+						local adjacent_ref = find_adjacent_reference(cache_items, direction)
 						vim.cmd("ll " .. adjacent_ref)
 					end,
 				})

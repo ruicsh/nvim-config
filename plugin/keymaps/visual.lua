@@ -91,7 +91,7 @@ k("gw/", function()
 	local url = ("https://google.com/search?q=%s"):format(encoded)
 	vim.cmd("Browse " .. url)
 	vim.api.nvim_input("<esc>")
-end)
+end, { desc = "Search web for selection" })
 
 -- Replace selection
 k("gr/", '"hy:%s/\\<<c-r>h\\>//g<left><left>', { desc = "Replace selection" })

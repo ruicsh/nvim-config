@@ -70,7 +70,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 local k = vim.keymap.set
-local opts = { silent = true }
 
-k("n", "<leader>nn", "<cmd>VimMessages<cr>", opts)
-k("n", "<leader>nc", "<cmd>messages clear<cr>", opts)
+k("n", "<leader>nn", "<cmd>VimMessages<cr>", { silent = true, desc = "Open :messages" })
+k("n", "<leader>nc", "<cmd>messages clear<cr>", { silent = true, desc = "Clear :messages" })

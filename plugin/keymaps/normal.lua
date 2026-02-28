@@ -41,11 +41,11 @@ k("'", "`", { desc = "Jump to mark position" })
 k("U", "<c-r>", { desc = "Redo" }) -- `:h ctrl-r`
 
 -- Keep same logic from `y/c/d` on `v`
-k("V", "v$") -- Select until end of line
-k("vv", "V") -- Enter visual line wise mode `:h V`
+k("V", "v$", { desc = "Select until end of line" }) -- Select until end of line
+k("vv", "V", { desc = "Enter visual line mode" }) -- Enter visual line wise mode `:h V`
 
 -- Keep cursor in place when joining lines
-k("J", "mzJ`z:delmarks z<cr>")
+k("J", "mzJ`z:delmarks z<cr>", { desc = "Join lines" })
 
 -- Save file
 k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
@@ -108,8 +108,8 @@ k("q", function()
 
 	-- List all windows, discard non-focusable ones
 	local num_wins = #vim.api.nvim_list_wins()
-	for _, winnr in ipairs(vim.api.nvim_list_wins()) do
-		local win = vim.api.nvim_win_get_config(winnr)
+	for _, win_id in ipairs(vim.api.nvim_list_wins()) do
+		local win = vim.api.nvim_win_get_config(win_id)
 		if win.focusable == false then
 			num_wins = num_wins - 1
 		end

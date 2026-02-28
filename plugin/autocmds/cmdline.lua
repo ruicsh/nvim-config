@@ -17,7 +17,7 @@ end
 -- https://github.com/mcauley-penney/nvim/blob/main/lua/aucmd/init.lua
 local function cleanup_after_use()
 	vim.fn.timer_start(3000, function()
-		print(" ")
+		vim.cmd("echo ''")
 	end)
 end
 
