@@ -1,5 +1,8 @@
 -- Winbar configuration
 
+-- Hoist require out of the hot render path
+local devicons = require("nvim-web-devicons")
+
 local function c_lsp_diagnostics(props)
 	local bufnr = props.bufnr
 	local focused = props.focused
@@ -27,8 +30,6 @@ local function c_lsp_diagnostics(props)
 end
 
 local function c_filename(props)
-	local devicons = require("nvim-web-devicons")
-
 	local bufnr = props.bufnr
 	local modified = props.modified
 	local focused = props.focused

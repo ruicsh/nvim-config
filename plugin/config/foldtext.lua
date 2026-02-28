@@ -41,8 +41,9 @@ function _G.custom_fold_text()
 	local pos = vim.v.foldstart
 	local line = vim.api.nvim_buf_get_lines(0, pos - 1, pos, false)[1]
 	local lang = vim.treesitter.language.get_lang(ft)
-	local parser = vim.treesitter.get_parser(0, lang)
-	if parser == nil then
+
+	local ok, parser = pcall(vim.treesitter.get_parser, 0, lang)
+	if not ok or parser == nil then
 		return vim.fn.foldtext()
 	end
 
@@ -67,7 +68,7 @@ function _G.custom_fold_text()
 				table.insert(result, { line:sub(line_pos + 1, start_col), "Folded" })
 			end
 			line_pos = end_col
-			local text = vim.treesitter.get_node_text(node, 0)
+			local text = line:sub(start_col + 1, end_col)
 			local hl = get_hl_group(ft, name)
 			if prev_range ~= nil and range[1] == prev_range[1] and range[2] == prev_range[2] then
 				result[#result] = { text, hl }

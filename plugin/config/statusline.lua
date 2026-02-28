@@ -2,8 +2,20 @@
 
 local T = require("lib")
 
+-- Hoist requires out of the hot render path
+local devicons = require("nvim-web-devicons")
+
 -- Cache for dynamic file icon highlight group to avoid set_hl on every redraw
 local icon_hl_cache = {}
+
+-- Cache git root to avoid vim.fs.root() on every statusline redraw
+local cached_git_root = vim.fs.root(0, ".git")
+vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged" }, {
+	group = vim.api.nvim_create_augroup("ruicsh/config/statusline", { clear = true }),
+	callback = function()
+		cached_git_root = vim.fs.root(0, ".git")
+	end,
+})
 
 local function sep()
 	return "%#StatusLineSeparator#|%#StatusLine#"
@@ -88,15 +100,11 @@ local function c_mode()
 	return string.format("%%#StatusLineMode%s# %%#StatusLineMode%sText# %s %%#StatusLine#", hl, hl, mode)
 end
 
-local git_root = nil
 local function c_project()
-	-- Invalidate cache when the buffer changes to a different git repo
-	local current_root = vim.fs.root(0, ".git")
-	git_root = current_root
-	if not git_root or git_root == "" then
+	if not cached_git_root or cached_git_root == "" then
 		return ""
 	end
-	local project_name = vim.fn.fnamemodify(git_root, ":t")
+	local project_name = vim.fn.fnamemodify(cached_git_root, ":t")
 	local hl = "%#StatusLineProject#"
 	local line = hl .. " "
 
@@ -104,7 +112,7 @@ local function c_project()
 		return ""
 	end
 
-	line = line .. " " .. project_name
+	line = line .. " " .. project_name
 
 	return line
 end
@@ -136,7 +144,6 @@ local function c_filename()
 			local fullpath = vim.api.nvim_buf_get_name(0)
 			local filename = vim.fn.fnamemodify(fullpath, ":t")
 			local relpath = vim.fn.fnamemodify(fullpath, ":.:h")
-			local devicons = require("nvim-web-devicons")
 			local icon, icon_color = devicons.get_icon(filename, nil, { default = true })
 
 			-- Icon with color (only call set_hl when the color changes)
@@ -160,7 +167,10 @@ end
 
 -- Show bookmark (using 'grapple' plugin)
 local function c_bookmark()
-	local grapple = require("grapple")
+	local ok, grapple = pcall(require, "grapple")
+	if not ok then
+		return ""
+	end
 	local index = grapple.name_or_index()
 	if not index then
 		return ""
@@ -248,7 +258,10 @@ local function c_copilot_chat()
 		return ""
 	end
 
-	local chat = require("CopilotChat")
+	local ok, chat = pcall(require, "CopilotChat")
+	if not ok then
+		return ""
+	end
 	local model = chat.config.model
 
 	local status = { sep(), "Copilot", sep(), model }
