@@ -5,7 +5,7 @@ local T = require("lib")
 local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/help", { clear = true })
 
 -- Open help on floating side panel (or re-use panel if opened).
-vim.api.nvim_create_autocmd("CmdLineLeave", {
+vim.api.nvim_create_autocmd("CmdlineLeave", {
 	group = augroup,
 	pattern = ":",
 	callback = function()

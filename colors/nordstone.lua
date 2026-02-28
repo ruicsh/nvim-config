@@ -6,24 +6,30 @@ local vim = vim
 
 -- Set highlight group
 local function hl(group, color)
-	local style = color.style and "gui=" .. color.style or "gui=NONE"
-	local fg = color.fg and "guifg=" .. color.fg or "guifg=NONE"
-	local bg = color.bg and "guibg=" .. color.bg or "guibg=NONE"
-	local sp = color.sp and "guisp=" .. color.sp or ""
-
-	local h = table.concat({
-		"highlight",
-		group,
-		style,
-		fg,
-		bg,
-		sp,
-	}, " ")
-
-	vim.cmd(h)
 	if color.link then
-		vim.cmd("highlight! link " .. group .. " " .. color.link)
+		vim.api.nvim_set_hl(0, group, { link = color.link })
+		return
 	end
+
+	local opts = {}
+
+	if color.fg and color.fg ~= "NONE" then
+		opts.fg = color.fg
+	end
+	if color.bg and color.bg ~= "NONE" then
+		opts.bg = color.bg
+	end
+	if color.sp then
+		opts.sp = color.sp
+	end
+
+	if color.style then
+		for _, s in ipairs(vim.split(color.style, ",")) do
+			opts[s] = true
+		end
+	end
+
+	vim.api.nvim_set_hl(0, group, opts)
 end
 
 -- Load a set of colours

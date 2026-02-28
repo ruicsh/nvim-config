@@ -24,7 +24,7 @@ local function create_floating_panel_window(options)
 	-- Identify the window as a side panel, content or wrapper
 	vim.api.nvim_win_set_var(winnr, "side_panel", true)
 	-- Add left padding to prevent content from being flush against the border
-	vim.api.nvim_win_set_option(winnr, "signcolumn", "yes:1")
+	vim.wo[winnr].signcolumn = "yes:1"
 end
 
 M.is_narrow_screen = function()

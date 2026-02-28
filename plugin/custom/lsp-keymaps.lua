@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local methods = vim.lsp.protocol.Methods
 
 		-- Only set definition keymaps if the LSP server supports it
-		if client:supports_method(methods.testDocument_definition) then
+		if client:supports_method(methods.textDocument_definition) then
 			local picker = require("snacks.picker")
 			k("<cr>", picker.lsp_definitions, "Jump to definition")
 			k("<c-w>]", "<c-w>o<c-w>v<c-]><c-w>L", "Jump to definition (vsplit)") -- `:h CTRL-]`

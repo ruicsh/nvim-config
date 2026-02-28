@@ -32,7 +32,6 @@ require("lazy").setup("plugins", {
 		enabled = false,
 		notify = false,
 	},
-	import = "plugins",
 	install = { colorscheme = { "nordstone" } },
 	ui = {
 		border = "rounded",

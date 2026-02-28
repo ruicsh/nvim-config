@@ -1,6 +1,6 @@
 -- Highlight all TailwindCSS colors
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/custom/lsp-highlight-references", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/custom/lsp-tailwindcss-colors", { clear = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup,
