@@ -1,3 +1,6 @@
+-- Extends dial.nvim to toggle TailwindCSS classes.
+-- https://github.com/ruicsh/tailwindcss-dial.nvim
+
 return {
 	"ruicsh/tailwindcss-dial.nvim",
 	opts = {
