@@ -226,7 +226,7 @@ Random features added.
 
 - `[<space>` add blank line above cursor (`]<space>` below)
 - `[p` paste to new line above (`]p` below)
-- `ycc` duplicate a line, comment out the first line.
+- `gC` duplicate a line, comment out the first line.
 - `<a-up>` move selection up
 - `<a-down>` move selection down
 - `<tab>` toggle fold

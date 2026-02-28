@@ -34,7 +34,6 @@ k("j", [[ v:count > 0 ? 'j' : 'gj' ]], { expr = true })
 -- Editing {{{
 --
 k("Y", "y$") -- Make Y behave like normal mode
-k("yy", "y") -- So that yanking has no delay (because of `yc`)
 
 -- Save file
 k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })

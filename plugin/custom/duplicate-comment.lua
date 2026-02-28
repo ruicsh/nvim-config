@@ -22,12 +22,12 @@ end
 
 _G.duplicate_and_comment_lines = duplicate_and_comment_lines
 
-vim.keymap.set({ "n", "x" }, "yc", function()
+vim.keymap.set("x", "gC", function()
 	vim.opt.operatorfunc = "v:lua.duplicate_and_comment_lines"
 	return "g@"
 end, { expr = true, desc = "Duplicate selection and comment out the first instance" })
 
-vim.keymap.set("n", "ycc", function()
+vim.keymap.set("n", "gCC", function()
 	vim.opt.operatorfunc = "v:lua.duplicate_and_comment_lines"
 	return "g@_"
 end, { expr = true, desc = "Duplicate [count] lines and comment out the first instance" })
