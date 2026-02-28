@@ -11,7 +11,7 @@ local function duplicate_and_comment_lines()
 	local cursor = vim.api.nvim_win_get_cursor(0)
 
 	-- Comment out the selection using the builtin "gc" operator.
-	vim.cmd("normal gcc", { range = { start_line, end_line } })
+	vim.cmd(start_line .. "," .. end_line .. "normal gcc")
 
 	-- Append a duplicate of the selected lines to the end of selection.
 	vim.api.nvim_buf_set_lines(0, end_line, end_line, false, lines)
