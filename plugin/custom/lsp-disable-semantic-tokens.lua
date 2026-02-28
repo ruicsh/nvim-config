@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup,
 	pattern = "*",
 	callback = function(args)
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		local client = vim.lsp.get_clients({ id = args.data.client_id })[1]
 		if not client then
 			return
 		end
