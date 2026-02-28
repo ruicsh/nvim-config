@@ -46,7 +46,9 @@ local function c_filename(props)
 
 	local parts = {}
 
-	table.insert(parts, "%#" .. icon_color .. "#" .. icon .. " ")
+	if icon and icon_color then
+		table.insert(parts, "%#" .. icon_color .. "#" .. icon .. " ")
+	end
 	local group = focused and "WinbarNormal" or "WinbarNormalNC"
 	table.insert(parts, "%#" .. group .. "#" .. filename)
 

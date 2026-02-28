@@ -20,7 +20,7 @@ local spinners = {} -- Store spinner timers by buffer
 local icon_spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 
 M.start_spinner = function(bufnr, msg)
-	local new_timer = vim.uv and vim.uv.new_timer or vim.loop.new_timer
+	local new_timer = vim.uv.new_timer
 	local spinner_timer = new_timer()
 	if not spinners[bufnr] then
 		spinners[bufnr] = { idx = 1, timer = spinner_timer }
@@ -45,7 +45,11 @@ M.start_spinner = function(bufnr, msg)
 				icon_spinner[spinners[bufnr].idx] .. " " .. msg,
 				"",
 			})
-			vim.cmd("normal! j") -- Set cursor on the last line
+			-- Move cursor to the last line only if we're currently in this buffer
+			if vim.api.nvim_get_current_buf() == bufnr then
+				local line_count = vim.api.nvim_buf_line_count(bufnr)
+				pcall(vim.api.nvim_win_set_cursor, 0, { line_count, 0 })
+			end
 		end)
 	)
 end

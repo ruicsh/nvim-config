@@ -118,7 +118,7 @@ local function read_prompt_file(basename)
 	local config_dir = tostring(vim.fn.stdpath("config"))
 	local prompt_dir = vim.fs.joinpath(config_dir, "prompts")
 	local file_path = vim.fs.joinpath(prompt_dir, string.format("%s.md", string.lower(basename)))
-	if not vim.fn.filereadable(file_path) then
+	if vim.fn.filereadable(file_path) == 0 then
 		return ""
 	end
 
@@ -176,27 +176,26 @@ local function get_config_by_filetype()
 		end
 
 		if matches then
-			if config.prompts then
-				if type(config.prompts) == "function" then
-					config.prompts = config.prompts()
-				else
-					config.prompts = config.prompts
-				end
+			-- Deep copy to avoid mutating the shared SORTED_FILETYPE_CONFIGS entries
+			local result = vim.deepcopy(config)
+
+			if result.prompts and type(result.prompts) == "function" then
+				result.prompts = result.prompts()
 			end
 
 			-- Check if alternate file exists and add as context prompt
-			if config.alternate then
+			if result.alternate then
 				-- For each pattern, try to find the alternate file
-				for _, pattern in ipairs(config.patterns or {}) do
-					local alternate = get_alternate_file(pattern, config.alternate)
+				for _, pattern in ipairs(result.patterns or {}) do
+					local alternate = get_alternate_file(pattern, result.alternate)
 					if alternate then
-						config.prompts = config.prompts or {}
-						table.insert(config.prompts, #config.prompts + 1, "#file:" .. alternate)
+						result.prompts = result.prompts or {}
+						table.insert(result.prompts, #result.prompts + 1, "#file:" .. alternate)
 					end
 				end
 			end
 
-			return config
+			return result
 		end
 	end
 end
@@ -309,7 +308,7 @@ local function get_model_for_operation(operation_type)
 
 	-- Retrieve model with safety checks
 	local selected_model = T.env.get(env_var)
-	if not selected_model or selected_model == vim.NIL then
+	if not selected_model then
 		local msg =
 			string.format("Warning: Environment variable %s not set for operation '%s'", env_var, operation_type)
 		vim.notify(msg, vim.log.levels.WARN)
@@ -521,7 +520,7 @@ local function list_chat_history()
 			picker:close()
 
 			-- Verify file exists before loading
-			if not vim.fn.filereadable(item.file) then
+			if vim.fn.filereadable(item.file) == 0 then
 				vim.notify("Chat history file not found: " .. item.file, vim.log.levels.ERROR)
 				return
 			end

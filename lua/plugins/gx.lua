@@ -124,13 +124,13 @@ return {
 					local tag = line:match("|([%w_%-%.%:']+)|")
 					if tag then
 						T.ui.open_side_panel({
-							cmd = "help " .. help_tag,
-							mode = "replace",
-						})
-						return true
-					end
+				cmd = "help " .. tag,
+					mode = "replace",
+				})
+				return true
+			end
 
-					return false
+			return false
 				end,
 			},
 		},

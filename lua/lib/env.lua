@@ -33,9 +33,19 @@ end
 M.load = function()
 	-- Load the env file only once
 	if not is_loaded then
-		load_from_dir(vim.fn.stdpath("config")) -- Neovim configuration directory
-		load_from_dir(vim.fs.root(vim.fn.getcwd(), ".git")) -- Git root directory
-		load_from_dir(vim.fn.getcwd()) -- Current working directory
+		-- Deduplicate directories to avoid loading the same .nvim.env twice
+		-- (e.g., when cwd is already the git root)
+		local seen = {}
+		for _, dir in ipairs({
+			vim.fn.stdpath("config"), -- Neovim configuration directory
+			vim.fs.root(vim.fn.getcwd(), ".git"), -- Git root directory
+			vim.fn.getcwd(), -- Current working directory
+		}) do
+			if dir and not seen[dir] then
+				seen[dir] = true
+				load_from_dir(dir)
+			end
+		end
 		is_loaded = true
 	end
 end

@@ -44,7 +44,6 @@ o.cursorlineopt = "screenline,number" -- Highlight the screen line and line numb
 o.hlsearch = true -- Highlight search matches. `:h 'hlsearch'`
 o.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add" -- Custom spellfile. `:h 'spellfile'`
 o.spelloptions = "camel" -- Recognize camel case words. `:h 'spelloptions'`
-o.termguicolors = true -- Enable true colors. `:h 'termguicolors'`
 -- }}}
 
 -- 6 multiple windows {{{
@@ -206,7 +205,10 @@ o.wildignore:append({ -- Ignore on filename completion. `:h 'wildignore'`
 -- }}}
 
 -- 20 executing external commands {{{
-o.shell = vim.fn.exepath("nu") -- Resolves to full path if "nushell" is in $PATH
+local nu_path = vim.fn.exepath("nu")
+if nu_path ~= "" then
+	o.shell = nu_path -- Resolves to full path if "nushell" is in $PATH
+end
 -- }}}
 
 -- 22 language specific {{{

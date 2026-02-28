@@ -2,9 +2,6 @@
 
 local T = require("lib")
 
-local devicons = require("nvim-web-devicons")
-local grapple = require("grapple")
-
 -- Cache for dynamic file icon highlight group to avoid set_hl on every redraw
 local icon_hl_cache = {}
 
@@ -93,7 +90,9 @@ end
 
 local git_root = nil
 local function c_project()
-	git_root = git_root or vim.fs.root(0, ".git")
+	-- Invalidate cache when the buffer changes to a different git repo
+	local current_root = vim.fs.root(0, ".git")
+	git_root = current_root
 	if not git_root or git_root == "" then
 		return ""
 	end
@@ -137,6 +136,7 @@ local function c_filename()
 			local fullpath = vim.api.nvim_buf_get_name(0)
 			local filename = vim.fn.fnamemodify(fullpath, ":t")
 			local relpath = vim.fn.fnamemodify(fullpath, ":.:h")
+			local devicons = require("nvim-web-devicons")
 			local icon, icon_color = devicons.get_icon(filename, nil, { default = true })
 
 			-- Icon with color (only call set_hl when the color changes)
@@ -160,6 +160,7 @@ end
 
 -- Show bookmark (using 'grapple' plugin)
 local function c_bookmark()
+	local grapple = require("grapple")
 	local index = grapple.name_or_index()
 	if not index then
 		return ""
@@ -171,10 +172,6 @@ end
 
 -- Show LSP diagnostics
 local function c_lsp_diagnostics()
-	if not rawget(vim, "lsp") then
-		return ""
-	end
-
 	local lines = {}
 	local keys = { "error", "warning", "information", "hint" }
 	for i, k in ipairs(keys) do
@@ -251,19 +248,8 @@ local function c_copilot_chat()
 		return ""
 	end
 
-	local async = require("plenary.async")
 	local chat = require("CopilotChat")
-	local config = chat.config
-	local model = config.model
-
-	async.run(function()
-		local resolved_model = chat.resolve_model()
-		if resolved_model then
-			model = resolved_model
-		end
-	end, function(_, _)
-		-- Nothing to do here since we're just updating a local variable
-	end)
+	local model = chat.config.model
 
 	local status = { sep(), "Copilot", sep(), model }
 	return table.concat(status, " ")

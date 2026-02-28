@@ -9,4 +9,9 @@ return {
 			start_with_preview = "gA",
 		},
 	},
+
+	keys = {
+		{ "ga", mode = { "n", "v" }, desc = "Align" },
+		{ "gA", mode = { "n", "v" }, desc = "Align (preview)" },
+	},
 }

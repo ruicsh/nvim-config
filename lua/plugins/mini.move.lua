@@ -19,4 +19,11 @@ return {
 			line_up = "<a-k>",
 		},
 	},
+
+	keys = {
+		{ "<a-j>", mode = { "n", "v" }, desc = "Move line/selection down" },
+		{ "<a-k>", mode = { "n", "v" }, desc = "Move line/selection up" },
+		{ "<a-h>", mode = { "n", "v" }, desc = "Move line/selection left" },
+		{ "<a-l>", mode = { "n", "v" }, desc = "Move line/selection right" },
+	},
 }
