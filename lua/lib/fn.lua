@@ -20,11 +20,13 @@ local spinners = {} -- Store spinner timers by buffer
 local icon_spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
 
 M.start_spinner = function(bufnr, msg)
-	local new_timer = vim.uv.new_timer
-	local spinner_timer = new_timer()
-	if not spinners[bufnr] then
-		spinners[bufnr] = { idx = 1, timer = spinner_timer }
+	-- Stop any existing spinner for this buffer first to avoid timer leak
+	if spinners[bufnr] then
+		M.stop_spinner(bufnr)
 	end
+
+	local spinner_timer = vim.uv.new_timer()
+	spinners[bufnr] = { idx = 1, timer = spinner_timer }
 
 	spinners[bufnr].timer:start(
 		0,
@@ -89,6 +91,22 @@ M.urlencode = function(str)
 	return (str:gsub("[^%w%-_%.~]", function(c)
 		return string.format("%%%02X", string.byte(c))
 	end))
+end
+
+-- Returns a list of { key, count } for non-zero diagnostic severities in the given buffer.
+-- key is one of "error", "warning", "information", "hint".
+local DIAGNOSTIC_KEYS = { "error", "warning", "information", "hint" }
+M.diagnostic_counts = function(bufnr)
+	local results = {}
+	for i, key in ipairs(DIAGNOSTIC_KEYS) do
+		local ki = vim.diagnostic.severity[i]
+		local severity = vim.diagnostic.severity[ki]
+		local count = vim.diagnostic.count(bufnr, { severity = severity })[severity]
+		if count and count > 0 then
+			table.insert(results, { key = key, count = count })
+		end
+	end
+	return results
 end
 
 return M

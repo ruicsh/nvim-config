@@ -908,19 +908,11 @@ return {
 			separator = "⠒",
 			show_help = false,
 			show_folds = true,
-			window = {
-				anchor = "NE",
-				border = { "", "", "", "", "", "", "", "│" },
-				col = vim.o.columns,
+			window = vim.tbl_extend("force", T.ui.side_panel_win_config(), {
 				focusable = true,
-				height = vim.o.lines - vim.o.cmdheight - 1,
 				layout = "float",
-				relative = "editor",
-				row = 0,
-				style = "minimal",
-				width = math.floor(vim.o.columns * 0.5),
 				zindex = 50,
-			},
+			}),
 		})
 	end,
 

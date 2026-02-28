@@ -182,23 +182,19 @@ end
 
 -- Show LSP diagnostics
 local function c_lsp_diagnostics()
-	local lines = {}
-	local keys = { "error", "warning", "information", "hint" }
-	for i, k in ipairs(keys) do
-		local ki = vim.diagnostic.severity[i]
-		local severity = vim.diagnostic.severity[ki]
-		local count = vim.diagnostic.count(0, { severity = severity })[severity]
-		if count and count > 0 then
-			local icon = k:sub(1, 1):upper()
-			table.insert(lines, icon .. count)
-		end
-	end
+	local counts = T.fn.diagnostic_counts(0)
 
-	if #lines == 0 then
+	if #counts == 0 then
 		return ""
 	end
 
-	return "%#StatusLine# " .. table.concat(lines, " ") .. " " .. sep()
+	local lines = {}
+	for _, entry in ipairs(counts) do
+		local icon = entry.key:sub(1, 1):upper()
+		table.insert(lines, icon .. entry.count)
+	end
+
+	return "%#StatusLine# " .. table.concat(lines, " ") .. " " .. sep()
 end
 
 -- Show git status

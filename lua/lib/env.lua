@@ -18,16 +18,22 @@ local function load_from_dir(dir)
 		return
 	end
 
-	for line in env_file:lines() do
-		if not line:match("^%s*#") then -- Skip comments
-			for key, value in string.gmatch(line, "([%w_]+)%s*=%s*([^#]+)") do -- varname=value
-				value = value:gsub("^%s*(.-)%s*$", "%1") -- Trim whitespace
-				vim.fn.setenv(key, value)
+	local ok, err = pcall(function()
+		for line in env_file:lines() do
+			if not line:match("^%s*#") then -- Skip comments
+				for key, value in string.gmatch(line, "([%w_]+)%s*=%s*([^#]+)") do -- varname=value
+					value = value:gsub("^%s*(.-)%s*$", "%1") -- Trim whitespace
+					vim.fn.setenv(key, value)
+				end
 			end
 		end
-	end
+	end)
 
 	env_file:close()
+
+	if not ok then
+		vim.notify("Error parsing " .. file .. ": " .. tostring(err), vim.log.levels.WARN)
+	end
 end
 
 M.load = function()

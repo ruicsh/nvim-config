@@ -1,25 +1,30 @@
 local M = {}
 
+-- Base window config for side panels (right-aligned, half-width float).
+-- Used by lib/ui, copilot-chat, and toggleterm.
+M.side_panel_win_config = function()
+	return {
+		anchor = "NE",
+		border = { "", "", "", "", "", "", "", "│" },
+		col = vim.o.columns,
+		height = vim.o.lines - vim.o.cmdheight - 1,
+		relative = "editor",
+		row = 0,
+		style = "minimal",
+		width = math.floor(vim.o.columns * 0.5),
+	}
+end
+
 local function create_floating_panel_window(options)
 	options = options or {}
-
-	local width = math.floor(vim.o.columns * 0.5)
-	local height = vim.o.lines - vim.o.cmdheight - 1
 
 	-- Create a blank buffer or reuse the provided one
 	local bufnr = options.bufnr or vim.api.nvim_create_buf(false, false)
 
-	local winnr = vim.api.nvim_open_win(bufnr, true, {
-		anchor = "NE",
-		border = { "", "", "", "", "", "", "", "│" },
-		col = vim.o.columns,
+	local win_config = vim.tbl_extend("force", M.side_panel_win_config(), {
 		focusable = true,
-		height = height,
-		relative = "editor",
-		row = 0,
-		style = "minimal",
-		width = width,
 	})
+	local winnr = vim.api.nvim_open_win(bufnr, true, win_config)
 
 	-- Identify the window as a side panel, content or wrapper
 	vim.api.nvim_win_set_var(winnr, "side_panel", true)

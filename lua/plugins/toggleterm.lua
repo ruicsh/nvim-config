@@ -1,20 +1,13 @@
 -- Terminal windows.
 -- https://github.com/akinsho/toggleterm.nvim
 
+local T = require("lib")
+
 return {
 	"akinsho/toggleterm.nvim",
 	opts = {
 		direction = "float",
-		float_opts = {
-			anchor = "NE",
-			border = { "", "", "", "", "", "", "", "│" },
-			col = vim.o.columns,
-			height = vim.o.lines - vim.o.cmdheight - 1,
-			relative = "editor",
-			row = 0,
-			style = "minimal",
-			width = math.floor(vim.o.columns * 0.5),
-		},
+		float_opts = T.ui.side_panel_win_config(),
 		highlights = {
 			FloatBorder = { link = "FloatBorder" },
 		},

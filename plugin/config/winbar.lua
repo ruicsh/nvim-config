@@ -1,5 +1,7 @@
 -- Winbar configuration
 
+local T = require("lib")
+
 -- Hoist require out of the hot render path
 local devicons = require("nvim-web-devicons")
 
@@ -7,23 +9,18 @@ local function c_lsp_diagnostics(props)
 	local bufnr = props.bufnr
 	local focused = props.focused
 
+	local counts = T.fn.diagnostic_counts(bufnr)
 	local parts = {}
 
-	local keys = { "error", "warning", "information", "hint" }
-	for i, k in ipairs(keys) do
-		local ki = vim.diagnostic.severity[i]
-		local severity = vim.diagnostic.severity[ki]
-		local count = vim.diagnostic.count(bufnr, { severity = severity })[severity]
-		if count and count > 0 then
-			local icon = k:sub(1, 1):upper()
-			local group = "WinbarSecondaryNC"
-			if k == "error" then
-				group = focused and "WinbarLspDiagnosticsError" or group
-			else
-				group = focused and "WinbarSecondary" or group
-			end
-			table.insert(parts, "%#" .. group .. "#" .. icon .. count .. " ")
+	for _, entry in ipairs(counts) do
+		local icon = entry.key:sub(1, 1):upper()
+		local group = "WinbarSecondaryNC"
+		if entry.key == "error" then
+			group = focused and "WinbarLspDiagnosticsError" or group
+		else
+			group = focused and "WinbarSecondary" or group
 		end
+		table.insert(parts, "%#" .. group .. "#" .. icon .. entry.count .. " ")
 	end
 
 	return table.concat(parts)
