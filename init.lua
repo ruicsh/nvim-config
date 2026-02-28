@@ -33,6 +33,18 @@ require("lazy").setup("plugins", {
 		notify = false,
 	},
 	install = { colorscheme = { "nordstone" } },
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"tar",
+				"tarPlugin",
+				"zip",
+				"zipPlugin",
+				"netrwPlugin",
+			},
+		},
+	},
 	ui = {
 		border = "rounded",
 	},
