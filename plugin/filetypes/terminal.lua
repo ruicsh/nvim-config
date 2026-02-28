@@ -1,6 +1,6 @@
 -- Terminal buffers
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/terminal", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/terminal", { clear = true })
 
 vim.api.nvim_create_autocmd("TermOpen", {
 	group = augroup,

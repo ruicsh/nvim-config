@@ -1,4 +1,4 @@
-local augroup = vim.api.nvim_create_augroup("ruicsh/filetype/python", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/python", { clear = true })
 
 local T = require("lib")
 

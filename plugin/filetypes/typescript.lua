@@ -1,6 +1,6 @@
 -- TypeScript LSP Code Actions
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/typescript/lsp-code-actions", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/typescript", { clear = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup,

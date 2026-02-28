@@ -1,4 +1,4 @@
-local T = require("lib.tailwindcss")
+local T = require("lib/tailwindcss")
 T.after_ftplugin()
 
 -- Register the htmlangular parser for the Angular language.

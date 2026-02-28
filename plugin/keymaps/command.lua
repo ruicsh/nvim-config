@@ -3,7 +3,7 @@
 -- Setup {{{
 --
 local function k(lhs, rhs, opts)
-	local options = vim.tbl_extend("force", { noremap = true, unique = true }, opts or {})
+	local options = vim.tbl_extend("force", { unique = true }, opts or {})
 	vim.keymap.set("c", lhs, rhs, options)
 end
 --

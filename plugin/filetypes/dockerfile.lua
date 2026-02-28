@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	group = vim.api.nvim_create_augroup("ruicsh/ftplugin/dockerfile", { clear = true }),
+	group = vim.api.nvim_create_augroup("ruicsh/filetypes/dockerfile", { clear = true }),
 	pattern = { "Dockerfile", "dockerfile", "dockerfile.*" },
 	callback = function()
 		-- Ignore this file

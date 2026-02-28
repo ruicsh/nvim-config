@@ -128,7 +128,7 @@ o.clipboard = "unnamedplus" -- Use system clipboard. `:h 'clipboard'`
 
 -- 12 editing text {{{
 o.complete = ".,]" -- How keyword completion works. `h 'complete'`
-o.completeopt = "menu,menuone,noinsert,preview" -- Disable native autocompletion (using nvim-cmp). `:h 'completeopt'`
+o.completeopt = "menu,menuone,noinsert,preview" -- Disable native autocompletion (using blink.cmp). `:h 'completeopt'`
 o.infercase = true -- Adjust case of match for keyword completion. `:h 'infercase'`
 o.formatoptions = table.concat({ -- `:h 'formatoptions'`
 	"/", -- Only when // is at the start of the line. `:h fo-/`
@@ -161,7 +161,7 @@ o.foldenable = true -- Enable folding. `:h 'foldenable'`
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding. `:h 'foldexpr'`
 o.foldlevel = 999 -- Close all folds. `:h 'foldlevel'`
 o.foldlevelstart = 99 -- Start with all folds closed. `:h 'foldlevelstart'`
-o.foldmethod = "expr" -- Use indent to determine fold level. `:h 'foldmethod'`
+o.foldmethod = "expr" -- Use expression to determine fold level. `:h 'foldmethod'`
 o.foldopen = "insert,mark,search,tag" -- Which commands open folds if the cursor moves into a closed fold. `:h 'foldopen'`
 o.foldtext = "v:lua.custom_fold_text()" -- What to display on fold line. `:h 'foldtext'`
 -- }}}

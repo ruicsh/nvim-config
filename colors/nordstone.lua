@@ -1,5 +1,3 @@
-local vim = vim
-
 -- NordStone theme
 
 -- UTILITIES

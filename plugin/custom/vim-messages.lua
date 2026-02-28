@@ -1,6 +1,6 @@
 -- List :messages in a separate floating window
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/vim-messages", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/custom/vim-messages", { clear = true })
 
 local vim_messages_winnr = nil
 
@@ -70,7 +70,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 local k = vim.keymap.set
-local opts = { silent = true, noremap = true }
+local opts = { silent = true }
 
 k("n", "<leader>nn", "<cmd>VimMessages<cr>", opts)
 k("n", "<leader>nc", "<cmd>messages clear<cr>", opts)

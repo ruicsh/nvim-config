@@ -1,10 +1,9 @@
 -- LSP custom keymaps.
 
-local augroup = vim.api.nvim_create_augroup("ruicsh/autocmds/lsp-keymaps", { clear = true })
+local augroup = vim.api.nvim_create_augroup("ruicsh/custom/lsp-keymaps", { clear = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup,
-	pattern = "*",
 	callback = function(args)
 		local bufnr = args.buf
 		local client = vim.lsp.get_clients({ id = args.data.client_id })[1]

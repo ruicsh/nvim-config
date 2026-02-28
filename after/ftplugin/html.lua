@@ -1,2 +1,2 @@
-local T = require("lib.tailwindcss")
+local T = require("lib/tailwindcss")
 T.after_ftplugin()
