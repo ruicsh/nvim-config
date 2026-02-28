@@ -1,7 +1,7 @@
 # AGENTS.md - Neovim Configuration
 
 This is a personal Neovim configuration (dotfiles) written in Lua, targeting Neovim
-v0.11.5. It is not a traditional software project -- there is no build system, test
+v0.11.6. It is not a traditional software project -- there is no build system, test
 suite, or CI pipeline for the config itself.
 
 ## Project Overview
@@ -33,23 +33,25 @@ Lua files are formatted with **stylua** (configured as the conform.nvim formatte
 
 ```
 init.lua                    Entry point: loader, colorscheme, leader, lazy bootstrap
+filetype.lua                Custom filetype detection via vim.filetype.add()
 lua/
   lib/                      Shared utility library (env, fn, git, ui, tailwindcss)
     init.lua                Barrel re-export of all lib submodules
   plugins/                  One file per plugin (lazy.nvim auto-imports this dir)
 plugin/                     Auto-loaded by Neovim at startup (no require needed)
   options.lua               All vim.opt settings, organized by :options sections
-  shell.lua                 Cross-platform shell configuration
+  shell.lua                 Cross-platform shell configuration (env-driven)
   autocmds/                 Autocommand files, one concern per file
   config/                   Complex config (statusline, winbar, foldtext, formatoptions)
   custom/                   Custom behaviors (LSP keymaps, duplicate-comment, etc.)
   keymaps/                  Keymaps split by mode (normal, insert, visual, command)
   filetypes/                Filetype-specific settings
-after/ftplugin/             Filetype-specific overrides (13 filetypes)
-colors/                     Custom colorscheme
-prompts/                    AI system prompt templates for CopilotChat (34 files)
+after/ftplugin/             Filetype-specific overrides (12 filetypes)
+colors/                     Custom colorscheme (exports vim.g.theme_colors globally)
+prompts/                    AI system prompt templates for CopilotChat
 queries/                    Custom Tree-sitter queries (astro, html, tsx)
 snippets/                   VSCode-format JSON snippets
+spell/                      Custom spell file (en.utf-8.add)
 ```
 
 ## Code Style Guidelines
@@ -65,9 +67,10 @@ snippets/                   VSCode-format JSON snippets
 ### Imports and Requires
 
 - The shared library is imported as `T`: `local T = require("lib")`
-- Access submodules via `T.env`, `T.fn`, `T.git`, `T.ui`
+- Access submodules via `T.env`, `T.fn`, `T.git`, `T.ui`, `T.tailwindcss`
 - Internal lib requires use forward slashes: `require("lib/fn")`, not `require("lib.fn")`
 - Plugin-specific requires are done locally, often inside callbacks to respect lazy-loading
+- `pcall(require, "module")` for optional dependencies that may not be installed
 
 ### Module Patterns
 
@@ -82,9 +85,12 @@ snippets/                   VSCode-format JSON snippets
 
 - **Variables and functions:** `snake_case` everywhere
 - **Constants:** `SCREAMING_SNAKE_CASE` for constant-like tables at file top
+  (e.g., `EXCLUDE_FILETYPES`, `DIAGNOSTIC_KEYS`, `STATEMENT_BOUNDARIES`)
 - **Filenames:** kebab-case for multi-word files (e.g., `auto-close-buffer-if-deleted.lua`)
 - **Plugin filenames:** dotted for sub-features (e.g., `snacks.picker.lua`, `mini.ai.lua`)
-- **Augroup names:** namespaced as `"ruicsh/autocmds/<name>"`, `"ruicsh/custom/<name>"`
+- **Augroup names:** namespaced as `"ruicsh/<category>/<name>"` where category is one of:
+  `autocmds`, `custom`, `config`, `filetypes`, `ftplugin`, `plugin`
+- **Namespace names:** same convention: `vim.api.nvim_create_namespace("ruicsh/ftplugin/oil")`
 - **Keymap helper:** conventionally named `k` -- a local wrapper around `vim.keymap.set`
 - **camelCase** is not used (exception: the colorscheme file has some legacy camelCase)
 
@@ -96,6 +102,8 @@ snippets/                   VSCode-format JSON snippets
 - `vim.cmd("...")` with string arguments (not the table form)
 - `vim.fn.*` for VimL functions, `vim.system()` for external commands
 - `vim.lsp.protocol.Methods` stored as `local methods = vim.lsp.protocol.Methods`
+- `vim.fs.*` utilities preferred: `vim.fs.joinpath()`, `vim.fs.root()`, `vim.fs.dirname()`
+- `Snacks` is used as a global (declared in `.luarc.json`) for the snacks.nvim plugin API
 
 ### Error Handling
 
@@ -108,7 +116,9 @@ snippets/                   VSCode-format JSON snippets
 - Nil-guard early returns: `if not result then return nil, "error msg" end`
 - Multiple return values for errors (Go-style): `return nil, "Could not get git diff"`
 - `vim.notify(msg, vim.log.levels.WARN)` for user-facing messages
-- Buffer validity checks before operations: `if not vim.api.nvim_buf_is_valid(bufnr) then`
+- Buffer/window validity checks before operations:
+  `if not vim.api.nvim_buf_is_valid(bufnr) then`
+  `if not vim.api.nvim_win_is_valid(winnr) then`
 
 ### Comment Style
 
@@ -116,7 +126,8 @@ snippets/                   VSCode-format JSON snippets
 - File headers: plugin name + GitHub URL on first two lines
 - Vim help references inline: `o.ignorecase = true -- Ignore case. ':h 'ignorecase''`
 - Important notes: `-- NOTE: explanation`
-- Fold markers for sections: `-- Section Name {{{` / `-- }}}` with modeline at EOF
+- Fold markers for sections: `-- Section Name {{{` / `-- }}}` with modeline at EOF:
+  `-- vim: foldmethod=marker:foldmarker={{{,}}}:foldlevel=0`
 - No block comments (`--[[ ]]`) and no LuaCATS/EmmyLua type annotations
 
 ### Plugin Spec Conventions
@@ -138,7 +149,8 @@ snippets/                   VSCode-format JSON snippets
 
 - Constants and helper functions defined above the `return` statement
 - Environment-driven config via `T.env.get()`, `T.env.get_bool()`, etc.
-- Conditional early return for disabled features: `if condition then return {} end`
+- Conditional disabling: either `enabled = T.env.get_bool("VAR")` on the spec, or
+  `if condition then return {} end` above the return statement (both patterns are used)
 
 ### Environment and LSP Config
 
@@ -146,6 +158,8 @@ snippets/                   VSCode-format JSON snippets
   variables: `FORMAT_ON_SAVE`, `IS_WORK`, `COPILOT_MODEL_*`, `LSP_DISABLED_SERVERS`, etc.
 - `.luarc.json` declares `vim` and `Snacks` as recognized globals, LuaJIT runtime, and
   `luv` library support. When adding new global references, update this file.
+- Built-in plugins (netrw, gzip, tar, zip) and remote providers (node, perl, python,
+  ruby) are disabled in `plugin/config/standard-plugins.lua`.
 
 ### Key Patterns to Follow
 
@@ -153,5 +167,7 @@ snippets/                   VSCode-format JSON snippets
 - When adding keymaps: add to the appropriate mode file in `plugin/keymaps/`
 - When adding autocommands: create a file in `plugin/autocmds/` with a namespaced augroup
 - When adding filetype settings: use `after/ftplugin/<filetype>.lua`
+- When adding filetype detection: add to `filetype.lua` via `vim.filetype.add()`
 - When adding shared utilities: add to the appropriate module in `lua/lib/`
+- When adding custom commands: use `vim.api.nvim_create_user_command`
 - Always use `local T = require("lib")` when you need shared utilities
