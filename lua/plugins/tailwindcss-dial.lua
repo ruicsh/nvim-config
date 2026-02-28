@@ -5,4 +5,5 @@ return {
 	},
 
 	dependencies = { "monaqa/dial.nvim" },
+	ft = { "astro", "html", "javascriptreact", "typescriptreact" },
 }

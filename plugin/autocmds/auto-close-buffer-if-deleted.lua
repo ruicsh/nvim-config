@@ -29,7 +29,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 		if
 			name == ""
-			or buftype == ""
 			or vim.tbl_contains(IGNORE_BUFTYPES, buftype)
 			or vim.wo.diff
 			or ft == ""

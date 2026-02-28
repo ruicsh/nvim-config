@@ -11,4 +11,6 @@ return {
 		end,
 		close_buffers_with_windows = false,
 	},
+
+	event = "BufRead",
 }

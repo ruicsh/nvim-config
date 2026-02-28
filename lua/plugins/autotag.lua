@@ -10,4 +10,5 @@ return {
 			enable_close_on_slash = true, -- Auto close on trailing </
 		},
 	},
+	event = "InsertEnter",
 }
