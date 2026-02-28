@@ -123,7 +123,6 @@ return {
 			{ "<leader>'", picker.marks, desc = "Marks" },
 			{ "<leader>.", picker.resume, desc = "Last picker" },
 			{ "<leader>;", picker.jumps, desc = "Jumps" },
-			{ "<leader>c", picker.qflist, desc = "Quickfix" },
 			{ "<leader>u", picker.undo, desc = "Command history" },
 			{ '<leader>"', picker.registers, desc = "Registers" },
 

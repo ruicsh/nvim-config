@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>64 plugins</sub>
+<sub>65 plugins</sub>
 
 ### Code
 
@@ -36,6 +36,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
+- [sidekick.lua](https://github.com/folke/sidekick.nvim) - AI agent
 - [tailwincss-colors](https://github.com/themaxmarchuk/tailwindcss-colors.nvim) - Highlight Tailwind colors
 - [tailwincss-dial](https://github.com/ruicsh/tailwindcss-dial.nvim) - Toggle TailwindCSS classes
 - [tailwincss-shades](https://github.com/ruicsh/tailwindcss-shades.nvim) - Generate Tailwind colors
