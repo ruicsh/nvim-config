@@ -22,8 +22,6 @@ k("n", "<leader>hd", function()
 	end
 end, { desc = "Diff" })
 
-k("n", "<leader>ar", "<cmd>CopilotCodeReview<cr>", { desc = "Code Review" })
-
 k("n", "<tab>", "=", { desc = "Toggle section", remap = true })
 k("n", "q", function()
 	require("snacks.bufdelete").delete()

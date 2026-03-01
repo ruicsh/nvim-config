@@ -617,67 +617,6 @@ local function resources_get_buffer(bufnr)
 	return table.concat(content, "\n"), files.filetype_to_mimetype(vim.bo[bufnr].filetype)
 end
 
-vim.api.nvim_create_user_command("CopilotCommitMessage", function()
-	local chat = require("CopilotChat")
-	local bufnr = vim.api.nvim_get_current_buf()
-
-	-- Determine which prompt command to use based on work environment
-	local is_work_env = T.env.get_bool("IS_WORK")
-	local prompt = "/" .. (is_work_env and "commitwork" or "commit")
-
-	chat.reset() -- Reset previous chat state
-
-	T.fn.start_spinner(bufnr, "Generating commit message...")
-
-	chat.ask(prompt, {
-		callback = function(response)
-			T.fn.stop_spinner(bufnr)
-
-			-- Convert response to table of lines and ensure it's always an array
-			local lines = type(response) == "string" and vim.split(response, "\n")
-				or (type(response) == "table" and response or {})
-			table.insert(lines, "")
-
-			-- Insert the response at cursor position
-			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
-
-			-- Set cursor on the last line
-			vim.cmd("normal! G")
-			return response
-		end,
-		headless = true,
-		model = T.env.get("COPILOT_MODEL_CHEAP"),
-		sticky = { "#gitdiff:staged" },
-		system_prompt = "/COPILOT_INSTRUCTIONS",
-	})
-end, {})
-
-vim.api.nvim_create_user_command("CopilotCodeReview", function()
-	local chat = require("CopilotChat")
-
-	chat.reset() -- Reset previous chat state
-
-	chat.ask("/review", {
-		callback = function(response)
-			local function accept_code_review()
-				vim.keymap.del("n", "<c-]>", { buffer = true })
-
-				chat.close()
-
-				vim.api.nvim_win_close(0, false)
-				vim.cmd("vertical Git")
-				vim.cmd("Git commit")
-			end
-
-			vim.keymap.set("n", "<c-]>", accept_code_review, { buffer = true })
-			return response
-		end,
-		model = T.env.get("COPILOT_MODEL_REASON"),
-		sticky = { "#gitdiff:staged" },
-		system_prompt = "/COPILOT_REVIEW",
-	})
-end, {})
-
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	keys = function()

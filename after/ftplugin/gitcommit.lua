@@ -22,5 +22,4 @@ local function accept_commit_message()
 end
 
 k({ "n", "i" }, "<c-s>", accept_commit_message, opts)
-k("n", "<leader>ac", "<cmd>CopilotCommitMessage<cr>", opts)
 k("n", "q", "<cmd>q!<cr>", opts) -- Close the buffer
