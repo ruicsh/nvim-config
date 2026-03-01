@@ -9,111 +9,6 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/plugin/copilot-chat", { clea
 
 local CHAT_HISTORY_DIR = vim.fn.stdpath("data") .. "/copilot-chats"
 
--- Ordering matters, so that the most specific filetype configs are checked first
-local FILETYPE_CONFIGS = {
-	angular = {
-		patterns = {
-			"%.component%.ts$",
-			"%.component%.html$",
-			"%.module%.ts$",
-			"%.directive%.ts$",
-			"%.pipe%.ts$",
-			"%.service%.ts$",
-			"%.guard%.ts$",
-			"%.resolver%.ts$",
-			"%.injectable%.ts$",
-		},
-		filetypes = { "htmlangular" },
-		priority = 1000,
-		prompts = { "angular" },
-	},
-	ansible = {
-		filetypes = { "yaml" },
-		prompts = { "ansible" },
-	},
-	css = {
-		filetypes = { "css", "scss", "less" },
-		patterns = {
-			"%.css$",
-			"%.scss$",
-			"%.module%.css$",
-		},
-		prompts = { "css" },
-	},
-	dockerfile = {
-		filetypes = { "dockerfile" },
-		prompts = { "docker" },
-	},
-	javascript = {
-		filetypes = { "javascript" },
-		prompts = { "js" },
-	},
-	neovim = {
-		filetypes = { "lua" },
-		prompts = { "neovim", "lua" },
-	},
-	nushell = {
-		filetypes = { "nu" },
-		prompts = { "nushell" },
-	},
-	playwright = {
-		patterns = { "%.spec%.ts$" },
-		priority = 5000,
-		prompts = { "playwright" },
-	},
-	python = {
-		filetypes = { "python" },
-		prompts = { "python" },
-	},
-	rust = {
-		filetypes = { "rust" },
-		prompts = { "rust" },
-	},
-	storybook = {
-		alternate = ".tsx",
-		patterns = { "%.stories%.tsx$" },
-		priority = 5000,
-		prompts = { "storybook" },
-	},
-	reacttest = {
-		alternate = ".tsx",
-		patterns = { "%.test%.tsx$" },
-		priority = 4000,
-		prompts = { "reacttest" },
-	},
-	typescripttest = {
-		alternate = ".ts",
-		patterns = { "%.test%.ts$" },
-		priority = 3000,
-		prompts = { "tstest" },
-	},
-	react = {
-		filetypes = { "typescriptreact" },
-		priority = 2000,
-		prompts = { "react" },
-	},
-	typescript = {
-		filetypes = { "typescript" },
-		prompts = { "ts" },
-	},
-	vim = {
-		filetypes = { "vim" },
-		prompts = { "vimscript" },
-	},
-}
-
--- Pre-sort FILETYPE_CONFIGS by priority descending (computed once at load time)
-local SORTED_FILETYPE_CONFIGS = (function()
-	local sorted = {}
-	for _, config in pairs(FILETYPE_CONFIGS) do
-		table.insert(sorted, config)
-	end
-	table.sort(sorted, function(a, b)
-		return (a.priority or 0) > (b.priority or 0)
-	end)
-	return sorted
-end)()
-
 local function read_prompt_file(basename)
 	local config_dir = tostring(vim.fn.stdpath("config"))
 	local prompt_dir = vim.fs.joinpath(config_dir, "prompts")
@@ -122,7 +17,13 @@ local function read_prompt_file(basename)
 		return ""
 	end
 
-	return table.concat(vim.fn.readfile(file_path), "\n")
+	local lines = vim.fn.readfile(file_path)
+	local content = table.concat(lines, "\n")
+
+	-- Strip YAML front-matter (between --- markers)
+	content = content:gsub("^%-%-%-\n.-\n%-%-%-\n*", "")
+
+	return content
 end
 
 local function load_prompts(prompt_dir)
@@ -141,71 +42,90 @@ local function load_prompts(prompt_dir)
 	return prompts
 end
 
-local function get_alternate_file(file_ext, alternate_ext)
-	local current_file = vim.fn.expand("%:p")
-	local source_file = current_file:gsub(file_ext, alternate_ext)
-	if vim.fn.filereadable(source_file) == 1 then
-		-- Convert to path relative to cwd
-		local cwd = vim.fn.getcwd()
-		local relative_path = source_file:gsub("^" .. vim.pesc(cwd) .. "/", "")
-		return relative_path
+-- Parse YAML front-matter keywords from a prompt file.
+-- Returns a list of keyword strings, or an empty table if none found.
+local function parse_front_matter_keywords(file_path)
+	if vim.fn.filereadable(file_path) == 0 then
+		return {}
 	end
-	return nil
-end
 
-local function get_config_by_filetype()
-	local ft = vim.bo.filetype
-	local filename = vim.fn.expand("%:t")
+	local lines = vim.fn.readfile(file_path)
+	if #lines == 0 or lines[1] ~= "---" then
+		return {}
+	end
 
-	for _, config in pairs(SORTED_FILETYPE_CONFIGS) do
-		local matches = false
+	for i = 2, #lines do
+		if lines[i] == "---" then
+			break
+		end
 
-		-- Check file patterns if defined
-		if config.patterns then
-			for _, pattern in ipairs(config.patterns) do
-				if filename:match(pattern) then
-					matches = true
-					break
+		local value = lines[i]:match("^keywords:%s*(.+)$")
+		if value then
+			local keywords = {}
+			for keyword in value:gmatch("[^,]+") do
+				keyword = vim.trim(keyword)
+				if keyword ~= "" then
+					table.insert(keywords, keyword:lower())
 				end
 			end
-		end
-
-		-- Check filetypes
-		if not matches and config.filetypes and vim.tbl_contains(config.filetypes, ft) then
-			matches = true
-		end
-
-		if matches then
-			-- Deep copy to avoid mutating the shared SORTED_FILETYPE_CONFIGS entries
-			local result = vim.deepcopy(config)
-
-			if result.prompts and type(result.prompts) == "function" then
-				result.prompts = result.prompts()
-			end
-
-			-- Check if alternate file exists and add as context prompt
-			if result.alternate then
-				-- For each pattern, try to find the alternate file
-				for _, pattern in ipairs(result.patterns or {}) do
-					local alternate = get_alternate_file(pattern, result.alternate)
-					if alternate then
-						result.prompts = result.prompts or {}
-						table.insert(result.prompts, #result.prompts + 1, "#file:" .. alternate)
-					end
-				end
-			end
-
-			return result
+			return keywords
 		end
 	end
+
+	return {}
 end
 
-local function get_system_prompt(action)
-	local base_prompt = (action == "explain") and "COPILOT_EXPLAIN"
-		or (action == "generic" and "COPILOT_INSTRUCTIONS")
-		or "COPILOT_GENERATE"
+-- Build a keyword-to-prompt lookup table from all prompt files.
+-- Returns a table of { keyword = string, basename = string } entries, sorted by keyword
+-- length descending so that multi-word keywords match before single-word ones.
+local function load_keyword_map(prompt_dir)
+	local entries = {}
+	local prompt_files = vim.fn.glob(prompt_dir .. "/*.md", false, true)
 
-	return base_prompt
+	for _, file_path in ipairs(prompt_files) do
+		local basename = vim.fn.fnamemodify(file_path, ":t:r")
+		local keywords = parse_front_matter_keywords(file_path)
+		for _, keyword in ipairs(keywords) do
+			table.insert(entries, { keyword = keyword, basename = basename })
+		end
+	end
+
+	-- Sort by keyword length descending so multi-word keywords match first
+	table.sort(entries, function(a, b)
+		return #a.keyword > #b.keyword
+	end)
+
+	return entries
+end
+
+-- Module-level keyword map, populated once in the config function
+local keyword_map = {}
+
+-- Detect which prompt files should be injected based on keywords found in the user prompt.
+-- Returns a list of unique prompt basenames whose keywords appear in the prompt text.
+local function detect_keyword_prompts(prompt)
+	if not prompt or prompt == "" then
+		return {}
+	end
+
+	local text = prompt:lower()
+	local matched = {}
+	local seen = {}
+
+	for _, entry in ipairs(keyword_map) do
+		if not seen[entry.basename] then
+			-- Build a pattern that matches the keyword at word boundaries.
+			-- Lua doesn't have \b, so we use frontier patterns %f.
+			local escaped = entry.keyword:gsub("([%(%)%.%%%+%-%*%?%[%]%^%$])", "%%%1")
+			local pattern = "%f[%w:]" .. escaped .. "%f[^%w:]"
+			if text:match(pattern) then
+				table.insert(matched, entry.basename)
+				seen[entry.basename] = true
+			end
+		end
+	end
+
+	return matched
 end
 
 local function save_chat(response)
@@ -265,130 +185,56 @@ local function customize_chat_window()
 	})
 end
 
-local function get_sticky_prompts()
+-- Suffixes to strip when looking for the source file (order matters: longest first)
+local ALTERNATE_SUFFIXES = {
+	".stories.tsx",
+	".stories.ts",
+	".spec.tsx",
+	".spec.ts",
+	".test.tsx",
+	".test.ts",
+}
+
+local function get_alternate_file()
+	local current_file = vim.fn.expand("%:p")
+
+	for _, suffix in ipairs(ALTERNATE_SUFFIXES) do
+		if current_file:sub(-#suffix) == suffix then
+			local base = current_file:sub(1, -#suffix - 1)
+			-- Try the corresponding source extension (.tsx or .ts)
+			local source_ext = suffix:match("%.([^.]+)$")
+			local source_file = base .. "." .. source_ext
+			if vim.fn.filereadable(source_file) == 1 then
+				local cwd = vim.fn.getcwd()
+				return source_file:gsub("^" .. vim.pesc(cwd) .. "/", "")
+			end
+		end
+	end
+
+	return nil
+end
+
+local function open_chat()
 	local sticky = {}
 
-	-- Get filetype-specific prompts
-	local ft_config = get_config_by_filetype()
-	local prompts = ft_config and ft_config.prompts or {}
-
-	-- Add filetype-specific prompts
-	for _, p in pairs(prompts) do
-		-- Only ad a slash if prompt not started by #, $, / or @
-		if not p:match("^[#$/@]") then
-			p = "/" .. p
-		end
-		table.insert(sticky, p)
+	-- Include alternate source file if current file is a test/story
+	local alternate = get_alternate_file()
+	if alternate then
+		table.insert(sticky, "#file:" .. alternate)
 	end
 
-	return sticky
-end
-
-local function get_model_for_operation(operation_type)
-	-- Define model environment variables in a central configuration
-	local MODEL_ENV_VARS = {
-		reason = "COPILOT_MODEL_REASON", -- Used for analysis operations
-		codegen = "COPILOT_MODEL_CODEGEN", -- Default for code generation
-	}
-
-	-- Use a Set for faster lookups of analysis operations
-	local ANALYSIS_OPERATIONS = {
-		architect = true,
-		explain = true,
-		review = true,
-		-- Have refactor here to act as second opinion to codegen
-		refactor = true,
-	}
-
-	-- Determine appropriate model type with fallbacks
-	local env_var = MODEL_ENV_VARS.codegen
-	if ANALYSIS_OPERATIONS[operation_type] then
-		env_var = MODEL_ENV_VARS.reason
+	local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
+	if is_visual_mode then
+		table.insert(sticky, "#selection")
+	else
+		table.insert(sticky, "#buffer")
 	end
 
-	-- Retrieve model with safety checks
-	local selected_model = T.env.get(env_var)
-	if not selected_model then
-		local msg =
-			string.format("Warning: Environment variable %s not set for operation '%s'", env_var, operation_type)
-		vim.notify(msg, vim.log.levels.WARN)
-		return nil -- Could add default fallback here
-	end
-
-	return selected_model
-end
-
-local function open_chat(type)
-	return function()
-		local sticky = {}
-
-		local model = get_model_for_operation(type)
-		local system_prompt = get_system_prompt(type)
-
-		if type == "assistance" then
-			local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
-			sticky = get_sticky_prompts()
-			if is_visual_mode then
-				table.insert(sticky, #sticky + 1, "#selection")
-			else
-				table.insert(sticky, #sticky + 1, "#buffer")
-			end
-		elseif type == "architect" then
-		elseif type == "search" then
-		end
-
-		new_chat_window("", {
-			model = model,
-			sticky = sticky,
-			system_prompt = system_prompt,
-		})
-	end
-end
-
-local function get_visual_selection()
-	-- Yank the visual selection
-	vim.cmd('normal! "zy')
-	local selection = vim.fn.getreg("z")
-	-- Remove leading non-alphanumeric characters
-	selection = vim.trim(selection:gsub("^[^a-zA-Z0-9]+", ""))
-
-	return selection
-end
-
-local function action(type, opts)
-	return function()
-		local prompt = "Please"
-
-		local sticky = get_sticky_prompts()
-		table.insert(sticky, "/" .. type)
-
-		local is_visual_mode = vim.fn.mode():match("[vV]") ~= nil
-
-		if type == "generic" then
-		elseif type == "implement" then
-			prompt = get_visual_selection() .. "\n\n"
-			table.insert(sticky, #sticky + 1, "#buffer")
-		elseif type == "fix" then
-			local scope = is_visual_mode and "selection" or "current"
-			if scope == "selection" then
-				table.insert(sticky, #sticky + 1, "#selection")
-			elseif scope == "current" then
-				table.insert(sticky, #sticky + 1, "#buffer")
-			end
-			table.insert(sticky, #sticky + 1, "#diagnostics:" .. scope)
-		elseif is_visual_mode then
-			table.insert(sticky, #sticky + 1, "#selection")
-		else
-			table.insert(sticky, #sticky + 1, "#buffer")
-		end
-
-		new_chat_window(prompt, {
-			model = get_model_for_operation(type),
-			system_prompt = get_system_prompt(type),
-			sticky = sticky,
-			inline = opts and opts.inline or false,
-		})
-	end
+	new_chat_window("", {
+		model = T.env.get("COPILOT_MODEL_CODEGEN"),
+		sticky = sticky,
+		system_prompt = "COPILOT_INSTRUCTIONS",
+	})
 end
 
 local function delete_old_chat_files()
@@ -623,22 +469,7 @@ return {
 		local chat = require("CopilotChat")
 
 		return {
-			-- chat
-			{ "<leader>aa", open_chat("assistance"), desc = "AI: Assistance", mode = { "n", "v" } },
-			{ "<leader>ag", open_chat("generic"), desc = "AI: Generic" },
-			{ "<leader>as", open_chat("search"), desc = "AI: Search" },
-			{ "<leader>aq", open_chat("architect"), desc = "AI: Architect" },
-
-			-- actions
-			{ "<leader>ae", action("explain"), desc = "AI: Explain", mode = { "n", "v" } },
-			{ "<leader>af", action("fix"), desc = "AI: Fix", mode = { "n", "v" } },
-			{ "<leader>ai", action("implement"), desc = "AI: Implement", mode = { "n", "v" } },
-			{ "<leader>ao", action("optimize"), desc = "AI: Optimize", mode = { "n", "v" } },
-			{ "<leader>ar", action("review"), desc = "AI: Review", mode = { "n", "v" } },
-			{ "<leader>at", action("tests"), desc = "AI: Tests", mode = { "n", "v" } },
-			{ "<leader>an", action("refactor"), desc = "AI: Refactor", mode = { "n", "v" } },
-
-			-- utilities
+			{ "<leader>aa", open_chat, desc = "AI: Assistance", mode = { "n", "v" } },
 			{ "<leader>ah", list_chat_history, desc = "AI: List chat history" },
 			{ "<leader>am", chat.select_model, desc = "AI: Models" },
 		}
@@ -650,7 +481,11 @@ return {
 
 		customize_chat_window()
 		local proxy = T.env.get("COPILOT_PROXY")
-		local prompts = load_prompts(vim.fn.stdpath("config") .. "/prompts")
+		local prompt_dir = vim.fn.stdpath("config") .. "/prompts"
+		local prompts = load_prompts(prompt_dir)
+
+		-- Build keyword map from prompt file front-matter
+		keyword_map = load_keyword_map(prompt_dir)
 
 		chat.setup({
 			allow_insecure = true,
@@ -853,6 +688,35 @@ return {
 				zindex = 50,
 			}),
 		})
+
+		-- Wrap chat.ask() to auto-inject system prompts based on keywords in the user prompt
+		local original_ask = chat.ask
+		chat.ask = function(prompt, config)
+			config = config or {}
+
+			-- Skip keyword detection for headless calls (e.g., commit message generation)
+			if config.headless then
+				return original_ask(prompt, config)
+			end
+
+			local basenames = detect_keyword_prompts(prompt)
+			if #basenames > 0 then
+				local extra_prompts = {}
+				for _, basename in ipairs(basenames) do
+					local content = read_prompt_file(basename)
+					if content ~= "" then
+						table.insert(extra_prompts, content)
+					end
+				end
+
+				if #extra_prompts > 0 then
+					local current = config.system_prompt or ""
+					config.system_prompt = current .. "\n\n" .. table.concat(extra_prompts, "\n\n")
+				end
+			end
+
+			return original_ask(prompt, config)
+		end
 	end,
 
 	tag = "v4.7.4",
