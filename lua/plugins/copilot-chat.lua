@@ -42,9 +42,10 @@ local function load_prompts(prompt_dir)
 	return prompts
 end
 
--- Parse YAML front-matter keywords from a prompt file.
--- Returns a list of keyword strings, or an empty table if none found.
-local function parse_front_matter_keywords(file_path)
+-- Parse a YAML front-matter field from a prompt file.
+-- `field` is the front-matter key to look for (e.g. "keywords" or "buffer_keywords").
+-- Returns a list of comma-separated values, or an empty table if none found.
+local function parse_front_matter_field(file_path, field)
 	if vim.fn.filereadable(file_path) == 0 then
 		return {}
 	end
@@ -59,16 +60,16 @@ local function parse_front_matter_keywords(file_path)
 			break
 		end
 
-		local value = lines[i]:match("^keywords:%s*(.+)$")
+		local value = lines[i]:match("^" .. field .. ":%s*(.+)$")
 		if value then
-			local keywords = {}
-			for keyword in value:gmatch("[^,]+") do
-				keyword = vim.trim(keyword)
-				if keyword ~= "" then
-					table.insert(keywords, keyword:lower())
+			local items = {}
+			for item in value:gmatch("[^,]+") do
+				item = vim.trim(item)
+				if item ~= "" then
+					table.insert(items, item:lower())
 				end
 			end
-			return keywords
+			return items
 		end
 	end
 
@@ -76,15 +77,17 @@ local function parse_front_matter_keywords(file_path)
 end
 
 -- Build a keyword-to-prompt lookup table from all prompt files.
+-- `field` is the front-matter key to read (defaults to "keywords").
 -- Returns a table of { keyword = string, basename = string } entries, sorted by keyword
 -- length descending so that multi-word keywords match before single-word ones.
-local function load_keyword_map(prompt_dir)
+local function load_keyword_map(prompt_dir, field)
+	field = field or "keywords"
 	local entries = {}
 	local prompt_files = vim.fn.glob(prompt_dir .. "/*.md", false, true)
 
 	for _, file_path in ipairs(prompt_files) do
 		local basename = vim.fn.fnamemodify(file_path, ":t:r")
-		local keywords = parse_front_matter_keywords(file_path)
+		local keywords = parse_front_matter_field(file_path, field)
 		for _, keyword in ipairs(keywords) do
 			table.insert(entries, { keyword = keyword, basename = basename })
 		end
@@ -98,8 +101,9 @@ local function load_keyword_map(prompt_dir)
 	return entries
 end
 
--- Module-level keyword map, populated once in the config function
+-- Module-level keyword maps, populated once in the config function
 local keyword_map = {}
+local buffer_keyword_map = {}
 
 -- Detect which prompt files should be injected based on keywords found in the user prompt.
 -- Returns a list of unique prompt basenames whose keywords appear in the prompt text.
@@ -118,6 +122,40 @@ local function detect_keyword_prompts(prompt)
 			-- Lua doesn't have \b, so we use frontier patterns %f.
 			local escaped = entry.keyword:gsub("([%(%)%.%%%+%-%*%?%[%]%^%$])", "%%%1")
 			local pattern = "%f[%w:]" .. escaped .. "%f[^%w:]"
+			if text:match(pattern) then
+				table.insert(matched, entry.basename)
+				seen[entry.basename] = true
+			end
+		end
+	end
+
+	return matched
+end
+
+-- Detect which prompt files should be injected based on keywords found in the buffer content.
+-- Scans the first 50 lines of the source buffer for buffer_keywords matches.
+-- `exclude` is an optional set of basenames to skip (already matched by user-prompt detection).
+local function detect_buffer_keyword_prompts(bufnr, exclude)
+	if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
+		return {}
+	end
+
+	local line_count = vim.api.nvim_buf_line_count(bufnr)
+	local max_lines = math.min(50, line_count)
+	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, max_lines, false)
+	local text = table.concat(lines, "\n"):lower()
+
+	if text == "" then
+		return {}
+	end
+
+	local matched = {}
+	local seen = exclude or {}
+
+	for _, entry in ipairs(buffer_keyword_map) do
+		if not seen[entry.basename] then
+			local escaped = entry.keyword:gsub("([%(%)%.%%%+%-%*%?%[%]%^%$])", "%%%1")
+			local pattern = "%f[%w:/@%-]" .. escaped .. "%f[^%w:/@%-]"
 			if text:match(pattern) then
 				table.insert(matched, entry.basename)
 				seen[entry.basename] = true
@@ -484,8 +522,9 @@ return {
 		local prompt_dir = vim.fn.stdpath("config") .. "/prompts"
 		local prompts = load_prompts(prompt_dir)
 
-		-- Build keyword map from prompt file front-matter
-		keyword_map = load_keyword_map(prompt_dir)
+		-- Build keyword maps from prompt file front-matter
+		keyword_map = load_keyword_map(prompt_dir, "keywords")
+		buffer_keyword_map = load_keyword_map(prompt_dir, "buffer_keywords")
 
 		chat.setup({
 			allow_insecure = true,
@@ -689,7 +728,7 @@ return {
 			}),
 		})
 
-		-- Wrap chat.ask() to auto-inject system prompts based on keywords in the user prompt
+		-- Wrap chat.ask() to auto-inject system prompts based on keywords
 		local original_ask = chat.ask
 		chat.ask = function(prompt, config)
 			config = config or {}
@@ -699,20 +738,39 @@ return {
 				return original_ask(prompt, config)
 			end
 
-			local basenames = detect_keyword_prompts(prompt)
-			if #basenames > 0 then
-				local extra_prompts = {}
-				for _, basename in ipairs(basenames) do
-					local content = read_prompt_file(basename)
-					if content ~= "" then
-						table.insert(extra_prompts, content)
-					end
-				end
+			local seen = {}
+			local extra_prompts = {}
 
-				if #extra_prompts > 0 then
-					local current = config.system_prompt or ""
-					config.system_prompt = current .. "\n\n" .. table.concat(extra_prompts, "\n\n")
+			-- Detect from user prompt text
+			local prompt_basenames = detect_keyword_prompts(prompt)
+			for _, basename in ipairs(prompt_basenames) do
+				local content = read_prompt_file(basename)
+				if content ~= "" then
+					table.insert(extra_prompts, content)
 				end
+				seen[basename] = true
+			end
+
+			-- Detect from buffer content
+			local source = chat.get_source()
+			local bufnr = source and source.bufnr or nil
+			local buffer_basenames = detect_buffer_keyword_prompts(bufnr, seen)
+			for _, basename in ipairs(buffer_basenames) do
+				local content = read_prompt_file(basename)
+				if content ~= "" then
+					table.insert(extra_prompts, content)
+				end
+			end
+
+			if #extra_prompts > 0 then
+				-- Resolve the base system prompt: use whatever is already in config,
+				-- fall back to the global default (e.g. "COPILOT_INSTRUCTIONS").
+				-- If it's a named prompt reference, read its content so we can append to it.
+				local base = config.system_prompt or chat.config.system_prompt or ""
+				if chat.config.prompts[base] then
+					base = chat.config.prompts[base].system_prompt or base
+				end
+				config.system_prompt = base .. "\n\n" .. table.concat(extra_prompts, "\n\n")
 			end
 
 			return original_ask(prompt, config)

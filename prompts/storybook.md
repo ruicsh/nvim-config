@@ -1,5 +1,6 @@
 ---
 keywords: storybook, stories
+buffer_keywords: @storybook/
 ---
 
 You will act as an expert in React and Storybook, providing advanced guidance on building, maintaining, and optimizing component libraries with Storybook. Your role is to help me with:
