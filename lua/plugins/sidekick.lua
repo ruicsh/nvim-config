@@ -30,11 +30,10 @@ return {
 			},
 		},
 		nes = {
-			enabled = true,
+			enabled = false,
 		},
 	},
 	keys = function()
-		local sk = require("sidekick")
 		local cli = require("sidekick.cli")
 
 		local function toggle()
@@ -47,16 +46,9 @@ return {
 			end
 		end
 
-		local function next_or_apply()
-			if not sk.nes_jump_or_apply() then
-				return "<c-]>" -- fallback
-			end
-		end
-
 		return {
 			{ "<c-.>", send("{selection}"), mode = { "x" }, desc = "Send Visual Selection" },
 			{ "<c-.>", toggle, mode = { "n", "t", "i" }, desc = "Sidekick Toggle" },
-			{ "<c-]>", next_or_apply, expr = true, desc = "Sidekick Toggle" },
 			{ "<leader>cf", send("{file}"), desc = "Send File" },
 			{ "<leader>cp", cli.prompt, mode = { "n", "x" }, desc = "Sidekick Select Prompt" },
 			{ "<leader>ct", send("{this}"), mode = { "x", "n" }, desc = "Send This" },
