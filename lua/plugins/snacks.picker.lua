@@ -351,6 +351,15 @@ return {
 				registers = {
 					layout = "no_preview",
 				},
+				scratch = {
+					win = {
+						input = {
+							keys = {
+								["<c-n>"] = { "list_down", mode = { "n", "i" } },
+							},
+						},
+					},
+				},
 				undo = {
 					win = {
 						input = {

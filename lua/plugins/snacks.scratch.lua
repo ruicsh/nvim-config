@@ -13,17 +13,15 @@ return {
 		}
 	end)(),
 	opts = {
-		styles = {
-			scratch = {
-				border = { "", "", "", "", "", "", "", "│" },
-				col = math.floor(vim.o.columns * 0.5),
-				height = vim.o.lines - vim.o.cmdheight - 1,
-				row = 0,
-				width = math.floor(vim.o.columns * 0.5),
-			},
-		},
 		scratch = {
-			enabled = true,
+			ft = "markdown",
+			win = {
+				footer_keys = false,
+				noautocmd = true,
+				wo = {
+					wrap = true,
+				},
+			},
 		},
 	},
 }
