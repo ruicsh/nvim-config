@@ -11,6 +11,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 
-		require("tailwindcss-colors").buf_attach(client, bufnr)
+		require("tailwindcss-colors").buf_attach(bufnr)
 	end,
 })
