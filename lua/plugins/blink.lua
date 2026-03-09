@@ -20,7 +20,6 @@ local DISABLED_FILETYPES = {
 }
 
 local DISABLED_BUFTYPES = {
-	"nofile",
 	"nowrite",
 	"prompt",
 }
@@ -121,7 +120,18 @@ return {
 			},
 		},
 		sources = {
-			default = { "buffer", "lsp" },
+			default = function()
+				if vim.bo.filetype == "briefing" then
+					return { "briefing" }
+				end
+				return { "buffer", "lsp" }
+			end,
+			providers = {
+				briefing = {
+					module = "briefing.integrations.blink",
+					name = "Briefing",
+				},
+			},
 		},
 	},
 
