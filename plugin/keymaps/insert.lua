@@ -27,6 +27,16 @@ k("<c-s>", "<cmd>silent! update | redraw<cr><esc>", { desc = "Save", unique = fa
 --
 -- }}}
 
+-- Navigation {{{
+--
+
+-- Use visual lines for up/down arrows
+k("<up>", "<c-o>gk")
+k("<down>", "<c-o>gj")
+
+--
+-- }}}
+
 -- Miscellaneous {{{
 --
 
