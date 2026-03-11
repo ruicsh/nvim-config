@@ -92,8 +92,8 @@ return {
 			end, { desc = "Git: stage hunk" })
 
 			-- Reset
-			k("n", "<leader>hr", gs.reset_hunk, { desc = "Git: reset hunk" })
-			k("n", "<leader>hR", gs.reset_buffer, { desc = "Git: reset buffer" })
+			k("n", "<leader>hr", gs.reset_hunk, { desc = "Git: discard hunk" })
+			k("n", "<leader>hR", gs.reset_buffer, { desc = "Git: discard buffer" })
 			k("v", "<leader>hr", function()
 				gs.reset_hunk({ vim.fn.line("'."), vim.fn.line("v") })
 			end, { desc = "Git: reset hunk" })
