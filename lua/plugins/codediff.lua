@@ -26,15 +26,18 @@ return {
 		}
 	end,
 	opts = {
+		diff = {
+			layout = "inline",
+		},
 		explorer = {
+			focus_on_select = true,
 			view_mode = "tree",
-			width = 50,
+			width = 60,
 		},
 		keymaps = {
 			view = {
 				next_file = "<c-n>",
 				prev_file = "<c-p>",
-				toggle_explorer = "<c-b>",
 			},
 			conflict = {
 				accept_current = "co",
