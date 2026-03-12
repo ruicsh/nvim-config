@@ -40,7 +40,7 @@ return {
 		end
 
 		return {
-			{ "-", "<cmd>Oil<cr>", desc = "Oil: Open parent" },
+			{ "-", "<cmd>Oil<cr>", desc = "Oil: Open dir" },
 			{ "_", open_cwd, desc = "Oil: Open cwd" },
 		}
 	end,
