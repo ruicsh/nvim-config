@@ -13,15 +13,6 @@ k("n", "<leader>hp", "<cmd>Git push<cr>", { desc = "push" })
 k("n", "<leader>hP", "<cmd>Git push --force-with-lease<cr>", { desc = "push --force-with-lease" })
 k("n", "<leader>hu", "<cmd>Git push -u origin HEAD<cr>", { desc = "push -u origin HEAD" })
 
--- Diff for commit under cursor
-k("n", "<leader>hd", function()
-	local line = vim.api.nvim_get_current_line()
-	local sha = line:match("^%s*([0-9a-fA-F]+)")
-	if sha then
-		vim.cmd("CodeDiff " .. sha .. "~1")
-	end
-end, { desc = "Diff" })
-
 k("n", "<tab>", "=", { desc = "Toggle section", remap = true })
 k("n", "q", function()
 	require("snacks.bufdelete").delete()
