@@ -30,3 +30,6 @@ k("n", "<cr>", function()
 	vim.cmd("only")
 	vim.cmd("normal gO") -- `:h fugitive_gO`
 end, { desc = "Open file under cursor" })
+
+k("n", "<c-n>", "]/", { desc = "Next file/section", remap = true })
+k("n", "<c-p>", "[/", { desc = "Previous file/section", remap = true })
