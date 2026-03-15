@@ -4,7 +4,7 @@
 return {
 	"ruicsh/briefing.nvim",
 	keys = {
-		{ "<leader>ab", "<cmd>Briefing<cr>", mode = { "n", "v" }, desc = "Briefing: Toggle" },
+		{ "<c-y>", "<cmd>Briefing<cr>", mode = { "n", "v" }, desc = "Briefing: Toggle" },
 	},
 	opts = {
 		debug = false,
