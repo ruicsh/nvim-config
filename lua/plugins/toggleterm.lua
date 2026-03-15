@@ -19,7 +19,7 @@ return {
 				vim.keymap.set("t", lhs, rhs, opts)
 			end
 
-			k("<c-]>", [[<c-\><c-n>]], { desc = "Exit terminal mode" })
+			k("<c-[>", [[<c-\><c-n>]], { desc = "Exit terminal mode" })
 		end,
 		open_mapping = "<c-bslash>",
 		persist_mode = false,
