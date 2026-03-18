@@ -2,7 +2,7 @@
 -- https://github.com/esmuellert/codediff.nvim
 
 return {
-	"esmuellert/codediff.nvim",
+	"ruicsh/codediff.nvim",
 	keys = function()
 		local function diff_back()
 			if vim.v.count > 0 then
@@ -48,8 +48,12 @@ return {
 				discard = "cx",
 			},
 		},
+		highlights = {
+			char_brightness = 1,
+		},
 	},
 
 	cmd = "CodeDiff",
+	branch = "feat/explorer-scroll-diff-buffers",
 	dependencies = { "MunifTanjim/nui.nvim" },
 }

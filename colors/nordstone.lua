@@ -311,10 +311,16 @@ loadColorSet({
 
 -- LSP
 loadColorSet({
+	DiagnosticOk = { fg = c.nord14 },
 	DiagnosticError = { fg = c.nord11 },
 	DiagnosticHint = { fg = c.nord9 },
 	DiagnosticInfo = { fg = c.nord10 },
 	DiagnosticWarn = { fg = c.nord13 },
+	DiagnosticSignOk = { link = "DiagnosticOk" },
+	DiagnosticSignError = { link = "DiagnosticError" },
+	DiagnosticSignHint = { link = "DiagnosticHint" },
+	DiagnosticSignInfo = { link = "DiagnosticInfo" },
+	DiagnosticSignWarn = { link = "DiagnosticWarn" },
 	DiagnosticUnderlineError = { sp = c.nord12, style = "underline" },
 	DiagnosticUnderlineHint = {},
 	DiagnosticUnderlineInfo = {},
