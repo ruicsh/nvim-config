@@ -15,7 +15,7 @@ return {
 			vim.opt_local.signcolumn = "yes" -- Show left padding on the window
 
 			local k = function(lhs, rhs, options)
-				local opts = vim.tbl_extend("force", { buffer = term.buffer }, options or {})
+				local opts = vim.tbl_extend("force", { buffer = term.bufnr }, options or {})
 				vim.keymap.set("t", lhs, rhs, opts)
 			end
 
