@@ -48,7 +48,13 @@ return {
 			custom = function(cmd)
 				T.ui.open_side_panel()
 
-				vim.fn.termopen(cmd) -- Create a terminal buffer and run the command
+				-- Bypass &shell (e.g. nushell) by using the platform's standard shell directly
+				if vim.fn.has("win32") == 1 then
+					vim.fn.termopen({ "cmd.exe", "/c", cmd })
+				else
+					vim.fn.termopen({ "/bin/sh", "-c", cmd })
+				end
+
 				vim.cmd("stopinsert") -- Make sure we are not in insert mode
 				vim.cmd("normal G") -- Go to the bottom of the terminal output
 				vim.cmd("wincmd p") -- Go back to the previous window
