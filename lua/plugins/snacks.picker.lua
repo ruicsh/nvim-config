@@ -360,6 +360,9 @@ return {
 						},
 					},
 				},
+				smart = {
+					hidden = true,
+				},
 				undo = {
 					win = {
 						input = {
