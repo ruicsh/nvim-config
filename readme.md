@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>66 plugins</sub>
+<sub>64 plugins</sub>
 
 ### Code
 
@@ -39,7 +39,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [tailwincss-shades](https://github.com/ruicsh/tailwindcss-shades.nvim) - Generate Tailwind colors
 - [tailwind-hover](https://github.com/ruicsh/tailwind-hover.nvim) - Tailwind CSS hover
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
-- [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
 - [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware actions
 
 ### AI
@@ -105,7 +104,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Code context
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
-- [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Rust LSP
 - [vim-test](https://github.com/vim-test/vim-test) - Test runner
 - [wakatime](https://github.com/wakatime/vim-wakatime) - Time tracking
 
