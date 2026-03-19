@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>65 plugins</sub>
+<sub>66 plugins</sub>
 
 ### Code
 
@@ -32,11 +32,8 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [autotag](https://github.com/windwp/nvim-ts-autotag) - Auto close/rename tags
 - [blink.cmp](https://github.com/saghen/blink.cmp) - Autocomplete
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
-- [copilot-chat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
-- [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
-- [sidekick.lua](https://github.com/folke/sidekick.nvim) - AI agent
 - [tailwincss-colors](https://github.com/themaxmarchuk/tailwindcss-colors.nvim) - Highlight Tailwind colors
 - [tailwincss-dial](https://github.com/ruicsh/tailwindcss-dial.nvim) - Toggle TailwindCSS classes
 - [tailwincss-shades](https://github.com/ruicsh/tailwindcss-shades.nvim) - Generate Tailwind colors
@@ -44,6 +41,13 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
 - [treesj](https://github.com/Wansmer/treesj) - Splitting/joining blocks of code
 - [treewalker](https://github.com/aaronik/treewalker.nvim) - AST aware actions
+
+### AI
+
+- [briefing](https://github.com/ruicsh/briefing.nvim) - Prompt editor
+- [copilot-chat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
+- [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
+- [sidekick.lua](https://github.com/folke/sidekick.nvim) - AI agent
 
 ### Editor
 
@@ -70,7 +74,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - [mini.notify](https://github.com/nvim-mini/mini.notify) - Notifications
 - [scope](https://github.com/tiagovla/scope.nvim) - Tab scoping
 - [smart-splits](https://github.com/mrjones2014/smart-splits.nvim) - Windows resize
-- [toggleterm](https://github.com/akinsho/toggleterm.nvim) - Terminal window
+- [termite](https://github.com/ruicsh/termite.nvim) - Terminal windows manager
 - [window-picker](https://github.com/s1n7ax/nvim-window-picker) - Window picker
 - [winshift](https://github.com/sindrets/winshift.nvim) - Rearrange windows
 
