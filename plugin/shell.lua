@@ -32,6 +32,15 @@ elseif env_shell == "git-bash" then -- Git Bash
 		shellquote = "",
 		shellxquote = "",
 	}
+elseif env_shell == "nu" then -- Nushell
+	options = {
+		shell = "nu",
+		shellcmdflag = "--stdin --no-newline -c",
+		shellredir = "| save --raw --force %s",
+		shellpipe = "| complete | update stderr { ansi strip } | update stdout { ansi strip } | get stdout | save --raw --force %s",
+		shellquote = "",
+		shellxquote = "",
+	}
 end
 
 for option, value in pairs(options) do
