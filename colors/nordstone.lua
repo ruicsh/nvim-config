@@ -488,6 +488,7 @@ loadColorSet({
 loadColorSet({
 	TermiteBorder = { fg = c.nord9, bg = "NONE" },
 	TermiteBorderNC = { fg = c.nord1, bg = "NONE" },
+	TermiteWinbar = { fg = c.nord3_500, bg = "NONE" },
 })
 
 -- treesitter-context
