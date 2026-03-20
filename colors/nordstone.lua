@@ -484,6 +484,12 @@ loadColorSet({
 	SnacksPickerMatch = { fg = c.nord4, bg = c.nord3 },
 })
 
+-- termite.nvim
+loadColorSet({
+	TermiteBorder = { fg = c.nord9, bg = "NONE" },
+	TermiteBorderNC = { fg = c.nord1, bg = "NONE" },
+})
+
 -- treesitter-context
 loadColorSet({
 	TreesitterContextSeparator = { fg = c.neutral_800 },
