@@ -8,5 +8,6 @@ return {
 			next = "<c-j>",
 			prev = "<c-k>",
 		},
+		winbar = false,
 	},
 }
