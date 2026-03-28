@@ -42,7 +42,7 @@ M.load = function()
 		-- Deduplicate directories to avoid loading the same .nvim.env twice
 		-- (e.g., when cwd is already the git root)
 		local seen = {}
-		for _, dir in ipairs({
+		for _, dir in pairs({
 			vim.fn.stdpath("config"), -- Neovim configuration directory
 			vim.fs.root(vim.fn.getcwd(), ".git"), -- Git root directory
 			vim.fn.getcwd(), -- Current working directory

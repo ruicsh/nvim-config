@@ -1,4 +1,4 @@
---  Stacking float terminal manager.
+-- Stacking float terminal manager.
 -- https://github.com/ruicsh/termite.nvim
 
 return {
