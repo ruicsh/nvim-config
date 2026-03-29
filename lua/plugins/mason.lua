@@ -20,11 +20,11 @@ local PACKAGES = {
 	"ts_ls",
 	"yamlls",
 	-- Format
-	"black",
-	"flake8",
+	"ruff",
 	"prettierd",
 	"stylua",
 	-- Lint
+	"flake8",
 	"pylint",
 }
 
