@@ -331,8 +331,8 @@ loadColorSet({
 	DiagnosticFloatingInfo = { link = "DiagnosticInfo" },
 	DiagnosticFloatingWarn = { link = "DiagnosticWarn" },
 	LspInlayHint = { fg = c.nord3_500 },
-	LspReferenceRead = { bg = c.nord1 },
-	LspReferenceText = { link = "LspReferenceRead" },
+	LspReferenceRead = { link = "LspReferenceText" },
+	LspReferenceText = { bg = c.nord3 },
 	LspReferenceWrite = { link = "LspReferenceRead" },
 	LspSignatureActiveParameter = { fg = c.nord4, bg = c.nord1 },
 })

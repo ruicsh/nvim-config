@@ -19,6 +19,10 @@ return {
 					return { from = from, to = to }
 				end,
 				a = ai.gen_spec.treesitter({ a = "@parameter.outer", i = "@parameter.inner" }),
+				b = ai.gen_spec.treesitter({
+					a = { "@conditional.outer", "@loop.outer" },
+					i = { "@conditional.inner", "@loop.inner" },
+				}),
 				c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
 				f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
 				s = { -- Single words in different cases (camelCase, snake_case, etc.)
