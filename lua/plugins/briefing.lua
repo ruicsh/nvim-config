@@ -12,9 +12,7 @@ return {
 			close = { "<c-d>", "close", mode = "ni", desc = "Briefing: Close" },
 		},
 		window = {
-			wo = {
-				relativenumber = true,
-			},
+			title = "",
 		},
 		adapter = {
 			name = "sidekick",
