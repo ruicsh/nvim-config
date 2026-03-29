@@ -128,7 +128,6 @@ Custom configuration, keymaps, and features dependent on the file's type.
 |                                                                                               |            |
 | --------------------------------------------------------------------------------------------- | ---------- |
 | [dockerfile](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/dockerfile.lua) | Dockerfile |
-| [python](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/python.lua)         | Python     |
 
 ### Autocmds
 
@@ -149,7 +148,6 @@ Random features added.
 |                                                                                                                        |                                        |
 | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua)               | Duplicate and comment                  |
-| [indent-ast-nodes](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/indent-ast-nodes.lua)                 | AST aware indentation                  |
 | [lsp-keymaps](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-keymaps.lua)                           | Keymaps (LSP)                          |
 | [lsp-highlight-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-highlight-references.lua) | Highlight references (LSP)             |
 | [lsp-jump-to-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-jump-to-references.lua)     | Jump to references (LSP)               |
