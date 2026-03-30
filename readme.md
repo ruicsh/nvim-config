@@ -151,6 +151,7 @@ Random features added.
 | [lsp-keymaps](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-keymaps.lua)                           | Keymaps (LSP)                          |
 | [lsp-highlight-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-highlight-references.lua) | Highlight references (LSP)             |
 | [lsp-jump-to-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-jump-to-references.lua)     | Jump to references (LSP)               |
+| [lsp-python-set-venv](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-python-set-venv.)              | Set venv for python files (LSP)        |
 | [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)                         | Display :messages on a separate window |
 
 ## Keymaps
