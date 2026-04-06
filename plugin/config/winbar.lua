@@ -63,6 +63,22 @@ local function c_filename(props)
 	return table.concat(parts)
 end
 
+local function has_right_side_panel()
+	local half = math.floor(vim.o.columns * 0.5)
+	for _, w in ipairs(vim.api.nvim_list_wins()) do
+		local cfg = vim.api.nvim_win_get_config(w)
+		if cfg.relative == "editor" and cfg.width >= half and cfg.col >= half then
+			return true
+		end
+	end
+	return false
+end
+
+local function visual_width(str)
+	local plain = str:gsub("%%#[^#]*#", "")
+	return vim.fn.strdisplaywidth(plain)
+end
+
 function _G.winbar()
 	local winid = vim.g.statusline_winid or vim.api.nvim_get_current_win()
 	local bufnr = vim.api.nvim_win_get_buf(winid)
@@ -74,10 +90,25 @@ function _G.winbar()
 		modified = modified,
 	}
 
-	return table.concat({
-		"%=",
-		c_lsp_diagnostics(props),
-		c_filename(props),
-		" ",
-	})
+	local diagnostics = c_lsp_diagnostics(props)
+	local filename = c_filename(props)
+
+	local content = diagnostics .. filename .. " "
+	local win_width = vim.api.nvim_win_get_width(winid)
+	local half_screen = math.floor(vim.o.columns / 2)
+	local needs_adjust = has_right_side_panel() and win_width > half_screen
+
+	local width = visual_width(content)
+	local target_col = needs_adjust and half_screen or win_width
+	local padding = math.max(0, target_col - width)
+	return string.rep(" ", padding) .. content
 end
+
+vim.api.nvim_create_autocmd({ "WinClosed", "WinNew" }, {
+	group = vim.api.nvim_create_augroup("ruicsh/config/winbar", { clear = true }),
+	callback = function()
+		vim.schedule(function()
+			vim.cmd("redrawstatus!")
+		end)
+	end,
+})
