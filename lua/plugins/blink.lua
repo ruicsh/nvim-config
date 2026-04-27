@@ -5,7 +5,6 @@ local T = require("lib")
 
 local DISABLED_FILETYPES = {
 	"checkhealth",
-	"copilot-chat",
 	"fugitive",
 	"git",
 	"gitcommit",

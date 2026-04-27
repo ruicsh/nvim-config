@@ -391,13 +391,6 @@ loadColorSet({
 	BlinkCmpSignatureHelpBorder = { link = "FloatBorder" },
 })
 
--- CopilotChat.nvim
-loadColorSet({
-	CopilotChatHeader = { fg = c.nord14 },
-	CopilotChatSelection = { bg = c.nord0 },
-	CopilotChatSeparator = { fg = c.neutral_700 },
-})
-
 -- flash.nvim
 loadColorSet({
 	FlashLabel = { fg = c.nord0, bg = c.nord13 },

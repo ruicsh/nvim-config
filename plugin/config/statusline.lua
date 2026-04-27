@@ -134,7 +134,7 @@ local function c_filename()
 		line = line .. "GIT DIFF"
 	elseif ft == "gitrebase" then
 		line = line .. "GIT REBASE"
-	elseif ft == "" or ft == "copilot-chat" or ft == "messages" then
+	elseif ft == "" or ft == "messages" then
 		return ""
 	else
 		local path = vim.fn.expand("%:p:~")
@@ -247,23 +247,6 @@ local function c_tabs()
 	return table.concat(tabs, "")
 end
 
--- Show AI Assistant model
-local function c_copilot_chat()
-	local ft = vim.bo.filetype
-	if ft ~= "copilot-chat" then
-		return ""
-	end
-
-	local ok, chat = pcall(require, "CopilotChat")
-	if not ok then
-		return ""
-	end
-	local model = chat.config.model
-
-	local status = { sep(), "Copilot", sep(), model }
-	return table.concat(status, " ")
-end
-
 -- Construct the statusline (default)
 function _G.statusline()
 	local hl = "%#StatusLine#"
@@ -274,7 +257,6 @@ function _G.statusline()
 		c_project(),
 		c_filename(),
 		c_bookmark(),
-		c_copilot_chat(),
 		"%=",
 		"%=",
 		c_lsp_diagnostics(),

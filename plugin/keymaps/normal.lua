@@ -135,7 +135,6 @@ k("<c-q>", "<cmd>qa!<cr>", { desc = "Quit all" }) -- Quit all windows and exit V
 k("<leader>q", function()
 	T.ui.close_side_panels()
 	vim.cmd("VimMessagesClose")
-	vim.cmd("CopilotChatClose")
 end, { desc = "Close side panels" }) -- Close all side panels
 
 -- Same as `:h ctrl-w_T` but without closing the current window

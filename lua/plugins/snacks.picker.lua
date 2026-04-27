@@ -255,26 +255,6 @@ return {
 							local base = T.git.default_branch()
 							vim.cmd("CodeDiff " .. base .. " " .. item.branch)
 						end,
-						ai_review = function(picker, item)
-							picker:close()
-
-							-- Get the git diff for the branch
-							local base = T.git.default_branch()
-							local ref = string.format("%s...%s", base, item.branch)
-							local diff = T.git.diff(ref)
-							if diff == "" then
-								vim.notify("No changes found in branch " .. item.branch)
-								return
-							end
-
-							-- Use Copilot Chat to ask for a review of the changes
-							local chat = require("CopilotChat")
-							local prompt = table.concat({ "> /review", " ", "```diff", diff, "```" }, "\n")
-							chat.ask(prompt, {
-								model = T.env.get("COPILOT_MODEL_REASON"),
-								system_prompt = "/COPILOT_INSTRUCTIONS",
-							})
-						end,
 						toggle_filter = function(picker)
 							picker.opts.all = not picker.opts.all
 							picker:refresh()
@@ -291,7 +271,6 @@ return {
 							keys = {
 								["<cr>"] = { "diff", mode = { "n", "i" } },
 								["<c-a>"] = { "toggle_filter", mode = { "n", "i" } },
-								["<c-s>"] = { "ai_review", mode = { "n", "i" } },
 							},
 						},
 					},

@@ -65,7 +65,7 @@ return {
 			markdown_link = {
 				-- Markdown links: [text](url)
 				name = "markdown_link",
-				filetype = { "markdown", "copilot-chat" },
+				filetype = { "markdown" },
 				handle = function(mode, line, _)
 					local pattern = "%[[%a%d%s.,?!:;@_{}~]*%]%((https?://[a-zA-Z0-9_/%-%.~@\\+#=?&]+)%)"
 					return require("gx.helper").find(line, mode, pattern)
@@ -74,7 +74,7 @@ return {
 			markdown_ref = {
 				-- Markdown references: [text][path]
 				name = "markdown_ref",
-				filetype = { "markdown", "copilot-chat" },
+				filetype = { "markdown" },
 				handle = function(_, line, _)
 					local text, path = line:match("%[([^%]]+)%]%[([^%]]+)%]")
 					if text and path then
@@ -124,13 +124,13 @@ return {
 					local tag = line:match("|([%w_%-%.%:']+)|")
 					if tag then
 						T.ui.open_side_panel({
-				cmd = "help " .. tag,
-					mode = "replace",
-				})
-				return true
-			end
+							cmd = "help " .. tag,
+							mode = "replace",
+						})
+						return true
+					end
 
-			return false
+					return false
 				end,
 			},
 		},

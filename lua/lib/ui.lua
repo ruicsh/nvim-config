@@ -1,7 +1,7 @@
 local M = {}
 
 -- Base window config for side panels (right-aligned, half-width float).
--- Used by lib/ui, copilot-chat, and toggleterm.
+-- Used by lib/ui, sidekick.
 M.side_panel_win_config = function()
 	return {
 		anchor = "NE",

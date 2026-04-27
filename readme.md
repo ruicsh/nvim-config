@@ -44,7 +44,6 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 ### AI
 
 - [briefing](https://github.com/ruicsh/briefing.nvim) - Prompt editor
-- [copilot-chat](https://github.com/CopilotC-Nvim/CopilotChat.nvim) - AI chat
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - AI suggestions
 - [sidekick.lua](https://github.com/folke/sidekick.nvim) - AI agent
 
