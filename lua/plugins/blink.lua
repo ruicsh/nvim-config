@@ -92,6 +92,9 @@ return {
 			},
 		},
 		enabled = function()
+			if vim.bo.filetype == "codecompanion" or vim.bo.filetype == "codecompanion_input" then
+				return true
+			end
 			return not (
 				vim.tbl_contains(DISABLED_BUFTYPES, vim.bo.buftype)
 				or vim.tbl_contains(DISABLED_FILETYPES, vim.bo.filetype)
@@ -121,6 +124,9 @@ return {
 		},
 		sources = {
 			default = { "buffer", "lsp" },
+			per_filetype = {
+				codecompanion = { "codecompanion" },
+			},
 		},
 	},
 

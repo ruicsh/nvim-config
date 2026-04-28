@@ -24,7 +24,7 @@ return {
 			enabled = false,
 		},
 		suggestion = {
-			enabled = not T.env.get_bool("COPILOT_DISABLE_SUGGESTIONS"),
+			enabled = not T.env.get_bool("AI_DISABLE_SUGGESTIONS"),
 			auto_trigger = true,
 			keymap = {
 				accept = "<c-]>",

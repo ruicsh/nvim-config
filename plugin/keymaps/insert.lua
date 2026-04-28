@@ -24,6 +24,9 @@ end
 
 -- Always exit insert mode when saving.
 k("<c-s>", "<cmd>silent! update | redraw<cr><esc>", { desc = "Save", unique = false })
+
+-- Undo
+k("<c-z>", "<cmd>undo<cr>", { desc = "Undo" })
 --
 -- }}}
 
