@@ -5,6 +5,7 @@ local T = require("lib")
 
 return {
 	"zbirenbaum/copilot.lua",
+	enabled = T.env.get("AI_SUGGESTIONS_ENGINE") == "copilot",
 	opts = {
 		filetypes = {
 			["."] = false,
@@ -24,15 +25,15 @@ return {
 			enabled = false,
 		},
 		suggestion = {
-			enabled = not T.env.get_bool("AI_DISABLE_SUGGESTIONS"),
+			enabled = T.env.get_bool("AI_SUGGESTIONS_ENABLED"),
 			auto_trigger = true,
 			keymap = {
 				accept = "<c-]>",
-				accept_word = "<a-]>",
-				accept_line = "<a-[>",
+				accept_word = "<a-w>",
+				accept_line = "<a-e>",
 				next = "<a-n>",
 				prev = "<a-p>",
-				dismiss = "<a-e>",
+				dismiss = "<c-d>",
 			},
 		},
 	},

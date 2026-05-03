@@ -4,7 +4,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - **Editor** - enhanced vim motions, extended text objects, folding
 - **Code** - formatter, comments, code completion, AI powered suggestions
-- **AI Assistant** - suggestions, chat, system prompts, operations, chat history
+- **AI Assistant** - suggestions, chat, agentic
 - **LSP** - Language Server Protocol client, symbols navigation, diagnostics
 - **Syntax** - highlighting, syntax aware motions, text objects
 - **Git integration** - status, diff, conflicts, commit message editor, buffer integration
@@ -24,7 +24,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ## Plugins
 
-<sub>64 plugins</sub>
+<sub>65 plugins</sub>
 
 ### Code
 
@@ -45,7 +45,8 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - [briefing](https://github.com/ruicsh/briefing.nvim) - Prompt editor
 - [codecompanion](https://codecompanion.olimorris.dev) - Chat/inline
-- [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - Suggestions
+- [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - Suggestions (copilot)
+- [neocodeium](https://github.com/monkoose/neocodeium) - Suggestions (windsurf)
 - [sidekick.lua](https://github.com/folke/sidekick.nvim) - Agentic
 
 ### Editor
@@ -329,9 +330,9 @@ Random features added.
 ### AI suggestions
 
 - `<c-]>` accept
-- `<a-e>` dismiss
-- `<a-]>` accept word
-- `<a-[>` accept line
+- `<c-d>` dismiss
+- `<a-w>` accept word
+- `<a-e>` accept line
 - `<a-n>` show next
 - `<a-p>` show previous
 
