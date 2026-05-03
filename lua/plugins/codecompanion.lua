@@ -3,6 +3,9 @@
 
 local T = require("lib")
 
+local key_send = "<c-s>"
+local key_cancel = "<c-d>"
+
 -- Track inline request window for cleanup
 local inline_request_win = nil
 
@@ -36,6 +39,21 @@ local function inline_prompt()
 	local win = vim.api.nvim_open_win(buf, true, opts)
 	inline_request_win = win
 
+	local function focus_orig_win()
+		if vim.api.nvim_win_is_valid(orig_win) then
+			vim.api.nvim_set_current_win(orig_win)
+			vim.cmd("stopinsert")
+		end
+	end
+
+	local function close_float_and_return()
+		focus_orig_win()
+		if vim.api.nvim_win_is_valid(win) then
+			vim.api.nvim_win_close(win, true)
+		end
+		inline_request_win = nil
+	end
+
 	-- Submit function: start request and show spinner in float
 	local function submit()
 		local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
@@ -50,16 +68,11 @@ local function inline_prompt()
 		vim.bo[buf].modifiable = false
 
 		-- Remove keymaps
-		vim.keymap.del({ "i", "n" }, "<C-s>", { buffer = buf })
-		vim.keymap.del({ "i", "n" }, "<Esc>", { buffer = buf })
+		vim.keymap.del({ "i", "n" }, key_send, { buffer = buf })
+		vim.keymap.del({ "i", "n" }, key_cancel, { buffer = buf })
 
 		-- Add cancel keymap that just closes the window
-		vim.keymap.set({ "i", "n" }, "<Esc>", function()
-			if vim.api.nvim_win_is_valid(win) then
-				vim.api.nvim_win_close(win, true)
-			end
-			inline_request_win = nil
-		end, { buffer = buf, silent = true })
+		vim.keymap.set({ "i", "n" }, key_cancel, close_float_and_return, { buffer = buf, silent = true })
 
 		-- Create spinner for this float
 		local request_spinner = T.spinner.create({
@@ -81,12 +94,7 @@ local function inline_prompt()
 		-- Start the spinner
 		request_spinner.start()
 
-		-- Switch back to original window so CodeCompanion edits the right buffer
-		if vim.api.nvim_win_is_valid(orig_win) then
-			vim.api.nvim_set_current_win(orig_win)
-			-- Ensure we're in normal mode, not insert mode
-			vim.cmd("stopinsert")
-		end
+		focus_orig_win()
 
 		-- Run the CodeCompanion command
 		vim.cmd(string.format("%sCodeCompanion %s", range, prompt))
@@ -105,16 +113,11 @@ local function inline_prompt()
 	end
 
 	-- Cancel function: just close the window
-	local function cancel()
-		if vim.api.nvim_win_is_valid(win) then
-			vim.api.nvim_win_close(win, true)
-		end
-		inline_request_win = nil
-	end
+	local cancel = close_float_and_return
 
 	-- Keymaps
-	vim.keymap.set({ "i", "n" }, "<C-s>", submit, { buffer = buf, silent = true })
-	vim.keymap.set({ "i", "n" }, "<Esc>", cancel, { buffer = buf, silent = true })
+	vim.keymap.set({ "i", "n" }, key_send, submit, { buffer = buf, silent = true })
+	vim.keymap.set({ "i", "n" }, key_cancel, cancel, { buffer = buf, silent = true })
 
 	-- Start in insert mode
 	vim.cmd("startinsert")
@@ -201,7 +204,7 @@ return {
 				adapter = "opencode",
 				keymaps = {
 					close = {
-						modes = { n = "<c-d>", i = "<c-d>" },
+						modes = { n = key_cancel, i = key_cancel },
 						opts = {},
 					},
 					next_chat = false,
