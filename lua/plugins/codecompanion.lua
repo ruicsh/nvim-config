@@ -6,9 +6,6 @@ local T = require("lib")
 local key_send = "<c-s>"
 local key_cancel = "<c-d>"
 
--- Track inline request window for cleanup
-local inline_request_win = nil
-
 -- Opens a floating input for inline CodeCompanion prompts
 local function inline_prompt()
 	-- Capture visual range and original buffer/window before we lose selection
@@ -37,7 +34,6 @@ local function inline_prompt()
 		title_pos = "center",
 	}
 	local win = vim.api.nvim_open_win(buf, true, opts)
-	inline_request_win = win
 
 	local function focus_orig_win()
 		if vim.api.nvim_win_is_valid(orig_win) then
@@ -51,7 +47,6 @@ local function inline_prompt()
 		if vim.api.nvim_win_is_valid(win) then
 			vim.api.nvim_win_close(win, true)
 		end
-		inline_request_win = nil
 	end
 
 	-- Submit function: start request and show spinner in float
@@ -88,7 +83,6 @@ local function inline_prompt()
 			if vim.api.nvim_win_is_valid(win) then
 				vim.api.nvim_win_close(win, true)
 			end
-			inline_request_win = nil
 		end
 
 		-- Start the spinner
