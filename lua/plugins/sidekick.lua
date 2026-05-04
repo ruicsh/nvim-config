@@ -47,8 +47,8 @@ return {
 		end
 
 		return {
-			{ "<s-tab>", send("{selection}"), mode = { "x" }, desc = "Send Visual Selection" },
-			{ "<s-tab>", toggle, mode = { "n", "t" }, desc = "Sidekick Toggle" },
+			{ "<c-bslash>", send("{selection}"), mode = { "x" }, desc = "Send Visual Selection" },
+			{ "<c-bslash>", toggle, mode = { "n", "t" }, desc = "Sidekick Toggle" },
 			{ "<leader>cf", send("{file}"), desc = "Send File" },
 			{ "<leader>cp", cli.prompt, mode = { "n", "x" }, desc = "Sidekick Select Prompt" },
 			{ "<leader>ct", send("{this}"), mode = { "x", "n" }, desc = "Send This" },

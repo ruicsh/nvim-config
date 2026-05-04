@@ -338,27 +338,11 @@ Random features added.
 
 ### AI chat
 
-- `<leader>ac` commit message (ft:gitcommit)
-- `<leader>ae` explain
-- `<leader>af` fix
-- `<leader>ai` implement
-- `<leader>ao` optimize
-- `<leader>ap` pull request review
-- `<leader>aq` architect
-- `<leader>ar` review
-- `<leader>at` tests
-- `<leader>aw` refactor
+- `<leader>aa` toggle/new
 
 ### AI agent
 
-- `<a-a>a` new session
-- `<a-a>\` toggle
-- `<a-a>A` ask about buffer
-- `<a-a>a` ask about selection
-- `<a-a>p` select prompt
-- `<a-a>c` copy message
-- `<c-U>` scroll up
-- `<c-D>` scroll down
+- `<c-bslash>` toggle/new
 
 ### Logging
 
