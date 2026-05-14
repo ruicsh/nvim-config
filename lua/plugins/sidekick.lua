@@ -35,14 +35,15 @@ return {
 	},
 	keys = function()
 		local cli = require("sidekick.cli")
+		local tool = T.env.get("AI_CODING_AGENT_TOOL")
 
 		local function toggle()
-			cli.toggle({ name = "opencode", focus = true })
+			cli.toggle({ name = tool, focus = true })
 		end
 
 		local function send(msg)
 			return function()
-				cli.send({ name = "opencode", msg = msg })
+				cli.send({ name = tool, msg = msg })
 			end
 		end
 

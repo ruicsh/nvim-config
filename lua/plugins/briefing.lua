@@ -1,6 +1,8 @@
 -- Agent prompt editor
 -- https://github.com/ruicsh/briefing.nvim
 
+local T = require("lib")
+
 return {
 	"ruicsh/briefing.nvim",
 	keys = {
@@ -17,7 +19,7 @@ return {
 		adapter = {
 			name = "sidekick",
 			sidekick = {
-				tool = "opencode",
+				tool = T.env.get("AI_CODING_AGENT_TOOL"),
 			},
 		},
 	},
