@@ -199,16 +199,17 @@ end
 
 -- Show git status
 local function c_git_status()
-	if not vim.b.gitsigns_status or vim.b.gitsigns_status == "" then
+	local status = T.fn.get_buf_var("gitsigns_status")
+	if not status or status == "" then
 		return ""
 	end
 
-	return "%#StatusLineGitStatus#" .. " " .. vim.b.gitsigns_status .. " " .. sep()
+	return "%#StatusLineGitStatus#" .. " " .. status .. " " .. sep()
 end
 
 -- Show the current git branch
 local function c_git_branch()
-	local head = vim.b.gitsigns_head
+	local head = T.fn.get_buf_var("gitsigns_head")
 	if not head or head == "" then
 		return ""
 	end

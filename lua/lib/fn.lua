@@ -109,4 +109,18 @@ M.diagnostic_counts = function(bufnr)
 	return results
 end
 
+--- Get a buffer-local variable, falling back to the alternate buffer if not found in the current one.
+---@param name string
+---@return any
+M.get_buf_var = function(name)
+	local val = vim.b[name]
+	if val == nil or val == "" then
+		local alt_buf = vim.fn.bufnr("#")
+		if alt_buf > 0 and vim.api.nvim_buf_is_valid(alt_buf) then
+			val = vim.b[alt_buf][name]
+		end
+	end
+	return val
+end
+
 return M
