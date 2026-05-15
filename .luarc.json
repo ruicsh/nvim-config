@@ -6,6 +6,7 @@
   "workspace.checkThirdParty": false,
   "diagnostics.globals": [
     "vim",
-    "Snacks"
+    "Snacks",
+    "vim.g.*"
   ]
 }

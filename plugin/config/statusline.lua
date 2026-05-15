@@ -2,18 +2,41 @@
 
 local T = require("lib")
 
+local statusline_augroup = vim.api.nvim_create_augroup("ruicsh/config/statusline", { clear = true })
+
 -- Hoist requires out of the hot render path
 local devicons = require("nvim-web-devicons")
 
--- Cache for dynamic file icon highlight group to avoid set_hl on every redraw
-local icon_hl_cache = {}
+-- Cache for git root to avoid vim.fs.root() on every statusline redraw
 
--- Cache git root to avoid vim.fs.root() on every statusline redraw
 local cached_git_root = vim.fs.root(0, ".git")
 vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged" }, {
-	group = vim.api.nvim_create_augroup("ruicsh/config/statusline", { clear = true }),
+	group = statusline_augroup,
 	callback = function()
 		cached_git_root = vim.fs.root(0, ".git")
+	end,
+})
+
+-- Pre-create icon highlight groups at startup so the hot render path never calls nvim_set_hl
+vim.api.nvim_create_autocmd("VimEnter", {
+	group = statusline_augroup,
+	callback = function()
+		local ok, icons = pcall(devicons.get_icons)
+		if not ok or not icons then
+			return
+		end
+		local seen = {}
+		for _, icon_data in pairs(icons) do
+			if icon_data.name and not seen[icon_data.name] then
+				seen[icon_data.name] = true
+				local src_hl = "DevIcon" .. icon_data.name
+				local dst_hl = "StatusLineFileIcon_" .. icon_data.name
+				-- Only create if the source highlight group exists (defensive)
+				if vim.fn.hlexists(src_hl) == 1 then
+					vim.api.nvim_set_hl(0, dst_hl, { link = src_hl })
+				end
+			end
+		end
 	end,
 })
 
@@ -146,13 +169,11 @@ local function c_filename()
 			local relpath = vim.fn.fnamemodify(fullpath, ":.:h")
 			local icon, icon_color = devicons.get_icon(filename, nil, { default = true })
 
-			-- Icon with color (only call set_hl when the color changes)
+			-- Icon with color (highlight group pre-created at VimEnter)
 			if icon and icon_color then
-				local hl_group = "StatusLineFileIconDynamic"
-				if icon_hl_cache[hl_group] ~= icon_color then
-					vim.api.nvim_set_hl(0, hl_group, { link = icon_color })
-					icon_hl_cache[hl_group] = icon_color
-				end
+				-- icon_color is already a highlight group name like "DevIconLua"
+				-- Map to our namespaced group: "DevIconFoo" -> "StatusLineFileIcon_Foo"
+				local hl_group = icon_color:gsub("^DevIcon", "StatusLineFileIcon_")
 				line = line .. "%#" .. hl_group .. "#" .. icon .. " "
 			end
 			line = line .. "%#StatusLineFilename#" .. filename

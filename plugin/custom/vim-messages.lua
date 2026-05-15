@@ -17,6 +17,20 @@ vim.api.nvim_create_user_command("VimMessages", function()
 		end
 	end
 
+	-- Reuse existing window if still open
+	if vim_messages_winnr and vim.api.nvim_win_is_valid(vim_messages_winnr) then
+		local buf = vim.api.nvim_win_get_buf(vim_messages_winnr)
+		vim.api.nvim_set_option_value("modifiable", true, { buf = buf })
+		vim.api.nvim_buf_set_lines(buf, 0, -1, false, filtered_lines)
+		vim.api.nvim_set_option_value("modifiable", false, { buf = buf })
+
+		-- Set cursor to the last line
+		vim.api.nvim_win_set_cursor(vim_messages_winnr, { vim.api.nvim_buf_line_count(buf), 0 })
+		return
+	end
+
+	vim_messages_winnr = nil
+
 	-- Calculate dimensions for floating window
 	local width = vim.o.columns
 	local height = math.floor(vim.o.lines * 0.4)

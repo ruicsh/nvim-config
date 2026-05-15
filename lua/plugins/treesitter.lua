@@ -27,6 +27,7 @@ local LANGUAGES = {
 	"lua",
 	"luadoc",
 	"markdown",
+	"markdown_inline",
 	"nginx",
 	"nu",
 	"powershell",

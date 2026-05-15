@@ -16,54 +16,6 @@ M.is_windows = function()
 	return vim.fn.has("win32") == 1
 end
 
-local spinners = {} -- Store spinner timers by buffer
-local icon_spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-
-M.start_spinner = function(bufnr, msg)
-	-- Stop any existing spinner for this buffer first to avoid timer leak
-	if spinners[bufnr] then
-		M.stop_spinner(bufnr)
-	end
-
-	local spinner_timer = vim.uv.new_timer()
-	spinners[bufnr] = { idx = 1, timer = spinner_timer }
-
-	spinners[bufnr].timer:start(
-		0,
-		100,
-		vim.schedule_wrap(function()
-			-- Check if the buffer is still valid before updating it
-			if not vim.api.nvim_buf_is_valid(bufnr) then
-				M.stop_spinner(bufnr)
-				return
-			end
-
-			if not spinners[bufnr] then
-				return
-			end
-
-			spinners[bufnr].idx = (spinners[bufnr].idx % #icon_spinner) + 1
-			vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {
-				icon_spinner[spinners[bufnr].idx] .. " " .. msg,
-				"",
-			})
-			-- Move cursor to the last line only if we're currently in this buffer
-			if vim.api.nvim_get_current_buf() == bufnr then
-				local line_count = vim.api.nvim_buf_line_count(bufnr)
-				pcall(vim.api.nvim_win_set_cursor, 0, { line_count, 0 })
-			end
-		end)
-	)
-end
-
-M.stop_spinner = function(bufnr)
-	if spinners[bufnr] then
-		spinners[bufnr].timer:stop()
-		spinners[bufnr].timer:close()
-		spinners[bufnr] = nil
-	end
-end
-
 M.fmt_relative_time = function(timestamp)
 	-- Get current timestamp for relative time calculations
 	local now = os.time()
@@ -95,15 +47,20 @@ end
 
 -- Returns a list of { key, count } for non-zero diagnostic severities in the given buffer.
 -- key is one of "error", "warning", "information", "hint".
-local DIAGNOSTIC_KEYS = { "error", "warning", "information", "hint" }
+local DIAGNOSTIC_SEVERITIES = {
+	{ key = "error", severity = vim.diagnostic.severity.ERROR },
+	{ key = "warning", severity = vim.diagnostic.severity.WARN },
+	{ key = "information", severity = vim.diagnostic.severity.INFO },
+	{ key = "hint", severity = vim.diagnostic.severity.HINT },
+}
+
 M.diagnostic_counts = function(bufnr)
 	local results = {}
-	for i, key in ipairs(DIAGNOSTIC_KEYS) do
-		local ki = vim.diagnostic.severity[i]
-		local severity = vim.diagnostic.severity[ki]
-		local count = vim.diagnostic.count(bufnr, { severity = severity })[severity]
+	for _, entry in ipairs(DIAGNOSTIC_SEVERITIES) do
+		local s = entry.severity
+		local count = vim.diagnostic.count(bufnr, { severity = s })[s]
 		if count and count > 0 then
-			table.insert(results, { key = key, count = count })
+			table.insert(results, { key = entry.key, count = count })
 		end
 	end
 	return results

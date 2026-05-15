@@ -140,7 +140,7 @@ New features built around autocmds (events).
 | [auto-close-buffer-if-deleted](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-close-buffer-if-deleted.lua) | Auto close buffer when deleted from disk            |
 | [auto-resize-splits](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-resize-splits.lua)                     | Auto resize splits when window is resized           |
 | [cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline.lua)                                           | Clean up after use, hide hit-enter messages on blur |
-| [open-help-panel](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/open-help-panel.lua)                           | Open Help in side panel                             |
+| [help](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/help.lua)                                                 | Open Help in side panel                             |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua)   | Show cursorline only on active window.              |
 
 ### Custom
@@ -153,7 +153,7 @@ Random features added.
 | [lsp-keymaps](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-keymaps.lua)                           | Keymaps (LSP)                          |
 | [lsp-highlight-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-highlight-references.lua) | Highlight references (LSP)             |
 | [lsp-jump-to-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-jump-to-references.lua)     | Jump to references (LSP)               |
-| [lsp-python-set-venv](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-python-set-venv.)              | Set venv for python files (LSP)        |
+| [lsp-python-set-venv](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-python-set-venv.lua)           | Set venv for python files (LSP)        |
 | [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)                         | Display :messages on a separate window |
 
 ## Keymaps

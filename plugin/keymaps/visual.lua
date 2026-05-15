@@ -42,16 +42,6 @@ k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
 k(">", ">gv") -- Reselect after indent
 k("<", "<gv") -- Reselect after dedent
 
--- http://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
-local function replace_selection(direction)
-	vim.g.mc = vim.api.nvim_replace_termcodes("y/\\V<c-r>=escape(@\", '/')<cr><cr>", true, true, true)
-	return function()
-		return vim.g.mc .. "``cg" .. direction
-	end
-end
-k("cn", replace_selection("n"), { expr = true, desc = "Change selection (forward)" })
-k("cN", replace_selection("N"), { expr = true, desc = "Change selection (backward)" })
-
 -- Same behaviour for `I`/`A` as in normal mode
 -- https://www.reddit.com/r/neovim/comments/1k4efz8/comment/moelhto/
 k("<s-i>", function()

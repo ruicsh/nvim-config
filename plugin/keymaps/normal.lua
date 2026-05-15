@@ -50,8 +50,8 @@ k("J", "mzJ`z:delmarks z<cr>", { desc = "Join lines" })
 -- Save file
 k("<c-s>", "<cmd>silent! update | redraw<cr>", { desc = "Save" })
 
--- Don't store on register when changing text or deleting a character.
-local black_hole_commands = { "C", "c", "cc", "x", "X" }
+-- Don't store on register when deleting a character.
+local black_hole_commands = { "x", "X" }
 for _, key in pairs(black_hole_commands) do
 	k(key, '"_' .. key) -- `:h "_`
 end

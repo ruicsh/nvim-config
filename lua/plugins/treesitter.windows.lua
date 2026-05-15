@@ -20,6 +20,7 @@ local LANGUAGES = {
 	"lua",
 	"luadoc",
 	"markdown",
+	"markdown_inline",
 	"nu",
 	"powershell",
 	"regex",

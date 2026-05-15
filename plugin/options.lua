@@ -10,7 +10,6 @@ o.ignorecase = true -- Ignore case on search patterns. `:h 'ignorecase'`
 o.inccommand = "nosplit" -- Show live preview of substitution. `:h 'inccommand'`
 o.path:append("**") -- Enable searching for files on subdirectories. `:h 'path'`
 o.smartcase = true -- Use case-sensitive if keyword contains capital letters. `:h 'smartcase'`
-o.startofline = true -- Move cursor to the first non-blank character. `:h 'startofline'`
 o.whichwrap = "b,s,<,>,[,]" -- Move cursor left/right to move to previous/next lines `:h 'whichwrap'`
 -- }}}
 
@@ -150,8 +149,8 @@ o.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for. `:h 'tabs
 o.foldcolumn = "1" -- Show folding signs. `:h 'foldcolumn'`
 o.foldenable = true -- Enable folding. `:h 'foldenable'`
 o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding. `:h 'foldexpr'`
-o.foldlevel = 999 -- Close all folds. `:h 'foldlevel'`
-o.foldlevelstart = 99 -- Start with all folds closed. `:h 'foldlevelstart'`
+o.foldlevel = 0 -- Close all folds. `:h 'foldlevel'`
+o.foldlevelstart = 99 -- Start with most folds closed. `:h 'foldlevelstart'`
 o.foldmethod = "expr" -- Use expression to determine fold level. `:h 'foldmethod'`
 o.foldopen = "insert,mark,search,tag" -- Which commands open folds if the cursor moves into a closed fold. `:h 'foldopen'`
 o.foldtext = "v:lua.custom_fold_text()" -- What to display on fold line. `:h 'foldtext'`
