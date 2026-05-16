@@ -19,7 +19,7 @@ return {
 					hide_n = false,
 					hide_ctrl_q = false,
 					hide_ctrl_dot = false,
-					hide_ctrl_z = false,
+					hide_ctrl_z = { "<c-bslash>", "blur", mode = "nt", desc = "Focus Editor" },
 					prompt = false,
 					stopinsert = false,
 					nav_left = false,
@@ -37,22 +37,24 @@ return {
 		local cli = require("sidekick.cli")
 		local tool = T.env.get("AI_CODING_AGENT_TOOL")
 
-		local function toggle()
-			cli.toggle({ name = tool, focus = true })
-		end
-
-		local function send(msg)
-			return function()
-				cli.send({ name = tool, msg = msg })
-			end
-		end
+		local a = {
+			send = function(msg)
+				return function()
+					cli.send({ name = tool, msg = msg })
+				end
+			end,
+			show = function()
+				cli.show({ name = tool })
+			end,
+			toggle = function()
+				cli.toggle({ name = tool, focus = true })
+			end,
+		}
 
 		return {
-			{ "<c-bslash>", send("{selection}"), mode = { "x" }, desc = "Send Visual Selection" },
-			{ "<c-bslash>", toggle, mode = { "n", "t" }, desc = "Sidekick Toggle" },
-			{ "<leader>cf", send("{file}"), desc = "Send File" },
-			{ "<leader>cp", cli.prompt, mode = { "n", "x" }, desc = "Sidekick Select Prompt" },
-			{ "<leader>ct", send("{this}"), mode = { "x", "n" }, desc = "Send This" },
+			{ "<c-bslash>", a.send("{selection}"), mode = { "x" }, desc = "Sidekick: Send Visual Selection" },
+			{ "<c-bslash>", a.show, mode = { "n", "t", "i" }, desc = "Sidekick: Focus" },
+			{ "<c-bar>", a.toggle, mode = { "n", "t", "i" }, desc = "Sidekick: Toggle" },
 		}
 	end,
 }

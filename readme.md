@@ -343,7 +343,8 @@ Random features added.
 
 ### AI agent
 
-- `<c-bslash>` toggle/new
+- `<c-bslash>` show/blur/focus
+- `<c-bar>` toggle
 
 ### Logging
 

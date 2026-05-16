@@ -5,9 +5,10 @@ return {
 	"ruicsh/termite.nvim",
 	opts = {
 		keymaps = {
-			toggle = "<s-tab>",
+			focus_editor = "<c-e>",
 			next = "<c-j>",
 			prev = "<c-k>",
+			toggle = "<s-tab>",
 		},
 		winbar = false,
 	},
