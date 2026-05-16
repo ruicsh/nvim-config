@@ -10,7 +10,7 @@ return {
 		filetypes = {
 			["."] = false,
 			css = false,
-			cvs = false,
+			csv = false,
 			gitcommit = false,
 			gitrebase = false,
 			help = false,
