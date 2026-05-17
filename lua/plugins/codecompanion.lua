@@ -175,6 +175,16 @@ return {
 		adapters = {
 			acp = {
 				opencode = false,
+				-- $ claude setup-token # Copy token
+				-- $ npm install -g @zed-industries/claude-agent-acp # Install ACP bridge
+				-- Add token to .nvim.env
+				claude_code = function()
+					return require("codecompanion.adapters").extend("claude_code", {
+						env = {
+							CLAUDE_CODE_OAUTH_TOKEN = "CLAUDE_CODE_OAUTH_TOKEN",
+						},
+					})
+				end,
 			},
 			http = {
 				opencode = function()
@@ -195,7 +205,7 @@ return {
 		},
 		interactions = {
 			chat = {
-				adapter = "opencode",
+				adapter = T.env.get("AI_CHAT_TOOL"),
 				keymaps = {
 					close = {
 						modes = { n = key_cancel, i = key_cancel },
@@ -206,7 +216,7 @@ return {
 				},
 			},
 			inline = {
-				adapter = "opencode",
+				adapter = T.env.get("AI_CHAT_TOOL"),
 			},
 		},
 	},
