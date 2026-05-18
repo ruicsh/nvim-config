@@ -62,12 +62,10 @@ o.tabclose = "uselast" -- Close tab and go to last used tab. `:h 'tabclose'`
 
 -- 8 terminal {{{
 o.title = false -- Show info in the window title. `:h 'title'`
-o.titlelen = 1 -- No limit on title length. `:h 'titlelen'`
-o.titlestring = "" -- Show relative path in terminal title. `:h 'titlestring'`
 -- }}}
 
 -- 9 using the mouse {{{
-o.mouse = "nic" -- Don't enable mouse on Visual mode. `:h 'mouse'`
+o.mouse = "n" -- Only on normal mode. `:h 'mouse'`
 o.mousescroll = "ver:1,hor:0" -- Disable horizonal scroll. `:h 'mousescroll'`
 -- }}}
 

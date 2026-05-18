@@ -55,6 +55,7 @@ return {
 			{ "<c-bslash>", a.send("{selection}"), mode = { "x" }, desc = "Sidekick: Send Visual Selection" },
 			{ "<c-bslash>", a.show, mode = { "n", "t", "i" }, desc = "Sidekick: Focus" },
 			{ "<c-w><c-bslash>", a.toggle, mode = { "n", "t", "i" }, desc = "Sidekick: Toggle" },
+			{ "<c-w><bslash>", a.toggle, mode = { "n", "t", "i" }, desc = "Sidekick: Toggle" },
 		}
 	end,
 }

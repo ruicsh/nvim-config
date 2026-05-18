@@ -120,7 +120,7 @@ k("q", function()
 		local buf = vim.api.nvim_get_current_buf()
 		local bufname = vim.api.nvim_buf_get_name(buf)
 		if bufname == "" then
-			return ""
+			return "<nop>"
 		end
 	end
 
