@@ -314,20 +314,6 @@ Random features added.
 - `<c-f>` scroll docs forward
 - `<c-b>` scroll docs backward
 
-### Snippets
-
-- `<tab>` expand
-- `<tab>` jump to next tabstop
-- `<s-tab>` jump to previous tabstop
-- `<c-c>` cancel
-
-### AI chat
-
-- `<leader>aa` open
-- `<leader>am` models
-- `<c-]>` accept
-- `<c-x>` reset
-
 ### AI suggestions
 
 - `<c-]>` accept
@@ -344,7 +330,7 @@ Random features added.
 ### AI agent
 
 - `<c-bslash>` show/blur/focus
-- `<c-bar>` toggle
+- `<c-w><c-bslash>` toggle
 
 ### Logging
 
