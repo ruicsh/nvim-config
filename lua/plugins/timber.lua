@@ -15,8 +15,7 @@ local templates_js = {
 local counter = 0
 
 return {
-	"ruicsh/timber.nvim",
-	branch = "fix/support-treesitter-0.12.0",
+	"Goose97/timber.nvim",
 	keys = function()
 		local actions = require("timber.actions")
 
