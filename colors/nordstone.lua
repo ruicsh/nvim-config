@@ -368,6 +368,7 @@ loadColorSet({
 	StatusLineModeVisualText = { fg = cmode.x },
 	StatusLineProject = { link = "StatusLine" },
 	StatusLineSeparator = { fg = c.nord3 },
+	StatusLineSpinner = { fg = c.nord15 },
 })
 
 -- winbar

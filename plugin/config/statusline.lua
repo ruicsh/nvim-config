@@ -123,6 +123,15 @@ local function c_mode()
 	return string.format("%%#StatusLineMode%s# %%#StatusLineMode%sText# %s %%#StatusLine#", hl, hl, mode)
 end
 
+local function c_spinner()
+	local spinner_val = _G.pin_spinner or ""
+	local spinner_msg = _G.pin_spinner_msg or ""
+	if spinner_val == "" and spinner_msg == "" then
+		return ""
+	end
+	return "%#StatusLineSpinner# " .. spinner_val .. " " .. spinner_msg .. " " .. sep()
+end
+
 local function c_project()
 	if not cached_git_root or cached_git_root == "" then
 		return ""
@@ -276,6 +285,7 @@ function _G.statusline()
 	local components = {
 		hl,
 		c_mode(),
+		c_spinner(),
 		c_project(),
 		c_filename(),
 		c_bookmark(),

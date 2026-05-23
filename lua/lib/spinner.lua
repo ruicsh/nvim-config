@@ -47,6 +47,7 @@ function M.create(opts)
 
 	local frame_idx = 1
 	local timer = nil
+	local stopped = false
 
 	-- State for extmark method
 	local ns_id = nil
@@ -69,6 +70,7 @@ function M.create(opts)
 			return
 		end
 		frame_idx = 1
+		stopped = false
 		timer = vim.uv.new_timer()
 
 		if method == "global_var" then
@@ -78,6 +80,9 @@ function M.create(opts)
 				0,
 				interval,
 				vim.schedule_wrap(function()
+					if stopped then
+						return
+					end
 					frame_idx = frame_idx % #frames + 1
 					_G[global_var] = frames[frame_idx]
 					vim.cmd("redrawstatus")
@@ -89,6 +94,9 @@ function M.create(opts)
 				0,
 				interval,
 				vim.schedule_wrap(function()
+					if stopped then
+						return
+					end
 					local buf = resolve_bufnr(opts.bufnr)
 					if not buf or not vim.api.nvim_buf_is_valid(buf) then
 						return
@@ -115,6 +123,7 @@ function M.create(opts)
 	end
 
 	local function stop()
+		stopped = true
 		if not timer then
 			return
 		end
