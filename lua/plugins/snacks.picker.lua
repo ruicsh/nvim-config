@@ -105,7 +105,7 @@ end
 
 return {
 	"folke/snacks.nvim",
-	keys = (function()
+	keys = function()
 		local snacks = require("snacks")
 		local picker = snacks.picker
 
@@ -139,7 +139,7 @@ return {
 			{ "<leader>nH", picker.highlights, desc = "Highlights" },
 			{ "<leader>nk", picker.keymaps, desc = "Keymaps" },
 		}
-	end)(),
+	end,
 	priority = 1000, -- Ensure this is loaded before other plugins that might use snacks
 	opts = {
 		picker = {

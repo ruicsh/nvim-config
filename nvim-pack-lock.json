@@ -30,11 +30,6 @@
       "src": "https://github.com/stevearc/conform.nvim.git",
       "version": "'619363c30309d29ffa631e67c8183f2a72caa373'"
     },
-    "copilot.lua": {
-      "rev": "1d457ad5f267b8ef855a6b8b3fe152403cb00947",
-      "src": "https://github.com/zbirenbaum/copilot.lua.git",
-      "version": "'1d457ad5f267b8ef855a6b8b3fe152403cb00947'"
-    },
     "dial.nvim": {
       "rev": "f2634758455cfa52a8acea6f142dcd6271a1bf57",
       "src": "https://github.com/monaqa/dial.nvim.git",
@@ -71,9 +66,9 @@
       "version": "'600896c302fb9232559b93200ed2caab8bd8e28e'"
     },
     "kulala.nvim": {
-      "rev": "a82a20a4f065275b91375744fbff9839db1dffd0",
+      "rev": "34189185048988248a6a4b78fc35d83a6ac7f343",
       "src": "https://github.com/mistweaverco/kulala.nvim.git",
-      "version": "'a82a20a4f065275b91375744fbff9839db1dffd0'"
+      "version": "'34189185048988248a6a4b78fc35d83a6ac7f343'"
     },
     "mason-lspconfig.nvim": {
       "rev": "0a695750d747db1e7e70bcf0267ef8951c95fc83",
@@ -91,14 +86,14 @@
       "version": "'16ba83bfc8a25f52bb545134f5bee082b195c460'"
     },
     "mini.ai": {
-      "rev": "268ee376924c4c6a75935e9be73d3db5ad2eec46",
+      "rev": "4511b3481707c1d021485475d34f2ed2a50bf47b",
       "src": "https://github.com/nvim-mini/mini.ai.git",
-      "version": "'268ee376924c4c6a75935e9be73d3db5ad2eec46'"
+      "version": "'4511b3481707c1d021485475d34f2ed2a50bf47b'"
     },
     "mini.align": {
-      "rev": "36b0cd9f8b315946849e37f4d0918cf01bb66214",
+      "rev": "a7cd9465ac72c65d726f8fdc8b71ceb63ce8c0fd",
       "src": "https://github.com/nvim-mini/mini.align.git",
-      "version": "'36b0cd9f8b315946849e37f4d0918cf01bb66214'"
+      "version": "'a7cd9465ac72c65d726f8fdc8b71ceb63ce8c0fd'"
     },
     "mini.bracketed": {
       "rev": "d94d51dcee625723aaaf8d38174b48522eaf9131",
@@ -106,9 +101,9 @@
       "version": "'d94d51dcee625723aaaf8d38174b48522eaf9131'"
     },
     "mini.clue": {
-      "rev": "0e37cddd6307eb40248e4226be65304e85df1d18",
+      "rev": "4b3db71003fa06200680afb9f1d05506b79eb953",
       "src": "https://github.com/nvim-mini/mini.clue.git",
-      "version": "'0e37cddd6307eb40248e4226be65304e85df1d18'"
+      "version": "'4b3db71003fa06200680afb9f1d05506b79eb953'"
     },
     "mini.hipatterns": {
       "rev": "e25cf080aae092a651a92fa5e477f64a61adbebf",
@@ -126,9 +121,9 @@
       "version": "'7e75de73c60590e3f35d5cecd5677a68a437fc54'"
     },
     "mini.surround": {
-      "rev": "03dee7d518eb783907e5876cf569a18d7120b166",
+      "rev": "9fd5ebef2b34cc4ac3c0f1811a6726ea6d92fa91",
       "src": "https://github.com/nvim-mini/mini.surround.git",
-      "version": "'03dee7d518eb783907e5876cf569a18d7120b166'"
+      "version": "'9fd5ebef2b34cc4ac3c0f1811a6726ea6d92fa91'"
     },
     "multicursor.nvim": {
       "rev": "704b99f10a72cc05d370cfeb294ff83412a8ab55",
@@ -136,9 +131,9 @@
       "version": "'704b99f10a72cc05d370cfeb294ff83412a8ab55'"
     },
     "neocodeium": {
-      "rev": "a1f73887af6cc4b09cb15cc96e0b72d7932552a5",
+      "rev": "b2fd9f02bf292b1ecc3a29406417601b0e46ad7d",
       "src": "https://github.com/monkoose/neocodeium.git",
-      "version": "'a1f73887af6cc4b09cb15cc96e0b72d7932552a5'"
+      "version": "'b2fd9f02bf292b1ecc3a29406417601b0e46ad7d'"
     },
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
@@ -201,9 +196,9 @@
       "version": "'1d48e090f6d1d53dda9fb5094af3f2006ebbb858'"
     },
     "packard.nvim": {
-      "rev": "ea866d2c8092fbcb6fd7a439cdd2f4fa53552175",
+      "rev": "68b10fdf30b793c08bbdfee2dec8e9cf14fc41c9",
       "src": "https://github.com/ruicsh/packard.nvim.git",
-      "version": "'ea866d2c8092fbcb6fd7a439cdd2f4fa53552175'"
+      "version": "'68b10fdf30b793c08bbdfee2dec8e9cf14fc41c9'"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
@@ -226,9 +221,9 @@
       "version": "'208e1c5b8170c01fd1d07df0139322a76479b235'"
     },
     "smart-splits.nvim": {
-      "rev": "1865e6826b1cd90098f198acb0f5b744a7b40c22",
+      "rev": "6806149fd36d1c5e797debe3e18b2c07219b685a",
       "src": "https://github.com/mrjones2014/smart-splits.nvim.git",
-      "version": "'1865e6826b1cd90098f198acb0f5b744a7b40c22'"
+      "version": "'6806149fd36d1c5e797debe3e18b2c07219b685a'"
     },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
@@ -301,9 +296,9 @@
       "version": "'2676d84c6901e484df00b5d728bd6a345d47ee12'"
     },
     "visual-whitespace.nvim": {
-      "rev": "02714f141dc0783eb814af6be534bdb0273142ff",
+      "rev": "d1f8889dd09ca9b07bc3b7af7cd5d1bfb5a7ea71",
       "src": "https://github.com/mcauley-penney/visual-whitespace.nvim.git",
-      "version": "'02714f141dc0783eb814af6be534bdb0273142ff'"
+      "version": "'d1f8889dd09ca9b07bc3b7af7cd5d1bfb5a7ea71'"
     },
     "window-picker": {
       "rev": "6382540b2ae5de6c793d4aa2e3fe6dbb518505ec",

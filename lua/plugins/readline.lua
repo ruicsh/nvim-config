@@ -24,5 +24,4 @@ return {
 			{ "<c-w>", r.unix_word_rubout, desc = "Delete WORD (backward)", mode = { "i", "c" } },
 		}
 	end,
-	config = function() end,
 }

@@ -37,5 +37,6 @@ return {
 		nearest_only = true,
 	},
 
+	main = "hlslens",
 	event = "VeryLazy",
 }

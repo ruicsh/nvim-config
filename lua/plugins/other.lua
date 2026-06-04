@@ -104,5 +104,4 @@ return {
 	},
 
 	main = "other-nvim",
-	cmd = "Other",
 }
