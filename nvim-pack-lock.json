@@ -21,9 +21,9 @@
       "version": "'6cbbcb4503430644f04ea5f087c8e2ea4cdc6f6e'"
     },
     "codediff.nvim": {
-      "rev": "858a25c96f446ccbcde5c87366e1e02e0a7f4146",
+      "rev": "e5ceff28a32145e5c77f2c0aa539b0f6edfe2f8b",
       "src": "https://github.com/ruicsh/codediff.nvim.git",
-      "version": "'858a25c96f446ccbcde5c87366e1e02e0a7f4146'"
+      "version": "'e5ceff28a32145e5c77f2c0aa539b0f6edfe2f8b'"
     },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
@@ -151,9 +151,9 @@
       "version": "'be2d7b2be01860b5445a007ff2bc72b29896db6b'"
     },
     "nvim-lspconfig": {
-      "rev": "229b79051b380377664edc4cbd534930154921a1",
+      "rev": "ed19590a3a9792901553c388d1aadafce012f80d",
       "src": "https://github.com/neovim/nvim-lspconfig.git",
-      "version": "'229b79051b380377664edc4cbd534930154921a1'"
+      "version": "'ed19590a3a9792901553c388d1aadafce012f80d'"
     },
     "nvim-spider": {
       "rev": "4fdd56a4f45bca13a607632e15a6f9f8d1b1f99e",
@@ -196,9 +196,9 @@
       "version": "'1d48e090f6d1d53dda9fb5094af3f2006ebbb858'"
     },
     "packard.nvim": {
-      "rev": "68b10fdf30b793c08bbdfee2dec8e9cf14fc41c9",
+      "rev": "041f4d2d949b3498421ae510cab2dfea8345d079",
       "src": "https://github.com/ruicsh/packard.nvim.git",
-      "version": "'68b10fdf30b793c08bbdfee2dec8e9cf14fc41c9'"
+      "version": "'041f4d2d949b3498421ae510cab2dfea8345d079'"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
@@ -311,9 +311,9 @@
       "version": "'f38a05ffe3294db3efcf28b961877cf1139264b0'"
     },
     "yanky.nvim": {
-      "rev": "b13d318dc7c816e2eee626dde61fa0a7237bc77e",
+      "rev": "020c22d0cfa60358569e49d1d7b91630f175aef0",
       "src": "https://github.com/gbprod/yanky.nvim.git",
-      "version": "'b13d318dc7c816e2eee626dde61fa0a7237bc77e'"
+      "version": "'020c22d0cfa60358569e49d1d7b91630f175aef0'"
     },
     "yazi.nvim": {
       "rev": "8a26074568790bb5c73e56eb871a74709a13dd43",
