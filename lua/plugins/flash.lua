@@ -49,6 +49,4 @@ return {
 			enabled = false,
 		},
 	},
-
-	event = "VeryLazy",
 }

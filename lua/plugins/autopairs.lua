@@ -9,6 +9,4 @@ return {
 			keys = "asdfqwerzxcv",
 		},
 	},
-
-	event = "InsertEnter",
 }

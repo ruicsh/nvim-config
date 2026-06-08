@@ -3,7 +3,4 @@
 
 return {
 	"mcauley-penney/visual-whitespace.nvim",
-
-	-- Lazy load on entering visual mode
-	event = "ModeChanged *:[vV\22]",
 }

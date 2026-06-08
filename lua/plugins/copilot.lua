@@ -46,5 +46,4 @@ return {
 	end,
 
 	cmd = "Copilot",
-	event = "InsertEnter",
 }

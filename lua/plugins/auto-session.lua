@@ -32,6 +32,4 @@ return {
 		},
 		suppressed_dirs = { "~/", "~/Downloads", "/" },
 	},
-
-	lazy = false,
 }

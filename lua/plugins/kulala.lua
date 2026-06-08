@@ -11,6 +11,4 @@ return {
 			["Toggle split/float"] = false,
 		},
 	},
-
-	ft = { "http", "rest" },
 }

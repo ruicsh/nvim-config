@@ -29,6 +29,4 @@ require("packard").setup({
 			["Authorization"] = "Bearer " .. (T.env.get("OPENCODE_API_KEY") or ""),
 		},
 	},
-	-- notifications = true,
-	-- debug = true,
 })

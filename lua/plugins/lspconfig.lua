@@ -20,6 +20,4 @@ return {
 			vim.lsp.config(server, server_opts)
 		end
 	end,
-
-	lazy = false,
 }

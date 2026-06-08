@@ -9,6 +9,4 @@ return {
 			right = { "fold" },
 		},
 	},
-
-	event = "BufRead",
 }

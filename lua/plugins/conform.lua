@@ -39,6 +39,4 @@ return {
 		-- Use conform for gq.
 		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 	end,
-
-	event = { "BufWritePre" },
 }

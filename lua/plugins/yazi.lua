@@ -21,7 +21,6 @@ return {
 	end,
 
 	version = "*",
-	event = "VeryLazy",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim", lazy = true },
 	},

@@ -51,6 +51,4 @@ return {
 			n_lines = 500,
 		}
 	end,
-
-	event = "BufRead",
 }

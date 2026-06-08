@@ -13,6 +13,4 @@ return {
 			},
 		},
 	},
-
-	event = "BufRead",
 }

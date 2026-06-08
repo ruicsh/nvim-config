@@ -45,8 +45,6 @@ return {
 				width = 0.8,
 			},
 		},
-
-		event = { "VeryLazy" },
 	},
 	{
 		-- Bridge between mason.nvim and lspconfig

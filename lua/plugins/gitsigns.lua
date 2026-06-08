@@ -99,6 +99,4 @@ return {
 			end, { desc = "Git: reset hunk" })
 		end,
 	},
-
-	event = { "BufReadPost" },
 }

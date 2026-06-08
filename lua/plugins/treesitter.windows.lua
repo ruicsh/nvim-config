@@ -89,6 +89,5 @@ return {
 			multiwindow = true,
 			separator = "─",
 		},
-		event = "BufReadPost",
 	},
 }

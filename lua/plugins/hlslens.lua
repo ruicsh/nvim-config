@@ -38,5 +38,4 @@ return {
 	},
 
 	main = "hlslens",
-	event = "VeryLazy",
 }

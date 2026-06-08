@@ -40,6 +40,4 @@ return {
 			{ "<leader>hl", show_range_history, mode = "v", desc = "Git: Show range history" },
 		}
 	end,
-
-	event = "VeryLazy",
 }

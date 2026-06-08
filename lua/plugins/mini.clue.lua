@@ -55,6 +55,4 @@ return {
 			},
 		}
 	end,
-
-	event = "VeryLazy",
 }

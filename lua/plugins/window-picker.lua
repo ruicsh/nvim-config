@@ -106,6 +106,5 @@ return {
 	},
 
 	name = "window-picker",
-	event = "VeryLazy",
 	version = "2.*",
 }

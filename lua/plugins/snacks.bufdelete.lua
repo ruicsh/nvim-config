@@ -8,6 +8,4 @@ return {
 			enabled = true,
 		},
 	},
-
-	event = "VeryLazy",
 }

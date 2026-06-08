@@ -23,6 +23,4 @@ return {
 		k({ "o", "x" }, "am", "<plug>(matchup-a%)", { desc = "Around an any-block" })
 		k({ "o", "x" }, "im", "<plug>(matchup-i%)", { desc = "Inside an any-block" })
 	end,
-
-	event = "BufReadPost",
 }
