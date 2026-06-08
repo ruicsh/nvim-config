@@ -11,7 +11,28 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 - **Search** - fuzzy find anything, files, git changed, last buffers
 - **UI** - files and directory explorer, notifications, command palette
 
-<sub>Works on Neovim v0.11.5</sub>
+<sub>Works on Neovim v0.12.0</sub>
+
+## Setup
+
+### Prerequisites
+
+- [Neovim](https://neovim.io/) v0.12.0+
+- [Git](https://git-scm.com/)
+- A [Nerd Font](https://www.nerdfonts.com/) in your terminal ([JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads) recommended)
+
+### Installation
+
+```bash
+git clone https://github.com/ruicsh/nvim-config.git ~/.config/nvim
+nvim
+```
+
+On first launch, [packard.nvim](https://github.com/ruicsh/packard.nvim) will bootstrap itself and install all plugins automatically.
+
+### Lock file
+
+[`nvim-pack-lock.json`](nvim-pack-lock.json) pins each plugin to a specific commit for reproducibility. Plugins are restored from this lock file on first setup, so your installation will match the exact state of this config.
 
 ## Screenshots
 
