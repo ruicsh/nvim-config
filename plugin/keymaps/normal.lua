@@ -200,7 +200,7 @@ k("<bs>", "<cmd>b#<cr>", { desc = "Switch to previous buffer" }) -- `:h :b#`
 k("<f1>", "<nop>") -- Disable F1 help
 k("<leader>v", "<c-v>", { desc = "Enter visual block mode" }) -- `:h <c-v>`
 k("<tab>", "za", { desc = "Toggle folds" }) -- `:h za`
-k("Q", "q", { desc = "Start recording macro" }) -- `:h q`
+k("Q", "q", { unique = false, desc = "Start recording macro" }) -- `:h q`
 
 --
 -- }}}
