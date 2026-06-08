@@ -133,6 +133,9 @@ return {
 			{ "<leader>hh", picker.git_status, desc = "Git: Status" },
 			{ "<leader>hl", picker.git_log, desc = "Git: Search Log" },
 
+			-- quickfix
+			{ "<leader>cc", picker.qflist, desc = "Quickfix List" },
+
 			-- neovim
 			{ "<leader>na", picker.autocmds, desc = "Autocmds" },
 			{ "<leader>nh", picker.help, desc = "Help" },

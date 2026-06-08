@@ -37,6 +37,10 @@ return {
 				-- `z` key
 				{ mode = "n", keys = "z" },
 				{ mode = "x", keys = "z" },
+
+				-- Quickfix (matches `<leader>cc` for quickfix list)
+				{ mode = "n", keys = "c" },
+				{ mode = "x", keys = "c" },
 			},
 
 			clues = {
