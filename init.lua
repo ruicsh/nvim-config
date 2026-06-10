@@ -10,11 +10,11 @@ vim.g.mapleader = vim.keycode("<space>")
 vim.g.maplocalleader = vim.keycode(",")
 
 -- Bootstrap packard.nvim (use local copy for debugging)
-local packpath = vim.fn.stdpath("data") .. "/site/pack/packard/start/packard.nvim"
+local packpath = vim.fn.stdpath("data") .. "/site/pack/core/opt/packard.nvim"
 if vim.fn.isdirectory(packpath) == 0 then
 	vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/ruicsh/packard.nvim.git", packpath })
 end
-vim.opt.rtp:prepend(packpath)
+vim.cmd.packadd("packard.nvim") -- Add this line
 
 require("packard").setup({
 	specs_dir = "lua/plugins",

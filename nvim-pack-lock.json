@@ -196,9 +196,9 @@
       "version": "'1d48e090f6d1d53dda9fb5094af3f2006ebbb858'"
     },
     "packard.nvim": {
-      "rev": "041f4d2d949b3498421ae510cab2dfea8345d079",
+      "rev": "f81ed48bd86206ad4ae1b52dc7b4e4ead003d516",
       "src": "https://github.com/ruicsh/packard.nvim.git",
-      "version": "'041f4d2d949b3498421ae510cab2dfea8345d079'"
+      "version": "'f81ed48bd86206ad4ae1b52dc7b4e4ead003d516'"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
