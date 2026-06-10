@@ -6,7 +6,7 @@ return {
 	keys = function()
 		local function diff_back()
 			if vim.v.count > 0 then
-				vim.cmd("CodeDiff HEAD~" .. tostring(vim.v.count))
+				require("codediff.commands").vscode_diff({ fargs = { "HEAD~" .. tostring(vim.v.count) } })
 				return
 			end
 
@@ -15,13 +15,13 @@ return {
 				default = "HEAD~1",
 			}, function(input)
 				if input then
-					vim.cmd("CodeDiff " .. input)
+					require("codediff.commands").vscode_diff({ fargs = { input } })
 				end
 			end)
 		end
 
 		return {
-			{ "<leader>hD", "<cmd>CodeDiff<cr>", desc = "Git: Diff" },
+			{ "<leader>hD", "<cmd>CodeDiff<cr>", desc = "Git: Diff (explorer)" },
 			{ "<leader>h~", diff_back, desc = "Git: Diff HEAD~{count}..HEAD" },
 		}
 	end,
@@ -53,7 +53,6 @@ return {
 		},
 	},
 
-	cmd = "CodeDiff",
 	branch = "feat/explorer-scroll-diff-buffers",
 	dependencies = { "MunifTanjim/nui.nvim" },
 }
