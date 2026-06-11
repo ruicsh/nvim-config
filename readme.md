@@ -45,7 +45,7 @@ On first launch, [packard.nvim](https://github.com/ruicsh/packard.nvim) will boo
 
 ## Plugins
 
-<sub>66 plugins</sub>
+<sub>65 plugins</sub>
 
 ### Code
 
@@ -102,6 +102,7 @@ On first launch, [packard.nvim](https://github.com/ruicsh/packard.nvim) will boo
 ### Git
 
 - [codediff](https://github.com/esmuellert/codediff.nvim) - diff
+- [diffs](https://github.com/barrettruth/diffs.nvim) - syntax highlighting
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [gitportal](https://codeberg.org/trevorhauter/gitportal.nvim) - Open remote
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
