@@ -30,10 +30,6 @@
       "rev": "f2634758455cfa52a8acea6f142dcd6271a1bf57",
       "src": "https://github.com/monaqa/dial.nvim.git"
     },
-    "diffs.nvim": {
-      "rev": "590eae9db9243bfa2e9a04ac444592b2a54641cc",
-      "src": "https://github.com/barrettruth/diffs.nvim.git"
-    },
     "flash.nvim": {
       "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
       "src": "https://github.com/folke/flash.nvim.git"
