@@ -161,7 +161,7 @@
       "src": "https://github.com/rgroli/other.nvim.git"
     },
     "packard.nvim": {
-      "rev": "21dcbde12fa3a4d43455275ba44d7469dbce5f59",
+      "rev": "d995945c00e42d54e743921995eba63d0f8b4c2c",
       "src": "https://github.com/ruicsh/packard.nvim.git"
     },
     "plenary.nvim": {
