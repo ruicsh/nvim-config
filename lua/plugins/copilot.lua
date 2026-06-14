@@ -44,6 +44,4 @@ return {
 
 		copilot.setup(opts)
 	end,
-
-	cmd = "Copilot",
 }

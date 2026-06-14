@@ -28,6 +28,4 @@ return {
 			vim.cmd("wincmd =")
 		end,
 	},
-
-	cmd = "WinShift",
 }

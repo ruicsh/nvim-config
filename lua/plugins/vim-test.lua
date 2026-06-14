@@ -64,6 +64,4 @@ return {
 		-- Use custom strategy
 		vim.g["test#strategy"] = "custom"
 	end,
-
-	cmd = { "TestLast", "TestNearest", "TestFile", "TestSuite" },
 }
