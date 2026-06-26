@@ -5,6 +5,7 @@ return {
 	"ruicsh/termite.nvim",
 	opts = {
 		keymaps = {
+			create = "<c-s-=>",
 			focus_editor = "<c-e>",
 			next = "<c-j>",
 			prev = "<c-k>",
