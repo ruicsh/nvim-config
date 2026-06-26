@@ -11,6 +11,5 @@ jobs:
           fetch-depth: "0"
       - uses: ruicsh/backup-action@main
         with:
-          bitbucket_app_user: ${{ secrets.BACKUP_APP_USER }}
-          bitbucket_app_password: ${{ secrets.BACKUP_APP_PASSWORD }}
+          bitbucket_token: ${{ secrets.BITBUCKET_TOKEN }}
           target_repo: ruicsh/nvim-config
