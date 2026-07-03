@@ -90,9 +90,11 @@ M.close_side_panels = function()
 	for _, winnr in ipairs(vim.api.nvim_list_wins()) do
 		local ok, side_panel = pcall(vim.api.nvim_win_get_var, winnr, "side_panel")
 		if ok and side_panel then
-			if vim.api.nvim_win_is_valid(winnr) then
-				vim.api.nvim_win_close(winnr, true)
-			end
+			vim.schedule(function()
+				if vim.api.nvim_win_is_valid(winnr) then
+					vim.api.nvim_win_close(winnr, true)
+				end
+			end)
 		end
 	end
 end
