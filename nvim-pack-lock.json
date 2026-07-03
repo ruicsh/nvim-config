@@ -240,6 +240,10 @@
       "rev": "2676d84c6901e484df00b5d728bd6a345d47ee12",
       "src": "https://github.com/vim-test/vim-test.git"
     },
+    "vim-wakatime": {
+      "rev": "2a856d0b7863dc34ffc80647cb52fbd1319fe144",
+      "src": "https://github.com/wakatime/vim-wakatime.git"
+    },
     "visual-whitespace.nvim": {
       "rev": "d1f8889dd09ca9b07bc3b7af7cd5d1bfb5a7ea71",
       "src": "https://github.com/mcauley-penney/visual-whitespace.nvim.git"
@@ -260,7 +264,7 @@
     "yazi.nvim": {
       "rev": "bc79c6fd57367d7ac42f1aef34c958018892034c",
       "src": "https://github.com/mikavilpas/yazi.nvim.git",
-      "version": "'v13.1.8'"
+      "version": "'v13.6.0'"
     }
   }
 }
