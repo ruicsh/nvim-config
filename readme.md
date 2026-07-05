@@ -118,7 +118,6 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 ### LSP/Syntax/Tools
 
-- [kulala](https://github.com/mistweaverco/kulala.nvim) - HTTP client
 - [mason-lspconfig](https://github.com/mason-org/mason-lspconfig.nvim) - Bridge between mason and lspconfig
 - [mason-tool-installer](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) - Tools installer
 - [mason](https://github.com/mason-org/mason.nvim) - LSP package manager
