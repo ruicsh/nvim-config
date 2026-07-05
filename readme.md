@@ -28,11 +28,11 @@ git clone https://github.com/ruicsh/nvim-config.git ~/.config/nvim
 nvim
 ```
 
-On first launch, [packard.nvim](https://github.com/ruicsh/packard.nvim) will bootstrap itself and install all plugins automatically.
+On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and install all plugins automatically.
 
 ### Lock file
 
-[`nvim-pack-lock.json`](nvim-pack-lock.json) pins each plugin to a specific commit for reproducibility. Plugins are restored from this lock file on first setup, so your installation will match the exact state of this config.
+[`lazy-lock.json`](lazy-lock.json) pins each plugin to a specific commit for reproducibility. Plugins are restored from this lock file on first setup, so your installation will match the exact state of this config.
 
 ## Screenshots
 
