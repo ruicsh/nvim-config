@@ -36,6 +36,7 @@ return {
 
 		return {
 			{ "<leader>hd", git_diff_file, desc = "Git: Diff file" },
+			{ "<leader>h%", "<cmd>Gdiff<cr>", desc = "Git: Gdiff" },
 			{ "<leader>hH", git_status, desc = "Git: Status" },
 			{ "<leader>hl", show_range_history, mode = "v", desc = "Git: Show range history" },
 		}
