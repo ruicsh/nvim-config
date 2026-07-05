@@ -3,5 +3,6 @@
 
 return {
 	"ruicsh/tailwindcss-colors.nvim",
+	ft = { "astro", "html", "typescriptreact", "javascriptreact", "css", "scss" },
 	opts = {},
 }

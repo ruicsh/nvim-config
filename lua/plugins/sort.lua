@@ -3,6 +3,9 @@
 
 return {
 	"sQVe/sort.nvim",
+	keys = {
+		{ "<leader>ss", "<leader>s<leader>s", desc = "Sort Line", remap = true },
+	},
 	opts = {
 		ignore_case = true,
 		mappings = {
@@ -13,14 +16,5 @@ return {
 	},
 	config = function(_, opts)
 		require("sort").setup(opts)
-
-		local mappings = {
-			{ "n", "<leader>ss", "<leader>s<leader>s", "Sort Line" },
-		}
-
-		for _, map in ipairs(mappings) do
-			local mode, lhs, rhs, desc = unpack(map)
-			vim.keymap.set(mode, lhs, rhs, { desc = desc, remap = true })
-		end
 	end,
 }

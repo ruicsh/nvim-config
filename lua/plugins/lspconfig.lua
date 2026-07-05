@@ -3,7 +3,7 @@
 
 return {
 	"neovim/nvim-lspconfig",
-	enabled = not os.getenv("NVIM_GIT_DIFF"),
+	cond = not os.getenv("NVIM_GIT_DIFF"),
 	opts = {
 		servers = {
 			tailwindcss = {

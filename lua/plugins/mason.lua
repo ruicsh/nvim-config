@@ -33,7 +33,7 @@ return {
 		-- Install LSP servers and 3rd-party tools
 		-- https://github.com/mason-org/mason.nvim
 		"mason-org/mason.nvim",
-		enabled = not os.getenv("NVIM_GIT_DIFF"),
+		cond = not os.getenv("NVIM_GIT_DIFF"),
 		init = function()
 			-- Do not crowd home directory with NPM cache folder
 			vim.env.npm_config_cache = vim.env.HOME .. "/.cache/npm"
@@ -50,7 +50,7 @@ return {
 		-- Bridge between mason.nvim and lspconfig
 		-- https://github.com/mason-org/mason-lspconfig.nvim
 		"mason-org/mason-lspconfig.nvim",
-		enabled = not os.getenv("NVIM_GIT_DIFF"),
+		cond = not os.getenv("NVIM_GIT_DIFF"),
 		opts = {},
 
 		dependencies = {
@@ -62,7 +62,7 @@ return {
 		-- Install and upgrade 3rd-party tools managed by mason.nvim
 		-- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		enabled = not os.getenv("NVIM_GIT_DIFF"),
+		cond = not os.getenv("NVIM_GIT_DIFF"),
 		opts = function()
 			local packages = vim.tbl_deep_extend("force", {}, PACKAGES)
 

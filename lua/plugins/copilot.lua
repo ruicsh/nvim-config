@@ -5,7 +5,8 @@ local T = require("lib")
 
 return {
 	"zbirenbaum/copilot.lua",
-	enabled = T.env.get("AI_SUGGESTIONS_ENGINE") == "copilot",
+	cond = T.env.get("AI_SUGGESTIONS_ENGINE") == "copilot",
+	event = "InsertEnter",
 	opts = {
 		filetypes = {
 			["."] = false,

@@ -3,6 +3,7 @@
 
 return {
 	"rmagatti/auto-session",
+	event = "VimEnter",
 	opts = {
 		close_filetypes_on_save = { "checkhealth", "fugitive", "git", "gitcommit", "terminal" },
 		git_auto_restore_on_branch_change = true,

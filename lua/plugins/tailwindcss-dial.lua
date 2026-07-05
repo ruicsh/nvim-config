@@ -3,6 +3,7 @@
 
 return {
 	"ruicsh/tailwindcss-dial.nvim",
+	ft = { "astro", "html", "typescript", "typescriptreact", "javascript", "javascriptreact" }, -- lazy-load trigger
 	opts = {
 		ft = { "astro", "html", "typescript", "typescriptreact", "javascript", "javascriptreact" },
 	},

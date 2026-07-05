@@ -5,7 +5,8 @@ local T = require("lib")
 
 return {
 	"monkoose/neocodeium",
-	enabled = T.env.get("AI_SUGGESTIONS_ENGINE") == "codeium",
+	cond = T.env.get("AI_SUGGESTIONS_ENGINE") == "codeium",
+	event = "InsertEnter",
 	keys = function()
 		local nc = require("neocodeium")
 
