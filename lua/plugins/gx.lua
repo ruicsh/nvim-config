@@ -59,7 +59,6 @@ return {
 							end
 						end
 					end
-					return false
 				end,
 			},
 			markdown_link = {
@@ -129,8 +128,6 @@ return {
 						})
 						return true
 					end
-
-					return false
 				end,
 			},
 		},
@@ -149,6 +146,28 @@ return {
 		end
 
 		gx.setup(opts)
+
+		-- Patch gx.nvim's get_url to handle boolean returns from DIY handlers.
+		-- Handlers that return `true` signal "already handled" (opened file, help,
+		-- etc.) — discard all results so the browser doesn't also open.
+		local handler = require("gx.handler")
+		local original_get_url = handler.get_url
+		handler.get_url = function(mode, line, configured_handlers, handler_options)
+			local urls = original_get_url(mode, line, configured_handlers, handler_options)
+			local filtered = {}
+			local handled = false
+			for _, item in ipairs(urls) do
+				if type(item.url) == "boolean" then
+					handled = true
+				elseif type(item.url) == "string" then
+					filtered[#filtered + 1] = item
+				end
+			end
+			if handled then
+				return {}
+			end
+			return filtered
+		end
 	end,
 	init = function()
 		vim.g.netrw_nogx = 1
