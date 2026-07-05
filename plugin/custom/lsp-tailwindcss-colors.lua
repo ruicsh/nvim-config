@@ -11,6 +11,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 
-		require("tailwindcss-colors").buf_attach(bufnr)
+		-- Skip fugitive diff buffers (e.g. from :Gdiff) since they're
+		-- transient and the plugin can't attach to them reliably
+		if vim.bo[bufnr].buftype ~= "" then
+			return
+		end
+
+		if vim.api.nvim_buf_get_name(bufnr):match("^fugitive://") then
+			return
+		end
+
+		if vim.lsp.buf_is_attached(bufnr, client.id) then
+			require("tailwindcss-colors").buf_attach(bufnr)
+		end
 	end,
 })
