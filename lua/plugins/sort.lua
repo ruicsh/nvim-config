@@ -3,6 +3,7 @@
 
 return {
 	"sQVe/sort.nvim",
+	lazy = false,
 	keys = {
 		{ "<leader>ss", "<leader>s<leader>s", desc = "Sort Line", remap = true },
 	},
