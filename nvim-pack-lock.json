@@ -264,7 +264,7 @@
     "yazi.nvim": {
       "rev": "bc79c6fd57367d7ac42f1aef34c958018892034c",
       "src": "https://github.com/mikavilpas/yazi.nvim.git",
-      "version": "'v13.6.0'"
+      "version": "'v13.7.0'"
     }
   }
 }
