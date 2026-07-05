@@ -3,15 +3,10 @@
 
 return {
 	"folke/snacks.nvim",
-	keys = function()
-		local snacks = require("snacks")
-		local scratch = snacks.scratch
-
-		return {
-			{ "<leader>e", scratch.open, desc = "Scratchpad: Toggle" },
-			{ "<leader>E", scratch.select, desc = "Scratchpad: Select" },
-		}
-	end,
+	keys = {
+		{ "<leader>e", function() require("snacks").scratch.open() end, desc = "Scratchpad: Toggle" },
+		{ "<leader>E", function() require("snacks").scratch.select() end, desc = "Scratchpad: Select" },
+	},
 	opts = {
 		scratch = {
 			ft = "markdown",

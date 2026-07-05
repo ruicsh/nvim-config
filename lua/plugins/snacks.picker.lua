@@ -3,14 +3,18 @@
 
 local T = require("lib")
 
--- Confirm action for git_log pickers
+local picker = function(name)
+	return function()
+		require("snacks").picker[name]()
+	end
+end
+
 local git_log_on_confirm = function(picker, item)
 	picker:close()
 	local selected = picker:selected()
 	if #selected == 1 then
 		vim.cmd("CodeDiff " .. selected[1].commit .. "~1  HEAD")
 	elseif #selected > 1 then
-		-- If multiple commits are selected, open a diff for the range
 		local first = selected[2].commit
 		local last = selected[1].commit
 		vim.cmd("CodeDiff " .. first .. "~1  " .. last)
@@ -19,130 +23,130 @@ local git_log_on_confirm = function(picker, item)
 	end
 end
 
--- Open picker.select to search for a directory to search in
+local grep_opts = { exclude = T.env.get_list("GREP_EXCLUDE_FILES"), hidden = true }
+local lsp_calls = { auto_confirm = false }
+
+local function layout_with_preview(preview)
+	if preview then
+		return {
+			preview = true,
+			layout = {
+				backdrop = false,
+				border = "rounded",
+				box = "vertical",
+				height = 0.9,
+				title = "{title} {live} {flags}",
+				title_pos = "center",
+				width = 0.7,
+				{ win = "input", height = 1, border = "bottom" },
+				{ win = "list", border = "none", height = 0.3 },
+				{ win = "preview", title = "{preview}", border = "top" },
+			},
+		}
+	else
+		return {
+			preview = false,
+			layout = {
+				backdrop = false,
+				border = "rounded",
+				box = "vertical",
+				height = 0.9,
+				title = "{title}",
+				title_pos = "center",
+				width = 0.7,
+				{ win = "input", height = 1, border = "bottom" },
+				{ win = "list", border = "none" },
+			},
+		}
+	end
+end
+
+local function get_dirs(cwd)
+	if vim.fn.executable("fd") == 1 then
+		local cmd = { "fd", "--type", "directory", "--hidden", "--no-ignore-vcs", "--exclude", ".git", cwd }
+		local result = vim.fn.system(cmd)
+		if vim.v.shell_error == 0 then
+			local dirs = {}
+			for line in vim.gsplit(result, "\n", { trimempty = true }) do
+				table.insert(dirs, line)
+			end
+			if #dirs > 0 then
+				return dirs
+			end
+		end
+	end
+
+	return require("plenary.scandir").scan_dir(cwd, {
+		only_dirs = true,
+		respect_gitignore = true,
+	})
+end
+
 local grep_directory = function()
 	local snacks = require("snacks")
-	local has_fd = vim.fn.executable("fd") == 1
 	local cwd = vim.fn.getcwd()
+	local dirs = get_dirs(cwd)
 
-	local function show_picker(dirs)
-		if #dirs == 0 then
-			vim.notify("No directories found", vim.log.levels.WARN)
-			return
-		end
-
-		local items = {}
-		for i, item in ipairs(dirs) do
-			table.insert(items, {
-				idx = i,
-				file = item,
-				text = item,
-			})
-		end
-
-		snacks.picker({
-			confirm = function(picker, item)
-				picker:close()
-				snacks.picker.grep({
-					dirs = { item.file },
-				})
-			end,
-			items = items,
-			format = function(item, _)
-				local file = item.file
-				local ret = {}
-				local a = Snacks.picker.util.align
-				local icon, icon_hl = Snacks.util.icon(file.ft, "directory")
-				ret[#ret + 1] = { a(icon, 3), icon_hl }
-				ret[#ret + 1] = { " " }
-				local path = file:gsub("^" .. vim.pesc(cwd) .. "/", "")
-				ret[#ret + 1] = { a(path, 20), "Directory" }
-
-				return ret
-			end,
-			layout = {
-				preview = false,
-				preset = "vertical",
-			},
-			title = "Grep in directory",
-		})
+	if #dirs == 0 then
+		vim.notify("No directories found", vim.log.levels.WARN)
+		return
 	end
 
-	if has_fd then
-		local cmd = { "fd", "--type", "directory", "--hidden", "--no-ignore-vcs", "--exclude", ".git" }
-		local dirs = {}
-
-		vim.fn.jobstart(cmd, {
-			on_stdout = function(_, data, _)
-				for _, line in ipairs(data) do
-					if line and line ~= "" then
-						table.insert(dirs, line)
-					end
-				end
-			end,
-			on_exit = function(_, code, _)
-				if code == 0 then
-					show_picker(dirs)
-				else
-					-- Fallback to plenary if fd fails
-					local fallback_dirs = require("plenary.scandir").scan_dir(cwd, {
-						only_dirs = true,
-						respect_gitignore = true,
-					})
-					show_picker(fallback_dirs)
-				end
-			end,
-		})
-	else
-		-- Use plenary if fd is not available
-		local dirs = require("plenary.scandir").scan_dir(cwd, {
-			only_dirs = true,
-			respect_gitignore = true,
-		})
-		show_picker(dirs)
+	local items = {}
+	for i, item in ipairs(dirs) do
+		table.insert(items, { idx = i, file = item, text = item })
 	end
+
+	snacks.picker({
+		confirm = function(picker, item)
+			picker:close()
+			snacks.picker.grep({ dirs = { item.file } })
+		end,
+		items = items,
+		format = function(item, _)
+			local a = Snacks.picker.util.align
+			local icon, icon_hl = Snacks.util.icon(item.file.ft, "directory")
+			local path = item.file:gsub("^" .. vim.pesc(cwd) .. "/", "")
+			return {
+				{ a(icon, 3), icon_hl },
+				{ " " },
+				{ a(path, 20), "Directory" },
+			}
+		end,
+		layout = { preview = false, preset = "vertical" },
+		title = "Grep in directory",
+	})
 end
 
 return {
 	"folke/snacks.nvim",
-	keys = function()
-		local snacks = require("snacks")
-		local picker = snacks.picker
+	keys = {
+		{ "<leader><space>", picker("smart"), desc = "Files" },
+		{ "<leader>,", picker("buffers"), desc = "Buffers" },
 
-		return {
-			-- files
-			{ "<leader><space>", picker.smart, desc = "Files" },
-			{ "<leader>,", picker.buffers, desc = "Buffers" },
+		{ "<leader>/", picker("grep"), desc = "Search: Workspace" },
+		{ "<leader>?", grep_directory, desc = "Search: Directory" },
+		{ "<leader>g/", picker("grep_word"), desc = "Search: Current word" },
 
-			-- search
-			{ "<leader>/", picker.grep, desc = "Search: Workspace" },
-			{ "<leader>?", grep_directory, desc = "Search: Directory" },
-			{ "<leader>g/", picker.grep_word, desc = "Search: Current word" },
+		{ "<leader>'", picker("marks"), desc = "Marks" },
+		{ "<leader>.", picker("resume"), desc = "Last picker" },
+		{ "<leader>;", picker("jumps"), desc = "Jumps" },
+		{ "<leader>u", picker("undo"), desc = "Command history" },
+		{ '<leader>"', picker("registers"), desc = "Registers" },
 
-			-- current state
-			{ "<leader>'", picker.marks, desc = "Marks" },
-			{ "<leader>.", picker.resume, desc = "Last picker" },
-			{ "<leader>;", picker.jumps, desc = "Jumps" },
-			{ "<leader>u", picker.undo, desc = "Command history" },
-			{ '<leader>"', picker.registers, desc = "Registers" },
+		{ "<leader>hl$", picker("git_log_line"), desc = "Git: Blame line" },
+		{ "<leader>hl%", picker("git_log_file"), desc = "Git: Log for file" },
+		{ "<leader>hb", picker("git_branches"), desc = "Git: Branches" },
+		{ "<leader>hh", picker("git_status"), desc = "Git: Status" },
+		{ "<leader>hll", picker("git_log"), desc = "Git: Search Log" },
 
-			-- git
-			{ "<leader>hl$", picker.git_log_line, desc = "Git: Blame line" },
-			{ "<leader>hl%", picker.git_log_file, desc = "Git: Log for file" },
-			{ "<leader>hb", picker.git_branches, desc = "Git: Branches" },
-			{ "<leader>hh", picker.git_status, desc = "Git: Status" },
-			{ "<leader>hll", picker.git_log, desc = "Git: Search Log" },
+		{ "<leader>cc", picker("qflist"), desc = "Quickfix List" },
 
-			-- quickfix
-			{ "<leader>cc", picker.qflist, desc = "Quickfix List" },
-
-			-- neovim
-			{ "<leader>na", picker.autocmds, desc = "Autocmds" },
-			{ "<leader>nh", picker.help, desc = "Help" },
-			{ "<leader>nH", picker.highlights, desc = "Highlights" },
-			{ "<leader>nk", picker.keymaps, desc = "Keymaps" },
-		}
-	end,
+		{ "<leader>na", picker("autocmds"), desc = "Autocmds" },
+		{ "<leader>nh", picker("help"), desc = "Help" },
+		{ "<leader>nH", picker("highlights"), desc = "Highlights" },
+		{ "<leader>nk", picker("keymaps"), desc = "Keymaps" },
+	},
 	priority = 1000, -- Ensure this is loaded before other plugins that might use snacks
 	opts = {
 		picker = {
@@ -198,35 +202,8 @@ return {
 			},
 			layout = "default",
 			layouts = {
-				default = {
-					preview = true,
-					layout = {
-						backdrop = false,
-						border = "rounded",
-						box = "vertical",
-						height = 0.9,
-						title = "{title} {live} {flags}",
-						title_pos = "center",
-						width = 0.7,
-						{ win = "input", height = 1, border = "bottom" },
-						{ win = "list", border = "none", height = 0.3 },
-						{ win = "preview", title = "{preview}", border = "top" },
-					},
-				},
-				no_preview = {
-					preview = false,
-					layout = {
-						backdrop = false,
-						border = "rounded",
-						box = "vertical",
-						height = 0.9,
-						title = "{title}",
-						title_pos = "center",
-						width = 0.7,
-						{ win = "input", height = 1, border = "bottom" },
-						{ win = "list", border = "none" },
-					},
-				},
+				default = layout_with_preview(true),
+				no_preview = layout_with_preview(false),
 			},
 			matcher = {
 				cwd_bonus = true,
@@ -298,14 +275,8 @@ return {
 						},
 					},
 				},
-				grep = {
-					exclude = T.env.get_list("GREP_EXCLUDE_FILES"),
-					hidden = true,
-				},
-				grep_word = {
-					exclude = T.env.get_list("GREP_EXCLUDE_FILES"),
-					hidden = true,
-				},
+				grep = grep_opts,
+				grep_word = grep_opts,
 				help = {
 					confirm = function(picker, item)
 						picker:close()
@@ -315,12 +286,8 @@ return {
 						})
 					end,
 				},
-				lsp_incoming_calls = {
-					auto_confirm = false,
-				},
-				lsp_outgoing_calls = {
-					auto_confirm = false,
-				},
+				lsp_incoming_calls = lsp_calls,
+				lsp_outgoing_calls = lsp_calls,
 				qflist = {
 					win = {
 						input = {
@@ -377,7 +344,7 @@ return {
 		},
 	},
 
-	lazy = false,
+	event = "VeryLazy",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 	},

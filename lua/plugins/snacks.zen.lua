@@ -5,15 +5,10 @@ local T = require("lib")
 
 return {
 	"folke/snacks.nvim",
-	keys = function()
-		local snacks = require("snacks")
-		local zen = snacks.zen
-
-		return {
-			{ "<leader>z", zen.zen, desc = "ZenMode: Toggle" },
-			{ "<c-w>z", zen.zoom, desc = "ZenMode: Zoom" },
-		}
-	end,
+	keys = {
+		{ "<leader>z", function() require("snacks").zen.zen() end, desc = "ZenMode: Toggle" },
+		{ "<c-w>z", function() require("snacks").zen.zoom() end, desc = "ZenMode: Zoom" },
+	},
 	opts = {
 		zen = {
 			toggles = {
