@@ -65,7 +65,6 @@ On first launch, [packard.nvim](https://github.com/ruicsh/packard.nvim) will boo
 ### AI
 
 - [briefing](https://github.com/ruicsh/briefing.nvim) - Prompt editor
-- [codecompanion](https://codecompanion.olimorris.dev) - Chat/inline
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - Suggestions (copilot)
 - [neocodeium](https://github.com/monkoose/neocodeium) - Suggestions (windsurf)
 - [sidekick.lua](https://github.com/folke/sidekick.nvim) - Agentic
@@ -343,10 +342,6 @@ Random features added.
 - `<a-e>` accept line
 - `<a-n>` show next
 - `<a-p>` show previous
-
-### AI chat
-
-- `<leader>aa` toggle/new
 
 ### AI agent
 

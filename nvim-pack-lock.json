@@ -13,10 +13,6 @@
       "rev": "c18c4fc0651aa19fddadf60ec269c51424882a2a",
       "src": "https://github.com/ruicsh/briefing.nvim.git"
     },
-    "codecompanion.nvim": {
-      "rev": "635f001598d811c6ea256bc863b3d503c3a88d43",
-      "src": "https://github.com/olimorris/codecompanion.nvim.git"
-    },
     "codediff.nvim": {
       "rev": "e5ceff28a32145e5c77f2c0aa539b0f6edfe2f8b",
       "src": "https://github.com/ruicsh/codediff.nvim.git",
@@ -39,7 +35,7 @@
       "src": "https://codeberg.org/trevorhauter/gitportal.nvim"
     },
     "gitsigns.nvim": {
-      "rev": "2038c666bd9d8a0b7349a0b6ee00dc83104b9ecf",
+      "rev": "eb60cc7b94c46005237fd34170d76f3a089a90aa",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
     },
     "grapple.nvim": {
@@ -59,7 +55,7 @@
       "src": "https://github.com/mistweaverco/kulala.nvim.git"
     },
     "mason-lspconfig.nvim": {
-      "rev": "50bf3871b539896bd0650b882f6e6b467cc1c1eb",
+      "rev": "47059d71b42d74b0a1e9f61c1d99d301039c3b5b",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim.git"
     },
     "mason-tool-installer.nvim": {
@@ -233,7 +229,7 @@
       "src": "https://github.com/tpope/vim-fugitive.git"
     },
     "vim-matchup": {
-      "rev": "a2d618496223386844acb5a6763cfc3cc1357af1",
+      "rev": "055881643e1b37038a572c883de7b1969716db77",
       "src": "https://github.com/andymass/vim-matchup.git"
     },
     "vim-test": {
