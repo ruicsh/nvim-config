@@ -32,7 +32,9 @@ return {
 					vim.keymap.set("n", "q", ":tabclose<CR>", { buffer = true, silent = true })
 					local bufname = vim.api.nvim_buf_get_name(0)
 					if vim.startswith(bufname, "fugitive://") then
-						vim.lsp.stop_client(vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() }))
+						for _, client in ipairs(vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })) do
+							client:stop()
+						end
 					end
 				end)
 			end
