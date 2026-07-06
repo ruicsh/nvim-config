@@ -12,14 +12,14 @@ end
 local git_log_on_confirm = function(picker, item)
 	picker:close()
 	local selected = picker:selected()
+	require("lazy").load({ plugins = { "codediff.nvim" } })
+	local diff = require("codediff.commands").vscode_diff
 	if #selected == 1 then
-		vim.cmd("CodeDiff " .. selected[1].commit .. "~1  HEAD")
+		diff({ fargs = { selected[1].commit .. "~1", "HEAD" } })
 	elseif #selected > 1 then
-		local first = selected[2].commit
-		local last = selected[1].commit
-		vim.cmd("CodeDiff " .. first .. "~1  " .. last)
+		diff({ fargs = { selected[#selected].commit .. "~1", selected[1].commit } })
 	else
-		vim.cmd("CodeDiff " .. item.commit .. "~1 " .. item.commit)
+		diff({ fargs = { item.commit .. "~1", item.commit } })
 	end
 end
 
@@ -138,7 +138,7 @@ return {
 		{ "<leader>hl%", picker("git_log_file"), desc = "Git: Log for file" },
 		{ "<leader>hb", picker("git_branches"), desc = "Git: Branches" },
 		{ "<leader>hh", picker("git_status"), desc = "Git: Status" },
-		{ "<leader>hll", picker("git_log"), desc = "Git: Search Log" },
+		{ "<leader>hL", picker("git_log"), desc = "Git: Search Log" },
 
 		{ "<leader>cc", picker("qflist"), desc = "Quickfix List" },
 
@@ -230,10 +230,8 @@ return {
 					actions = {
 						diff = function(picker, item)
 							picker:close()
-
-							-- Open diff for the branch compared to the default branch
-							local base = T.git.default_branch()
-							vim.cmd("CodeDiff " .. base .. " " .. item.branch)
+							require("lazy").load({ plugins = { "codediff.nvim" } })
+							require("codediff.commands").vscode_diff({ fargs = { T.git.default_branch(), item.branch } })
 						end,
 						toggle_filter = function(picker)
 							picker.opts.all = not picker.opts.all
