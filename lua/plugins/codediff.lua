@@ -60,6 +60,7 @@ return {
 		},
 		explorer = {
 			focus_on_select = true,
+			auto_open_on_cursor = true,
 			view_mode = "tree",
 			width = 60,
 		},
