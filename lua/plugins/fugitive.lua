@@ -24,6 +24,16 @@ return {
 			vim.fn.search(pattern, "w")
 		end
 
+		local function git_diff_tab()
+			vim.cmd("tabedit %")
+			vim.cmd("Gdiff")
+			for i = 1, vim.fn.winnr("$") do
+				vim.api.nvim_win_call(vim.fn.win_getid(i), function()
+					vim.keymap.set("n", "q", ":tabclose<CR>", { buffer = true, silent = true })
+				end)
+			end
+		end
+
 		local function show_range_history()
 			local start_line = vim.fn.line("v")
 			local end_line = vim.fn.line(".")
@@ -35,8 +45,8 @@ return {
 		end
 
 		return {
-			{ "<leader>hd", git_diff_file, desc = "Git: Diff file" },
-			{ "<leader>h%", "<cmd>Gdiff<cr>", desc = "Git: Gdiff" },
+			{ "<leader>hd", git_diff_tab, desc = "Git: Gdiff" },
+			{ "<leader>h%", git_diff_file, desc = "Git: Diff file" },
 			{ "<leader>hH", git_status, desc = "Git: Status" },
 			{ "<leader>hl", show_range_history, mode = "v", desc = "Git: Show range history" },
 		}
