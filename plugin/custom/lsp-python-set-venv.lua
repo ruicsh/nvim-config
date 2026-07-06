@@ -62,6 +62,10 @@ end
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup,
 	callback = function(args)
+		if vim.api.nvim_buf_get_name(args.buf):match("^fugitive://") then
+			return
+		end
+
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		if client and client.name == "pyright" then
 			vim.schedule(function()

@@ -5,6 +5,10 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/custom/disable-semantic-toke
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup,
 	callback = function(args)
+		if vim.api.nvim_buf_get_name(args.buf):match("^fugitive://") then
+			return
+		end
+
 		local client = vim.lsp.get_clients({ id = args.data.client_id })[1]
 		if not client then
 			return

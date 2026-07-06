@@ -5,7 +5,11 @@ local augroup = vim.api.nvim_create_augroup("ruicsh/filetypes/typescript", { cle
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup,
 	pattern = "*.ts,*.tsx",
-	callback = function()
+	callback = function(args)
+		if vim.api.nvim_buf_get_name(args.buf):match("^fugitive://") then
+			return
+		end
+
 		local function code_action(action)
 			return function()
 				vim.lsp.buf.code_action({

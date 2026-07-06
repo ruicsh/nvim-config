@@ -30,6 +30,10 @@ return {
 			for i = 1, vim.fn.winnr("$") do
 				vim.api.nvim_win_call(vim.fn.win_getid(i), function()
 					vim.keymap.set("n", "q", ":tabclose<CR>", { buffer = true, silent = true })
+					local bufname = vim.api.nvim_buf_get_name(0)
+					if vim.startswith(bufname, "fugitive://") then
+						vim.lsp.enable(false, { bufnr = vim.api.nvim_get_current_buf() })
+					end
 				end)
 			end
 		end
