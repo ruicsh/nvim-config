@@ -42,13 +42,13 @@ return {
 
 				vim.keymap.set("n", "<c-b>", function()
 					vim.api.nvim_win_call(mod_win, function()
-						vim.cmd("normal! \x02")
+						vim.cmd("normal! \x15")
 					end)
 				end, opts)
 
 				vim.keymap.set("n", "<c-f>", function()
 					vim.api.nvim_win_call(mod_win, function()
-						vim.cmd("normal! \x06")
+						vim.cmd("normal! \x04")
 					end)
 				end, opts)
 			end,
