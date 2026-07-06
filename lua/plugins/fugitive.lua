@@ -24,14 +24,23 @@ return {
 			vim.fn.search(pattern, "w")
 		end
 
-		local function git_diff_tab()
+		local function open_gdiff_tab(ref)
 			vim.cmd("tabedit %")
-			vim.cmd("Gdiff")
+			vim.cmd("Gdiff" .. (ref and " " .. ref or ""))
 			for i = 1, vim.fn.winnr("$") do
 				vim.api.nvim_win_call(vim.fn.win_getid(i), function()
 					vim.keymap.set("n", "q", ":tabclose<CR>", { buffer = true, silent = true })
 				end)
 			end
+		end
+
+		local function git_diff_default_branch()
+			local ref = T.git.default_branch()
+			if not ref then
+				vim.notify("Could not determine default branch", vim.log.levels.WARN)
+				return
+			end
+			open_gdiff_tab(ref)
 		end
 
 		local function show_range_history()
@@ -45,8 +54,9 @@ return {
 		end
 
 		return {
-			{ "<leader>hd", git_diff_tab, desc = "Git: Gdiff" },
-			{ "<leader>h%", git_diff_file, desc = "Git: Diff file" },
+			{ "<leader>hd", open_gdiff_tab, desc = "Git: Gdiff" },
+			{ "<leader>hb", git_diff_default_branch, desc = "Git: Diff file vs default branch" },
+			{ "<leader>h%", git_diff_file, desc = "Git: Diff file vs HEAD" },
 			{ "<leader>hH", git_status, desc = "Git: Status" },
 			{ "<leader>hl", show_range_history, mode = "v", desc = "Git: Show range history" },
 		}
