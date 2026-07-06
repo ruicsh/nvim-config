@@ -190,6 +190,20 @@ end
 
 k("y%", yank_current_path, { desc = "Yank filename (relative)" })
 
+local function yank_current_path_and_line()
+	local path = vim.fn.expand("%:.")
+	if path == "" then
+		vim.notify("No file name", vim.log.levels.WARN)
+		return
+	end
+	local line = vim.fn.line(".")
+	local result = ("%s:%d"):format(path, line)
+	vim.fn.setreg("+", result)
+	vim.notify(("Yanked %s"):format(result), vim.log.levels.INFO)
+end
+
+k("yL", yank_current_path_and_line, { desc = "Yank filename + line" })
+
 --
 -- }}}
 

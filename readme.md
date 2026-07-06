@@ -305,6 +305,11 @@ Random features added.
 - `%n` basename
 - `%p` path (absolute)
 
+Custom keymaps (normal mode):
+
+- `y%` path (relative)
+- `yL` path (relative) + line number
+
 ### Operators
 
 - `ys{motion}{char}` add surrounding character
