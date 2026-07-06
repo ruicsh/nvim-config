@@ -82,5 +82,6 @@ return {
 		},
 	},
 
+	cmd = "CodeDiff",
 	dependencies = { "MunifTanjim/nui.nvim" },
 }
