@@ -137,7 +137,7 @@ return {
 		{ "<leader>hl$", picker("git_log_line"), desc = "Git: Blame line" },
 		{ "<leader>hl%", picker("git_log_file"), desc = "Git: Log for file" },
 		{ "<leader>hB", picker("git_branches"), desc = "Git: Branches" },
-		{ "<leader>hh", picker("git_status"), desc = "Git: Status" },
+		{ "<leader>hH", picker("git_status"), desc = "Git: Status" },
 		{ "<leader>hL", picker("git_log"), desc = "Git: Search Log" },
 
 		{ "<leader>cc", picker("qflist"), desc = "Quickfix List" },
