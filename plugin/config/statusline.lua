@@ -13,7 +13,9 @@ local cached_git_root = vim.fs.root(0, ".git")
 vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged" }, {
 	group = statusline_augroup,
 	callback = function()
-		cached_git_root = vim.fs.root(0, ".git")
+		if vim.bo.buftype == "" then
+			cached_git_root = vim.fs.root(0, ".git")
+		end
 	end,
 })
 
@@ -150,11 +152,12 @@ local function c_project()
 end
 
 -- Show the current filename
-local function c_filename()
+local function c_filename(bufnr)
+	bufnr = bufnr or 0
 	local hl = "%#StatusLineFilename#"
 	local line = sep() .. " " .. hl
-	local ft = vim.bo.filetype
-	local bt = vim.bo.buftype
+	local ft = vim.bo[bufnr].filetype
+	local bt = vim.bo[bufnr].buftype
 
 	if bt == "terminal" then
 		return ""
@@ -169,11 +172,11 @@ local function c_filename()
 	elseif ft == "" or ft == "messages" then
 		return ""
 	else
-		local path = vim.fn.expand("%:p:~")
+		local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":~")
 		if ft == "oil" then
 			line = line .. vim.fn.fnamemodify(path:sub(7), ":.")
 		else
-			local fullpath = vim.api.nvim_buf_get_name(0)
+			local fullpath = vim.api.nvim_buf_get_name(bufnr)
 			local filename = vim.fn.fnamemodify(fullpath, ":t")
 			local relpath = vim.fn.fnamemodify(fullpath, ":.:h")
 			local icon, icon_color = devicons.get_icon(filename, nil, { default = true })
@@ -211,8 +214,9 @@ local function c_bookmark()
 end
 
 -- Show LSP diagnostics
-local function c_lsp_diagnostics()
-	local counts = T.fn.diagnostic_counts(0)
+local function c_lsp_diagnostics(bufnr)
+	bufnr = bufnr or 0
+	local counts = T.fn.diagnostic_counts(bufnr)
 
 	if #counts == 0 then
 		return ""
@@ -228,8 +232,8 @@ local function c_lsp_diagnostics()
 end
 
 -- Show git status
-local function c_git_status()
-	local status = T.fn.get_buf_var("gitsigns_status")
+local function c_git_status(bufnr)
+	local status = T.fn.get_buf_var("gitsigns_status", bufnr)
 	if not status or status == "" then
 		return ""
 	end
@@ -238,8 +242,8 @@ local function c_git_status()
 end
 
 -- Show the current git branch
-local function c_git_branch()
-	local head = T.fn.get_buf_var("gitsigns_head")
+local function c_git_branch(bufnr)
+	local head = T.fn.get_buf_var("gitsigns_head", bufnr)
 	if not head or head == "" then
 		return ""
 	end
@@ -278,8 +282,36 @@ local function c_tabs()
 	return table.concat(tabs, "")
 end
 
+-- When the active window is a floating/non-editing window (e.g. Sidekick),
+-- find a visible window with a regular file buffer to show status for.
+local function find_editing_bufnr(winid)
+	local bufnr = vim.api.nvim_win_get_buf(winid)
+	local buftype = vim.bo[bufnr].buftype
+	local win_config = vim.api.nvim_win_get_config(winid)
+
+	if win_config.relative == "" and buftype == "" then
+		return bufnr
+	end
+
+	for _, w in ipairs(vim.api.nvim_list_wins()) do
+		if w ~= winid then
+			local cfg = vim.api.nvim_win_get_config(w)
+			if cfg.relative == "" then
+				local b = vim.api.nvim_win_get_buf(w)
+				if vim.bo[b].buftype == "" then
+					return b
+				end
+			end
+		end
+	end
+
+	return bufnr
+end
+
 -- Construct the statusline (default)
 function _G.statusline()
+	local winid = vim.g.statusline_winid or vim.api.nvim_get_current_win()
+	local bufnr = find_editing_bufnr(winid)
 	local hl = "%#StatusLine#"
 
 	local components = {
@@ -287,13 +319,13 @@ function _G.statusline()
 		c_mode(),
 		c_spinner(),
 		c_project(),
-		c_filename(),
+		c_filename(bufnr),
 		c_bookmark(),
 		"%=",
 		"%=",
-		c_lsp_diagnostics(),
-		c_git_status(),
-		c_git_branch(),
+		c_lsp_diagnostics(bufnr),
+		c_git_status(bufnr),
+		c_git_branch(bufnr),
 		c_cursor_position(),
 		c_tabs(),
 	}
