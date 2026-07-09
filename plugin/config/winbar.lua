@@ -5,6 +5,19 @@ local T = require("lib")
 -- Hoist require out of the hot render path
 local devicons = require("nvim-web-devicons")
 
+local function c_git_status(props)
+	local bufnr = props.bufnr
+	local focused = props.focused
+
+	local status = T.fn.get_buf_var("gitsigns_status", bufnr)
+	if not status or status == "" then
+		return ""
+	end
+
+	local group = focused and "WinbarSecondary" or "WinbarSecondaryNC"
+	return "%#" .. group .. "# " .. status .. " "
+end
+
 local function c_lsp_diagnostics(props)
 	local bufnr = props.bufnr
 	local focused = props.focused
@@ -91,9 +104,13 @@ function _G.winbar()
 	}
 
 	local diagnostics = c_lsp_diagnostics(props)
+	local git_status = c_git_status(props)
 	local filename = c_filename(props)
 
-	local content = diagnostics .. filename .. " "
+	local has_left = diagnostics ~= "" or git_status ~= ""
+	local sep = (diagnostics ~= "" and git_status ~= "") and "%#WinbarSecondaryNC#| " or ""
+	local git_sep = has_left and "%#WinbarSecondaryNC#| " or ""
+	local content = diagnostics .. sep .. git_status .. git_sep .. filename .. " "
 	local win_width = vim.api.nvim_win_get_width(winid)
 	local half_screen = math.floor(vim.o.columns / 2)
 	local needs_adjust = has_right_side_panel() and win_width > half_screen

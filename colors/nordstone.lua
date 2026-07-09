@@ -353,7 +353,6 @@ loadColorSet({
 	StatusLineFileChanged = { fg = c.nord13 },
 	StatusLineFilename = { fg = c.nord4 },
 	StatusLineFilePath = { fg = c.nord3_700 },
-	StatusLineGitStatus = { link = "StatusLine" },
 	StatusLineModeCommand = { bg = cmode.c },
 	StatusLineModeCommandText = { fg = cmode.c },
 	StatusLineModeInsert = { bg = cmode.i },

@@ -213,34 +213,6 @@ local function c_bookmark()
 	return sep() .. " " .. hl .. "󰛢 " .. index
 end
 
--- Show LSP diagnostics
-local function c_lsp_diagnostics(bufnr)
-	bufnr = bufnr or 0
-	local counts = T.fn.diagnostic_counts(bufnr)
-
-	if #counts == 0 then
-		return ""
-	end
-
-	local lines = {}
-	for _, entry in ipairs(counts) do
-		local icon = entry.key:sub(1, 1):upper()
-		table.insert(lines, icon .. entry.count)
-	end
-
-	return "%#StatusLine# " .. table.concat(lines, " ") .. " " .. sep()
-end
-
--- Show git status
-local function c_git_status(bufnr)
-	local status = T.fn.get_buf_var("gitsigns_status", bufnr)
-	if not status or status == "" then
-		return ""
-	end
-
-	return "%#StatusLineGitStatus#" .. " " .. status .. " " .. sep()
-end
-
 -- Show the current git branch
 local function c_git_branch(bufnr)
 	local head = T.fn.get_buf_var("gitsigns_head", bufnr)
@@ -252,7 +224,7 @@ local function c_git_branch(bufnr)
 		head = head:sub(1, 20) .. "..."
 	end
 
-	return "%#StatusLine#" .. " " .. head .. " " .. sep()
+	return "%#StatusLine#" .. " " .. head .. " "
 end
 
 -- Show tabs (only if there are more than one)
@@ -317,9 +289,6 @@ function _G.statusline()
 		c_filename(actual_bufnr),
 		c_bookmark(),
 		"%=",
-		"%=",
-		c_lsp_diagnostics(actual_bufnr),
-		c_git_status(editing_bufnr),
 		c_git_branch(editing_bufnr),
 		c_tabs(),
 	}
