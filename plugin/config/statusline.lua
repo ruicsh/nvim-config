@@ -19,6 +19,53 @@ vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged" }, {
 	end,
 })
 
+-- Cache for repo-wide git info (updated asynchronously)
+local repo_status_cache = ""
+local remote_status_cache = ""
+local git_info_timer = nil
+
+local function refresh_git_info()
+	if not cached_git_root then
+		repo_status_cache = ""
+		remote_status_cache = ""
+		return
+	end
+
+	if git_info_timer then
+		vim.uv.timer_stop(git_info_timer)
+	end
+
+	git_info_timer = vim.uv.new_timer()
+	git_info_timer:start(200, 0, function()
+		git_info_timer:close()
+		git_info_timer = nil
+
+		T.git.repo_status(function(repo)
+			T.git.remote_status(function(remote)
+				vim.schedule(function()
+					repo_status_cache = repo
+					remote_status_cache = remote
+					vim.cmd("redrawstatus!")
+				end)
+			end, cached_git_root)
+		end, cached_git_root)
+	end)
+end
+
+vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged", "FocusGained", "CursorHold" }, {
+	group = statusline_augroup,
+	callback = function()
+		vim.schedule(refresh_git_info)
+	end,
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	group = statusline_augroup,
+	callback = function()
+		refresh_git_info()
+	end,
+})
+
 -- Pre-create icon highlight groups at startup so the hot render path never calls nvim_set_hl
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = statusline_augroup,
@@ -44,6 +91,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 local function sep()
 	return "%#StatusLineSeparator#|%#StatusLine#"
+end
+
+local function item_sep()
+	return " %#StatusLineSeparator#│%#StatusLine#"
 end
 
 -- Show the current mode
@@ -213,7 +264,7 @@ local function c_bookmark()
 	return sep() .. " " .. hl .. "󰛢 " .. index
 end
 
--- Show the current git branch
+-- Show the current git branch with diff and remote tracking status
 local function c_git_branch(bufnr)
 	local head = T.fn.get_buf_var("gitsigns_head", bufnr)
 	if not head or head == "" then
@@ -224,7 +275,18 @@ local function c_git_branch(bufnr)
 		head = head:sub(1, 20) .. "..."
 	end
 
-	return "%#StatusLine#" .. " " .. head .. " "
+	local result = "%#StatusLine#"
+
+	if repo_status_cache ~= "" then
+		result = result .. " " .. repo_status_cache .. item_sep()
+	end
+
+	if remote_status_cache ~= "" then
+		result = result .. " " .. remote_status_cache .. item_sep()
+	end
+
+	result = result .. "  " .. head .. " "
+	return result
 end
 
 -- Show tabs (only if there are more than one)
