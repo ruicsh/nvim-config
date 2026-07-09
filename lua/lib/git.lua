@@ -109,7 +109,7 @@ M.remote_status = function(callback, cwd)
 					return
 				end
 
-				local ahead, behind = c_result.stdout:match("^(%d+)%s+(%d+)")
+				local behind, ahead = c_result.stdout:match("^(%d+)%s+(%d+)")
 				ahead = tonumber(ahead) or 0
 				behind = tonumber(behind) or 0
 
