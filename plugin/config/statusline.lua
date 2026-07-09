@@ -255,12 +255,6 @@ local function c_git_branch(bufnr)
 	return "%#StatusLine#" .. " " .. head .. " " .. sep()
 end
 
--- Show the current position
-local function c_cursor_position()
-	local has_tabs = vim.fn.tabpagenr("$") > 1
-	return "%#StatusLine#%4l %3p%% " .. (has_tabs and sep() or "")
-end
-
 -- Show tabs (only if there are more than one)
 local function c_tabs()
 	local n_tabs = vim.fn.tabpagenr("$")
@@ -327,7 +321,6 @@ function _G.statusline()
 		c_lsp_diagnostics(actual_bufnr),
 		c_git_status(editing_bufnr),
 		c_git_branch(editing_bufnr),
-		c_cursor_position(),
 		c_tabs(),
 	}
 
