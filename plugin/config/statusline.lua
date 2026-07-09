@@ -324,7 +324,7 @@ function _G.statusline()
 		c_bookmark(),
 		"%=",
 		"%=",
-		c_lsp_diagnostics(editing_bufnr),
+		c_lsp_diagnostics(actual_bufnr),
 		c_git_status(editing_bufnr),
 		c_git_branch(editing_bufnr),
 		c_cursor_position(),
