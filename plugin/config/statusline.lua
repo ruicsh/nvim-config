@@ -311,7 +311,8 @@ end
 -- Construct the statusline (default)
 function _G.statusline()
 	local winid = vim.g.statusline_winid or vim.api.nvim_get_current_win()
-	local bufnr = statusline_bufnr(winid)
+	local editing_bufnr = statusline_bufnr(winid)
+	local actual_bufnr = vim.api.nvim_win_get_buf(winid)
 	local hl = "%#StatusLine#"
 
 	local components = {
@@ -319,13 +320,13 @@ function _G.statusline()
 		c_mode(),
 		c_spinner(),
 		c_project(),
-		c_filename(bufnr),
+		c_filename(actual_bufnr),
 		c_bookmark(),
 		"%=",
 		"%=",
-		c_lsp_diagnostics(bufnr),
-		c_git_status(bufnr),
-		c_git_branch(bufnr),
+		c_lsp_diagnostics(editing_bufnr),
+		c_git_status(editing_bufnr),
+		c_git_branch(editing_bufnr),
 		c_cursor_position(),
 		c_tabs(),
 	}
