@@ -45,7 +45,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 ## Plugins
 
-<sub>65 plugins</sub>
+<sub>64 plugins</sub>
 
 ### Code
 
