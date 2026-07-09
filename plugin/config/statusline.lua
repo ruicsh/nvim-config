@@ -282,19 +282,36 @@ local function c_tabs()
 	return table.concat(tabs, "")
 end
 
--- Determine whether a window is a regular editing window (not floating, not special buffer).
-local function is_editing_win(winid)
-	local win_config = vim.api.nvim_win_get_config(winid)
-	if win_config.relative ~= "" then
-		return false
-	end
+-- Resolve the buffer to display in the statusline.
+-- When the active window is a floating/non-editing window (e.g. Sidekick),
+-- falls back to a visible non-floating window with a regular file buffer.
+local function statusline_bufnr(winid)
 	local bufnr = vim.api.nvim_win_get_buf(winid)
-	return vim.bo[bufnr].buftype == ""
+	local win_config = vim.api.nvim_win_get_config(winid)
+
+	if win_config.relative == "" and vim.bo[bufnr].buftype == "" then
+		return bufnr
+	end
+
+	for _, w in ipairs(vim.api.nvim_list_wins()) do
+		if w ~= winid then
+			local cfg = vim.api.nvim_win_get_config(w)
+			if cfg.relative == "" then
+				local b = vim.api.nvim_win_get_buf(w)
+				if vim.bo[b].buftype == "" then
+					return b
+				end
+			end
+		end
+	end
+
+	return bufnr
 end
 
 -- Construct the statusline (default)
 function _G.statusline()
 	local winid = vim.g.statusline_winid or vim.api.nvim_get_current_win()
+	local bufnr = statusline_bufnr(winid)
 	local hl = "%#StatusLine#"
 
 	local components = {
@@ -302,24 +319,16 @@ function _G.statusline()
 		c_mode(),
 		c_spinner(),
 		c_project(),
+		c_filename(bufnr),
+		c_bookmark(),
+		"%=",
+		"%=",
+		c_lsp_diagnostics(bufnr),
+		c_git_status(bufnr),
+		c_git_branch(bufnr),
+		c_cursor_position(),
+		c_tabs(),
 	}
-
-	if is_editing_win(winid) then
-		local bufnr = vim.api.nvim_win_get_buf(winid)
-		components[#components + 1] = c_filename(bufnr)
-		components[#components + 1] = c_bookmark()
-		components[#components + 1] = "%="
-		components[#components + 1] = "%="
-		components[#components + 1] = c_lsp_diagnostics(bufnr)
-		components[#components + 1] = c_git_status(bufnr)
-		components[#components + 1] = c_git_branch(bufnr)
-	else
-		components[#components + 1] = "%="
-		components[#components + 1] = "%="
-	end
-
-	components[#components + 1] = c_cursor_position()
-	components[#components + 1] = c_tabs()
 
 	local filtered_components = {}
 	for _, component in ipairs(components) do
