@@ -19,7 +19,7 @@ o.tagstack = true -- Enable tagstack. `:h 'tagstack'`
 
 -- 4 displaying text {{{
 o.breakindent = true -- Wrapped lines will continue visually indented `:h 'breakindent'`
-o.cmdheight = 1 -- Show command line on 1 line. `:h 'cmdheight'`
+o.cmdheight = 0 -- Hide command-line area (requires ui2, Nvim 0.12+). `:h 'cmdheight'`
 o.fillchars = { -- `:h 'fillchars'`
 	diff = " ", -- Diff deleted lines marker.
 	eob = " ", -- End of buffer marker.
@@ -28,7 +28,6 @@ o.fillchars = { -- `:h 'fillchars'`
 	foldopen = "", -- Opened fold.
 	foldsep = " ", -- Open fold middle marker
 }
-o.messagesopt = "wait:500,history:1000" -- Option settings for outputting messages. `:h 'messagesopt'`
 o.number = true -- Show line numbers. `:h 'number'`
 o.numberwidth = 5 -- More space on the gutter column. `:h 'numberwidth'`
 o.relativenumber = false -- Show relative line numbers. `:h 'relativenumber'`
