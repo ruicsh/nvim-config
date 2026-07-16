@@ -85,6 +85,28 @@ M.repo_status = function(callback, cwd)
 	end)
 end
 
+M.is_rebasing = function()
+  local handle = io.popen("git rev-parse --git-path rebase-merge 2>/dev/null", "r")
+  if handle then
+    local result = handle:read("*a"):gsub("%s+", "")
+    handle:close()
+    if result ~= "" and vim.uv.fs_stat(result) then
+      return true
+    end
+  end
+
+  handle = io.popen("git rev-parse --git-path rebase-apply 2>/dev/null", "r")
+  if handle then
+    local result = handle:read("*a"):gsub("%s+", "")
+    handle:close()
+    if result ~= "" and vim.uv.fs_stat(result) then
+      return true
+    end
+  end
+
+  return false
+end
+
 M.remote_status = function(callback, cwd)
 	cwd = cwd or vim.fn.getcwd()
 

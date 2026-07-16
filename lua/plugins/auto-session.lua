@@ -1,6 +1,8 @@
 -- Session management
 -- https://github.com/rmagatti/auto-session
 
+local is_rebasing = require("lib.git").is_rebasing
+
 return {
 	"rmagatti/auto-session",
 	event = "VimEnter",
@@ -9,6 +11,20 @@ return {
 		git_auto_restore_on_branch_change = true,
 		git_use_branch_name = true,
 		purge_after_minutes = 14400,
+		pre_save_cmds = {
+			function()
+				if is_rebasing() then
+					return false
+				end
+			end,
+		},
+		pre_restore_cmds = {
+			function()
+				if is_rebasing() then
+					return false
+				end
+			end,
+		},
 		save_extra_cmds = {
 			-- Save and restore the quickfix list
 			function()
