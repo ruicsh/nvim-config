@@ -14,6 +14,13 @@ local function is_e2e_file(file)
 	end
 end
 
+-- Helper: check if the current project is an Angular project
+local function is_angular_project()
+	local cwd = vim.fn.getcwd()
+	local angular_json = vim.fn.findfile("angular.json", cwd .. ";")
+	return angular_json ~= ""
+end
+
 -- Auto-set the runner based on current file
 vim.api.nvim_create_autocmd("BufEnter", {
 	group = augroup,
@@ -21,6 +28,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
 		if is_e2e_file(vim.fn.expand("%:p")) then
 			vim.g["test#javascript#runner"] = "playwright"
+		elseif is_angular_project() then
+			vim.g["test#javascript#runner"] = "ngtest"
 		else
 			vim.g["test#javascript#runner"] = "vitest"
 		end
@@ -36,11 +45,12 @@ return {
 		{ "<leader>bn", "<cmd>TestNearest<cr>", desc = "Tests: Run nearest" },
 	},
 	config = function()
-		-- Enable JavaScript runners: Vitest, Jest, Playwright (faster runner detection)
-		vim.g["test#enabled_runners"] = { "javascript#vitest", "javascript#playwright" }
+		-- Enable JavaScript runners: Angular, Vitest, Playwright
+		vim.g["test#enabled_runners"] = { "javascript#ngtest", "javascript#vitest", "javascript#playwright" }
 
 		-- Use npx to run test runners
 		vim.g["test#javascript#vitest#executable"] = "npx vitest"
+		vim.g["test#javascript#ngtest#executable"] = "npx ng test --no-watch"
 		vim.g["test#javascript#jest#executable"] = "npx jest"
 
 		-- Open side panel with terminal for test output
