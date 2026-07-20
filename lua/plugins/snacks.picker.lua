@@ -63,11 +63,11 @@ end
 
 local function get_dirs(cwd)
 	if vim.fn.executable("fd") == 1 then
-		local cmd = { "fd", "--type", "directory", "--hidden", "--no-ignore-vcs", "--exclude", ".git", cwd }
-		local result = vim.fn.system(cmd)
-		if vim.v.shell_error == 0 then
+		local proc = vim.system({ "fd", "--type", "directory", "--hidden", "--no-ignore-vcs", "--exclude", ".git", cwd }, { text = true })
+		local result = proc:wait()
+		if result.code == 0 then
 			local dirs = {}
-			for line in vim.gsplit(result, "\n", { trimempty = true }) do
+			for line in vim.gsplit(result.stdout, "\n", { trimempty = true }) do
 				table.insert(dirs, line)
 			end
 			if #dirs > 0 then
