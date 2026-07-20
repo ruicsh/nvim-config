@@ -14,12 +14,25 @@ local function is_e2e_file(file)
 	end
 end
 
--- Helper: check if the current project is an Angular project
+-- Helper: check if the current project is an Angular project (cached by cwd)
+local angular_cache = {}
 local function is_angular_project()
 	local cwd = vim.fn.getcwd()
+	if angular_cache[cwd] ~= nil then
+		return angular_cache[cwd]
+	end
 	local angular_json = vim.fn.findfile("angular.json", cwd .. ";")
-	return angular_json ~= ""
+	angular_cache[cwd] = angular_json ~= ""
+	return angular_cache[cwd]
 end
+
+-- Clear Angular project cache on directory change
+vim.api.nvim_create_autocmd("DirChanged", {
+	group = augroup,
+	callback = function()
+		angular_cache = {}
+	end,
+})
 
 -- Auto-set the runner based on current file
 vim.api.nvim_create_autocmd("BufEnter", {
