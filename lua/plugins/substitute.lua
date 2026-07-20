@@ -14,10 +14,10 @@ return {
 			{ "<leader>R", s.eol, desc = "Substitute: End of line" },
 			{ "<leader>r", s.visual, desc = "Substitute: Selection", mode = "x" },
 			-- Exchange
-			{ "<leader>x", x.operator, desc = "Substitute: Operator" },
-			{ "<leader>xx", x.line, desc = "Substitute: Line" },
-			{ "<leader>x", x.visual, desc = "Substitute: Selection", mode = "x" },
-			{ "<leader>xc", x.cancel, desc = "Substitute: Cancel" },
+			{ "<leader>x", x.operator, desc = "Exchange: Operator" },
+			{ "<leader>xx", x.line, desc = "Exchange: Line" },
+			{ "<leader>x", x.visual, desc = "Exchange: Selection", mode = "x" },
+			{ "<leader>xc", x.cancel, desc = "Exchange: Cancel" },
 		}
 	end,
 	opts = {
