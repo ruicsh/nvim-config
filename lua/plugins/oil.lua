@@ -97,6 +97,9 @@ return {
 		-- Show git-ignored files as hidden
 		opts.view_options.is_hidden_file = function(name, bufnr)
 			local dir = oil.get_current_dir(bufnr)
+			if not dir then
+				return false
+			end
 			return git_status_ignored[dir][name]
 		end
 
