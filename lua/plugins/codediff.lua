@@ -28,17 +28,19 @@ return {
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "CodeDiffOpen",
+			-- Forward <c-b>/<c-f> pressed in the explorer panel to the diff
+			-- window, so page-up/page-down scroll the diff instead of the tree.
 			callback = function(ev)
 				local tabpage = ev.data.tabpage
 				local lifecycle = require("codediff.ui.lifecycle")
 
 				local _, mod_win = lifecycle.get_windows(tabpage)
-				local explorer = lifecycle.get_explorer(tabpage)
-				if not explorer or not mod_win then
+				local panel_view = lifecycle.get_panel_view(tabpage)
+				if not panel_view or not mod_win then
 					return
 				end
 
-				local opts = { buffer = explorer.bufnr, nowait = true }
+				local opts = { buffer = panel_view.bufnr, nowait = true }
 
 				vim.keymap.set("n", "<c-b>", function()
 					vim.api.nvim_win_call(mod_win, function()
