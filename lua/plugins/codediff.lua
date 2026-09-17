@@ -68,8 +68,12 @@ return {
 		},
 		keymaps = {
 			view = {
-				next_hunk = false, -- Always use gitsigns navigation in CodeDiff buffers
-				prev_hunk = false, -- Always use gitsigns navigation in CodeDiff buffers
+				-- Always use gitsigns navigation in CodeDiff buffers
+				next_hunk = false,
+				prev_hunk = false,
+				stage_hunk = false,
+				unstage_hunk = false,
+				discard_hunk = false,
 				next_file = "<c-n>",
 				prev_file = "<c-p>",
 			},
