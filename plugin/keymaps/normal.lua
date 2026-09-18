@@ -144,6 +144,8 @@ k("<c-w>t", function()
 	vim.cmd("tabedit " .. file) -- Open the file in a new tab
 end, { desc = "Windows: Move to new tab" })
 
+k("<leader>w", "<cmd>Wrap<cr>", { desc = "Toggle wrap" })
+
 --
 -- }}}
 

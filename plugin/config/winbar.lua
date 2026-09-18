@@ -77,14 +77,7 @@ local function c_filename(props)
 end
 
 local function has_right_side_panel()
-	local half = math.floor(vim.o.columns * 0.5)
-	for _, w in ipairs(vim.api.nvim_list_wins()) do
-		local cfg = vim.api.nvim_win_get_config(w)
-		if cfg.relative == "editor" and cfg.width >= half and cfg.col >= half then
-			return true
-		end
-	end
-	return false
+	return T.ui.right_panel_width() > 0
 end
 
 local function visual_width(str)
