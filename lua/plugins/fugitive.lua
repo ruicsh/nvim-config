@@ -7,9 +7,7 @@ return {
 	"tpope/vim-fugitive",
 	keys = function()
 		local function git_status()
-			vim.cmd("tabnew")
-			vim.cmd("vertical Git")
-			vim.cmd("only")
+			vim.cmd("Git ++curwin")
 		end
 
 		local function git_diff_file()

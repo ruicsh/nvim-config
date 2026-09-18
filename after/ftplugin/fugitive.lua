@@ -17,7 +17,6 @@ k("n", "<leader>hu", "<cmd>Git push -u origin HEAD<cr>", { desc = "push -u origi
 k("n", "<tab>", "=", { desc = "Toggle section", remap = true })
 k("n", "q", function()
 	require("snacks.bufdelete").delete()
-	vim.cmd("tabclose")
 end, { desc = "Close" })
 
 -- Commit in new vertical split
