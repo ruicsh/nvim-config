@@ -4,5 +4,9 @@
 return {
 	"ruicsh/tailwindcss-colors.nvim",
 	ft = { "astro", "html", "typescriptreact", "javascriptreact", "css", "scss" },
-	opts = {},
+	opts = {
+		notify = false,
+		auto_attach = true,
+		skip_patterns = { "^fugitive://" },
+	},
 }
