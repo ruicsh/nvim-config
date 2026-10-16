@@ -14,6 +14,8 @@ return {
 		}
 	end,
 	opts = {
-		default_amount = 5,
+		resize = {
+			amount = 5,
+		},
 	},
 }
