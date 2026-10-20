@@ -15,13 +15,10 @@ return {
 					layout = "float",
 					float = T.ui.side_panel_win_config(),
 					keys = {
-						buffers = false,
-						files = false,
 						hide_n = false,
 						hide_ctrl_q = false,
 						hide_ctrl_dot = false,
 						hide_ctrl_z = { "<c-bslash>", "blur", mode = "nt", desc = "Focus Editor" },
-						prompt = false,
 						stopinsert = false,
 						nav_left = false,
 						nav_down = false,
