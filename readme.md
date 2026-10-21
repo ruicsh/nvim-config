@@ -102,7 +102,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 - [codediff](https://github.com/esmuellert/codediff.nvim) - diff
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
-- [gitportal](https://codeberg.org/trevorhauter/gitportal.nvim) - Open remote
+- [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
 
 ### Navigation
