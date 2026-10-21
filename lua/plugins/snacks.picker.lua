@@ -26,6 +26,37 @@ end
 local grep_opts = { exclude = T.env.get_list("GREP_EXCLUDE_FILES"), hidden = true }
 local lsp_calls = { auto_confirm = false }
 
+-- `<a-x>` instead of the more obvious `<c-o>`, which is the tmux prefix
+local git_log_browse_keys = {
+	input = {
+		keys = {
+			["<a-x>"] = { "git_browse", mode = { "n", "i" } },
+		},
+	},
+	list = {
+		keys = {
+			["<a-x>"] = { "git_browse", mode = { "n", "x" } },
+		},
+	},
+	preview = {
+		keys = {
+			["<a-x>"] = { "git_browse", mode = "n" },
+		},
+	},
+}
+
+local git_browse = function(picker, item)
+	local selected = picker:selected()
+	if #selected == 0 and item then
+		selected = { item }
+	end
+	for _, commit in ipairs(selected) do
+		if commit.commit then
+			require("snacks").gitbrowse({ what = "commit", commit = commit.commit })
+		end
+	end
+end
+
 local function layout_with_preview(preview)
 	if preview then
 		return {
@@ -151,6 +182,7 @@ return {
 	opts = {
 		picker = {
 			actions = {
+				git_browse = git_browse,
 				qflist = function(picker)
 					local snacks = require("snacks")
 					snacks.picker.actions.qflist(picker)
@@ -256,10 +288,16 @@ return {
 				git_log = {
 					confirm = git_log_on_confirm,
 					title = "Git: Search log",
+					win = git_log_browse_keys,
 				},
 				git_log_file = {
 					confirm = git_log_on_confirm,
 					title = "Git: Search log for file",
+					win = git_log_browse_keys,
+				},
+				git_log_line = {
+					title = "Git: Search log for line",
+					win = git_log_browse_keys,
 				},
 				git_status = {
 					win = {
