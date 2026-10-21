@@ -38,6 +38,41 @@ M.blame_line = function()
 	return result.stdout
 end
 
+-- Returns the hash of the commit that last touched `linenr`, or nil when the
+-- line is uncommitted, the file is untracked, or not inside a git repository.
+M.commit_at_line = function(linenr)
+	linenr = linenr or vim.fn.line(".")
+	local file = vim.api.nvim_buf_get_name(0)
+	if file == "" then
+		return nil
+	end
+
+	local args = {
+		"git",
+		"-C",
+		vim.fn.fnamemodify(file, ":h"),
+		"blame",
+		"-L",
+		("%d,%d"):format(linenr, linenr),
+		"--porcelain",
+		"--",
+		file,
+	}
+
+	local result = vim.system(args):wait(5000)
+	if not result or result.code ~= 0 or not result.stdout then
+		return nil
+	end
+
+	-- All-zero hash means the line is not committed yet
+	local hash = result.stdout:match("^(%x%x%x%x%x%x%x+)")
+	if not hash or hash:match("^0+$") then
+		return nil
+	end
+
+	return hash
+end
+
 M.repo_status = function(callback, cwd)
 	cwd = cwd or vim.fn.getcwd()
 
