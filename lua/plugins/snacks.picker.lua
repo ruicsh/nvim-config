@@ -94,7 +94,10 @@ end
 
 local function get_dirs(cwd)
 	if vim.fn.executable("fd") == 1 then
-		local proc = vim.system({ "fd", "--type", "directory", "--hidden", "--no-ignore-vcs", "--exclude", ".git", cwd }, { text = true })
+		local proc = vim.system(
+			{ "fd", "--type", "directory", "--hidden", "--no-ignore-vcs", "--exclude", ".git", cwd },
+			{ text = true }
+		)
 		local result = proc:wait()
 		if result.code == 0 then
 			local dirs = {}
