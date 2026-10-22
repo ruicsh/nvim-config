@@ -25,6 +25,10 @@ local function tailwindcss_opts()
 				classFunctions = { "cva", "cx", "tv" },
 			},
 		},
+		on_init = function(client)
+			-- Disable LSP document color highlighting (inline color swatches)
+			vim.lsp.document_color.enable(false, { client_id = client.id })
+		end,
 	}
 end
 
