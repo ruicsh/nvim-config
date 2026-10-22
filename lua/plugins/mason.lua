@@ -3,6 +3,7 @@ local T = require("lib")
 -- https://mason-registry.dev/registry/list
 local PACKAGES = {
 	-- LSP
+	"angular-language-server",
 	"ansiblels",
 	"astro-language-server",
 	"css_variables",
