@@ -51,7 +51,14 @@ return {
 		-- https://github.com/mason-org/mason-lspconfig.nvim
 		"mason-org/mason-lspconfig.nvim",
 		cond = not os.getenv("NVIM_GIT_DIFF"),
-		opts = {},
+		opts = function()
+			return {
+				-- Servers listed in LSP_DISABLED_SERVERS are installed but not started
+				automatic_enable = {
+					exclude = T.env.get_list("LSP_DISABLED_SERVERS"),
+				},
+			}
+		end,
 
 		dependencies = {
 			"mason-org/mason.nvim",
@@ -67,7 +74,7 @@ return {
 			local packages = vim.tbl_deep_extend("force", {}, PACKAGES)
 
 			local disabled_packages = T.env.get_list("MASON_DISABLED_PACKAGES")
-			local disabled_servers = T.env.get_list("LSP_DISABLED_SERVERS")
+			local disabled_servers = T.env.get_list("MASON_DISABLED_SERVERS")
 			local disabled = vim.list_extend(vim.list_slice(disabled_packages), disabled_servers)
 
 			-- Filter out disabled packages and servers
