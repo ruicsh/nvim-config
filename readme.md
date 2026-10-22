@@ -55,7 +55,6 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
-- [tailwincss-colors](https://github.com/themaxmarchuk/tailwindcss-colors.nvim) - Highlight Tailwind colors
 - [tailwincss-dial](https://github.com/ruicsh/tailwindcss-dial.nvim) - Toggle TailwindCSS classes
 - [tailwincss-shades](https://github.com/ruicsh/tailwindcss-shades.nvim) - Generate Tailwind colors
 - [tailwind-hover](https://github.com/ruicsh/tailwind-hover.nvim) - Tailwind CSS hover
