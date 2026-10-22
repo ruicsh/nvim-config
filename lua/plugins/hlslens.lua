@@ -8,7 +8,8 @@ return {
 
 		local function browse(key)
 			return function()
-				vim.cmd("normal! " .. vim.v.count1 .. key .. "zv")
+				-- `silent!` so a missing next/previous match doesn't throw E486
+				vim.cmd("silent! normal! " .. vim.v.count1 .. key .. "zv")
 				hlslens.start()
 			end
 		end
