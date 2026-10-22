@@ -25,10 +25,15 @@ k("n", "cc", function()
 	vim.cmd("vertical Git commit")
 end, { desc = "Commit in new tab" })
 
--- Always open file under cursor in vertical split
+-- Open the file under cursor in the status window, replacing the status buffer.
+-- Fugitive's own `:Gedit` "blurs" status windows (keeps them and edits in
+-- another window), so resolve the object and `:edit` it directly.
 k("n", "<cr>", function()
-	vim.cmd("only")
-	vim.cmd("normal gO") -- `:h fugitive_gO`
+	local file = vim.fn["fugitive#PorcelainCfile"]()
+	if file == "" then
+		return
+	end
+	vim.cmd("edit " .. file)
 end, { desc = "Open file under cursor" })
 
 k("n", "<c-n>", "]/", { desc = "Next file/section", remap = true })
