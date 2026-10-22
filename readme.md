@@ -62,7 +62,6 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 ### AI
 
-- [briefing](https://github.com/ruicsh/briefing.nvim) - Prompt editor
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - Suggestions (copilot)
 - [neocodeium](https://github.com/monkoose/neocodeium) - Suggestions (windsurf)
 - [sidekick.lua](https://github.com/folke/sidekick.nvim) - Agentic
