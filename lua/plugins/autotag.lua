@@ -3,7 +3,7 @@
 
 return {
 	"windwp/nvim-ts-autotag",
-	ft = { "astro", "html", "vue", "tsx", "jsx", "xml" },
+	ft = { "astro", "html", "htmlangular", "jsx", "tsx", "vue", "xml" },
 	opts = {
 		opts = {
 			enable_close = true, -- Auto close tags
