@@ -27,10 +27,10 @@ local function get_symbol_hl_group(status_code)
 end
 
 -- Get git status for files in the current Oil directory
-local function get_git_status(callback)
+local function get_git_status(bufnr, callback)
 	local oil = require("oil")
-	local current_dir = oil.get_current_dir()
-	local git_root = vim.fs.root(0, ".git")
+	local current_dir = oil.get_current_dir(bufnr)
+	local git_root = current_dir and vim.fs.root(current_dir, ".git")
 
 	if not git_root or not current_dir then
 		callback({})
@@ -74,11 +74,17 @@ local function get_git_status(callback)
 	end)
 end
 
--- Clear all git highlights in the current buffer
-local function clear_highlights()
-	local bufnr = vim.api.nvim_get_current_buf()
-	vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
-	vim.fn.clearmatches()
+-- Clear all git highlights in the given buffer (defaults to the current one)
+local function clear_highlights(bufnr)
+	bufnr = bufnr or vim.api.nvim_get_current_buf()
+	local winid = -1
+	if vim.api.nvim_buf_is_valid(bufnr) then
+		vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+		winid = vim.fn.bufwinid(bufnr)
+	end
+	-- Matches are window-local. Prefer the window displaying the buffer,
+	-- otherwise fall back to the current window (0).
+	vim.fn.clearmatches(winid ~= -1 and winid or 0)
 end
 
 -- Build reverse index: dir_path -> status_code
@@ -102,23 +108,33 @@ local function build_dir_status_index(git_status)
 	return dir_status_index
 end
 
--- Apply git highlights to the current Oil buffer
-local function apply_git_highlights()
-	get_git_status(function(git_status)
+-- Apply git highlights to the given Oil buffer (defaults to the current one)
+local function apply_git_highlights(bufnr)
+	bufnr = bufnr or vim.api.nvim_get_current_buf()
+	get_git_status(bufnr, function(git_status)
 		vim.schedule(function()
 			-- Needs to be scheduled to avoid calling nvim API from async callback
+			if not vim.api.nvim_buf_is_valid(bufnr) then
+				return
+			end
+
 			if vim.tbl_isempty(git_status) then
-				clear_highlights()
+				clear_highlights(bufnr)
 				return
 			end
 
 			local oil = require("oil")
-			local current_dir = oil.get_current_dir()
-			local bufnr = vim.api.nvim_get_current_buf()
+			local current_dir = oil.get_current_dir(bufnr)
+			if not current_dir then
+				return
+			end
+
 			local oil_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 			local dir_status_index = build_dir_status_index(git_status)
+			-- The buffer may have been left while the git command was running
+			local winid = vim.fn.bufwinid(bufnr)
 
-			clear_highlights()
+			clear_highlights(bufnr)
 
 			for linenr in ipairs(oil_lines) do
 				local entry = oil.get_entry_on_line(bufnr, linenr)
@@ -137,7 +153,9 @@ local function apply_git_highlights()
 					local symbol, hl_group = get_symbol_hl_group(status_code)
 					if symbol and hl_group then
 						-- Highlight whole line
-						vim.fn.matchaddpos(hl_group, { linenr })
+						if winid ~= -1 then
+							vim.fn.matchaddpos(hl_group, { linenr }, 10, -1, { window = winid })
+						end
 
 						vim.api.nvim_buf_set_extmark(bufnr, ns, linenr - 1, 0, {
 							virt_text = { { symbol, hl_group } },
@@ -158,8 +176,20 @@ vim.api.nvim_create_autocmd("User", {
 	group = augroup,
 	pattern = "OilEnter",
 	callback = function(args)
-		if vim.api.nvim_get_current_buf() == args.data.buf and require("oil").get_current_dir() then
-			apply_git_highlights()
+		if vim.api.nvim_get_current_buf() == args.data.buf and require("oil").get_current_dir(args.data.buf) then
+			apply_git_highlights(args.data.buf)
+		end
+	end,
+})
+
+-- OilEnter only fires when a buffer is first loaded. Re-apply when entering an
+-- already-loaded Oil buffer, e.g. navigating back to a parent directory.
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = augroup,
+	pattern = "oil://*",
+	callback = function(args)
+		if vim.b[args.buf].oil_ready then
+			apply_git_highlights(args.buf)
 		end
 	end,
 })
@@ -168,8 +198,8 @@ vim.api.nvim_create_autocmd("User", {
 vim.api.nvim_create_autocmd("BufLeave", {
 	group = augroup,
 	pattern = "oil://*",
-	callback = function()
-		clear_highlights()
+	callback = function(args)
+		clear_highlights(args.buf)
 	end,
 })
 
@@ -177,7 +207,9 @@ vim.api.nvim_create_autocmd("BufLeave", {
 vim.api.nvim_create_autocmd("BufWritePost", {
 	group = augroup,
 	pattern = "oil://*",
-	callback = function()
-		vim.schedule(apply_git_highlights)
+	callback = function(args)
+		vim.schedule(function()
+			apply_git_highlights(args.buf)
+		end)
 	end,
 })
