@@ -260,6 +260,9 @@ return {
 					format = "file",
 					sort_lastused = true,
 				},
+				files = {
+					hidden = true,
+				},
 				git_branches = {
 					all = true,
 					actions = {
