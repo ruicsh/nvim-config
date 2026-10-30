@@ -40,6 +40,8 @@ return {
 			vim.env.npm_config_cache = vim.env.HOME .. "/.cache/npm"
 		end,
 		opts = {
+			-- Prefer globally installed tools over Mason's copies
+			PATH = "append",
 			ui = {
 				border = "rounded",
 				height = 0.85,
