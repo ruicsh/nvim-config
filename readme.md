@@ -45,7 +45,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 ## Plugins
 
-<sub>65 plugins</sub>
+<sub>66 plugins</sub>
 
 ### Code
 
@@ -105,6 +105,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 ### Navigation
 
+- [fff](https://github.com/dmtrKovalenko/fff.nvim) - Search index (Snacks picker backend)
 - [flash](https://github.com/folke/flash.nvim) - Jump with labels
 - [grapple](https://github.com/cbochs/grapple.nvim) - File bookmarks
 - [gx](https://github.com/chrishrb/gx.nvim) - Open links/files
@@ -184,7 +185,7 @@ Random features added.
 - `<c-w>t` open in new tab
 - `<c-w>v` open in vertical split
 - `<leader>.` last picker
-- `<leader><leader>` fuzzy find files
+- `<leader><leader>` files & buffers
 
 ### Buffers
 
