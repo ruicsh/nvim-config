@@ -68,7 +68,7 @@ k("g/", function()
 end, { desc = "Search selection", expr = true })
 
 -- Search current selection in the workspace
-k("<leader>g/", require("snacks.picker").grep_word, { desc = "Search selection in workspace" })
+k("<leader>g/", T.fff.grep_word, { desc = "Search selection in workspace" })
 
 -- Search inside visual selection
 k("/", "<esc>/\\%V", { desc = "Search inside selection" }) -- `:h /\%V`

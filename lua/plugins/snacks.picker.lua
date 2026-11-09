@@ -23,7 +23,6 @@ local git_log_on_confirm = function(picker, item)
 	end
 end
 
-local grep_opts = { exclude = T.env.get_list("GREP_EXCLUDE_FILES"), hidden = true }
 local lsp_calls = { auto_confirm = false }
 
 -- `<a-x>` instead of the more obvious `<c-o>`, which is the tmux prefix
@@ -134,7 +133,15 @@ local grep_directory = function()
 	snacks.picker({
 		confirm = function(picker, item)
 			picker:close()
-			snacks.picker.grep({ dirs = { item.file } })
+			-- fff scopes a search to a path with a trailing-slash constraint
+			local rel = vim.fs.relpath(cwd, item.file) or ""
+			if rel == "." then
+				rel = ""
+			end
+			T.fff.live_grep({
+				search = rel ~= "" and (rel .. "/") or nil,
+				title = rel ~= "" and ("Grep: " .. rel) or nil,
+			})
 		end,
 		items = items,
 		format = function(item, _)
@@ -155,12 +162,12 @@ end
 return {
 	"folke/snacks.nvim",
 	keys = {
-		{ "<leader><space>", picker("smart"), desc = "Files" },
+		{ "<leader><space>", T.fff.smart, desc = "Files & Buffers" },
 		{ "<leader>,", picker("buffers"), desc = "Buffers" },
 
-		{ "<leader>/", picker("grep"), desc = "Search: Workspace" },
+		{ "<leader>/", T.fff.live_grep, desc = "Search: Workspace" },
 		{ "<leader>?", grep_directory, desc = "Search: Directory" },
-		{ "<leader>g/", picker("grep_word"), desc = "Search: Current word" },
+		{ "<leader>g/", T.fff.grep_word, desc = "Search: Current word" },
 
 		{ "<leader>'", picker("marks"), desc = "Marks" },
 		{ "<leader>.", picker("resume"), desc = "Last picker" },
@@ -251,6 +258,10 @@ return {
 				},
 			},
 			sources = {
+				-- files/smart/grep/grep_word intentionally replace Snacks' built-ins so
+				-- every consumer (our keymaps, sidekick, other plugins) uses fff.
+				-- Options that fff owns (dirs, cwd, hidden, ignored, follow, exclude)
+				-- are not forwarded: fff uses its own root, .gitignore and .ignore.
 				buffers = {
 					filter = {
 						filter = function(item)
@@ -260,8 +271,16 @@ return {
 					format = "file",
 					sort_lastused = true,
 				},
+				-- Shared by `Snacks.picker.files()` and sidekick's `<c-f>`
 				files = {
-					hidden = true,
+					finder = T.fff.file_finder,
+					format = "file",
+					live = true,
+					limit_live = 200,
+					preview = "file",
+					show_empty = true,
+					supports_live = true,
+					title = "Files",
 				},
 				git_branches = {
 					all = true,
@@ -317,8 +336,29 @@ return {
 						},
 					},
 				},
-				grep = grep_opts,
-				grep_word = grep_opts,
+				grep = {
+					finder = T.fff.grep_finder,
+					format = "file",
+					-- Matches the previous Snacks grep behavior (rg regex mode)
+					grep_mode = "regex",
+					live = true,
+					limit_live = 200,
+					preview = "file",
+					show_empty = true,
+					supports_live = true,
+					title = "Grep",
+				},
+				grep_word = {
+					finder = T.fff.grep_finder,
+					format = "file",
+					grep_mode = "plain",
+					live = true,
+					limit_live = 200,
+					preview = "file",
+					show_empty = true,
+					supports_live = true,
+					title = "Grep word",
+				},
 				help = {
 					confirm = function(picker, item)
 						picker:close()
@@ -351,8 +391,18 @@ return {
 						},
 					},
 				},
+				-- Open buffers + fff files (replaces Snacks' multi-source smart)
 				smart = {
-					hidden = true,
+					finder = T.fff.smart_finder,
+					format = "file",
+					live = true,
+					limit_live = 200,
+					matcher = { sort_empty = false },
+					multi = false,
+					preview = "file",
+					show_empty = true,
+					supports_live = true,
+					title = "Smart",
 				},
 				undo = {
 					win = {
