@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd("CmdlineLeave", {
 })
 
 -- Don't clear the message area while typing a new command: it would also
--- redraw away the completion popup or the 'mini.cmdline' autopeek window
+-- redraw away the completion popup
 vim.api.nvim_create_autocmd("CmdlineEnter", {
 	group = augroup,
 	callback = function()

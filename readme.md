@@ -45,7 +45,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 ## Plugins
 
-<sub>66 plugins</sub>
+<sub>65 plugins</sub>
 
 ### Code
 
@@ -72,7 +72,6 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 - [mini.ai](https://github.com/nvim-mini/mini.ai) - Around/inside textobjects
 - [mini.align](https://github.com/nvim-mini/mini.align) - Align text interactively
 - [mini.bracketed](https://github.com/nvim-mini/mini.bracketed) - Navigation with square brackets
-- [mini.cmdline](https://github.com/nvim-mini/mini.cmdline) - Command line tweaks
 - [mini.move](https://github.com/nvim-mini/mini.move) - Move lines/selection
 - [mini.surround](https://github.com/nvim-mini/mini.surround) - Surround action
 - [multicursor](https://github.com/jake-stewart/multicursor.nvim) - Multiple cursors
