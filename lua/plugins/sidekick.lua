@@ -8,17 +8,17 @@ return {
 	opts = function()
 		return {
 			cli = {
-				mux = {
-					enabled = false,
-				},
 				win = {
 					layout = "float",
 					float = T.ui.side_panel_win_config(),
 					keys = {
+						buffers = { "<c-b>", "buffers", mode = "nt", desc = "open buffer picker" },
+						files = { "<c-f>", "files", mode = "nt", desc = "open file picker" },
 						hide_n = false,
 						hide_ctrl_q = false,
 						hide_ctrl_dot = false,
 						hide_ctrl_z = { "<c-bslash>", "blur", mode = "nt", desc = "Focus Editor" },
+						prompt = false,
 						stopinsert = false,
 						nav_left = false,
 						nav_down = false,
@@ -51,7 +51,7 @@ return {
 		}
 
 		return {
-			{ "<c-bslash>", a.send("{selection}"), mode = { "x" }, desc = "Sidekick: Send Visual Selection" },
+			{ "<c-bslash>", a.send("{this}"), mode = { "x" }, desc = "Sidekick: Send Visual Selection" },
 			{ "<c-bslash>", a.show, mode = { "n", "t", "i" }, desc = "Sidekick: Focus" },
 			{ "<c-w><c-bslash>", a.toggle, mode = { "n", "t", "i" }, desc = "Sidekick: Toggle" },
 			{ "<c-w><bslash>", a.toggle, mode = { "n", "t", "i" }, desc = "Sidekick: Toggle" },
