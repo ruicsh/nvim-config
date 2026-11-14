@@ -26,6 +26,12 @@ return {
 						nav_right = false,
 					},
 				},
+				tools = {
+					copilot = {
+						-- drop the default `--banner` arg
+						cmd = { "copilot" },
+					},
+				},
 			},
 			nes = {
 				enabled = false,
