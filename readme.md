@@ -4,6 +4,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 - **Editor** - enhanced vim motions, extended text objects, folding
 - **Code** - formatter, comments, code completion, AI powered suggestions
+- **HTTP** - REST client for `.http` files
 - **AI Assistant** - suggestions, chat, agentic
 - **LSP** - Language Server Protocol client, symbols navigation, diagnostics
 - **Syntax** - highlighting, syntax aware motions, text objects
@@ -17,7 +18,7 @@ My configuration for [Neovim](https://neovim.io/), mostly for frontend developme
 
 ### Prerequisites
 
-- [Neovim](https://neovim.io/) v0.12.0+
+- [Neovim](https://neovim.io/) v0.12+
 - [Git](https://git-scm.com/)
 - A [Nerd Font](https://www.nerdfonts.com/) in your terminal ([JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads) recommended)
 
@@ -30,10 +31,6 @@ nvim
 
 On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and install all plugins automatically.
 
-### Lock file
-
-[`lazy-lock.json`](lazy-lock.json) pins each plugin to a specific commit for reproducibility. Plugins are restored from this lock file on first setup, so your installation will match the exact state of this config.
-
 ## Screenshots
 
 ![screenshot](https://raw.githubusercontent.com/ruicsh/nvim-config/refs/heads/main/.assets/screenshot.png)
@@ -45,7 +42,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 ## Plugins
 
-<sub>65 plugins</sub>
+<sub>59 plugins</sub>
 
 ### Code
 
@@ -79,7 +76,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 - [sort](https://github.com/sQVe/sort.nvim) - Sort action
 - [spider](https://github.com/chrisgrieser/nvim-spider) - Move by subwords
 - [substitute](https://github.com/gbprod/substitute.nvim) - Substitute action
-- [text-case](https://github.com/johmsalas/text-case.nvim) - Convert text cases
+- [text-case](https://github.com/ruicsh/text-case.nvim) - Convert text cases
 - [visual-whitespace](https://github.com/mcauley-penney/visual-whitespace.nvim) - Render whitespace
 - [yanky](https://github.com/gbprod/yanky.nvim) - Yank and Put actions
 
@@ -93,7 +90,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 - [smart-splits](https://github.com/mrjones2014/smart-splits.nvim) - Windows resize
 - [termite](https://github.com/ruicsh/termite.nvim) - Terminal windows manager
 - [window-picker](https://github.com/s1n7ax/nvim-window-picker) - Window picker
-- [winshift](https://github.com/sindrets/winshift.nvim) - Rearrange windows
+- [winshift](https://github.com/ruicsh/winshift.nvim) - Rearrange windows
 
 ### Git
 
@@ -123,6 +120,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context) - Code context
 - [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) - AST aware text objects
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Treesitter syntax parsers
+- [rest](https://github.com/rest-nvim/rest.nvim) - HTTP client
 - [vim-test](https://github.com/vim-test/vim-test) - Test runner
 - [wakatime](https://github.com/wakatime/vim-wakatime) - Time tracking
 
@@ -139,14 +137,17 @@ Complex configuration options.
 | [standard-plugins](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/standard-plugins.lua) | Disable unused standard plugins  |
 | [statusline](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/statusline.lua)             | Content of the statusline        |
 | [winbar](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/winbar.lua)                     | Content of the winbar            |
+| [wrap](https://github.com/ruicsh/nvim-config/blob/main/plugin/config/wrap.lua)                         | Toggle soft-wrap                 |
 
 ### Filetypes
 
 Custom configuration, keymaps, and features dependent on the file's type.
 
-|                                                                                               |            |
-| --------------------------------------------------------------------------------------------- | ---------- |
-| [dockerfile](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/dockerfile.lua) | Dockerfile |
+|                                                                                               |                             |
+| --------------------------------------------------------------------------------------------- | --------------------------- |
+| [dockerfile](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/dockerfile.lua) | Dockerfile                  |
+| [terminal](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/terminal.lua)     | Terminal buffers            |
+| [typescript](https://github.com/ruicsh/nvim-config/blob/main/plugin/filetypes/typescript.lua) | TypeScript LSP code actions |
 
 ### Autocmds
 
@@ -157,6 +158,7 @@ New features built around autocmds (events).
 | [auto-close-buffer-if-deleted](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-close-buffer-if-deleted.lua) | Auto close buffer when deleted from disk            |
 | [auto-resize-splits](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/auto-resize-splits.lua)                     | Auto resize splits when window is resized           |
 | [cmdline](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/cmdline.lua)                                           | Clean up after use, hide hit-enter messages on blur |
+| [default-filetype](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/default-filetype.lua)                         | Markdown for new/undetected buffers                 |
 | [help](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/help.lua)                                                 | Open Help in side panel                             |
 | [show-cursorline-only-active](https://github.com/ruicsh/nvim-config/blob/main/plugin/autocmds/show-cursorline-only-active.lua)   | Show cursorline only on active window.              |
 
@@ -164,27 +166,31 @@ New features built around autocmds (events).
 
 Random features added.
 
-|                                                                                                                        |                                        |
-| ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua)               | Duplicate and comment                  |
-| [lsp-keymaps](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-keymaps.lua)                           | Keymaps (LSP)                          |
-| [lsp-highlight-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-highlight-references.lua) | Highlight references (LSP)             |
-| [lsp-jump-to-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-jump-to-references.lua)     | Jump to references (LSP)               |
-| [lsp-python-set-venv](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-python-set-venv.lua)           | Set venv for python files (LSP)        |
-| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)                         | Display :messages on a separate window |
+|                                                                                                                              |                                        |
+| ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [duplicate-comment](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/duplicate-comment.lua)                     | Duplicate and comment                  |
+| [lsp-disable-semantic-tokens](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-disable-semantic-tokens.lua) | Disable semantic tokens (LSP)          |
+| [lsp-keymaps](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-keymaps.lua)                                 | Keymaps (LSP)                          |
+| [lsp-highlight-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-highlight-references.lua)       | Highlight references (LSP)             |
+| [lsp-jump-to-references](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-jump-to-references.lua)           | Jump to references (LSP)               |
+| [lsp-python-set-venv](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/lsp-python-set-venv.lua)                 | Set venv for python files (LSP)        |
+| [vim-messages](https://github.com/ruicsh/nvim-config/blob/main/plugin/custom/vim-messages.lua)                               | Display :messages on a separate window |
 
 ## Keymaps
 
 ### Files explorer
 
-- `<leader>f` open directory explorer
-- `<leader>F` open current working directory
-- `<c-p>` preview file
+- `-` open directory explorer (Oil)
+- `_` open current working directory (Oil)
+- `<tab>` preview file
+- `<bs>` go to parent directory
 - `<c-w>s` open in horizontal split
 - `<c-w>t` open in new tab
 - `<c-w>v` open in vertical split
+- `<leader>-` open Yazi at current file
+- `<leader>_` open Yazi at current working directory
 - `<leader>.` last picker
-- `<leader><leader>` files & buffers
+- `<leader><space>` files & buffers
 
 ### Buffers
 
@@ -202,20 +208,26 @@ Random features added.
 
 - `==` switch to
 - `=<space>` switch to source
+- `=b` switch to test
 - `=m` switch to template
 - `=s` switch to style
-- `=t` switch to test
+- `=y` switch to story
 
 ### Navigation
 
 - `{` jump up 6 lines
 - `}` jump down 6 lines
+- `w`/`b` next/previous word
+- `e`/`ge` next/previous word end
 - `''` jump to position before last jump
 - `'.` jump to position where last change was made
 - `s` jump with labels
 - `'{a-z}'` jump to marked position
 - `mm` jump to matching pair
-- `[[` jump to earlier position (`]]` later)
+- `[m`/`]m` jump to previous/next matching word
+- `gm` jump to previous match
+- `zm` jump inside next block
+- `[[` jump to earlier section (`]]` later)
 
 ### Windows
 
@@ -225,6 +237,9 @@ Random features added.
 - `<c-w>t` move file to new tab
 - `<c-w>m` move window
 - `<c-w>x` swap windows
+- `<c-w>z` toggle zoom
+- `<s-tab>` toggle terminal
+- `<leader>w` toggle soft-wrap
 
 ### Search
 
@@ -232,24 +247,29 @@ Random features added.
 - `<leader>?` search in directory
 - `<leader>g/` search current word in workspace
 - `g/` search current word / selection
-- `G/` search current word (no jumps)
-- `[/` search first occurrence
+- `*`/`#` search word under cursor forward/backward
+- `g*`/`g#` search partial word forward/backward
+- `[/` search word under cursor
 - `gr/` replace current word / selection
-- `gb/` web search current word
-- `g./` repeat last search
+- `gw/` web search current word / selection
 - `<c-w>/` search first occurence in new window
-- `<c-r>/` repeat last search
-- `'s` jump back to where search started
+- `n`/`N` next/previous result
 
 ### Editing
 
 - `[<space>` add blank line above cursor (`]<space>` below)
 - `[p` paste to new line above (`]p` below)
-- `gC` duplicate a line, comment out the first line.
-- `<a-up>` move selection up
-- `<a-down>` move selection down
+- `gCC` duplicate `[count]` lines, comment out the first instance
+- `gC` duplicate a selection, comment out the first instance (visual mode)
+- `U` redo
+- `V` select until end of line
+- `vv` enter visual line mode
+- `<c-s>` save
+- `<a-h>` move line/selection left
+- `<a-j>` move line/selection down
+- `<a-k>` move line/selection up
+- `<a-l>` move line/selection right
 - `<tab>` toggle fold
-- `<s-tab>` toggle all folds
 
 ### Insert/Command mode
 
@@ -259,17 +279,17 @@ Random features added.
 - `<a-f>` jump word forward
 - `<c-a>` jump to line start
 - `<c-e>` jump to line end
-
 - `<c-h>` delete character backward
 - `<c-d>` delete character forward
 - `<a-bs>` delete word backward
 - `<a-d>` delete word forward
-- `<c-k>` delete line backward
-- `<c-u>` delete line forward
-- `<a-d><a-d>` delete whole line
-
-- `<a-up>` move current line up
-- `<a-down>` move current line down
+- `<c-w>` delete WORD backward
+- `<c-k>` delete line forward
+- `<c-u>` delete line backward
+- `<c-v>` paste from clipboard (insert mode)
+- `<c-z>` undo (insert mode)
+- `<c-n>` jump to next match (command mode)
+- `<c-p>` jump to previous match (command mode)
 
 ### Text objects
 
@@ -294,16 +314,9 @@ Random features added.
 - `<leader>~p` to PascalCase
 - `<leader>~u` to lower case
 
+Also available as `<leader>g~{char}` (LSP rename) and `g~o{char}` (operator).
+
 ### Yank current filepath
-
-- `%%` path (relative)
-- `%D` directory (absolute)
-- `%d` directory (relative)
-- `%f` filename
-- `%n` basename
-- `%p` path (absolute)
-
-Custom keymaps (normal mode):
 
 - `y%` path (relative)
 - `yL` path (relative) + line number
@@ -314,9 +327,9 @@ Custom keymaps (normal mode):
 - `ds{char}` delete surrounding character
 - `cs{target}{replacement}` replace surrounding character
 - `S{char}` add surrounding character (visual mode)
-- `<leader>x{motion1}<leader>x{motion2}` exchange
-- `<leader>r{motion}` replace
-- `<leader>s{motion}` sort
+- `<leader>x{motion}` exchange with another motion (`<leader>xx` line, `<leader>xc` cancel)
+- `<leader>r{motion}` replace with register (`<leader>rr` line, `<leader>R` end of line)
+- `<leader>s{motion}` sort (`<leader>ss` line)
 
 ### MultiCursor
 
@@ -324,6 +337,7 @@ Custom keymaps (normal mode):
 - `<leader><s-down>` skip cursor below (`<leader><s-up>` for above)
 - `<c-s-down>` add cursor to next match (`<c-s-up>` for previous)
 - `<leader><c-s-down>` skip cursor next match (`<leader><c-s-up>` for previous)
+- `<leader>mm` toggle cursor
 - `<leader>x` delete cursor
 - `<esc>` clear cursors
 
@@ -331,6 +345,8 @@ Custom keymaps (normal mode):
 
 - `<c-n>` show/next entry
 - `<c-p>` previous entry
+- `<tab>` show/next entry
+- `<s-tab>` previous entry
 - `<cr>` confirm
 - `<c-e>` hide
 - `<c-f>` scroll docs forward
@@ -347,8 +363,10 @@ Custom keymaps (normal mode):
 
 ### AI agent
 
-- `<c-bslash>` show/blur/focus
+- `<c-bslash>` show/focus (visual mode: send selection)
 - `<c-w><c-bslash>` toggle
+- `<c-b>` buffer picker (agent terminal)
+- `<c-f>` file picker (agent terminal)
 
 ### Logging
 
@@ -361,7 +379,7 @@ Custom keymaps (normal mode):
 - `glk` insert breakpoint below
 - `glK` insert breakpoint above
 - `glt` insert timestamp below
-- `glT` insert timestamp below
+- `glT` insert timestamp above
 - `<leader>glt` insert timestamp above/below
 
 ### Syntax (AST)
@@ -370,68 +388,108 @@ Custom keymaps (normal mode):
 - `<c-j>` jump to next sibling node
 - `<c-k>` jump to previous sibling node
 - `<c-l>` jump to child node
-- `<c-H>` swap with left node
-- `<c-J>` swap with down node
-- `<c-K>` swap with up node
-- `<c-L>` swap with right node
+- `<c-s-h>` swap with left node (`<c-H>` on Windows)
+- `<c-s-j>` swap with down node (`<c-J>` on Windows)
+- `<c-s-k>` swap with up node (`<c-K>` on Windows)
+- `<c-s-l>` swap with right node (`<c-L>` on Windows)
 - `]a` jump to next parameter start (`[a` previous)
 - `]f` jump to next function start (`[f` previous)
+- `]s` jump to next className (`[s` previous)
 
 ### LSP
 
 - `K` display hover information for symbol
 - `gO` list symbols in document
-- `gd` jump to definition
-- `go` jump to type definition
 - `gra` code actions
 - `grt` jump to type definition
 - `gri` jump to implementation
 - `grn` rename symbol
 - `grr` list references
-- `grI` toggle inlay hints
-- `gD` jump to declaration
-- `<c-]>` jump to definition
+- `grI` list incoming calls
+- `grO` list outgoing calls
+- `grx` run code lens
+- `<cr>` jump to definition
 - `<c-w>]` jump to definition (vsplit)
-- `<leader>dd` open diagnostics (buffer)
+- `<leader>dd` open diagnostics (file)
 - `<leader>dD` open diagnostics (workspace)
 - `[r` jump to previous symbol reference (`]r` next)
-- `[x` jump to previous error (`]x` next)
+- `[e` jump to previous error (`]e` next)
+- `[E` jump to first error (`]E` last)
+
+### TypeScript (LSP)
+
+- `<leader>im` add missing imports
+- `<leader>io` organize imports
+- `<leader>ir` remove unused
+- `<leader>is` sort imports
+- `<leader>iu` remove unused imports
 
 ### Git
 
 - `[c` previous change (`]c` next)
 - `<leader>h$` blame line
-- `<leader>h%` current file history
-- `<leader>h~` diff {git-rev}
-- `<leader>hP` push --force-with-lease
-- `<leader>hR` reset buffer
-- `<leader>hS` stage buffer
-- `<leader>hb` branches
-- `<leader>hd` diff HEAD
-- `<leader>he` log file
+- `<leader>h%` current file history (diff vs HEAD)
+- `<leader>h~` diff `HEAD~{count}..HEAD`
+- `<leader>hB` branches
+- `<leader>hD` diff explorer
+- `<leader>hH` status (picker)
+- `<leader>hL` search log
+- `<leader>hb` diff file vs default branch
+- `<leader>hd` diff (Gdiff)
 - `<leader>hh` status
-- `<leader>hl` log
-- `<leader>hp` push
-- `<leader>hr` reset hunk
+- `<leader>hl` show range history (visual mode)
+- `<leader>hl%` log for file
+- `<leader>hl$` blame line
+- `<leader>hr` discard hunk
+- `<leader>hR` discard buffer
 - `<leader>hs` stage hunk
-- `<leader>hu` push --set-upstream origin HEAD
+- `<leader>hS` stage buffer
 - `<leader>hx` open file in browser
+- `<leader>hX` open commit in browser
 
 ### Git merge conflicts
 
 - `[x` previous conflict (`]x` next)
-- `c0` choose none
 - `cb` choose both
-- `co` choose ours
-- `ct` choose theirs
+- `co` choose current
+- `ct` choose incoming
+- `cx` discard
 
 ### Test runner
 
 - `<leader>ba` run all
 - `<leader>bb` run last
-- `<leader>be` run file
+- `<leader>b%` run file
 - `<leader>bn` run nearest
-- `<leader>bq` close output
+
+### Tabs
+
+- `<leader><tab><tab>` new tab
+- `<leader><tab>q` close tab
+- `[<tab>` previous tab
+- `]<tab>` next tab
+- `<leader><tab>{1-9}` go to tab
+
+### HTTP requests (REST)
+
+- `<leader>ar` run request under cursor
+- `<leader>aR` re-run last request
+- `<leader>aa` pick and run request
+- `<leader>ao` open result pane
+- `<leader>ae` select environment
+- `<leader>aE` show environment
+- `<leader>ac` edit cookies
+- `<leader>al` open logs
+
+### Scratchpad
+
+- `<leader>e` toggle scratchpad
+- `<leader>E` select scratchpad
+
+### Zen mode
+
+- `<leader>z` toggle zen mode
+- `<c-w>z` toggle zoom
 
 ### Application
 
