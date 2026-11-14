@@ -14,6 +14,9 @@ end
 
 -- True when `name` matches any of the `patterns`.
 local function is_excluded(name, patterns)
+	if not patterns then
+		return false
+	end
 	for _, pattern in ipairs(patterns) do
 		if name:match(pattern) then
 			return true
