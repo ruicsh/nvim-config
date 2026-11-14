@@ -3,6 +3,19 @@
 
 return {
 	"nvim-mini/mini.hipatterns",
+	-- mini.hipatterns scans changed lines in Lua, and the `.*...$` patterns
+	-- below are O(n^2) on a single very long line. rest.nvim puts raw response
+	-- bodies (large JSON = one huge line) into its result panes, which freezes
+	-- Neovim, so opt those buffers out.
+	init = function()
+		vim.api.nvim_create_autocmd("FileType", {
+			group = vim.api.nvim_create_augroup("ruicsh/mini.hipatterns", { clear = true }),
+			pattern = "rest_nvim_result",
+			callback = function(args)
+				vim.b[args.buf].minihipatterns_disable = true
+			end,
+		})
+	end,
 	opts = function()
 		local hi = require("mini.hipatterns")
 
