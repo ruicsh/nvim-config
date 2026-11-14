@@ -25,16 +25,40 @@ k("n", "cc", function()
 	vim.cmd("vertical Git commit")
 end, { desc = "Commit in new tab" })
 
--- Open the file under cursor in the status window, replacing the status buffer.
--- Fugitive's own `:Gedit` "blurs" status windows (keeps them and edits in
--- another window), so resolve the object and `:edit` it directly.
-k("n", "<cr>", function()
-	local file = vim.fn["fugitive#PorcelainCfile"]()
-	if file == "" then
+-- Open the file under the cursor in the current window, replacing the status
+-- buffer. Fugitive's own `:Gedit` "blurs" status windows (keeps them and edits
+-- in another window), but its <CR> mapping is also what knows which line of the
+-- diff the cursor is on, so reuse it with the blur behaviour suppressed.
+local fugitive_cr = vim.fn.maparg("<CR>", "n", false, true)
+
+local set_open_mapping
+local function open_under_cursor()
+	local buf = vim.api.nvim_get_current_buf()
+	local fugitive_type = vim.b.fugitive_type
+
+	if not next(fugitive_cr) then
 		return
 	end
-	vim.cmd("edit " .. file)
-end, { desc = "Open file under cursor" })
+
+	vim.b.fugitive_type = nil
+	vim.keymap.del("n", "<CR>", { buffer = buf })
+	vim.fn.mapset("n", false, fugitive_cr)
+	pcall(vim.api.nvim_feedkeys, "\r", "x", false)
+
+	if not vim.api.nvim_buf_is_valid(buf) then
+		return
+	end
+	vim.b[buf].fugitive_type = fugitive_type
+
+	-- Restore our mappings on the status buffer in case it is visited again
+	set_open_mapping(buf)
+end
+
+set_open_mapping = function(buf)
+	k("n", "<CR>", open_under_cursor, { buffer = buf or 0, desc = "Open file at cursor line" })
+	k("n", "gf", open_under_cursor, { buffer = buf or 0, desc = "Open file at cursor line" })
+end
+set_open_mapping()
 
 k("n", "<c-n>", "]/", { desc = "Next file/section", remap = true })
 k("n", "<c-p>", "[/", { desc = "Previous file/section", remap = true })
