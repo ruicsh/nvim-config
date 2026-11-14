@@ -4,15 +4,80 @@ local M = {}
 
 local is_loaded = false
 
--- Read env files on a given directory
-local function load_from_dir(dir)
-	dir = dir and dir or vim.fn.stdpath("config")
-	if not dir or not vim.fn.isdirectory(dir) then
-		return
+-- File read for the Neovim process itself. Other tools (rest.nvim, etc.) have
+-- their own naming conventions, so `discover` takes the pattern from the caller.
+local NVIM_ENV_FILE = "^%.nvim%.env$"
+
+local function is_dir(path)
+	return path ~= nil and path ~= "" and vim.fn.isdirectory(path) == 1
+end
+
+-- True when `name` matches any of the `patterns`.
+local function is_excluded(name, patterns)
+	for _, pattern in ipairs(patterns) do
+		if name:match(pattern) then
+			return true
+		end
+	end
+	return false
+end
+
+-- Non-recursive list of files in `dir` matching `pattern` (and no `exclude`).
+local function files_in(dir, pattern, exclude)
+	local files = {}
+	for name, kind in vim.fs.dir(dir) do
+		-- `kind ~= "directory"` rather than `kind == "file"` so symlinked
+		-- dotfiles (a common dotfiles setup) are not skipped.
+		if kind ~= "directory" and name:match(pattern) and not is_excluded(name, exclude) then
+			files[#files + 1] = vim.fs.joinpath(dir, name)
+		end
+	end
+	return files
+end
+
+--- Find files matching `opts.pattern` and return their paths.
+---
+--- By default roots are the current buffer's directory and the cwd, each walked
+--- upwards, so a file next to the buffer wins over a project one. Results are
+--- deduplicated; `sort = false` preserves the root/walk order (needed when the
+--- caller relies on precedence, e.g. later files overriding earlier ones).
+---@param opts { pattern: string, exclude?: string|string[], roots?: string[], upward?: boolean, sort?: boolean }
+---@return string[]
+M.discover = function(opts)
+	assert(opts and type(opts.pattern) == "string", "lib.env.discover requires a `pattern`")
+
+	local roots = opts.roots or { vim.fs.dirname(vim.api.nvim_buf_get_name(0)), vim.fn.getcwd() }
+	local exclude = type(opts.exclude) == "string" and { opts.exclude } or opts.exclude
+	local files, seen = {}, {}
+
+	for _, root in ipairs(roots) do
+		local dir = root
+		while is_dir(dir) do
+			for _, path in ipairs(files_in(dir, opts.pattern, exclude)) do
+				if not seen[path] then
+					seen[path] = true
+					files[#files + 1] = path
+				end
+			end
+			if opts.upward == false then
+				break
+			end
+			local parent = vim.fs.dirname(dir)
+			if parent == dir then
+				break
+			end
+			dir = parent
+		end
 	end
 
-	local dir_sep = fn.is_windows() and "\\" or "/"
-	local file = dir .. dir_sep .. ".nvim.env"
+	if opts.sort ~= false then
+		table.sort(files)
+	end
+	return files
+end
+
+-- Read the `KEY=value` pairs of an env file into the process environment.
+local function load_file(file)
 	local env_file = io.open(file, "r")
 	if not env_file then
 		return
@@ -38,21 +103,29 @@ end
 
 M.load = function()
 	-- Load the env file only once
-	if not is_loaded then
-		-- Deduplicate directories to avoid loading the same .nvim.env twice
-		-- (e.g., when cwd is already the git root)
-		local seen = {}
-		for _, dir in pairs({
-			vim.fn.stdpath("config"), -- Neovim configuration directory
-			vim.fs.root(vim.fn.getcwd(), ".git"), -- Git root directory
-			vim.fn.getcwd(), -- Current working directory
-		}) do
-			if dir and not seen[dir] then
-				seen[dir] = true
-				load_from_dir(dir)
-			end
-		end
-		is_loaded = true
+	if is_loaded then
+		return
+	end
+	is_loaded = true
+
+	-- Precedence: Neovim config directory, then the git root, then the cwd, so
+	-- the more specific file wins. Deduplicated by `discover` when the cwd is
+	-- already the git root, and unsorted to keep this order.
+	local roots = { vim.fn.stdpath("config") }
+	local git_root = vim.fs.root(vim.fn.getcwd(), ".git")
+	if git_root then
+		roots[#roots + 1] = git_root
+	end
+	roots[#roots + 1] = vim.fn.getcwd()
+
+	local files = M.discover({
+		pattern = NVIM_ENV_FILE,
+		roots = roots,
+		upward = false,
+		sort = false,
+	})
+	for _, file in ipairs(files) do
+		load_file(file)
 	end
 end
 
