@@ -430,16 +430,18 @@ Also available as `<leader>g~{char}` (LSP rename) and `g~o{char}` (operator).
 - `<leader>h$` blame line
 - `<leader>h%` current file history (diff vs HEAD)
 - `<leader>h~` diff `HEAD~{count}..HEAD`
+- `<leader>h<c-bslash>` AI review branch vs chosen base (defaults to default branch)
 - `<leader>hB` branches
 - `<leader>hD` diff explorer
 - `<leader>hH` status (picker)
 - `<leader>hL` search log
-- `<leader>hb` diff file vs default branch
+- `<leader>hM` review branch vs chosen base (defaults to default branch)
 - `<leader>hd` diff (Gdiff)
 - `<leader>hh` status
 - `<leader>hl` show range history (visual mode)
 - `<leader>hl%` log for file
 - `<leader>hl$` blame line
+- `<leader>hm` diff file vs default branch
 - `<leader>hr` discard hunk
 - `<leader>hR` discard buffer
 - `<leader>hs` stage hunk
