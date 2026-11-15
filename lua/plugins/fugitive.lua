@@ -59,7 +59,7 @@ return {
 
 		return {
 			{ "<leader>hd", open_gdiff_tab, desc = "Git: Gdiff" },
-			{ "<leader>hb", git_diff_default_branch, desc = "Git: Diff file vs default branch" },
+			{ "<leader>hm", git_diff_default_branch, desc = "Git: Diff file vs default branch" },
 			{ "<leader>h%", git_diff_file, desc = "Git: Diff file vs HEAD" },
 			{ "<leader>hh", git_status, desc = "Git: Status" },
 			{ "<leader>hl", show_range_history, mode = "v", desc = "Git: Show range history" },
