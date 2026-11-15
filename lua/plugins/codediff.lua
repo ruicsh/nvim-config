@@ -1,9 +1,20 @@
 -- Git diff
 -- https://github.com/esmuellert/codediff.nvim
 
+local T = require("lib")
+
 return {
 	"esmuellert/codediff.nvim",
 	keys = function()
+		local function review_branch()
+			-- Diff the merge-base against the working tree so the review
+			-- includes uncommitted work while still excluding the base
+			-- branch's own changes.
+			T.git.pick_review_base(function(_, merge_base)
+				vim.cmd(("CodeDiff %s"):format(merge_base))
+			end)
+		end
+
 		local function diff_back()
 			if vim.v.count > 0 then
 				require("codediff.commands").vscode_diff({ fargs = { "HEAD~" .. tostring(vim.v.count) } })
@@ -22,6 +33,7 @@ return {
 
 		return {
 			{ "<leader>hD", "<cmd>CodeDiff<cr>", desc = "Git: Diff (explorer)" },
+			{ "<leader>hM", review_branch, desc = "Git: Review branch vs merge-base" },
 			{ "<leader>h~", diff_back, desc = "Git: Diff HEAD~{count}..HEAD" },
 		}
 	end,
