@@ -286,9 +286,14 @@ return {
 					all = true,
 					actions = {
 						diff = function(picker, item)
+							local default = T.git.default_branch()
+							if not default then
+								vim.notify("Could not determine default branch", vim.log.levels.WARN)
+								return
+							end
 							picker:close()
 							require("lazy").load({ plugins = { "codediff.nvim" } })
-							require("codediff.commands").vscode_diff({ fargs = { T.git.default_branch(), item.branch } })
+							require("codediff.commands").vscode_diff({ fargs = { default, item.branch } })
 						end,
 						toggle_filter = function(picker)
 							picker.opts.all = not picker.opts.all
