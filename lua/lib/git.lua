@@ -5,12 +5,103 @@ M.default_branch = function()
 	local args = { "git", "symbolic-ref", "refs/remotes/origin/HEAD" }
 
 	local result = vim.system(args):wait(5000)
-	if not result or not result.stdout then
+	if not result or result.code ~= 0 or not result.stdout then
 		return nil, "Could not find HEAD branch"
 	end
 
 	-- Remove trailing newline
-	return result.stdout:gsub("%s+$", "")
+	local branch = result.stdout:gsub("%s+$", "")
+	if branch == "" then
+		return nil, "Could not find HEAD branch"
+	end
+	return branch
+end
+
+-- Remote-tracking branches, newest first. Reads local refs; no network.
+---@return string[]
+M.remote_branches = function()
+	local result = vim.system({
+		"git",
+		"for-each-ref",
+		"--format=%(refname)",
+		"--sort=-committerdate",
+		"refs/remotes",
+	}, { text = true }):wait(5000)
+
+	if not result or result.code ~= 0 or not result.stdout then
+		return {}
+	end
+
+	local branches = {}
+	for line in vim.gsplit(result.stdout, "\n", { trimempty = true }) do
+		if not line:match("/HEAD$") then
+			branches[#branches + 1] = line:gsub("^refs/remotes/", "")
+		end
+	end
+	return branches
+end
+
+-- Commit where `ref` and the current HEAD diverged, or nil. Diffing against
+-- this commit includes uncommitted work, unlike `<ref>...` which stops at HEAD.
+---@param ref string
+---@return string?
+M.merge_base = function(ref)
+	local result = vim.system({ "git", "merge-base", ref, "HEAD" }, { text = true }):wait(5000)
+	if not result or result.code ~= 0 or not result.stdout then
+		return nil
+	end
+
+	local sha = result.stdout:gsub("%s+$", "")
+	if sha == "" then
+		return nil
+	end
+	return sha
+end
+
+--- Pick the base to review against: the default branch first, then remote
+--- branches newest-first. Calls `cb` with the chosen ref and the commit where
+--- it diverged from HEAD.
+---@param cb fun(base: string, merge_base: string)
+M.pick_review_base = function(cb)
+	local default = M.default_branch()
+	if default then
+		default = default:gsub("^refs/remotes/", "")
+	end
+
+	local items, seen = {}, {}
+	if default then
+		items[#items + 1] = { branch = default, is_default = true }
+		seen[default] = true
+	end
+	for _, branch in ipairs(M.remote_branches()) do
+		if not seen[branch] then
+			seen[branch] = true
+			items[#items + 1] = { branch = branch }
+		end
+	end
+
+	if #items == 0 then
+		vim.notify("Could not determine the base branch", vim.log.levels.WARN)
+		return
+	end
+
+	vim.ui.select(items, {
+		prompt = "Review base:",
+		format_item = function(item)
+			return item.is_default and (item.branch .. " (default)") or item.branch
+		end,
+	}, function(item)
+		if not item then
+			return
+		end
+
+		local merge_base = M.merge_base(item.branch)
+		if not merge_base then
+			vim.notify(("Could not find merge-base with %s"):format(item.branch), vim.log.levels.WARN)
+			return
+		end
+		cb(item.branch, merge_base)
+	end)
 end
 
 M.diff = function(ref)
@@ -121,23 +212,23 @@ M.repo_status = function(callback, cwd)
 end
 
 M.is_rebasing = function()
-  local merge = vim.system({ "git", "rev-parse", "--git-path", "rebase-merge" }):wait(5000)
-  if merge and merge.stdout then
-    local result = merge.stdout:gsub("%s+$", "")
-    if result ~= "" and vim.uv.fs_stat(result) then
-      return true
-    end
-  end
+	local merge = vim.system({ "git", "rev-parse", "--git-path", "rebase-merge" }):wait(5000)
+	if merge and merge.stdout then
+		local result = merge.stdout:gsub("%s+$", "")
+		if result ~= "" and vim.uv.fs_stat(result) then
+			return true
+		end
+	end
 
-  local apply = vim.system({ "git", "rev-parse", "--git-path", "rebase-apply" }):wait(5000)
-  if apply and apply.stdout then
-    local result = apply.stdout:gsub("%s+$", "")
-    if result ~= "" and vim.uv.fs_stat(result) then
-      return true
-    end
-  end
+	local apply = vim.system({ "git", "rev-parse", "--git-path", "rebase-apply" }):wait(5000)
+	if apply and apply.stdout then
+		local result = apply.stdout:gsub("%s+$", "")
+		if result ~= "" and vim.uv.fs_stat(result) then
+			return true
+		end
+	end
 
-  return false
+	return false
 end
 
 M.remote_status = function(callback, cwd)
