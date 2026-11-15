@@ -58,13 +58,14 @@ return {
 
 		local function ai_review_branch()
 			T.git.pick_review_base(function(base, merge_base)
-				-- The agent has repo access, so point it at the same merge-base
-				-- diff instead of shipping the whole patch through the prompt.
-				local msg = (
-					"Review the changes on this branch since it diverged from %s. "
-					.. "Run `git diff %s` to see them, including any uncommitted work. "
-					.. "Focus on bugs, regressions, and missing tests. Cite file:line; don't restate the diff."
-				):format(base, merge_base)
+				-- `/review` expands to the review command from the dotfiles, so the
+				-- skill instructions (and the review model) live there, not here.
+				-- The agent has repo access, so pass the merge-base ref, not the
+				-- patch itself.
+				local msg = ("/review changes since the branch diverged from %s: `git diff %s`, including uncommitted work"):format(
+					base,
+					merge_base
+				)
 				a.send(msg)()
 			end)
 		end
