@@ -98,7 +98,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
-- [review](https://github.com/georgeguimaraes/review.nvim) - diff comments for agents
+- [reviewer](https://github.com/ruicsh/reviewer.nvim) - Inline review comments on a diff
 
 ### Navigation
 
