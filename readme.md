@@ -42,7 +42,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 ## Plugins
 
-<sub>65 plugins</sub>
+<sub>61 plugins</sub>
 
 ### Code
 
@@ -98,6 +98,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 - [fugitive](https://github.com/tpope/vim-fugitive) - status, commit, push
 - [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
+- [mini.diff](https://github.com/nvim-mini/mini.diff) - inline diff overlay
 - [reviewer](https://github.com/ruicsh/reviewer.nvim) - Inline review comments on a diff
 
 ### Navigation
@@ -241,6 +242,7 @@ Random features added.
 - `<c-w>z` toggle zoom
 - `<s-tab>` toggle terminal
 - `<leader>w` toggle soft-wrap
+- `<leader>q` close side panels
 
 ### Search
 
@@ -248,6 +250,12 @@ Random features added.
 - `<leader>?` search in directory
 - `<leader>g/` search current word in workspace
 - `g/` search current word / selection
+- `<leader>"` registers
+- `<leader>'` marks
+- `<leader>;` jumps
+- `<leader>u` command history
+- `<leader>p` clipboard history
+- `<leader>cc` quickfix list
 - `*`/`#` search word under cursor forward/backward
 - `g*`/`g#` search partial word forward/backward
 - `[/` search word under cursor
@@ -271,6 +279,7 @@ Random features added.
 - `<a-k>` move line/selection up
 - `<a-l>` move line/selection right
 - `<tab>` toggle fold
+- `<leader>v` enter visual block mode
 
 ### Insert/Command mode
 
@@ -428,8 +437,6 @@ Also available as `<leader>g~{char}` (LSP rename) and `g~o{char}` (operator).
 ### Git
 
 - `[c` previous change (`]c` next)
-- `<leader>h$` blame line
-- `<leader>h%` current file history (diff vs HEAD)
 - `<leader>h~` diff `HEAD~{count}..HEAD`
 - `<leader>h<c-bslash>` AI review branch vs chosen base (defaults to default branch)
 - `<leader>hB` branches
@@ -437,16 +444,13 @@ Also available as `<leader>g~{char}` (LSP rename) and `g~o{char}` (operator).
 - `<leader>hH` status (picker)
 - `<leader>hL` search log
 - `<leader>hM` review branch vs chosen base (defaults to default branch)
-- `<leader>hd` diff (Gdiff)
+- `<leader>hd` inline diff overlay (in place, vs index)
 - `<leader>hh` status
 - `<leader>hl` show range history (visual mode)
 - `<leader>hl%` log for file
 - `<leader>hl$` blame line
-- `<leader>hm` diff file vs default branch
 - `<leader>hr` discard hunk
-- `<leader>hR` discard buffer
 - `<leader>hs` stage hunk
-- `<leader>hS` stage buffer
 - `<leader>hx` open file in browser
 - `<leader>hX` open commit in browser
 
@@ -501,6 +505,7 @@ Also available as `<leader>g~{char}` (LSP rename) and `g~o{char}` (operator).
 - `<leader>nH` highlights
 - `<leader>nk` keymaps
 - `<leader>nn` vim-messages
+- `<leader>nc` clear vim-messages
 
 <div style="margin-top:80px"></div>
 
