@@ -22,6 +22,8 @@ local EXCLUDE_FILETYPES = {
 return {
 	"lewis6991/gitsigns.nvim",
 	opts = {
+		-- Keep gitsigns' glyphs on top of mini.diff's blank overlay signs.
+		sign_priority = 200,
 		signs = {
 			add = { text = icons.Add },
 			change = { text = icons.Change },
@@ -84,16 +86,14 @@ return {
 			k("n", "]c", nav_hunk("]c", "next"))
 			k("n", "[c", nav_hunk("[c", "prev"))
 
-			-- Stage
+			-- Stage (also unstages when the cursor is on a staged hunk)
 			k("n", "<leader>hs", gs.stage_hunk, { desc = "Git: stage hunk" })
-			k("n", "<leader>hS", gs.stage_buffer, { desc = "Git: stage buffer" })
 			k("v", "<leader>hs", function()
 				gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 			end, { desc = "Git: stage hunk" })
 
 			-- Reset
 			k("n", "<leader>hr", gs.reset_hunk, { desc = "Git: discard hunk" })
-			k("n", "<leader>hR", gs.reset_buffer, { desc = "Git: discard buffer" })
 			k("v", "<leader>hr", function()
 				gs.reset_hunk({ vim.fn.line("'<"), vim.fn.line("'>") })
 			end, { desc = "Git: reset hunk" })

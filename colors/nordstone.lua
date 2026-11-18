@@ -51,10 +51,12 @@ local NordStoneColors = {
 	nord9 = "#81a1c1",
 	nord10 = "#5e81ac",
 	nord11 = "#bf616a",
+	nord11_800 = "#542227",
 	nord11_900 = "#3c181c",
 	nord12 = "#d08770",
 	nord13 = "#ebcb8b",
 	nord14 = "#a3be8c",
+	nord14_700 = "#2c3a21",
 	nord14_800 = "#202a18",
 	nord15 = "#b48ead",
 	neutral_900 = "#171717",
@@ -450,6 +452,26 @@ loadColorSet({
 loadColorSet({
 	HlSearchLens = { fg = c.nord3_700, bg = "NONE" },
 	HlSearchLensNear = { fg = c.nord13, bg = "NONE" },
+})
+
+-- mini.diff
+-- Mirrors codediff's inline view: whole-line background tint per side, with a
+-- brighter background on the changed words. Text keeps its syntax colours.
+-- Line tints reuse the scheme's diff palette; only the brighter word-level
+-- tints (codediff's `char_brightness` layer) need explicit colours.
+loadColorSet({
+	MiniDiffSignAdd = { link = "GitSignsAdd" },
+	MiniDiffSignChange = { link = "GitSignsChange" },
+	MiniDiffSignDelete = { link = "GitSignsDelete" },
+	-- Virtual line above a change = old/reference text (removed side)
+	MiniDiffOverContext = { link = "DiffDelete" },
+	MiniDiffOverChange = { bg = c.nord11_800 },
+	-- Real buffer line = new text (added side)
+	MiniDiffOverContextBuf = { link = "DiffAdd" },
+	MiniDiffOverChangeBuf = { bg = c.nord14_700 },
+	-- Whole-line highlights for pure additions/deletions
+	MiniDiffOverAdd = { link = "DiffAdd" },
+	MiniDiffOverDelete = { link = "DiffDelete" },
 })
 
 -- mini.hipatterns
