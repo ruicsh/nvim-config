@@ -10,43 +10,6 @@ return {
 			vim.cmd("Git ++curwin")
 		end
 
-		local function git_diff_file()
-			local line_content = vim.api.nvim_get_current_line()
-			local cmd = "Git diff HEAD %"
-
-			T.ui.open_side_panel({ cmd = cmd, mode = "replace" })
-
-			-- Escape special chars for search
-			local pattern = vim.fn.escape(line_content, [[\/.*$^~[]])
-			-- Search for the line content in the diff buffer
-			vim.fn.search(pattern, "w")
-		end
-
-		local function open_gdiff_tab(ref)
-			vim.cmd("tabedit %")
-			vim.cmd("Gdiff" .. (ref and " " .. ref or ""))
-			for i = 1, vim.fn.winnr("$") do
-				vim.api.nvim_win_call(vim.fn.win_getid(i), function()
-					vim.keymap.set("n", "q", ":tabclose<CR>", { buffer = true, silent = true })
-					local bufname = vim.api.nvim_buf_get_name(0)
-					if vim.startswith(bufname, "fugitive://") then
-						for _, client in ipairs(vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })) do
-							client:stop()
-						end
-					end
-				end)
-			end
-		end
-
-		local function git_diff_default_branch()
-			local ref = T.git.default_branch()
-			if not ref then
-				vim.notify("Could not determine default branch", vim.log.levels.WARN)
-				return
-			end
-			open_gdiff_tab(ref)
-		end
-
 		local function show_range_history()
 			local start_line = vim.fn.line("v")
 			local end_line = vim.fn.line(".")
@@ -58,9 +21,6 @@ return {
 		end
 
 		return {
-			{ "<leader>hd", open_gdiff_tab, desc = "Git: Gdiff" },
-			{ "<leader>hm", git_diff_default_branch, desc = "Git: Diff file vs default branch" },
-			{ "<leader>h%", git_diff_file, desc = "Git: Diff file vs HEAD" },
 			{ "<leader>hh", git_status, desc = "Git: Status" },
 			{ "<leader>hl", show_range_history, mode = "v", desc = "Git: Show range history" },
 		}
