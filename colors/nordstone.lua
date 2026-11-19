@@ -489,6 +489,11 @@ loadColorSet({
 	OtherUnderlined = { fg = c.nord12, bg = c.neutral_900 },
 })
 
+-- package-info.nvim
+loadColorSet({
+	PackageInfoOutdatedVersion = { fg = c.nord1, bg = c.nord13 },
+})
+
 -- snacks.nvim
 loadColorSet({
 	SnacksIndentScope = { fg = c.nord3_500 },

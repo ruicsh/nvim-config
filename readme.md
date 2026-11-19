@@ -42,7 +42,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 ## Plugins
 
-<sub>61 plugins</sub>
+<sub>62 plugins</sub>
 
 ### Code
 
@@ -52,6 +52,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 - [conform](https://github.com/stevearc/conform.nvim) - Formatter
 - [match-up](https://github.com/andymass/vim-matchup) - Matching pairs/words
 - [mini.hipatterns](https://github.com/nvim-mini/mini.hipatterns) - Highlight patterns in text
+- [package-info](https://github.com/vuki656/package-info.nvim) - Dependency versions (package.json)
 - [tailwincss-dial](https://github.com/ruicsh/tailwindcss-dial.nvim) - Toggle TailwindCSS classes
 - [tailwind-hover](https://github.com/ruicsh/tailwind-hover.nvim) - Tailwind CSS hover
 - [timber](https://github.com/Goose97/timber.nvim) - Insert log statements
