@@ -73,6 +73,7 @@ return {
 			layout = "inline",
 		},
 		explorer = {
+			focus_on_select = true,
 			line_stats = {
 				enabled = true,
 			},
