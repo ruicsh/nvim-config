@@ -73,8 +73,9 @@ return {
 			layout = "inline",
 		},
 		explorer = {
-			focus_on_select = true,
-			auto_open_on_cursor = true,
+			line_stats = {
+				enabled = true,
+			},
 			view_mode = "tree",
 			width = 60,
 		},
@@ -88,6 +89,9 @@ return {
 				discard_hunk = false,
 				next_file = "<c-n>",
 				prev_file = "<c-p>",
+			},
+			explorer = {
+				fold_toggle = "<tab>",
 			},
 			conflict = {
 				accept_current = "co",
