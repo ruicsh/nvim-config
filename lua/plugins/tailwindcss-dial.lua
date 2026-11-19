@@ -3,9 +3,9 @@
 
 return {
 	"ruicsh/tailwindcss-dial.nvim",
-	ft = { "astro", "html", "typescript", "typescriptreact", "javascript", "javascriptreact" }, -- lazy-load trigger
+	ft = { "astro", "html", "htmlangular", "typescript", "typescriptreact", "javascript", "javascriptreact" }, -- lazy-load trigger
 	opts = {
-		ft = { "astro", "html", "typescript", "typescriptreact", "javascript", "javascriptreact" },
+		ft = { "astro", "html", "htmlangular", "typescript", "typescriptreact", "javascript", "javascriptreact" },
 	},
 
 	dependencies = { "monaqa/dial.nvim" },
