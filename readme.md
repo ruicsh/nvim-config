@@ -450,7 +450,9 @@ Also available as `<leader>g~{char}` (LSP rename) and `g~o{char}` (operator).
 - `<leader>hl` show range history (visual mode)
 - `<leader>hl%` log for file
 - `<leader>hl$` blame line
+- `<leader>hR` discard file
 - `<leader>hr` discard hunk
+- `<leader>hS` stage file
 - `<leader>hs` stage hunk
 - `<leader>hx` open file in browser
 - `<leader>hX` open commit in browser
