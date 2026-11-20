@@ -242,6 +242,7 @@ Random features added.
 - `<c-w>x` swap windows
 - `<c-w>z` toggle zoom
 - `<s-tab>` toggle terminal
+- `<c-g>` open file references (`path[:line]`) from terminal output
 - `<leader>w` toggle soft-wrap
 - `<leader>q` close side panels
 

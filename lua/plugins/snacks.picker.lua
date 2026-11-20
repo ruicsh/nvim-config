@@ -56,7 +56,7 @@ local git_browse = function(picker, item)
 	end
 end
 
-local function layout_with_preview(preview)
+local function layout_with_preview(preview, list)
 	if preview then
 		return {
 			preview = true,
@@ -69,7 +69,7 @@ local function layout_with_preview(preview)
 				title_pos = "center",
 				width = 0.7,
 				{ win = "input", height = 1, border = "bottom" },
-				{ win = "list", border = "none", height = 0.3 },
+				{ win = "list", border = "none", height = list or 0.3 },
 				{ win = "preview", title = "{preview}", border = "top" },
 			},
 		}
@@ -89,6 +89,22 @@ local function layout_with_preview(preview)
 			},
 		}
 	end
+end
+
+-- Diff against the file's own repo, else the file. Snacks' `git_diff` runs
+-- `git -C <picker cwd>`, so refs from another project fail and clean files
+-- show an empty pane.
+local diff_or_file = function(ctx)
+	local file = ctx.item.file
+	local root = file and vim.fs.root(file, ".git")
+	local diff = root and vim.fn.systemlist({ "git", "-C", root, "diff", "HEAD", "--", file })
+
+	if diff and vim.v.shell_error == 0 and #diff > 0 then
+		ctx.item.diff = table.concat(diff, "\n")
+		return require("snacks.picker.preview").diff(ctx)
+	end
+
+	return require("snacks.picker.preview").file(ctx)
 end
 
 local function get_dirs(cwd)
@@ -246,6 +262,7 @@ return {
 			layouts = {
 				default = layout_with_preview(true),
 				no_preview = layout_with_preview(false),
+				file_refs = layout_with_preview(true, 5),
 			},
 			matcher = {
 				cwd_bonus = true,
@@ -408,6 +425,13 @@ return {
 					show_empty = true,
 					supports_live = true,
 					title = "Smart",
+				},
+				-- Items come from `lib.file_refs`, collected from a terminal buffer
+				file_refs = {
+					format = "file",
+					layout = "file_refs",
+					preview = diff_or_file,
+					title = "Files referenced",
 				},
 				undo = {
 					win = {
