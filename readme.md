@@ -42,7 +42,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 
 ## Plugins
 
-<sub>62 plugins</sub>
+<sub>61 plugins</sub>
 
 ### Code
 
@@ -61,7 +61,7 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 ### AI
 
 - [copilot.lua](https://github.com/zbirenbaum/copilot.lua) - Suggestions (copilot)
-- [neocodeium](https://github.com/monkoose/neocodeium) - Suggestions (windsurf)
+- [reviewer](https://github.com/ruicsh/reviewer.nvim) - Send inline review comments to agent
 - [sidekick.lua](https://github.com/folke/sidekick.nvim) - Agentic
 
 ### Editor
@@ -100,7 +100,6 @@ On first launch, [lazy.nvim](https://lazy.folke.io) will bootstrap itself and in
 - [snacks.gitbrowse](https://github.com/folke/snacks.nvim/blob/main/docs/gitbrowse.md) - Open remote
 - [gitsigns](https://github.com/lewis6991/gitsigns.nvim) - hunks, blame
 - [mini.diff](https://github.com/nvim-mini/mini.diff) - inline diff overlay
-- [reviewer](https://github.com/ruicsh/reviewer.nvim) - Inline review comments on a diff
 
 ### Navigation
 
