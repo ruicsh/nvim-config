@@ -4,6 +4,7 @@
 local T = require("lib")
 
 local DISABLED_FILETYPES = {
+	"bigfile",
 	"checkhealth",
 	"fugitive",
 	"git",
