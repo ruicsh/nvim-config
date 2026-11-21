@@ -79,6 +79,47 @@ M.discover = function(opts)
 	return files
 end
 
+-- Escape sequences supported inside double-quoted values.
+local UNESCAPE = { n = "\n", r = "\r", t = "\t", ['"'] = '"', ["\\"] = "\\" }
+
+-- Parse one `KEY=value` line. Returns `key, value`, or nil when the line is
+-- blank, a comment, or not an assignment.
+local function parse_line(line)
+	-- Skip blank lines and full-line comments
+	if line:match("^%s*$") or line:match("^%s*#") then
+		return nil
+	end
+
+	-- Allow shell-style `export KEY=value`
+	line = line:gsub("^%s*export%s+", "")
+
+	local key, rest = line:match("^%s*([%w_]+)%s*=(.*)$")
+	if not key then
+		return nil
+	end
+
+	-- Quoted value: single quotes are literal, double quotes unescape. A `#`
+	-- inside quotes is part of the value.
+	local quote = rest:match("^%s*(['\"])")
+	if quote then
+		local value = rest:match("^%s*" .. quote .. "(.-)" .. quote)
+		if value then
+			if quote == '"' then
+				value = value:gsub("\\(.)", function(c)
+					return UNESCAPE[c] or ("\\" .. c)
+				end)
+			end
+			return key, value
+		end
+	end
+
+	-- Unquoted value: `#` starts a comment only when preceded by whitespace, so
+	-- hashes inside a token (e.g. a URL fragment or a secret) are preserved.
+	local value = rest:gsub("%s+#.*$", "")
+	value = value:gsub("^%s*(.-)%s*$", "%1")
+	return key, value
+end
+
 -- Read the `KEY=value` pairs of an env file into the process environment.
 local function load_file(file)
 	local env_file = io.open(file, "r")
@@ -88,11 +129,9 @@ local function load_file(file)
 
 	local ok, err = pcall(function()
 		for line in env_file:lines() do
-			if not line:match("^%s*#") then -- Skip comments
-				for key, value in string.gmatch(line, "([%w_]+)%s*=%s*([^#]+)") do -- varname=value
-					value = value:gsub("^%s*(.-)%s*$", "%1") -- Trim whitespace
-					vim.fn.setenv(key, value)
-				end
+			local key, value = parse_line(line)
+			if key then
+				vim.fn.setenv(key, value)
 			end
 		end
 	end)
