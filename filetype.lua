@@ -7,6 +7,7 @@ vim.filetype.add({
 	},
 	filename = {
 		[".env"] = "config",
+		[".eslintrc.json"] = "jsonc",
 		["tsconfig.json"] = "jsonc",
 		[".zshrc"] = "sh",
 		[".zshenv"] = "sh",
@@ -14,7 +15,9 @@ vim.filetype.add({
 	},
 	pattern = {
 		["%.env%.[%w_.-]+"] = "config",
-		["**/__snapshots__/*.ts.snap"] = "jsonc",
-		["**/__snapshots__/*.js.snap"] = "jsonc",
+		["tsconfig.*%.json"] = "jsonc",
+		[".*/%.vscode/.*%.json"] = "jsonc",
+		[".*/__snapshots__/.*%.ts%.snap"] = "jsonc",
+		[".*/__snapshots__/.*%.js%.snap"] = "jsonc",
 	},
 })
