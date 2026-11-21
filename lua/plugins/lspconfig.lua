@@ -32,12 +32,30 @@ local function tailwindcss_opts()
 	}
 end
 
+-- Harper (grammar/spell checker)
+local function harper_ls_opts()
+	return {
+		settings = {
+			["harper-ls"] = {
+				linters = {
+					ExpandConfiguration = false,
+					LongSentences = false,
+					SentenceCapitalization = false,
+					SplitWords = false,
+					UseTitleCase = false,
+				},
+			},
+		},
+	}
+end
+
 return {
 	"neovim/nvim-lspconfig",
 	cond = not os.getenv("NVIM_GIT_DIFF"),
 	opts = function()
 		return {
 			servers = {
+				harper_ls = harper_ls_opts(),
 				tailwindcss = tailwindcss_opts(),
 			},
 		}
