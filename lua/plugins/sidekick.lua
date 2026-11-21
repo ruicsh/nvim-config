@@ -48,6 +48,9 @@ return {
 					cli.send({ name = tool, msg = msg })
 				end
 			end,
+			send_diagnostics = function()
+				cli.send({ name = tool, msg = "{diagnostics}" })
+			end,
 			show = function()
 				cli.show({ name = tool })
 			end,
@@ -72,6 +75,7 @@ return {
 
 		return {
 			{ "<leader>h<c-bslash>", ai_review_branch, desc = "Git: AI review branch vs merge-base" },
+			{ "<leader>d<c-bslash>", a.send_diagnostics, desc = "Send diagnostics to AI agent" },
 			{ "<c-bslash>", a.send("{this}"), mode = { "x" }, desc = "Sidekick: Send Visual Selection" },
 			{ "<c-bslash>", a.show, mode = { "n", "t", "i" }, desc = "Sidekick: Focus" },
 			{ "<c-w><c-bslash>", a.toggle, mode = { "n", "t", "i" }, desc = "Sidekick: Toggle" },
