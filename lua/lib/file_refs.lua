@@ -1,4 +1,4 @@
--- File references (`path[:line[:col]]`) printed in a buffer.
+-- File references (`@path`, `path[:line[:col]]`) printed in a buffer.
 --
 -- Agents and compilers print paths relative to their own cwd, which is not
 -- always the editor's cwd. Each base is tried, and only files that exist are
@@ -6,10 +6,11 @@
 
 local M = {}
 
--- `path:line` or `path:line:col`. Dots, slashes, dashes and underscores only.
-local PATTERN = "([%w%._/%-]+):(%d+):?(%d*)"
+-- `path:line` or `path:line:col`, optionally prefixed with `@` (file mentions).
+-- Dots, slashes, dashes and underscores only.
+local PATTERN = "(@?[%w%._/%-]+):(%d+):?(%d*)"
 -- `path` alone, when no line number is printed.
-local PATH = "([%w%._/%-]+)"
+local PATH = "(@?[%w%._/%-]+)"
 
 --- Working directory of the process running in a terminal buffer.
 ---@param bufnr integer
@@ -36,6 +37,7 @@ local function term_cwd(bufnr)
 end
 
 local function resolve(bases, path)
+	path = path:gsub("^@", "")
 	if path:sub(1, 1) == "/" then
 		local abs = vim.fs.normalize(path)
 		return vim.fn.filereadable(abs) == 1 and abs or nil
@@ -109,7 +111,9 @@ M.collect = function(bufnr)
 			from = stop + 1
 
 			local path = line:sub(start, stop)
-			local file = path:find("[./]") and not overlaps(covered, start, stop) and resolve(bases, path)
+			-- `@name` is an explicit mention, so it needs no slash or dot.
+			local explicit = path:sub(1, 1) == "@"
+			local file = (path:find("[./]") or explicit) and not overlaps(covered, start, stop) and resolve(bases, path)
 
 			if file and not seen[file .. ":1"] then
 				seq = seq + 1
