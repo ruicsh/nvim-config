@@ -9,6 +9,7 @@ return {
 		sidekick = {
 			tool = T.env.get("AI_CODING_AGENT_TOOL"),
 		},
+		silent = true,
 	},
 
 	event = "VeryLazy",
