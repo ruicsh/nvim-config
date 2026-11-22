@@ -12,6 +12,12 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead", "BufEnter" }, {
 			return
 		end
 
+		-- Skip non-file buffers (terminals, prompts, ...): markdown would drag
+		-- in its ftplugin, treesitter parser and completion there.
+		if vim.bo[args.buf].buftype ~= "" then
+			return
+		end
+
 		if vim.bo[args.buf].filetype == "" then
 			vim.bo[args.buf].filetype = "markdown"
 		end
