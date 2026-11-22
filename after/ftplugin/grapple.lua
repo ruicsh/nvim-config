@@ -10,9 +10,9 @@ k("n", "<a-j>", "<cmd>move .+1<cr>==", opts)
 -- The order may have been changed when leaving the menu, we need to reset and reassign
 vim.api.nvim_create_autocmd("WinClosed", {
 	group = vim.api.nvim_create_augroup("ruicsh/ftplugin/grapple", { clear = true }),
-	callback = function()
-		local ft = vim.bo.filetype
-		if ft ~= "grapple" then
+	callback = function(args)
+		-- `args.buf` is the closed window's buffer, not the current one
+		if vim.bo[args.buf].filetype ~= "grapple" then
 			return
 		end
 
