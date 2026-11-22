@@ -13,6 +13,10 @@ return {
 		local function show_range_history()
 			local start_line = vim.fn.line("v")
 			local end_line = vim.fn.line(".")
+			-- `git log -L` needs a forward range
+			if start_line > end_line then
+				start_line, end_line = end_line, start_line
+			end
 			local file_path = vim.fn.expand("%")
 			local range = string.format("%s,%s", start_line, end_line)
 			local cmd = string.format("Git log -L %s:%s", range, file_path)
