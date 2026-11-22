@@ -75,7 +75,7 @@ k("cN", "*``cgN", { desc = "Change word (backward)" }) -- `:h gN`
 k("<c-w>/", function()
 	local word = vim.fn.expand("<cword>")
 	if word ~= "" then
-		vim.cmd("only | vsplit | silent! ijump /" .. word .. "/ | normal! zv") -- `:h ijump`
+		vim.cmd("vsplit | silent! ijump /" .. word .. "/ | normal! zv") -- `:h ijump`
 	end
 end, { desc = "Search for first occurrence of word under cursor in new window" })
 
