@@ -23,32 +23,48 @@ vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged" }, {
 local repo_status_cache = ""
 local remote_status_cache = ""
 local git_info_timer = nil
+-- Discards results from refreshes superseded by a newer one
+local git_info_generation = 0
 
 local function refresh_git_info()
+	-- Cancel the pending debounce. Timers are not freed until closed, so a
+	-- stopped timer must be closed as well.
+	if git_info_timer then
+		git_info_timer:stop()
+		git_info_timer:close()
+		git_info_timer = nil
+	end
+
+	git_info_generation = git_info_generation + 1
+	local generation = git_info_generation
+
 	if not cached_git_root then
 		repo_status_cache = ""
 		remote_status_cache = ""
 		return
 	end
 
-	if git_info_timer then
-		vim.uv.timer_stop(git_info_timer)
-	end
-
-	git_info_timer = vim.uv.new_timer()
-	git_info_timer:start(200, 0, function()
-		git_info_timer:close()
-		git_info_timer = nil
+	local root = cached_git_root
+	local timer = vim.uv.new_timer()
+	git_info_timer = timer
+	timer:start(200, 0, function()
+		timer:close()
+		if git_info_timer == timer then
+			git_info_timer = nil
+		end
 
 		T.git.repo_status(function(repo)
 			T.git.remote_status(function(remote)
 				vim.schedule(function()
+					if generation ~= git_info_generation then
+						return
+					end
 					repo_status_cache = repo
 					remote_status_cache = remote
 					vim.cmd("redrawstatus!")
 				end)
-			end, cached_git_root)
-		end, cached_git_root)
+			end, root)
+		end, root)
 	end)
 end
 
