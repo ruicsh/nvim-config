@@ -7,10 +7,10 @@ return {
 		local ss = require("smart-splits")
 
 		return {
-			{ "<c-w>>", ss.resize_right, "Windows: Resize right" },
-			{ "<c-w><", ss.resize_left, "Windows: Resize left" },
-			{ "<c-w>+", ss.resize_up, "Windows: Resize up" },
-			{ "<c-w>-", ss.resize_down, "Windows: Resize down" },
+			{ "<c-w>>", ss.resize_right, desc = "Windows: Resize right" },
+			{ "<c-w><", ss.resize_left, desc = "Windows: Resize left" },
+			{ "<c-w>+", ss.resize_up, desc = "Windows: Resize up" },
+			{ "<c-w>-", ss.resize_down, desc = "Windows: Resize down" },
 		}
 	end,
 	opts = {
