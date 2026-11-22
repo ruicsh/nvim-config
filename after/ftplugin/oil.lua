@@ -62,29 +62,47 @@ local function get_git_status(bufnr, callback)
 			return
 		end
 
+		-- `-z` prints each entry as `XY PATH`, and renames/copies are followed
+		-- by the original path as an extra NUL-separated field (no `XY `).
 		local status = {}
-		for _, line in ipairs(vim.split(result.stdout, "\0", { plain = true })) do
-			if #line >= 3 then
-				local status_code, filepath = line:match("^(..) (.+)$")
-				local abs_path = vim.fs.joinpath(git_root, filepath)
-				status[abs_path] = status_code
+		local fields = vim.split(result.stdout, "\0", { plain = true })
+		local i = 1
+		while i <= #fields do
+			local status_code, filepath = fields[i]:match("^(..) (.+)$")
+			if status_code then
+				status[vim.fs.joinpath(git_root, filepath)] = status_code
+				if status_code:find("[RC]") then
+					i = i + 1 -- Skip the source path of a rename/copy
+				end
 			end
+			i = i + 1
 		end
 		callback(status)
 	end)
 end
 
--- Clear all git highlights in the given buffer (defaults to the current one)
+-- Match ids added by this plugin, per buffer. Matches are window-local, and
+-- `clearmatches()` would also drop matches owned by other plugins.
+local match_ids = {}
+
+-- Clear the git highlights this plugin added to `bufnr` (defaults to the current one)
 local function clear_highlights(bufnr)
 	bufnr = bufnr or vim.api.nvim_get_current_buf()
-	local winid = -1
-	if vim.api.nvim_buf_is_valid(bufnr) then
-		vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
-		winid = vim.fn.bufwinid(bufnr)
+	local ids = match_ids[bufnr]
+	match_ids[bufnr] = nil
+
+	if not vim.api.nvim_buf_is_valid(bufnr) then
+		return
 	end
-	-- Matches are window-local. Prefer the window displaying the buffer,
-	-- otherwise fall back to the current window (0).
-	vim.fn.clearmatches(winid ~= -1 and winid or 0)
+
+	vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+
+	local winid = vim.fn.bufwinid(bufnr)
+	if winid ~= -1 then
+		for _, id in ipairs(ids or {}) do
+			pcall(vim.fn.matchdelete, id, winid)
+		end
+	end
 end
 
 -- Build reverse index: dir_path -> status_code
@@ -136,6 +154,7 @@ local function apply_git_highlights(bufnr)
 
 			clear_highlights(bufnr)
 
+			local ids = {}
 			for linenr in ipairs(oil_lines) do
 				local entry = oil.get_entry_on_line(bufnr, linenr)
 				if entry then
@@ -154,7 +173,8 @@ local function apply_git_highlights(bufnr)
 					if symbol and hl_group then
 						-- Highlight whole line
 						if winid ~= -1 then
-							vim.fn.matchaddpos(hl_group, { linenr }, 10, -1, { window = winid })
+							local id = vim.fn.matchaddpos(hl_group, { linenr }, 10, -1, { window = winid })
+							ids[#ids + 1] = id
 						end
 
 						vim.api.nvim_buf_set_extmark(bufnr, ns, linenr - 1, 0, {
@@ -165,6 +185,8 @@ local function apply_git_highlights(bufnr)
 					end
 				end
 			end
+
+			match_ids[bufnr] = ids
 		end)
 	end)
 end
