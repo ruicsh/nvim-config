@@ -85,6 +85,9 @@ end
 -- `clearmatches()` would also drop matches owned by other plugins.
 local match_ids = {}
 
+-- Latest apply request per buffer. A slower, superseded run must not paint.
+local generation = {}
+
 -- Clear the git highlights this plugin added to `bufnr` (defaults to the current one)
 local function clear_highlights(bufnr)
 	bufnr = bufnr or vim.api.nvim_get_current_buf()
@@ -112,7 +115,8 @@ local function build_dir_status_index(git_status)
 	for file, status_code in pairs(git_status) do
 		if status_code then
 			local dir = vim.fs.dirname(file)
-			while dir and dir ~= "" do
+			-- Stop at the first directory that already has a status
+			while dir and dir ~= "" and not dir_status_index[dir] do
 				dir_status_index[dir] = status_code
 				local parent = vim.fs.dirname(dir)
 				if parent == dir then
@@ -129,9 +133,17 @@ end
 -- Apply git highlights to the given Oil buffer (defaults to the current one)
 local function apply_git_highlights(bufnr)
 	bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+	local gen = (generation[bufnr] or 0) + 1
+	generation[bufnr] = gen
+
 	get_git_status(bufnr, function(git_status)
 		vim.schedule(function()
 			-- Needs to be scheduled to avoid calling nvim API from async callback
+			if generation[bufnr] ~= gen then
+				return
+			end
+
 			if not vim.api.nvim_buf_is_valid(bufnr) then
 				return
 			end
@@ -155,6 +167,9 @@ local function apply_git_highlights(bufnr)
 			clear_highlights(bufnr)
 
 			local ids = {}
+			-- Group line numbers by highlight group: one matchaddpos per group
+			-- instead of one Vimscript call per line.
+			local lines_by_hl = {}
 			for linenr in ipairs(oil_lines) do
 				local entry = oil.get_entry_on_line(bufnr, linenr)
 				if entry then
@@ -162,9 +177,9 @@ local function apply_git_highlights(bufnr)
 
 					-- Determine status code for the entry
 					local status_code = nil
-					if entry and entry.type == "directory" then
+					if entry.type == "directory" then
 						status_code = dir_status_index[path]
-					elseif entry and entry.type == "file" then
+					elseif entry.type == "file" then
 						status_code = git_status[path]
 					end
 
@@ -173,8 +188,12 @@ local function apply_git_highlights(bufnr)
 					if symbol and hl_group then
 						-- Highlight whole line
 						if winid ~= -1 then
-							local id = vim.fn.matchaddpos(hl_group, { linenr }, 10, -1, { window = winid })
-							ids[#ids + 1] = id
+							local linenrs = lines_by_hl[hl_group]
+							if linenrs then
+								linenrs[#linenrs + 1] = linenr
+							else
+								lines_by_hl[hl_group] = { linenr }
+							end
 						end
 
 						vim.api.nvim_buf_set_extmark(bufnr, ns, linenr - 1, 0, {
@@ -184,6 +203,10 @@ local function apply_git_highlights(bufnr)
 						})
 					end
 				end
+			end
+
+			for hl_group, linenrs in pairs(lines_by_hl) do
+				ids[#ids + 1] = vim.fn.matchaddpos(hl_group, linenrs, 10, -1, { window = winid })
 			end
 
 			match_ids[bufnr] = ids
