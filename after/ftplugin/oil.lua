@@ -26,6 +26,11 @@ local function get_symbol_hl_group(status_code)
 	return nil, nil
 end
 
+-- Git status per directory, with a short TTL. Re-entering an Oil buffer
+-- re-applies highlights, and every `git status` is a process spawn.
+local status_cache = {}
+local STATUS_TTL = 5000
+
 -- Get git status for files in the current Oil directory
 local function get_git_status(bufnr, callback)
 	local oil = require("oil")
@@ -34,6 +39,12 @@ local function get_git_status(bufnr, callback)
 
 	if not git_root or not current_dir then
 		callback({})
+		return
+	end
+
+	local cached = status_cache[current_dir]
+	if cached and vim.uv.now() - cached.at < STATUS_TTL then
+		callback(cached.status)
 		return
 	end
 
@@ -53,11 +64,12 @@ local function get_git_status(bufnr, callback)
 		"status",
 		"--porcelain=v1",
 		"--short",
-		"--untracked-files=all",
+		"--untracked-files=normal",
 		"-z",
 		path,
 	}, { text = true, cwd = git_root }, function(result)
 		if result.code ~= 0 or not result.stdout or result.stdout == "" then
+			status_cache[current_dir] = { at = vim.uv.now(), status = {} }
 			callback({})
 			return
 		end
@@ -77,6 +89,7 @@ local function get_git_status(bufnr, callback)
 			end
 			i = i + 1
 		end
+		status_cache[current_dir] = { at = vim.uv.now(), status = status }
 		callback(status)
 	end)
 end
@@ -254,6 +267,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "oil://*",
 	callback = function(args)
 		vim.schedule(function()
+			local dir = require("oil").get_current_dir(args.buf)
+			if dir then
+				status_cache[dir] = nil
+			end
 			apply_git_highlights(args.buf)
 		end)
 	end,

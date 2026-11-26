@@ -30,6 +30,7 @@ end
 local function new_git_status_ignored()
 	local roots = {} -- dir -> repo root
 	local ignored = {} -- repo root -> ignored paths, relative to that root
+	local loading = {} -- repo root -> request in flight
 
 	local function root_of(dir)
 		if #dir > 1 then
@@ -54,14 +55,21 @@ local function new_git_status_ignored()
 		return (dir:sub(#root + 1):gsub("^/+", "")) .. "/"
 	end
 
-	-- Reload a stale listing without blocking, then re-render oil if it shows it
-	local function revalidate(root)
+	-- Load the listing in the background, then re-render oil if it shows it
+	local function revalidate(dir)
+		local root = root_of(dir)
+		if loading[root] then
+			return
+		end
+		loading[root] = true
+
 		git_ignored(root, function(proc)
+			loading[root] = nil
 			ignored[root] = parse_output(proc)
 			vim.schedule(function()
 				local bufnr = vim.api.nvim_get_current_buf()
-				local dir = require("oil").get_current_dir(bufnr)
-				if dir and root_of(dir) == root and not vim.bo[bufnr].modified then
+				local current = require("oil").get_current_dir(bufnr)
+				if current and root_of(current) == root and not vim.bo[bufnr].modified then
 					vim.cmd.edit({ bang = true })
 				end
 			end)
@@ -69,13 +77,14 @@ local function new_git_status_ignored()
 	end
 
 	return {
-		-- oil filters entries while rendering, so the first listing blocks
+		-- The first render shows ignored files and fills the cache in the
+		-- background; the re-render above hides them a moment later.
 		get = function(dir)
 			local root = root_of(dir)
 			local paths = ignored[root]
 			if not paths then
-				paths = parse_output(git_ignored(root):wait(2000))
-				ignored[root] = paths
+				paths = {}
+				revalidate(dir)
 			end
 			return rel_prefix(dir, root), paths
 		end,
