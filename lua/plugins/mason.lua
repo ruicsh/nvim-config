@@ -87,6 +87,9 @@ return {
 
 			return {
 				ensure_installed = packages,
+				-- Install/check tools on demand (`:Mason` or `:MasonToolsInstall`)
+				-- instead of on every launch.
+				run_on_start = false,
 				integrations = {
 					["mason-lspconfig"] = true,
 					["mason-null-ls"] = false,
