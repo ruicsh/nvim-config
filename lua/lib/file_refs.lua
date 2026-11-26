@@ -1,8 +1,8 @@
 -- File references (`@path`, `path[:line[:col]]`) printed in a buffer.
 --
--- Agents and compilers print paths relative to their own cwd, which is not
--- always the editor's cwd. Each base is tried, and only files that exist are
--- kept, so times (`12:30`) and URLs (`localhost:3000`) are dropped.
+-- Paths are resolved relative to the editor's cwd, then the git root. Only
+-- files that exist are kept, so times (`12:30`) and URLs (`localhost:3000`)
+-- are dropped.
 
 local M = {}
 
@@ -11,30 +11,6 @@ local M = {}
 local PATTERN = "(@?[%w%._/%-]+):(%d+):?(%d*)"
 -- `path` alone, when no line number is printed.
 local PATH = "(@?[%w%._/%-]+)"
-
---- Working directory of the process running in a terminal buffer.
----@param bufnr integer
----@return string?
-local function term_cwd(bufnr)
-	if not vim.api.nvim_buf_is_valid(bufnr) or vim.bo[bufnr].buftype ~= "terminal" then
-		return
-	end
-
-	local id = vim.b[bufnr].terminal_job_id
-	local pid = id and vim.fn.jobpid(id)
-	if not pid or pid == 0 then
-		return
-	end
-
-	local proc = vim.uv.fs_readlink("/proc/" .. pid .. "/cwd")
-	if proc then
-		return vim.fs.normalize(proc)
-	end
-
-	local ok, out = pcall(vim.fn.system, { "lsof", "-a", "-d", "cwd", "-p", tostring(pid), "-Fn" })
-	local path = ok and vim.v.shell_error == 0 and out:match("\nn(/[^\n]+)")
-	return path and vim.fs.normalize(path) or nil
-end
 
 local function resolve(bases, path)
 	path = path:gsub("^@", "")
@@ -66,12 +42,7 @@ end
 M.collect = function(bufnr)
 	local cwd = vim.fn.getcwd()
 	local root = vim.fs.root(cwd, ".git") or cwd
-	-- Terminal output is relative to the process cwd first, then this project.
 	local bases = { cwd, root }
-	local tcwd = term_cwd(bufnr)
-	if tcwd and tcwd ~= cwd then
-		table.insert(bases, 1, tcwd)
-	end
 	local items, seen, seq = {}, {}, 0
 
 	for _, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)) do
