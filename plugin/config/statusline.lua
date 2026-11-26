@@ -19,69 +19,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged" }, {
 	end,
 })
 
--- Cache for repo-wide git info (updated asynchronously)
-local repo_status_cache = ""
-local remote_status_cache = ""
-local git_info_timer = nil
--- Discards results from refreshes superseded by a newer one
-local git_info_generation = 0
-
-local function refresh_git_info()
-	-- Cancel the pending debounce. Timers are not freed until closed, so a
-	-- stopped timer must be closed as well.
-	if git_info_timer then
-		git_info_timer:stop()
-		git_info_timer:close()
-		git_info_timer = nil
-	end
-
-	git_info_generation = git_info_generation + 1
-	local generation = git_info_generation
-
-	if not cached_git_root then
-		repo_status_cache = ""
-		remote_status_cache = ""
-		return
-	end
-
-	local root = cached_git_root
-	local timer = vim.uv.new_timer()
-	git_info_timer = timer
-	timer:start(200, 0, function()
-		timer:close()
-		if git_info_timer == timer then
-			git_info_timer = nil
-		end
-
-		T.git.repo_status(function(repo)
-			T.git.remote_status(function(remote)
-				vim.schedule(function()
-					if generation ~= git_info_generation then
-						return
-					end
-					repo_status_cache = repo
-					remote_status_cache = remote
-					vim.cmd("redrawstatus!")
-				end)
-			end, root)
-		end, root)
-	end)
-end
-
-vim.api.nvim_create_autocmd({ "BufEnter", "DirChanged", "FocusGained", "CursorHold" }, {
-	group = statusline_augroup,
-	callback = function()
-		vim.schedule(refresh_git_info)
-	end,
-})
-
-vim.api.nvim_create_autocmd("VimEnter", {
-	group = statusline_augroup,
-	callback = function()
-		refresh_git_info()
-	end,
-})
-
 -- Pre-create icon highlight groups at startup so the hot render path never calls nvim_set_hl
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = statusline_augroup,
@@ -107,10 +44,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 local function sep()
 	return "%#StatusLineSeparator#|%#StatusLine#"
-end
-
-local function item_sep()
-	return " %#StatusLineSeparator#│%#StatusLine#"
 end
 
 -- Show the current mode
@@ -271,7 +204,7 @@ local function c_bookmark()
 	return sep() .. " " .. hl .. "󰛢 " .. index
 end
 
--- Show the current git branch with diff and remote tracking status
+-- Show the current git branch
 local function c_git_branch(bufnr)
 	local head = T.fn.get_buf_var("gitsigns_head", bufnr)
 	if not head or head == "" then
@@ -282,18 +215,7 @@ local function c_git_branch(bufnr)
 		head = head:sub(1, 20) .. "..."
 	end
 
-	local result = "%#StatusLine#"
-
-	if repo_status_cache ~= "" then
-		result = result .. " " .. repo_status_cache .. item_sep()
-	end
-
-	if remote_status_cache ~= "" then
-		result = result .. " " .. remote_status_cache .. item_sep()
-	end
-
-	result = result .. "  " .. head .. " "
-	return result
+	return "%#StatusLine#  " .. head .. " "
 end
 
 -- Show tabs (only if there are more than one)

@@ -44,10 +44,11 @@ local DIAGNOSTIC_SEVERITIES = {
 }
 
 M.diagnostic_counts = function(bufnr)
+	-- One pass over the buffer's diagnostics, instead of one per severity
+	local counts = vim.diagnostic.count(bufnr)
 	local results = {}
 	for _, entry in ipairs(DIAGNOSTIC_SEVERITIES) do
-		local s = entry.severity
-		local count = vim.diagnostic.count(bufnr, { severity = s })[s]
+		local count = counts[entry.severity]
 		if count and count > 0 then
 			table.insert(results, { key = entry.key, count = count })
 		end
