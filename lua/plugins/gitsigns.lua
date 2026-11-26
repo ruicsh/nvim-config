@@ -40,12 +40,6 @@ return {
 			untracked = { text = icons.Untracked },
 		},
 		attach_to_untracked = true,
-		current_line_blame = true,
-		current_line_blame_formatter = "<author_time:%R> - <summary>",
-		current_line_blame_opts = {
-			delay = 2000,
-			virt_text_pos = "right_align",
-		},
 		on_attach = function(bufnr)
 			-- Don't attach to excluded filetypes
 			if vim.tbl_contains(EXCLUDE_FILETYPES, vim.bo[bufnr].filetype) then
