@@ -89,13 +89,11 @@ o.showmode = false -- Do not show mode on last line. `:h 'showmode'`
 
 -- 11 selecting text {{{
 
--- Use `win32yank.exe` on Windows
-if
-	vim.fn.has("win32") == 1
-	or vim.fn.has("win64") == 1
-	or vim.fn.getenv("WSL_DISTRO_NAME") ~= vim.NIL
-	or vim.fn.getenv("WSL_INTEROP") ~= vim.NIL
-then
+-- Use `win32yank.exe` inside WSL, which cannot reach the Windows clipboard.
+-- Native Windows uses Neovim's built-in win32 provider.
+local uname = vim.uv.os_uname()
+local is_wsl = uname.sysname == "Linux" and uname.release:lower():find("microsoft") ~= nil
+if is_wsl or vim.env.WSL_DISTRO_NAME then
 	vim.g.clipboard = {
 		name = "win32yank-wsl",
 		copy = {
@@ -179,7 +177,7 @@ o.backup = false -- Do not create backup files. `:h 'backup'`
 
 -- 18 the swap file {{{
 o.swapfile = false -- Stop creating swp files. `:h 'swapfile'`
-o.updatetime = 100 -- Faster CursorHold. `:h 'updatetime'`
+o.updatetime = 300 -- CursorHold after a short pause. `:h 'updatetime'`
 -- }}}
 
 -- 19 command line editing {{{
@@ -189,13 +187,6 @@ o.wildignore:append({ -- Ignore on filename completion. `:h 'wildignore'`
 	".DS_store",
 	"**/node_modules/**",
 })
--- }}}
-
--- 20 executing external commands {{{
-local nu_path = vim.fn.exepath("nu")
-if nu_path ~= "" then
-	o.shell = nu_path -- Resolves to full path if "nushell" is in $PATH
-end
 -- }}}
 
 -- 22 language specific {{{

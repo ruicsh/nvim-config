@@ -71,7 +71,7 @@ return {
 			custom = function(cmd)
 				T.ui.open_side_panel()
 
-				-- Bypass &shell (e.g. nushell) by using the platform's standard shell directly
+				-- Bypass &shell by using the platform's standard shell directly
 				if vim.fn.has("win32") == 1 then
 					vim.fn.termopen({ "cmd.exe", "/c", cmd })
 				else
