@@ -122,6 +122,9 @@ local function build_dir_status_index(git_status)
 
 	for file, status_code in pairs(git_status) do
 		if status_code then
+			if status_code:sub(1, 1) == "!" then
+				dir_status_index[file] = status_code
+			end
 			local dir = vim.fs.dirname(file)
 			-- Stop at the first directory that already has a status
 			while dir and dir ~= "" and not dir_status_index[dir] do
@@ -200,6 +203,7 @@ local function get_git_status(bufnr, callback)
 		"status",
 		"--porcelain=v1",
 		"--short",
+		"--ignored-matching",
 		"--untracked-files=normal",
 		"-z",
 	}, { text = true, cwd = git_root, env = { GIT_OPTIONAL_LOCKS = "0" } }, function(result)
@@ -211,6 +215,7 @@ local function get_git_status(bufnr, callback)
 			while i <= #fields do
 				local status_code, filepath = fields[i]:match("^(..) (.+)$")
 				if status_code then
+					filepath = filepath:gsub("[/\\]+$", "")
 					status[vim.fs.joinpath(git_root, filepath)] = status_code
 					if status_code:find("[RC]") then
 						i = i + 1 -- Skip the source path of a rename/copy
