@@ -91,9 +91,18 @@ local function trim_cache(cache, limit, last_used)
 
 	-- Normally one insert over the limit, so this evicts once.
 	while count > limit do
+		if not oldest_key then
+			break
+		end
 		cache[oldest_key] = nil
 		count = count - 1
-		oldest_key = next(cache)
+		oldest_key, oldest_at = nil, nil
+		for key, value in pairs(cache) do
+			local at = last_used and last_used(value) or 0
+			if not oldest_at or at < oldest_at then
+				oldest_key, oldest_at = key, at
+			end
+		end
 	end
 end
 
@@ -218,8 +227,8 @@ local function get_git_status(bufnr, callback)
 		if status_pending[git_root] == entry then
 			status_pending[git_root] = nil
 			status_cache[git_root] = { at = vim.uv.now(), status = status, index = index }
-			trim_cache(status_cache, STATUS_CACHE_LIMIT, function(cached)
-				return cached.at
+			trim_cache(status_cache, STATUS_CACHE_LIMIT, function(entry)
+				return entry.at
 			end)
 		end
 
