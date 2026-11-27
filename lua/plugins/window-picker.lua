@@ -6,6 +6,24 @@ return {
 	keys = function()
 		local picker = require("window-picker")
 
+		-- v2 has no filter rule for floating windows. filter_func replaces the
+		-- default filter entirely, so it must also drop the current window and
+		-- unfocusable windows itself.
+		local picker_filter = function(include_current_win)
+			return function(windows)
+				local current = vim.api.nvim_get_current_win()
+				return vim.tbl_filter(function(win)
+					if vim.api.nvim_win_get_config(win).relative ~= "" then
+						return false
+					end
+					if not include_current_win and win == current then
+						return false
+					end
+					return vim.api.nvim_win_get_config(win).focusable
+				end, windows)
+			end
+		end
+
 		local pick_window = function()
 			local tabid = vim.api.nvim_get_current_tabpage()
 			local wins = vim.api.nvim_tabpage_list_wins(tabid)
@@ -32,17 +50,13 @@ return {
 			if #available == 2 then
 				-- If there are only two windows, automatically pick the other one.
 				picked_window_id = picker.pick_window({
-					filter_rules = {
-						autoselect_one = true,
-						include_current_win = false,
-					},
+					filter_rules = { autoselect_one = true },
+					filter_func = picker_filter(false),
 				})
 			elseif #available > 2 then
 				-- Use the picker UI, with consistent labels
 				picked_window_id = picker.pick_window({
-					filter_rules = {
-						include_current_win = true,
-					},
+					filter_func = picker_filter(true),
 				})
 			end
 
@@ -56,7 +70,6 @@ return {
 			local wins = vim.api.nvim_tabpage_list_wins(tabid)
 
 			local DISABLED_FILETYPES = {
-				"incline",
 				"mininotify",
 			}
 
@@ -75,9 +88,7 @@ return {
 
 		local close_window = function()
 			local picked_window_id = picker.pick_window({
-				filter_rules = {
-					include_current_win = false,
-				},
+				filter_func = picker_filter(false),
 			})
 
 			if picked_window_id then
@@ -94,12 +105,6 @@ return {
 		}
 	end,
 	opts = {
-		filter_rules = {
-			bo = {
-				filetype = { "incline", "mininotify" },
-				buftype = { "nofile" },
-			},
-		},
 		hint = "floating-big-letter",
 		selection_chars = "asdfqwerzxcv",
 		show_prompt = false,
