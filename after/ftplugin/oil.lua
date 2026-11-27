@@ -1,127 +1,113 @@
 local ns = vim.api.nvim_create_namespace("ruicsh/ftplugin/oil")
 
--- Return symbol and highlight group for a given git status code
-local function get_symbol_hl_group(status_code)
+-- Oil creates one buffer per directory and re-sources this file for each, so
+-- state must live outside the chunk. A chunk-local table would forget the
+-- caches on the next `FileType oil`.
+local state = _G.ruicsh_oil_git
+	or {
+		status_cache = {}, -- git root -> { at, status, index }
+		pending = {}, -- git root -> { waiters = { callback, ... } }
+		roots = {}, -- directory -> repository root, or false
+		generation = {}, -- bufnr -> latest apply request
+		painted = {}, -- bufnr -> { status, tick }
+		extmark_opts = {}, -- status code -> opts table, or false
+	}
+_G.ruicsh_oil_git = state
+
+-- Line decoration per git status code, cached so changed lines reuse one table.
+-- `nvim_buf_set_extmark` only reads it and there is no batch API.
+local extmark_opts = state.extmark_opts
+
+local function get_extmark_opts(status_code)
 	if not status_code then
-		return nil, nil
+		return nil
+	end
+
+	local cached = extmark_opts[status_code]
+	if cached ~= nil then
+		return cached or nil
 	end
 
 	local first_char = status_code:sub(1, 1)
 	local second_char = status_code:sub(2, 2)
+	local symbol, hl_group
 
 	if first_char == "A" or second_char == "A" then
-		return "+", "diffAdded"
+		symbol, hl_group = "+", "diffAdded"
 	elseif first_char == "M" or second_char == "M" then
-		return "~", "diffChanged"
+		symbol, hl_group = "~", "diffChanged"
 	elseif first_char == "R" or second_char == "R" then
-		return "→", "diffRenamed"
+		symbol, hl_group = "→", "diffRenamed"
 	elseif first_char == "D" or second_char == "D" then
-		return "-", "diffChanged"
+		symbol, hl_group = "-", "diffChanged"
 	elseif first_char == "?" then
-		return "?", "diffFile"
+		symbol, hl_group = "?", "diffFile"
 	elseif first_char == "!" then
-		return "!", "diffIgnored"
+		symbol, hl_group = "!", "diffIgnored"
 	end
 
-	return nil, nil
+	if not symbol then
+		extmark_opts[status_code] = false
+		return nil
+	end
+
+	local opts = {
+		virt_text = { { symbol, hl_group } },
+		virt_text_pos = "eol",
+		line_hl_group = hl_group,
+		hl_mode = "combine",
+	}
+	extmark_opts[status_code] = opts
+
+	return opts
 end
 
--- Git status per directory, with a short TTL. Re-entering an Oil buffer
--- re-applies highlights, and every `git status` is a process spawn.
-local status_cache = {}
+-- Git status per repository with a short TTL: re-entering a buffer re-applies
+-- highlights, and every `git status` spawns a process.
+local status_cache = state.status_cache
 local STATUS_TTL = 5000
 
--- Get git status for files in the current Oil directory
-local function get_git_status(bufnr, callback)
-	local oil = require("oil")
-	local current_dir = oil.get_current_dir(bufnr)
-	local git_root = current_dir and vim.fs.root(current_dir, ".git")
+-- `git status` runs in flight per repository.
+local status_pending = state.pending
 
-	if not git_root or not current_dir then
-		callback({})
-		return
-	end
+-- Repository root per directory, since `vim.fs.root` stats every parent.
+local root_cache = state.roots
 
-	local cached = status_cache[current_dir]
-	if cached and vim.uv.now() - cached.at < STATUS_TTL then
-		callback(cached.status)
-		return
-	end
+-- Both caches live for the session, so cap them and evict the least recently
+-- used entry. Status entries carry `at`; root entries carry no time.
+local STATUS_CACHE_LIMIT = 32
+local ROOT_CACHE_LIMIT = 512
 
-	local path = vim.fs.relpath(git_root, current_dir) or "."
-	if path == "" then
-		path = "."
-	end
+local function trim_cache(cache, limit, last_used)
+	local count, oldest_key, oldest_at = 0, nil, nil
 
-	-- Use git -c core.quotepath=false for Windows compatibility
-	-- Only check current directory, not subdirectories
-	vim.system({
-		"git",
-		"-C",
-		git_root,
-		"-c",
-		"core.quotepath=false",
-		"status",
-		"--porcelain=v1",
-		"--short",
-		"--untracked-files=normal",
-		"-z",
-		path,
-	}, { text = true, cwd = git_root }, function(result)
-		if result.code ~= 0 or not result.stdout or result.stdout == "" then
-			status_cache[current_dir] = { at = vim.uv.now(), status = {} }
-			callback({})
-			return
+	for key, value in pairs(cache) do
+		count = count + 1
+		local at = last_used and last_used(value) or 0
+		if not oldest_at or at < oldest_at then
+			oldest_key, oldest_at = key, at
 		end
-
-		-- `-z` prints each entry as `XY PATH`, and renames/copies are followed
-		-- by the original path as an extra NUL-separated field (no `XY `).
-		local status = {}
-		local fields = vim.split(result.stdout, "\0", { plain = true })
-		local i = 1
-		while i <= #fields do
-			local status_code, filepath = fields[i]:match("^(..) (.+)$")
-			if status_code then
-				status[vim.fs.joinpath(git_root, filepath)] = status_code
-				if status_code:find("[RC]") then
-					i = i + 1 -- Skip the source path of a rename/copy
-				end
-			end
-			i = i + 1
-		end
-		status_cache[current_dir] = { at = vim.uv.now(), status = status }
-		callback(status)
-	end)
-end
-
--- Match ids added by this plugin, per buffer. Matches are window-local, and
--- `clearmatches()` would also drop matches owned by other plugins.
-local match_ids = {}
-
--- Latest apply request per buffer. A slower, superseded run must not paint.
-local generation = {}
-
--- Clear the git highlights this plugin added to `bufnr` (defaults to the current one)
-local function clear_highlights(bufnr)
-	bufnr = bufnr or vim.api.nvim_get_current_buf()
-	local ids = match_ids[bufnr]
-	match_ids[bufnr] = nil
-
-	if not vim.api.nvim_buf_is_valid(bufnr) then
-		return
 	end
 
-	vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
-
-	local winid = vim.fn.bufwinid(bufnr)
-	if winid ~= -1 then
-		for _, id in ipairs(ids or {}) do
-			pcall(vim.fn.matchdelete, id, winid)
-		end
+	-- Normally one insert over the limit, so this evicts once.
+	while count > limit do
+		cache[oldest_key] = nil
+		count = count - 1
+		oldest_key = next(cache)
 	end
 end
 
--- Build reverse index: dir_path -> status_code
+local function get_git_root(dir)
+	local root = root_cache[dir]
+	if root == nil then
+		root = vim.fs.root(dir, ".git") or false
+		root_cache[dir] = root
+		trim_cache(root_cache, ROOT_CACHE_LIMIT)
+	end
+	return root or nil
+end
+
+-- Reverse index: dir_path -> status_code
 local function build_dir_status_index(git_status)
 	local dir_status_index = {}
 
@@ -143,6 +129,123 @@ local function build_dir_status_index(git_status)
 	return dir_status_index
 end
 
+local function status_equals(a, b)
+	if a == b then
+		return true
+	end
+
+	local a_count = 0
+	for file, status_code in pairs(a) do
+		a_count = a_count + 1
+		if b[file] ~= status_code then
+			return false
+		end
+	end
+
+	local b_count = 0
+	for _ in pairs(b) do
+		b_count = b_count + 1
+	end
+
+	return a_count == b_count
+end
+
+-- Get git status for the repository containing the current Oil directory
+local function get_git_status(bufnr, callback)
+	local oil = require("oil")
+	local current_dir = oil.get_current_dir(bufnr)
+	local git_root = current_dir and get_git_root(current_dir)
+
+	if not git_root then
+		callback({}, {})
+		return
+	end
+
+	local cached = status_cache[git_root]
+	if cached and vim.uv.now() - cached.at < STATUS_TTL then
+		callback(cached.status, cached.index)
+		return
+	end
+
+	-- OilEnter and BufEnter both fire on open, so a cold-cache miss is normal.
+	-- Join the run in flight instead of spawning a second `git status`.
+	local pending = status_pending[git_root]
+	if pending then
+		pending.waiters[#pending.waiters + 1] = callback
+		return
+	end
+
+	local entry = { waiters = { callback } }
+	status_pending[git_root] = entry
+
+	-- One run per repository, not per directory. `-z` prints `XY PATH` per entry
+	-- and renames/copies add the source path as an extra NUL field.
+	-- `core.quotepath=false` keeps non-ASCII paths readable on Windows, and
+	-- GIT_OPTIONAL_LOCKS avoids taking the index lock for a read-only command.
+	vim.system({
+		"git",
+		"-C",
+		git_root,
+		"-c",
+		"core.quotepath=false",
+		"status",
+		"--porcelain=v1",
+		"--short",
+		"--untracked-files=normal",
+		"-z",
+	}, { text = true, cwd = git_root, env = { GIT_OPTIONAL_LOCKS = "0" } }, function(result)
+		local status = {}
+
+		if result.code == 0 and result.stdout and result.stdout ~= "" then
+			local fields = vim.split(result.stdout, "\0", { plain = true })
+			local i = 1
+			while i <= #fields do
+				local status_code, filepath = fields[i]:match("^(..) (.+)$")
+				if status_code then
+					status[vim.fs.joinpath(git_root, filepath)] = status_code
+					if status_code:find("[RC]") then
+						i = i + 1 -- Skip the source path of a rename/copy
+					end
+				end
+				i = i + 1
+			end
+		end
+
+		local index = build_dir_status_index(status)
+
+		-- Cache was invalidated mid-flight (an oil write): a newer run owns the
+		-- entry, so deliver this result without caching it.
+		if status_pending[git_root] == entry then
+			status_pending[git_root] = nil
+			status_cache[git_root] = { at = vim.uv.now(), status = status, index = index }
+			trim_cache(status_cache, STATUS_CACHE_LIMIT, function(cached)
+				return cached.at
+			end)
+		end
+
+		for _, waiter in ipairs(entry.waiters) do
+			waiter(status, index)
+		end
+	end)
+end
+
+-- Latest apply request per buffer. A slower, superseded run must not paint.
+local generation = state.generation
+
+-- Painted status and changedtick per buffer, so a no-op re-entry is skipped.
+local painted = state.painted
+
+-- Clear the git highlights this plugin added to `bufnr` (defaults to the current one)
+local function clear_highlights(bufnr)
+	bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+	if not vim.api.nvim_buf_is_valid(bufnr) then
+		return
+	end
+
+	vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+end
+
 -- Apply git highlights to the given Oil buffer (defaults to the current one)
 local function apply_git_highlights(bufnr)
 	bufnr = bufnr or vim.api.nvim_get_current_buf()
@@ -150,9 +253,9 @@ local function apply_git_highlights(bufnr)
 	local gen = (generation[bufnr] or 0) + 1
 	generation[bufnr] = gen
 
-	get_git_status(bufnr, function(git_status)
+	get_git_status(bufnr, function(git_status, dir_status_index)
 		vim.schedule(function()
-			-- Needs to be scheduled to avoid calling nvim API from async callback
+			-- Scheduled: no nvim API calls from an async callback
 			if generation[bufnr] ~= gen then
 				return
 			end
@@ -161,8 +264,9 @@ local function apply_git_highlights(bufnr)
 				return
 			end
 
-			if vim.tbl_isempty(git_status) then
-				clear_highlights(bufnr)
+			local tick = vim.api.nvim_buf_get_changedtick(bufnr)
+			local previous = painted[bufnr]
+			if previous and previous.tick == tick and status_equals(previous.status, git_status) then
 				return
 			end
 
@@ -172,57 +276,37 @@ local function apply_git_highlights(bufnr)
 				return
 			end
 
-			local oil_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-			local dir_status_index = build_dir_status_index(git_status)
-			-- The buffer may have been left while the git command was running
-			local winid = vim.fn.bufwinid(bufnr)
-
 			clear_highlights(bufnr)
 
-			local ids = {}
-			-- Group line numbers by highlight group: one matchaddpos per group
-			-- instead of one Vimscript call per line.
-			local lines_by_hl = {}
-			for linenr in ipairs(oil_lines) do
-				local entry = oil.get_entry_on_line(bufnr, linenr)
-				if entry then
-					local path = vim.fs.joinpath(current_dir, entry.name)
+			if not vim.tbl_isempty(git_status) then
+				local line_count = vim.api.nvim_buf_line_count(bufnr)
 
-					-- Determine status code for the entry
-					local status_code = nil
-					if entry.type == "directory" then
-						status_code = dir_status_index[path]
-					elseif entry.type == "file" then
-						status_code = git_status[path]
-					end
+				for linenr = 1, line_count do
+					local entry = oil.get_entry_on_line(bufnr, linenr)
+					if entry then
+						local path = vim.fs.joinpath(current_dir, entry.name)
 
-					-- Apply highlights based on status code
-					local symbol, hl_group = get_symbol_hl_group(status_code)
-					if symbol and hl_group then
-						-- Highlight whole line
-						if winid ~= -1 then
-							local linenrs = lines_by_hl[hl_group]
-							if linenrs then
-								linenrs[#linenrs + 1] = linenr
-							else
-								lines_by_hl[hl_group] = { linenr }
-							end
+						-- Determine status code for the entry
+						local status_code = nil
+						if entry.type == "directory" then
+							status_code = dir_status_index[path]
+						elseif entry.type == "file" then
+							status_code = git_status[path]
 						end
 
-						vim.api.nvim_buf_set_extmark(bufnr, ns, linenr - 1, 0, {
-							virt_text = { { symbol, hl_group } },
-							virt_text_pos = "eol",
-							hl_mode = "combine",
-						})
+						-- Apply highlights based on status code
+						local opts = get_extmark_opts(status_code)
+						if opts then
+							vim.api.nvim_buf_set_extmark(bufnr, ns, linenr - 1, 0, opts)
+						end
 					end
 				end
 			end
 
-			for hl_group, linenrs in pairs(lines_by_hl) do
-				ids[#ids + 1] = vim.fn.matchaddpos(hl_group, linenrs, 10, -1, { window = winid })
-			end
-
-			match_ids[bufnr] = ids
+			painted[bufnr] = {
+				status = git_status,
+				tick = tick,
+			}
 		end)
 	end)
 end
@@ -240,8 +324,9 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
--- OilEnter only fires when a buffer is first loaded. Re-apply when entering an
--- already-loaded Oil buffer, e.g. navigating back to a parent directory.
+-- OilEnter fires only on first load. Re-apply when re-entering a loaded Oil
+-- buffer. Hidden-buffer extmarks cost nothing, and re-applying is skipped when
+-- nothing changed.
 vim.api.nvim_create_autocmd("BufEnter", {
 	group = augroup,
 	pattern = "oil://*",
@@ -249,15 +334,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		if vim.b[args.buf].oil_ready then
 			apply_git_highlights(args.buf)
 		end
-	end,
-})
-
--- Clear highlights when leaving Oil buffer
-vim.api.nvim_create_autocmd("BufLeave", {
-	group = augroup,
-	pattern = "oil://*",
-	callback = function(args)
-		clear_highlights(args.buf)
 	end,
 })
 
@@ -269,9 +345,24 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		vim.schedule(function()
 			local dir = require("oil").get_current_dir(args.buf)
 			if dir then
-				status_cache[dir] = nil
+				local root = get_git_root(dir)
+				if root then
+					status_cache[root] = nil
+					-- A run started before this write must not satisfy later callers.
+					status_pending[root] = nil
+				end
 			end
 			apply_git_highlights(args.buf)
 		end)
+	end,
+})
+
+-- Drop per-buffer bookkeeping
+vim.api.nvim_create_autocmd("BufWipeout", {
+	group = augroup,
+	pattern = "oil://*",
+	callback = function(args)
+		generation[args.buf] = nil
+		painted[args.buf] = nil
 	end,
 })
