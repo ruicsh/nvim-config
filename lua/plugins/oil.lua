@@ -8,8 +8,8 @@ local function parse_output(proc)
 		return ret
 	end
 	for line in vim.gsplit(proc.stdout, "\n", { plain = true, trimempty = true }) do
-		-- Remove trailing slash
-		ret[line:gsub("/$", "")] = true
+		-- Remove trailing separators from directory entries
+		ret[line:gsub("[/\\]+$", ""):gsub("\\", "/")] = true
 	end
 	return ret
 end
@@ -56,11 +56,14 @@ local function new_git_status_ignored()
 
 	local function root_of(dir)
 		if #dir > 1 then
-			dir = dir:gsub("/+$", "")
+			dir = dir:gsub("[/\\]+$", "")
 		end
+		dir = dir:gsub("\\", "/")
 		local root = roots[dir]
 		if not root then
 			root = vim.fs.root(dir, ".git") or dir
+			root = root:gsub("\\", "/")
+			root = root:gsub("[/\\]+$", "")
 			roots[dir] = root
 		end
 		return root
@@ -69,8 +72,10 @@ local function new_git_status_ignored()
 	-- "<dir relative to root>/", or "" when dir is the root itself
 	local function rel_prefix(dir, root)
 		if #dir > 1 then
-			dir = dir:gsub("/+$", "")
+			dir = dir:gsub("[/\\]+$", "")
 		end
+		dir = dir:gsub("\\", "/")
+		root = root:gsub("\\", "/"):gsub("/+$", "")
 		if dir == root then
 			return ""
 		end

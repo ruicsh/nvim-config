@@ -1,5 +1,9 @@
 local ns = vim.api.nvim_create_namespace("ruicsh/ftplugin/oil")
 
+local function normalize_path(path)
+	return path:gsub("\\", "/"):gsub("/+$", "")
+end
+
 -- Oil creates one buffer per directory and re-sources this file for each, so
 -- state must live outside the chunk. A chunk-local table would forget the
 -- caches on the next `FileType oil`.
@@ -110,6 +114,9 @@ local function get_git_root(dir)
 	local root = root_cache[dir]
 	if root == nil then
 		root = vim.fs.root(dir, ".git") or false
+		if root then
+			root = normalize_path(root)
+		end
 		root_cache[dir] = root
 		trim_cache(root_cache, ROOT_CACHE_LIMIT)
 	end
@@ -166,6 +173,7 @@ end
 local function get_git_status(bufnr, callback)
 	local oil = require("oil")
 	local current_dir = oil.get_current_dir(bufnr)
+	current_dir = current_dir and normalize_path(current_dir)
 	local git_root = current_dir and get_git_root(current_dir)
 
 	if not git_root then
@@ -203,7 +211,7 @@ local function get_git_status(bufnr, callback)
 		"status",
 		"--porcelain=v1",
 		"--short",
-		"--ignored-matching",
+		"--ignored",
 		"--untracked-files=normal",
 		"-z",
 	}, { text = true, cwd = git_root, env = { GIT_OPTIONAL_LOCKS = "0" } }, function(result)
@@ -215,8 +223,8 @@ local function get_git_status(bufnr, callback)
 			while i <= #fields do
 				local status_code, filepath = fields[i]:match("^(..) (.+)$")
 				if status_code then
-					filepath = filepath:gsub("[/\\]+$", "")
-					status[vim.fs.joinpath(git_root, filepath)] = status_code
+					filepath = normalize_path(filepath)
+					status[normalize_path(vim.fs.joinpath(git_root, filepath))] = status_code
 					if status_code:find("[RC]") then
 						i = i + 1 -- Skip the source path of a rename/copy
 					end
@@ -298,7 +306,7 @@ local function apply_git_highlights(bufnr)
 				for linenr = 1, line_count do
 					local entry = oil.get_entry_on_line(bufnr, linenr)
 					if entry then
-						local path = vim.fs.joinpath(current_dir, entry.name)
+						local path = normalize_path(vim.fs.joinpath(current_dir, entry.name))
 
 						-- Determine status code for the entry
 						local status_code = nil
