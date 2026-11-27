@@ -131,16 +131,17 @@ local function build_dir_status_index(git_status)
 		if status_code then
 			if status_code:sub(1, 1) == "!" then
 				dir_status_index[file] = status_code
-			end
-			local dir = vim.fs.dirname(file)
-			-- Stop at the first directory that already has a status
-			while dir and dir ~= "" and not dir_status_index[dir] do
-				dir_status_index[dir] = status_code
-				local parent = vim.fs.dirname(dir)
-				if parent == dir then
-					break
+			else
+				local dir = vim.fs.dirname(file)
+				-- Stop at the first directory that already has a status
+				while dir and dir ~= "" and not dir_status_index[dir] do
+					dir_status_index[dir] = status_code
+					local parent = vim.fs.dirname(dir)
+					if parent == dir then
+						break
+					end
+					dir = parent
 				end
-				dir = parent
 			end
 		end
 	end
