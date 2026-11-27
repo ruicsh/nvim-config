@@ -25,12 +25,34 @@ local function git_ignored(cwd, on_exit)
 	}, on_exit)
 end
 
+-- Re-entering a directory re-renders it, and every fetch spawns a process.
+local IGNORED_TTL = 5000
+
+-- Shared for the empty case, since `get` runs once per listed entry
+local EMPTY = {}
+
+-- Both sides are `path -> true` maps
+local function same_paths(a, b)
+	for path in pairs(a) do
+		if not b[path] then
+			return false
+		end
+	end
+	for path in pairs(b) do
+		if not a[path] then
+			return false
+		end
+	end
+	return true
+end
+
 -- Build git-ignored file cache, keyed by repo root. The listing is relative to
 -- the root, so every directory in a repo shares one `git ls-files` run.
 local function new_git_status_ignored()
 	local roots = {} -- dir -> repo root
-	local ignored = {} -- repo root -> ignored paths, relative to that root
+	local ignored = {} -- repo root -> { at, paths } relative to that root
 	local loading = {} -- repo root -> request in flight
+	local again = {} -- repo root -> refetch asked for while in flight
 
 	local function root_of(dir)
 		if #dir > 1 then
@@ -55,24 +77,54 @@ local function new_git_status_ignored()
 		return (dir:sub(#root + 1):gsub("^/+", "")) .. "/"
 	end
 
-	-- Load the listing in the background, then re-render oil if it shows it
-	local function revalidate(dir)
+	-- Load the listing in the background, then re-render oil if it changed.
+	-- `force` skips the TTL after a file operation.
+	local function revalidate(dir, force)
 		local root = root_of(dir)
-		if loading[root] then
+		local cached = ignored[root]
+		if not force and cached and vim.uv.now() - cached.at < IGNORED_TTL then
 			return
 		end
+
+		if loading[root] then
+			-- The run in flight started before the write, so its result is stale
+			if force then
+				again[root] = true
+			end
+			return
+		end
+
 		loading[root] = true
 
 		git_ignored(root, function(proc)
 			loading[root] = nil
-			ignored[root] = parse_output(proc)
-			vim.schedule(function()
-				local bufnr = vim.api.nvim_get_current_buf()
-				local current = require("oil").get_current_dir(bufnr)
-				if current and root_of(current) == root and not vim.bo[bufnr].modified then
-					vim.cmd.edit({ bang = true })
-				end
-			end)
+			local paths = parse_output(proc)
+			local previous = cached and cached.paths
+			ignored[root] = { at = vim.uv.now(), paths = paths }
+
+			-- A reload re-scans the directory and puts the cursor back on line 1,
+			-- so only pay for one when the ignored set actually changed.
+			local changed
+			if previous then
+				changed = not same_paths(previous, paths)
+			else
+				changed = next(paths) ~= nil
+			end
+
+			if changed then
+				vim.schedule(function()
+					local bufnr = vim.api.nvim_get_current_buf()
+					local current = require("oil").get_current_dir(bufnr)
+					if current and root_of(current) == root and not vim.bo[bufnr].modified then
+						vim.cmd.edit({ bang = true })
+					end
+				end)
+			end
+
+			if again[root] then
+				again[root] = nil
+				revalidate(dir, true)
+			end
 		end)
 	end
 
@@ -81,12 +133,9 @@ local function new_git_status_ignored()
 		-- background; the re-render above hides them a moment later.
 		get = function(dir)
 			local root = root_of(dir)
-			local paths = ignored[root]
-			if not paths then
-				paths = {}
-				revalidate(dir)
-			end
-			return rel_prefix(dir, root), paths
+			revalidate(dir)
+			local cached = ignored[root]
+			return rel_prefix(dir, root), cached and cached.paths or EMPTY
 		end,
 		revalidate = revalidate,
 	}
@@ -157,6 +206,18 @@ return {
 			end
 			orig_refresh(...)
 		end
+
+		-- File operations change what is ignored; refetch now instead of waiting
+		-- for the TTL to expire.
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			pattern = "oil://*",
+			callback = function(args)
+				local dir = oil.get_current_dir(args.buf)
+				if dir then
+					git_status_ignored.revalidate(dir, true)
+				end
+			end,
+		})
 
 		-- Show git-ignored files as hidden
 		opts.view_options.is_hidden_file = function(name, bufnr)
